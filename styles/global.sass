@@ -1,0 +1,35 @@
+$black: #333
+$white: rgba(255, 255, 255, 0.97)
+
+*
+  box-sizing: border-box
+  outline: none
+
+html
+  margin: 0
+  padding: 0
+
+body
+  margin: 0
+  padding: 40px 40px 100px
+  color: $black
+  font: normal 300 17px/1.76 "Noto Sans JP",sans-serif
+  letter-spacing: 0.053em
+  // background: url(/assets/_/pc/about.png) top center / 1280px auto no-repeat
+
+#container
+  position: relative
+  max-width: 960px
+  margin: 0 auto
+
+.notfound
+  display: block
+  text-align: center
+  margin: 200px 0
+
+.clearfix:before,
+.clearfix:after
+  content: ' '
+  display: table
+.clearfix:after
+  clear: both

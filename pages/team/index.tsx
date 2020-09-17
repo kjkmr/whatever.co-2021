@@ -10,10 +10,10 @@ import { getAllMembers } from '../../lib/api'
 //   }[]
 // }
 
-const TeamIndex = ({ items }) => (
+const TeamIndex = ({ items }: any) => (
   <Layout>
     <ul>
-      {items.map(item => (
+      {items.map((item: any) => (
         <li key={item.slug}>
           <Link href={`/team/` + item.slug}>{item.title}</Link>
         </li>

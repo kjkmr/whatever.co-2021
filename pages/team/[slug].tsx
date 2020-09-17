@@ -3,27 +3,38 @@ import Layout from '../../components/Layout'
 import { getAllMembers, getMemberDetails } from '../../lib/api'
 
 type Props = {
-  item?: any
-  errors?: string
+  item?: {
+    title: string
+    content: string
+    featuredImage: {
+      node: {
+        mediaItemUrl: string
+      }
+    }
+  }
 }
 
-const StaticPropsDetail = ({ item, errors }: Props) => {
-  if (errors) {
+const StaticPropsDetail = ({ item }: Props) => {
+  console.log(item)
+  if (item) {
     return (
-      <Layout title="Error | Next.js + TypeScript Example">
-        <p>
-          <span style={{ color: 'red' }}>Error:</span> {errors}
-        </p>
-      </Layout>
+      <Layout title={item.title}>
+        <img src={item.featuredImage.node.mediaItemUrl} />
+        <div className="title">{item.title}</div>
+        <div dangerouslySetInnerHTML={{ __html: item.content }}></div>
+        <style jsx>{`
+          img
+            width 200px
+          .title
+            font-size 20px
+            font-weight bold
+            margin-top 20px
+        `}</style>
+      </Layout >
     )
+  } else {
+    return (<div />)
   }
-
-  return (
-    <Layout title={item ? item.title : ''}>
-      <div>{item.title}</div>
-      <div dangerouslySetInnerHTML={{ __html: item.content }}></div>
-    </Layout>
-  )
 }
 
 export default StaticPropsDetail
@@ -38,7 +49,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  if (!params || Array.isArray(params.slug)) return { props: {} };
+  if (!params || !params.slug || Array.isArray(params.slug)) return { props: {} };
   const page = await getMemberDetails(params.slug)
   return { props: { item: page } }
 }

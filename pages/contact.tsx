@@ -19,6 +19,6 @@ const AboutPage = ({ page }: Props) => (
 export default AboutPage
 
 export const getStaticProps: GetStaticProps = async () => {
-  const page = await getPageDetails('about')
+  const page = await getPageDetails('contact')
   return { props: { page } }
 }

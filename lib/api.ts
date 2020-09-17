@@ -67,3 +67,16 @@ export async function getMemberDetails(slug: string) {
       {variables: {slug: `team/${slug}`}})
   return data?.page
 }
+
+
+export async function getPageDetails(slug: string) {
+  const data = await fetchAPI(
+      `query ($slug: ID!) {
+        page(id: $slug, idType: URI) {
+          title
+          content
+        }
+      }`,
+      {variables: {slug}})
+  return data?.page
+}

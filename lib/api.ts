@@ -80,3 +80,24 @@ export async function getPageDetails(slug: string) {
       {variables: {slug}})
   return data?.page
 }
+
+
+export async function getAllWorks() {
+  const data = await fetchAPI(`
+    {
+      posts(first: 1000, where: {categoryName: "WORK"}) {
+        nodes {
+          slug
+          title
+          date
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+        }
+      }
+    }
+  `)
+  return data?.posts?.nodes
+}

@@ -3,21 +3,19 @@ import Link from 'next/link'
 import Layout from '../../components/Layout'
 import { getAllMembers } from '../../lib/api'
 
-type Props = {
-  items: {
-    node: {
-      slug: string,
-      title: string
-    }
-  }[]
-}
+// type Props = {
+//   items: {
+//     slug: string,
+//     title: string
+//   }[]
+// }
 
-const TeamIndex = ({ items }: Props) => (
+const TeamIndex = ({ items }) => (
   <Layout>
     <ul>
       {items.map(item => (
-        <li key={item.node.slug}>
-          <Link href={`/team/` + item.node.slug}>{item.node.title}</Link>
+        <li key={item.slug}>
+          <Link href={`/team/` + item.slug}>{item.title}</Link>
         </li>
       ))}
     </ul>
@@ -28,6 +26,5 @@ export default TeamIndex
 
 export const getStaticProps: GetStaticProps = async () => {
   const items = await getAllMembers()
-  console.log(items.edges)
-  return { props: { items: items.edges } }
+  return { props: { items } }
 }

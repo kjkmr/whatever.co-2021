@@ -29,10 +29,15 @@ async function fetchAPI(query: any, {variables}: any = {}) {
 }
 
 
-export async function getAllMembers() {
+type Node = {
+  slug: string,
+  title: string,
+};
+
+export async function getAllMembers(): Promise<Node[]|undefined> {
   const data = await fetchAPI(`
     {
-      pages(first: 10000) {
+      pages(first: 10000, where: {categoryName: "MEMBERS"}) {
         edges {
           node {
             slug
@@ -42,5 +47,23 @@ export async function getAllMembers() {
       }
     }
   `)
-  return data?.pages
+  return data?.pages?.edges?.map((edge: any): Node => edge.node)
+}
+
+
+export async function getMemberDetails(slug: string) {
+  const data = await fetchAPI(
+      `query ($slug: ID!) {
+        page(id: $slug, idType: URI) {
+          title
+          content
+          featuredImage {
+            node {
+              mediaItemUrl
+            }
+          }
+        }
+      }`,
+      {variables: {slug: `team/${slug}`}})
+  return data?.page
 }

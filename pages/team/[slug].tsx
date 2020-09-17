@@ -14,8 +14,7 @@ type Props = {
   }
 }
 
-const StaticPropsDetail = ({ item }: Props) => {
-  console.log(item)
+const MemberDetail = ({ item }: Props) => {
   if (item) {
     return (
       <Layout title={item.title}>
@@ -37,7 +36,7 @@ const StaticPropsDetail = ({ item }: Props) => {
   }
 }
 
-export default StaticPropsDetail
+export default MemberDetail
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const pages = await getAllMembers()

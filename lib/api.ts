@@ -101,3 +101,17 @@ export async function getAllWorks() {
   `)
   return data?.posts?.nodes
 }
+
+
+export async function getWorkDetails(slug: string) {
+  const data = await fetchAPI(
+      `query ($slug: ID!) {
+        post(id: $slug, idType: URI) {
+          title
+          content
+          date
+        }
+      }`,
+      {variables: {slug}})
+  return data?.post
+}

@@ -20,8 +20,8 @@ const WorkIndex = ({ items }: Props) => (
   <Layout title="WORK">
     <div className="list">
       {items.map(item => (
-        <Link href={`/work/${item.slug}`}>
-          <div key={item.slug} className="item" style={{ backgroundImage: `url(${item.featuredImage.node.sourceUrl})` }}>
+        <Link href={`/work/${item.slug}`} key={item.slug}>
+          <div className="item" style={{ backgroundImage: `url(${item.featuredImage.node.sourceUrl})` }}>
             <div className="inner">
               <div className="title">{item.title}</div>
               <div className="date">{item.date}</div>

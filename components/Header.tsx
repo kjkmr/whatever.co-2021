@@ -1,4 +1,3 @@
-import * as React from 'react'
 import Link from 'next/link'
 
 
@@ -32,14 +31,16 @@ const Header = () => (
       .logo
         width 180px
         margin-top 5px
+        cursor pointer
       .menu
         padding 9px 2px 0
         margin 0 -30px
       li
-        display inline-block
-        list-style none
-        margin 0 19px
-        user-select none
+        display: inline-block
+        list-style: none
+        font: normal 300 17px acumin-pro, sans-serif
+        margin: 0 19px
+        user-select: none
       a
         color #333
         text-decoration none

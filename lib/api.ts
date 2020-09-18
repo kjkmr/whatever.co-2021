@@ -115,3 +115,45 @@ export async function getWorkDetails(slug: string) {
       {variables: {slug}})
   return data?.post
 }
+
+
+export async function getFeaturedWork() {
+  const data = await fetchAPI(`
+    {
+      posts(first: 3, where: {tag: "featured"}) {
+        nodes {
+          slug
+          title
+          date
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+        }
+      }
+    }
+  `)
+  return data?.posts?.nodes
+}
+
+
+export async function getLatestNews() {
+  const data = await fetchAPI(`
+    {
+      posts(first: 3, where: {categoryName: "news"}) {
+        nodes {
+          slug
+          title
+          date
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+        }
+      }
+    }
+  `)
+  return data?.posts?.nodes
+}

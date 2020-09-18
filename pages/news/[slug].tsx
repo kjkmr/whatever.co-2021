@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Layout from '../../components/Layout'
-import { getAllWorks, getPostDetails } from '../../lib/api'
+import { getAllNews, getPostDetails } from '../../lib/api'
 
 type Props = {
   item?: {
@@ -9,7 +9,7 @@ type Props = {
     content: string
     featuredImage: {
       node: {
-        mediaItemUrl: string
+        sourceUrl: string
       }
     }
   }
@@ -19,7 +19,7 @@ const WorkDetail = ({ item }: Props) => {
   if (item) {
     return (
       <Layout title={item.title}>
-        <div className="entry">
+        <div className="entry with-image" style={{ backgroundImage: `url(${item.featuredImage.node.sourceUrl})` }}>
           <div className="inner">
             <h1>{item.title}</h1>
             <span className="date">{item.date}</span>
@@ -33,10 +33,13 @@ const WorkDetail = ({ item }: Props) => {
             padding: 0 30px
             background-repeat: no-repeat
             background-position: center top
+            &.with-image
+              padding-top: 30px
           .inner
             position: relative
             z-index: auto
             padding: 40px 62px
+            padding-top: 396px
             background-repeat: no-repeat
             background-position: -34px -34px
             background-color: transparent
@@ -74,7 +77,7 @@ const WorkDetail = ({ item }: Props) => {
 export default WorkDetail
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllWorks()
+  const posts = await getAllNews()
   const paths = posts ? posts.map((e: any) => ({ params: { slug: e.slug } })) : []
   return {
     paths,

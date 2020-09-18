@@ -103,13 +103,18 @@ export async function getAllWorks() {
 }
 
 
-export async function getWorkDetails(slug: string) {
+export async function getPostDetails(slug: string) {
   const data = await fetchAPI(
       `query ($slug: ID!) {
         post(id: $slug, idType: URI) {
           title
           content
           date
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
         }
       }`,
       {variables: {slug}})

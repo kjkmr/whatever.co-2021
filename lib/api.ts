@@ -138,6 +138,28 @@ export async function getFeaturedWork() {
 }
 
 
+export async function getAllNews() {
+  const data = await fetchAPI(`
+    {
+      posts(first: 20, where: {categoryName: "NEWS"}) {
+        nodes {
+          slug
+          title
+          date
+          content
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+        }
+      }
+    }
+  `)
+  return data?.posts?.nodes
+}
+
+
 export async function getLatestNews() {
   const data = await fetchAPI(`
     {

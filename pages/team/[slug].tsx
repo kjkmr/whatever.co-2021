@@ -3,24 +3,20 @@ import Layout from '../../components/Layout'
 import { getAllMembers, getMemberDetails } from '../../lib/api'
 
 type Props = {
-  item?: {
+  page?: {
     title: string
     content: string
-    featuredImage: {
-      node: {
-        mediaItemUrl: string
-      }
-    }
+    image: string
   }
 }
 
-const MemberDetail = ({ item }: Props) => {
-  if (item) {
+const MemberDetail = ({ page }: Props) => {
+  if (page) {
     return (
-      <Layout title={item.title}>
-        <img src={item.featuredImage.node.mediaItemUrl} />
-        <div className="title">{item.title}</div>
-        <div dangerouslySetInnerHTML={{ __html: item.content }}></div>
+      <Layout title={page.title}>
+        <img src={page.image} />
+        <div className="title">{page.title}</div>
+        <div dangerouslySetInnerHTML={{ __html: page.content }}></div>
         <style jsx>{`
           img
             width 200px
@@ -50,5 +46,5 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (!params || !params.slug || Array.isArray(params.slug)) return { props: {} };
   const page = await getMemberDetails(params.slug)
-  return { props: { item: page } }
+  return { props: { page } }
 }

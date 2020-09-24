@@ -1,6 +1,8 @@
 const API_URL = process.env.WORDPRESS_API_URL || ''
+const WPAPI = require('wpapi')
+const wp = new WPAPI({ endpoint: 'http://localhost:8888/wp-json' })
 
-async function fetchAPI(query: any, {variables}: any = {}) {
+async function fetchAPI(query: any, { variables }: any = {}) {
   const headers = {
     'Content-Type': 'application/json'
   }
@@ -34,50 +36,31 @@ type Node = {
   title: string,
 };
 
-export async function getAllMembers(): Promise<Node[]|undefined> {
-  const data = await fetchAPI(`
-    {
-      pages(first: 10000, where: {categoryName: "MEMBERS"}) {
-        edges {
-          node {
-            slug
-            title
-          }
-        }
-      }
-    }
-  `)
-  return data?.pages?.edges?.map((edge: any): Node => edge.node)
+export async function getAllMembers(): Promise<Node[] | undefined> {
+  const data = await wp.pages().perPage(100).param({ _fields: 'slug,title', categories: 235 })
+  return data.map((e: any): Node => ({ slug: e.slug, title: e.title.rendered }))
 }
 
 
 export async function getMemberDetails(slug: string) {
-  const data = await fetchAPI(
-      `query ($slug: ID!) {
-        page(id: $slug, idType: URI) {
-          title
-          content
-          featuredImage {
-            node {
-              mediaItemUrl
-            }
-          }
-        }
-      }`,
-      {variables: {slug: `team/${slug}`}})
-  return data?.page
+  const data = await wp.pages().slug(slug).embed()
+  return {
+    title: data[0].title.rendered,
+    content: data[0].content.rendered,
+    image: data[0]._embedded['wp:featuredmedia'][0].source_url
+  }
 }
 
 
 export async function getPageDetails(slug: string) {
   const data = await fetchAPI(
-      `query ($slug: ID!) {
+    `query ($slug: ID!) {
         page(id: $slug, idType: URI) {
           title
           content
         }
       }`,
-      {variables: {slug}})
+    { variables: { slug } })
   return data?.page
 }
 
@@ -105,7 +88,7 @@ export async function getAllWorks() {
 
 export async function getPostDetails(slug: string) {
   const data = await fetchAPI(
-      `query ($slug: ID!) {
+    `query ($slug: ID!) {
         post(id: $slug, idType: URI) {
           title
           content
@@ -117,7 +100,7 @@ export async function getPostDetails(slug: string) {
           }
         }
       }`,
-      {variables: {slug}})
+    { variables: { slug } })
   return data?.post
 }
 

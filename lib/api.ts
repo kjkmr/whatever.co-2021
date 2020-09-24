@@ -1,33 +1,17 @@
-const API_URL = process.env.WORDPRESS_API_URL || ''
 const WPAPI = require('wpapi')
-const wp = new WPAPI({ endpoint: 'http://localhost:8888/wp-json' })
+const wp = new WPAPI({ endpoint: process.env.WORDPRESS_API_URL })
 
-async function fetchAPI(query: any, { variables }: any = {}) {
-  const headers = {
-    'Content-Type': 'application/json'
-  }
 
-  // if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
-  //   headers[
-  //     'Authorization'
-  //   ] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`
-  // }
-
-  const res = await fetch(API_URL, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
+const getAll = (request: any) => {
+  return request.then((response: any) => {
+    if (!response._paging || !response._paging.next) {
+      return response
+    }
+    return Promise.all([
+      response,
+      getAll(response._paging.next)
+    ]).then((responses: any) => responses.flat(Infinity))
   })
-
-  const json = await res.json()
-  if (json.errors) {
-    console.error(json.errors)
-    throw new Error('Failed to fetch API')
-  }
-  return json.data
 }
 
 
@@ -42,128 +26,68 @@ export async function getAllMembers(): Promise<Node[] | undefined> {
 }
 
 
-export async function getMemberDetails(slug: string) {
+export async function getPageDetails(slug: string) {
   const data = await wp.pages().slug(slug).embed()
+  const media = data[0]._embedded['wp:featuredmedia']
   return {
     title: data[0].title.rendered,
     content: data[0].content.rendered,
-    image: data[0]._embedded['wp:featuredmedia'][0].source_url
+    image: media ? media[0].source_url : ''
   }
 }
 
 
-export async function getPageDetails(slug: string) {
-  const data = await fetchAPI(
-    `query ($slug: ID!) {
-        page(id: $slug, idType: URI) {
-          title
-          content
-        }
-      }`,
-    { variables: { slug } })
-  return data?.page
-}
-
-
 export async function getAllWorks() {
-  const data = await fetchAPI(`
-    {
-      posts(first: 1000, where: {categoryName: "WORK"}) {
-        nodes {
-          slug
-          title
-          date
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-        }
-      }
-    }
-  `)
-  return data?.posts?.nodes
+  const data = await getAll(wp.posts().perPage(100).embed().param({ categories: 4, _fields: 'slug,title,date,_links,_embedded' }))
+  return data?.map((e: any) => ({
+    slug: e.slug,
+    title: e.title.rendered,
+    date: e.date,
+    image: e._embedded['wp:featuredmedia'][0].source_url,
+  }))
 }
 
 
 export async function getPostDetails(slug: string) {
-  const data = await fetchAPI(
-    `query ($slug: ID!) {
-        post(id: $slug, idType: URI) {
-          title
-          content
-          date
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-        }
-      }`,
-    { variables: { slug } })
-  return data?.post
+  const data = await wp.posts().slug(slug).embed().param({ _fields: 'title,content,date,_links,_embedded' })
+  return {
+    title: data[0].title.rendered,
+    content: data[0].content.rendered,
+    date: data[0].date,
+    image: data[0]._embedded['wp:featuredmedia'][0].source_url,
+  }
 }
 
 
 export async function getFeaturedWork() {
-  const data = await fetchAPI(`
-    {
-      posts(first: 3, where: {tag: "featured"}) {
-        nodes {
-          slug
-          title
-          date
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-        }
-      }
-    }
-  `)
-  return data?.posts?.nodes
+  const data = await wp.posts().perPage(3).embed().param({ tags: 185, _fields: 'slug,title,date,_links,_embedded' })
+  return data?.map((e: any) => ({
+    slug: e.slug,
+    title: e.title.rendered,
+    date: e.date,
+    image: e._embedded['wp:featuredmedia'][0].source_url,
+  }))
 }
 
 
 export async function getAllNews() {
-  const data = await fetchAPI(`
-    {
-      posts(first: 20, where: {categoryName: "NEWS"}) {
-        nodes {
-          slug
-          title
-          date
-          content
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-        }
-      }
-    }
-  `)
-  return data?.posts?.nodes
+  const data = await wp.posts().perPage(20).embed().param({ categories: 5, _fields: 'slug,title,date,content,_links,_embedded' })
+  return data?.map((e: any) => ({
+    slug: e.slug,
+    title: e.title.rendered,
+    date: e.date,
+    content: e.content.rendered,
+    image: e._embedded['wp:featuredmedia'][0].source_url,
+  }))
 }
 
 
 export async function getLatestNews() {
-  const data = await fetchAPI(`
-    {
-      posts(first: 3, where: {categoryName: "news"}) {
-        nodes {
-          slug
-          title
-          date
-          featuredImage {
-            node {
-              sourceUrl
-            }
-          }
-        }
-      }
-    }
-  `)
-  return data?.posts?.nodes
+  const data = await wp.posts().perPage(3).embed().param({ categories: 5, _fields: 'slug,title,date,_links,_embedded' })
+  return data?.map((e: any) => ({
+    slug: e.slug,
+    title: e.title.rendered,
+    date: e.date,
+    image: e._embedded['wp:featuredmedia'][0].source_url,
+  }))
 }

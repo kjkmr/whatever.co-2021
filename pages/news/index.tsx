@@ -9,11 +9,7 @@ type Props = {
     title: string
     date: string
     content: string
-    featuredImage: {
-      node: {
-        sourceUrl: string
-      }
-    }
+    image: string
   }[]
 }
 
@@ -22,7 +18,7 @@ const NewsIndex = ({ items }: Props) => (
     <div>
       {items.map(item => (
         <div className="wrapper" key={item.slug}>
-          <div className="entry with-image" style={{ backgroundImage: `url(${item.featuredImage.node.sourceUrl})` }}>
+          <div className="entry with-image" style={{ backgroundImage: `url(${item.image})` }}>
             <div className="inner">
               <h1 className="title"><Link href={`/news/${item.slug}/`}><a dangerouslySetInnerHTML={{ __html: item.title }} /></Link></h1>
               <span className="date"><Link href={`/news/${item.slug}/`}><a>{item.date}</a></Link></span>

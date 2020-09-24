@@ -7,11 +7,7 @@ type Props = {
     title: string
     date: string
     content: string
-    featuredImage: {
-      node: {
-        sourceUrl: string
-      }
-    }
+    image: string
   }
 }
 
@@ -19,7 +15,7 @@ const WorkDetail = ({ item }: Props) => {
   if (item) {
     return (
       <Layout title={item.title}>
-        <div className="entry with-image" style={{ backgroundImage: `url(${item.featuredImage.node.sourceUrl})` }}>
+        <div className="entry with-image" style={{ backgroundImage: `url(${item.image})` }}>
           <div className="inner">
             <h1>{item.title}</h1>
             <span className="date">{item.date}</span>

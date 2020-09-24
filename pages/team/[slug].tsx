@@ -1,6 +1,6 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Layout from '../../components/Layout'
-import { getAllMembers, getMemberDetails } from '../../lib/api'
+import { getAllMembers, getPageDetails } from '../../lib/api'
 
 type Props = {
   page?: {
@@ -45,6 +45,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (!params || !params.slug || Array.isArray(params.slug)) return { props: {} };
-  const page = await getMemberDetails(params.slug)
+  const page = await getPageDetails(params.slug)
   return { props: { page } }
 }

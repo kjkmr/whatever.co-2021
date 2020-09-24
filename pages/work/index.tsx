@@ -5,14 +5,10 @@ import { getAllWorks } from '../../lib/api'
 
 type Props = {
   items: {
-    slug: string,
+    slug: string
     title: string
     date: string
-    featuredImage: {
-      node: {
-        sourceUrl: string
-      }
-    }
+    image: string
   }[]
 }
 
@@ -21,7 +17,7 @@ const WorkIndex = ({ items }: Props) => (
     <div className="list">
       {items.map(item => (
         <Link href={`/work/${item.slug}`} key={item.slug}>
-          <div className="item" style={{ backgroundImage: `url(${item.featuredImage.node.sourceUrl})` }}>
+          <div className="item" style={{ backgroundImage: `url(${item.image})` }}>
             <div className="inner">
               <div className="title">{item.title}</div>
               <div className="date">{item.date}</div>

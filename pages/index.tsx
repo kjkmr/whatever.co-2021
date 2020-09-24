@@ -8,11 +8,7 @@ type Post = {
   slug: string
   title: string
   date: string
-  featuredImage: {
-    node: {
-      sourceUrl: string
-    }
-  }
+  image: string
 }
 
 type Props = {
@@ -36,7 +32,7 @@ const IndexPage = ({ work, news }: Props) => (
         <div className="items">
           {work.map(entry => (
             <Link href={`/work/${entry.slug}`} key={entry.slug}>
-              <div className="work" style={{ backgroundImage: `url(${entry.featuredImage.node.sourceUrl})` }}>
+              <div className="work" style={{ backgroundImage: `url(${entry.image})` }}>
                 <div className="title" dangerouslySetInnerHTML={{ __html: entry.title }}></div>
                 <img src="/assets/learnmore.png" width="160"></img>
               </div>
@@ -50,7 +46,7 @@ const IndexPage = ({ work, news }: Props) => (
         <div className="items">
           {news.map(entry => (
             <Link href={`/post/${entry.slug}`} key={entry.slug}>
-              <div className="news" style={{ backgroundImage: `url(${entry.featuredImage.node.sourceUrl})` }}>
+              <div className="news" style={{ backgroundImage: `url(${entry.image})` }}>
                 <div className="date">{entry.date}</div>
                 <div className="title" dangerouslySetInnerHTML={{ __html: entry.title }}></div>
               </div>

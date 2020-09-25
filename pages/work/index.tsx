@@ -14,7 +14,7 @@ const WorkIndex = ({ works }: Props) => (
         <Link href={`/work/${w.slug}`} key={w.slug}>
           <div className="item" style={{ backgroundImage: `url(${w.image})` }}>
             <div className="inner">
-              <div className="title">{w.title}</div>
+              <div className="title" dangerouslySetInnerHTML={{ __html: w.title }} />
               <div className="date">{w.date}</div>
             </div>
           </div>

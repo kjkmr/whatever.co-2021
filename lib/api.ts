@@ -40,7 +40,8 @@ export async function getAllMembers(): Promise<Entry[]> {
 
 
 export async function getAllWorks(): Promise<Entry[]> {
-  const data = await getAll(wp.posts().perPage(100).embed().param({ categories: 4, _fields: 'slug,title,date,_links,_embedded' }))
+  const data = await (wp.posts().perPage(100).embed().param({ categories: 4, _fields: 'slug,title,date,_links,_embedded' }))
+  // const data = await getAll(wp.posts().perPage(100).embed().param({ categories: 4, _fields: 'slug,title,date,_links,_embedded' }))
   return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
@@ -86,7 +87,6 @@ export async function getLatestNews(): Promise<Entry[]> {
 
 export async function getPostDetails(slug: string): Promise<Entry> {
   const data = await wp.posts().slug(slug).embed().param({ _fields: 'slug,title,content,date,_links,_embedded' })
-  console.log(data)
   return {
     slug: data[0].slug,
     title: data[0].title.rendered,

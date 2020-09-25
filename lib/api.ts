@@ -1,10 +1,13 @@
 const WPAPI = require('wpapi')
 const wp = new WPAPI({ endpoint: process.env.WORDPRESS_API_URL })
 
+console.log(process.env.WORDPRESS_URL, process.env.CDN_URL)
 
 const re = new RegExp(`${process.env.WORDPRESS_URL}/wp-content/`, 'g')
 const replaceToCDN = (url: string): string => {
-  return url.replace(re, process.env.CDN_URL + '/wp-content/')
+  const result = url.replace(re, process.env.CDN_URL + '/wp-content/')
+  console.log(url, '->', result)
+  return result
 }
 
 

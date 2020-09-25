@@ -1,12 +1,12 @@
 const WPAPI = require('wpapi')
 const wp = new WPAPI({ endpoint: process.env.WORDPRESS_API_URL })
 
-console.log(process.env.WORDPRESS_URL, process.env.CDN_URL)
+// console.log(process.env.WORDPRESS_URL, process.env.CDN_URL)
 
 const re = new RegExp(`${process.env.WORDPRESS_URL}/wp-content/`, 'g')
 const replaceToCDN = (url: string): string => {
   const result = url.replace(re, process.env.CDN_URL + '/wp-content/')
-  console.log(url, '->', result)
+  // console.log(url, '->', result)
   return result
 }
 
@@ -71,7 +71,7 @@ export async function getAllNews(): Promise<Entry[]> {
     slug: e.slug,
     title: e.title.rendered,
     date: e.date,
-    content: e.content.rendered,
+    content: replaceToCDN(e.content.rendered),
     image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
   }))
 }
@@ -93,7 +93,7 @@ export async function getPostDetails(slug: string): Promise<Entry> {
   return {
     slug: data[0].slug,
     title: data[0].title.rendered,
-    content: data[0].content.rendered,
+    content: replaceToCDN(data[0].content.rendered),
     date: data[0].date,
     image: replaceToCDN(data[0]._embedded['wp:featuredmedia'][0].source_url),
   }
@@ -106,7 +106,7 @@ export async function getPageDetails(slug: string): Promise<Entry> {
   return {
     slug,
     title: data[0].title.rendered,
-    content: data[0].content.rendered,
+    content: replaceToCDN(data[0].content.rendered),
     image: media ? replaceToCDN(media[0].source_url) : ''
   }
 }

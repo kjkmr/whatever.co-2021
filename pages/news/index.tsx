@@ -1,29 +1,23 @@
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import Layout from '../../components/Layout'
-import { getAllNews } from '../../lib/api'
+import { Entry, getAllNews } from '../../lib/api'
 
 type Props = {
-  items: {
-    slug: string,
-    title: string
-    date: string
-    content: string
-    image: string
-  }[]
+  entries: Entry[]
 }
 
-const NewsIndex = ({ items }: Props) => (
+const NewsIndex = ({ entries }: Props) => (
   <Layout title="WORK">
     <div>
-      {items.map(item => (
-        <div className="wrapper" key={item.slug}>
-          <div className="entry with-image" style={{ backgroundImage: `url(${item.image})` }}>
+      {entries.map(e => (
+        <div className="wrapper" key={e.slug}>
+          <div className="entry with-image" style={{ backgroundImage: `url(${e.image})` }}>
             <div className="inner">
-              <h1 className="title"><Link href={`/news/${item.slug}/`}><a dangerouslySetInnerHTML={{ __html: item.title }} /></Link></h1>
-              <span className="date"><Link href={`/news/${item.slug}/`}><a>{item.date}</a></Link></span>
+              <h1 className="title"><Link href={`/news/${e.slug}/`}><a dangerouslySetInnerHTML={{ __html: e.title }} /></Link></h1>
+              <span className="date"><Link href={`/news/${e.slug}/`}><a>{e.date}</a></Link></span>
               <div className="body">
-                <div dangerouslySetInnerHTML={{ __html: item.content }} />
+                <div dangerouslySetInnerHTML={{ __html: e.content || '' }} />
               </div>
             </div>
           </div></div>
@@ -87,6 +81,6 @@ const NewsIndex = ({ items }: Props) => (
 export default NewsIndex
 
 export const getStaticProps: GetStaticProps = async () => {
-  const items = await getAllNews()
-  return { props: { items } }
+  const entries = await getAllNews()
+  return { props: { entries } }
 }

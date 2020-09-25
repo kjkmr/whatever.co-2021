@@ -1,19 +1,12 @@
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import Layout from '../components/Layout'
-import { getFeaturedWork, getLatestNews } from '../lib/api'
+import { Entry, getFeaturedWork, getLatestNews } from '../lib/api'
 
-
-type Post = {
-  slug: string
-  title: string
-  date: string
-  image: string
-}
 
 type Props = {
-  work: Post[]
-  news: Post[]
+  work: Entry[]
+  news: Entry[]
 }
 
 

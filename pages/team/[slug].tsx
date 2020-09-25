@@ -1,22 +1,18 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Layout from '../../components/Layout'
-import { getAllMembers, getPageDetails } from '../../lib/api'
+import { Entry, getAllMembers, getPageDetails } from '../../lib/api'
 
 type Props = {
-  page?: {
-    title: string
-    content: string
-    image: string
-  }
+  entry?: Entry
 }
 
-const MemberDetail = ({ page }: Props) => {
-  if (page) {
+const MemberDetail = ({ entry }: Props) => {
+  if (entry) {
     return (
-      <Layout title={page.title}>
-        <img src={page.image} />
-        <div className="title">{page.title}</div>
-        <div dangerouslySetInnerHTML={{ __html: page.content }}></div>
+      <Layout title={entry.title}>
+        <img src={entry.image} />
+        <div className="title">{entry.title}</div>
+        <div dangerouslySetInnerHTML={{ __html: entry.content || '' }}></div>
         <style jsx>{`
           img
             width 200px
@@ -28,15 +24,15 @@ const MemberDetail = ({ page }: Props) => {
       </Layout >
     )
   } else {
-    return (<div />)
+    return (<Layout title="404" />)
   }
 }
 
 export default MemberDetail
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const pages = await getAllMembers()
-  const paths = pages ? pages.map((e: any) => ({ params: { slug: e.slug } })) : []
+  const members = await getAllMembers()
+  const paths = members.map((m) => ({ params: { slug: m.slug } }))
   return {
     paths,
     fallback: false
@@ -45,6 +41,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (!params || !params.slug || Array.isArray(params.slug)) return { props: {} };
-  const page = await getPageDetails(params.slug)
-  return { props: { page } }
+  const entry = await getPageDetails(params.slug)
+  return { props: { entry } }
 }

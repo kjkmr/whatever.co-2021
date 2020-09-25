@@ -1,26 +1,21 @@
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import Layout from '../../components/Layout'
-import { getAllWorks } from '../../lib/api'
+import { Entry, getAllWorks } from '../../lib/api'
 
 type Props = {
-  items: {
-    slug: string
-    title: string
-    date: string
-    image: string
-  }[]
+  works: Entry[]
 }
 
-const WorkIndex = ({ items }: Props) => (
+const WorkIndex = ({ works }: Props) => (
   <Layout title="WORK">
     <div className="list">
-      {items.map(item => (
-        <Link href={`/work/${item.slug}`} key={item.slug}>
-          <div className="item" style={{ backgroundImage: `url(${item.image})` }}>
+      {works.map(w => (
+        <Link href={`/work/${w.slug}`} key={w.slug}>
+          <div className="item" style={{ backgroundImage: `url(${w.image})` }}>
             <div className="inner">
-              <div className="title">{item.title}</div>
-              <div className="date">{item.date}</div>
+              <div className="title">{w.title}</div>
+              <div className="date">{w.date}</div>
             </div>
           </div>
         </Link>
@@ -59,6 +54,6 @@ const WorkIndex = ({ items }: Props) => (
 export default WorkIndex
 
 export const getStaticProps: GetStaticProps = async () => {
-  const items = await getAllWorks()
-  return { props: { items } }
+  const works = await getAllWorks()
+  return { props: { works } }
 }

@@ -15,31 +15,27 @@ const getAll = (request: any) => {
 }
 
 
-type Node = {
-  slug: string,
-  title: string,
-};
-
-export async function getAllMembers(): Promise<Node[] | undefined> {
-  const data = await wp.pages().perPage(100).param({ _fields: 'slug,title', categories: 235 })
-  return data.map((e: any): Node => ({ slug: e.slug, title: e.title.rendered }))
+export type Entry = {
+  slug: string
+  title: string
+  date?: string
+  content?: string
+  image?: string
 }
 
 
-export async function getPageDetails(slug: string) {
-  const data = await wp.pages().slug(slug).embed()
-  const media = data[0]._embedded['wp:featuredmedia']
-  return {
-    title: data[0].title.rendered,
-    content: data[0].content.rendered,
-    image: media ? media[0].source_url : ''
-  }
+export async function getAllMembers(): Promise<Entry[]> {
+  const data = await wp.pages().perPage(100).param({ categories: 235, _fields: 'slug,title' })
+  return data?.map((e: any): Entry => ({
+    slug: e.slug,
+    title: e.title.rendered
+  }))
 }
 
 
-export async function getAllWorks() {
+export async function getAllWorks(): Promise<Entry[]> {
   const data = await getAll(wp.posts().perPage(100).embed().param({ categories: 4, _fields: 'slug,title,date,_links,_embedded' }))
-  return data?.map((e: any) => ({
+  return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
     date: e.date,
@@ -48,20 +44,9 @@ export async function getAllWorks() {
 }
 
 
-export async function getPostDetails(slug: string) {
-  const data = await wp.posts().slug(slug).embed().param({ _fields: 'title,content,date,_links,_embedded' })
-  return {
-    title: data[0].title.rendered,
-    content: data[0].content.rendered,
-    date: data[0].date,
-    image: data[0]._embedded['wp:featuredmedia'][0].source_url,
-  }
-}
-
-
-export async function getFeaturedWork() {
+export async function getFeaturedWork(): Promise<Entry[]> {
   const data = await wp.posts().perPage(3).embed().param({ tags: 185, _fields: 'slug,title,date,_links,_embedded' })
-  return data?.map((e: any) => ({
+  return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
     date: e.date,
@@ -70,9 +55,9 @@ export async function getFeaturedWork() {
 }
 
 
-export async function getAllNews() {
+export async function getAllNews(): Promise<Entry[]> {
   const data = await wp.posts().perPage(20).embed().param({ categories: 5, _fields: 'slug,title,date,content,_links,_embedded' })
-  return data?.map((e: any) => ({
+  return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
     date: e.date,
@@ -82,12 +67,36 @@ export async function getAllNews() {
 }
 
 
-export async function getLatestNews() {
+export async function getLatestNews(): Promise<Entry[]> {
   const data = await wp.posts().perPage(3).embed().param({ categories: 5, _fields: 'slug,title,date,_links,_embedded' })
-  return data?.map((e: any) => ({
+  return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
     date: e.date,
     image: e._embedded['wp:featuredmedia'][0].source_url,
   }))
+}
+
+
+export async function getPostDetails(slug: string): Promise<Entry> {
+  const data = await wp.posts().slug(slug).embed().param({ _fields: 'slug,title,content,date,_links,_embedded' })
+  return {
+    slug: data[0].slug,
+    title: data[0].title.rendered,
+    content: data[0].content.rendered,
+    date: data[0].date,
+    image: data[0]._embedded['wp:featuredmedia'][0].source_url,
+  }
+}
+
+
+export async function getPageDetails(slug: string): Promise<Entry> {
+  const data = await wp.pages().slug(slug).embed()
+  const media = data[0]._embedded['wp:featuredmedia']
+  return {
+    slug,
+    title: data[0].title.rendered,
+    content: data[0].content.rendered,
+    image: media ? media[0].source_url : ''
+  }
 }

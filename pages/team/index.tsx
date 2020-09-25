@@ -1,21 +1,18 @@
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import Layout from '../../components/Layout'
-import { getAllMembers } from '../../lib/api'
+import { Entry, getAllMembers } from '../../lib/api'
 
 type Props = {
-  items: {
-    slug: string,
-    title: string
-  }[]
+  members: Entry[]
 }
 
-const TeamIndex = ({ items }: Props) => (
+const TeamIndex = ({ members }: Props) => (
   <Layout title="TEAM">
     <ul>
-      {items.map(item => (
-        <li key={item.slug}>
-          <Link href={`/team/` + item.slug}>{item.title}</Link>
+      {members.map(m => (
+        <li key={m.slug}>
+          <Link href={`/team/` + m.slug}>{m.title}</Link>
         </li>
       ))}
     </ul>
@@ -25,6 +22,6 @@ const TeamIndex = ({ items }: Props) => (
 export default TeamIndex
 
 export const getStaticProps: GetStaticProps = async () => {
-  const items = await getAllMembers()
-  return { props: { items } }
+  const members = await getAllMembers()
+  return { props: { members } }
 }

@@ -1,26 +1,21 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Layout from '../../components/Layout'
-import { getAllNews, getPostDetails } from '../../lib/api'
+import { Entry, getAllNews, getPostDetails } from '../../lib/api'
 
 type Props = {
-  item?: {
-    title: string
-    date: string
-    content: string
-    image: string
-  }
+  entry?: Entry
 }
 
-const WorkDetail = ({ item }: Props) => {
-  if (item) {
+const WorkDetail = ({ entry }: Props) => {
+  if (entry) {
     return (
-      <Layout title={item.title}>
-        <div className="entry with-image" style={{ backgroundImage: `url(${item.image})` }}>
+      <Layout title={entry.title}>
+        <div className="entry with-image" style={{ backgroundImage: `url(${entry.image})` }}>
           <div className="inner">
-            <h1>{item.title}</h1>
-            <span className="date">{item.date}</span>
+            <h1>{entry.title}</h1>
+            <span className="date">{entry.date}</span>
             <div className="body">
-              <div dangerouslySetInnerHTML={{ __html: item.content }}></div>
+              <div dangerouslySetInnerHTML={{ __html: entry.content || '' }}></div>
             </div>
           </div>
         </div>
@@ -73,8 +68,8 @@ const WorkDetail = ({ item }: Props) => {
 export default WorkDetail
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllNews()
-  const paths = posts ? posts.map((e: any) => ({ params: { slug: e.slug } })) : []
+  const entries = await getAllNews()
+  const paths = entries.map((e: any) => ({ params: { slug: e.slug } }))
   return {
     paths,
     fallback: false
@@ -83,6 +78,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (!params || !params.slug || Array.isArray(params.slug)) return { props: {} };
-  const post = await getPostDetails(params.slug)
-  return { props: { item: post } }
+  const entry = await getPostDetails(params.slug)
+  return { props: { entry } }
 }

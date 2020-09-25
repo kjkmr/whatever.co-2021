@@ -2,6 +2,12 @@ const WPAPI = require('wpapi')
 const wp = new WPAPI({ endpoint: process.env.WORDPRESS_API_URL })
 
 
+const re = new RegExp(`${process.env.WORDPRESS_URL}/wp-content/`, 'g')
+const replaceToCDN = (url: string): string => {
+  return url.replace(re, process.env.CDN_URL + '/wp-content/')
+}
+
+
 const getAll = (request: any) => {
   return request.then((response: any) => {
     if (!response._paging || !response._paging.next) {
@@ -39,7 +45,7 @@ export async function getAllWorks(): Promise<Entry[]> {
     slug: e.slug,
     title: e.title.rendered,
     date: e.date,
-    image: e._embedded['wp:featuredmedia'][0].source_url,
+    image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
   }))
 }
 
@@ -50,7 +56,7 @@ export async function getFeaturedWork(): Promise<Entry[]> {
     slug: e.slug,
     title: e.title.rendered,
     date: e.date,
-    image: e._embedded['wp:featuredmedia'][0].source_url,
+    image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
   }))
 }
 
@@ -62,7 +68,7 @@ export async function getAllNews(): Promise<Entry[]> {
     title: e.title.rendered,
     date: e.date,
     content: e.content.rendered,
-    image: e._embedded['wp:featuredmedia'][0].source_url,
+    image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
   }))
 }
 
@@ -73,19 +79,20 @@ export async function getLatestNews(): Promise<Entry[]> {
     slug: e.slug,
     title: e.title.rendered,
     date: e.date,
-    image: e._embedded['wp:featuredmedia'][0].source_url,
+    image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
   }))
 }
 
 
 export async function getPostDetails(slug: string): Promise<Entry> {
   const data = await wp.posts().slug(slug).embed().param({ _fields: 'slug,title,content,date,_links,_embedded' })
+  console.log(data)
   return {
     slug: data[0].slug,
     title: data[0].title.rendered,
     content: data[0].content.rendered,
     date: data[0].date,
-    image: data[0]._embedded['wp:featuredmedia'][0].source_url,
+    image: replaceToCDN(data[0]._embedded['wp:featuredmedia'][0].source_url),
   }
 }
 
@@ -97,6 +104,6 @@ export async function getPageDetails(slug: string): Promise<Entry> {
     slug,
     title: data[0].title.rendered,
     content: data[0].content.rendered,
-    image: media ? media[0].source_url : ''
+    image: media ? replaceToCDN(media[0].source_url) : ''
   }
 }

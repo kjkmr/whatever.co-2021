@@ -12,17 +12,17 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "next": "latest",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "sass": "^1.26.11",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "sass": "^1.28.0",
     "stylus": "^0.54.8",
     "wpapi": "^1.2.1"
   },
   "devDependencies": {
-    "@types/node": "^14.11.2",
-    "@types/react": "^16.9.49",
-    "@types/react-dom": "^16.9.8",
-    "styled-jsx-plugin-postcss": "^3.0.1",
+    "@types/node": "^14.14.6",
+    "@types/react": "^16.9.55",
+    "@types/react-dom": "^16.9.9",
+    "styled-jsx-plugin-postcss": "^3.0.2",
     "styled-jsx-plugin-stylus": "0.0.4",
     "typescript": "4.0"
   },

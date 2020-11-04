@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import Head from 'next/head'
 import Link from 'next/link'
 import Layout from '../components/Layout'
 import { Entry, getFeaturedWork, getLatestNews } from '../lib/api'
@@ -10,7 +11,7 @@ type Props = {
 }
 
 
-const IndexPage = ({ work, news }: Props) => (
+const IndexPage0 = ({ work, news }: Props) => (
   <Layout>
     <div className="statement">
       <div className="showreel">
@@ -156,10 +157,143 @@ const IndexPage = ({ work, news }: Props) => (
   </Layout>
 )
 
+const Menu = () => (
+  <div className="menu">
+    <div>=</div>
+    <style jsx>{`
+      .menu
+        width 80px
+        height 80px
+        background-color black
+        color white
+    `}</style>
+  </div>
+)
+
+const AboutLink = (props: any) => (
+  <div className="container" style={{ backgroundImage: `url(${props.image})` }}>
+    <div className="titles">
+      <div className="pre">Crossing the border of</div>
+      <div className="what">{props.about}</div>
+    </div>
+    <div className="desc">{props.desc}</div>
+    <style jsx>{`
+      .container
+        width 330px
+        height 500px
+        margin-left 72px
+        background-image url(/image.jpg)
+        background-repeat no-repeat
+        .titles
+          background-color #F4F4F4
+          margin-top 258px
+          margin-right 64px
+          padding-top 39px
+          padding-left 1px
+          height 98px
+          .pre
+            font-size 19px
+            letter-spacing 0.04em
+          .what
+            margin-top 8px
+            font-size 35px
+            letter-spacing 0.03em
+        .desc
+          line-height 1.7em
+    `}</style>
+  </div>
+)
+
+const IndexPage = () => (
+  <div className="container">
+    <div className="contents">
+      <Menu />
+      <div className="main">
+        <div className="reel">
+          <video src="/assets/reel-preview.mp4" ></video>
+          <button >Watch Reel</button>
+        </div>
+        <div className="about-us">
+          <img className="crossborder" src="/CrossborderCreative Studio..png" />
+          <img className="whatever-is" src="/Whatever is..png" />
+          <div className="about-links">
+            <AboutLink about="genres" desc="At Whatever, as the name implies, we create anything." image="/image.jpg" />
+            <AboutLink about="cultures" desc="Whatever can help you develop branding and content across borders and cultures." image="/image-1.jpg" />
+            <AboutLink about="profession" desc="The people who come to Whatever are our greatest value." image="/image-2.jpg" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <style jsx>{`
+      .container
+        position relative
+        max-width 1366px
+        margin 0 auto
+
+      .contents
+        display flex
+        align-items flex-start
+
+      .main
+        width calc(100% - 80px)
+
+      .reel
+        position relative
+        width 100%
+        video
+          width 1286px
+          height 728px
+          object-fit cover
+        button
+          width 256px
+          height 80px
+          border none
+          background-color black
+          color white
+          position absolute
+          right 0
+          bottom -40px
+
+      .about-us
+        position relative
+        margin-top 296px
+        margin-left 80px
+        padding-top 240px
+        background-color #F4F4F4
+        img
+          display block
+        .crossborder
+          position absolute
+          top -161px
+          left -87px
+        .whatever-is
+          margin-left 74px
+        .about-links
+          display flex
+          margin-top 81px
+
+    `}</style>
+
+    <style jsx global>{`
+      html, body
+        margin 0
+        padding 0
+      body
+        background-image url('/_/Top.png')
+        background-repeat no-repeat
+        background-position top center
+        font-family Apercu
+        font-size 16px
+        letter-spacing -0.01em
+    `}</style>
+  </div>
+)
+
 export default IndexPage
 
 export const getStaticProps: GetStaticProps = async () => {
-  const work = await getFeaturedWork()
-  const news = await getLatestNews()
-  return { props: { work, news } }
+  // const work = await getFeaturedWork()
+  // const news = await getLatestNews()
+  return { props: { work: [], news: [] } }
 }

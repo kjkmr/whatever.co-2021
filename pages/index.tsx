@@ -368,6 +368,69 @@ const FeaturedWorks = () => (
   </div>
 )
 
+const NewsItem = (props: any) => (
+  <div className="container">
+    <img src={props.image} />
+    <div className="date">{props.date}</div>
+    <div className="title">{props.title}</div>
+    <style jsx>{`
+      .container
+        width 256px
+        margin-right 60px
+      img
+        width 256px
+        height 144px
+        object-fit cover
+        display block
+      .date
+        font-size 12px
+        margin-top 20px
+      .title
+        font-weight bold
+        margin-top 9px
+        letter-spacing 0.001em
+        line-height 1.7em
+    `}</style>
+  </div>
+)
+
+const FeaturedNews = () => (
+  <div className="container">
+    <h1>Featured News</h1>
+    <div className="items">
+      <NewsItem date="July 28, 2020" title="Rakugaki AR featured in Suimoku channel" image="/news1.jpg" />
+      <NewsItem date="July 28, 2020" title="Rakugaki AR featured in Suimoku channel" image="/news1.jpg" />
+      <NewsItem date="July 28, 2020" title="Rakugaki AR featured in Suimoku channel" image="/news1.jpg" />
+      <NewsItem date="July 28, 2020" title="Rakugaki AR featured in Suimoku channel" image="/news1.jpg" />
+    </div>
+    <div className="link">
+      <a href="#">All News</a>
+    </div>
+    <style jsx>{`
+      .container
+        margin-top 72px
+        padding 57px 80px
+        {/* background-color #F4F4F4 */}
+      h1
+        font-size 35px
+        letter-spacing 0.012em
+      .items
+        display flex
+        margin-top 53px
+      .link
+        text-align right
+        font-size 18.5px
+        font-weight bold
+        margin-top 73px
+        a
+          display inline-block
+          padding-right 62px
+          padding-bottom 6px
+          border-bottom 1px solid red
+    `}</style>
+  </div>
+)
+
 const IndexPage = () => (
   <div className="container">
     <div className="contents">
@@ -378,6 +441,7 @@ const IndexPage = () => (
         <FeaturedWorks />
       </div>
     </div>
+    <FeaturedNews />
 
     <style jsx>{`
       .container

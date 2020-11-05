@@ -161,13 +161,19 @@ const IndexPage0 = ({ work, news }: Props) => (
 
 const Menu = () => (
   <div className="menu">
-    <div>=</div>
+    <button />
     <style jsx>{`
       .menu
         width 80px
+        height 768px
+        background-image url(/scroll.png)
+        background-repeat no-repeat
+        background-position 33px 552px
+      button
+        width 80px
         height 80px
-        background-color black
-        color white
+        border none
+        background-image url(/menu.png)
     `}</style>
   </div>
 )
@@ -192,7 +198,10 @@ const Showreel = () => (
         color white
         position absolute
         right 0
-        bottom -40px
+        bottom -37px
+        font-size 17.5px
+        font-weight bold
+        letter-spacing 0.03em
     `}</style>
   </div>
 )
@@ -206,7 +215,6 @@ const AboutLink = (props: any) => (
     <div className="desc">{props.desc}</div>
     <style jsx>{`
       .container
-        width 330px
         height 500px
         margin-left 72px
         background-image url(/image.jpg)
@@ -399,9 +407,9 @@ const FeaturedNews = () => (
     <h1>Featured News</h1>
     <div className="items">
       <NewsItem date="July 28, 2020" title="Rakugaki AR featured in Suimoku channel" image="/news1.jpg" />
-      <NewsItem date="July 28, 2020" title="Rakugaki AR featured in Suimoku channel" image="/news1.jpg" />
-      <NewsItem date="July 28, 2020" title="Rakugaki AR featured in Suimoku channel" image="/news1.jpg" />
-      <NewsItem date="July 28, 2020" title="Rakugaki AR featured in Suimoku channel" image="/news1.jpg" />
+      <NewsItem date="July 28, 2020" title="Masashi Kawamura will appeared in Zee melt 2020" image="/news2.jpg" />
+      <NewsItem date="July 28, 2020" title="WFH Jammies featured in NIKKEI DESIGN" image="/news3.jpg" />
+      <NewsItem date="July 28, 2020" title="Masashi Kawamura’s interview featured in Kokuyo Design Award" image="/news4.jpg" />
     </div>
     <div className="link">
       <a href="#">All News</a>
@@ -410,7 +418,8 @@ const FeaturedNews = () => (
       .container
         margin-top 72px
         padding 57px 80px
-        {/* background-color #F4F4F4 */}
+        background-color #F4F4F4
+        height 461px
       h1
         font-size 35px
         letter-spacing 0.012em
@@ -431,6 +440,71 @@ const FeaturedNews = () => (
   </div>
 )
 
+const Footer = () => (
+  <div className="container">
+    <img src="/whatever.png" />
+    <div className="text">For new business, career and media inquires, contact us.</div>
+    <div className="contact">Contact us</div>
+    <input className="email" type="text" placeholder="Email address"></input>
+    <div className="subscribe">Subscribe to our newsletter</div>
+    <div className="sns">
+      <img src="/sns.png" />
+      <div className="copyright">© Whatever Inc.</div>
+    </div>
+    <div className="pagetop"><hr />Page Top</div>
+    <style jsx>{`
+      .container
+        height 400px
+        position relative
+        padding 100px 80px
+        color white
+        background-color #333333
+      img
+        display block
+      .text
+        margin-top 100px
+      .contact
+        margin-top 32px
+        font-weight bold
+        letter-spacing 0.04em
+      .email
+        border-radius 30px
+        border 1px solid white
+        background-color transparent
+        width 384px
+        padding 17px 26px
+        margin-top 106px
+        color white
+      .subscribe
+        margin-top 30px
+        font-weight bold
+        letter-spacing 0.0em
+      .sns
+        position absolute
+        bottom 100px
+        right 80px
+      .copyright
+        font-size 12px
+        text-align right
+        margin-top 30px
+      .pagetop
+        position absolute
+        top 213px
+        right 80px
+        font-size 12px
+        letter-spacing 0.05em
+        transform rotate(90deg)
+        transform-origin top right
+        hr
+          display inline-block
+          width 40px
+          border none
+          border-top 1px solid white
+          margin-right 20px
+    `}</style>
+  </div>
+)
+
 const IndexPage = () => (
   <div className="container">
     <div className="contents">
@@ -442,6 +516,7 @@ const IndexPage = () => (
       </div>
     </div>
     <FeaturedNews />
+    <Footer />
 
     <style jsx>{`
       .container
@@ -460,7 +535,7 @@ const IndexPage = () => (
         margin 0
         padding 0
       body
-        background-image url('/_/Top.png')
+        {/* background-image url('/_/Top.png') */}
         background-repeat no-repeat
         background-position top center
         font-family Apercu
@@ -469,6 +544,10 @@ const IndexPage = () => (
       a
         text-decoration none
         color black
+      button
+        cursor pointer
+      *:focus
+        outline none
     `}</style>
   </div>
 )

@@ -48,11 +48,11 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => (
         margin 0
         padding 0
       body
+        {/* background-image: url('/_/Top.png') */}
         background-repeat no-repeat
         background-position top center
         font-family Apercu
         font-size 16px
-        letter-spacing -0.01em
       a
         text-decoration none
         color black

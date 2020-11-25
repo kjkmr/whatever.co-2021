@@ -1,233 +1,188 @@
 import Link from 'next/link'
 import Layout from '../components/Layout'
-import AboutData from '../components/AboutData'
 import React from 'react'
 
-const isMobile = false
-const lang = "ja"
-const state = AboutData[lang]
-const prefix = "-" + lang
-
 const AboutPage = () => (
-  < Layout title="ABOUT" >
-    <div className="about">
-      <img className="about-text" src={isMobile ? "/assets/makewhatever-sp.svg" : "/assets/makewhatever.svg"} alt="Make whatever. Rules, whatever." />
-      <img className="about-poem" src={isMobile ? state.poem_sp : state.poem_pc} alt={state.poem_alt} />
-      <div className="about-chiefs">
-        <Link href="/team/yusuke">
-          <div className="about-chief">
-            <img src="https://whatever.co/wp-content/uploads/2018/01/dotbydot7168.jpg" />
-            <div className="about-chief-title">CEO / Executive Producer</div>
-            <div className="about-chief-name-ja">富永 勇亮</div>
-            <div className="about-chief-name-en">Yusuke Tominaga</div>
-          </div>
-        </Link>
-        <Link href="/team/masa">
-          <div className="about-chief">
-            <img src="https://whatever.co/wp-content/uploads/2019/06/masa-2.jpg" />
-            <div className="about-chief-title">CCO / Creative Director</div>
-            <div className="about-chief-name-ja">川村 真司</div>
-            <div className="about-chief-name-en">Masashi Kawamura</div>
-          </div>
-        </Link>
-        <Link href="/team/saqoosha">
-          <div className="about-chief">
-            <img src="https://whatever.co/wp-content/uploads/2018/01/dotbydot7043.jpg" />
-            <div className="about-chief-title">CTO / Programmer</div>
-            <div className="about-chief-name-ja">Saqoosha</div>
-            <div className="about-chief-name-en">さくーしゃ</div>
-          </div>
-        </Link>
-      </div>
+  <Layout title="ABOUT">
+    <h1>Crossborder<br />Creative Studio.</h1>
+    <div className="text">
+      <p>Whatever is a cross-border creative studio.</p>
+      <p>The world has become a much closer place now that we are all online,<br />
+      but it’s also brought us closer to boundaries we never noticed before.<br />
+      But it’s also brought us closer to boundaries that we never noticed before.<br />
+      We’re going to jump over those boundaries.<br />
+      If we know the goodness of that world, we can make this one better.<br />
+      Because there will be new emotions created by connecting this world with that one.</p>
+      <p>With bases in Tokyo, New York, Taipei, and Berlin, we are able to transcend the borders of country and language.<br />
+      We cross borders in a variety of fields, from branding to TV programs, products, and new business development.<br />
+      We cross the borders of the creative process, which is neither just thinking about it nor just creating it.</p>
+      <p>By doing so, it doesn’t matter whether you are here or there.<br />
+      We will realize ideas that will bring the world together and inspire.</p>
+    </div>
 
-      <img className="about-aboutus-title" src="/assets/aboutus.png" alt="ABOUT US" />
-      {[0, 1, 2, 3].map(i => <div className={"about-" + (i + 1)} key={i}>
-        <img className="about-aboutus-title2" src={"/assets/about-" + (i + 1) + prefix + ".png"} alt={state.about[i].title} />
-        <div className="about-aboutus-text" dangerouslySetInnerHTML={{ __html: state.about[i].text }}></div>
-        {isMobile ? <img className="about-aboutus-image" src={"/assets/about-" + (i + 1) + "-sp.jpg"} /> : null}
-      </div>)}
-      <div className="about-4-detail">
-        {state.about4.map((item) => <div className="about-4-detail-item" key={item.title}>
-          <div className="about-4-detail-item-title" dangerouslySetInnerHTML={{ __html: item.title }}></div>
-          <div className="about-4-detail-item-text">{item.text}</div>
-        </div>)}
+    <div className="genres">
+      <div className="inner">
+        <h2>Crossing the border of</h2>
+        <h1>genres</h1>
+        <p>At Whatever, we do exactly what the name implies: we create anything. From global brand vision development to advertising, TV shows, products, and stores. We make the most of our team’s ability to “think and create” to transcend the boundaries of media and genres, from planning to development and implementation of never-before-seen experiences.</p>
+        <div className="learn"><button>Learn more</button></div>
       </div>
-      <div className="about-5">
-        <img src={"/assets/about-5" + prefix + ".png"} alt={state.about[4].title} />
-        <div dangerouslySetInnerHTML={{ __html: state.about[4].text }}></div>
-      </div>
-      <div className="about-alliances">
-        <Link href="https://lyric-speaker.com/">
-          <div style={{ backgroundImage: "url(/assets/cotodama.png)" }}>
-            <div>
-              <b>COTODAMA</b>
-              <span>{state.cotodama}</span>
-            </div>
-          </div>
-        </Link>
-        <Link href="https://bassdrum.org/">
-          <div style={{ backgroundImage: "url(/assets/bassdrum.png)" }}>
-            <div>
-              <b>BASSDRUM</b>
-              <span>{state.bassdrum}</span>
-            </div>
-          </div>
-        </Link>
-        <Link href="https://yummysake.jp/">
-          <div style={{ backgroundImage: "url(/assets/yummysake.png)" }}>
-            <div>
-              <b>YUMMY SAKE</b>
-              <span>{state.yummysake}</span>
-            </div>
-          </div>
-        </Link>
-        <Link href="https://kasa-made.com/">
-          <div style={{ backgroundImage: "url(/assets/kasa.png)" }}>
-            <div>
-              <b>kasa</b>
-              <span>{state.kasa}</span>
-            </div>
-          </div>
-        </Link>
-        <Link href="https://wtfc.jp/">
-          <div style={{ backgroundImage: "url(/assets/wtfc.png)" }}>
-            <div>
-              <b>WTFC</b>
-              <span>{state.wtfc}</span>
-            </div>
-          </div>
-        </Link>
-      </div>
+    </div>
 
-      <img className="about-ourclients-title" src="/assets/ourclients.png" alt="OUT CLIENTS" />
-      <img className="about-ourclients-table" src={"/assets/client-logo" + (isMobile ? "-sp" : "") + ".png"} alt="" />
+    <div className="cultures">
+      <div className="inner">
+        <h2>Crossing the border of</h2>
+        <h1>cultures</h1>
+        <p>At Whatever, we have a proven track record of working with brands around the world, which enables us to support branding and content development across borders and cultures.<br />With four offices in Tokyo, New York, Taiwan and Berlin, and a world-class staff, Whatever can plan and produce world-class brand communications and products.</p>
+        <div className="learn"><button>Learn more</button></div>
+      </div>
+    </div>
+
+    <div className="profession">
+      <div className="inner">
+        <h2>Crossing the border of</h2>
+        <h1>profession</h1>
+        <p>Whatever is also actively involved in in-house product and business development.<br />We also provide product development and R&amp;D support for a variety of brands, as well as branding and investment support for startups.</p>
+        <div className="learn"><button>Learn more</button></div>
+      </div>
     </div>
 
     <style jsx>{`
-      .about
-        font-size: 16.2px
-        line-height: 1.9em
-      .about-text
-        width: 960px
-        margin: 51px 0 48px
-      .about-poem
-        width: 960px
-        margin-top: 32px
-      .about-chiefs
-        margin-top: 154px
-        margin-bottom: 153px
-        display: flex
-        justify-content: space-between
-      .about-chief
-        display: block
-        text-align: center
-        border: none
-        >img
-          width: 270px
-          margin-bottom: 15px
-      .about-chief-title
-        font-weight: bold
-        margin-bottom: 2px
-      .about-chief-name-ja
-        font-size: 25px
-        margin-bottom: -3px
-      .about-chief-name-en
-        font-size: 13px
-      .about-aboutus-title
-        height: 22px
-        display: block
-        margin: 0 auto 88px
-      img.about-aboutus-title2
-        width: 450px
-        margin-bottom: 36px
-      div.about-aboutus-text
-        width: 450px
-        line-height: 1.9em
-      .about-1
-        min-height: 420px
-        margin-bottom: 103px
-        background-image: url(/assets/about-1.jpg)
-        background-size: 450px 420px
-        background-repeat: no-repeat
-        background-position: right bottom
-      .about-2
-        display: flex
-        flex-direction: column
-        align-items: flex-end
-        min-height: 420px
-        margin-bottom: 86px
-        background-image: url(/assets/about-2.jpg)
-        background-size: 450px 420px
-        background-repeat: no-repeat
-        background-position: left bottom
-        >img.about-aboutus-title2
-          margin-bottom: 42px
-      .about-3
-        min-height: 420px
-        margin-bottom: 124px
-        background-image: url(/assets/about-3.jpg)
-        background-size: 450px 420px
-        background-repeat: no-repeat
-        background-position: right bottom
-      .about-4
-        display: flex
-        flex-direction: column
-        align-items: flex-end
-        min-height: 280px
-        margin-bottom: 42px
-        background-image: url(/assets/about-4.jpg)
-        background-size: 450px 280px
-        background-repeat: no-repeat
-        background-position: left bottom
-        >img.about-aboutus-title2
-          margin-bottom: 42px
-      .about-4-detail
-        display: flex
-        justify-content: space-between
-        margin-bottom: 101px
-      .about-4-detail-item
-        width: 195px
-        line-height: 1.6em
-      .about-4-detail-item-title
-        border-bottom: 1px solid
-        font-size: 16px
-        font-weight: bold
-        padding-bottom: 9px
-        margin-bottom: 10px
-      .about-4-detail-item-text
-        font-size: 14px
-      .about-5
-        display: flex
-        margin-bottom: 84px
-        >img
-          height: 93px
-          margin-right: 62px
-      .about-alliances
-        margin-bottom: 100px
-        >div
-          margin-bottom: 45px
-          background-repeat: no-repeat
-          background-size: auto 72px
-          background-position: 10px center
-          cursor: pointer
-          >div
-            margin-left: 400px
-            line-height: 1.5em
-            padding-top: 3px
-            >b
-              display: block
-              margin-bottom: 8px
-            >span
-              font-size: 14px
-      .about-ourclients-title
-        height: 22px
-        display: block
-        margin: 0 auto 88px
-      .about-ourclients-table
-        width: 960px
-        margin-bottom: 55px
+      h1
+        display block
+        margin-top 75px
+        margin-bottom 79px
+        margin-left -4px
+        font-size 120px
+        letter-spacing 0.00em
+        line-height 1.09em
+      .text
+        margin-left 80px
+        margin-bottom 163px
+        font-size 24px
+        letter-spacing 0.016em
+        line-height 1.75em
+        p
+          margin 43px 0
+      .genres
+        background-image url('/about/image.jpg')
+        background-repeat no-repeat
+        padding-top 289px
+        padding-left 603px
+        padding-right 60px
+        margin-bottom 93px
+        .inner
+          background-color white
+          {/* opacity 0.5 */}
+          padding-top 29px
+          padding-left 60px
+          h2
+            font-size 36px
+            margin-bottom 0
+            margin-left -2px
+          h1
+            font-size 72px
+            margin-top 10px
+            margin-bottom 33px
+          p
+            line-height 2.0em
+            margin-left -2px
+            letter-spacing -0.01em
+          .learn
+            display flex
+            justify-content flex-end
+            button
+              display block
+              font-weight bold
+              font-size 18px
+              border none
+              border-bottom 1px solid
+              background none
+              margin-top 10px
+              margin-right 20px
+              padding-bottom 5px
+              padding-right 55px
+              padding-left 0
+      .cultures
+        background-image url('/about/image2.jpg')
+        background-repeat no-repeat
+        background-position top right
+        padding-top 289px
+        padding-right 599px
+        margin-bottom 89px
+        .inner
+          background-color white
+          {/* opacity 0.5 */}
+          padding-top 43px
+          padding-left 81px
+          padding-right 60px
+          h2
+            font-size 36px
+            margin-bottom 0
+            margin-left -2px
+          h1
+            font-size 72px
+            margin-top 10px
+            margin-bottom 34px
+          p
+            line-height 2.0em
+            margin-left -1px
+            letter-spacing -0.01em
+          .learn
+            display flex
+            justify-content flex-end
+            button
+              display block
+              font-weight bold
+              font-size 18px
+              border none
+              border-bottom 1px solid
+              background none
+              margin-top 11px
+              padding-bottom 5px
+              padding-right 55px
+              padding-left 0
+      .profession
+        background-image url('/about/image3.jpg')
+        background-repeat no-repeat
+        padding-top 289px
+        padding-left 603px
+        padding-right 70px
+        margin-bottom 139px
+        .inner
+          background-color white
+          {/* opacity 0.5 */}
+          padding-top 29px
+          padding-left 60px
+          h2
+            font-size 36px
+            margin-bottom 0
+            margin-left -2px
+          h1
+            font-size 72px
+            margin-top 10px
+            margin-bottom 33px
+          p
+            line-height 2.0em
+            margin-left -2px
+            letter-spacing -0.01em
+          .learn
+            display flex
+            justify-content flex-end
+            button
+              display block
+              font-weight bold
+              font-size 18px
+              border none
+              border-bottom 1px solid
+              background none
+              margin-top 29px
+              margin-right 10px
+              padding-bottom 5px
+              padding-right 55px
+              padding-left 0
     `}</style>
-  </Layout >
+  </Layout>
 )
 
 export default AboutPage

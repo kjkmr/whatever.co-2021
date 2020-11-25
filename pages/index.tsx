@@ -172,6 +172,7 @@ const FeaturedWorkItem = (props: any) => (
         letter-spacing 0.001em
       .desc
         margin-top 12px
+        letter-spacing -0.01em
         line-height 1.95em
     `}</style>
   </div>

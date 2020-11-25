@@ -1,15 +1,17 @@
 import { ReactNode } from 'react'
 import Head from 'next/head'
 import Menu from './Menu'
+import Header from '../components/Header'
 import Footer from '../components/Footer'
 
 type Props = {
+  showHeader?: boolean
   title?: string
   children?: ReactNode
   footer?: ReactNode
 }
 
-const Layout = ({ children, footer, title = "" }: Props) => (
+const Layout = ({ children, footer, title = "", showHeader = true }: Props) => (
   <div>
     <Head>
       <title>{title ? title + " ― " : ""}Whatever Inc.</title>
@@ -20,7 +22,10 @@ const Layout = ({ children, footer, title = "" }: Props) => (
     <div className="container">
       <div className="contents">
         <Menu />
-        <div className="main">{children}</div>
+        <div className="main">
+          {showHeader ? <Header /> : <div />}
+          {children}
+        </div>
       </div>
       {footer}
       <Footer />

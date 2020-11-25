@@ -273,7 +273,7 @@ const FeaturedNews = () => (
 )
 
 const IndexPage = () => (
-  <Layout footer={<FeaturedNews />}>
+  <Layout showHeader={false} footer={<FeaturedNews />}>
     <Showreel />
     <Crossborder />
     <FeaturedWorks />

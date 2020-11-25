@@ -51,19 +51,19 @@ const AboutPage = () => (
       h1
         display block
         margin-top 75px
-        margin-bottom 79px
+        margin-bottom 80px
         margin-left -4px
         font-size 120px
         letter-spacing 0.00em
         line-height 1.09em
       .text
         margin-left 80px
-        margin-bottom 163px
+        margin-bottom 165px
         font-size 24px
-        letter-spacing 0.016em
+        font-weight bold
         line-height 1.75em
         p
-          margin 43px 0
+          margin 42px 0
       .genres
         background-image url('/about/image.jpg')
         background-repeat no-repeat

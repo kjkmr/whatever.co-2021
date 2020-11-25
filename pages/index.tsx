@@ -1,16 +1,13 @@
 import { GetStaticProps } from 'next'
-import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
 import Layout from '../components/Layout'
 import { Entry, getFeaturedWork, getLatestNews } from '../lib/api'
 
-
 type Props = {
   work: Entry[]
   news: Entry[]
 }
-
 
 const IndexPage0 = ({ work, news }: Props) => (
   <Layout>
@@ -158,25 +155,6 @@ const IndexPage0 = ({ work, news }: Props) => (
   </Layout>
 )
 
-
-const Menu = () => (
-  <div className="menu">
-    <button />
-    <style jsx>{`
-      .menu
-        width 80px
-        height 768px
-        background-image url(/scroll.png)
-        background-repeat no-repeat
-        background-position 33px 552px
-      button
-        width 80px
-        height 80px
-        border none
-        background-image url(/menu.png)
-    `}</style>
-  </div>
-)
 
 const Showreel = () => (
   <div className="reel">
@@ -441,116 +419,12 @@ const FeaturedNews = () => (
   </div>
 )
 
-const Footer = () => (
-  <div className="container">
-    <img src="/whatever.png" />
-    <div className="text">For new business, career and media inquires, contact us.</div>
-    <div className="contact">Contact us</div>
-    <input className="email" type="text" placeholder="Email address"></input>
-    <div className="subscribe">Subscribe to our newsletter</div>
-    <div className="sns">
-      <img src="/sns.png" />
-      <div className="copyright">© Whatever Inc.</div>
-    </div>
-    <div className="pagetop"><hr />Page Top</div>
-    <style jsx>{`
-      .container
-        height 400px
-        position relative
-        padding 100px 80px
-        color white
-        background-color #333333
-      img
-        display block
-      .text
-        margin-top 100px
-      .contact
-        margin-top 32px
-        font-weight bold
-        letter-spacing 0.04em
-      .email
-        border-radius 30px
-        border 1px solid white
-        background-color transparent
-        width 384px
-        padding 17px 26px
-        margin-top 106px
-        color white
-      .subscribe
-        margin-top 30px
-        font-weight bold
-        letter-spacing 0.0em
-      .sns
-        position absolute
-        bottom 100px
-        right 80px
-      .copyright
-        font-size 12px
-        text-align right
-        margin-top 30px
-      .pagetop
-        position absolute
-        top 213px
-        right 80px
-        font-size 12px
-        letter-spacing 0.05em
-        transform rotate(90deg)
-        transform-origin top right
-        hr
-          display inline-block
-          width 40px
-          border none
-          border-top 1px solid white
-          margin-right 20px
-    `}</style>
-  </div>
-)
-
 const IndexPage = () => (
-  <div className="container">
-    <div className="contents">
-      <Menu />
-      <div className="main">
-        <Showreel />
-        <Crossborder />
-        <FeaturedWorks />
-      </div>
-    </div>
-    <FeaturedNews />
-    <Footer />
-
-    <style jsx>{`
-      .container
-        position relative
-        max-width 1366px
-        margin 0 auto
-      .contents
-        display flex
-        align-items flex-start
-      .main
-        width calc(100% - 80px)
-    `}</style>
-
-    <style jsx global>{`
-      html, body
-        margin 0
-        padding 0
-      body
-        {/* background-image url('/_/Top.png') */}
-        background-repeat no-repeat
-        background-position top center
-        font-family Apercu
-        font-size 16px
-        letter-spacing -0.01em
-      a
-        text-decoration none
-        color black
-      button
-        cursor pointer
-      *:focus
-        outline none
-    `}</style>
-  </div>
+  <Layout footer={<FeaturedNews />}>
+    <Showreel />
+    <Crossborder />
+    <FeaturedWorks />
+  </Layout>
 )
 
 export default IndexPage

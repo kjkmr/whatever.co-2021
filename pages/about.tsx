@@ -1,10 +1,9 @@
-import Link from 'next/link'
 import Layout from '../components/Layout'
-import React from 'react'
+import Grad from '../components/Grad'
 
 const AboutPage = () => (
   <Layout title="ABOUT">
-    <h1>Crossborder<br />Creative Studio.</h1>
+    <Grad><h1>Crossborder<br />Creative Studio.</h1></Grad>
     <div className="text">
       <p>Whatever is a cross-border creative studio.</p>
       <p>The world has become a much closer place now that we are all online,<br />
@@ -49,7 +48,7 @@ const AboutPage = () => (
 
     <style jsx>{`
       h1
-        display block
+        display inline-block
         margin-top 75px
         margin-bottom 80px
         margin-left -4px

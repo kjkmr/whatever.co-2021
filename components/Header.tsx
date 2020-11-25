@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const Header = (props: any) => (
   <div className="header">
-    <img src="logo_rgb_black.png" />
+    <Link href="/"><a><img src="logo_rgb_black.png" /></a></Link>
 
     <style jsx>{`
       .header
@@ -10,8 +10,9 @@ const Header = (props: any) => (
         display flex
         justify-content flex-end
         align-items flex-start
-      img
+      a
         display block
+      img
         margin-top 32px
         margin-right 30px
     `}</style>

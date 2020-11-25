@@ -64,7 +64,7 @@ const AboutLink = (props: any) => (
         .what
           margin-top 8px
           font-size 35px
-          letter-spacing 0.03em
+          font-weight bold
       .desc
         line-height 1.7em
     `}</style>
@@ -81,7 +81,9 @@ const Crossborder = () => (
       <AboutLink about="profession" desc="The people who come to Whatever are our greatest value." image="/image-2.jpg" />
     </div>
     <div className="link">
-      <a href="#">About Us</a>
+      <Link href="/about">
+        <a>About Us</a>
+      </Link>
     </div>
     <style jsx>{`
       .container
@@ -109,9 +111,11 @@ const Crossborder = () => (
         padding-right 80px
         a
           display inline-block
-          padding-right 62px
+          padding-right 59px
+          padding-left 3px
           padding-bottom 6px
           border-bottom 1px solid red
+          font-weight bold
     `}</style>
   </div>
 )

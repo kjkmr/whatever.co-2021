@@ -305,7 +305,7 @@ const FeaturedWorkItem = (props: any) => (
       <div className="date">{props.date}</div>
       <div className="title">{props.title}</div>
       <div className="tags">
-        {props.tags.map((tag: any) => <WorkTag>{tag}</WorkTag>)}
+        {props.tags.map((tag: any) => <WorkTag key={tag}>{tag}</WorkTag>)}
       </div>
       <div className="head">{props.head}</div>
       <div className="desc">{props.desc}</div>

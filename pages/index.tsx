@@ -215,6 +215,7 @@ const AboutLink = (props: any) => (
     <div className="desc">{props.desc}</div>
     <style jsx>{`
       .container
+        width 330px
         height 500px
         margin-left 72px
         background-image url(/image.jpg)

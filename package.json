@@ -14,17 +14,17 @@
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "sass": "^1.28.0",
+    "sass": "^1.29.0",
     "stylus": "^0.54.8",
     "wpapi": "^1.2.1"
   },
   "devDependencies": {
-    "@types/node": "^14.14.6",
-    "@types/react": "^16.9.55",
-    "@types/react-dom": "^16.9.9",
-    "styled-jsx-plugin-postcss": "^3.0.2",
+    "@types/node": "^14.14.9",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "styled-jsx-plugin-postcss": "^4.0.0",
     "styled-jsx-plugin-stylus": "0.0.4",
-    "typescript": "4.0"
+    "typescript": "4.1"
   },
   "license": "MIT"
 }

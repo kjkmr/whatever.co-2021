@@ -107,6 +107,7 @@ const Crossborder = () => (
         position relative
         margin-top 296px
         margin-left 80px
+        margin-bottom 0
         padding-top 240px
         padding-bottom 68px
         background-color #F4F4F4
@@ -173,73 +174,93 @@ const WorkTag = (props: any) => (
 )
 
 const FeaturedWorkItem = (props: any) => (
-  <div className="container" style={{ backgroundImage: `url(${props.image})` }}>
+  <div className="container">
+    <div className="image"><GradImg><img src={props.image} width="677" height="381" /></GradImg></div>
     <div className="text">
-      <div className="date">{props.date}</div>
-      <div className="title">{props.title}</div>
-      <div className="tags">
+      <Grad><div className="date">{props.date}</div></Grad>
+      <Grad><div className="title">{props.title}</div></Grad>
+      <Grad><div className="tags">
         {props.tags.map((tag: any) => <WorkTag key={tag}>{tag}</WorkTag>)}
-      </div>
-      <div className="head">{props.head}</div>
-      <div className="desc">{props.desc}</div>
+      </div></Grad>
+      <Grad><div className="head">{props.head}</div></Grad>
+      <Grad><div className="desc">{props.desc}</div></Grad>
     </div>
     <style jsx>{`
       .container
+        position relative
         {/* opacity 0.5 */}
         height 400px
-        {/* background-image url(/fw1.jpg) */}
         background-repeat no-repeat
         background-position-x 5px
         padding-top 50px
         padding-left 584px
         margin-bottom 30px
+      .image
+        position absolute
+        top 0
+        left 5px
       .text
+        position relative
         background-color white
         padding-top 63px
         padding-left 62px
         padding-right 80px
+        font-size 0
       .date
+        display inline-block
+        overflow hidden
         font-size 12.2px
       .title
+        display inline-block
+        overflow hidden
         font-size 48px
         font-weight bold
         margin-top 33px
         letter-spacing 0.0001em
       .tags
+        display inline-block
+        overflow hidden
         margin-top 20px
       .head
+        display inline-block
+        overflow hidden
         margin-top 39px
         font-size 24px
         font-weight bold
         letter-spacing 0.001em
       .desc
+        display inline-block
+        overflow hidden
         margin-top 12px
         letter-spacing -0.01em
         line-height 1.95em
+        font-size 16px
     `}</style>
   </div>
 )
 
 const FeaturedWorks = () => (
   <div className="container">
-    <h1>Featured Works</h1>
-    <FeaturedWorkItem date="July 28, 2020" title="New Stand Tokyo" tags={["Brand Consulting", "Permanent Installation", "Featured"]} head="General store of the future." desc="We opened New Stand Tokyo, a “general store of the future,” on the ground floor of the co-working building WHEREVER which we co-operate with…" image="/fw1.jpg" />
-    <FeaturedWorkItem date="July 28, 2020" title="WFH Jammies" tags={["Product / Service", "Featured"]} head="Loungewear for remote workers." desc="Half business, half relaxation. We planned and produced new kind of jammies for remote workers “WFH (Work From Home) Jammies”." image="/fw2.jpg" />
-    <FeaturedWorkItem date="July 28, 2020" title="Superfly “Flare”" tags={["Film", "Featured"]} head="Fingertat’s hand-washing dance." desc="We planned and produced the music video for Superfly’s “Flare”, are hired from the opening of NHK’s morning TV drama “Scarlet”." image="/fw3.jpg" />
+    <Grad><h1>Featured Works</h1></Grad>
+    <FeaturedWorkItem date="July 28, 2020" title="New Stand Tokyo" tags={["Brand Consulting", "Permanent Installation", "Featured"]} head="General store of the future." desc="We opened New Stand Tokyo, a “general store of the future,” on the ground floor of the co-working building WHEREVER which we co-operate with…" image="/_/fw1.jpg" />
+    <FeaturedWorkItem date="July 28, 2020" title="WFH Jammies" tags={["Product / Service", "Featured"]} head="Loungewear for remote workers." desc="Half business, half relaxation. We planned and produced new kind of jammies for remote workers “WFH (Work From Home) Jammies”." image="/_/fw2.jpg" />
+    <FeaturedWorkItem date="July 28, 2020" title="Superfly “Flare”" tags={["Film", "Featured"]} head="Fingertat’s hand-washing dance." desc="We planned and produced the music video for Superfly’s “Flare”, are hired from the opening of NHK’s morning TV drama “Scarlet”." image="/_/fw3.jpg" />
     <div className="link">
       <a href="#">All Works</a>
     </div>
     <style jsx>{`
       .container
-        margin-top 97px
+        margin-top 92px
         margin-left -5px
       h1
+        display inline-block
         font-size 70px
-        letter-spacing 0.001em
-        margin-bottom 54px
+        margin 0
+        margin-bottom 51px
       .link
         text-align right
         font-size 18.5px
+        font-weight bold
         margin-top -8px
         padding-right 80px
         a

@@ -19,7 +19,7 @@ const setup = (base: Element): [Element, Element] => {
   grad.classList.add('grad-effect-text')
   const [colorA, colorB] = getColors()
   grad.style.backgroundImage = `linear-gradient(to right, ${colorA}, ${colorB})`
-base.appendChild(grad)
+  base.appendChild(grad)
   const box = document.createElement('div')
   box.classList.add('grad-effect-box')
   box.style.backgroundImage = `linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`

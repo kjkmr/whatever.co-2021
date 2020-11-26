@@ -1,8 +1,9 @@
+import React from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
-import React from 'react'
-import Layout from '../components/Layout'
 import { Entry, getFeaturedWork, getLatestNews } from '../lib/api'
+import Layout from '../components/Layout'
+import { Grad, GradImg } from '../components/Grad'
 
 type Props = {
   work: Entry[]
@@ -38,30 +39,38 @@ const Showreel = () => (
 )
 
 const AboutLink = (props: any) => (
-  <div className="container" style={{ backgroundImage: `url(${props.image})` }}>
+  <div className="container">
+    <div className="image"><GradImg><img src={props.image} alt="" width="330" height="330" /></GradImg></div>
     <div className="titles">
-      <div className="pre">Crossing the border of</div>
-      <div className="what">{props.about}</div>
+      <Grad><div className="pre">Crossing the border of</div></Grad>
+      <Grad><div className="what">{props.about}</div></Grad>
     </div>
-    <div className="desc">{props.desc}</div>
+    <Grad><div className="desc">{props.desc}</div></Grad>
     <style jsx>{`
       .container
+        position relative
         width 330px
         height 500px
         margin-left 72px
-        background-image url(/image.jpg)
-        background-repeat no-repeat
+      .image
+        position absolute
+        top 0
+        left 0
       .titles
+        position relative
         background-color #F4F4F4
         margin-top 258px
         margin-right 64px
         padding-top 39px
         padding-left 1px
         height 98px
+        font-size 0
         .pre
+          display inline-block
           font-size 19px
           letter-spacing 0.04em
         .what
+          display inline-block
           margin-top 8px
           font-size 35px
           font-weight bold
@@ -73,17 +82,25 @@ const AboutLink = (props: any) => (
 
 const Crossborder = () => (
   <div className="container">
-    <img className="c1" src="/CrossborderCreative Studio..png" />
-    <img className="c2" src="/Whatever is..png" />
+    <div className="title">
+      <Grad><h1>Crossborder</h1></Grad>
+      <Grad><h1>Creative Studio.</h1></Grad>
+    </div>
+    <div className="desc">
+      <Grad><h2>Whatever is a cross-border creative studio.</h2></Grad>
+      <Grad><h2>We transcend boundaries.</h2></Grad>
+    </div>
     <div className="cats">
-      <AboutLink about="genres" desc="At Whatever, as the name implies, we create anything." image="/image.jpg" />
-      <AboutLink about="cultures" desc="Whatever can help you develop branding and content across borders and cultures." image="/image-1.jpg" />
-      <AboutLink about="profession" desc="The people who come to Whatever are our greatest value." image="/image-2.jpg" />
+      <AboutLink about="genres" desc="At Whatever, as the name implies, we create anything." image="/index/genres.jpg" />
+      <AboutLink about="cultures" desc="Whatever can help you develop branding and content across borders and cultures." image="/index/cultures.jpg" />
+      <AboutLink about="profession" desc="The people who come to Whatever are our greatest value." image="/index/profession.jpg" />
     </div>
     <div className="link">
-      <Link href="/about">
-        <a>About Us</a>
-      </Link>
+      <Grad>
+        <Link href="/about">
+          <a>About Us</a>
+        </Link>
+      </Grad>
     </div>
     <style jsx>{`
       .container
@@ -95,6 +112,27 @@ const Crossborder = () => (
         background-color #F4F4F4
         img
           display block
+      .title
+        position absolute
+        top -160px
+        left -88px
+        font-size 0
+        h1
+          display inline-block
+          font-size 164px
+          line-height auto
+          margin 0
+          margin-bottom 16px
+      .desc
+        position relative
+        margin-top 1px
+        margin-left 74px
+        font-size 0
+        h2
+          display inline-block
+          font-size 46px
+          margin 0
+          margin-bottom 24px
       .c1
         position absolute
         top -161px
@@ -103,7 +141,7 @@ const Crossborder = () => (
         margin-left 74px
       .cats
         display flex
-        margin-top 81px
+        margin-top 56px
       .link
         text-align right
         font-size 18.5px

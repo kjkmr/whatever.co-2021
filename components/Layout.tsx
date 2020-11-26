@@ -49,7 +49,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => (
         margin 0
         padding 0
       body
-        {/* background-image: url('/_/About_index.png') */}
+        background-image: url('/_/Top.png')
         background-repeat no-repeat
         background-position top center
         font-family Apercu
@@ -59,6 +59,9 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => (
         color black
       button
         cursor pointer
+      img
+        pointer-events none
+        user-select none
       *:focus
         outline none
     `}</style>

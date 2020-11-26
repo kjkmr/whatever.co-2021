@@ -97,7 +97,7 @@ const doAnime = (base: Element, grad: Element, box: Element, duration: number = 
   }
 }
 
-const Grad = ({ children }: any) => {
+export const Grad = ({ children }: any) => {
   const ref = useCallback(node => {
     if (!node) return
     const base = node.children[0]
@@ -139,5 +139,3 @@ const Grad = ({ children }: any) => {
     </div>
   )
 }
-
-export default Grad

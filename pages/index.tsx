@@ -246,7 +246,11 @@ const FeaturedWorks = () => (
     <FeaturedWorkItem date="July 28, 2020" title="WFH Jammies" tags={["Product / Service", "Featured"]} head="Loungewear for remote workers." desc="Half business, half relaxation. We planned and produced new kind of jammies for remote workers “WFH (Work From Home) Jammies”." image="/_/fw2.jpg" />
     <FeaturedWorkItem date="July 28, 2020" title="Superfly “Flare”" tags={["Film", "Featured"]} head="Fingertat’s hand-washing dance." desc="We planned and produced the music video for Superfly’s “Flare”, are hired from the opening of NHK’s morning TV drama “Scarlet”." image="/_/fw3.jpg" />
     <div className="link">
-      <a href="#">All Works</a>
+      <Grad>
+        <Link href="/work">
+          <a>All Works</a>
+        </Link>
+      </Grad>
     </div>
     <style jsx>{`
       .container
@@ -259,37 +263,44 @@ const FeaturedWorks = () => (
         margin-bottom 51px
       .link
         text-align right
-        font-size 18.5px
-        font-weight bold
         margin-top -8px
-        padding-right 80px
+        padding-right 78px
         a
           display inline-block
           padding-right 62px
           padding-bottom 6px
           border-bottom 1px solid red
+          font-size 18.5px
+          font-weight bold
+          letter-spacing -0.01em
     `}</style>
   </div>
 )
 
 const NewsItem = (props: any) => (
   <div className="container">
-    <img src={props.image} />
-    <div className="date">{props.date}</div>
-    <div className="title">{props.title}</div>
+    <GradImg><img src={props.image} width="256" height="144" /></GradImg>
+    <Grad><div className="date">{props.date}</div></Grad>
+    <Grad><div className="title">{props.title}</div></Grad>
     <style jsx>{`
       .container
         width 256px
         margin-right 60px
+        font-size 0
       img
         width 256px
         height 144px
         object-fit cover
         display block
       .date
+        display inline-block
+        overflow hidden
         font-size 12px
         margin-top 20px
       .title
+        display inline-block
+        overflow hidden
+        font-size 16px
         font-weight bold
         margin-top 9px
         letter-spacing 0.001em
@@ -300,28 +311,37 @@ const NewsItem = (props: any) => (
 
 const FeaturedNews = () => (
   <div className="container">
-    <h1>Featured News</h1>
+    <Grad><h1>Featured News</h1></Grad>
     <div className="items">
-      <NewsItem date="July 28, 2020" title="Rakugaki AR featured in Suimoku channel" image="/news1.jpg" />
-      <NewsItem date="July 28, 2020" title="Masashi Kawamura will appeared in Zee melt 2020" image="/news2.jpg" />
-      <NewsItem date="July 28, 2020" title="WFH Jammies featured in NIKKEI DESIGN" image="/news3.jpg" />
-      <NewsItem date="July 28, 2020" title="Masashi Kawamura’s interview featured in Kokuyo Design Award" image="/news4.jpg" />
+      <NewsItem date="July 28, 2020" title="Rakugaki AR featured in Suimoku channel" image="/_/news1.jpg" />
+      <NewsItem date="July 28, 2020" title="Masashi Kawamura will appeared in Zee melt 2020" image="/_/news2.jpg" />
+      <NewsItem date="July 28, 2020" title="WFH Jammies featured in NIKKEI DESIGN" image="/_/news3.jpg" />
+      <NewsItem date="July 28, 2020" title="Masashi Kawamura’s interview featured in Kokuyo Design Award" image="/_/news4.jpg" />
     </div>
     <div className="link">
-      <a href="#">All News</a>
+      <Grad>
+        <Link href="/news">
+          <a>All News</a>
+        </Link>
+      </Grad>
     </div>
+
     <style jsx>{`
       .container
         margin-top 72px
-        padding 57px 80px
+        padding 80px 80px
         background-color #F4F4F4
-        height 461px
+        height 415px
       h1
+        display inline-block
+        overflow hidden
         font-size 35px
         letter-spacing 0.012em
+        margin 0
+        margin-left -2px
       .items
         display flex
-        margin-top 53px
+        margin-top 50px
       .link
         text-align right
         font-size 18.5px

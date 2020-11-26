@@ -70,7 +70,7 @@ const doAnime = (base: Element, grad: Element, box: Element, duration: number = 
       fill: "both"
     }
   )
-  grad.animate(
+  return grad.animate(
     [
       {
         visibility: "hidden",
@@ -91,10 +91,7 @@ const doAnime = (base: Element, grad: Element, box: Element, duration: number = 
       iterations: 1,
       fill: "both"
     }
-  ).onfinish = () => {
-    base.removeChild(grad)
-    base.removeChild(box)
-  }
+  )
 }
 
 export const Grad = ({ children }: any) => {
@@ -105,7 +102,10 @@ export const Grad = ({ children }: any) => {
     new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
       const entry = entries[0]
       if (!entry.isIntersecting) { return }
-      doAnime(base, grad, box)
+      doAnime(base, grad, box).onfinish = () => {
+        base.removeChild(grad)
+        base.removeChild(box)
+      }
       object.unobserve(base)
     }).observe(base)
   }, [])
@@ -126,6 +126,14 @@ export const Grad = ({ children }: any) => {
           -webkit-background-clip text
           -webkit-text-fill-color transparent
           visibility hidden
+        .grad-effect-img
+          position absolute
+          top 0
+          left 0
+          width 100%
+          height 100%
+          background-image linear-gradient(to right, #fbe105, #f91fae)
+          visibility hidden
         .grad-effect-box
           position absolute
           background-image linear-gradient(to right, #fbe105, #f91fae, #f91fae)
@@ -137,5 +145,41 @@ export const Grad = ({ children }: any) => {
           visibility visible
       `}</style>
     </div>
+  )
+}
+
+export const GradImg = ({ children }: any) => {
+  const ref = useCallback(node => {
+    if (!node) return
+
+    node.classList.add('grad-effect-base')
+    const img = node.children[0]
+    const style = getComputedStyle(img)
+    node.style.width = style.width
+    node.style.height = style.height
+
+    const grad = document.createElement('div')
+    grad.classList.add('grad-effect-img')
+    const [colorA, colorB] = getColors()
+    grad.style.backgroundImage = `linear-gradient(to right, ${colorA}, ${colorB})`
+    node.appendChild(grad)
+
+    const box = document.createElement('div')
+    box.classList.add('grad-effect-box')
+    box.style.backgroundImage = `linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`
+    node.appendChild(box)
+
+    new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
+      const entry = entries[0]
+      if (!entry.isIntersecting) { return }
+      doAnime(img, grad, box, 200).onfinish = () => {
+        node.removeChild(grad)
+        node.removeChild(box)
+      }
+      object.unobserve(img)
+    }).observe(img)
+  }, [])
+  return (
+    <div ref={ref}>{children}</div>
   )
 }

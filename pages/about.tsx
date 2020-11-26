@@ -1,9 +1,9 @@
 import Layout from '../components/Layout'
-import { Grad } from '../components/Grad'
+import { Grad, GradImg } from '../components/Grad'
 
 const Genres = () => (
   <div className="genres">
-    <div className="image"><img src="/about/image.jpg" width="1028" height="578" /></div>
+    <div className="image"><GradImg><img src="/about/image.jpg" width="1028" height="578" /></GradImg></div>
     <div className="inner">
       <Grad><h2>Crossing the border of</h2></Grad>
       <Grad><h1>genres</h1></Grad>
@@ -65,6 +65,7 @@ const Genres = () => (
 
 const Cultures = () => (
   <div className="cultures">
+    <div className="image"><GradImg><img src="/about/image2.jpg" width="1028" height="578" /></GradImg></div>
     <div className="inner">
       <Grad><h2>Crossing the border of</h2></Grad>
       <Grad><h1>cultures</h1></Grad>
@@ -73,14 +74,17 @@ const Cultures = () => (
     </div>
     <style jsx>{`
       .cultures
+        position relative
         {/* opacity 0.5 */}
-        background-image url('/about/image2.jpg')
-        background-repeat no-repeat
-        background-position top right
         padding-top 289px
         padding-right 599px
         margin-bottom 89px
+      .image
+        position absolute
+        top 0
+        right 0
       .inner
+        position relative
         background-color white
         padding-top 43px
         padding-left 81px
@@ -120,6 +124,7 @@ const Cultures = () => (
 
 const Profession = () => (
   <div className="profession">
+    <div className="image"><GradImg><img src="/about/image3.jpg" width="1028" height="578" /></GradImg></div>
     <div className="inner">
       <Grad><h2>Crossing the border of</h2></Grad>
       <Grad><h1>profession</h1></Grad>
@@ -128,14 +133,18 @@ const Profession = () => (
     </div>
     <style jsx>{`
       .profession
+        position relative
         {/* opacity 0.5 */}
-        background-image url('/about/image3.jpg')
-        background-repeat no-repeat
         padding-top 289px
         padding-left 603px
         padding-right 70px
         margin-bottom 139px
+      .image
+        position absolute
+        top 0
+        left 0
       .inner
+        position relative
         background-color white
         padding-top 29px
         padding-left 60px

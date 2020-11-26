@@ -1,5 +1,5 @@
 // import { GetStaticProps } from 'next'
-import Link from 'next/link'
+// import Link from 'next/link'
 import Layout from '../../components/Layout'
 // import { Entry, getAllWorks } from '../../lib/api'
 import WorkTag from '../../components/WorkTag'

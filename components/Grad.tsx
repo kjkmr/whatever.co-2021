@@ -1,5 +1,15 @@
 import { useCallback } from 'react'
 
+const COLORS = ["#ff2300", "#ff9201", "#ffeb00", "#89e82b", "#00c745", "#29ebfe", "#0d44fb", "#a725fc", "#fd1eba"];
+const getColors = (): [String, String] => {
+  const i = Math.floor(Math.random() * COLORS.length)
+  let j
+  do {
+    j = Math.floor(Math.random() * COLORS.length)
+  } while (i == j)
+  return [COLORS[i], COLORS[j]]
+}
+
 const setup = (base: Element): [Element, Element] => {
   const grad = document.createElement('div')
   base.childNodes.forEach((e: Node) => {
@@ -7,9 +17,12 @@ const setup = (base: Element): [Element, Element] => {
   })
   base.classList.add('grad-effect-base')
   grad.classList.add('grad-effect-text')
-  base.appendChild(grad)
+  const [colorA, colorB] = getColors()
+  grad.style.backgroundImage = `linear-gradient(to right, ${colorA}, ${colorB})`
+base.appendChild(grad)
   const box = document.createElement('div')
   box.classList.add('grad-effect-box')
+  box.style.backgroundImage = `linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`
   base.appendChild(box)
   return [grad, box]
 }

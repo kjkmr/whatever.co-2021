@@ -1,14 +1,14 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
-import { Entry, getFeaturedWork, getLatestNews } from '../lib/api'
+// import { Entry, getFeaturedWork, getLatestNews } from '../lib/api'
 import Layout from '../components/Layout'
 import { Grad, GradImg } from '../components/Grad'
 
-type Props = {
-  work: Entry[]
-  news: Entry[]
-}
+// type Props = {
+//   work: Entry[]
+//   news: Entry[]
+// }
 
 const Showreel = () => (
   <div className="reel">

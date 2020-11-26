@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const Header = (props: any) => (
+const Header = () => (
   <div className="header">
     <Link href="/"><a><img src="logo_rgb_black.png" /></a></Link>
 

@@ -145,6 +145,7 @@ const WorkIndex = () => (
       <div className="item large">E</div>
       <div className="item">F</div>
       <div className="item">G</div>
+      <div className="item">H</div>
     </div>
 
     <style jsx>{`

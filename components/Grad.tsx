@@ -102,7 +102,12 @@ const Grad = ({ children }: any) => {
     if (!node) return
     const base = node.children[0]
     const [grad, box] = setup(base)
-    doAnime(base, grad, box)
+    new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
+      const entry = entries[0]
+      if (!entry.isIntersecting) { return }
+      doAnime(base, grad, box)
+      object.unobserve(base)
+    }).observe(base)
   }, [])
   return (
     <div ref={ref}>
@@ -120,6 +125,7 @@ const Grad = ({ children }: any) => {
           background-image linear-gradient(to right, #fbe105, #f91fae)
           -webkit-background-clip text
           -webkit-text-fill-color transparent
+          visibility hidden
         .grad-effect-box
           position absolute
           background-image linear-gradient(to right, #fbe105, #f91fae, #f91fae)

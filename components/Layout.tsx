@@ -35,7 +35,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => (
     <style jsx>{`
       .container
         position relative
-        max-width 1366px
+        width 1366px
         margin 0 auto
       .contents
         display flex

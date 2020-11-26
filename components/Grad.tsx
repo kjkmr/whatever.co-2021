@@ -14,8 +14,8 @@ const setup = (base: Element): [Element, Element] => {
   return [grad, box]
 }
 
-const doAnime = (base: Element, grad: Element, box: Element, duration: number = 200) => {
-  const delay = Math.random() * 300
+const doAnime = (base: Element, grad: Element, box: Element, duration: number = 250) => {
+  const delay = Math.random() * 500
   base.animate(
     [
       {
@@ -35,7 +35,28 @@ const doAnime = (base: Element, grad: Element, box: Element, duration: number = 
       iterations: 1,
       fill: "both"
     }
-  );
+  )
+  box.animate(
+    [
+      {
+        left: "-100%"
+      },
+      {
+        backgroundPosition: "0% 0%",
+        left: 0
+      },
+      {
+        backgroundPosition: "100% 0%",
+        left: "100%"
+      }
+    ],
+    {
+      duration: duration,
+      delay: delay,
+      iterations: 1,
+      fill: "both"
+    }
+  )
   grad.animate(
     [
       {
@@ -57,33 +78,10 @@ const doAnime = (base: Element, grad: Element, box: Element, duration: number = 
       iterations: 1,
       fill: "both"
     }
-  );
-  box.animate(
-    [
-      {
-        left: "-100%"
-      },
-      {
-        backgroundPosition: "0% 0%",
-        left: 0
-      },
-      {
-        backgroundPosition: "100% 0%",
-        left: "100%"
-      }
-    ],
-    {
-      duration: duration,
-      delay: delay,
-      iterations: 1,
-      fill: "both"
-    }
-  );
-  setTimeout(() => {
+  ).onfinish = () => {
     base.removeChild(grad)
     base.removeChild(box)
-    base.classList.remove('grad-effect-base')
-  }, delay + duration)
+  }
 }
 
 const Grad = ({ children }: any) => {

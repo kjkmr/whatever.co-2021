@@ -117,6 +117,7 @@ export const Grad = ({ children }: any) => {
         .grad-effect-base
           position relative
           overflow hidden
+          visibility hidden
         .grad-effect-text
           position absolute
           top 0

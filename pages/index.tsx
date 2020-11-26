@@ -18,6 +18,8 @@ const Showreel = () => (
       .reel
         position relative
         width 100%
+        background-color black
+        font-size 0
       video
         width 1286px
         height 728px
@@ -30,7 +32,7 @@ const Showreel = () => (
         color white
         position absolute
         right 0
-        bottom -37px
+        bottom -40px
         font-size 17.5px
         font-weight bold
         letter-spacing 0.03em
@@ -105,7 +107,7 @@ const Crossborder = () => (
     <style jsx>{`
       .container
         position relative
-        margin-top 296px
+        margin-top 299px
         margin-left 80px
         margin-bottom 0
         padding-top 240px

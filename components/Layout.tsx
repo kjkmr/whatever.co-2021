@@ -49,7 +49,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => (
         margin 0
         padding 0
       body
-        {/* background-image: url('/_/Top.png') */}
+        {/* background-image: url('/_/Work_index.png') */}
         background-repeat no-repeat
         background-position top center
         font-family Apercu

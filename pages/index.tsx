@@ -3,6 +3,7 @@ import { GetStaticProps } from 'next'
 import Link from 'next/link'
 // import { Entry, getFeaturedWork, getLatestNews } from '../lib/api'
 import Layout from '../components/Layout'
+import WorkTag from '../components/WorkTag'
 import { Grad, GradImg } from '../components/Grad'
 
 // type Props = {
@@ -159,20 +160,6 @@ const Crossborder = () => (
           font-weight bold
     `}</style>
   </div>
-)
-
-const WorkTag = (props: any) => (
-  <a href="#">{props.children}
-    <style jsx>{`
-      a
-        display inline-block
-        border 1px solid black
-        font-size 12px
-        letter-spacing 0.02em
-        padding 8px 10px
-        margin-right 10px
-    `}</style>
-  </a>
 )
 
 const FeaturedWorkItem = (props: any) => (

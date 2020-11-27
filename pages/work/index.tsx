@@ -1,13 +1,12 @@
+import { useState } from 'react'
 import { GetStaticProps } from 'next'
 // import Link from 'next/link'
+import classNames from 'classnames/bind'
 import Layout from '../../components/Layout'
 import { Entry, getAllWorks } from '../../lib/api'
 import WorkTag from '../../components/WorkTag'
 import { Grad, GradImg } from '../../components/Grad'
 
-// type Props = {
-//   works: Entry[]
-// }
 
 const TAGS = [
   ['All', 'Brand Consulting', 'Experiential', 'Featured', 'Film'],
@@ -16,20 +15,13 @@ const TAGS = [
 const tags = TAGS.flat()
 
 
-const CategorySelector = () => (
-  <div className="container">
-    {TAGS.map(cats => <table><tr >{
-      cats.map(cat => <td>{cat}</td>)}</tr></table>)}
-    <style jsx>{`
-      .container
-        margin-top 40px
-      table
-        border-collapse collapse
-        margin-bottom 28px
-      tr
-        padding 0
-        margin 0
-        height 41px
+const TagItem = ({ name, focused, onclick }: any) => {
+  return (
+    <td>
+      <button onClick={() => onclick(name)} className={classNames({ focused })}>
+        <Grad><div className="inner">{name}</div></Grad>
+      </button>
+      <style jsx>{`
       td
         padding 0
         margin 0
@@ -43,9 +35,56 @@ const CategorySelector = () => (
         vertical-align middle
         font-size 14px
         letter-spacing 0.02em
+      button
+        margin 0
+        margin-left -1px
+        margin-top -1px
+        padding 0
+        border none
+        background-color transparent
+        width calc(100% + 2px)
+        height calc(100% + 2px)
+      .focused
+        border 1px solid red
+      .inner
+        display inline-block
     `}</style>
-  </div>
-)
+    </td>
+  )
+}
+
+const TagSelector = () => {
+  const [current, setCurrent] = useState(tags[0])
+  const onclick = (tag: string) => {
+    setCurrent(tag)
+  }
+  return (
+    <div className="container">
+      {
+        TAGS.map((tags, index) => (
+          <table key={index}>
+            <tbody>
+              <tr >
+                {tags.map(tag => <TagItem key={tag} name={tag} focused={tag == current} onclick={onclick} />)}
+              </tr>
+            </tbody>
+          </table>
+        ))
+      }
+      <style jsx>{`
+      .container
+        margin-top 40px
+      table
+        border-collapse collapse
+        margin-bottom 28px
+      tr
+        padding 0
+        margin 0
+        height 41px
+    `}</style>
+    </div>
+  )
+}
 
 const LargeWork = (props: any) => (
   <div className="container">
@@ -137,14 +176,14 @@ const SmallWork = (props: any) => (
 
 const WorkIndex = ({ works }: any) => (
   <Layout title="WORK">
-    <CategorySelector />
+    <TagSelector />
 
     <div className="works">
       {works.map((w: Entry) => {
         if (w.tags?.includes('Featured')) {
-          return <LargeWork date={w.date} title={w.title} tags={w.tags} image={w.image} />
+          return <LargeWork key={w.slug} date={w.date} title={w.title} tags={w.tags} image={w.image} />
         } else {
-          return <SmallWork date={w.date} title={w.title} tags={w.tags} image={w.image} />
+          return <SmallWork key={w.slug} date={w.date} title={w.title} tags={w.tags} image={w.image} />
         }
       })}
     </div>

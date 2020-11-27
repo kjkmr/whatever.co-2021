@@ -45,11 +45,29 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => (
     `}</style>
 
     <style jsx global>{`
+      @font-face
+        font-family Apercu
+        src url('/common/fonts/apercu-medium.eot')
+        src url('/common/fonts/apercu-medium.eot?#iefix') format('embedded-opentype'),
+            url('/common/fonts/apercu-medium.woff') format('woff'),
+            url('/common/fonts/apercu-medium.woff2') format('woff2'),
+            url('/common/fonts/apercu-medium.ttf') format('truetype')
+        font-weight normal
+        font-style normal
+      @font-face
+        font-family Apercu
+        src url('/common/fonts/apercu-bold.eot')
+        src url('/common/fonts/apercu-bold.eot?#iefix') format('embedded-opentype'),
+            url('/common/fonts/apercu-bold.woff') format('woff'),
+            url('/common/fonts/apercu-bold.woff2') format('woff2'),
+            url('/common/fonts/apercu-bold.ttf') format('truetype')
+        font-weight bold
+        font-style normal
       html, body
         margin 0
         padding 0
       body
-        {/* background-image: url('/_/Work_index.png') */}
+        {/* background-image: url('/_/Top.png') */}
         background-repeat no-repeat
         background-position top center
         font-family Apercu

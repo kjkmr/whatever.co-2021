@@ -1,7 +1,7 @@
-// import { GetStaticProps } from 'next'
+import { GetStaticProps } from 'next'
 // import Link from 'next/link'
 import Layout from '../../components/Layout'
-// import { Entry, getAllWorks } from '../../lib/api'
+import { Entry, getAllWorks } from '../../lib/api'
 import WorkTag from '../../components/WorkTag'
 import { Grad, GradImg } from '../../components/Grad'
 
@@ -9,14 +9,16 @@ import { Grad, GradImg } from '../../components/Grad'
 //   works: Entry[]
 // }
 
-const CATEGORIES = [
+const TAGS = [
   ['All', 'Brand Consulting', 'Experiential', 'Featured', 'Film'],
   ['Games', 'Permanent Installation', 'Product / Service', 'Prototype', 'TV Shows']
 ]
+const tags = TAGS.flat()
+
 
 const CategorySelector = () => (
   <div className="container">
-    {CATEGORIES.map(cats => <table><tr >{
+    {TAGS.map(cats => <table><tr >{
       cats.map(cat => <td>{cat}</td>)}</tr></table>)}
     <style jsx>{`
       .container
@@ -98,7 +100,7 @@ const SmallWork = (props: any) => (
     <div className="image"><GradImg><img src={props.image} width="100%" /></GradImg></div>
     <div className="text">
       <Grad><div className="date">{props.date}</div></Grad>
-      <Grad><div className="title">{props.title}</div></Grad>
+      <Grad><div className="title" dangerouslySetInnerHTML={{ __html: props.title }} /></Grad>
       <Grad><div className="tags">
         {props.tags.map((tag: any) => <WorkTag key={tag}>{tag}</WorkTag>)}
       </div></Grad>
@@ -133,19 +135,18 @@ const SmallWork = (props: any) => (
   </div>
 )
 
-const WorkIndex = () => (
+const WorkIndex = ({ works }: any) => (
   <Layout title="WORK">
     <CategorySelector />
 
     <div className="works">
-      <LargeWork date="July 28, 2020" title="New Stand Tokyo" tags={["Brand Consulting", "Permanent Installation", "Featured"]} head="General store of the future." image="/_/work1.png" />
-      <SmallWork date="July 28, 2020" title="Future Box Seatβ" tags={["Prototype"]} image="/_/work2.png" />
-      <SmallWork date="July 28, 2020" title="NHK “Hand Wash Dance”" tags={["Film"]} image="/_/work3.png" />
-      <div className="item">D</div>
-      <div className="item large">E</div>
-      <div className="item">F</div>
-      <div className="item">G</div>
-      <div className="item">H</div>
+      {works.map((w: Entry) => {
+        if (w.tags?.includes('Featured')) {
+          return <LargeWork date={w.date} title={w.title} tags={w.tags} image={w.image} />
+        } else {
+          return <SmallWork date={w.date} title={w.title} tags={w.tags} image={w.image} />
+        }
+      })}
     </div>
 
     <style jsx>{`
@@ -169,7 +170,11 @@ const WorkIndex = () => (
 
 export default WorkIndex
 
-// export const getStaticProps: GetStaticProps = async () => {
-//   const works = await getAllWorks()
-//   return { props: { works } }
-// }
+export const getStaticProps: GetStaticProps = async () => {
+  const works = await getAllWorks()
+  works.forEach(w => {
+    w.tags = w.tags?.filter(t => tags.includes(t))
+  })
+  // console.log(works)
+  return { props: { works } }
+}

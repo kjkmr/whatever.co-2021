@@ -11,6 +11,16 @@ const replaceToCDN = (url: string): string => {
 }
 
 
+const TAG_NAMES: { [name: number]: string } = {}
+const getAllTags = async () => {
+  (await wp.tags().perPage(100)).forEach((tag: any) => {
+    TAG_NAMES[tag.id] = tag.name
+  })
+  // console.log(TAG_NAMES)
+}
+getAllTags()
+
+
 const getAll = (request: any) => {
   return request.then((response: any) => {
     if (!response._paging || !response._paging.next) {
@@ -30,6 +40,7 @@ export type Entry = {
   date?: string
   content?: string
   image?: string
+  tags?: string[]
 }
 
 
@@ -43,13 +54,15 @@ export async function getAllMembers(): Promise<Entry[]> {
 
 
 export async function getAllWorks(): Promise<Entry[]> {
-  const data = await (wp.posts().perPage(100).embed().param({ categories: 4, _fields: 'slug,title,date,_links,_embedded' }))
+  const data = await (wp.posts().perPage(100).embed().param({ categories: 4, _fields: 'slug,title,date,tags,_links,_embedded' }))
   // const data = await getAll(wp.posts().perPage(100).embed().param({ categories: 4, _fields: 'slug,title,date,_links,_embedded' }))
+  // console.log(data)
   return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
     date: e.date,
     image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
+    tags: e.tags.map((t: number): string => TAG_NAMES[t])
   }))
 }
 

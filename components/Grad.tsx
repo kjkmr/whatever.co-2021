@@ -155,9 +155,6 @@ export const GradImg = ({ children }: any) => {
 
     node.classList.add('grad-effect-base')
     const img = node.children[0]
-    const style = getComputedStyle(img)
-    node.style.width = style.width
-    node.style.height = style.height
 
     const grad = document.createElement('div')
     grad.classList.add('grad-effect-img')
@@ -181,6 +178,12 @@ export const GradImg = ({ children }: any) => {
     }).observe(img)
   }, [])
   return (
-    <div ref={ref}>{children}</div>
+    <div className="container" ref={ref}>
+      {children}
+      <style jsx>{`
+        .container
+          font-size 0
+      `}</style>
+    </div>
   )
 }

@@ -53,10 +53,11 @@ const TagItem = ({ name, focused, onclick }: any) => {
   )
 }
 
-const TagSelector = () => {
+const TagSelector = ({ onchange }: any) => {
   const [current, setCurrent] = useState(tags[0])
   const onclick = (tag: string) => {
     setCurrent(tag)
+    onchange(tag)
   }
   return (
     <div className="container">
@@ -174,21 +175,31 @@ const SmallWork = (props: any) => (
   </div>
 )
 
-const WorkIndex = ({ works }: any) => (
-  <Layout title="WORK">
-    <TagSelector />
+const WorkIndex = ({ works }: any) => {
+  const [tag, setTag] = useState(tags[0])
+  const onchangetag = (tag: string) => {
+    console.log('ookaa', tag)
+    setTag(tag)
+  }
+  return (
+    <Layout title="WORK">
+      <TagSelector onchange={onchangetag} />
 
-    <div className="works">
-      {works.map((w: Entry) => {
-        if (w.tags?.includes('Featured')) {
-          return <LargeWork key={w.slug} date={w.date} title={w.title} tags={w.tags} image={w.image} />
-        } else {
-          return <SmallWork key={w.slug} date={w.date} title={w.title} tags={w.tags} image={w.image} />
-        }
-      })}
-    </div>
+      <div className="works">
+        {works.map((w: Entry) => {
+          if (tag == tags[0]) {
+            if (w.tags?.includes('Featured')) {
+              return <LargeWork key={w.slug} date={w.date} title={w.title} tags={w.tags} image={w.image} />
+            } else {
+              return <SmallWork key={w.slug} date={w.date} title={w.title} tags={w.tags} image={w.image} />
+            }
+          } else if (w.tags?.includes(tag)) {
+            return <SmallWork key={w.slug} date={w.date} title={w.title} tags={w.tags} image={w.image} />
+          }
+        })}
+      </div>
 
-    <style jsx>{`
+      <style jsx>{`
       .works
         display grid
         grid-template-columns repeat(3, 1fr)
@@ -204,8 +215,9 @@ const WorkIndex = ({ works }: any) => (
         grid-column span 2
         grid-row span 2
     `}</style>
-  </Layout >
-)
+    </Layout >
+  )
+}
 
 export default WorkIndex
 

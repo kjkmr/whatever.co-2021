@@ -13,10 +13,10 @@ const MemberDetail = ({ member }: { member: Member }) => (
           <Grad><div className="region">{member.region.join(' / ')}</div></Grad>
           <Grad><div className="title">{member.title}</div></Grad>
           <Grad><div className="name">{member.name}</div></Grad>
-          <Grad><div>
-            <div className="description" dangerouslySetInnerHTML={{ __html: member.content || '' }} />
-            <ul>{member.links.map((link: any) => <li key={link.url}><a href={link.url}>{link.name}</a></li>)}</ul>
-          </div></Grad>
+          <Grad><div className="description" dangerouslySetInnerHTML={{ __html: member.content || '' }} /></Grad>
+          <div>
+            <ul>{member.links.map((link: any) => <li key={link.url}><Grad><span>- <a href={link.url}>{link.name}</a></span></Grad></li>)}</ul>
+          </div>
         </div>
       </div>
     </div>
@@ -67,11 +67,15 @@ const MemberDetail = ({ member }: { member: Member }) => (
         padding 0
       li
         font-size 16px
-        list-style inside  '- '
-        margin-bottom 16px
+        list-style-type none
+        margin-bottom 10px
+        overflow hidden
+        span
+          display inline-block
         a
           padding-bottom 2px
           border-bottom 1px solid red
+          display inline-block
     `}</style>
   </Layout >
 )

@@ -94,7 +94,7 @@ const SmallWork = (props: any) => (
 
 
 type WorkListProps = {
-  filter: string,
+  filter?: string,
   works: Entry[],
 }
 

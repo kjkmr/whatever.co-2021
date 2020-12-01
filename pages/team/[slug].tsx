@@ -1,30 +1,30 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { Member, getAllMembers, getMemberDetail } from '../../lib/api'
+import { Member, Entry, getAllMembers, getMemberDetail, getWorksByTag } from '../../lib/api'
 import Layout from '../../components/Layout'
 import { Grad, GradImg } from '../../components/Grad'
+import { WorkList } from '../../components/WorkList'
 
 
-const MemberDetail = ({ member }: { member: Member }) => (
-  <Layout title={member.name}>
-    <div className="container">
-      <div className="image"><GradImg><img src={member.image} alt="" width="643" height="688" /></GradImg></div>
-      <div className="info">
-        <div className="inner">
-          <Grad><div className="region">{member.region.join(' / ')}</div></Grad>
-          <Grad><div className="title">{member.title}</div></Grad>
-          <Grad><div className="name">{member.name}</div></Grad>
-          <Grad><div className="description" dangerouslySetInnerHTML={{ __html: member.content || '' }} /></Grad>
-          <div>
-            <ul>{member.links.map((link: any) => <li key={link.url}><Grad><span>- <a href={link.url}>{link.name}</a></span></Grad></li>)}</ul>
-          </div>
+const MemberInfo = ({ member }: { member: Member }) => (
+  <div className="container">
+    <div className="image"><GradImg><img src={member.image} alt="" width="643" height="688" /></GradImg></div>
+    <div className="info">
+      <div className="inner">
+        <Grad><div className="region">{member.region.join(' / ')}</div></Grad>
+        <Grad><div className="title">{member.title}</div></Grad>
+        <Grad><div className="name">{member.name}</div></Grad>
+        <Grad><div className="description" dangerouslySetInnerHTML={{ __html: member.content || '' }} /></Grad>
+        <div>
+          <ul>{member.links.map((link: any) => <li key={link.url}><Grad><span>- <a href={link.url}>{link.name}</a></span></Grad></li>)}</ul>
         </div>
       </div>
     </div>
     <style jsx>{`
       .container
+        {/* opacity 0.5 */}
         position relative
         margin 0
-        margin-bottom 300px
+        margin-bottom 40px
       .image
         position absolute
         top 0
@@ -62,6 +62,8 @@ const MemberDetail = ({ member }: { member: Member }) => (
         line-height 2.15em
         margin-top 35px
         margin-bottom 42px
+        p
+          margin 0
       ul
         margin 0
         padding 0
@@ -76,6 +78,31 @@ const MemberDetail = ({ member }: { member: Member }) => (
           padding-bottom 2px
           border-bottom 1px solid red
           display inline-block
+    `}</style>
+  </div>
+)
+
+
+const RelatedWork = ({ works }: { works: Entry[] }) => (
+  <div className="container">
+    <h2>Related Work</h2>
+    <WorkList works={works} />
+    <style jsx>{`
+      .container
+        {/* opacity 0.5 */}
+        min-height 1000px
+      h2
+        font-size 36px
+    `}</style>
+  </div>
+)
+
+
+const MemberDetail = ({ member, works }: { member: Member, works: Entry[] }) => (
+  <Layout title={member.name}>
+    <MemberInfo member={member} />
+    <RelatedWork works={works} />
+    <style jsx>{`
     `}</style>
   </Layout >
 )
@@ -92,7 +119,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const member = await getMemberDetail(params?.slug as string)
-  console.log(member)
-  return { props: { member } }
+  const slug: string = params?.slug as string
+  const member = await getMemberDetail(slug)
+  const works = await getWorksByTag(slug)
+  return { props: { member, works } }
 }

@@ -73,13 +73,13 @@ export type Member = {
 const parseLinks = (data: string) => {
   return data.split('\r\n').map((line: string) => {
     const [name, url] = line.split(',')
-    return { name: name.trim(), url: url.trim() }
+    return { name: name ? name.trim() : null, url: url ? url.trim() : null }
   })
 }
 
 
 export async function getAllMembers(): Promise<Member[]> {
-  const data = await wp.pages().order('asc').perPage(3).embed().param({ categories: 187, __fields: 'slug,title,tags,_embedded' })
+  const data = await wp.pages().order('asc').perPage(100).embed().param({ categories: 187, __fields: 'slug,title,tags,_embedded' })
   return data?.map((e: any): Member => ({
     slug: e.slug,
     name: e.title.rendered,

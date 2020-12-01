@@ -82,6 +82,21 @@ export async function getAllWorks(): Promise<Entry[]> {
 }
 
 
+export async function getWorksByTag(tagSlug: string): Promise<Entry[]> {
+  const tag = await wp.tags().slug(tagSlug)
+  const data = await (wp.posts().tags(tag[0].id).perPage(100).embed().param({ categories: 4, _fields: 'slug,title,date,tags,_links,_embedded' }))
+  const tags: { [id: number]: Tag } = {};
+  (await getWorkTags()).forEach(t => tags[t.id] = t)
+  return data?.map((e: any): Entry => ({
+    slug: e.slug,
+    title: e.title.rendered,
+    date: e.date,
+    image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
+    tags: e.tags.map((t: number) => tags[t]).filter((t: Tag) => t)
+  }))
+}
+
+
 export async function getFeaturedWork(): Promise<Entry[]> {
   const data = await wp.posts().perPage(3).embed().param({ tags: 185, _fields: 'slug,title,date,_links,_embedded' })
   return data?.map((e: any): Entry => ({

@@ -58,11 +58,25 @@ export type Entry = {
 }
 
 
-export async function getAllMembers(): Promise<Entry[]> {
-  const data = await wp.pages().perPage(100).param({ categories: 235, _fields: 'slug,title' })
-  return data?.map((e: any): Entry => ({
+export type Member = {
+  slug: string,
+  name: string,
+  title: string,
+  image: string,
+  region: string[],
+  coCreator: boolean,
+}
+
+
+export async function getAllMembers(): Promise<Member[]> {
+  const data = await wp.pages().order('asc').perPage(100).embed().param({ categories: 187, __fields: 'slug,title,tags,_embedded' })
+  return data?.map((e: any): Member => ({
     slug: e.slug,
-    title: e.title.rendered
+    name: e.title.rendered,
+    title: e.acf.title,
+    image: e._embedded['wp:featuredmedia'][0].source_url,
+    region: e.acf.region,
+    coCreator: e.acf['co-creator'],
   }))
 }
 

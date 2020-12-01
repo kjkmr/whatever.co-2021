@@ -122,13 +122,6 @@ export const WorkList = ({ filter, works }: WorkListProps) => {
           grid-auto-rows 400px
           margin-top 72px
           margin-bottom 100px
-        .item
-          opacity 0.5
-          background-color green
-          font-size 100px
-        .large
-          grid-column span 2
-          grid-row span 2
       `}</style>
     </div>
   )

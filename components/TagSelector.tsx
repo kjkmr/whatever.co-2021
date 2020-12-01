@@ -7,7 +7,7 @@ const TagItem = ({ name, slug, focused }: any) => {
   return (
     <li className={classNames('container', { focused })}>
       <button>
-        <Grad><div className="inner"><Link href={name == 'All' ? '/work' : `/work/tag/${slug}`}><a>{name}</a></Link></div></Grad>
+        <Grad><div className="inner"><Link href={`/work/category/${slug}`}><a>{name}</a></Link></div></Grad>
       </button>
       <style jsx>{`
         .container
@@ -54,7 +54,7 @@ type TagSelectorProp = {
 
 export const TagSelector = ({ tags, active }: TagSelectorProp) => (
   <ol className="container">
-    <TagItem name="All" focused={active == "all"} />
+    <TagItem name="All" slug='all' focused={active == "all"} />
     {tags.map(tag => <TagItem key={tag.slug} name={tag.name} slug={tag.slug} focused={tag.slug == active} />)}
     <style jsx>{`
       .container

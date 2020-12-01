@@ -1,5 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { Tag, Entry, getWorksByTag, getWorkTags } from '../../../lib/api'
+import { Tag, Entry, getAllWorks, getWorksByTag, getWorkTags } from '../../../lib/api'
 import Layout from '../../../components/Layout'
 import { TagSelector } from '../../../components/TagSelector'
 import { WorkList } from '../../../components/WorkList'
@@ -23,7 +23,9 @@ export default WorkIndex
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const tags = await getWorkTags()
-  const paths = tags.map((t: Tag) => ({ params: { tag: t.slug } }))
+  const paths = tags.map((t: Tag) => ({ params: { category: t.slug } }))
+  paths.unshift({ params: { category: 'all' } })
+  console.log(paths)
   return {
     paths,
     fallback: false
@@ -31,8 +33,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const active = params?.tag as string
+  const active = params?.category as string
   const tags = await getWorkTags()
-  const works = await getWorksByTag(active)
+  const works = active == 'all' ? (await getAllWorks()) : (await getWorksByTag(active))
   return { props: { tags, active, works } }
 }

@@ -62,6 +62,7 @@ export type Member = {
   slug: string,
   name: string,
   title: string,
+  content?: string,
   image: string,
   region: string[],
   coCreator: boolean,
@@ -78,6 +79,20 @@ export async function getAllMembers(): Promise<Member[]> {
     region: e.acf.region,
     coCreator: e.acf['co-creator'],
   }))
+}
+
+
+export async function getMemberDetail(slug: string): Promise<Member> {
+  const data = (await wp.pages().slug(slug).embed())[0]
+  return {
+    slug,
+    name: data.title.rendered,
+    title: data.acf.title,
+    content: replaceToCDN(data.content.rendered),
+    image: data._embedded['wp:featuredmedia'][0].source_url,
+    region: data.acf.region,
+    coCreator: data.acf['co-creator'],
+  }
 }
 
 

@@ -10,14 +10,12 @@ type WorkIndexProps = {
   works: Entry[],
 }
 
-const WorkIndex = ({ tags, active, works }: WorkIndexProps) => {
-  return (
-    <Layout title="WORK">
-      <TagSelector tags={tags} active={active} />
-      <WorkList works={works} filter={active} />
-    </Layout >
-  )
-}
+const WorkIndex = ({ tags, active, works }: WorkIndexProps) => (
+  <Layout title="WORK">
+    <TagSelector tags={tags} active={active} />
+    <WorkList works={works} filter={active} />
+  </Layout >
+)
 
 export default WorkIndex
 

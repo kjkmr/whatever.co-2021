@@ -5,7 +5,7 @@ import { Grad, GradImg } from '../../components/Grad'
 
 
 const MemberDetail = ({ member }: { member: Member }) => (
-  <Layout title={member.title}>
+  <Layout title={member.name}>
     <div className="container">
       <div className="image"><GradImg><img src={member.image} alt="" width="643" height="688" /></GradImg></div>
       <div className="info">
@@ -13,7 +13,10 @@ const MemberDetail = ({ member }: { member: Member }) => (
           <Grad><div className="region">{member.region.join(' / ')}</div></Grad>
           <Grad><div className="title">{member.title}</div></Grad>
           <Grad><div className="name">{member.name}</div></Grad>
-          <Grad><div className="description" dangerouslySetInnerHTML={{ __html: member.content || '' }} /></Grad>
+          <Grad><div>
+            <div className="description" dangerouslySetInnerHTML={{ __html: member.content || '' }} />
+            <ul>{member.links.map((link: any) => <li key={link.url}><a href={link.url}>{link.name}</a></li>)}</ul>
+          </div></Grad>
         </div>
       </div>
     </div>
@@ -21,6 +24,7 @@ const MemberDetail = ({ member }: { member: Member }) => (
       .container
         position relative
         margin 0
+        margin-bottom 300px
       .image
         position absolute
         top 0
@@ -38,6 +42,7 @@ const MemberDetail = ({ member }: { member: Member }) => (
         background-color white
         padding 80px
         font-size 0
+        min-height 372px
       .region
         display inline-block
         font-size 11px
@@ -56,6 +61,17 @@ const MemberDetail = ({ member }: { member: Member }) => (
         letter-spacing 0.01em
         line-height 2.15em
         margin-top 35px
+        margin-bottom 42px
+      ul
+        margin 0
+        padding 0
+      li
+        font-size 16px
+        list-style inside  '- '
+        margin-bottom 16px
+        a
+          padding-bottom 2px
+          border-bottom 1px solid red
     `}</style>
   </Layout >
 )
@@ -73,5 +89,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const member = await getMemberDetail(params?.slug as string)
+  console.log(member)
   return { props: { member } }
 }

@@ -65,18 +65,28 @@ export type Member = {
   content?: string,
   image: string,
   region: string[],
+  links: any,
   coCreator: boolean,
 }
 
 
+const parseLinks = (data: string) => {
+  return data.split('\r\n').map((line: string) => {
+    const [name, url] = line.split(',')
+    return { name: name.trim(), url: url.trim() }
+  })
+}
+
+
 export async function getAllMembers(): Promise<Member[]> {
-  const data = await wp.pages().order('asc').perPage(100).embed().param({ categories: 187, __fields: 'slug,title,tags,_embedded' })
+  const data = await wp.pages().order('asc').perPage(3).embed().param({ categories: 187, __fields: 'slug,title,tags,_embedded' })
   return data?.map((e: any): Member => ({
     slug: e.slug,
     name: e.title.rendered,
     title: e.acf.title,
     image: e._embedded['wp:featuredmedia'][0].source_url,
     region: e.acf.region,
+    links: parseLinks(e.acf.rel_links),
     coCreator: e.acf['co-creator'],
   }))
 }
@@ -91,6 +101,7 @@ export async function getMemberDetail(slug: string): Promise<Member> {
     content: replaceToCDN(data.content.rendered),
     image: data._embedded['wp:featuredmedia'][0].source_url,
     region: data.acf.region,
+    links: parseLinks(data.acf.rel_links),
     coCreator: data.acf['co-creator'],
   }
 }

@@ -25,7 +25,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const tags = await getWorkTags()
   const paths = tags.map((t: Tag) => ({ params: { category: t.slug } }))
   paths.unshift({ params: { category: 'all' } })
-  console.log(paths)
   return {
     paths,
     fallback: false

@@ -3,12 +3,12 @@ import classNames from 'classnames/bind'
 import { Tag } from '../lib/api'
 import { Grad } from './Grad'
 
-const TagItem = ({ name, slug, focused }: any) => {
+const TagItem = ({ name, slug, focused }: { name: string, slug: string, focused: boolean }) => {
   return (
     <li className={classNames('container', { focused })}>
-      <button>
-        <Grad><div className="inner"><Link href={`/work/category/${slug}`}><a>{name}</a></Link></div></Grad>
-      </button>
+      <Link href={`/work/category/${slug}`} passHref>
+        <a><Grad><span className="inner">{name}</span></Grad></a>
+      </Link>
       <style jsx>{`
         .container
           position relative
@@ -26,15 +26,13 @@ const TagItem = ({ name, slug, focused }: any) => {
           height 39px
           text-align center
           vertical-align middle
-        button
-          margin 0
-          padding 0
-          padding-bottom 3px
-          padding-left 2px
-          border none
-          background-color transparent
+        a
+          display flex
+          justify-content center
+          align-items center
           width 100%
-          height calc(100%)
+          height 100%
+          padding-top 1px
         .focused
           border 1px solid red
           z-index 100
@@ -42,6 +40,7 @@ const TagItem = ({ name, slug, focused }: any) => {
           display inline-block
           font-size 14px
           letter-spacing 0.02em
+          overflow hidden
       `}</style>
     </li>
   )

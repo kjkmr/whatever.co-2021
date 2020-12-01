@@ -10,11 +10,9 @@ type WorkIndexProps = {
 }
 
 const WorkIndex = ({ tags, works }: WorkIndexProps) => {
-  const onchangetag = (tag: string) => {
-  }
   return (
     <Layout title="WORK">
-      <TagSelector tags={tags} active="all" onchange={onchangetag} />
+      <TagSelector tags={tags} active="all" />
       <WorkList works={works} filter="all" />
     </Layout >
   )

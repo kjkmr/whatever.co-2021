@@ -1,110 +1,100 @@
 import { useState } from 'react'
 import { GetStaticProps } from 'next'
-// import Link from 'next/link'
 import classNames from 'classnames/bind'
+import { Entry, getAllWorks, getWorkTags, Tag } from '../../lib/api'
 import Layout from '../../components/Layout'
-import { Entry, getAllWorks } from '../../lib/api'
 import WorkTag from '../../components/WorkTag'
 import { Grad, GradImg } from '../../components/Grad'
 
 
-const TAGS = [
-  ['All', 'Brand Consulting', 'Experiential', 'Featured', 'Film'],
-  ['Games', 'Permanent Installation', 'Product / Service', 'Prototype', 'TV Shows']
-]
-const tags = TAGS.flat()
-
-
 const TagItem = ({ name, focused, onclick }: any) => {
   return (
-    <td>
-      <button onClick={() => onclick(name)} className={classNames({ focused })}>
+    <li className={classNames('container', { focused })}>
+      <button onClick={() => onclick(name)}>
         <Grad><div className="inner">{name}</div></Grad>
       </button>
       <style jsx>{`
-      td
-        padding 0
-        margin 0
-        list-style-type none
-        border-left 1px solid black
-        border-right 1px solid black
-        border-collapse 0
-        width 240px
-        height 40px
-        text-align center
-        vertical-align middle
-        font-size 14px
-        letter-spacing 0.02em
-      button
-        margin 0
-        margin-left -1px
-        margin-top -1px
-        padding 0
-        border none
-        background-color transparent
-        width calc(100% + 2px)
-        height calc(100% + 2px)
-      .focused
-        border 1px solid red
-      .inner
-        display inline-block
-    `}</style>
-    </td>
+        .container
+          position relative
+          z-index 0
+          display inline-block
+          padding 0
+          margin 0
+          margin-right -1px
+          margin-bottom 28px
+          list-style-type none
+          border 1px solid transparent
+          border-left 1px solid black
+          border-right 1px solid black
+          width 240px
+          height 39px
+          text-align center
+          vertical-align middle
+        button
+          margin 0
+          padding 0
+          padding-bottom 3px
+          padding-left 2px
+          border none
+          background-color transparent
+          width 100%
+          height calc(100%)
+        .focused
+          border 1px solid red
+          z-index 100
+        .inner
+          display inline-block
+          font-size 14px
+          letter-spacing 0.02em
+      `}</style>
+    </li>
   )
 }
 
-const TagSelector = ({ onchange }: any) => {
-  const [current, setCurrent] = useState(tags[0])
+
+type TagSelectorProp = {
+  tags: Tag[],
+  onchange: (name: string) => void,
+}
+
+const TagSelector = ({ tags, onchange }: TagSelectorProp) => {
+  const [current, setCurrent] = useState(tags[0].name)
   const onclick = (tag: string) => {
     setCurrent(tag)
     onchange(tag)
   }
   return (
-    <div className="container">
-      {
-        TAGS.map((tags, index) => (
-          <table key={index}>
-            <tbody>
-              <tr >
-                {tags.map(tag => <TagItem key={tag} name={tag} focused={tag == current} onclick={onclick} />)}
-              </tr>
-            </tbody>
-          </table>
-        ))
-      }
+    <ol className="container">
+      {tags.map(tag => <TagItem key={tag.slug} name={tag.name} focused={tag.name == current} onclick={onclick} />)}
       <style jsx>{`
-      .container
-        margin-top 40px
-      table
-        border-collapse collapse
-        margin-bottom 28px
-      tr
-        padding 0
-        margin 0
-        height 41px
-    `}</style>
-    </div>
+        .container
+          padding 0
+          margin 0
+          margin-top 40px
+      `}</style>
+    </ol>
   )
 }
 
 const LargeWork = (props: any) => (
   <div className="container">
-    <div className="image"><GradImg><img src={props.image} width="100%" /></GradImg></div>
+    <div className="image"><GradImg><img src={props.image} width="832" height="467" /></GradImg></div>
     <div className="text">
       <Grad><div className="date">{props.date}</div></Grad>
       <Grad><div className="title">{props.title}</div></Grad>
       <Grad><div className="head">{props.head}</div></Grad>
       <Grad><div className="tags">
-        {props.tags.map((tag: any) => <WorkTag key={tag}>{tag}</WorkTag>)}
+        {props.tags.map((tag: Tag) => <WorkTag key={tag.slug}>{tag.name}</WorkTag>)}
       </div></Grad>
     </div>
     <style jsx>{`
       .container
         grid-column span 2
         grid-row span 2
-        {/* opacity 0.5 */}
       .image
         font-size 0
+        img
+          object-fit cover
       .text
         margin-top 25px
         font-size 0
@@ -137,20 +127,21 @@ const LargeWork = (props: any) => (
 
 const SmallWork = (props: any) => (
   <div className="container">
-    <div className="image"><GradImg><img src={props.image} width="100%" /></GradImg></div>
+    <div className="image"><GradImg><img src={props.image} width="377" height="212" /></GradImg></div>
     <div className="text">
       <Grad><div className="date">{props.date}</div></Grad>
       <Grad><div className="title" dangerouslySetInnerHTML={{ __html: props.title }} /></Grad>
       <Grad><div className="tags">
-        {props.tags.map((tag: any) => <WorkTag key={tag}>{tag}</WorkTag>)}
+        {props.tags.map((tag: Tag) => <WorkTag key={tag.slug}>{tag.name}</WorkTag>)}
       </div></Grad>
     </div>
     <style jsx>{`
       .container
         position relative
-        {/* opacity 0.5 */}
       .image
         font-size 0
+        img
+          object-fit cover
       .text
         position relative
         margin-top 20px
@@ -165,8 +156,7 @@ const SmallWork = (props: any) => (
         overflow hidden
         font-size 24px
         font-weight bold
-        margin-top 7px
-        letter-spacing 0.0001em
+        margin-top 10px
       .tags
         display inline-block
         overflow hidden
@@ -175,46 +165,52 @@ const SmallWork = (props: any) => (
   </div>
 )
 
-const WorkIndex = ({ works }: any) => {
-  const [tag, setTag] = useState(tags[0])
+
+type WorkIndexProps = {
+  tags: Tag[],
+  works: Entry[],
+}
+
+const WorkIndex = ({ tags, works }: WorkIndexProps) => {
+  const [tag, setTag] = useState(tags[0].name)
   const onchangetag = (tag: string) => {
-    console.log('ookaa', tag)
     setTag(tag)
   }
   return (
     <Layout title="WORK">
-      <TagSelector onchange={onchangetag} />
+      <TagSelector tags={tags} onchange={onchangetag} />
 
       <div className="works">
-        {works.map((w: Entry) => {
-          if (tag == tags[0]) {
-            if (w.tags?.includes('Featured')) {
+        {works.map(w => {
+          const tags = w.tags?.map(t => t.name)
+          if (tag == "All") {
+            if (tags?.includes('Featured')) {
               return <LargeWork key={w.slug} date={w.date} title={w.title} tags={w.tags} image={w.image} />
             } else {
               return <SmallWork key={w.slug} date={w.date} title={w.title} tags={w.tags} image={w.image} />
             }
-          } else if (w.tags?.includes(tag)) {
+          } else if (tags?.includes(tag)) {
             return <SmallWork key={w.slug} date={w.date} title={w.title} tags={w.tags} image={w.image} />
           }
         })}
       </div>
 
       <style jsx>{`
-      .works
-        display grid
-        grid-template-columns repeat(3, 1fr)
-        column-gap 77px
-        grid-auto-rows 400px
-        margin-top 100px
-        margin-bottom 300px
-      .item
-        opacity 0.5
-        background-color green
-        font-size 100px
-      .large
-        grid-column span 2
-        grid-row span 2
-    `}</style>
+        .works
+          display grid
+          grid-template-columns repeat(3, 1fr)
+          column-gap 77px
+          grid-auto-rows 400px
+          margin-top 72px
+          margin-bottom 100px
+        .item
+          opacity 0.5
+          background-color green
+          font-size 100px
+        .large
+          grid-column span 2
+          grid-row span 2
+      `}</style>
     </Layout >
   )
 }
@@ -222,10 +218,8 @@ const WorkIndex = ({ works }: any) => {
 export default WorkIndex
 
 export const getStaticProps: GetStaticProps = async () => {
+  const tags = await getWorkTags()
+  tags.unshift({ id: 0, name: 'All', slug: 'all', type: 'work' })
   const works = await getAllWorks()
-  works.forEach(w => {
-    w.tags = w.tags?.filter(t => tags.includes(t))
-  })
-  // console.log(works)
-  return { props: { works } }
+  return { props: { tags, works } }
 }

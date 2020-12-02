@@ -1,3 +1,5 @@
+import { DateTime } from 'luxon'
+
 const WPAPI = require('wpapi')
 const wp = new WPAPI({ endpoint: process.env.WORDPRESS_API_URL })
 
@@ -115,7 +117,7 @@ export async function getAllWorks(): Promise<Entry[]> {
   return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
-    date: e.date,
+    date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
     image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
     tags: e.tags.map((t: number) => tags[t]).filter((t: Tag) => t)
   }))
@@ -130,7 +132,7 @@ export async function getWorksByTag(tagSlug: string): Promise<Entry[]> {
   return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
-    date: e.date,
+    date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
     image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
     tags: e.tags.map((t: number) => tags[t]).filter((t: Tag) => t)
   }))
@@ -142,7 +144,7 @@ export async function getFeaturedWork(): Promise<Entry[]> {
   return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
-    date: e.date,
+    date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
     image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
   }))
 }
@@ -153,7 +155,7 @@ export async function getAllNews(): Promise<Entry[]> {
   return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
-    date: e.date,
+    date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
     content: replaceToCDN(e.content.rendered),
     image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
   }))
@@ -165,7 +167,7 @@ export async function getLatestNews(): Promise<Entry[]> {
   return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
-    date: e.date,
+    date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
     image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
   }))
 }

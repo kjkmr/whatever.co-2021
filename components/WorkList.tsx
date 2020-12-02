@@ -1,17 +1,24 @@
+import Link from 'next/link'
 import { Entry, Tag } from '../lib/api'
 import WorkTag from '../components/WorkTag'
 import { Grad, GradImg } from '../components/Grad'
 
 
-const LargeWork = (props: any) => (
+const LargeWork = ({ work }: { work: Entry }) => (
   <div className="container">
-    <div className="image"><GradImg><img src={props.image} width="832" height="467" /></GradImg></div>
+    <Link href={`/work/${work.slug}`}>
+      <a>
+        <div className="image">
+          <GradImg><img src={work.image} width="832" height="467" /></GradImg>
+        </div>
+      </a>
+    </Link>
     <div className="text">
-      <Grad><div className="date">{props.date}</div></Grad>
-      <Grad><div className="title">{props.title}</div></Grad>
-      <Grad><div className="head">{props.head}</div></Grad>
+      <Grad><div className="date">{work.date}</div></Grad>
+      <Grad><div className="title"><Link href={`/work/${work.slug}`}><a dangerouslySetInnerHTML={{ __html: work.title }}></a></Link></div></Grad>
+      <Grad><div className="head">{'???'}</div></Grad>
       <Grad><div className="tags">
-        {props.tags.map((tag: Tag) => <WorkTag key={tag.slug}>{tag.name}</WorkTag>)}
+        {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug}>{tag.name}</WorkTag>)}
       </div></Grad>
     </div>
     <style jsx>{`
@@ -52,14 +59,20 @@ const LargeWork = (props: any) => (
   </div>
 )
 
-const SmallWork = (props: any) => (
+const SmallWork = ({ work }: { work: Entry }) => (
   <div className="container">
-    <div className="image"><GradImg><img src={props.image} width="377" height="212" /></GradImg></div>
+    <Link href={`/work/${work.slug}`}>
+      <a>
+        <div className="image">
+          <GradImg><img src={work.image} width="377" height="212" /></GradImg>
+        </div>
+      </a>
+    </Link>
     <div className="text">
-      <Grad><div className="date">{props.date}</div></Grad>
-      <Grad><div className="title" dangerouslySetInnerHTML={{ __html: props.title }} /></Grad>
+      <Grad><div className="date">{work.date}</div></Grad>
+      <Grad><div className="title"><Link href={`/work/${work.slug}`}><a dangerouslySetInnerHTML={{ __html: work.title }}></a></Link></div></Grad>
       <Grad><div className="tags">
-        {props.tags.map((tag: Tag) => <WorkTag key={tag.slug}>{tag.name}</WorkTag>)}
+        {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug}>{tag.name}</WorkTag>)}
       </div></Grad>
     </div>
     <style jsx>{`
@@ -105,12 +118,12 @@ export const WorkList = ({ filter, works }: WorkListProps) => {
         const tags = w.tags?.map(t => t.slug)
         if (filter == "all") {
           if (tags?.includes('featured')) {
-            return <LargeWork key={w.slug} date={w.date} title={w.title} tags={w.tags} image={w.image} />
+            return <LargeWork key={w.slug} work={w} />
           } else {
-            return <SmallWork key={w.slug} date={w.date} title={w.title} tags={w.tags} image={w.image} />
+            return <SmallWork key={w.slug} work={w} />
           }
         } else {
-          return <SmallWork key={w.slug} date={w.date} title={w.title} tags={w.tags} image={w.image} />
+          return <SmallWork key={w.slug} work={w} />
         }
       })}
 

@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
+import { Tag, Entry, getAllWorks, getPostDetails } from '../../lib/api'
 import Layout from '../../components/Layout'
-import { Entry, getAllWorks, getPostDetails } from '../../lib/api'
+import { Grad, GradImg } from '../../components/Grad'
+import WorkTag from '../../components/WorkTag'
 
 
 const Body = ({ content }: any) => {
@@ -21,86 +23,93 @@ const Body = ({ content }: any) => {
       <div ref={body} className="body" dangerouslySetInnerHTML={{ __html: content || '' }} />
       <style jsx>{`
         .body
-          margin: 0 auto
-          padding: 0
-          font-weight: 300
+          width 900px
+          padding 0
+          margin 0 auto 150px
       `}</style>
       <style jsx global>{`
         .body
           img
-            width: 100%
-            height: auto
+            width 100%
+            height auto
           p, table
-            margin: 20px 0
-            word-wrap: break-word
+            margin 20px 0
+            font-size 18px
+            line-height 2em
+            word-wrap break-word
           .aspect-ratio
-            position: relative;
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%;
+            position relative
+            width 100%
+            height 0
+            padding-bottom 56.25%
           .aspect-ratio iframe
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
+            position absolute
+            width 100%
+            height 100%
+            left 0
+            top 0
       `}</style>
     </div>
   )
 }
 
 
-type Props = {
-  entry?: Entry
-}
+const Header = ({ work }: { work: Entry }) => (
+  <div className="header">
+    <div className="image"><GradImg><img src={work.image} width="1286" height="688" /></GradImg></div>
+    <div className="info">
+      <div className="inner">
+        <Grad><div className="date">{work.date}</div></Grad>
+        <Grad><div className="title">{work.title}</div></Grad>
+        <Grad><div className="tags">
+          {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug}>{tag.name}</WorkTag>)}
+        </div></Grad>
+      </div>
+    </div>
+    <style jsx>{`
+      .header
+        {/* opacity 0.5 */}
+        position relative
+        font-size 0
+      .image
+        position absolute
+        top 0
+        left 0
+        img
+          object-fit cover
+      .info
+        position relative
+        padding-top 459px
+        padding-right 486px
+      .inner
+        background-color white
+        padding-top 52px
+        padding-bottom 60px
+        padding-left 80px
+      .date
+        display inline-block
+        font-size 16px
+      .title
+        display inline-block
+        font-size 84px
+        font-weight bold
+        margin-top 37px
+        margin-left -6px
+      .tags
+        margin-top 41px
+    `}</style>
+  </div>
+)
 
-const WorkDetail = ({ entry }: Props) => {
-  if (entry) {
-    return (
-      <Layout title={entry.title}>
-        <div className="entry with-image" style={{ backgroundImage: `url(${entry.image})` }}>
-          <div className="inner">
-            <h1 dangerouslySetInnerHTML={{ __html: entry.title }} />
-            <span className="date">{entry.date}</span>
-            <Body content={entry.content} />
-          </div>
-        </div>
-        <style jsx>{`
-          .entry
-            padding: 0 30px
-            background-repeat: no-repeat
-            background-position: center top
-            background-size: 960px 430px
-            &.with-image
-              padding-top: 30px
-          .inner
-            position: relative
-            z-index: auto
-            padding: 40px 62px
-            padding-top: 396px
-            background-repeat: no-repeat
-            background-position: -34px -34px
-            background-color: transparent
-            border: 4px solid transparent
-            border-radius: 10px
-            overflow: hidden
-            transform: translateZ(0)
-          h1
-            margin: 32px auto 12px
-            font-weight: 400
-            font-size: 22px
-            text-align: center
-          .date
-            display: block
-            margin-bottom: 82px
-            font: normal 300 15px acumin-pro, sans-serif
-            text-align: center
-        `}</style>
-      </Layout >
-    )
-  } else {
-    return (<Layout title="404" />)
-  }
+
+const WorkDetail = ({ work }: { work: Entry }) => {
+  console.log(work)
+  return (
+    <Layout title={work.title}>
+      <Header work={work} />
+      <Body content={work.content} />
+    </Layout >
+  )
 }
 
 export default WorkDetail
@@ -115,7 +124,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  if (!params || !params.slug || Array.isArray(params.slug)) return { props: {} };
-  const entry = await getPostDetails(params.slug)
-  return { props: { entry } }
+  const work = await getPostDetails(params?.slug as string)
+  return { props: { work } }
 }

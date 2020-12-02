@@ -67,7 +67,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => (
         margin 0
         padding 0
       body
-        {/* background-image: url('/_/Team_detail.png') */}
+        {/* background-image: url('/_/Work_detail.png') */}
         background-repeat no-repeat
         background-position top center
         font-family Apercu

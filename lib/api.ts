@@ -174,13 +174,16 @@ export async function getLatestNews(): Promise<Entry[]> {
 
 
 export async function getPostDetails(slug: string): Promise<Entry> {
-  const data = await wp.posts().slug(slug).embed().param({ _fields: 'slug,title,content,date,_links,_embedded' })
+  const data = await wp.posts().slug(slug).embed().param({ _fields: 'slug,title,content,date,tags,_links,_embedded' })
+  const tags: { [id: number]: Tag } = {};
+  (await getWorkTags()).forEach(t => tags[t.id] = t)
   return {
     slug: data[0].slug,
     title: data[0].title.rendered,
     content: replaceToCDN(data[0].content.rendered),
-    date: data[0].date,
+    date: DateTime.fromISO(data[0].date).toFormat(`LLL dd, yyyy`),
     image: replaceToCDN(data[0]._embedded['wp:featuredmedia'][0].source_url),
+    tags: data[0].tags.map((t: number) => tags[t]).filter((t: Tag) => t)
   }
 }
 

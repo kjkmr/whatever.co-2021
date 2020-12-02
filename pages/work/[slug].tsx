@@ -188,6 +188,5 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const work = await getPostDetails(params?.slug as string)
-  console.log(work.credit[1].members[0].url.match(/[a-z\-]/))
   return { props: { work } }
 }

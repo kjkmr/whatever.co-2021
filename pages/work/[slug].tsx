@@ -125,6 +125,7 @@ const CreditMember = ({ member }: { member: Person }) => (
       .company
         display inline-block
       a
+        display inline-block
         padding-bottom 1px
         border-bottom 1px solid red
     `}</style>

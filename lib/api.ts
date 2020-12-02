@@ -72,7 +72,7 @@ export type Entry = {
   content?: string
   image?: string
   tags?: Tag[]
-  credit?: Credit[]
+  credit?: Credit[] | null
 }
 
 
@@ -100,7 +100,7 @@ const parseCredit = (data: string): Credit[] | undefined => {
   const credits: Credit[] = []
   let group: Credit = { members: [] }
   data.split('\r\n').forEach(line => {
-    const tokens = line.split('\t').map(t => {
+    const tokens = line.split(/[,\t]/).map(t => {
       t = t.trim()
       return t == '-' ? '' : t
     })
@@ -238,7 +238,7 @@ export async function getPostDetails(slug: string): Promise<Entry> {
     date: DateTime.fromISO(data.date).toFormat(`LLL dd, yyyy`),
     image: replaceToCDN(data._embedded['wp:featuredmedia'][0].source_url),
     tags: data.tags.map((t: number) => tags[t]).filter((t: Tag) => t),
-    credit: parseCredit(data.acf.credit),
+    credit: data.acf?.credit ? parseCredit(data.acf.credit) : null,
   }
 }
 

@@ -1,4 +1,5 @@
 import { DateTime } from 'luxon'
+import Baby from 'babyparse'
 
 const WPAPI = require('wpapi')
 const wp = new WPAPI({ endpoint: process.env.WORDPRESS_API_URL })
@@ -99,12 +100,7 @@ const parseLinks = (data: string) => {
 const parseCredit = (data: string): Credit[] | undefined => {
   const credits: Credit[] = []
   let group: Credit = { members: [] }
-  data.split('\r\n').forEach(line => {
-    const tokens = line.split(/[,\t]/).map(t => {
-      t = t.trim()
-      return t == '-' ? '' : t
-    })
-    // console.log(tokens)
+  Baby.parse(data).data.forEach((tokens: string[]) => {
     const n = tokens.filter(t => t.length).length
     if (n == 0) {
       credits.push(group)

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Layout from '../components/Layout'
 import { Grad, GradImg } from '../components/Grad'
 
@@ -97,18 +98,18 @@ const AboutPage = () => (
   <Layout title="About">
     <Head />
     <div className="address">
-      {data.map(data => <Address data={data} />)}
+      {data.map(data => <Address key={data.region} data={data} />)}
     </div>
     <div className="imgs">
       <div className="row" style={{ marginBottom: '80px' }}>
-        <GradImg><img src="/contact/whatever_4F_005@2x.jpg" alt="" width="562" height="374.5" /></GradImg>
-        <GradImg><img src="/contact/whatever_3F_004@2x.jpg" alt="" width="562" height="374.5" /></GradImg>
+        <GradImg><Image src="/contact/whatever_4F_005@2x.jpg" alt="" width={562} height={375} /></GradImg>
+        <GradImg><Image src="/contact/whatever_3F_004@2x.jpg" alt="" width={562} height={375} /></GradImg>
       </div>
-      <div style={{ marginBottom: '80px', display: 'inline-block' }}><GradImg><img src="/contact/whatever_6F_004@2x.jpg" alt="" width="844" height="562.5" /></GradImg></div>
-      <div style={{ marginBottom: '80px' }}><GradImg><img src="/contact/whatever_7F_002@2x.jpg" alt="" width="100%" /></GradImg></div>
+      <div style={{ marginBottom: '80px', display: 'inline-block' }}><GradImg><Image src="/contact/whatever_6F_004@2x.jpg" alt="" width={844} height={562.5} /></GradImg></div>
+      <div style={{ marginBottom: '80px' }}><GradImg><Image src="/contact/whatever_7F_002@2x.jpg" alt="" width={1205} height={804} /></GradImg></div>
       <div className="row">
-        <GradImg><img src="/contact/whatever_4F_008@2x.jpg" alt="" width="562" height="375" /></GradImg>
-        <GradImg><img src="/contact/whatever_4F_009@2x.jpg" alt="" width="562" height="750" /></GradImg>
+        <GradImg><Image src="/contact/whatever_4F_008@2x.jpg" alt="" width={562} height={375} /></GradImg>
+        <GradImg><Image src="/contact/whatever_4F_009@2x.jpg" alt="" width={562} height={750} /></GradImg>
       </div>
     </div>
     <style jsx>{`

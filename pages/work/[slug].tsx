@@ -102,14 +102,23 @@ const Body = ({ content }: any) => {
   )
 }
 
-const CreditMember = ({ member }: { member: Person }) => (
-  <div className="container">
-    <Grad><div className="role">{member.role}</div></Grad>
-    <Grad><div className="name">
-      {member.url?.match(/^[a-z\-]+$/) ? <Link href={`/team/${member.url}`}><a>{member.name}</a></Link> : member.name}
-      {member.company ? <span className="company">&nbsp;{member.url ? <a href={member.url} target="_blank" rel="noopener noreferrer">({member.company})</a> : member.company}</span> : null}
-    </div></Grad>
-    <style jsx>{`
+const CreditMember = ({ member }: { member: Person }) => {
+  let name = <>{member.name}</>
+  if (!member.company) {
+    if (member.url?.match(/^[a-z\-]+$/)) {
+      name = <Link href={`/team/${member.url}`}><a className="credit-name-link">{member.name}</a></Link>
+    } else if (member.url) {
+      name = <a href={member.url} className="credit-name-link">{member.name}</a>
+    }
+  }
+  return (
+    <div className="container">
+      <Grad><div className="role">{member.role}</div></Grad>
+      <Grad><div className="name">
+        {name}
+        {member.company ? <span className="company">&nbsp;{member.url ? <a href={member.url} target="_blank" rel="noopener noreferrer">({member.company})</a> : `(${member.company})`}</span> : null}
+      </div></Grad>
+      <style jsx>{`
       .container
         margin-bottom 40px
         font-size 0
@@ -124,13 +133,14 @@ const CreditMember = ({ member }: { member: Person }) => (
         margin-top 7px
       .company
         display inline-block
-      a
+      a, :global(.credit-name-link)
         display inline-block
         padding-bottom 1px
         border-bottom 1px solid red
     `}</style>
-  </div>
-)
+    </div>
+  )
+}
 
 const CreditGroup = ({ credit }: { credit: Credit }) => (
   <div className="container">

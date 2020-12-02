@@ -50,6 +50,21 @@ const getAll = (request: any) => {
 }
 
 
+
+export type Person = {
+  role: string
+  name: string
+  company: string | null
+  url: string | null
+}
+
+
+export type Credit = {
+  name?: string
+  members: Person[]
+}
+
+
 export type Entry = {
   slug: string
   title: string
@@ -57,18 +72,19 @@ export type Entry = {
   content?: string
   image?: string
   tags?: Tag[]
+  credit?: Credit[]
 }
 
 
 export type Member = {
-  slug: string,
-  name: string,
-  title: string,
-  content?: string,
-  image: string,
-  region: string[],
-  links: any,
-  coCreator: boolean,
+  slug: string
+  name: string
+  title: string
+  content?: string
+  image: string
+  region: string[]
+  links: any
+  coCreator: boolean
 }
 
 
@@ -77,6 +93,44 @@ const parseLinks = (data: string) => {
     const [name, url] = line.split(',')
     return { name: name ? name.trim() : null, url: url ? url.trim() : null }
   })
+}
+
+
+const parseCredit = (data: string): Credit[] | undefined => {
+  const credits: Credit[] = []
+  let group: Credit = { members: [] }
+  data.split('\r\n').forEach(line => {
+    const tokens = line.split('\t').map(t => {
+      t = t.trim()
+      return t == '-' ? '' : t
+    })
+    // console.log(tokens)
+    const n = tokens.filter(t => t.length).length
+    if (n == 0) {
+      credits.push(group)
+      group = { members: [] }
+    } else if (n == 1) {
+      if (group.members.length) {
+        credits.push(group)
+      }
+      group = {
+        name: tokens[0],
+        members: []
+      }
+    } else {
+      const p: Person = {
+        role: tokens[0],
+        name: tokens[1],
+        company: tokens[2] || null,
+        url: tokens[3] || null,
+      }
+      group.members.push(p)
+    }
+  })
+  if (group.members.length) {
+    credits.push(group)
+  }
+  return credits.length ? credits : undefined
 }
 
 
@@ -174,16 +228,17 @@ export async function getLatestNews(): Promise<Entry[]> {
 
 
 export async function getPostDetails(slug: string): Promise<Entry> {
-  const data = await wp.posts().slug(slug).embed().param({ _fields: 'slug,title,content,date,tags,_links,_embedded' })
+  const data = (await wp.posts().slug(slug).embed().param({ _fields: 'slug,title,content,date,tags,acf,_links,_embedded' }))[0]
   const tags: { [id: number]: Tag } = {};
   (await getWorkTags()).forEach(t => tags[t.id] = t)
   return {
-    slug: data[0].slug,
-    title: data[0].title.rendered,
-    content: replaceToCDN(data[0].content.rendered),
-    date: DateTime.fromISO(data[0].date).toFormat(`LLL dd, yyyy`),
-    image: replaceToCDN(data[0]._embedded['wp:featuredmedia'][0].source_url),
-    tags: data[0].tags.map((t: number) => tags[t]).filter((t: Tag) => t)
+    slug: data.slug,
+    title: data.title.rendered,
+    content: replaceToCDN(data.content.rendered),
+    date: DateTime.fromISO(data.date).toFormat(`LLL dd, yyyy`),
+    image: replaceToCDN(data._embedded['wp:featuredmedia'][0].source_url),
+    tags: data.tags.map((t: number) => tags[t]).filter((t: Tag) => t),
+    credit: parseCredit(data.acf.credit),
   }
 }
 

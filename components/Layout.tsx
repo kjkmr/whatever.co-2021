@@ -56,6 +56,15 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => (
         font-style normal
       @font-face
         font-family Apercu
+        src url('/common/fonts/apercu-light.eot')
+        src url('/common/fonts/apercu-light.eot?#iefix') format('embedded-opentype'),
+            url('/common/fonts/apercu-light.woff') format('woff'),
+            url('/common/fonts/apercu-light.woff2') format('woff2'),
+            url('/common/fonts/apercu-light.ttf') format('truetype')
+        font-weight light
+        font-style normal
+      @font-face
+        font-family Apercu
         src url('/common/fonts/apercu-bold.eot')
         src url('/common/fonts/apercu-bold.eot?#iefix') format('embedded-opentype'),
             url('/common/fonts/apercu-bold.woff') format('woff'),
@@ -69,7 +78,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => (
       body
         {/* background-image: url('/_/Work_detail.png') */}
         background-repeat no-repeat
-        background-position top center
+        background-position center top
         font-family Apercu
         font-size 16px
       a

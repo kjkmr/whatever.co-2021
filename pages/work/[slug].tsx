@@ -13,7 +13,7 @@ const Header = ({ work }: { work: Entry }) => (
     <div className="info">
       <div className="inner">
         <Grad><div className="date">{work.date}</div></Grad>
-        <Grad><div className="title">{work.title}</div></Grad>
+        <Grad><div className="title" dangerouslySetInnerHTML={{ __html: work.title }}></div></Grad>
         <Grad><div className="tags">
           {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug}>{tag.name}</WorkTag>)}
         </div></Grad>

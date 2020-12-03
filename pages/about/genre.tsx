@@ -327,8 +327,56 @@ const Section3 = () => (
   </div>
 )
 
+const Footer = () => (
+  <div className="footer">
+    <Link href="/about/profession">
+      <a style={{ borderRight: '1px solid #333' }}>
+        <div className="line"></div>
+        <div style={{ marginLeft: 40 }}>
+          <div className="cb">Crossborder :</div>
+          <div className="title">profession</div>
+        </div>
+      </a>
+    </Link>
+    <Link href="/about/profession">
+      <a style={{ justifyContent: 'flex-end' }}>
+        <div style={{ marginRight: 40 }}>
+          <div className="cb">Crossborder :</div>
+          <div className="title">cultures</div>
+        </div>
+        <div className="line"></div>
+      </a>
+    </Link>
+    <style jsx>{`
+      .footer
+        height 160px
+        color white
+        background-color black
+        display grid
+        grid-template-columns repeat(2, 1fr)
+        grid-gap 0
+        a
+          display flex
+          align-items center
+          color white
+        .line
+          border-top 1px solid #fff
+          width 40px
+        .cb
+          font-size 12px
+          font-weight 400
+          letter-spacing 0.1em
+          margin-top 2px
+        .title
+          font-size 24px
+          font-weight 700
+          margin-top 7px
+    `}</style>
+  </div>
+)
+
 const GenrePage = () => (
-  <Layout title="About">
+  <Layout title="About" footer={<Footer />}>
     <div className="container">
       <Head />
       <Section1 />
@@ -337,7 +385,8 @@ const GenrePage = () => (
     </div>
     <style jsx>{`
       .container
-        min-height 6000px
+        min-height 5000px
+        margin-bottom 110px
     `}</style>
   </Layout>
 )

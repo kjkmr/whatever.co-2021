@@ -1,63 +1,7 @@
 import Link from 'next/link'
 import Layout from '../../components/Layout'
-import { Grad } from '../../components/Grad'
+import { Header, Footer, SectionTitle } from '../../components/About'
 
-const Head = () => (
-  <div className="head">
-    <Grad><div className="t1">Crossing the border of</div></Grad>
-    <Grad><div className="t2">genre</div></Grad>
-    <div className="t3"><Grad><div>At Whatever, we do exactly what our name implies - we create everything. From global brand vision development to advertising, TV shows, products, and stores. We make the most of our team’s ability to “think and create” to transcend the boundaries of media and genres, from planning to development and implementation of never-before-seen experiences.</div></Grad></div>
-    <style jsx>{`
-      .head
-        font-size 0
-        margin 40px
-        margin-top 48px
-      .t1
-        display inline-block
-        margin-bottom 8px
-        font-size 32px
-        font-weight bold
-      .t2
-        display inline-block
-        margin-bottom 71px
-        font-size 108px
-        font-weight bold
-      .t3
-        width 534px
-        font-size 24px
-        font-weight bold
-        line-height 1.75em
-    `}</style>
-  </div>
-)
-
-const SectionTitle = ({ num, title, nx, tx }: { num: string, title: string, nx?: number, tx?: number }) => (
-  <div className="head">
-    <div className="num" style={{ marginLeft: nx }}>{num}</div>
-    <div className="title" style={{ marginLeft: 45 + (tx || 0) }}>{title}</div>
-    <style jsx>{`
-      .head
-        position relative
-        z-index 1
-        display flex
-        padding-top 50px
-        width 752px
-      .num
-        font-size 108px
-        font-weight bold
-        -webkit-text-stroke 1px black
-        -webkit-text-fill-color transparent
-        margin-top 5px
-        {/* margin-left -4px */}
-      .title
-        font-size 36px
-        font-weight bold
-        margin-top 1px
-        {/* margin-left 45px */}
-        line-height 1.5em
-    `}</style>
-  </div>
-)
 
 const Section1 = () => (
   <div className="container">
@@ -327,58 +271,10 @@ const Section3 = () => (
   </div>
 )
 
-const Footer = () => (
-  <div className="footer">
-    <Link href="/about/profession">
-      <a style={{ borderRight: '1px solid #333' }}>
-        <div className="line"></div>
-        <div style={{ marginLeft: 40 }}>
-          <div className="cb">Crossborder :</div>
-          <div className="title">profession</div>
-        </div>
-      </a>
-    </Link>
-    <Link href="/about/profession">
-      <a style={{ justifyContent: 'flex-end' }}>
-        <div style={{ marginRight: 40 }}>
-          <div className="cb">Crossborder :</div>
-          <div className="title">cultures</div>
-        </div>
-        <div className="line"></div>
-      </a>
-    </Link>
-    <style jsx>{`
-      .footer
-        height 160px
-        color white
-        background-color black
-        display grid
-        grid-template-columns repeat(2, 1fr)
-        grid-gap 0
-        a
-          display flex
-          align-items center
-          color white
-        .line
-          border-top 1px solid #fff
-          width 40px
-        .cb
-          font-size 12px
-          font-weight 400
-          letter-spacing 0.1em
-          margin-top 2px
-        .title
-          font-size 24px
-          font-weight 700
-          margin-top 7px
-    `}</style>
-  </div>
-)
-
 const GenrePage = () => (
-  <Layout title="About" footer={<Footer />}>
+  <Layout title="About" footer={<Footer left="profession" right="cultures" />}>
     <div className="container">
-      <Head />
+      <Header title="genre" desc="At Whatever, we do exactly what our name implies - we create everything. From global brand vision development to advertising, TV shows, products, and stores. We make the most of our team’s ability to “think and create” to transcend the boundaries of media and genres, from planning to development and implementation of never-before-seen experiences." />
       <Section1 />
       <Section2 />
       <Section3 />

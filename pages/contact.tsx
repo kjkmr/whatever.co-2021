@@ -39,7 +39,8 @@ const Head = () => (
     <Grad><div>For new business,</div></Grad>
     <Grad><div>career and media inquiries,</div></Grad>
     <Grad><div>contact us.</div></Grad>
-    <Grad><a href="mailto:hello@whatever.co">hello@whatever.co</a></Grad>
+    <div className="mailto"><GradImg><a href="mailto:hello@whatever.co">hello@whatever.co</a></GradImg></div>
+    <GradImg><a href="mailto:hello@whatever.co">hello@whatever.co</a></GradImg>
     <style jsx>{`
       .head
         margin-top 145px
@@ -50,15 +51,21 @@ const Head = () => (
           font-size 48px
           font-weight bold
           margin-bottom 12px
-        a
-          display inline-block
-          font-size 18px
-          font-weight bold
-          letter-spacing 0.04em
-          color white
-          background-color black
-          padding 31px 65px
+        .mailto
+          width 300px
+          height 80px
           margin-top 59px
+          background-color black
+          a
+            display flex
+            justify-content center
+            align-items center
+            width 300px
+            height 80px
+            font-size 18px
+            font-weight bold
+            letter-spacing 0.04em
+            color white
     `}</style>
   </div>
 )
@@ -114,7 +121,7 @@ const AboutPage = () => (
     </div>
     <style jsx>{`
       .address
-        margin-top 282px
+        margin-top 270px
         margin-left 80px
         margin-right 20px
         display grid

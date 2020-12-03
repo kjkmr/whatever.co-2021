@@ -198,7 +198,7 @@ const Section2 = () => (
   </div>
 )
 
-const WorkLink = ({ name, link, desc, mb }: { name: string, link: string, desc: string, mb?: numdber }) => (
+const WorkLink = ({ name, link, desc, mb }: { name: string, link: string, desc: string, mb?: number }) => (
   <div style={{ marginBottom: mb || 'auto' }}>
     <div className="name"><Link href={`/work/${link}`}><a>- {name}</a></Link></div>
     <div className="desc">{desc}</div>

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Layout from '../../components/Layout'
 import { Grad, GradImg } from '../../components/Grad'
 
@@ -164,6 +165,7 @@ const Section2 = () => (
       .container
         margin-left 80px
         margin-right 80px
+        margin-bottom 127px
       .t
         margin-top 51px
         font-size 16px
@@ -196,12 +198,83 @@ const Section2 = () => (
   </div>
 )
 
+const Section3 = () => (
+  <div className="container">
+    <SectionTitle num="03" nx={-4} title="Co-development, in-house projects and creative investment" tx={-17} />
+    <div className="t" style={{ marginTop: 32, marginBottom: 60 }}>Unless you’ve done it before, you can’t say that you really understand the process. If you’re doing branding and product development for a client, we should be able to experience the process ourselves, and understand it with our bodies as well as our minds. With this in mind, we at Whatever are actively working on our own product development and joint business development with our clients. Whatever’s business support includes product development and R&D support for various brands, as well as branding and investment for startups.</div>
+    <h2>In-house product development</h2>
+    <div className="t">We don’t stop at just prototypes and R&D, but rather, we do not stop at just prototypes and R&D. We do not stop at outlandish ideas that may not seem feasible based on logic alone, or ideas that may or may not be viable for business but would make the world a little happier if they were realized.</div>
+    <div className="works">
+      <div>
+        <div className="name"><Link href="/work/rakugakiar"><a>- Rakugaki AR</a></Link></div>
+        <div className="desc">An app that makes your scribbles come alive in AR.</div>
+      </div>
+      <div>
+        <div className="name"><Link href="/work/puppet-guts"><a>- Puppet Guts</a></Link></div>
+        <div className="desc">Internal Nugurumi for placement in hand puppets.</div>
+      </div>
+      <div>
+        <div className="name"><Link href="/work/wear-you-are"><a>- Wear you are</a></Link></div>
+        <div className="desc">A service that allows you to make T-shirts and phone cases with satellite photos of your favorite places.</div>
+      </div>
+      <div>
+        <div className="name"><Link href="/work/discodog"><a>- Discodog</a></Link></div>
+        <div className="desc">An LED vest for your dog that can display text and animations from your phone.</div>
+      </div>
+      <div>
+        <div className="name"><Link href="/work/wfh-jammies"><a>- WFH Jammies</a></Link></div>
+        <div className="desc">Remote worker’s pajamas with only the part of the shirt that shows up in the video conference.</div>
+      </div>
+      <div>
+        <div className="name"><Link href="/work/lyric-speaker"><a>- Lyric Speaker</a></Link></div>
+        <div className="desc">A speaker whose lyrics are animated in sync with the song.</div>
+      </div>
+    </div>
+    <div className="images">
+      <img src="/about/genre/image03a@2x.jpg" alt="" width={546} height={308} style={{ top: 17, right: 0 }} />
+      <img src="/about/genre/image03b@2x.jpg" alt="" width={255} height={255} style={{ top: 395, right: 80 }} />
+      <img src="/about/genre/image03c@2x.jpg" alt="" width={463} height={260} style={{ top: 609, right: 122 }} />
+      <img src="/about/genre/image03d@2x.jpg" alt="" width={326} height={183} style={{ top: 963, right: 80 }} />
+    </div>
+    <style jsx>{`
+      .container
+        position relative
+        margin-left 80px
+      .t
+        width 603px
+        font-size 16px
+        line-height 2em
+      h2
+        font-size 24px
+        font-weight bold
+        margin-bottom 32px
+      .works
+        display grid
+        grid-template-columns 252px 247px
+        grid-gap 39px 58px
+        margin-top 44px
+        margin-left 41px
+        font-size 16px
+        line-height 2em
+        .name
+          font-weight 700
+          a
+            padding-bottom 2px
+            padding-right 4px
+            border-bottom 1px solid red
+      .images img
+        position absolute
+    `}</style>
+  </div>
+)
+
 const GenrePage = () => (
   <Layout title="About">
     <div className="container">
       <Head />
       <Section1 />
       <Section2 />
+      <Section3 />
     </div>
     <style jsx>{`
       .container

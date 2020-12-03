@@ -198,6 +198,81 @@ const Section2 = () => (
   </div>
 )
 
+const WorkLink = ({ name, link, desc, mb }: { name: string, link: string, desc: string, mb?: numdber }) => (
+  <div style={{ marginBottom: mb || 'auto' }}>
+    <div className="name"><Link href={`/work/${link}`}><a>- {name}</a></Link></div>
+    <div className="desc">{desc}</div>
+    <style jsx>{`
+      .name
+        font-weight 700
+        a
+          padding-bottom 2px
+          padding-right 4px
+          border-bottom 1px solid red
+    `}</style>
+  </div>
+)
+
+const Brands = () => (
+  <div className="brands">
+    <div className="text">
+      <h2 style={{ marginTop: 156, marginBottom: 26 }}>Joint development with brands</h2>
+      <div className="t">We collaborate with various brands to jointly develop products and services by leveraging the knowledge and skills we have cultivated in our product development.</div>
+      <div className="items">
+        <WorkLink name="toio" link="toio" desc="Development of UI/UX and content for Sony Interactive Entertainment’s “toio” product." mb={22} />
+        <WorkLink name="New Stand Tokyo" link="new-stand-tokyo" desc="He was in charge of bringing New Stand to Japan, as well as the overall creative direction of the brand, store design and e-commerce site design." mb={22} />
+        <WorkLink name="Minute Mint" link="minute-mint" desc="A new mint tablet was jointly developed with UHA Taste Sugar and Kokuyo based on the concept of “how to measure good time.”" />
+      </div>
+    </div>
+    <img src="/about/genre/image03e@2x.jpg" alt="" width={354} height={199} style={{ top: 14, right: 0 }} />
+    <img src="/about/genre/image03f@2x.jpg" alt="" width={352} height={352} style={{ top: 166, right: 148 }} />
+    <style jsx>{`
+      .brands
+        position relative
+        >img
+          position absolute
+      .text
+        width 603px
+        line-height 2em
+      .items
+        margin-top 43px
+        margin-left 40px
+    `}</style>
+  </div>
+)
+
+const Investment = () => (
+  <div className="investment">
+    <div className="inner">
+      <div className="text">
+        <h2 style={{ marginBottom: 18 }}>Creative Investment</h2>
+        <div className="t">We also support the growth of products and services that we believe in as businesses through investment in external partners and labor investment.</div>
+      </div>
+      <div className="items">
+        <WorkLink name="Cotodama（Lyric Speaker）" link="" desc="Saqoosha is a joint venture with SIX, WOW and THE GUILD, with Saqoosha taking part as CTO and in charge of software development for Lyric Speaker’s motion graphics and direction." mb={22} />
+        <WorkLink name="Yummy Sake" link="" desc="A service that uses AI and blind tasting to identify the sake you like, with Takata joining as CTO to support algorithm development, investment and business strategy." mb={22} />
+        <WorkLink name="Cradle" link="" desc="Kawamura joined Sputniko as CCO and was in charge of the overall creative direction of the brand." />
+      </div>
+    </div>
+    <img src="/about/genre/image03g@2x.jpg" alt="" width={401} height={225} style={{ top: 14, left: -80 }} />
+    <img src="/about/genre/image03h@2x.jpg" alt="" width={338} height={338} style={{ top: 180, left: 121 }} />
+    <style jsx>{`
+      .investment
+        position relative
+        margin-top 168px
+        >img
+          position absolute
+      .inner
+        margin-left 523px
+        width 603px
+        line-height 2em
+      .items
+        margin-top 42px
+        margin-left 40px
+    `}</style>
+  </div>
+)
+
 const Section3 = () => (
   <div className="container">
     <SectionTitle num="03" nx={-4} title="Co-development, in-house projects and creative investment" tx={-17} />
@@ -205,30 +280,12 @@ const Section3 = () => (
     <h2>In-house product development</h2>
     <div className="t">We don’t stop at just prototypes and R&D, but rather, we do not stop at just prototypes and R&D. We do not stop at outlandish ideas that may not seem feasible based on logic alone, or ideas that may or may not be viable for business but would make the world a little happier if they were realized.</div>
     <div className="works">
-      <div>
-        <div className="name"><Link href="/work/rakugakiar"><a>- Rakugaki AR</a></Link></div>
-        <div className="desc">An app that makes your scribbles come alive in AR.</div>
-      </div>
-      <div>
-        <div className="name"><Link href="/work/puppet-guts"><a>- Puppet Guts</a></Link></div>
-        <div className="desc">Internal Nugurumi for placement in hand puppets.</div>
-      </div>
-      <div>
-        <div className="name"><Link href="/work/wear-you-are"><a>- Wear you are</a></Link></div>
-        <div className="desc">A service that allows you to make T-shirts and phone cases with satellite photos of your favorite places.</div>
-      </div>
-      <div>
-        <div className="name"><Link href="/work/discodog"><a>- Discodog</a></Link></div>
-        <div className="desc">An LED vest for your dog that can display text and animations from your phone.</div>
-      </div>
-      <div>
-        <div className="name"><Link href="/work/wfh-jammies"><a>- WFH Jammies</a></Link></div>
-        <div className="desc">Remote worker’s pajamas with only the part of the shirt that shows up in the video conference.</div>
-      </div>
-      <div>
-        <div className="name"><Link href="/work/lyric-speaker"><a>- Lyric Speaker</a></Link></div>
-        <div className="desc">A speaker whose lyrics are animated in sync with the song.</div>
-      </div>
+      <WorkLink name="Rakugaki AR" link="rakugakiar" desc="An app that makes your scribbles come alive in AR." />
+      <WorkLink name="Puppet Guts" link="puppet-guts" desc="Internal Nugurumi for placement in hand puppets." />
+      <WorkLink name="Wear you are" link="wear-you-are" desc="A service that allows you to make T-shirts and phone cases with satellite photos of your favorite places." />
+      <WorkLink name="Discodog" link="discodog" desc="An LED vest for your dog that can display text and animations from your phone." />
+      <WorkLink name="WFH Jammies" link="wfh-jammies" desc="Remote worker’s pajamas with only the part of the shirt that shows up in the video conference." />
+      <WorkLink name="Lyric Speaker" link="lyric-speaker" desc="A speaker whose lyrics are animated in sync with the song." />
     </div>
     <div className="images">
       <img src="/about/genre/image03a@2x.jpg" alt="" width={546} height={308} style={{ top: 17, right: 0 }} />
@@ -236,6 +293,8 @@ const Section3 = () => (
       <img src="/about/genre/image03c@2x.jpg" alt="" width={463} height={260} style={{ top: 609, right: 122 }} />
       <img src="/about/genre/image03d@2x.jpg" alt="" width={326} height={183} style={{ top: 963, right: 80 }} />
     </div>
+    <Brands />
+    <Investment />
     <style jsx>{`
       .container
         position relative

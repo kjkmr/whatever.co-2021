@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Layout from '../../components/Layout'
-import { Grad, GradImg } from '../../components/Grad'
+import { Grad } from '../../components/Grad'
 
 const Head = () => (
   <div className="head">

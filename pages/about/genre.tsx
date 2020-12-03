@@ -30,12 +30,37 @@ const Head = () => (
   </div>
 )
 
+const SectionTitle = ({ num, title, nx, tx }: { num: string, title: string, nx?: number, tx?: number }) => (
+  <div className="head">
+    <div className="num" style={{ marginLeft: nx }}>{num}</div>
+    <div className="title" style={{ marginLeft: 45 + (tx || 0) }}>{title}</div>
+    <style jsx>{`
+      .head
+        position relative
+        z-index 1
+        display flex
+        padding-top 50px
+        width 752px
+      .num
+        font-size 108px
+        font-weight bold
+        -webkit-text-stroke 1px black
+        -webkit-text-fill-color transparent
+        margin-top 5px
+        {/* margin-left -4px */}
+      .title
+        font-size 36px
+        font-weight bold
+        margin-top 1px
+        {/* margin-left 45px */}
+        line-height 1.5em
+    `}</style>
+  </div>
+)
+
 const Section1 = () => (
   <div className="container">
-    <div className="head">
-      <div className="num">01</div>
-      <div className="title">Knowledge of creative development<br />in a variety of areas</div>
-    </div>
+    <SectionTitle num="01" nx={-4} title="Knowledge of creative development in a variety of areas" />
     <div className="t">
       <p>We have been engaged in a wide variety of creative projects that have produced results, regardless of the domain. We have been involved in a wide range of creative projects, from strategic creative work such as brand visioning and brand issue identification, to communication development such as TV commercials and digital campaigns, to content production such as TV programs and product design, and from shop design to permanent airport installations. Even projects.</p>
       <p>These seemingly unrelated fields of creative development are actually the same in terms of the ideas they require and the technical and production skills needed to realize them. In fact, through my experience in various fields, I have developed the development and production skills to deal with any issue. In addition, we are able to look at the issues that need to be solved from a holistic perspective that is not bound by genre, and we are able to find the best ideas and implement the best solutions.</p>
@@ -60,24 +85,7 @@ const Section1 = () => (
         position relative
         margin-top 193px
         margin-left 80px
-      .head
-        position relative
-        z-index 1
-        display flex
-        padding-top 50px
-      .num
-        font-size 108px
-        font-weight bold
-        -webkit-text-stroke 1px black
-        -webkit-text-fill-color transparent
-        margin-top 5px
-        margin-left -4px
-      .title
-        font-size 36px
-        font-weight bold
-        margin-top 1px
-        margin-left 45px
-        line-height 1.5em
+        margin-bottom 228px
       .t
         width 603px
         font-size 16px
@@ -109,11 +117,91 @@ const Section1 = () => (
   </div>
 )
 
+const Section2 = () => (
+  <div className="container">
+    <SectionTitle num="02" title="Crossing the boundary between “thinking” and “making" tx={-13} />
+    <div className="t">At Whatever, we believe that “thinking and creating” together is the way to bring new ideas to life. To do this, you won’t get there by just thinking like a creative agency or consulting firm, and you won’t get there by just creating like a production company. Thinking about an idea that you have never seen before and immediately testing whether it can be realized. At the end of such a process that goes beyond the realm of “thinking” and “making”, an idea that has never been seen before can be realized. In order to do so, Whatever has the talent to think and create.</div>
+    <div className="g">
+      <div>
+        <div className="title">Project<br />Management</div>
+        <ul>
+          <li>Producer</li>
+          <li>Project Manager</li>
+        </ul>
+      </div>
+      <div>
+        <div className="title">Creative<br />Development</div>
+        <ul>
+          <li>Creative Director</li>
+          <li>Sound Artist</li>
+          <li>Art Director</li>
+          <li>Architects</li>
+          <li>Designer</li>
+          <li>Copywriter</li>
+          <li>Illustrator</li>
+          <li>Choreographer</li>
+        </ul>
+      </div>
+      <div>
+        <div className="title">Project<br />Management</div>
+        <ul>
+          <li>Tech Director</li>
+          <li>Programmer</li>
+          <li>Engineer</li>
+          <li>Drone racer</li>
+        </ul>
+      </div>
+      <div>
+        <div className="title">Business<br />Development</div>
+        <ul>
+          <li>Business Producer</li>
+          <li>Business Consultant</li>
+          <li>Investment Director</li>
+        </ul>
+      </div>
+    </div>
+    <style jsx>{`
+      .container
+        margin-left 80px
+        margin-right 80px
+      .t
+        margin-top 51px
+        font-size 16px
+        line-height 2em
+      .g
+        display grid
+        grid-template-columns 218px 277px 277px auto
+        margin-top 65px
+        >div
+          border-right 2px solid #E0E0E0
+          padding-left 60px
+          padding-right 30px
+          &:first-child
+            padding 0
+          &:last-child
+            border none
+        .title
+          font-size 18px
+          font-weight bold
+          line-height 1.55em
+          margin-bottom 21px
+        ul
+          margin 0
+          padding 0
+          list-style inside '- '
+          li
+            font-size 16px
+            line-height 2em
+    `}</style>
+  </div>
+)
+
 const GenrePage = () => (
   <Layout title="About">
     <div className="container">
       <Head />
       <Section1 />
+      <Section2 />
     </div>
     <style jsx>{`
       .container

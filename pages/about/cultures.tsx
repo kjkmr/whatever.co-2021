@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Layout from '../../components/Layout'
-import { Grad } from '../../components/Grad'
 import { Header, Footer, SectionTitle } from '../../components/About'
 
 const Section1 = () => (

@@ -5,7 +5,7 @@ export const Header = ({ title, desc }: { title: string, desc: string }) => (
   <div className="header">
     <Grad><div className="t1">Crossing the border of</div></Grad>
     <Grad><div className="t2">{title}</div></Grad>
-    <div className="t3"><Grad><div dangerouslySetInnerHTML={{ __html: desc }}></div></Grad></div>
+    <div className="t3"><Grad><div dangerouslySetInnerHTML={{ __html: desc }} /></Grad></div>
     <style jsx>{`
       .header
         font-size 0
@@ -81,7 +81,7 @@ export const Footer = ({ left, right }: { left: string, right: string }) => (
 export const SectionTitle = ({ num, title, nx, tx, ty }: { num: string, title: string, nx?: number, tx?: number, ty?: number }) => (
   <div className="head">
     <div className="num" style={{ marginLeft: nx }}>{num}</div>
-    <div className="title" style={{ marginTop: (ty || 0), marginLeft: 45 + (tx || 0) }}>{title}</div>
+    <div className="title" style={{ marginTop: (ty || 0), marginLeft: 45 + (tx || 0) }} dangerouslySetInnerHTML={{ __html: title }} />
     <style jsx>{`
       .head
         position relative
@@ -95,12 +95,10 @@ export const SectionTitle = ({ num, title, nx, tx, ty }: { num: string, title: s
         -webkit-text-stroke 1px black
         -webkit-text-fill-color transparent
         margin-top 5px
-        {/* margin-left -4px */}
       .title
         font-size 36px
         font-weight bold
         margin-top 1px
-        {/* margin-left 45px */}
         line-height 1.5em
     `}</style>
   </div>

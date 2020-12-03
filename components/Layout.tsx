@@ -52,7 +52,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => (
             url('/common/fonts/apercu-medium.woff') format('woff'),
             url('/common/fonts/apercu-medium.woff2') format('woff2'),
             url('/common/fonts/apercu-medium.ttf') format('truetype')
-        font-weight normal
+        font-weight 400
         font-style normal
       @font-face
         font-family Apercu
@@ -61,7 +61,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => (
             url('/common/fonts/apercu-light.woff') format('woff'),
             url('/common/fonts/apercu-light.woff2') format('woff2'),
             url('/common/fonts/apercu-light.ttf') format('truetype')
-        font-weight light
+        font-weight 200
         font-style normal
       @font-face
         font-family Apercu
@@ -70,17 +70,18 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => (
             url('/common/fonts/apercu-bold.woff') format('woff'),
             url('/common/fonts/apercu-bold.woff2') format('woff2'),
             url('/common/fonts/apercu-bold.ttf') format('truetype')
-        font-weight bold
+        font-weight 700
         font-style normal
       html, body
         margin 0
         padding 0
       body
-        {/* background-image: url('/_/News_index.png') */}
+        background-image: url('/_/About_detail_01.png')
         background-repeat no-repeat
         background-position center top
         font-family Apercu
         font-size 16px
+        font-weight 200
       a
         text-decoration none
         color black

@@ -1,79 +1,54 @@
 import { GetStaticProps } from 'next'
-import Link from 'next/link'
-import Layout from '../../components/Layout'
 import { Entry, getAllNews } from '../../lib/api'
+import Layout from '../../components/Layout'
+import { Grad, GradImg } from '../../components/Grad'
 
-type Props = {
-  entries: Entry[]
-}
-
-const NewsIndex = ({ entries }: Props) => (
-  <Layout title="WORK">
-    <div>
-      {entries.map(e => (
-        <div className="wrapper" key={e.slug}>
-          <div className="entry with-image" style={{ backgroundImage: `url(${e.image})` }}>
-            <div className="inner">
-              <h1 className="title"><Link href={`/news/${e.slug}/`}><a dangerouslySetInnerHTML={{ __html: e.title }} /></Link></h1>
-              <span className="date"><Link href={`/news/${e.slug}/`}><a>{e.date}</a></Link></span>
-              <div className="body">
-                <div dangerouslySetInnerHTML={{ __html: e.content || '' }} />
-              </div>
-            </div>
-          </div></div>
-      ))}
+const NewsItem = ({ entry }: { entry: Entry }) => (
+  <div className="container">
+    <div className="image"><GradImg><img src={entry.image} alt="" /></GradImg></div>
+    <div className="info">
+      <Grad><div className="date">{entry.date}</div></Grad>
+      <Grad><div className="title">{entry.title}</div></Grad>
+      <Grad><div className="desc" dangerouslySetInnerHTML={{ __html: entry.content || '' }} /></Grad>
     </div>
     <style jsx>{`
-      .wrapper + .wrapper
-        border-top: 1px solid #f2f2f2
-        margin-top: 30px
-        padding-top: 100px
-      .entry
-        padding: 0 30px
-        background-repeat: no-repeat
-        background-position: center top
-        &.with-image
-          padding-top: 30px
+      .container
+        display grid
+        grid-template-columns 611px 531px
+        grid-gap 65px
+        font-size 0
+        margin-bottom 100px
+      .image
+        img
+          width 611px
+          height 345px
+          object-fit cover
+      .date
+        display inline-block
+        font-size 12px
+        font-weight light
+      .title
+        display inline-block
+        font-size 36px
+        font-weight bold
+        margin-top 8px
+      .desc
+        display inline-block
+        font-size 16px
+        font-weight light
+        margin-top 30px
+    `}</style>
+  </div>
+)
 
-        .featured-image
-          height: (430px - 34)
-
-        .inner
-          position: relative
-          z-index: auto
-          padding: 40px 62px
-          padding-top: 396px
-          background-repeat: no-repeat
-          background-position: -34px -34px
-          background-color: transparent
-          border: 4px solid transparent
-          border-radius: 10px
-          overflow: hidden
-          transform: translateZ(0)
-
-          h1.title
-            margin: 32px auto 12px
-            font-weight: 400
-            font-size: 22px
-            text-align: center
-            a
-              border: none
-
-          .date
-            display: block
-            margin-bottom: 82px
-            font: normal 300 15px acumin-pro, sans-serif
-            text-align: center
-            a
-              border: none
-
-          .body
-            margin: 0 auto
-            padding: 0
-            font-weight: 300
-
-            img, iframe
-              width: 100%
+const NewsIndex = ({ entries }: { entries: Entry[] }) => (
+  <Layout title="WORK">
+    <div className="container">
+      {entries.map(entry => <NewsItem key={entry.slug} entry={entry} />)}
+    </div>
+    <style jsx>{`
+      .container
+        margin-top 40px
     `}</style>
   </Layout >
 )

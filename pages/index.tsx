@@ -1,19 +1,14 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
-// import { Entry, getFeaturedWork, getLatestNews } from '../lib/api'
+import { Entry, Tag, getLatestNews, getWorksByTag } from '../lib/api'
 import Layout from '../components/Layout'
 import WorkTag from '../components/WorkTag'
 import { Grad, GradImg } from '../components/Grad'
 
-// type Props = {
-//   work: Entry[]
-//   news: Entry[]
-// }
-
 const Showreel = () => (
   <div className="reel">
-    <video src="/assets/reel-preview.mp4" autoPlay={true} ></video>
+    <video src="/index/reel-preview.mp4" autoPlay={true} ></video>
     <button >Watch Reel</button>
     <style jsx>{`
       .reel
@@ -41,44 +36,53 @@ const Showreel = () => (
   </div>
 )
 
-const AboutLink = (props: any) => (
+const AboutLink = ({ title, desc, image, ix }: { title: string, desc: string, image: string, ix?: number }) => (
   <div className="container">
-    <div className="image"><GradImg><img src={props.image} alt="" width="330" height="330" /></GradImg></div>
-    <div className="titles">
-      <Grad><div className="pre">Crossing the border of</div></Grad>
-      <Grad><div className="what">{props.about}</div></Grad>
-    </div>
-    <Grad><div className="desc">{props.desc}</div></Grad>
+    <Link href={`/about/${title}`}>
+      <a>
+        <div className="image" style={{ marginLeft: ix || 0 }}> <GradImg><img src={image} alt="" width="340" height="340" /></GradImg></div>
+        <div className="titles">
+          <Grad><div className="pre">Crossing the border of</div></Grad>
+          <Grad><div className="what">{title}</div></Grad>
+        </div>
+        <Grad><div className="desc">{desc}</div></Grad>
+        <div className="more">Show more</div>
+      </a>
+    </Link>
     <style jsx>{`
       .container
         position relative
-        width 330px
-        height 500px
-        margin-left 72px
+        width 416px
+        font-size 0
       .image
-        position absolute
-        top 0
-        left 0
+        img
+          object-fit contain
       .titles
         position relative
-        background-color #F4F4F4
-        margin-top 258px
+        margin-top 9px
         margin-right 64px
         padding-top 39px
         padding-left 1px
         height 98px
-        font-size 0
         .pre
           display inline-block
-          font-size 19px
-          letter-spacing 0.04em
+          font-size 20px
+          font-weight 700
         .what
           display inline-block
           margin-top 8px
-          font-size 35px
+          font-size 70px
           font-weight bold
       .desc
-        line-height 1.7em
+        font-size 18px
+        font-weight 200
+        line-height 1.8em
+        margin-top 24px
+        width 335px
+        min-height 186px
+      .more
+        font-size 20px
+        font-weight 700
     `}</style>
   </div>
 )
@@ -91,12 +95,11 @@ const Crossborder = () => (
     </div>
     <div className="desc">
       <Grad><h2>Whatever is a cross-border creative studio.</h2></Grad>
-      <Grad><h2>We transcend boundaries.</h2></Grad>
     </div>
     <div className="cats">
-      <AboutLink about="genres" desc="At Whatever, as the name implies, we create anything." image="/index/genres.jpg" />
-      <AboutLink about="cultures" desc="Whatever can help you develop branding and content across borders and cultures." image="/index/cultures.jpg" />
-      <AboutLink about="profession" desc="The people who come to Whatever are our greatest value." image="/index/profession.jpg" />
+      <AboutLink title="genres" desc="At Whatever, as our name implies, we create anything.We plan, develop and implement experiences that no one has ever seen before." image="/index/genres@2x.png" ix={-10} />
+      <AboutLink title="cultures" desc="At Whatever, we have a proven track record of working with brands around the world and can support branding and content development across borders and cultures." image="/index/cultures@2x.png" />
+      <AboutLink title="profession" desc="The “diversity of people” at Whatever is the greatest value we have." image="/index/profession@2x.png" />
     </div>
     <div className="link">
       <Grad>
@@ -108,29 +111,23 @@ const Crossborder = () => (
     <style jsx>{`
       .container
         position relative
-        margin-top 299px
-        margin-left 80px
-        margin-bottom 0
-        padding-top 240px
-        padding-bottom 68px
-        background-color #F4F4F4
+        margin-top 136px
         img
           display block
       .title
-        position absolute
-        top -160px
-        left -88px
         font-size 0
+        margin-left -7px
         h1
           display inline-block
-          font-size 164px
-          line-height auto
+          font-size 175px
+          font-weight bold
+          line-height 176px
           margin 0
           margin-bottom 16px
       .desc
         position relative
-        margin-top 1px
-        margin-left 74px
+        margin-top 66px
+        margin-left 80px
         font-size 0
         h2
           display inline-block
@@ -145,95 +142,98 @@ const Crossborder = () => (
         margin-left 74px
       .cats
         display flex
-        margin-top 56px
+        justify-content space-between
+        margin-top 63px
       .link
         text-align right
-        font-size 18.5px
-        margin-top 21px
-        padding-right 80px
+        font-size 24px
+        font-weight 700
+        margin-top 75px
         a
           display inline-block
-          padding-right 59px
+          padding-right 115px
           padding-left 3px
-          padding-bottom 6px
+          padding-bottom 10px
           border-bottom 1px solid red
           font-weight bold
     `}</style>
   </div>
 )
 
-const FeaturedWorkItem = (props: any) => (
+const FeaturedWorkItem = ({ work }: { work: Entry }) => (
   <div className="container">
-    <div className="image"><GradImg><img src={props.image} width="677" height="381" /></GradImg></div>
+    <div className="image"><GradImg><img src={work.image} width="677" height="381" /></GradImg></div>
     <div className="text">
-      <Grad><div className="date">{props.date}</div></Grad>
-      <Grad><div className="title">{props.title}</div></Grad>
+      <Grad><div className="date">{work.date}</div></Grad>
+      <Grad><div className="title">{work.title}</div></Grad>
+      <Grad><div className="head">Lorem ipsum dolor sit amet</div></Grad>
+      <Grad><div className="desc">Morbi imperdiet placerat magna, et faucibus quam molestie eget. Nam faucibus nunc et dui aliquam scelerisque. In laoreet nisl sed tellus tincidunt, et scelerisque dolor fermentum. Duis enim nisi, vehicula in lorem eget, consectetur sagittis neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at suscipit urna.</div></Grad>
       <Grad><div className="tags">
-        {props.tags.map((tag: any) => <WorkTag key={tag}>{tag}</WorkTag>)}
+        {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug}>{tag.name}</WorkTag>)}
       </div></Grad>
-      <Grad><div className="head">{props.head}</div></Grad>
-      <Grad><div className="desc">{props.desc}</div></Grad>
     </div>
     <style jsx>{`
       .container
         position relative
-        {/* opacity 0.5 */}
-        height 400px
         background-repeat no-repeat
         background-position-x 5px
-        padding-top 50px
+        padding-top 23px
         padding-left 584px
-        margin-bottom 30px
+        margin-bottom 100px
       .image
         position absolute
         top 0
         left 5px
+        img
+          object-fit cover
       .text
         position relative
         background-color white
-        padding-top 63px
+        min-height 298px
+        padding-top 60px
         padding-left 62px
         padding-right 80px
         font-size 0
       .date
         display inline-block
         overflow hidden
-        font-size 12.2px
+        font-size 12px
+        font-weight 200
       .title
         display inline-block
         overflow hidden
         font-size 48px
         font-weight bold
-        margin-top 33px
+        margin-top 25px
         letter-spacing 0.0001em
-      .tags
-        display inline-block
-        overflow hidden
-        margin-top 20px
       .head
         display inline-block
         overflow hidden
-        margin-top 39px
+        margin-top 19px
         font-size 24px
         font-weight bold
-        letter-spacing 0.001em
       .desc
         display inline-block
         overflow hidden
-        margin-top 12px
+        margin-top 13px
         letter-spacing -0.01em
-        line-height 1.95em
+        line-height 2em
         font-size 16px
+        height 96px
+        overflow hidden
+        text-overflow ellipsis
+      .tags
+        display inline-block
+        overflow hidden
+        margin-top 31px
     `}</style>
   </div>
 )
 
-const FeaturedWorks = () => (
+const FeaturedWorks = ({ works }: { works: Entry[] }) => (
   <div className="container">
     <Grad><h1>Featured Works</h1></Grad>
-    <FeaturedWorkItem date="July 28, 2020" title="New Stand Tokyo" tags={["Brand Consulting", "Permanent Installation", "Featured"]} head="General store of the future." desc="We opened New Stand Tokyo, a “general store of the future,” on the ground floor of the co-working building WHEREVER which we co-operate with…" image="/_/fw1.jpg" />
-    <FeaturedWorkItem date="July 28, 2020" title="WFH Jammies" tags={["Product / Service", "Featured"]} head="Loungewear for remote workers." desc="Half business, half relaxation. We planned and produced new kind of jammies for remote workers “WFH (Work From Home) Jammies”." image="/_/fw2.jpg" />
-    <FeaturedWorkItem date="July 28, 2020" title="Superfly “Flare”" tags={["Film", "Featured"]} head="Fingertat’s hand-washing dance." desc="We planned and produced the music video for Superfly’s “Flare”, are hired from the opening of NHK’s morning TV drama “Scarlet”." image="/_/fw3.jpg" />
+    {works.map(work => <FeaturedWorkItem key={work.slug} work={work} />)}
     <div className="link">
       <Grad>
         <Link href="/work">
@@ -243,34 +243,34 @@ const FeaturedWorks = () => (
     </div>
     <style jsx>{`
       .container
-        margin-top 92px
+        margin-top 89px
         margin-left -5px
       h1
         display inline-block
         font-size 70px
         margin 0
-        margin-bottom 51px
+        margin-bottom 52px
       .link
         text-align right
-        margin-top -8px
-        padding-right 78px
+        font-size 24px
+        font-weight 700
+        margin-top 75px
         a
           display inline-block
-          padding-right 62px
-          padding-bottom 6px
+          padding-right 195px
+          padding-left 3px
+          padding-bottom 10px
           border-bottom 1px solid red
-          font-size 18.5px
           font-weight bold
-          letter-spacing -0.01em
     `}</style>
   </div>
 )
 
-const NewsItem = (props: any) => (
+const NewsItem = ({ data }: { data: Entry }) => (
   <div className="container">
-    <GradImg><img src={props.image} width="256" height="144" /></GradImg>
-    <Grad><div className="date">{props.date}</div></Grad>
-    <Grad><div className="title">{props.title}</div></Grad>
+    <GradImg><img src={data.image} width="256" height="144" /></GradImg>
+    <Grad><div className="date">{data.date}</div></Grad>
+    <Grad><div className="title">{data.title}</div></Grad>
     <style jsx>{`
       .container
         width 256px
@@ -285,27 +285,24 @@ const NewsItem = (props: any) => (
         display inline-block
         overflow hidden
         font-size 12px
+        font-weight 200
         margin-top 20px
       .title
         display inline-block
         overflow hidden
-        font-size 16px
+        font-size 18px
         font-weight bold
         margin-top 9px
-        letter-spacing 0.001em
-        line-height 1.7em
+        line-height 1.6em
     `}</style>
   </div>
 )
 
-const FeaturedNews = () => (
+const FeaturedNews = ({ news }: { news: Entry[] }) => (
   <div className="container">
     <Grad><h1>Featured News</h1></Grad>
     <div className="items">
-      <NewsItem date="July 28, 2020" title="Rakugaki AR featured in Suimoku channel" image="/_/news1.jpg" />
-      <NewsItem date="July 28, 2020" title="Masashi Kawamura will appeared in Zee melt 2020" image="/_/news2.jpg" />
-      <NewsItem date="July 28, 2020" title="WFH Jammies featured in NIKKEI DESIGN" image="/_/news3.jpg" />
-      <NewsItem date="July 28, 2020" title="Masashi Kawamura’s interview featured in Kokuyo Design Award" image="/_/news4.jpg" />
+      {news.map(item => <NewsItem key={item.slug} data={item} />)}
     </div>
     <div className="link">
       <Grad>
@@ -333,30 +330,33 @@ const FeaturedNews = () => (
         margin-top 50px
       .link
         text-align right
-        font-size 18.5px
-        font-weight bold
-        margin-top 73px
+        font-size 24px
+        font-weight 700
+        margin-top 60px
+        margin-right -80px
         a
           display inline-block
-          padding-right 62px
-          padding-bottom 6px
+          padding-right 204px
+          padding-left 3px
+          padding-bottom 10px
           border-bottom 1px solid red
+          font-weight bold
     `}</style>
   </div>
 )
 
-const IndexPage = () => (
-  <Layout showHeader={false} footer={<FeaturedNews />}>
+const IndexPage = ({ works, news }: { works: Entry[], news: Entry[] }) => (
+  <Layout showHeader={false} footer={<FeaturedNews news={news} />}>
     <Showreel />
     <Crossborder />
-    <FeaturedWorks />
+    <FeaturedWorks works={works} />
   </Layout>
 )
 
 export default IndexPage
 
 export const getStaticProps: GetStaticProps = async () => {
-  // const work = await getFeaturedWork()
-  // const news = await getLatestNews()
-  return { props: { work: [], news: [] } }
+  const works = await getWorksByTag('featured', 3)
+  const news = await getLatestNews()
+  return { props: { works, news } }
 }

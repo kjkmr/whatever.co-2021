@@ -45,15 +45,43 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => (
     `}</style>
 
     <style jsx global>{`
+      @font-face
+        font-family Apercu
+        src url('/common/fonts/apercu-medium.eot')
+        src url('/common/fonts/apercu-medium.eot?#iefix') format('embedded-opentype'),
+            url('/common/fonts/apercu-medium.woff') format('woff'),
+            url('/common/fonts/apercu-medium.woff2') format('woff2'),
+            url('/common/fonts/apercu-medium.ttf') format('truetype')
+        font-weight 400
+        font-style normal
+      @font-face
+        font-family Apercu
+        src url('/common/fonts/apercu-light.eot')
+        src url('/common/fonts/apercu-light.eot?#iefix') format('embedded-opentype'),
+            url('/common/fonts/apercu-light.woff') format('woff'),
+            url('/common/fonts/apercu-light.woff2') format('woff2'),
+            url('/common/fonts/apercu-light.ttf') format('truetype')
+        font-weight 200
+        font-style normal
+      @font-face
+        font-family Apercu
+        src url('/common/fonts/apercu-bold.eot')
+        src url('/common/fonts/apercu-bold.eot?#iefix') format('embedded-opentype'),
+            url('/common/fonts/apercu-bold.woff') format('woff'),
+            url('/common/fonts/apercu-bold.woff2') format('woff2'),
+            url('/common/fonts/apercu-bold.ttf') format('truetype')
+        font-weight 700
+        font-style normal
       html, body
         margin 0
         padding 0
       body
-        {/* background-image: url('/_/Work_index.png') */}
+        {/* background-image: url('/_/Top.png') */}
         background-repeat no-repeat
-        background-position top center
+        background-position center top
         font-family Apercu
         font-size 16px
+        font-weight 200
       a
         text-decoration none
         color black

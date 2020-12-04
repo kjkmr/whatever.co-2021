@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const Header = () => (
   <div className="header">
-    <Link href="/"><a><img src="logo_rgb_black.png" /></a></Link>
+    <Link href="/"><a><img src="/logo_rgb_black.png" /></a></Link>
 
     <style jsx>{`
       .header

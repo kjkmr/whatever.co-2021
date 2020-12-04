@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Layout from '../components/Layout'
 import { Grad, GradImg } from '../components/Grad'
 
@@ -8,7 +9,7 @@ const Genres = () => (
       <Grad><h2>Crossing the border of</h2></Grad>
       <Grad><h1>genres</h1></Grad>
       <Grad><p>At Whatever, we do exactly what the name implies: we create anything. From global brand vision development to advertising, TV shows, products, and stores. We make the most of our team’s ability to “think and create” to transcend the boundaries of media and genres, from planning to development and implementation of never-before-seen experiences.</p></Grad>
-      <div className="learn"><Grad><button>Learn more</button></Grad></div>
+      <div className="learn"><Grad><Link href="/about/genres"><a>Learn more</a></Link></Grad></div>
     </div>
     <style jsx>{`
       .genres
@@ -47,7 +48,7 @@ const Genres = () => (
       .learn
         display flex
         justify-content flex-end
-        button
+        a
           display block
           font-weight bold
           font-size 18px
@@ -70,12 +71,11 @@ const Cultures = () => (
       <Grad><h2>Crossing the border of</h2></Grad>
       <Grad><h1>cultures</h1></Grad>
       <Grad><p>At Whatever, we have a proven track record of working with brands around the world, which enables us to support branding and content development across borders and cultures.<br />With four offices in Tokyo, New York, Taiwan and Berlin, and a world-class staff, Whatever can plan and produce world-class brand communications and products.</p></Grad>
-      <div className="learn"><Grad><button>Learn more</button></Grad></div>
+      <div className="learn"><Grad><Link href="/about/cultures"><a>Learn more</a></Link></Grad></div>
     </div>
     <style jsx>{`
       .cultures
         position relative
-        {/* opacity 0.5 */}
         padding-top 289px
         padding-right 599px
         margin-bottom 89px
@@ -107,7 +107,7 @@ const Cultures = () => (
       .learn
         display flex
         justify-content flex-end
-        button
+        a
           display block
           font-weight bold
           font-size 18px
@@ -129,7 +129,7 @@ const Profession = () => (
       <Grad><h2>Crossing the border of</h2></Grad>
       <Grad><h1>profession</h1></Grad>
       <Grad><p>Whatever is also actively involved in in-house product and business development.<br />We also provide product development and R&amp;D support for a variety of brands, as well as branding and investment support for startups.</p></Grad>
-      <div className="learn"><Grad><button>Learn more</button></Grad></div>
+      <div className="learn"><Grad><Link href="/about/profession"><a>Learn more</a></Link></Grad></div>
     </div>
     <style jsx>{`
       .profession
@@ -166,7 +166,7 @@ const Profession = () => (
       .learn
         display flex
         justify-content flex-end
-        button
+        a
           display block
           font-weight bold
           font-size 18px

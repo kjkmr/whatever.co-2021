@@ -20,6 +20,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
     const s = window.innerWidth / 1366
     container.style.transform = `scale(${s})`
   }, [])
+  // @ts-ignore TS6133
   useEventListener('resize', (event: Event) => {
     container.style.transform = `scale(${window.innerWidth / 1366})`
   })

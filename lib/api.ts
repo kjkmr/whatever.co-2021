@@ -174,9 +174,9 @@ export async function getAllWorks(): Promise<Entry[]> {
 }
 
 
-export async function getWorksByTag(tagSlug: string): Promise<Entry[]> {
+export async function getWorksByTag(tagSlug: string, numEntries: number = 100): Promise<Entry[]> {
   const tag = await wp.tags().slug(tagSlug)
-  const data = await (wp.posts().tags(tag[0].id).perPage(100).embed().param({ categories: 4, _fields: 'slug,title,date,tags,_links,_embedded' }))
+  const data = await (wp.posts().tags(tag[0].id).perPage(numEntries).embed().param({ categories: 4, _fields: 'slug,title,date,tags,_links,_embedded' }))
   const tags: { [id: number]: Tag } = {};
   (await getWorkTags()).forEach(t => tags[t.id] = t)
   return data?.map((e: any): Entry => ({
@@ -213,7 +213,7 @@ export async function getAllNews(): Promise<Entry[]> {
 
 
 export async function getLatestNews(): Promise<Entry[]> {
-  const data = await wp.posts().perPage(3).embed().param({ categories: 5, _fields: 'slug,title,date,_links,_embedded' })
+  const data = await wp.posts().perPage(4).embed().param({ categories: 5, _fields: 'slug,title,date,_links,_embedded' })
   return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,

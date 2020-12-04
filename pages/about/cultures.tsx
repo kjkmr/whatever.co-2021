@@ -120,7 +120,7 @@ const Section2 = () => (
 )
 
 const Cultures = () => (
-  <Layout title="cultures" footer={<Footer left="genre" right="profession" />}>
+  <Layout title="cultures" footer={<Footer left="genres" right="profession" />}>
     <div className="container">
       <Header title="cultures" desc="At Whatever, we have a proven track record of working with brands around the world and can support branding and content development across borders and cultures.<br/>We can plan and produce world-class brand communications and products by utilizing our four offices in Tokyo, New York, Taiwan and Berlin, and our world-class human resources." />
       <Section1 />

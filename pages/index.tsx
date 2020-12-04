@@ -1,19 +1,14 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
-// import { Entry, getFeaturedWork, getLatestNews } from '../lib/api'
+import { Entry, getFeaturedWork, getLatestNews } from '../lib/api'
 import Layout from '../components/Layout'
 import WorkTag from '../components/WorkTag'
 import { Grad, GradImg } from '../components/Grad'
 
-// type Props = {
-//   work: Entry[]
-//   news: Entry[]
-// }
-
 const Showreel = () => (
   <div className="reel">
-    <video src="/assets/reel-preview.mp4" autoPlay={true} ></video>
+    <video src="/index/reel-preview.mp4" autoPlay={true} ></video>
     <button >Watch Reel</button>
     <style jsx>{`
       .reel
@@ -41,20 +36,25 @@ const Showreel = () => (
   </div>
 )
 
-const AboutLink = (props: any) => (
+const AboutLink = ({ title, desc, image }: { title: string, desc: string, image: string }) => (
   <div className="container">
-    <div className="image"><GradImg><img src={props.image} alt="" width="330" height="330" /></GradImg></div>
-    <div className="titles">
-      <Grad><div className="pre">Crossing the border of</div></Grad>
-      <Grad><div className="what">{props.about}</div></Grad>
-    </div>
-    <Grad><div className="desc">{props.desc}</div></Grad>
+    <Link href={`/about/${title}`}>
+      <a>
+        <div className="image"><GradImg><img src={image} alt="" width="330" height="330" /></GradImg></div>
+        <div className="titles">
+          <Grad><div className="pre">Crossing the border of</div></Grad>
+          <Grad><div className="what">{title}</div></Grad>
+        </div>
+        <Grad><div className="desc">{desc}</div></Grad>
+      </a>
+    </Link>
     <style jsx>{`
       .container
         position relative
         width 330px
         height 500px
         margin-left 72px
+        font-size 0
       .image
         position absolute
         top 0
@@ -67,7 +67,6 @@ const AboutLink = (props: any) => (
         padding-top 39px
         padding-left 1px
         height 98px
-        font-size 0
         .pre
           display inline-block
           font-size 19px
@@ -78,6 +77,7 @@ const AboutLink = (props: any) => (
           font-size 35px
           font-weight bold
       .desc
+        font-size 16px
         line-height 1.7em
     `}</style>
   </div>
@@ -94,9 +94,9 @@ const Crossborder = () => (
       <Grad><h2>We transcend boundaries.</h2></Grad>
     </div>
     <div className="cats">
-      <AboutLink about="genres" desc="At Whatever, as the name implies, we create anything." image="/index/genres.jpg" />
-      <AboutLink about="cultures" desc="Whatever can help you develop branding and content across borders and cultures." image="/index/cultures.jpg" />
-      <AboutLink about="profession" desc="The people who come to Whatever are our greatest value." image="/index/profession.jpg" />
+      <AboutLink title="genres" desc="At Whatever, as the name implies, we create anything." image="/index/genres.jpg" />
+      <AboutLink title="cultures" desc="Whatever can help you develop branding and content across borders and cultures." image="/index/cultures.jpg" />
+      <AboutLink title="profession" desc="The people who come to Whatever are our greatest value." image="/index/profession.jpg" />
     </div>
     <div className="link">
       <Grad>

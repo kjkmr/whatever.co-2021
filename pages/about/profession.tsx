@@ -96,7 +96,7 @@ const Section3 = () => (
 )
 
 const Profession = () => (
-  <Layout title="profession" footer={<Footer left="cultures" right="genre" />}>
+  <Layout title="profession" footer={<Footer left="cultures" right="genres" />}>
     <Header title="profession" desc="The people who come to Whatever are our greatest value. We are creating a community where the best and brightest people can come together to create new experiences together, without being confined by conventional employment patterns or client relations. We value an environment where people can create more freely and without boundaries of organization or business practices." />
     <Section1 />
     <Section2 />

@@ -274,7 +274,7 @@ const Section3 = () => (
 const GenrePage = () => (
   <Layout title="About" footer={<Footer left="profession" right="cultures" />}>
     <div className="container">
-      <Header title="genre" desc="At Whatever, we do exactly what our name implies - we create everything. From global brand vision development to advertising, TV shows, products, and stores. We make the most of our team’s ability to “think and create” to transcend the boundaries of media and genres, from planning to development and implementation of never-before-seen experiences." />
+      <Header title="genres" desc="At Whatever, we do exactly what our name implies - we create everything. From global brand vision development to advertising, TV shows, products, and stores. We make the most of our team’s ability to “think and create” to transcend the boundaries of media and genres, from planning to development and implementation of never-before-seen experiences." />
       <Section1 />
       <Section2 />
       <Section3 />

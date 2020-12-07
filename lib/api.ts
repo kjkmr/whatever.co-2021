@@ -144,8 +144,8 @@ export async function getAllMembers(locale: string = 'ja'): Promise<Member[]> {
 }
 
 
-export async function getMemberDetail(slug: string): Promise<Member> {
-  const data = (await wp.pages().slug(slug).embed())[0]
+export async function getMemberDetail(slug: string, locale: string = 'ja'): Promise<Member> {
+  const data = (await wp.pages().slug(slug).embed().param({ lang: locale }))[0]
   return {
     slug,
     name: data.title.rendered,

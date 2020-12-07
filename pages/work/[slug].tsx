@@ -188,16 +188,16 @@ const WorkDetail = ({ work }: { work: Entry }) => (
 
 export default WorkDetail
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const works = await getAllWorks()
-  const paths = works.map((w: any) => ({ params: { slug: w.slug } }))
+  const paths = (locales || []).map(locale => works.map((w: any) => ({ params: { slug: w.slug }, locale }))).flat()
   return {
     paths,
     fallback: false
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const work = await getPostDetails(params?.slug as string)
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+  const work = await getPostDetails(params?.slug as string, locale)
   return { props: { work } }
 }

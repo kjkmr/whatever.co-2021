@@ -19,19 +19,22 @@ const WorkIndex = ({ tags, active, works }: WorkIndexProps) => (
 
 export default WorkIndex
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const tags = await getWorkTags()
-  const paths = tags.map((t: Tag) => ({ params: { category: t.slug } }))
-  paths.unshift({ params: { category: 'all' } })
+  const paths = (locales || ['en']).map(locale => {
+    const paths = tags.map((t: Tag) => ({ params: { category: t.slug }, locale }))
+    paths.unshift({ params: { category: 'all' }, locale })
+    return paths
+  }).flat()
   return {
     paths,
     fallback: false
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const active = params?.category as string
   const tags = await getWorkTags()
-  const works = active == 'all' ? (await getAllWorks()) : (await getWorksByTag(active))
+  const works = active == 'all' ? (await getAllWorks(locale)) : (await getWorksByTag(active, 100, locale))
   return { props: { tags, active, works } }
 }

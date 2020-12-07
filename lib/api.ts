@@ -130,15 +130,15 @@ const parseCredit = (data: string): Credit[] | undefined => {
 }
 
 
-export async function getAllMembers(): Promise<Member[]> {
-  const data = await wp.pages().order('asc').perPage(100).embed().param({ categories: 187, __fields: 'slug,title,tags,_embedded' })
+export async function getAllMembers(locale: string = 'ja'): Promise<Member[]> {
+  const data = await wp.pages().order('asc').perPage(100).embed().param({ categories: 187, __fields: 'slug,title,tags,_embedded', lang: locale })
   return data?.map((e: any): Member => ({
     slug: e.slug,
     name: e.title.rendered,
     title: e.acf.title,
     image: e._embedded['wp:featuredmedia'][0].source_url,
-    region: e.acf.region,
-    links: parseLinks(e.acf.rel_links),
+    region: Array.isArray(e.acf.region) ? e.acf.region : [],
+    links: parseLinks(e.acf.rel_links || ''),
     coCreator: e.acf['co-creator'],
   }))
 }

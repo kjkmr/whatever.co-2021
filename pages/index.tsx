@@ -355,7 +355,7 @@ const IndexPage = ({ works, news }: { works: Entry[], news: Entry[] }) => (
 
 export default IndexPage
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const works = await getWorksByTag('featured', 3)
   const news = await getLatestNews()
   return { props: { works, news } }

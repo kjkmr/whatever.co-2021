@@ -177,11 +177,13 @@ const Credits = ({ credit }: { credit: Credit[] }) => (
   </div>
 )
 
-const WorkDetail = ({ work }: { work: Entry }) => (
-  <Layout title={work.title}>
-    <Header work={work} />
-    <Body content={work.content} />
-    <Credits credit={work.credit || []} />
+const WorkDetail = ({ work }: { work?: Entry }) => (
+  <Layout title={work?.title}>
+    {work ? <>
+      <Header work={work} />
+      <Body content={work.content} />
+      <Credits credit={work.credit || []} />
+    </> : null}
   </Layout >
 )
 

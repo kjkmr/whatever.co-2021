@@ -98,12 +98,12 @@ const RelatedWork = ({ works }: { works: Entry[] }) => (
 )
 
 
-const MemberDetail = ({ member, works }: { member: Member, works: Entry[] }) => (
-  <Layout title={member.name}>
-    <MemberInfo member={member} />
-    <RelatedWork works={works} />
-    <style jsx>{`
-    `}</style>
+const MemberDetail = ({ member, works }: { member?: Member, works?: Entry[] }) => (
+  <Layout title={member?.name}>
+    {member && works ? <>
+      <MemberInfo member={member} />
+      <RelatedWork works={works} />
+    </> : null}
   </Layout >
 )
 
@@ -120,7 +120,10 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const slug: string = params?.slug as string
-  const member = await getMemberDetail(slug, locale)
-  const works = await getWorksByTag(slug)
-  return { props: { member, works } }
+  if (slug) {
+    const member = await getMemberDetail(slug, locale)
+    const works = await getWorksByTag(slug)
+    return { props: { member, works } }
+  }
+  return { props: {} }
 }

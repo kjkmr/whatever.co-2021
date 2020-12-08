@@ -15,7 +15,7 @@ const LargeWork = ({ work }: { work: Entry }) => (
     </Link>
     <div className="text">
       <Grad><div className="date">{work.date}</div></Grad>
-      <Grad><div className="title"><Link href={`/work/${work.slug}`}><a dangerouslySetInnerHTML={{ __html: work.title }}></a></Link></div></Grad>
+      <Grad><div className="title"><Link href={`/work/${work.slug}`} prefetch={false}><a dangerouslySetInnerHTML={{ __html: work.title }}></a></Link></div></Grad>
       <Grad><div className="head">{'???'}</div></Grad>
       <Grad><div className="tags">
         {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug}>{tag.name}</WorkTag>)}
@@ -70,7 +70,7 @@ const SmallWork = ({ work }: { work: Entry }) => (
     </Link>
     <div className="text">
       <Grad><div className="date">{work.date}</div></Grad>
-      <Grad><div className="title"><Link href={`/work/${work.slug}`}><a dangerouslySetInnerHTML={{ __html: work.title }}></a></Link></div></Grad>
+      <Grad><div className="title"><Link href={`/work/${work.slug}`} prefetch={false}><a dangerouslySetInnerHTML={{ __html: work.title }}></a></Link></div></Grad>
       <Grad><div className="tags">
         {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug}>{tag.name}</WorkTag>)}
       </div></Grad>

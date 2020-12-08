@@ -107,6 +107,15 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
           user-select none
         *:focus
           outline none
+        figure
+          margin 1em 0
+          font-size 0
+        figcaption
+          font-size 13px
+          font-style italic
+          margin-top 0.5em
+          margin-bottom 1.5em
+          text-align left
       `}</style>
     </div >
   )

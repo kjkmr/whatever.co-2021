@@ -130,8 +130,8 @@ const parseCredit = (data: string): Credit[] | undefined => {
 }
 
 
-export async function getAllMembers(locale: string = 'ja'): Promise<Member[]> {
-  const data = await wp.pages().order('asc').perPage(100).embed().param({ categories: 187, __fields: 'slug,title,tags,_embedded', lang: locale })
+export async function getAllMembers(maxCount: number = 100, locale: string = 'ja'): Promise<Member[]> {
+  const data = await wp.pages().order('asc').perPage(maxCount).embed().param({ categories: 187, __fields: 'slug,title,tags,_embedded', lang: locale })
   return data?.map((e: any): Member => ({
     slug: e.slug,
     name: e.title.rendered,
@@ -159,8 +159,8 @@ export async function getMemberDetail(slug: string, locale: string = 'ja'): Prom
 }
 
 
-export async function getAllWorks(locale: string = 'ja'): Promise<Entry[]> {
-  const data = await (wp.posts().perPage(100).embed().param({ categories: 4, _fields: 'slug,title,date,tags,_links,_embedded', lang: locale }))
+export async function getAllWorks(maxCount: number = 100, locale: string = 'ja'): Promise<Entry[]> {
+  const data = await (wp.posts().perPage(maxCount).embed().param({ categories: 4, _fields: 'slug,title,date,tags,_links,_embedded', lang: locale }))
   // const data = await getAll(wp.posts().perPage(100).embed().param({ categories: 4, _fields: 'slug,title,date,_links,_embedded' }))
   const tags: { [id: number]: Tag } = {};
   (await getWorkTags()).forEach(t => tags[t.id] = t)

@@ -53,6 +53,6 @@ const TeamIndex = ({ members }: { members: Member[] }) => (
 export default TeamIndex
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const members = await getAllMembers(locale)
+  const members = await getAllMembers(100, locale)
   return { props: { members } }
 }

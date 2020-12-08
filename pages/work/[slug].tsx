@@ -189,11 +189,11 @@ const WorkDetail = ({ work }: { work: Entry }) => (
 export default WorkDetail
 
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-  const works = await getAllWorks()
+  const works = await getAllWorks(1)
   const paths = (locales || []).map(locale => works.map((w: any) => ({ params: { slug: w.slug }, locale }))).flat()
   return {
     paths,
-    fallback: false
+    fallback: true
   }
 }
 

@@ -110,11 +110,11 @@ const MemberDetail = ({ member, works }: { member: Member, works: Entry[] }) => 
 export default MemberDetail
 
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-  const members = await getAllMembers()
+  const members = await getAllMembers(1)
   const paths = (locales || ['ja']).map(locale => members.map((m) => ({ params: { slug: m.slug }, locale }))).flat()
   return {
     paths,
-    fallback: false
+    fallback: true
   }
 }
 

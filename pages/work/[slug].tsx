@@ -106,7 +106,7 @@ const CreditMember = ({ member }: { member: Person }) => {
   let name = <>{member.name}</>
   if (!member.company) {
     if (member.url?.match(/^[a-z\-]+$/)) {
-      name = <Link href={`/team/${member.url}`} prefetch={false}><a className="credit-name-link">{member.name}</a></Link>
+      name = <Link href={`/team/${member.url}`}><a className="credit-name-link">{member.name}</a></Link>
     } else if (member.url) {
       name = <a href={member.url} className="credit-name-link">{member.name}</a>
     }

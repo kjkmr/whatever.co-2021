@@ -6,7 +6,7 @@ import { Grad, GradImg } from '../components/Grad'
 
 const LargeWork = ({ work }: { work: Entry }) => (
   <div className="container">
-    <Link href={`/work/${work.slug}`}>
+    <Link href={`/work/${work.slug}`} prefetch={false}>
       <a>
         <div className="image">
           <GradImg><img src={work.image} width="832" height="467" /></GradImg>
@@ -61,7 +61,7 @@ const LargeWork = ({ work }: { work: Entry }) => (
 
 const SmallWork = ({ work }: { work: Entry }) => (
   <div className="container">
-    <Link href={`/work/${work.slug}`}>
+    <Link href={`/work/${work.slug}`} prefetch={false}>
       <a>
         <div className="image">
           <GradImg><img src={work.image} width="377" height="212" /></GradImg>

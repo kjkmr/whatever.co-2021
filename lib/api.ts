@@ -22,11 +22,9 @@ export type Tag = {
 }
 
 
-let _ALL_TAGS: Tag[]
 export async function getAllTags(): Promise<Tag[]> {
-  if (_ALL_TAGS) return _ALL_TAGS
   const tags = await wp.tags().perPage(100)
-  return _ALL_TAGS = tags.map((tag: any): Tag => ({
+  return tags.map((tag: any): Tag => ({
     id: tag.id,
     type: tag.description || 'work',
     name: tag.name,

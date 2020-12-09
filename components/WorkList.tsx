@@ -108,13 +108,13 @@ const SmallWork = ({ work }: { work: Entry }) => (
 
 type WorkListProps = {
   filter?: string,
-  works: Entry[],
+  works?: Entry[],
 }
 
 export const WorkList = ({ filter, works }: WorkListProps) => {
   return (
     <div className="works">
-      {works.map(w => {
+      {works?.map(w => {
         const tags = w.tags?.map(t => t.slug)
         if (filter == "all") {
           if (tags?.includes('featured')) {

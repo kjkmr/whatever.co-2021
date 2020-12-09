@@ -47,14 +47,14 @@ const TagItem = ({ name, slug, focused }: { name: string, slug: string, focused:
 }
 
 type TagSelectorProp = {
-  tags: Tag[],
+  tags?: Tag[],
   active: string,
 }
 
 export const TagSelector = ({ tags, active }: TagSelectorProp) => (
   <ol className="container">
     <TagItem name="All" slug='all' focused={active == "all"} />
-    {tags.map(tag => <TagItem key={tag.slug} name={tag.name} slug={tag.slug} focused={tag.slug == active} />)}
+    {tags?.map(tag => <TagItem key={tag.slug} name={tag.name} slug={tag.slug} focused={tag.slug == active} />)}
     <style jsx>{`
       .container
         padding 0

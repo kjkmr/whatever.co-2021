@@ -19,9 +19,9 @@ const WorkIndex = ({ tags, active, works }: WorkIndexProps) => (
 
 export default WorkIndex
 
-export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: (locales || ['en']).map(locale => ({ params: { category: 'all' }, locale })),
+    paths: [],
     fallback: true
   }
 }

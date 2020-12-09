@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
-import { Tag, Entry, Credit, Person, getAllWorks, getPostDetails } from '../../lib/api'
+import { Tag, Entry, Credit, Person, getPostDetails } from '../../lib/api'
 import Layout from '../../components/Layout'
 import { Grad, GradImg } from '../../components/Grad'
 import WorkTag from '../../components/WorkTag'
@@ -190,11 +190,9 @@ const WorkDetail = ({ work }: { work?: Entry }) => (
 
 export default WorkDetail
 
-export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-  const works = await getAllWorks(1)
-  const paths = (locales || []).map(locale => works.map((w: any) => ({ params: { slug: w.slug }, locale }))).flat()
+export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths,
+    paths: [],
     fallback: true
   }
 }

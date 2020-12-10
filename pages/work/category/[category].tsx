@@ -5,9 +5,9 @@ import { TagSelector } from '../../../components/TagSelector'
 import { WorkList } from '../../../components/WorkList'
 
 type WorkIndexProps = {
-  tags?: Tag[],
+  tags: Tag[],
   active: string,
-  works?: Entry[],
+  works: Entry[],
 }
 
 const WorkIndex = ({ tags, active, works }: WorkIndexProps) => (
@@ -19,15 +19,21 @@ const WorkIndex = ({ tags, active, works }: WorkIndexProps) => (
 
 export default WorkIndex
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
+  const tags = await getWorkTags()
+  const paths = (locales || ['en']).map(locale => {
+    const paths = tags.map((t: Tag) => ({ params: { category: t.slug }, locale }))
+    paths.unshift({ params: { category: 'all' }, locale })
+    return paths
+  }).flat()
   return {
-    paths: [],
-    fallback: true
+    paths,
+    fallback: false
   }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const active = params?.category ? params.category as string : 'all'
+  const active = params?.category as string
   const tags = await getWorkTags()
   const works = active == 'all' ? (await getAllWorks(100, locale)) : (await getWorksByTag(active, 100, locale))
   return { props: { tags, active, works } }

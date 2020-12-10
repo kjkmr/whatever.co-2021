@@ -1,5 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { Member, Entry, getMemberDetail, getWorksByTag } from '../../lib/api'
+import { Member, Entry, getAllMembers, getMemberDetail, getWorksByTag } from '../../lib/api'
 import Layout from '../../components/Layout'
 import { Grad, GradImg } from '../../components/Grad'
 import { WorkList } from '../../components/WorkList'
@@ -98,30 +98,29 @@ const RelatedWork = ({ works }: { works: Entry[] }) => (
 )
 
 
-const MemberDetail = ({ member, works }: { member?: Member, works?: Entry[] }) => (
-  <Layout title={member?.name}>
-    {member && works ? <>
-      <MemberInfo member={member} />
-      <RelatedWork works={works} />
-    </> : null}
+const MemberDetail = ({ member, works }: { member: Member, works: Entry[] }) => (
+  <Layout title={member.name}>
+    <MemberInfo member={member} />
+    <RelatedWork works={works} />
+    <style jsx>{`
+    `}</style>
   </Layout >
 )
 
 export default MemberDetail
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
+  const members = await getAllMembers()
+  const paths = (locales || ['ja']).map(locale => members.map((m) => ({ params: { slug: m.slug }, locale }))).flat()
   return {
-    paths: [],
-    fallback: true
+    paths,
+    fallback: false
   }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const slug: string = params?.slug as string
-  if (slug) {
-    const member = await getMemberDetail(slug, locale)
-    const works = await getWorksByTag(slug)
-    return { props: { member, works } }
-  }
-  return { props: {} }
+  const member = await getMemberDetail(slug, locale)
+  const works = await getWorksByTag(slug)
+  return { props: { member, works } }
 }

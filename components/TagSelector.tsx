@@ -6,7 +6,7 @@ import { Grad } from './Grad'
 const TagItem = ({ name, slug, focused }: { name: string, slug: string, focused: boolean }) => {
   return (
     <li className={classNames('container', { focused })}>
-      <Link href={`/work/category/${slug}`} passHref>
+      <Link href={`/work/category/${slug}`} passHref prefetch={false}>
         <a><Grad><span className="inner">{name}</span></Grad></a>
       </Link>
       <style jsx>{`

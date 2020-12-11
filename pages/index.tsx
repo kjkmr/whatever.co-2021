@@ -162,16 +162,20 @@ const Crossborder = () => (
 
 const FeaturedWorkItem = ({ work }: { work: Entry }) => (
   <div className="container">
-    <div className="image"><GradImg><img src={work.image} width="677" height="381" /></GradImg></div>
-    <div className="text">
-      <Grad><div className="date">{work.date}</div></Grad>
-      <Grad><div className="title">{work.title}</div></Grad>
-      <Grad><div className="head">Lorem ipsum dolor sit amet</div></Grad>
-      <Grad><div className="desc">Morbi imperdiet placerat magna, et faucibus quam molestie eget. Nam faucibus nunc et dui aliquam scelerisque. In laoreet nisl sed tellus tincidunt, et scelerisque dolor fermentum. Duis enim nisi, vehicula in lorem eget, consectetur sagittis neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at suscipit urna.</div></Grad>
-      <Grad><div className="tags">
-        {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug}>{tag.name}</WorkTag>)}
-      </div></Grad>
-    </div>
+    <Link href={`/work/${work.slug}`}>
+      <a>
+        <div className="image"><GradImg><img src={work.image} width="677" height="381" /></GradImg></div>
+        <div className="text">
+          <Grad><div className="date">{work.date}</div></Grad>
+          <Grad><div className="title">{work.title}</div></Grad>
+          <Grad><div className="head">Lorem ipsum dolor sit amet</div></Grad>
+          <Grad><div className="desc">Morbi imperdiet placerat magna, et faucibus quam molestie eget. Nam faucibus nunc et dui aliquam scelerisque. In laoreet nisl sed tellus tincidunt, et scelerisque dolor fermentum. Duis enim nisi, vehicula in lorem eget, consectetur sagittis neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at suscipit urna.</div></Grad>
+          <Grad><div className="tags">
+            {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
+          </div></Grad>
+        </div>
+      </a>
+    </Link>
     <style jsx>{`
       .container
         position relative

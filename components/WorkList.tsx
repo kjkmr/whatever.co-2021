@@ -18,7 +18,7 @@ const LargeWork = ({ work }: { work: Entry }) => (
       <Grad><div className="title"><Link href={`/work/${work.slug}`} prefetch={false}><a dangerouslySetInnerHTML={{ __html: work.title }}></a></Link></div></Grad>
       <Grad><div className="head">{'???'}</div></Grad>
       <Grad><div className="tags">
-        {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug}>{tag.name}</WorkTag>)}
+        {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
       </div></Grad>
     </div>
     <style jsx>{`
@@ -66,15 +66,15 @@ const SmallWork = ({ work }: { work: Entry }) => (
         <div className="image">
           <GradImg><img src={work.image} width="377" height="212" /></GradImg>
         </div>
+        <div className="text">
+          <Grad><div className="date">{work.date}</div></Grad>
+          <Grad><div className="title" dangerouslySetInnerHTML={{ __html: work.title }} /></Grad>
+          <Grad><div className="tags">
+            {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
+          </div></Grad>
+        </div>
       </a>
     </Link>
-    <div className="text">
-      <Grad><div className="date">{work.date}</div></Grad>
-      <Grad><div className="title"><Link href={`/work/${work.slug}`} prefetch={false}><a dangerouslySetInnerHTML={{ __html: work.title }}></a></Link></div></Grad>
-      <Grad><div className="tags">
-        {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug}>{tag.name}</WorkTag>)}
-      </div></Grad>
-    </div>
     <style jsx>{`
       .container
         position relative

@@ -204,28 +204,29 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
         overflow hidden
         font-size 48px
         font-weight bold
-        margin-top 25px
-        letter-spacing 0.0001em
+        line-height 1.3em
+        margin-top 18px
       .head
         display inline-block
         overflow hidden
-        margin-top 19px
+        margin-top 9px
         font-size 24px
         font-weight bold
+        line-height 1.3em
       .desc
         display inline-block
         overflow hidden
-        margin-top 13px
-        letter-spacing -0.01em
-        line-height 2em
-        font-size 16px
+        margin-top 10px
+        line-height 1.8em
+        font-size 18px
+        font-weight light
         height 96px
         overflow hidden
         text-overflow ellipsis
       .tags
         display inline-block
         overflow hidden
-        margin-top 31px
+        margin-top 30px
     `}</style>
   </div>
 )

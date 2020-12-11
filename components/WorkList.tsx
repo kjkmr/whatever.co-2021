@@ -90,13 +90,13 @@ const SmallWork = ({ work }: { work: Entry }) => (
         display inline-block
         overflow hidden
         font-size 12px
-        letter-spacing -0.01em
       .title
         display inline-block
         overflow hidden
         font-size 24px
         font-weight bold
-        margin-top 10px
+        line-height 1.3em
+        margin-top 7px
       .tags
         display inline-block
         overflow hidden

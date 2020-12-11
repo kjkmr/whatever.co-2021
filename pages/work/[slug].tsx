@@ -21,7 +21,6 @@ const Header = ({ work }: { work: Entry }) => (
     </div>
     <style jsx>{`
       .header
-        {/* opacity 0.5 */}
         position relative
         font-size 0
       .image
@@ -46,11 +45,12 @@ const Header = ({ work }: { work: Entry }) => (
         display inline-block
         font-size 84px
         font-weight bold
-        margin-top 37px
+        line-height 1.2em
+        margin-top 29px
         margin-left -6px
       .tags
         display inline-block
-        margin-top 41px
+        margin-top 33px
     `}</style>
   </div>
 )

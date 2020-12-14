@@ -18,11 +18,11 @@ const setup = (base: Element): [Element, Element] => {
   base.classList.add('grad-effect-base')
   grad.classList.add('grad-effect-text')
   const [colorA, colorB] = getColors()
-  grad.style.backgroundImage = `linear-gradient(to right, ${colorA}, ${colorB})`
+  grad.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB})`
   base.appendChild(grad)
   const box = document.createElement('div')
   box.classList.add('grad-effect-box')
-  box.style.backgroundImage = `linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`
+  box.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`
   base.appendChild(box)
   return [grad, box]
 }
@@ -82,6 +82,10 @@ const doAnime = (base: Element, grad: Element, box: Element, duration: number = 
         opacity: 1
       },
       {
+        offset: 0.1,
+        opacity: 1
+      },
+      {
         opacity: 0
       }
     ],
@@ -123,7 +127,9 @@ export const Grad = ({ children }: any) => {
           top 0
           left 0
           color transparent
-          background-image linear-gradient(to right, #fbe105, #f91fae)
+          background-image url(/noise.png), linear-gradient(to right, #fbe105, #f91fae)
+          background-blend-mode overlay, normal
+          background-clip text
           -webkit-background-clip text
           -webkit-text-fill-color transparent
           visibility hidden
@@ -134,13 +140,16 @@ export const Grad = ({ children }: any) => {
           width 100%
           height 100%
           background-color white
-          background-image linear-gradient(to right, #fbe105, #f91fae)
+          background-image url(/noise.png), linear-gradient(to right, #fbe105, #f91fae)
+          background-size auto, 200% 100%
+          background-blend-mode overlay, normal
           visibility hidden
         .grad-effect-box
           position absolute
           background-color white
-          background-image linear-gradient(to right, #fbe105, #f91fae, #f91fae)
-          background-size 200% 100%
+          background-image url(/noise.png), linear-gradient(to right, #fbe105, #f91fae, #f91fae)
+          background-size auto, 200% 100%
+          background-blend-mode overlay, normal
           top 0
           left -100%
           width 100%
@@ -161,12 +170,12 @@ export const GradImg = ({ children }: any) => {
     const grad = document.createElement('div')
     grad.classList.add('grad-effect-img')
     const [colorA, colorB] = getColors()
-    grad.style.backgroundImage = `linear-gradient(to right, ${colorA}, ${colorB})`
+    grad.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB})`
     node.appendChild(grad)
 
     const box = document.createElement('div')
     box.classList.add('grad-effect-box')
-    box.style.backgroundImage = `linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`
+    box.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`
     node.appendChild(box)
 
     new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {

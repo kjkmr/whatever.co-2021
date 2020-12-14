@@ -162,16 +162,20 @@ const Crossborder = () => (
 
 const FeaturedWorkItem = ({ work }: { work: Entry }) => (
   <div className="container">
-    <div className="image"><GradImg><img src={work.image} width="677" height="381" /></GradImg></div>
-    <div className="text">
-      <Grad><div className="date">{work.date}</div></Grad>
-      <Grad><div className="title">{work.title}</div></Grad>
-      <Grad><div className="head">Lorem ipsum dolor sit amet</div></Grad>
-      <Grad><div className="desc">Morbi imperdiet placerat magna, et faucibus quam molestie eget. Nam faucibus nunc et dui aliquam scelerisque. In laoreet nisl sed tellus tincidunt, et scelerisque dolor fermentum. Duis enim nisi, vehicula in lorem eget, consectetur sagittis neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at suscipit urna.</div></Grad>
-      <Grad><div className="tags">
-        {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug}>{tag.name}</WorkTag>)}
-      </div></Grad>
-    </div>
+    <Link href={`/work/${work.slug}`}>
+      <a>
+        <div className="image"><GradImg><img src={work.image} width="677" height="381" /></GradImg></div>
+        <div className="text">
+          <Grad><div className="date">{work.date}</div></Grad>
+          <Grad><div className="title">{work.title}</div></Grad>
+          <Grad><div className="head">Lorem ipsum dolor sit amet</div></Grad>
+          <Grad><div className="desc">Morbi imperdiet placerat magna, et faucibus quam molestie eget. Nam faucibus nunc et dui aliquam scelerisque. In laoreet nisl sed tellus tincidunt, et scelerisque dolor fermentum. Duis enim nisi, vehicula in lorem eget, consectetur sagittis neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at suscipit urna.</div></Grad>
+          <Grad><div className="tags">
+            {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
+          </div></Grad>
+        </div>
+      </a>
+    </Link>
     <style jsx>{`
       .container
         position relative
@@ -204,28 +208,29 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
         overflow hidden
         font-size 48px
         font-weight bold
-        margin-top 25px
-        letter-spacing 0.0001em
+        line-height 1.3em
+        margin-top 18px
       .head
         display inline-block
         overflow hidden
-        margin-top 19px
+        margin-top 9px
         font-size 24px
         font-weight bold
+        line-height 1.3em
       .desc
         display inline-block
         overflow hidden
-        margin-top 13px
-        letter-spacing -0.01em
-        line-height 2em
-        font-size 16px
+        margin-top 10px
+        line-height 1.8em
+        font-size 18px
+        font-weight light
         height 96px
         overflow hidden
         text-overflow ellipsis
       .tags
         display inline-block
         overflow hidden
-        margin-top 31px
+        margin-top 30px
     `}</style>
   </div>
 )

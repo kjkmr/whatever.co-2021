@@ -109,18 +109,18 @@ const MemberDetail = ({ member, works }: { member: Member, works: Entry[] }) => 
 
 export default MemberDetail
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const members = await getAllMembers()
-  const paths = members.map((m) => ({ params: { slug: m.slug } }))
+  const paths = (locales || ['ja']).map(locale => members.map((m) => ({ params: { slug: m.slug }, locale }))).flat()
   return {
     paths,
     fallback: false
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const slug: string = params?.slug as string
-  const member = await getMemberDetail(slug)
+  const member = await getMemberDetail(slug, locale)
   const works = await getWorksByTag(slug)
   return { props: { member, works } }
 }

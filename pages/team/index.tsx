@@ -9,7 +9,7 @@ const TeamIndex = ({ members }: { members: Member[] }) => (
   <Layout title="TEAM">
     <div className="container">
       {members.map(m => (
-        <Link href={`/team/${m.slug}`} key={m.slug}>
+        <Link href={`/team/${m.slug}`} key={m.slug} prefetch={false}>
           <a >
             <div >
               <GradImg><img src={m.image} alt="" width="260" height="260" /></GradImg>
@@ -52,7 +52,7 @@ const TeamIndex = ({ members }: { members: Member[] }) => (
 
 export default TeamIndex
 
-export const getStaticProps: GetStaticProps = async () => {
-  const members = await getAllMembers()
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  const members = await getAllMembers(100, locale)
   return { props: { members } }
 }

@@ -130,28 +130,28 @@ const parseCredit = (data: string): Credit[] | undefined => {
 }
 
 
-export async function getAllMembers(): Promise<Member[]> {
-  const data = await wp.pages().order('asc').perPage(100).embed().param({ categories: 187, __fields: 'slug,title,tags,_embedded' })
+export async function getAllMembers(maxCount: number = 100, locale: string = 'ja'): Promise<Member[]> {
+  const data = await wp.pages().order('asc').perPage(maxCount).embed().param({ categories: 187, __fields: 'slug,title,tags,_embedded', lang: locale })
   return data?.map((e: any): Member => ({
     slug: e.slug,
     name: e.title.rendered,
     title: e.acf.title,
-    image: e._embedded['wp:featuredmedia'][0].source_url,
-    region: e.acf.region,
-    links: parseLinks(e.acf.rel_links),
+    image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
+    region: Array.isArray(e.acf.region) ? e.acf.region : [],
+    links: parseLinks(e.acf.rel_links || ''),
     coCreator: e.acf['co-creator'],
   }))
 }
 
 
-export async function getMemberDetail(slug: string): Promise<Member> {
-  const data = (await wp.pages().slug(slug).embed())[0]
+export async function getMemberDetail(slug: string, locale: string = 'ja'): Promise<Member> {
+  const data = (await wp.pages().slug(slug).embed().param({ lang: locale }))[0]
   return {
     slug,
     name: data.title.rendered,
     title: data.acf.title,
     content: replaceToCDN(data.content.rendered),
-    image: data._embedded['wp:featuredmedia'][0].source_url,
+    image: replaceToCDN(data._embedded['wp:featuredmedia'][0].source_url),
     region: data.acf.region,
     links: parseLinks(data.acf.rel_links),
     coCreator: data.acf['co-creator'],
@@ -159,8 +159,8 @@ export async function getMemberDetail(slug: string): Promise<Member> {
 }
 
 
-export async function getAllWorks(): Promise<Entry[]> {
-  const data = await (wp.posts().perPage(100).embed().param({ categories: 4, _fields: 'slug,title,date,tags,_links,_embedded' }))
+export async function getAllWorks(maxCount: number = 100, locale: string = 'ja'): Promise<Entry[]> {
+  const data = await (wp.posts().perPage(maxCount).embed().param({ categories: 4, _fields: 'slug,title,date,tags,_links,_embedded', lang: locale }))
   // const data = await getAll(wp.posts().perPage(100).embed().param({ categories: 4, _fields: 'slug,title,date,_links,_embedded' }))
   const tags: { [id: number]: Tag } = {};
   (await getWorkTags()).forEach(t => tags[t.id] = t)
@@ -174,9 +174,9 @@ export async function getAllWorks(): Promise<Entry[]> {
 }
 
 
-export async function getWorksByTag(tagSlug: string, numEntries: number = 100): Promise<Entry[]> {
+export async function getWorksByTag(tagSlug: string, numEntries: number = 100, locale: string = 'ja'): Promise<Entry[]> {
   const tag = await wp.tags().slug(tagSlug)
-  const data = await (wp.posts().tags(tag[0].id).perPage(numEntries).embed().param({ categories: 4, _fields: 'slug,title,date,tags,_links,_embedded' }))
+  const data = await (wp.posts().tags(tag[0].id).perPage(numEntries).embed().param({ categories: 4, _fields: 'slug,title,date,tags,_links,_embedded', lang: locale }))
   const tags: { [id: number]: Tag } = {};
   (await getWorkTags()).forEach(t => tags[t.id] = t)
   return data?.map((e: any): Entry => ({
@@ -223,8 +223,8 @@ export async function getLatestNews(): Promise<Entry[]> {
 }
 
 
-export async function getPostDetails(slug: string): Promise<Entry> {
-  const data = (await wp.posts().slug(slug).embed().param({ _fields: 'slug,title,content,date,tags,acf,_links,_embedded' }))[0]
+export async function getPostDetails(slug: string, locale: string = 'ja'): Promise<Entry> {
+  const data = (await wp.posts().slug(slug).embed().param({ _fields: 'slug,title,content,date,tags,acf,_links,_embedded', lang: locale }))[0]
   const tags: { [id: number]: Tag } = {};
   (await getWorkTags()).forEach(t => tags[t.id] = t)
   return {

@@ -133,10 +133,12 @@ export const Grad = ({ children }: any) => {
           left 0
           width 100%
           height 100%
+          background-color white
           background-image linear-gradient(to right, #fbe105, #f91fae)
           visibility hidden
         .grad-effect-box
           position absolute
+          background-color white
           background-image linear-gradient(to right, #fbe105, #f91fae, #f91fae)
           background-size 200% 100%
           top 0

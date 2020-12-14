@@ -15,13 +15,12 @@ const Header = ({ work }: { work: Entry }) => (
         <Grad><div className="date">{work.date}</div></Grad>
         <Grad><div className="title" dangerouslySetInnerHTML={{ __html: work.title }}></div></Grad>
         <Grad><div className="tags">
-          {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug}>{tag.name}</WorkTag>)}
+          {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} link={true} />)}
         </div></Grad>
       </div>
     </div>
     <style jsx>{`
       .header
-        {/* opacity 0.5 */}
         position relative
         font-size 0
       .image
@@ -46,11 +45,12 @@ const Header = ({ work }: { work: Entry }) => (
         display inline-block
         font-size 84px
         font-weight bold
-        margin-top 37px
+        line-height 1.2em
+        margin-top 29px
         margin-left -6px
       .tags
         display inline-block
-        margin-top 41px
+        margin-top 33px
     `}</style>
   </div>
 )
@@ -188,16 +188,16 @@ const WorkDetail = ({ work }: { work: Entry }) => (
 
 export default WorkDetail
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const works = await getAllWorks()
-  const paths = works.map((w: any) => ({ params: { slug: w.slug } }))
+  const paths = (locales || []).map(locale => works.map((w: any) => ({ params: { slug: w.slug }, locale }))).flat()
   return {
     paths,
     fallback: false
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const work = await getPostDetails(params?.slug as string)
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+  const work = await getPostDetails(params?.slug as string, locale)
   return { props: { work } }
 }

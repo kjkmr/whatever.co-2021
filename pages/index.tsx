@@ -36,102 +36,47 @@ const Showreel = () => (
   </div>
 )
 
-const AboutLink = ({ title, desc, image, ix }: { title: string, desc: string, image: string, ix?: number }) => (
-  <div className="container">
-    <Link href={`/about/${title}`}>
-      <a>
-        <div className="image" style={{ marginLeft: ix || 0 }}> <GradImg><img src={image} alt="" width="340" height="340" /></GradImg></div>
-        <div className="titles">
-          <Grad><div className="pre">Crossing the border of</div></Grad>
-          <Grad><div className="what">{title}</div></Grad>
-        </div>
-        <Grad><div className="desc">{desc}</div></Grad>
-        <div className="more">Show more</div>
-      </a>
-    </Link>
-    <style jsx>{`
-      .container
-        position relative
-        width 416px
-        font-size 0
-      .image
-        img
-          object-fit contain
-      .titles
-        position relative
-        margin-top 9px
-        margin-right 64px
-        padding-top 39px
-        padding-left 1px
-        height 98px
-        .pre
-          display inline-block
-          font-size 20px
-          font-weight 700
-        .what
-          display inline-block
-          margin-top 8px
-          font-size 70px
-          font-weight bold
-      .desc
-        font-size 18px
-        font-weight 200
-        line-height 1.8em
-        margin-top 24px
-        width 335px
-        min-height 186px
-      .more
-        font-size 20px
-        font-weight 700
-    `}</style>
-  </div>
-)
-
 const Crossborder = () => (
   <div className="container">
     <div className="title">
       <Grad><h1>Crossborder</h1></Grad>
-      <Grad><h1>Creative Studio.</h1></Grad>
+      <Grad><h1>Creative Studio</h1></Grad>
     </div>
     <div className="desc">
-      <Grad><h2>Whatever is a cross-border creative studio.</h2></Grad>
-    </div>
-    <div className="cats">
-      <AboutLink title="genres" desc="At Whatever, as our name implies, we create anything.We plan, develop and implement experiences that no one has ever seen before." image="/index/genres@2x.png" ix={-10} />
-      <AboutLink title="cultures" desc="At Whatever, we have a proven track record of working with brands around the world and can support branding and content development across borders and cultures." image="/index/cultures@2x.png" />
-      <AboutLink title="profession" desc="The “diversity of people” at Whatever is the greatest value we have." image="/index/profession@2x.png" />
+      <Grad><h2>Whateverは様々な領域を越えて活動する</h2></Grad>
+      <Grad><h2 style={{ marginLeft: 180 }}>クロスボーダー・クリエイティブ・スタジオです。</h2></Grad>
     </div>
     <div className="link">
-      <Grad>
-        <Link href="/about">
-          <a>About Us</a>
-        </Link>
-      </Grad>
+      <Link href="/about">
+        <a>Learn more</a>
+      </Link>
     </div>
     <style jsx>{`
       .container
         position relative
-        margin-top 136px
+        margin-top 159px
         img
           display block
       .title
         font-size 0
-        margin-left -7px
+        margin-left -6px
         h1
           display inline-block
-          font-size 175px
+          font-size 174px
           font-weight bold
-          line-height 176px
+          line-height 174px
           margin 0
           margin-bottom 16px
       .desc
         position relative
-        margin-top 66px
-        margin-left 80px
+        margin-top 67px
+        margin-left 81px
         font-size 0
         h2
           display inline-block
-          font-size 46px
+          font-size 36px
+          font-weight bold
+          line-height 41px
           margin 0
           margin-bottom 24px
       .c1
@@ -145,17 +90,22 @@ const Crossborder = () => (
         justify-content space-between
         margin-top 63px
       .link
-        text-align right
-        font-size 24px
-        font-weight 700
-        margin-top 75px
+        display flex
+        justify-content flex-end
+        margin-top 124px
+        border-top 1px solid #D0D0D0
         a
-          display inline-block
-          padding-right 115px
-          padding-left 3px
-          padding-bottom 10px
-          border-bottom 1px solid red
+          display flex
+          justify-content center
+          align-items center
+          color white
+          font-size 18px
           font-weight bold
+          letter-spacing 0.04em
+          width 256px
+          height 60px
+          background-color black
+          margin-top -31px
     `}</style>
   </div>
 )
@@ -164,10 +114,10 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
   <div className="container">
     <Link href={`/work/${work.slug}`}>
       <a>
-        <div className="image"><GradImg><img src={work.image} width="677" height="381" /></GradImg></div>
+        <div className="image"><GradImg><img src={work.image} width="673" height="379" /></GradImg></div>
         <div className="text">
           <Grad><div className="date">{work.date}</div></Grad>
-          <Grad><div className="title">{work.title}</div></Grad>
+          <Grad><div className="title">{work.title.substring(0, 5)}</div></Grad>
           <Grad><div className="head">Lorem ipsum dolor sit amet</div></Grad>
           <Grad><div className="desc">Morbi imperdiet placerat magna, et faucibus quam molestie eget. Nam faucibus nunc et dui aliquam scelerisque. In laoreet nisl sed tellus tincidunt, et scelerisque dolor fermentum. Duis enim nisi, vehicula in lorem eget, consectetur sagittis neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at suscipit urna.</div></Grad>
           <Grad><div className="tags">
@@ -180,57 +130,56 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
       .container
         position relative
         background-repeat no-repeat
-        background-position-x 5px
-        padding-top 23px
-        padding-left 584px
-        margin-bottom 100px
+        padding-top 60px
+        padding-left 613px
+        margin-bottom 50px
       .image
         position absolute
         top 0
-        left 5px
+        left 0
         img
           object-fit cover
       .text
         position relative
         background-color white
         min-height 298px
-        padding-top 60px
-        padding-left 62px
+        padding-top 50px
+        padding-left 60px
         padding-right 80px
         font-size 0
       .date
         display inline-block
         overflow hidden
-        font-size 12px
+        font-size 14px
         font-weight 200
       .title
         display inline-block
         overflow hidden
         font-size 48px
         font-weight bold
-        line-height 1.3em
-        margin-top 18px
+        line-height 1.2em
+        margin-top 19px
       .head
         display inline-block
         overflow hidden
-        margin-top 9px
+        margin-top 11px
         font-size 24px
         font-weight bold
         line-height 1.3em
       .desc
         display inline-block
         overflow hidden
-        margin-top 10px
-        line-height 1.8em
+        margin-top 15px
+        line-height 1.7em
         font-size 18px
         font-weight light
-        height 96px
+        height 3em
         overflow hidden
         text-overflow ellipsis
       .tags
         display inline-block
         overflow hidden
-        margin-top 30px
+        margin-top 37px
     `}</style>
   </div>
 )
@@ -240,33 +189,36 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
     <Grad><h1>Featured Works</h1></Grad>
     {works.map(work => <FeaturedWorkItem key={work.slug} work={work} />)}
     <div className="link">
-      <Grad>
-        <Link href="/work">
-          <a>All Works</a>
-        </Link>
-      </Grad>
+      <Link href="/work">
+        <a>All Works</a>
+      </Link>
     </div>
     <style jsx>{`
       .container
-        margin-top 89px
-        margin-left -5px
+        opacity 0.5
+        margin-top 84px
       h1
         display inline-block
-        font-size 70px
+        font-size 36px
+        font-weight bold
         margin 0
-        margin-bottom 52px
+        margin-left -3px
+        margin-bottom 70px
       .link
-        text-align right
-        font-size 24px
-        font-weight 700
-        margin-top 75px
+        display flex
+        justify-content flex-end
+        margin-top 83px
         a
-          display inline-block
-          padding-right 195px
-          padding-left 3px
-          padding-bottom 10px
-          border-bottom 1px solid red
+          display flex
+          justify-content center
+          align-items center
+          color white
+          font-size 18px
           font-weight bold
+          letter-spacing 0.04em
+          width 256px
+          height 60px
+          background-color black
     `}</style>
   </div>
 )
@@ -289,40 +241,44 @@ const NewsItem = ({ data }: { data: Entry }) => (
       .date
         display inline-block
         overflow hidden
-        font-size 12px
+        font-size 14px
         font-weight 200
         margin-top 20px
       .title
         display inline-block
         overflow hidden
-        font-size 18px
+        font-size 15px
         font-weight bold
         margin-top 9px
-        line-height 1.6em
+        line-height 2em
     `}</style>
   </div>
 )
 
-const FeaturedNews = ({ news }: { news: Entry[] }) => (
+const LatestNews = ({ news }: { news: Entry[] }) => (
   <div className="container">
-    <Grad><h1>Featured News</h1></Grad>
-    <div className="items">
-      {news.map(item => <NewsItem key={item.slug} data={item} />)}
-    </div>
-    <div className="link">
-      <Grad>
-        <Link href="/news">
-          <a>All News</a>
-        </Link>
-      </Grad>
+    <div className="center">
+      <Grad><h1>Latest News</h1></Grad>
+      <div className="items">
+        {news.map(item => <NewsItem key={item.slug} data={item} />)}
+      </div>
+      <div className="link">
+          <Link href="/news">
+            <a>All News</a>
+          </Link>
+      </div>
     </div>
 
     <style jsx>{`
       .container
-        margin-top 72px
-        padding 80px 80px
+        opacity 0.5
+        margin-top 80px
+        padding 80px 80px 130px
         background-color #F4F4F4
         height 415px
+      .center
+        max-width 1366px
+        margin auto
       h1
         display inline-block
         overflow hidden
@@ -334,24 +290,27 @@ const FeaturedNews = ({ news }: { news: Entry[] }) => (
         display flex
         margin-top 50px
       .link
-        text-align right
-        font-size 24px
-        font-weight 700
-        margin-top 60px
+        display flex
+        justify-content flex-end
+        margin-top 69px
         margin-right -80px
         a
-          display inline-block
-          padding-right 204px
-          padding-left 3px
-          padding-bottom 10px
-          border-bottom 1px solid red
+          display flex
+          justify-content center
+          align-items center
+          color white
+          font-size 18px
           font-weight bold
+          letter-spacing 0.04em
+          width 256px
+          height 60px
+          background-color black
     `}</style>
   </div>
 )
 
 const IndexPage = ({ works, news }: { works: Entry[], news: Entry[] }) => (
-  <Layout showHeader={false} footer={<FeaturedNews news={news} />}>
+  <Layout showHeader={false} footer={<LatestNews news={news} />}>
     <Showreel />
     <Crossborder />
     <FeaturedWorks works={works} />
@@ -361,7 +320,7 @@ const IndexPage = ({ works, news }: { works: Entry[], news: Entry[] }) => (
 export default IndexPage
 
 export const getStaticProps: GetStaticProps = async () => {
-  const works = await getWorksByTag('featured', 3)
+  const works = await getWorksByTag('featured', 4)
   const news = await getLatestNews()
   return { props: { works, news } }
 }

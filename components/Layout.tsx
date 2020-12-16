@@ -13,23 +13,14 @@ type Props = {
 }
 
 const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
-  let container: HTMLDivElement
-  const ref = useCallback(node => {
-    if (!node) return
-    container = node
-    const s = window.innerWidth / 1366
-    container.style.transform = `scale(${s})`
-  }, [])
-  // @ts-ignore TS6133
-  useEventListener('resize', (event: Event) => {
-    container.style.transform = `scale(${window.innerWidth / 1366})`
-  })
   return (
-    <div className="scale" ref={ref}>
+    <div>
       <Head>
         <title>{title ? title + " ― " : ""}Whatever Inc.</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js" integrity="sha512-oAY57i8MXmaOP7pAylNLnULAM4QLV3uGnvnXVY4zF229/zFzTvG2/5YIgH8iN8oZR2hnbkiDPd4JCJGaH4oG6g==" crossOrigin="anonymous"></script>
       </Head>
 
@@ -46,17 +37,14 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
       </div>
 
       <style jsx>{`
-        .scale
-          transform-origin top left
-          width 1366px
         .container
           position relative
-          width 1366px
+          width 100%
         .contents
           display flex
           align-items flex-start
         .main
-          width calc(100% - 80px)
+          margin auto
       `}</style>
 
       <style jsx global>{`
@@ -87,14 +75,17 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
               url('/common/fonts/apercu-bold.ttf') format('truetype')
           font-weight 700
           font-style normal
-        html, body
+        
+        html
           margin 0
           padding 0
         body
-          {/* background-image: url('/_/Top.png') */}
+          margin 0
+          padding 0
+          background-image: url('/_/Top_1366.png')
           background-repeat no-repeat
           background-position center top
-          font-family Apercu
+          font-family Apercu, 'Noto Sans JP', sans-serif
           font-size 16px
           font-weight 200
         a

@@ -1,7 +1,6 @@
-import { ReactNode, useCallback } from 'react'
+import { ReactNode } from 'react'
 import Head from 'next/head'
 import Menu from './Menu'
-import useEventListener from '../lib/useEventListener'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 

@@ -20,7 +20,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js" integrity="sha512-oAY57i8MXmaOP7pAylNLnULAM4QLV3uGnvnXVY4zF229/zFzTvG2/5YIgH8iN8oZR2hnbkiDPd4JCJGaH4oG6g==" crossOrigin="anonymous"></script>
       </Head>
 
@@ -79,14 +79,15 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
         html
           margin 0
           padding 0
+          font-size 10px
         body
           margin 0
           padding 0
-          background-image: url('/_/Top_1366.png')
+          {/* background-image: url('/_/Top_1366.png') */}
           background-repeat no-repeat
-          background-position center top
+          background-position left top
           font-family Apercu, 'Noto Sans JP', sans-serif
-          font-size 16px
+          font-size 1.5em
           font-weight 200
         a
           text-decoration none
@@ -102,7 +103,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
           margin 1em 0
           font-size 0
         figcaption
-          font-size 13px
+          font-size 1.3em
           font-style italic
           margin-top 0.5em
           margin-bottom 1.5em

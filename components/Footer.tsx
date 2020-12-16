@@ -13,7 +13,6 @@ const Footer = () => (
 
     <style jsx>{`
       .container
-        opacity 0.5
         height 400px
         position relative
         padding 100px 80px

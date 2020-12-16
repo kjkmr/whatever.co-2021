@@ -69,6 +69,8 @@ export type Credit = {
 export type Entry = {
   slug: string
   title: string
+  subtitle?: string
+  overview?: string
   date?: string
   content?: string
   image?: string
@@ -176,12 +178,14 @@ export async function getAllWorks(maxCount: number = 100, locale: string = 'ja')
 
 export async function getWorksByTag(tagSlug: string, numEntries: number = 100, locale: string = 'ja'): Promise<Entry[]> {
   const tag = await wp.tags().slug(tagSlug)
-  const data = await (wp.posts().tags(tag[0].id).perPage(numEntries).embed().param({ categories: 4, _fields: 'slug,title,date,tags,_links,_embedded', lang: locale }))
+  const data = await (wp.posts().tags(tag[0].id).perPage(numEntries).embed().param({ categories: 4, _fields: 'slug,title,date,tags,_links,_embedded,acf', lang: locale }))
   const tags: { [id: number]: Tag } = {};
   (await getWorkTags(locale)).forEach(t => tags[t.id] = t)
   return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
+    subtitle: e.acf?.subtitle || '',
+    overview: e.acf?.overview || '',
     date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
     image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
     tags: e.tags.map((t: number) => tags[t]).filter((t: Tag) => t)

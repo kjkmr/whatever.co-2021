@@ -44,7 +44,7 @@ const Crossborder = () => (
     </div>
     <div className="desc">
       <Grad><h2>Whateverは様々な領域を越えて活動する</h2></Grad>
-      <Grad><h2 style={{ marginLeft: 180 }}>クロスボーダー・クリエイティブ・スタジオです。</h2></Grad>
+      <Grad><h2 style={{ marginLeft: 'calc((100vw - 80px) * 0.14)' }}>クロスボーダー・クリエイティブ・スタジオです。</h2></Grad>
     </div>
     <div className="link">
       <Link href="/about">

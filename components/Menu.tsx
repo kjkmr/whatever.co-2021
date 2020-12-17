@@ -1,6 +1,24 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import classNames from 'classnames/bind'
+
+const LangLink = ({ lang, label }: { lang: string, label: string }) => {
+  const { locale, route } = useRouter()
+  return (
+    <span>
+      { locale != lang
+        ? <Link href={route} locale={lang}><a>{label}</a></Link>
+        : <>{label}</>}
+      <style jsx>{`
+        span
+          color black
+        a
+          color #cccccc
+      `}</style>
+    </span>
+  )
+}
 
 const Menu = () => {
   const [opened, setOpened] = useState(false)
@@ -23,16 +41,14 @@ const Menu = () => {
         <div className="l1"></div>
         <div className="l2"></div>
       </button>
+      <div className="langselect"><LangLink lang="ja" label="JA" /> / <LangLink lang="en" label="EN" /> / <LangLink lang="zh-hans" label="ZH" /></div>
 
       <style jsx>{`
         .container
           position relative
           z-index 10000
           width 80px
-          height 768px
-          background-image url(/scroll.png)
-          background-repeat no-repeat
-          background-position 33px 552px
+          height 100vh
         .black
           position absolute
           top 0
@@ -95,6 +111,17 @@ const Menu = () => {
           .l2
             top 39px
             transform rotate(-45deg)
+        .langselect
+          position absolute
+          font-size 1.2rem
+          letter-spacing 0.12em
+          left 44px
+          bottom 110px
+          transform rotate(90deg)
+          transform-origin top left
+          white-space pre
+          color #cccccc
+          user-select none
       `}</style>
     </div>
   )

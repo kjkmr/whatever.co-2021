@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import Layout from '../components/Layout'
-import { Grad, GradImg } from '../components/Grad'
+import Layout from 'components/Layout'
+import { Grad, GradImg, GradLink } from 'components/Grad'
 
 type AddressData = {
   region: string
@@ -99,7 +99,6 @@ const data: { [locale: string]: AddressData[] } =
   ],
 }
 
-
 const Head = () => (
   <div className="head">
     <Grad><div>For new business,</div></Grad>
@@ -139,7 +138,7 @@ const Head = () => (
 const Address = ({ data }: { data: AddressData }) => (
   <div className="container">
     <Grad><h2 className="region">{data.region}</h2></Grad>
-    <Grad><a className="address" href={data.maplink} target="_blank" rel="noopener noreferrer">{data.address}</a></Grad>
+    <div className="address"><GradLink className="address" href={data.maplink} target="_blank" rel="noopener noreferrer">{data.address}</GradLink></div>
     {data.phone ? <Grad><div className="phone">{data.phone}</div></Grad> : null}
     {data.representative ? <Grad><div className="repr">Representative: {data.representative}</div></Grad> : null}
     <style jsx>{`
@@ -154,9 +153,7 @@ const Address = ({ data }: { data: AddressData }) => (
         display inline-block
         font-size 1.6rem
         line-height 1em
-        padding-bottom 2px
-        border-bottom 1px solid red
-        margin-bottom 13px
+        margin-bottom 16px
       .phone
         display inline-block
         font-size 1.6rem
@@ -194,7 +191,7 @@ const AboutPage = () => {
       .address
         margin-top 270px
         margin-left 80px
-        margin-right 20px
+        margin-right 16px
         display grid
         grid-template-columns repeat(2, 1fr)
         grid-auto-rows 216px

@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, SyntheticEvent } from 'react'
 
 const COLORS = ["#ff2300", "#ff9201", "#ffeb00", "#89e82b", "#00c745", "#29ebfe", "#0d44fb", "#a725fc", "#fd1eba"];
 const getColors = (): [String, String] => {
@@ -10,14 +10,13 @@ const getColors = (): [String, String] => {
   return [COLORS[i], COLORS[j]]
 }
 
-const setup = (base: Element): [Element, Element] => {
+const setup = (base: Element, colorA: String, colorB: String): [Element, Element] => {
   const grad = document.createElement('div')
   base.childNodes.forEach((e: Node) => {
     grad.appendChild(e.cloneNode(true))
   })
   base.classList.add('grad-effect-base')
   grad.classList.add('grad-effect-text')
-  const [colorA, colorB] = getColors()
   grad.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB})`
   base.appendChild(grad)
   const box = document.createElement('div')
@@ -102,13 +101,15 @@ export const Grad = ({ children }: any) => {
   const ref = useCallback(node => {
     if (!node) return
     const base = node.children[0]
-    const [grad, box] = setup(base)
+    const [colorA, colorB] = getColors()
+    const [grad, box] = setup(base, colorA, colorB)
     new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
       const entry = entries[0]
       if (!entry.isIntersecting) { return }
       doAnime(base, grad, box).onfinish = () => {
         base.removeChild(grad)
         base.removeChild(box)
+        base.classList.remove('grad-effect-base')
       }
       object.unobserve(base)
     }).observe(base)
@@ -194,6 +195,58 @@ export const GradImg = ({ children }: any) => {
       <style jsx>{`
         .container
           font-size 0
+      `}</style>
+    </div>
+  )
+}
+
+export const GradLink = ({ children, href, target, rel }: any) => {
+  const ref = useCallback(node => {
+    if (!node) return
+    const base = node.children[0]
+    const [colorA, colorB] = getColors()
+    const linearGrad = `linear-gradient(to right, ${colorA}, ${colorB})`
+    base.style.borderImage = `${linearGrad} 1`
+    base.onmouseenter = ({ target }: SyntheticEvent) => {
+      if (target instanceof HTMLAnchorElement) {
+        target.style.backgroundImage = linearGrad
+      }
+    }
+    base.onmouseleave = ({ target }: SyntheticEvent) => {
+      if (target instanceof HTMLAnchorElement) {
+        target.style.backgroundImage = 'none'
+      }
+    }
+    const [grad, box] = setup(base, colorA, colorB)
+    new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
+      const entry = entries[0]
+      if (!entry.isIntersecting) { return }
+      doAnime(base, grad, box).onfinish = () => {
+        base.removeChild(grad)
+        base.removeChild(box)
+        base.classList.remove('grad-effect-base')
+      }
+      object.unobserve(base)
+    }).observe(base)
+  }, [])
+  return (
+    <div ref={ref} className="container">
+      <a className="link" href={href} target={target} rel={rel}>{children}</a>
+
+      <style jsx>{`
+        .container
+          overflow hidden
+        .link
+          display inline-block
+          padding-bottom 2px
+          border-bottom 1px solid green
+          overflow hidden
+          &:hover
+            padding-bottom 1px
+            border-bottom 2px solid green
+            background-clip text
+            -webkit-background-clip text
+            -webkit-text-fill-color transparent
       `}</style>
     </div>
   )

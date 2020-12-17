@@ -10,7 +10,6 @@
     "deploy": "npm run build && npm run export"
   },
   "dependencies": {
-    "@types/luxon": "^1.25.0",
     "babyparse": "^0.4.6",
     "classnames": "^2.2.6",
     "install": "^0.13.0",
@@ -19,16 +18,19 @@
     "npm": "^6.14.9",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-scroll": "^1.8.1",
     "sass": "^1.29.0",
     "stylus": "^0.54.8",
     "wpapi": "^1.2.1"
   },
   "devDependencies": {
+    "@types/luxon": "^1.25.0",
     "@types/babyparse": "0.0.30",
     "@types/classnames": "^2.2.11",
     "@types/node": "^14.14.9",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/react-scroll": "^1.8.2",
     "styled-jsx-plugin-postcss": "^4.0.0",
     "styled-jsx-plugin-stylus": "0.0.4",
     "typescript": "4.1"

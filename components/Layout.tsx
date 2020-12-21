@@ -82,7 +82,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
         body
           margin 0
           padding 0
-          {/* background-image: url('/_/Top_1366.png') */}
+          background-image: url('/_/Top_1366.png')
           background-repeat no-repeat
           background-position left top
           font-family Apercu, 'Noto Sans JP', sans-serif

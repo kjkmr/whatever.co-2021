@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import classNames from 'classnames/bind'
 
 const resources = {
   'en': {
@@ -44,4 +45,11 @@ export function t(key: string): string {
     }
   }
   return typeof result == 'string' ? result : `{${key}}`
+}
+
+export function LangStyle(classes?: string): string {
+  const router = useRouter()
+  const langStyle: { [key: string]: any } = {}
+  langStyle[router.locale!] = true;
+  return classNames(classes, langStyle)
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { Entry, Tag, getLatestNews, getWorksByTag } from 'lib/api'
-import { t } from 'lib/i18n'
+import { t, LangStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
@@ -38,14 +38,14 @@ const Showreel = () => (
 )
 
 const Crossborder = () => (
-  <div className="container">
+  <div className={LangStyle('container')}>
     <div className="title">
       <Grad><h1>Crossborder</h1></Grad>
       <Grad><h1>Creative Studio</h1></Grad>
     </div>
     <div className="desc">
       <Grad><h2>{t('index.whateveris1')}</h2></Grad>
-      <Grad><h2 style={{ marginLeft: 'calc((100vw - 80px) * 0.14)' }}>{t('index.whateveris2')}</h2></Grad>
+      {t('index.whateveris2') ? <Grad><h2 style={{ marginLeft: 'calc((100vw - 80px) * 0.14)' }}>{t('index.whateveris2')}</h2></Grad> : null}
     </div>
     <div className="link">
       <Link href="/about">
@@ -97,6 +97,12 @@ const Crossborder = () => (
           height 60px
           background-color black
           margin-top -31px
+      .en
+        .desc
+          margin-top calc((100vw - 80px) * 0.0505)
+          margin-left calc((100vw - 80px) * 0.0615)
+          h2
+            font-size calc((100vw - 80px) * 0.0358)
     `}</style>
   </div>
 )

@@ -1,8 +1,9 @@
 import { ReactNode } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import Header from 'components/Header'
+import Footer from 'components/Footer'
 import Menu from './Menu'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
 
 type Props = {
   showHeader?: boolean
@@ -12,6 +13,9 @@ type Props = {
 }
 
 const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
+  const router = useRouter()
+  const templateStyle: { [prop: string]: string } = {}
+  // templateStyle.backgroundImage = `url(/_/Top_1366_${router.locale!}.png)`
   return (
     <div>
       <Head>
@@ -23,7 +27,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js" integrity="sha512-oAY57i8MXmaOP7pAylNLnULAM4QLV3uGnvnXVY4zF229/zFzTvG2/5YIgH8iN8oZR2hnbkiDPd4JCJGaH4oG6g==" crossOrigin="anonymous"></script>
       </Head>
 
-      <div className="container" >
+      <div className="container" style={templateStyle}>
         <div className="contents">
           <Menu />
           <div className="main">
@@ -39,6 +43,8 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
         .container
           position relative
           width 100%
+          background-repeat no-repeat
+          background-position left top
         .contents
           display flex
           align-items flex-start
@@ -82,9 +88,6 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
         body
           margin 0
           padding 0
-          background-image: url('/_/Top_1366.png')
-          background-repeat no-repeat
-          background-position left top
           font-family Apercu, 'Noto Sans JP', sans-serif
           font-size 1.5em
           font-weight 200

@@ -70,7 +70,7 @@ const Menu = () => {
           width calc(100vw - 205px * 2)
           height calc(100vh - 152px * 2)
           padding 152px 205px
-          {/* background-image url(/_/menu.png)
+          {/* background-image url(/_/menu_en.png)
           background-repeat no-repeat */}
           background-color #333333
           ul
@@ -89,8 +89,9 @@ const Menu = () => {
             a
               color white
           .sns
-            float right
-            margin-top 166px
+            position absolute
+            right 205px
+            bottom 156px
         .button
           position relative
           z-index 1

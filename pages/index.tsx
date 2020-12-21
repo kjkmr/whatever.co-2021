@@ -1,10 +1,11 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
-import { Entry, Tag, getLatestNews, getWorksByTag } from '../lib/api'
-import Layout from '../components/Layout'
-import WorkTag from '../components/WorkTag'
-import { Grad, GradImg } from '../components/Grad'
+import { Entry, Tag, getLatestNews, getWorksByTag } from 'lib/api'
+import { t } from 'lib/i18n'
+import Layout from 'components/Layout'
+import WorkTag from 'components/WorkTag'
+import { Grad, GradImg } from 'components/Grad'
 
 const Showreel = () => (
   <div className="reel">
@@ -43,8 +44,8 @@ const Crossborder = () => (
       <Grad><h1>Creative Studio</h1></Grad>
     </div>
     <div className="desc">
-      <Grad><h2>Whateverは様々な領域を越えて活動する</h2></Grad>
-      <Grad><h2 style={{ marginLeft: 'calc((100vw - 80px) * 0.14)' }}>クロスボーダー・クリエイティブ・スタジオです。</h2></Grad>
+      <Grad><h2>{t('index.whateveris1')}</h2></Grad>
+      <Grad><h2 style={{ marginLeft: 'calc((100vw - 80px) * 0.14)' }}>{t('index.whateveris2')}</h2></Grad>
     </div>
     <div className="link">
       <Link href="/about">

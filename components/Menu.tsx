@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import classNames from 'classnames/bind'
+import ContactForm from 'components/ContactForm'
+import SNSButtons from 'components/SNSButtons'
 
 const LangLink = ({ lang, label }: { lang: string, label: string }) => {
   const { locale, route } = useRouter()
@@ -25,8 +27,9 @@ const Menu = () => {
   const onclick = () => { setOpened(!opened) }
   return (
     <div className="container">
+      <div className="langselect"><LangLink lang="ja" label="JA" /> / <LangLink lang="en" label="EN" /> / <LangLink lang="zh-hans" label="ZH" /></div>
       <div className="black"></div>
-      <div className="menu" style={{ display: opened ? 'block' : 'none' }}>
+      <div className="menu" style={{ display: opened ? 'flex' : 'none' }}>
         <ul>
           <li><Link href="/"><a>Top</a></Link></li>
           <li><Link href="/work/category/all"><a>Work</a></Link></li>
@@ -35,13 +38,15 @@ const Menu = () => {
           <li><Link href="/news"><a>News</a></Link></li>
           <li><Link href="/contact"><a>Contact</a></Link></li>
         </ul>
-        <div className="contact"></div>
+        <div className="contact">
+          <ContactForm />
+          <div className="sns"><SNSButtons /></div>
+        </div>
       </div>
       <button className={classNames('button', { close: opened })} onClick={onclick}>
         <div className="l1"></div>
         <div className="l2"></div>
       </button>
-      <div className="langselect"><LangLink lang="ja" label="JA" /> / <LangLink lang="en" label="EN" /> / <LangLink lang="zh-hans" label="ZH" /></div>
 
       <style jsx>{`
         .container
@@ -56,21 +61,21 @@ const Menu = () => {
           width 80px
           height 80px      
           background-color #000
-          {/* background-image url(/_/menu-button.png)
-          opacity 0.5 */}
         .menu
           display none
+          justify-content space-between
           position absolute
           top 0
           left 0
-          width calc(1366px - 205px * 2)
-          height calc(768px - 156px * 2)
-          padding 156px 205px
-          {/* background-image url(/_/menu.png) */}
-          background-repeat no-repeat
+          width calc(100vw - 205px * 2)
+          height calc(100vh - 152px * 2)
+          padding 152px 205px
+          {/* background-image url(/_/menu.png)
+          background-repeat no-repeat */}
           background-color #333333
           ul
             margin 0
+            margin-top 4px
             padding 0
           li
             list-style-type none
@@ -83,6 +88,9 @@ const Menu = () => {
               margin-bottom 57px
             a
               color white
+          .sns
+            float right
+            margin-top 166px
         .button
           position relative
           z-index 1

@@ -5,7 +5,7 @@ import Header from 'components/Header'
 import Footer from 'components/Footer'
 import Menu from './Menu'
 
-const useTemplate = 0
+const useTemplate = 1
 
 type Props = {
   showHeader?: boolean
@@ -17,7 +17,7 @@ type Props = {
 const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
   const templateStyle: { [prop: string]: string } = {}
   if (useTemplate) {
-    templateStyle.backgroundImage = `url(/_/About_index_${useRouter().locale!}.png)`
+    templateStyle.backgroundImage = `url(/_/About_detail_01_${useRouter().locale!}.png)`
   }
   return (
     <div>
@@ -92,7 +92,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
           margin 0
           padding 0
           font-family Apercu, 'Noto Sans JP', sans-serif
-          font-size 1.5em
+          font-size 1.5rem
           font-weight 200
         a
           text-decoration none

@@ -1,63 +1,85 @@
 import Link from 'next/link'
-import Layout from '../../components/Layout'
-import { Header, Footer, SectionTitle } from '../../components/About'
+import { t, LangStyle } from 'lib/i18n'
+import Layout from 'components/Layout'
+import { Header, Footer, SectionTitle } from 'components/About'
 
 
 const Section1 = () => (
   <div className="container">
-    <SectionTitle num="01" nx={-4} title="Knowledge of creative development in a variety of areas" />
+    <SectionTitle num="01" nx={-5} tx={-4} title={t('about.genres.1.title')} />
     <div className="t">
-      <p>We have been engaged in a wide variety of creative projects that have produced results, regardless of the domain. We have been involved in a wide range of creative projects, from strategic creative work such as brand visioning and brand issue identification, to communication development such as TV commercials and digital campaigns, to content production such as TV programs and product design, and from shop design to permanent airport installations. Even projects.</p>
-      <p>These seemingly unrelated fields of creative development are actually the same in terms of the ideas they require and the technical and production skills needed to realize them. In fact, through my experience in various fields, I have developed the development and production skills to deal with any issue. In addition, we are able to look at the issues that need to be solved from a holistic perspective that is not bound by genre, and we are able to find the best ideas and implement the best solutions.</p>
+      {t('about.genres.1.body').split('\n').map((line, index) => (<p key={index}>{line}</p>))}
     </div>
-    <h2>Example of planning and production</h2>
+    <h2>{t('about.genres.1.example.title')}</h2>
     <ul>
-      <li><span>Branding</span><br />Brand logo, brand guidelines, vision statement, etc.</li>
-      <li><span>Product</span><br />Product concepts, product design, web services, prototyping, etc.</li>
-      <li><span>Marketing</span><br />TV commercials, OOH, websites, apps, events, installations, etc.</li>
-      <li><span>Content</span><br />Music videos, TV shows, AR/VR content, etc.</li>
-      <li><span>Space</span><br />Permanent exhibitions, shop design, event design, etc.</li>
+      {[1, 2, 3, 4, 5].map(n => (
+        <li key={n}><span>{t(`about.genres.1.example.${n}.name`)}</span><br />{t(`about.genres.1.example.${n}.content`)}</li>
+      ))}
     </ul>
     <div className="images">
-      <img src="/about/genre/image.jpg" alt="" width={403} height={403} style={{ top: 0, right: 160 }} />
-      <img src="/about/genre/image-1@2x.jpg" alt="" width={341} height={191} style={{ top: 284, right: 0 }} />
-      <img src="/about/genre/image-2@2x.jpg" alt="" width={205} height={205} style={{ top: 540, right: 220 }} />
-      <img src="/about/genre/image-3@2x.jpg" alt="" width={205} height={205} style={{ top: 670, right: 80 }} />
-      <img src="/about/genre/image-4@2x.jpg" alt="" width={568} height={321} style={{ top: 946, right: 0 }} />
+      <img src="/about/genres/image@2x.jpg" alt="" className="i1" />
+      <img src="/about/genres/image-1@2x.jpg" alt="" className="i2" />
+      <img src="/about/genres/image-2@2x.jpg" alt="" className="i3" />
+      <img src="/about/genres/image-3@2x.jpg" alt="" className="i4" />
+      <img src="/about/genres/image-4@2x.jpg" alt="" className="i5" />
     </div>
     <style jsx>{`
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .container
         position relative
-        margin-top 193px
-        margin-left 80px
+        margin-top vwpx(159)
+        margin-left vwpx(80)
         margin-bottom 228px
+        height vwpx(1293)
+        overflow hidden
       .t
-        width 603px
-        font-size 16px
+        width vwpx(522.7)
         line-height 2em
-        margin-top 33px
-        margin-bottom 67px
+        margin-top vwpx(43)
+        margin-bottom vwpx(87)
         p
-          margin-top 32px
+          margin-top vwpx(30)
       h2
-        font-size 24px
+        font-size vwpx(20)
         font-weight bold
-        margin-bottom 52px
+        margin-bottom vwpx(40)
       ul
         margin 0
-        margin-left 52px
+        margin-left 10px
         padding 0
+        width 510px
         list-style-type '- '
         li
           margin 0
-          margin-bottom 20px
+          margin-bottom 24px
           padding 0
-          font-size 16px
-          line-height 2em
+          font-size 1.5rem
+          line-height 2.15em
           >span
-            font-weight 400
+            font-weight bold
       .images img
         position absolute
+        &.i1
+          top 0
+          right 0
+          width vwpx(523)
+        &.i2
+          top vwpx(366)
+          right vwpx(208)
+          width vwpx(231)
+        &.i3
+          top vwpx(531)
+          right vwpx(80)
+          width vwpx(185)
+        &.i4
+          top vwpx(842)
+          right vwpx(142)
+          width vwpx(461)
+        &.i5
+          top vwpx(1062)
+          right 0
+          width vwpx(231)
     `}</style>
   </div>
 )
@@ -274,7 +296,7 @@ const Section3 = () => (
 const GenrePage = () => (
   <Layout title="About" footer={<Footer left="profession" right="cultures" />}>
     <div className="container">
-      <Header title="genres" desc="At Whatever, we do exactly what our name implies - we create everything. From global brand vision development to advertising, TV shows, products, and stores. We make the most of our team’s ability to “think and create” to transcend the boundaries of media and genres, from planning to development and implementation of never-before-seen experiences." />
+      <Header title="Genres" subtitle={t('about.genres.title')} desc={t('about.genres.description')} />
       <Section1 />
       <Section2 />
       <Section3 />

@@ -1,31 +1,55 @@
 import Link from 'next/link'
+import { t, LangStyle } from 'lib/i18n'
 import { Grad } from './Grad'
 
-export const Header = ({ title, desc }: { title: string, desc: string }) => (
-  <div className="header">
-    <Grad><div className="t1">Crossing the border of</div></Grad>
-    <Grad><div className="t2">{title}</div></Grad>
-    <div className="t3"><Grad><div dangerouslySetInnerHTML={{ __html: desc }} /></Grad></div>
+export const Header = ({ title, subtitle, desc }: { title: string, subtitle: string, desc: string }) => (
+  <div className={LangStyle('header')}>
+    <div className="text">
+      <Grad><div className="t1">Crossborder :</div></Grad>
+      <Grad><div className="t2">{title}</div></Grad>
+      {subtitle ? <Grad><div className="t3" >{subtitle}</div></Grad> : null}
+      <div className="t4"><Grad><div dangerouslySetInnerHTML={{ __html: desc.replace(/\n/g, '<br />') }} /></Grad></div>
+    </div>
+    <div className="image">
+      <img src="/about/genres/head@2x.png" alt="" />
+    </div>
     <style jsx>{`
+      vwp(p)
+        'calc((100vw - 80px) * %s)' % p
       .header
+        display flex
+        justify-content space-between
         font-size 0
-        margin 40px
-        margin-top 48px
+        margin 0
+        margin-top vwp(0.031)
+        margin-left vwp(0.031)
+      .text
+        width vwp(0.44)
       .t1
         display inline-block
-        margin-bottom 8px
-        font-size 32px
+        margin-bottom vwp(0.0095)
+        font-size vwp(0.0249)
         font-weight bold
       .t2
         display inline-block
-        margin-bottom 71px
-        font-size 108px
+        margin-left vwp(-0.004)
+        margin-bottom vwp(0.0325)
+        font-size vwp(0.109)
         font-weight bold
       .t3
-        width 534px
-        font-size 24px
+        display inline-block
+        margin-bottom vwp(0.031)
+        font-size vwp(0.0234)
         font-weight bold
-        line-height 1.75em
+      .t4
+        font-size vwp(0.014)
+        font-weight bold
+        line-height 2.15em
+      .image
+        img
+          width vwp(0.438)
+          margin-top vwp(-0.0165)
+          margin-right vwp(0.062)
     `}</style>
   </div>
 )
@@ -80,26 +104,26 @@ export const Footer = ({ left, right }: { left: string, right: string }) => (
 
 export const SectionTitle = ({ num, title, nx, tx, ty }: { num: string, title: string, nx?: number, tx?: number, ty?: number }) => (
   <div className="head">
-    <div className="num" style={{ marginLeft: nx }}>{num}</div>
-    <div className="title" style={{ marginTop: (ty || 0), marginLeft: 45 + (tx || 0) }} dangerouslySetInnerHTML={{ __html: title }} />
+    <div className="num" style={{ marginLeft: `calc((100vw - 80px) * ${(nx || 0) / (1366 - 80)})` }}>{num}</div>
+    <div className="title" style={{ marginTop: (ty || 0), marginLeft: `calc((100vw - 80px) * ${(45 + (tx || 0)) / (1366 - 80)})` }} dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, '<br />') }} />
     <style jsx>{`
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .head
         position relative
         z-index 1
         display flex
-        padding-top 50px
-        width 752px
+        padding-top vwpx(50)
       .num
-        font-size 108px
+        font-size vwpx(108)
         font-weight bold
         -webkit-text-stroke 1px black
         -webkit-text-fill-color transparent
-        margin-top 5px
+        margin-top vwpx(5)
       .title
-        font-size 36px
+        font-size vwpx(30)
         font-weight bold
-        margin-top 1px
-        line-height 1.5em
+        line-height 1.81em
     `}</style>
   </div>
 )

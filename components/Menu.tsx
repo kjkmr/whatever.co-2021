@@ -22,11 +22,12 @@ const LangLink = ({ lang, label }: { lang: string, label: string }) => {
   )
 }
 
-const Menu = () => {
+const Menu = ({ title }: { title?: string }) => {
   const [opened, setOpened] = useState(false)
   const onclick = () => { setOpened(!opened) }
   return (
     <div className="container">
+      <div className="title">{title}</div>
       <div className="langselect"><LangLink lang="ja" label="JA" /> / <LangLink lang="en" label="EN" /> / <LangLink lang="zh-hans" label="ZH" /></div>
       <div className="black"></div>
       <div className="menu" style={{ display: opened ? 'flex' : 'none' }}>
@@ -61,6 +62,16 @@ const Menu = () => {
           width 80px
           height 80px      
           background-color #000
+        .title
+          position absolute
+          top 120px
+          left 49px
+          width 200px
+          font-size 2rem
+          font-weight bold
+          transform-origin top left
+          transform rotate(90deg)
+          user-select none
         .menu
           display none
           justify-content space-between

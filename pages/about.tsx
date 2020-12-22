@@ -232,7 +232,7 @@ const Workstyle = () => (
 )
 
 const AboutPage = () => (
-  <Layout title="ABOUT">
+  <Layout title="About">
     <div className={LangStyle()}>
       <div className="head">
         <Grad><h1>Crossborder</h1></Grad>

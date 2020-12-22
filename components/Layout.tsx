@@ -32,7 +32,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
 
       <div className="container" style={templateStyle}>
         <div className="contents">
-          <Menu />
+          <Menu title={title} />
           <div className="main">
             {showHeader ? <Header /> : <div />}
             {children}

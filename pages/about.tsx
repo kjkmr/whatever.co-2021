@@ -1,65 +1,69 @@
 import Link from 'next/link'
-import { t } from 'lib/i18n'
+import { t, LangStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 
 const Genres = () => (
   <div className="genres">
-    <div className="image"><GradImg><img src="/about/image.jpg" width="1028" height="578" /></GradImg></div>
     <div className="inner">
-      <Grad><h2>Crossing the border of</h2></Grad>
-      <Grad><h1>genres</h1></Grad>
-      <Grad><p>At Whatever, we do exactly what the name implies: we create anything. From global brand vision development to advertising, TV shows, products, and stores. We make the most of our team’s ability to “think and create” to transcend the boundaries of media and genres, from planning to development and implementation of never-before-seen experiences.</p></Grad>
-      <div className="learn"><Grad><Link href="/about/genres"><a>Learn more</a></Link></Grad></div>
+      <div className="image"><GradImg><img src="/about/genres@2x.png" /></GradImg></div>
+      <div className="content">
+        <Grad><h3>Crossborder :</h3></Grad>
+        <Grad><h1>Genres</h1></Grad>
+        <Grad><h2>{t('about.index.genres.title')}</h2></Grad>
+        <Grad><p dangerouslySetInnerHTML={{ __html: t('about.index.genres.description').replace('\n', '<br />') }}></p></Grad>
+        <div className="more"><Grad><Link href="/about/genres"><a>Show more</a></Link></Grad></div>
+      </div>
     </div>
     <style jsx>{`
       .genres
-        {/* opacity 0.5 */}
-        position relative
-        padding-top 289px
-        padding-left 603px
-        padding-right 60px
-        margin-bottom 93px
-      .image
-        position absolute
-        top 0
-        left 0
+        width 100%
       .inner
-        position relative
-        background-color white
-        padding-top 29px
-        padding-left 60px
-      h2
+        display flex
+        justify-content space-between
+      .image img
+        width calc((100vw - 80px) * 0.3755)
+        margin-left calc((100vw - 80px) * 0.062)
+        margin-top calc((100vw - 80px) * 0.0465)
+      .content
+        border-top 1px solid #D0D0D0
+        width calc((100vw - 80px) * 0.5)
+        padding-top calc((100vw - 80px) * 0.081)
+      h3
         display inline-block
         overflow hidden
-        font-size 36px
-        margin-bottom 0
-        margin-left -2px
+        font-size calc((100vw - 80px) * 0.0217)
+        margin 0
       h1
         display inline-block
         overflow hidden
-        font-size 72px
-        margin-top 10px
+        font-size calc((100vw - 80px) * 0.0653)
+        margin 0
+        margin-top calc((100vw - 80px) * 0.0045)
         margin-bottom 17px
-        margin-left -4px
+        margin-left calc((100vw - 80px) * -0.002)
+      h2
+        display inline-block
+        overflow hidden
+        font-size calc((100vw - 80px) * 0.0187)
+        margin 0
+        margin-top calc((100vw - 80px) * 0.0045)
       p
-        line-height 2.0em
-        margin-left -2px
-        letter-spacing -0.01em
-      .learn
-        display flex
-        justify-content flex-end
+        margin-top calc((100vw - 80px) * 0.014)
+        margin-right calc((100vw - 80px) * 0.06)
+        line-height 2em
+      .more
         a
-          display block
+          display inline-block
           font-weight bold
-          font-size 18px
+          font-size 2rem
           border none
           border-bottom 1px solid
           background none
-          margin-top 10px
+          margin-top calc((100vw - 80px) * 0.019)
           margin-right 20px
-          padding-bottom 5px
-          padding-right 55px
+          padding-bottom 11px
+          padding-right 30px
           padding-left 0
     `}</style>
   </div>
@@ -185,20 +189,25 @@ const Profession = () => (
 
 const AboutPage = () => (
   <Layout title="ABOUT">
-    <div className="head">
-      <Grad><h1>Crossborder</h1></Grad>
-      <Grad><h1>Creative Studio</h1></Grad>
-    </div>
-    <div className="text">
-      <p><Grad><span>{t('about.index.statement1')}</span></Grad></p>
-      <p>{t('about.index.statement2').split('\n').map((line => <Grad><span>{line}</span></Grad>))}</p>
-      <p>{t('about.index.statement3').split('\n').map((line => <Grad><span>{line}</span></Grad>))}</p>
-      <p>{t('about.index.statement4').split('\n').map((line => <Grad><span>{line}</span></Grad>))}</p>
+    <div className={LangStyle()}>
+      <div className="head">
+        <Grad><h1>Crossborder</h1></Grad>
+        <Grad><h1>Creative Studio</h1></Grad>
+      </div>
+      <div className="text">
+        {[1, 2, 3, 4].map(n => (
+          <div key={n} className="p">
+            {t(`about.index.statement${n}`).split('\n').map((line, index) => (
+              <Grad key={index}><span>{line}</span></Grad>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
 
     <Genres />
-    <Cultures />
-    <Profession />
+    {/* <Cultures />
+    <Profession /> */}
 
     <style jsx>{`
       .head
@@ -214,17 +223,22 @@ const AboutPage = () => (
           overflow hidden
       .text
         margin-left calc((100vw - 80px) * 0.062)
-        margin-bottom 157px
+        margin-bottom calc((100vw - 80px) * 0.0915)
         font-size calc((100vw - 80px) * 0.01557)
         font-weight bold
-        line-height 1.15em
-        p
+        line-height calc((100vw - 80px) * 0.018)
+        >div.p
           margin 0
           margin-bottom calc((100vw - 80px) * 0.0325)
         span
           display inline-block
           overflow hidden
           margin-bottom calc((100vw - 80px) * 0.0101)
+      .en
+        .head
+          margin-bottom calc((100vw - 80px) * 0.0675)
+        .text
+          font-size calc((100vw - 80px) * 0.0171)
     `}</style>
   </Layout>
 )

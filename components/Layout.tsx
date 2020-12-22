@@ -52,7 +52,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
           display flex
           align-items flex-start
         .main
-          margin auto
+          width 100%
       `}</style>
 
       <style jsx global>{`

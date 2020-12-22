@@ -15,6 +15,18 @@ export const resources = {
         statement2: 'The world has become a much closer place now that we are all online, \nbut it’s also brought us closer to boundaries we never noticed before.\nBut it’s also brought us closer to boundaries that we never noticed before.\nWe’re going to jump over those boundaries.\nIf we know the goodness of that world, we can make this one better.\nBecause there will be new emotions created by connecting this world with that one.',
         statement3: 'With bases in Tokyo, New York, Taipei, and Berlin, we are able to transcend the borders of country and language.\nWe cross borders in a variety of fields, from branding to TV programs, products, and new business development.\nWe cross the borders of the creative process, which is neither just thinking about it nor just creating it.',
         statement4: 'By doing so, it doesn’t matter whether you are here or there.\nWe will realize ideas that will bring the world together and inspire.',
+        genres: {
+          title: '',
+          description: 'At Whatever, we do exactly what the name implies: we create anything. From global brand vision development to advertising, TV shows, products, and stores. We make the most of our team’s ability to “think and create” to transcend the boundaries of media and genres, from planning to development and implementation of never-before-seen experiences.',
+        },
+        cultures: {
+          title: '',
+          description: 'At Whatever, we have a proven track record of working with brands around the world, which enables us to support branding and content development across borders and cultures.\nWith four offices in Tokyo, New York, Taiwan and Berlin, and a world-class staff, Whatever can plan and produce world-class brand communications and products.',
+        },
+        workstyle: {
+          title: '',
+          description: 'Whatever is also actively involved in in-house product and business development.\nWe also provide product development and R&D support for a variety of brands, as well as branding and investment support for startups.',
+        },
       }
     }
   },

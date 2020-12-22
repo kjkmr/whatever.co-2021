@@ -4,13 +4,13 @@ import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 
 const Genres = () => (
-  <div className="container">
+  <div className={LangStyle('container')}>
     <div className="inner">
       <div className="image"><GradImg><img src="/about/genres@2x.png" /></GradImg></div>
       <div className="content">
         <Grad><h3>Crossborder :</h3></Grad>
         <Grad><h1>Genres</h1></Grad>
-        <Grad><h2>{t('about.index.genres.title')}</h2></Grad>
+        {t('about.index.genres.title') ? <Grad><h2>{t('about.index.genres.title')}</h2></Grad> : null}
         <Grad><p dangerouslySetInnerHTML={{ __html: t('about.index.genres.description').replace('\n', '<br />') }}></p></Grad>
         <div className="more"><Grad><Link href="/about/genres"><a>Show more</a></Link></Grad></div>
       </div>
@@ -68,17 +68,25 @@ const Genres = () => (
           padding-bottom 11px
           padding-right 30px
           padding-left 0
+      .en
+        h1
+          margin-bottom vwp(0.005)
+        p
+          font-size 1.6rem
+          line-height 1.9em
+        .more a
+          margin-top vwp(0.018)
     `}</style>
   </div>
 )
 
 const Cultures = () => (
-  <div className="container">
+  <div className={LangStyle('container')}>
     <div className="inner">
       <div className="content">
         <Grad><h3>Crossborder :</h3></Grad>
         <Grad><h1>Cultures</h1></Grad>
-        <Grad><h2>{t('about.index.cultures.title')}</h2></Grad>
+        {t('about.index.cultures.title') ? <Grad><h2>{t('about.index.cultures.title')}</h2></Grad> : null}
         <Grad><p dangerouslySetInnerHTML={{ __html: t('about.index.cultures.description').replace('\n', '<br />') }}></p></Grad>
         <div className="more"><Grad><Link href="/about/cultures"><a>Show more</a></Link></Grad></div>
       </div>
@@ -100,7 +108,7 @@ const Cultures = () => (
         margin-top vwp(0.049)
       .content
         border-top 1px solid #D0D0D0
-        width vwp(0.5)
+        width vwp(0.439)
         padding-top vwp(0.071)
       h3
         display inline-block
@@ -123,7 +131,6 @@ const Cultures = () => (
         margin-top vwp(0.0045)
       p
         margin-top vwp(0.014)
-        margin-right vwp(0.06)
         line-height 2em
       .more
         a
@@ -138,18 +145,25 @@ const Cultures = () => (
           padding-bottom 11px
           padding-right 30px
           padding-left 0
+      .en
+        .content
+          padding-top vwp(0.0805)
+        p
+          margin-top vwp(0.006)
+          font-size 1.6rem
+          line-height 1.9em
     `}</style>
   </div>
 )
 
 const Workstyle = () => (
-  <div className="container">
+  <div className={LangStyle('container')}>
     <div className="inner">
       <div className="image"><GradImg><img src="/about/workstyle@2x.png" /></GradImg></div>
       <div className="content">
         <Grad><h3>Crossborder :</h3></Grad>
         <Grad><h1>Workstyle</h1></Grad>
-        <Grad><h2>{t('about.index.workstyle.title')}</h2></Grad>
+        {t('about.index.workstyle.title') ? <Grad><h2>{t('about.index.workstyle.title')}</h2></Grad> : null}
         <Grad><p dangerouslySetInnerHTML={{ __html: t('about.index.workstyle.description').replace('\n', '<br />') }}></p></Grad>
         <div className="more"><Grad><Link href="/about/workstyle"><a>Show more</a></Link></Grad></div>
       </div>
@@ -191,7 +205,7 @@ const Workstyle = () => (
         margin-top vwp(0.0045)
       p
         margin-top vwp(0.014)
-        margin-right vwp(0.065)
+        margin-right vwp(0.0625)
         line-height 2em
       .more
         a
@@ -206,6 +220,13 @@ const Workstyle = () => (
           padding-bottom 11px
           padding-right 30px
           padding-left 0
+      .en
+        .content
+          padding-top vwp(0.1185)
+        p
+          margin-top vwp(0.002)
+          font-size 1.6rem
+          line-height 1.9em
     `}</style>
   </div>
 )
@@ -260,10 +281,9 @@ const AboutPage = () => (
           overflow hidden
           margin-bottom vwp(0.0101)
       .en
-        .head
-          margin-bottom vwp(0.0675)
         .text
           font-size vwp(0.0171)
+          margin-bottom vwp(0.085)
     `}</style>
   </Layout>
 )

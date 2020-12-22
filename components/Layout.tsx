@@ -5,7 +5,7 @@ import Header from 'components/Header'
 import Footer from 'components/Footer'
 import Menu from './Menu'
 
-const useTemplate = 1
+const useTemplate = 0
 
 type Props = {
   showHeader?: boolean

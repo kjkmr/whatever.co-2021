@@ -1,32 +1,6 @@
 import { useRouter } from 'next/router'
 import classNames from 'classnames/bind'
-
-const resources = {
-  'en': {
-    contactform: {
-      contacthere: 'For new business, career and media inquires, contact us.',
-      inquiry: 'Contact us',
-      register: 'Subscribe to our newsletter',
-    },
-    index: {
-      whateveris1: 'Whatever is a cross-border creative studio.',
-      whateveris2: '',
-    },
-  },
-  'ja': {
-    contactform: {
-      contacthere: '新規プロジェクト、採用、メディア掲載など各種ご相談はこちらまで',
-      inquiry: 'お問い合わせ',
-      register: 'ニュースレターに登録',
-    },
-    index: {
-      whateveris1: 'Whateverは様々な領域を越えて活動する',
-      whateveris2: 'クロスボーダー・クリエイティブ・スタジオです。',
-    }
-  },
-  'zh-hans': {},
-}
-
+import { resources } from './resources'
 
 export function t(key: string): string {
   const router = useRouter()

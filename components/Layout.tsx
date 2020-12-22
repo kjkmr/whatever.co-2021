@@ -5,6 +5,8 @@ import Header from 'components/Header'
 import Footer from 'components/Footer'
 import Menu from './Menu'
 
+const useTemplate = 1
+
 type Props = {
   showHeader?: boolean
   title?: string
@@ -13,9 +15,10 @@ type Props = {
 }
 
 const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
-  const router = useRouter()
   const templateStyle: { [prop: string]: string } = {}
-  // templateStyle.backgroundImage = `url(/_/Top_1366_${router.locale!}.png)`
+  if (useTemplate) {
+    templateStyle.backgroundImage = `url(/_/About_index_${useRouter().locale!}.png)`
+  }
   return (
     <div>
       <Head>

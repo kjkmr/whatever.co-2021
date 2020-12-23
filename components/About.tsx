@@ -90,14 +90,14 @@ export const Footer = ({ left, right }: { left: string, right: string }) => (
           border-top 1px solid #fff
           width 40px
         .cb
-          font-size 12px
-          font-weight 400
+          font-size 1.2rem
+          font-weight normal
           letter-spacing 0.1em
           margin-top 2px
         .title
-          font-size 24px
-          font-weight 700
-          margin-top 7px
+          font-size 2.4rem
+          font-weight bold
+          margin-top 8px
     `}</style>
   </div>
 )

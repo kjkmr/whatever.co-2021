@@ -113,7 +113,89 @@ export const resources = {
               roles: 'ビジネスプロデューサー,ビジネスコンサルタント,インベストメントディレクター',
             },
           }
-        }
+        },
+        3: {
+          title: '共同開発、自社プロジェクト、クリエイティブ投資',
+          body: 'やったことがない限り、本当にそのプロセスを理解したとはいえない。クライアントのためにブランディングやプロダクト開発を行うのであれば、僕ら自身もそのプロセスを身を以て体験し、頭だけでなく体でも理解しているべきなのではないか。その想いの元、Whatever では自社プロダクト開発やクライアントとの共同事業開発を積極的に行っています。こうしたプロジェクトで培われた知見を活かし、様々なブランドのプロダクト開発やR&D支援、そしてスタートアップのブランディングや投資といった事業サポートも精力的に実行しています。',
+          inhouse: {
+            title: '自社プロダクト開発',
+            body: 'ロジックだけで考えたら実現できると到底思えないような突飛なアイデアや、ビジネスになるかどうかわからないけど実現したら世の中がちょっと幸せになるようなアイデアを、なんちゃってのプロトタイプやR&Dだけで終わらせることなく、自分たちの事業として実現し社会に問うという実証実験を繰り返しています。',
+            items: {
+              1: {
+                title: 'らくがきAR',
+                link: 'rakugakiar',
+                description: '自分が描いたらくがきがARで動き出すアプリ',
+              },
+              2: {
+                title: 'Puppet Guts',
+                link: 'puppet-guts',
+                description: 'ハンドパペットに入れるための内臓型ヌイグルミ',
+              },
+              3: {
+                title: 'Wear you are',
+                link: 'wear-you-are',
+                description: '好きな場所の衛星写真を使ってTシャツやスマホケースを作れるサービス',
+              },
+              4: {
+                title: 'Discodog',
+                link: 'discodog',
+                description: 'スマホから文字やアニメーションを表示できる愛犬用LEDベスト',
+              },
+              5: {
+                title: 'WFH Jammies',
+                link: 'wfh-jammies',
+                description: 'ビデオ会議に映る部分だけがシャツになってるリモートワーカー用パジャマ',
+              },
+              6: {
+                title: 'Lyric Speaker',
+                link: 'lyric-speaker',
+                description: '歌と同期して歌詞がアニメーションするスピーカー',
+              },
+            }
+          },
+          brands: {
+            title: 'ブランドとの共同開発',
+            body: '自社プロダクト開発で培った知見やスキルを活かして、様々なブランドとコラボレーションし、プロダクトやサービスの共同開発を行っています。',
+            items: {
+              1: {
+                title: 'toio',
+                link: 'toio',
+                description: 'Sony Interactive Entertainment社「toio」のプロダクトのUI/UX開発及び、コンテンツ開発',
+              },
+              2: {
+                title: 'New Stand Tokyo',
+                link: 'new-stand-tokyo',
+                description: 'New Standの日本への誘致と、ブランドの全体クリエイティブディレクション及び店舗設計やeコマースサイトデザインなどを担当',
+              },
+              3: {
+                title: 'Minute Mint',
+                link: 'minute-mint',
+                description: '“おいしい時間のはかり方” をコンセプトにした新しいミントタブレットをUHA味覚糖・コクヨと共同開発',
+              },
+            }
+          },
+          investment: {
+            title: 'クリエイティブ投資',
+            body: '外部パートナーへの出資や労務出資を通して、自分たちが信じるようなプロダクトやサービスのビジネスとしての成長のサポートも行っています。',
+            items: {
+              1: {
+                title: 'Cotodama（Lyric Speaker）',
+                link: 'https://lyric-speaker.com/',
+                description: 'SIX，WOW，THE GUILD との共同出資で設立したジョイントベンチャー。CTO として Saqoosha が参画し、Lyric Speaker のモーショングラフィックや演出などのソフトウェア開発を担当。',
+              },
+              2: {
+                title: 'Yummy Sake',
+                link: 'https://yummysake.jp/',
+                description: 'AI × ブラインドテイスティングで好みの日本酒を判別するサービス。CTO として貴田が参画し、アルゴリズムの開発、出資、事業戦略を支援。',
+              },
+              3: {
+                title: 'Cradle',
+                link: 'https://cradle.care/',
+                description: 'Sputniko! 氏が立ち上げた卵子凍結コンサルティングサービス。CCO として川村が参画し、ブランド全体のクリエイティブディレクションを担当。',
+              },
+            }
+          },
+        },
       }
     }
   },

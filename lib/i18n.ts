@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import classNames from 'classnames/bind'
 import { resources } from './resources'
 
-export function t(key: string): string {
+function _t(key: string): string | any[] {
   const router = useRouter()
   const paths = key.split('.')
   paths.unshift(router.locale || router.defaultLocale!)
@@ -18,7 +18,15 @@ export function t(key: string): string {
       break;
     }
   }
-  return typeof result == 'string' ? result : `{${key}}`
+  return paths.length == 0 ? result : `{${key}}`
+}
+
+export function t(key: string): string {
+  return _t(key) as string
+}
+
+export function ta(key: string): any[] {
+  return _t(key) as any[]
 }
 
 export function LangStyle(classes?: string): string {

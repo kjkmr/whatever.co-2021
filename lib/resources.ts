@@ -329,7 +329,63 @@ export const resources = {
           },
         },
       },
-    }
+      cultures: {
+        title: '国と文化の境界線を越える',
+        description: 'Whatever では、世界を舞台に様々なブランドを支援して\nきた実績を活かし、国境・文化を越えたブランディングやコンテンツ開発をサポートすることができます。\n東京・ニューヨーク・台湾・ベルリンという4拠点と、\n世界最高水準の人材を活かして、世界で通用するブランド・コミュニケーションやプロダクトの企画制作が可能です。',
+        1: {
+          title: '豊富な国内・海外プロジェクトの実績',
+          body: 'Whatever では、世界を舞台に様々なブランドを支援してきた実績を活かし、クロスボーダーにブランディングや事業開発をサポートすることが可能です。日本から世界へと舞台を広げたい企業や、海外から日本市場へのエントリーを考えている企業を、東京・ニューヨーク・台湾・ベルリンという世界4拠点を活かしながらお手伝いしていきます。',
+          inhouse: '日本から海外へ進出する際のクリエイティブ支援実績',
+          overseas: '海外から日本へ進出する際のクリエイティブ支援実績',
+        },
+        2: {
+          title: '世界最高水準のクリエイティブ・チーム',
+          body: '世界を舞台に企業のマーケティングやブランディング、ビジネス開発で成果を出してきた、クリエイターやプロデューサーたちが在籍しています。ブランド・コミュニケーションのみならず、プロダクト開発や事業開発といった領域でのクリエイティブ開発を成功させてきた知見を活かし、パートナー企業の事業状況や成長ステージに合わせて、適切な支援を行っていきます。',
+          members: [
+            {
+              title: 'COO',
+              name: '川村 真司',
+              slug: 'masa',
+            },
+            {
+              title: 'Producer / Creative Director',
+              name: 'Mark Stein',
+              slug: 'mark',
+            },
+            {
+              title: 'Associate Creative Director',
+              name: 'Shiny Lee',
+              slug: 'shiny',
+            },
+            {
+              title: '???',
+              name: 'Jane Rosch',
+              slug: 'jane',
+            },
+            {
+              title: 'Design Director',
+              name: '室市 栄二',
+              slug: 'eiji',
+            },
+            {
+              title: 'Corporate Development Director',
+              name: '井上 裕太',
+              slug: 'yuta',
+            },
+            {
+              title: 'Business / Strategic Director',
+              name: '金子 佳',
+              slug: 'kei',
+            },
+            {
+              title: 'Producer',
+              name: '畑間 翔太',
+              slug: 'shota',
+            },
+          ]
+        },
+      },
+    },
   },
   'zh-hans': {},
 }

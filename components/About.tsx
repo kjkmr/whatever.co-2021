@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { t, LangStyle } from 'lib/i18n'
+import { LangStyle } from 'lib/i18n'
 import { Grad } from './Grad'
 
-export const Header = ({ title, subtitle, desc }: { title: string, subtitle: string, desc: string }) => (
+export const Header = ({ title, subtitle, desc, image, iy = 0 }: { title: string, subtitle: string, desc: string, image: string, iy?: number }) => (
   <div className={LangStyle('header')}>
     <div className="text">
       <Grad><div className="t1">Crossborder :</div></Grad>
@@ -12,7 +12,7 @@ export const Header = ({ title, subtitle, desc }: { title: string, subtitle: str
       <div className="t4"><Grad><div dangerouslySetInnerHTML={{ __html: desc.replace(/\n/g, '<br />') }} /></Grad></div>
     </div>
     <div className="image">
-      <img src="/about/genres/head@2x.png" alt="" />
+      <img src={image} alt="" style={{ marginTop: `calc((100vw - 80px) * ${iy / (1366 - 80)})` }} />
     </div>
     <style jsx>{`
       vwpx(px)
@@ -49,7 +49,6 @@ export const Header = ({ title, subtitle, desc }: { title: string, subtitle: str
       .image
         img
           width vwpx(564)
-          margin-top vwpx(-22)
           margin-right vwpx(80)
       .en
         &.header
@@ -58,8 +57,6 @@ export const Header = ({ title, subtitle, desc }: { title: string, subtitle: str
           font-size vwpx(20)
           font-weight normal
           line-height 1.9em
-        .image img
-          margin-top vwpx(-45)
     `}</style>
   </div>
 )

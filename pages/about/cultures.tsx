@@ -1,110 +1,106 @@
 import Link from 'next/link'
-import Layout from '../../components/Layout'
-import { Header, Footer, SectionTitle } from '../../components/About'
+import { t, ta, LangStyle } from 'lib/i18n'
+import Layout from 'components/Layout'
+import { Header, Footer, SectionTitle } from 'components/About'
 
 const Section1 = () => (
-  <div className="container">
-    <SectionTitle num="01" nx={-4.5} title="Extensive experience in domestic and overseas projects" />
-    <div className="t">At Whatever, we can provide cross-border branding and business development support, leveraging our experience in working with a wide range of brands around the world. We can help companies that are looking to expand from Japan to the world or enter the Japanese market from abroad with our four global offices in Tokyo, New York, Taiwan and Berlin.</div>
-    <h2 style={{ marginTop: 55 }}>In-house product development</h2>
-    <div className="logo5">
-      <img src="/about/cultures/logo_whill@2x.png" alt="" width={108} height={81} />
-      <img src="/about/cultures/logo_muji@2x.png" alt="" width={166} height={125} />
-      <img src="/about/cultures/logo_sony@2x.png" alt="" width={150} height={98} />
-      <img src="/about/cultures/Union 45@2x.png" alt="" width={167} height={36} />
-      <img src="/about/cultures/Image 1@2x.png" alt="" width={166} height={125} />
-    </div>
-    <h2 style={{ marginTop: 67, marginBottom: 23 }}>Creative support for overseas companies entering the Japanese market</h2>
-    <div className="logo4">
-      <img src="/about/cultures/logo_slack@2x.png" alt="" width={119} height={78} />
-      <img src="/about/cultures/logo_shopify@2x.png" alt="" width={132} height={86} />
-      <img src="/about/cultures/logo_airbnb@2x.png" alt="" width={119} height={78} />
-      <img src="/about/cultures/logo_google@2x.png" alt="" width={119} height={78} />
-      <img src="/about/cultures/logo_hermes@2x.png" alt="" width={137} height={103} />
-      <img src="/about/cultures/Image 2@2x.png" alt="" width={84} height={36} />
-      <img src="/about/cultures/Group 544@2x.png" alt="" width={159} height={17} />
-    </div>
+  <div className="section1">
+    <SectionTitle num="01" nx={-5} tx={{ ja: -4 }} ty={{ ja: 26 }} title={t('about.cultures.1.title')} />
+    <div className="t">{t('about.cultures.1.body')}</div>
+    <h2>{t('about.cultures.1.inhouse')}<hr /></h2>
+    <img className="logos1" src="/about/cultures/logos1@2x.png" alt="" />
+    <h2>{t('about.cultures.1.overseas')}<hr /></h2>
+    <img className="logos2" src="/about/cultures/logos2@2x.png" alt="" />
     <style jsx>{`
-      .container
-        margin-top 191px
-        margin-left 80px
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      .section1
+        margin-top vwpx(113)
+        margin-bottom vwpx(128)
+        margin-left vwpx(80)
+        width vwpx(1126)
       .t
-        font-size 16px
-        line-height 2em
-        margin-top 33px
-        width 1046px
-      .logo5
-        display grid
-        grid-template-columns repeat(5, 1fr)
-        grid-gap 0
-        width 1046px
-        img
-          justify-self center
-          align-self center
-      .logo4
-        display grid
-        grid-template-columns repeat(4, 1fr)
-        grid-gap 0
-        width 1046px
-        img
-          justify-self center
-          align-self center
-          object-fit scale-down
-          height 106px
+        line-height 3.0rem
+        margin-top vwpx(43)
+        margin-bottom vwpx(56)
+      h2
+        margin 0
+        font-size vwpx(20)
+        display flex
+        justify-content space-between
+        align-items center
+        white-space nowrap
+        hr
+          margin 0
+          border none
+          border-top 1px solid black
+          width 100%
+          margin-left vwpx(50)
+      .logos1
+        display block
+        width vwpx(1027)
+        margin-left vwpx(70)
+        margin-top vwpx(37)
+        margin-bottom vwpx(44)
+      .logos2
+        display block
+        width vwpx(1004)
+        margin-left vwpx(61)
+        margin-top vwpx(68)
     `}</style>
   </div>
 )
 
 const Member = ({ image, title, name }: { image: string, title: string, name: string }) => (
   <div className="member">
-    <img src={`/about/cultures/${image}@2x.jpg`} alt="" width={245} height={245} />
+    <img src={`/about/cultures/${image}@2x.jpg`} alt="" />
     <div className="title">{title}</div>
     <div className="name">{name}</div>
     <style jsx>{`
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .member
         font-size 0
+      img
+        width vwpx(245)
       .title
-        font-size 12px
-        font-weight 200
-        margin-top 20px
+        font-size vwpx(14)
+        font-weight light
+        line-height vwpx(14)
+        margin-top vwpx(20)
       .name
-        font-size 24px
-        font-weight 700
-        margin-top 12px
+        font-size vwpx(20)
+        font-weight bold
+        line-height vwpx(20)
+        margin-top vwpx(12)
     `}</style>
   </div>
 )
 
 const Section2 = () => (
-  <div className="container">
-    <SectionTitle num="02" nx={-3.5} title="World-class creative team" tx={-13} ty={26} />
-    <div className="t">We have creators and producers who have achieved success in corporate marketing, branding and business development around the world. With the knowledge of successful creative development in the areas of brand communication, product development, and business development, we provide appropriate support for our partner companies in accordance with their business conditions and growth stage.</div>
+  <div className="section2">
+    <SectionTitle num="02" nx={-4} title={t('about.cultures.2.title')} tx={{ ja: -3 }} ty={{ ja: 27 }} />
+    <div className="t">{t('about.cultures.2.body')}</div>
     <div className="members">
-      <Member image="masa" title="CCO" name="Masashi Kawamura" />
-      <Member image="mark" title="Producer / Creative Director" name="Mark Stein" />
-      <Member image="shiny" title="Associate Creative Director" name="Shiny Lee" />
-      <Member image="jane" title="???" name="Jane Rosch" />
-      <Member image="eiji" title="Design Director" name="Eiji Muroichi" />
-      <Member image="yuta" title="Corporate Development Director" name="Yuta Inoue" />
-      <Member image="kei" title="Business / Strategic Director" name="Kei Kaneko" />
-      <Member image="shota" title="Producer" name="Shota Hatama" />
+      {ta('about.cultures.2.members').map(m => <Member key={m.slug} image={m.slug} title={m.title} name={m.name} />)}
     </div>
     <div className="link"><Link href="/team"><a>All Members</a></Link></div>
     <style jsx>{`
-      .container
-        margin-top 71px
-        margin-left 80px
-        margin-bottom 137px
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      .section2
+        margin-top vwpx(71)
+        margin-left vwpx(80)
+        margin-bottom vwpx(137)
       .t
-        font-size 16px
-        line-height 2em
-        margin-top 35px
-        width 1125px
+        line-height 3.0rem
+        margin-top vwpx(43)
+        width vwpx(1126)
       .members
         display grid
         grid-template-columns repeat(4, 1fr)
-        grid-gap 69px 75px 
-        margin-top 64px
+        grid-gap vwpx(71) vwpx(75)
+        margin-top vwpx(60)
       .link
         margin-top 85px
         padding-right 79px
@@ -120,14 +116,12 @@ const Section2 = () => (
 )
 
 const Cultures = () => (
-  <Layout title="cultures" footer={<Footer left="genres" right="profession" />}>
+  <Layout title="About" footer={<Footer left="Genres" right="Workstyle" />}>
     <div className="container">
-      <Header title="cultures" desc="At Whatever, we have a proven track record of working with brands around the world and can support branding and content development across borders and cultures.<br/>We can plan and produce world-class brand communications and products by utilizing our four offices in Tokyo, New York, Taiwan and Berlin, and our world-class human resources." />
+      <Header title="Cultures" subtitle={t('about.cultures.title')} desc={t('about.cultures.description')} image="/about/cultures/head@2x.png" iy={-15} />
       <Section1 />
       <Section2 />
     </div>
-    <style jsx>{`
-    `}</style>
   </Layout>
 )
 

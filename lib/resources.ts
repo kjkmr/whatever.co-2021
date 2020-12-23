@@ -29,8 +29,140 @@ export const resources = {
         },
       },
       genres: {
-
-      }
+        title: '',
+        description: 'At Whatever, we do exactly what our name implies - we create everything. From global brand vision development to advertising, TV shows, products, and stores. We make the most of our team’s ability to “think and create” to transcend the boundaries of media and genres, from planning to development and implementation of never-before-seen experiences.',
+        1: {
+          title: 'Knowledge of creative\ndevelopment in a\nvariety of areas',
+          body: 'We have been engaged in a wide variety of creative projects that have produced results, regardless of the domain. We have been involved in a wide range of creative projects, from strategic creative work such as brand visioning and brand issue identification, to communication development such as TV commercials and digital campaigns, to content production such as TV programs and product design, and from shop design to permanent airport installations. Even projects.\nThese seemingly unrelated fields of creative development are actually the same in terms of the ideas they require and the technical and production skills needed to realize them. In fact, through my experience in various fields, I have developed the development and production skills to deal with any issue. In addition, we are able to look at the issues that need to be solved from a holistic perspective that is not bound by genre, and we are able to find the best ideas and implement the best solutions.',
+          example: {
+            title: 'Example of planning and production',
+            1: {
+              name: 'Branding',
+              content: 'Brand logo, brand guidelines, vision statement, etc.',
+            },
+            2: {
+              name: 'Product',
+              content: 'Product concepts, product design, web services, prototyping, etc.',
+            },
+            3: {
+              name: 'Marketing',
+              content: ' TV commercials, OOH, websites, apps, events, installations, etc.',
+            },
+            4: {
+              name: 'Content',
+              content: 'Music videos, TV shows, AR/VR content, etc.',
+            },
+            5: {
+              name: 'Space',
+              content: 'Permanent exhibitions, shop design, event design, etc.',
+            },
+          }
+        },
+        2: {
+          title: 'Crossing the boundary between\n“thinking” and “making”',
+          body: 'At Whatever, we believe that “thinking and creating” together is the way to bring new ideas to life. To do this, you won’t get there by just thinking like a creative agency or consulting firm, and you won’t get there by just creating like a production company. Thinking about an idea that you have never seen before and immediately testing whether it can be realized. At the end of such a process that goes beyond the realm of “thinking” and “making”, an idea that has never been seen before can be realized. In order to do so, Whatever has the talent to think and create.',
+          roles: {
+            1: {
+              category: 'Project\nManagement',
+              roles: 'Producer,Project Manager',
+            },
+            2: {
+              category: 'Creative\nDevelopment',
+              roles: 'Creative Director,Sound Artist,Art Director,Architects,Designer,Copywriter,Illustrator,Choreographer',
+            },
+            3: {
+              category: 'Project\nManagement',
+              roles: 'Tech Director,Programmer,Engineer,Drone racer',
+            },
+            4: {
+              category: 'Business\nDevelopment',
+              roles: 'Business Producer,Business Consultant,Investment Director',
+            },
+          }
+        },
+        3: {
+          title: 'Co-development, in-house projects\nand creative investment',
+          body: 'Unless you’ve done it before, you can’t say that you really understand the process. If you’re doing branding and product development for a client, we should be able to experience the process ourselves, and understand it with our bodies as well as our minds. With this in mind, we at Whatever are actively working on our own product development and joint business development with our clients. Whatever’s business support includes product development and R&D support for various brands, as well as branding and investment for startups.',
+          inhouse: {
+            title: 'In-house product development',
+            body: 'We don’t stop at just prototypes and R&D, but rather, we do not stop at just prototypes and R&D. We do not stop at outlandish ideas that may not seem feasible based on logic alone, or ideas that may or may not be viable for business but would make the world a little happier if they were realized.',
+            items: {
+              1: {
+                title: 'Rakugaki AR',
+                link: 'rakugakiar',
+                description: 'An app that makes your scribbles come alive in AR.',
+              },
+              2: {
+                title: 'Puppet Guts',
+                link: 'puppet-guts',
+                description: 'Internal Nugurumi for placement in hand puppets.',
+              },
+              3: {
+                title: 'Wear you are',
+                link: 'wear-you-are',
+                description: 'A service that allows you to make T-shirts and phone cases with satellite photos of your favorite places.',
+              },
+              4: {
+                title: 'Discodog',
+                link: 'discodog',
+                description: 'An LED vest for your dog that can display text and animations from your phone.',
+              },
+              5: {
+                title: 'WFH Jammies',
+                link: 'wfh-jammies',
+                description: 'Remote worker’s pajamas with only the part of the shirt that shows up in the video conference.',
+              },
+              6: {
+                title: 'Lyric Speaker',
+                link: 'lyric-speaker',
+                description: 'A speaker whose lyrics are animated in sync with the song.',
+              },
+            }
+          },
+          brands: {
+            title: 'Joint development with brands',
+            body: 'We collaborate with various brands to jointly develop products and services by leveraging the knowledge and skills we have cultivated in our product development.',
+            items: {
+              1: {
+                title: 'toio',
+                link: 'toio',
+                description: 'Development of UI/UX and content for Sony Interactive Entertainment’s “toio” product.',
+              },
+              2: {
+                title: 'New Stand Tokyo',
+                link: 'new-stand-tokyo',
+                description: 'He was in charge of bringing New Stand to Japan, as well as the overall creative direction of the brand, store design and e-commerce site design.',
+              },
+              3: {
+                title: 'Minute Mint',
+                link: 'minute-mint',
+                description: 'A new mint tablet was jointly developed with UHA Taste Sugar and Kokuyo based on the concept of “how to measure good time.”',
+              },
+            }
+          },
+          investment: {
+            title: 'Creative Investment',
+            body: 'We also support the growth of products and services that we believe in as businesses through investment in external partners and labor investment.',
+            items: {
+              1: {
+                title: 'Cotodama（Lyric Speaker）',
+                link: 'https://lyric-speaker.com/',
+                description: 'Saqoosha is a joint venture with SIX, WOW and THE GUILD, with Saqoosha taking part as CTO and in charge of software development for Lyric Speaker’s motion graphics and direction.',
+              },
+              2: {
+                title: 'Yummy Sake',
+                link: 'https://yummysake.jp/',
+                description: 'A service that uses AI and blind tasting to identify the sake you like, with Takata joining as CTO to support algorithm development, investment and business strategy.',
+              },
+              3: {
+                title: 'Cradle',
+                link: 'https://cradle.care/',
+                description: 'Kawamura joined Sputniko as CCO and was in charge of the overall creative direction of the brand.',
+              },
+            }
+          },
+        },
+      },
     }
   },
   'ja': {
@@ -196,7 +328,7 @@ export const resources = {
             }
           },
         },
-      }
+      },
     }
   },
   'zh-hans': {},

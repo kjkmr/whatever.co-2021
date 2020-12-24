@@ -219,6 +219,27 @@ export const resources = {
           ]
         },
       },
+      workstyle: {
+        title: '',
+        description: 'The people who come to Whatever are our greatest value. We are creating a community where the best and brightest people can come together to create new experiences together, without being confined by conventional employment patterns or client relations. We value an environment where people can create more freely and without boundaries of organization or business practices.',
+        1: {
+          title: 'Flexible employment options',
+          body: 'To ensure that each member of the team and the team can maximize their creativity, we have a Co-Creator system as well as the usual employment structure. In addition to no commitment to the work, you are free to use Whatever’s network, knowledge and facilities, and you are free to raise your hand on any project that comes to us. We have a project-based fee structure that starts to accrue from the moment you raise your hand. Our flexible work style allows you to work in a way that suits your career and life stage.',
+        },
+        2: {
+          title: 'Diverse Alliances',
+          body: 'Instead of sticking to the organizational boundaries of a company, we form various alliances with synergistic companies and teams to increase our creative efficiency.',
+          alliances: {
+            bassdrum: 'The world’s first technical director collective.\nWe provide office space, business strategy support and executive staffing.',
+            wtfc: 'A creative engineering studio started as a joint venture between Tohokushinsha and Whatever to explore new forms of production.',
+            cotodama: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+            yummysake: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+            kasa: 'New York-based design collective consisting of Whatever, Studio Kudos and Studio Conduit, specializing in the design of public spaces.',
+            cradle: 'Sputniko! launched an egg freezing service. Sputniko! is an egg freezing service launched by Sputniko, with Kawamura serving as the external CCO and executing the overall creative direction of the brand.',
+            newstand: 'I’m in charge of the management and branding of New Stand Tokyo, a retail start-up from New York, and its first store outside of the United States.',
+          }
+        },
+      },
     }
   },
   'ja': {

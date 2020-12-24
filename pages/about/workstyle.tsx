@@ -5,7 +5,7 @@ import { Header, Footer, SectionTitle } from 'components/About'
 
 const Section1 = () => (
   <div className={LangStyle('section1')}>
-    <SectionTitle num="01" nx={-5} title={t('about.workstyle.1.title')} tx={{ ja: -5 }} ty={{ ja: 26 }} />
+    <SectionTitle num="01" nx={-5} title={t('about.workstyle.1.title')} tx={{ ja: -5, en: -4 }} ty={{ ja: 26, en: 26 }} />
     <div className="t">{t('about.workstyle.1.body')}</div>
     <style jsx>{`
       vwpx(px)
@@ -18,6 +18,9 @@ const Section1 = () => (
         margin-right vwpx(80)
         font-size 1.5rem
         line-height 3.0rem
+      .en .t
+        margin-top vwpx(41)
+        font-size 1.6rem
     `}</style>
   </div>
 )
@@ -68,17 +71,20 @@ const AllianceData: { [key: string]: AllianceData } = {
   },
 }
 
-const Alliance = ({ logo, data, desc }: { logo: string, data: AllianceData, desc: string }) => (
-  <div className="container">
-    <div className="image" style={{
-      marginTop: `calc((100vw - 80px) * ${(data.mt || 0) / (1366 - 80)}`,
-      marginBottom: `calc((100vw - 80px) * ${(data.mb || 0) / (1366 - 80)}`,
-    }}><img src={`/about/workstyle/${logo}@2x.png`} alt="" style={{
-      width: `calc((100vw - 80px) * ${data.width / (1366 - 80)}`,
-      height: `calc((100vw - 80px) * ${data.height / (1366 - 80)}`,
-    }} /></div>
-    <div className="t">{desc}</div>
-    <style jsx>{`
+const Alliance = ({ logo, data, desc }: { logo: string, data: AllianceData, desc: string }) => {
+  const imageStyle = {
+    width: `calc((100vw - 80px) * ${data.width / (1366 - 80)})`,
+    height: `calc((100vw - 80px) * ${data.height / (1366 - 80)})`,
+  }
+  console.log(imageStyle)
+  return (
+    <div className="container">
+      <div className="image" style={{
+        // marginTop: `calc((100vw - 80px) * ${(data.mt || 0) / (1366 - 80)}`,
+        // marginBottom: `calc((100vw - 80px) * ${(data.mb || 0) / (1366 - 80)}`,
+      }}><img src={`/about/workstyle/${logo}@2x.png`} alt="" style={imageStyle} /></div>
+      <div className="t" dangerouslySetInnerHTML={{ __html: desc.replace(/\n/g, '<br />') }}></div>
+      <style jsx>{`
       vwpx(px)
         'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .t
@@ -90,12 +96,13 @@ const Alliance = ({ logo, data, desc }: { logo: string, data: AllianceData, desc
         width 100%
         height vwpx(120)
     `}</style>
-  </div>
-)
+    </div>
+  )
+}
 
 const Section2 = () => (
   <div className={LangStyle('section2')}>
-    <SectionTitle num="02" nx={-5} title={t('about.workstyle.2.title')} tx={{ ja: -3 }} ty={{ ja: 28 }} />
+    <SectionTitle num="02" nx={-5} title={t('about.workstyle.2.title')} tx={{ ja: -3, en: -3 }} ty={{ ja: 28, en: 28 }} />
     <div className="t">{t('about.workstyle.2.body')}</div>
     <div className="alliance">
       {Object.keys(AllianceData).map(key => <Alliance key={key} logo={key} data={AllianceData[key]} desc={t(`about.workstyle.2.alliances.${key}`)} />)}
@@ -116,6 +123,12 @@ const Section2 = () => (
         grid-gap vwpx(57) vwpx(120)
         margin-top vwpx(47)
         margin-right vwpx(80)
+      .en
+        .t
+          font-size 1.6rem
+        .alliance
+          margin-top vwpx(18)
+          font-size 1.6rem
     `}</style>
   </div >
 )
@@ -143,7 +156,7 @@ const Section3 = () => (
 
 const Profession = () => (
   <Layout title="About" footer={<Footer left="Cultures" right="Genres" />}>
-    <Header title="Workstyle" subtitle={t('about.workstyle.title')} desc={t('about.workstyle.description')} image="/about/workstyle/head@2x.png" ty={{ ja: 1 }} iy={{ ja: -22 }} />
+    <Header title="Workstyle" subtitle={t('about.workstyle.title')} desc={t('about.workstyle.description')} image="/about/workstyle/head@2x.png" ty={{ ja: 1 }} iy={{ ja: -22, en: -44 }} />
     <Section1 />
     <Section2 />
     <Section3 />

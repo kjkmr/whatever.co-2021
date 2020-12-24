@@ -484,6 +484,39 @@ export const resources = {
         },
       },
     },
+    contact: {
+      title: '新規プロジェクト、\n採用、メディア掲載など\n各種ご相談はこちらまで',
+      addresses: [
+        {
+          name: 'TOKYO',
+          address: '〒106-0032 東京都港区六本木 7 丁目 2 番 8 号 WHEREVER 7F',
+          maplink: 'https://g.page/whatever-inc',
+          phone: '03-6427-6022',
+          representative: '代表 : 富永 勇亮',
+        },
+        {
+          name: 'NEW YORK',
+          address: '347 W 36th St, #902 New York, NY 10018 U.S.A.',
+          maplink: 'https://goo.gl/maps/x7zKNoj7ixG2',
+          phone: '+1-347-801-7789',
+          representative: '代表 : 川村 真司 / 清水 幹太',
+
+        },
+        {
+          name: 'TAIPEI',
+          address: '18F, No.97, Songren Rd., Xinyi Dist., Taipei City 110, Taiwan',
+          maplink: 'https://goo.gl/maps/1ytCrzEK9EPKGWxe8',
+          phone: '+886-908-222-101',
+          representative: '代表 : 室市 栄二',
+
+        },
+        {
+          name: 'BERLIN',
+          address: 'Friedrichstraße 68, 10117 Berlin, Germany',
+          maplink: 'https://goo.gl/maps/JJ9c4hEupRFWHB5X6',
+        },
+      ],
+    },
   },
   'zh-hans': {},
 }

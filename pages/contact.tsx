@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import { t, ta } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Grad, GradImg, GradLink } from 'components/Grad'
 
@@ -101,33 +102,32 @@ const data: { [locale: string]: AddressData[] } =
 
 const Head = () => (
   <div className="head">
-    <Grad><div>For new business,</div></Grad>
-    <Grad><div>career and media inquiries,</div></Grad>
-    <Grad><div>contact us.</div></Grad>
+    {t('contact.title').split('\n').map((line, index) => <Grad key={index}><div>{line}</div></Grad>)}
     <div className="mailto"><GradImg><a href="mailto:hello@whatever.co">hello@whatever.co</a></GradImg></div>
-    <GradImg><a href="mailto:hello@whatever.co">hello@whatever.co</a></GradImg>
     <style jsx>{`
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .head
-        margin-top 145px
-        margin-left 39px
+        margin-top vwpx(137)
+        margin-left vwpx(39)
         font-size 0
         div
           display inline-block
-          font-size 48px
+          font-size vwpx(38)
           font-weight bold
-          margin-bottom 12px
+          line-height vwpx(60)
         .mailto
-          width 300px
-          height 80px
-          margin-top 59px
+          width vwpx(300)
+          height vwpx(80)
+          margin-top vwpx(67)
           background-color black
           a
             display flex
             justify-content center
             align-items center
-            width 300px
-            height 80px
-            font-size 18px
+            width vwpx(300)
+            height vwpx(80)
+            font-size vwpx(18)
             font-weight bold
             letter-spacing 0.04em
             color white
@@ -135,66 +135,68 @@ const Head = () => (
   </div>
 )
 
-const Address = ({ data }: { data: AddressData }) => (
+const Address = ({ data }: { data: any }) => (
   <div className="container">
-    <Grad><h2 className="region">{data.region}</h2></Grad>
+    <Grad><h2 className="region">{data.name}</h2></Grad>
     <div className="address"><GradLink className="address" href={data.maplink} target="_blank" rel="noopener noreferrer">{data.address}</GradLink></div>
     {data.phone ? <Grad><div className="phone">{data.phone}</div></Grad> : null}
-    {data.representative ? <Grad><div className="repr">Representative: {data.representative}</div></Grad> : null}
+    {data.representative ? <Grad><div className="repr">{data.representative}</div></Grad> : null}
     <style jsx>{`
+      vwpx(px)
+          'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .container
         font-size 0
       .region
         display inline-block
-        font-size 2.4rem
+        font-size vwpx(24)
         font-weight bold
-        margin-bottom 34px
+        margin-bottom vwpx(34)
       .address
         display inline-block
-        font-size 1.6rem
+        font-size 1.5rem
         line-height 1em
-        margin-bottom 16px
+        margin-bottom 6px
       .phone
         display inline-block
-        font-size 1.6rem
+        font-size 1.5rem
         line-height 1em
         margin-bottom 16px
       .repr
         display inline-block
-        font-size 1.6rem
+        font-size 1.5rem
         line-height 1em
     `}</style>
   </div>
 )
 
-const AboutPage = () => {
-  const { locale } = useRouter()
-  return (
-    <Layout title="About">
-      <Head />
-      <div className="address">
-        {data[locale || 'en'].map(data => <Address key={data.region} data={data} />)}
+const ContactPage = () => (
+  <Layout title="Contact">
+    <Head />
+    <div className="address">
+      {ta('contact.addresses').map(data => <Address key={data.name} data={data} />)}
+    </div>
+    <div className="imgs">
+      <div className="row" style={{ marginBottom: '80px' }}>
+        <GradImg><Image src="/contact/whatever_4F_005@2x.jpg" alt="" width={562} height={375} /></GradImg>
+        <GradImg><Image src="/contact/whatever_3F_004@2x.jpg" alt="" width={562} height={375} /></GradImg>
       </div>
-      <div className="imgs">
-        <div className="row" style={{ marginBottom: '80px' }}>
-          <GradImg><Image src="/contact/whatever_4F_005@2x.jpg" alt="" width={562} height={375} /></GradImg>
-          <GradImg><Image src="/contact/whatever_3F_004@2x.jpg" alt="" width={562} height={375} /></GradImg>
-        </div>
-        <div style={{ marginBottom: '80px', display: 'inline-block' }}><GradImg><Image src="/contact/whatever_6F_004@2x.jpg" alt="" width={844} height={562.5} /></GradImg></div>
-        <div style={{ marginBottom: '80px' }}><GradImg><Image src="/contact/whatever_7F_002@2x.jpg" alt="" width={1205} height={804} /></GradImg></div>
-        <div className="row">
-          <GradImg><Image src="/contact/whatever_4F_008@2x.jpg" alt="" width={562} height={375} /></GradImg>
-          <GradImg><Image src="/contact/whatever_4F_009@2x.jpg" alt="" width={562} height={750} /></GradImg>
-        </div>
+      <div style={{ marginBottom: '80px', display: 'inline-block' }}><GradImg><Image src="/contact/whatever_6F_004@2x.jpg" alt="" width={844} height={562.5} /></GradImg></div>
+      <div style={{ marginBottom: '80px' }}><GradImg><Image src="/contact/whatever_7F_002@2x.jpg" alt="" width={1205} height={804} /></GradImg></div>
+      <div className="row">
+        <GradImg><Image src="/contact/whatever_4F_008@2x.jpg" alt="" width={562} height={375} /></GradImg>
+        <GradImg><Image src="/contact/whatever_4F_009@2x.jpg" alt="" width={562} height={750} /></GradImg>
       </div>
-      <style jsx>{`
+    </div>
+    <style jsx>{`
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .address
-        margin-top 270px
-        margin-left 80px
-        margin-right 16px
+        margin-top vwpx(203)
+        margin-left vwpx(80)
+        margin-right vwpx(16)
         display grid
         grid-template-columns repeat(2, 1fr)
-        grid-auto-rows 216px
+        grid-auto-rows vwpx(216)
       .imgs
         font-size 0
         margin-top 83px
@@ -205,8 +207,7 @@ const AboutPage = () => {
         justify-content space-between
         align-items flex-start
     `}</style>
-    </Layout >
-  )
-}
+  </Layout >
+)
 
-export default AboutPage
+export default ContactPage

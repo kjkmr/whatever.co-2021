@@ -238,11 +238,11 @@ export const GradLink = ({ children, href, target, rel }: any) => {
           overflow hidden
         .link
           display inline-block
-          padding-bottom 2px
+          padding-bottom 6px
           border-bottom 1px solid green
           overflow hidden
           &:hover
-            padding-bottom 1px
+            padding-bottom 5px
             border-bottom 2px solid green
             background-clip text
             -webkit-background-clip text

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { t, ta } from 'lib/i18n'
+import { t, ta, LangStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Grad, GradImg, GradLink } from 'components/Grad'
 
@@ -100,7 +100,7 @@ const data: { [locale: string]: AddressData[] } =
 }
 
 const Head = () => (
-  <div className="head">
+  <div className={LangStyle('head')}>
     <img src="/contact/head@2x.png" alt="" />
     {t('contact.title').split('\n').map((line, index) => <Grad key={index}><div>{line}</div></Grad>)}
     <div className="mailto"><GradImg><a href="mailto:hello@whatever.co">hello@whatever.co</a></GradImg></div>
@@ -122,21 +122,25 @@ const Head = () => (
           font-size vwpx(38)
           font-weight bold
           line-height vwpx(60)
-        .mailto
+      .mailto
+        width vwpx(300)
+        height vwpx(80)
+        margin-top vwpx(67)
+        background-color black
+        a
+          display flex
+          justify-content center
+          align-items center
           width vwpx(300)
           height vwpx(80)
-          margin-top vwpx(67)
-          background-color black
-          a
-            display flex
-            justify-content center
-            align-items center
-            width vwpx(300)
-            height vwpx(80)
-            font-size vwpx(18)
-            font-weight bold
-            letter-spacing 0.04em
-            color white
+          font-size vwpx(18)
+          font-weight bold
+          letter-spacing 0.04em
+          color white
+      .en
+        &.head
+          div
+            font-size vwpx(48)
     `}</style>
   </div>
 )

@@ -240,7 +240,38 @@ export const resources = {
           }
         },
       },
-    }
+    },
+    contact: {
+      title: 'For new business,\ncareer and media inquiries,\ncontact us.',
+      addresses: [
+        {
+          name: 'TOKYO',
+          address: 'WHEREVER 7F, 7-2-8 Roppongi, Minato-ku, Tokyo 106-0032, Japan',
+          maplink: 'https://g.page/whatever-inc',
+          phone: '+81-3-6427-6022',
+          representative: 'Representative : Yusuke Tominaga',
+        },
+        {
+          name: 'NEW YORK',
+          address: '347 W 36th St, #902 New York, NY 10018 U.S.A.',
+          maplink: 'https://goo.gl/maps/x7zKNoj7ixG2',
+          phone: '+1-347-801-7789',
+          representative: 'Representative : Masashi Kawamura / Qanta Shimizu',
+        },
+        {
+          name: 'TAIPEI',
+          address: '18F, No.97, Songren Rd., Xinyi Dist., Taipei City 110, Taiwan',
+          maplink: 'https://goo.gl/maps/1ytCrzEK9EPKGWxe8',
+          phone: '+886-908-222-101',
+          representative: 'Representative : Eiji Muroichi',
+        },
+        {
+          name: 'BERLIN',
+          address: 'Friedrichstraße 68, 10117 Berlin, Germany',
+          maplink: 'https://goo.gl/maps/JJ9c4hEupRFWHB5X6',
+        },
+      ],
+    },
   },
   'ja': {
     contactform: {
@@ -518,5 +549,37 @@ export const resources = {
       ],
     },
   },
-  'zh-hans': {},
+  'zh-hans': {
+    contact: {
+      title: '新規プロジェクト、\n採用、メディア掲載など\n各種ご相談はこちらまで',
+      addresses: [
+        {
+          name: 'TOKYO',
+          address: 'WHEREVER 7F, 7-2-8 Roppongi, Minato-ku, Tokyo 106-0032, Japan',
+          maplink: 'https://g.page/whatever-inc',
+          phone: '+81-3-6427-6022',
+          representative: 'Yusuke Tominaga',
+        },
+        {
+          name: 'NEW YORK',
+          address: '347 W 36th St, #902 New York, NY 10018 U.S.A.',
+          maplink: 'https://goo.gl/maps/x7zKNoj7ixG2',
+          phone: '+1-347-801-7789',
+          representative: 'Masashi Kawamura / Qanta Shimizu',
+        },
+        {
+          name: 'TAIPEI',
+          address: '台北市信義區松仁路 97 號',
+          maplink: 'https://goo.gl/maps/1ytCrzEK9EPKGWxe8',
+          phone: '+886-908-222-101',
+          representative: 'Eiji Muroichi',
+        },
+        {
+          name: 'BERLIN',
+          address: 'Friedrichstraße 68, 10117 Berlin, Germany',
+          maplink: 'https://goo.gl/maps/JJ9c4hEupRFWHB5X6',
+        },
+      ],
+    },
+  },
 }

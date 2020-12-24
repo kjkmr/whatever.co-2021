@@ -163,6 +163,62 @@ export const resources = {
           },
         },
       },
+      cultures: {
+        title: '',
+        description: 'At Whatever, we have a proven track record of working with brands around the world and can support branding and content development across borders and cultures.\nWe can plan and produce world-class brand communications and products by utilizing our four offices in Tokyo, New York, Taiwan and Berlin, and our world-class human resources.',
+        1: {
+          title: 'Extensive experience in domestic\nand overseas projects',
+          body: 'At Whatever, we can provide cross-border branding and business development support, leveraging our experience in working with a wide range of brands around the world. We can help companies that are looking to expand from Japan to the world or enter the Japanese market from abroad with our four global offices in Tokyo, New York, Taiwan and Berlin.',
+          inhouse: 'In-house product development',
+          overseas: 'Creative support for overseas companies entering the Japanese market',
+        },
+        2: {
+          title: 'World-class creative team',
+          body: 'We have creators and producers who have achieved success in corporate marketing, branding and business development around the world. With the knowledge of successful creative development in the areas of brand communication, product development, and business development, we provide appropriate support for our partner companies in accordance with their business conditions and growth stage.',
+          members: [
+            {
+              title: 'COO',
+              name: 'Masashi Kawamura',
+              slug: 'masa',
+            },
+            {
+              title: 'Producer / Creative Director',
+              name: 'Mark Stein',
+              slug: 'mark',
+            },
+            {
+              title: 'Associate Creative Director',
+              name: 'Shiny Lee',
+              slug: 'shiny',
+            },
+            {
+              title: '???',
+              name: 'Jane Rosch',
+              slug: 'jane',
+            },
+            {
+              title: 'Design Director',
+              name: 'Eiji Murochi',
+              slug: 'eiji',
+            },
+            {
+              title: 'Corporate Development Director',
+              name: 'Yuta Inoue',
+              slug: 'yuta',
+            },
+            {
+              title: 'Business / Strategic Director',
+              name: 'Kei Kaneko',
+              slug: 'kei',
+            },
+            {
+              title: 'Producer',
+              name: 'Shota Hatama',
+              slug: 'shota',
+            },
+          ]
+        },
+      },
     }
   },
   'ja': {

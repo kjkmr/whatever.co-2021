@@ -3,18 +3,30 @@ import { useRouter } from 'next/router'
 import { LangStyle } from 'lib/i18n'
 import { Grad } from './Grad'
 
-export const Header = ({ title, subtitle, desc, image, iy = 0 }: { title: string, subtitle: string, desc: string, image: string, iy?: number }) => (
-  <div className={LangStyle('header')}>
-    <div className="text">
-      <Grad><div className="t1">Crossborder :</div></Grad>
-      <Grad><div className="t2">{title}</div></Grad>
-      {subtitle ? <Grad><div className="t3" >{subtitle}</div></Grad> : null}
-      <div className="t4"><Grad><div dangerouslySetInnerHTML={{ __html: desc.replace(/\n/g, '<br />') }} /></Grad></div>
-    </div>
-    <div className="image">
-      <img src={image} alt="" style={{ marginTop: `calc((100vw - 80px) * ${iy / (1366 - 80)})` }} />
-    </div>
-    <style jsx>{`
+type HeaderProps = {
+  title: string
+  subtitle: string
+  desc: string
+  image: string
+  ty?: { [locale: string]: number }
+  iy?: { [locale: string]: number }
+}
+
+export const Header = ({ title, subtitle, desc, image, ty, iy }: HeaderProps) => {
+  const router = useRouter()
+  const locale = router.locale || router.defaultLocale!
+  return (
+    <div className={LangStyle('header')}>
+      <div className="text" style={{ marginTop: `calc((100vw - 80px) * ${(ty && ty[locale] ? ty[locale] : 0) / (1366 - 80)})` }}>
+        <Grad><div className="t1">Crossborder :</div></Grad>
+        <Grad><div className="t2">{title}</div></Grad>
+        {subtitle ? <Grad><div className="t3" >{subtitle}</div></Grad> : null}
+        <div className="t4"><Grad><div dangerouslySetInnerHTML={{ __html: desc.replace(/\n/g, '<br />') }} /></Grad></div>
+      </div>
+      <div className="image" style={{ marginTop: `calc((100vw - 80px) * ${(iy && iy[locale] ? iy[locale] : 0) / (1366 - 80)})` }}>
+        <img src={image} alt="" />
+      </div>
+      <style jsx>{`
       vwpx(px)
         'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .header
@@ -58,8 +70,9 @@ export const Header = ({ title, subtitle, desc, image, iy = 0 }: { title: string
           font-weight normal
           line-height 1.9em
     `}</style>
-  </div>
-)
+    </div>
+  )
+}
 
 export const Footer = ({ left, right }: { left: string, right: string }) => (
   <div className="footer">

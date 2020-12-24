@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { t, LangStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Header, Footer, SectionTitle } from 'components/About'
-import { Grad, GradImg } from 'components/Grad'
+import { Grad } from 'components/Grad'
 
 const Section1 = () => (
   <div className={LangStyle('section1')}>
@@ -155,7 +155,7 @@ const Section2 = () => (
   </div>
 )
 
-const WorkLink = ({ name, link, desc, mb }: { name: string, link: string, desc: string, mb?: number }) => (
+const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: string }) => (
   <div className={LangStyle()}>
     <div className="name"><Link href={`/work/${link}`}><a>- {name}</a></Link></div>
     <div className="desc">{desc}</div>

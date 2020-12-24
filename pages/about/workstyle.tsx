@@ -76,7 +76,6 @@ const Alliance = ({ logo, data, desc }: { logo: string, data: AllianceData, desc
     width: `calc((100vw - 80px) * ${data.width / (1366 - 80)})`,
     height: `calc((100vw - 80px) * ${data.height / (1366 - 80)})`,
   }
-  console.log(imageStyle)
   return (
     <div className="container">
       <div className="image" style={{
@@ -135,7 +134,7 @@ const Section2 = () => (
 
 const Section3 = () => (
   <div className="container">
-    <SectionTitle num="03" nx={-4.5} title="Management of the<br/>Creative Commune" tx={-16} />
+    <SectionTitle num="03" nx={-5} title="Management of the<br/>Creative Commune" tx={{ ja: -16 }} />
     <div className="t">As a place for these rich members to meet, we are jointly managing the creative commune WHEREVER with WTFC. In addition to serving as a base for Whatever, WTFC and Bassdrum, WHEREVER also functions as a place for cross-pollination of various creative staff through the shared office space on the 5th floor and New Stand Tokyo on the 1st floor.</div>
     <style jsx>{`
       .container

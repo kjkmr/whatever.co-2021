@@ -51,16 +51,18 @@ const Section1 = () => (
   </div>
 )
 
-const Member = ({ image, title, name }: { image: string, title: string, name: string }) => (
-  <div className="member">
-    <img src={`/about/cultures/${image}@2x.jpg`} alt="" />
-    <div className="title">{title}</div>
-    <div className="name">{name}</div>
-    <style jsx>{`
+const Member = ({ image, title, name, slug }: { image: string, title: string, name: string, slug: string }) => (
+  <Link href={`/team/${slug}`}>
+    <a className="member">
+      <img src={`/about/cultures/${image}@2x.jpg`} alt="" />
+      <div className="title">{title}</div>
+      <div className="name">{name}</div>
+      <style jsx>{`
       vwpx(px)
         'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .member
         font-size 0
+        display block
       img
         width vwpx(245)
       .title
@@ -74,7 +76,8 @@ const Member = ({ image, title, name }: { image: string, title: string, name: st
         line-height vwpx(20)
         margin-top vwpx(12)
     `}</style>
-  </div>
+    </a>
+  </Link>
 )
 
 const Section2 = () => (
@@ -82,7 +85,7 @@ const Section2 = () => (
     <SectionTitle num="02" nx={-4} title={t('about.cultures.2.title')} tx={{ ja: -3 }} ty={{ ja: 27 }} />
     <div className="t">{t('about.cultures.2.body')}</div>
     <div className="members">
-      {ta('about.cultures.2.members').map(m => <Member key={m.slug} image={m.slug} title={m.title} name={m.name} />)}
+      {ta('about.cultures.2.members').map(m => <Member key={m.slug} image={m.slug} title={m.title} name={m.name} slug={m.slug} />)}
     </div>
     <div className="link"><Link href="/team"><a>All Members</a></Link></div>
     <style jsx>{`
@@ -91,7 +94,7 @@ const Section2 = () => (
       .section2
         margin-top vwpx(71)
         margin-left vwpx(80)
-        margin-bottom vwpx(137)
+        margin-bottom vwpx(120)
       .t
         line-height 3.0rem
         margin-top vwpx(43)
@@ -102,15 +105,20 @@ const Section2 = () => (
         grid-gap vwpx(71) vwpx(75)
         margin-top vwpx(60)
       .link
-        margin-top 85px
-        padding-right 79px
-        text-align right
+        display flex
+        justify-content flex-end
+        margin-top vwpx(78)
         a
-          font-size 18px
-          font-weight 700
-          padding-bottom 6px
-          padding-right 60px
-          border-bottom 1px solid red
+          display flex
+          justify-content center
+          align-items center
+          width vwpx(256)
+          height vwpx(60)
+          font-size vwpx(18)
+          font-weight bold
+          letter-spacing 0.04em
+          color white
+          background-color black
     `}</style>
   </div>
 )

@@ -76,7 +76,7 @@ export const Header = ({ title, subtitle, desc, image, ty, iy }: HeaderProps) =>
 
 export const Footer = ({ left, right }: { left: string, right: string }) => (
   <div className="footer">
-    <Link href={`/about/${left}`}>
+    <Link href={`/about/${left.toLowerCase()}`}>
       <a style={{ borderRight: '1px solid #333' }}>
         <div className="line"></div>
         <div style={{ marginLeft: 40 }}>
@@ -85,7 +85,7 @@ export const Footer = ({ left, right }: { left: string, right: string }) => (
         </div>
       </a>
     </Link>
-    <Link href={`/about/${right}`}>
+    <Link href={`/about/${right.toLowerCase()}`}>
       <a style={{ justifyContent: 'flex-end' }}>
         <div style={{ marginRight: 40 }}>
           <div className="cb">Crossborder :</div>

@@ -6,11 +6,11 @@ import ContactForm from 'components/ContactForm'
 import SNSButtons from 'components/SNSButtons'
 
 const LangLink = ({ lang, label }: { lang: string, label: string }) => {
-  const { locale, route } = useRouter()
+  const { locale, pathname, query } = useRouter()
   return (
     <span>
       { locale != lang
-        ? <Link href={route} locale={lang}><a>{label}</a></Link>
+        ? <Link href={{ pathname, query }} locale={lang}><a>{label}</a></Link>
         : <>{label}</>}
       <style jsx>{`
         span

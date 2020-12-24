@@ -23,12 +23,12 @@ function _t(key: string): string | any[] | null {
 
 export function t(key: string): string {
   const ret = _t(key)
-  return ret ? ret as string : `{${key}}`
+  return typeof ret === 'string' ? ret as string : `{${key}}`
 }
 
 export function ta(key: string): any[] {
   const ret = _t(key)
-  return ret ? ret as any[] : []
+  return Array.isArray(ret) ? ret as any[] : []
 }
 
 export function LangStyle(classes?: string): string {

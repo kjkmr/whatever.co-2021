@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { t, ta } from 'lib/i18n'
 import Layout from 'components/Layout'
@@ -102,15 +101,22 @@ const data: { [locale: string]: AddressData[] } =
 
 const Head = () => (
   <div className="head">
+    <img src="/contact/head@2x.png" alt="" />
     {t('contact.title').split('\n').map((line, index) => <Grad key={index}><div>{line}</div></Grad>)}
     <div className="mailto"><GradImg><a href="mailto:hello@whatever.co">hello@whatever.co</a></GradImg></div>
     <style jsx>{`
       vwpx(px)
         'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .head
+        position relative
         margin-top vwpx(137)
         margin-left vwpx(39)
         font-size 0
+        >img
+          position absolute
+          top vwpx(-140)
+          right vwpx(-15)
+          width vwpx(745.69)
         div
           display inline-block
           font-size vwpx(38)
@@ -175,16 +181,12 @@ const ContactPage = () => (
     <div className="address">
       {ta('contact.addresses').map(data => <Address key={data.name} data={data} />)}
     </div>
-    <div className="imgs">
-      <div className="row" style={{ marginBottom: '80px' }}>
-        <GradImg><Image src="/contact/whatever_4F_005@2x.jpg" alt="" width={562} height={375} /></GradImg>
-        <GradImg><Image src="/contact/whatever_3F_004@2x.jpg" alt="" width={562} height={375} /></GradImg>
-      </div>
-      <div style={{ marginBottom: '80px', display: 'inline-block' }}><GradImg><Image src="/contact/whatever_6F_004@2x.jpg" alt="" width={844} height={562.5} /></GradImg></div>
-      <div style={{ marginBottom: '80px' }}><GradImg><Image src="/contact/whatever_7F_002@2x.jpg" alt="" width={1205} height={804} /></GradImg></div>
+    <div className="images">
+      <img src="/contact/whatever_7F_002@2x.jpg" alt="" className="i1" />
+      <img src="/contact/whatever_6F_004@2x.jpg" alt="" className="i2" />
       <div className="row">
-        <GradImg><Image src="/contact/whatever_4F_008@2x.jpg" alt="" width={562} height={375} /></GradImg>
-        <GradImg><Image src="/contact/whatever_4F_009@2x.jpg" alt="" width={562} height={750} /></GradImg>
+        <img src="/contact/whatever_4F_005@2x.jpg" alt="" className="i3" />
+        <img src="/contact/whatever_3F_004@2x.jpg" alt="" className="i4" />
       </div>
     </div>
     <style jsx>{`
@@ -197,11 +199,27 @@ const ContactPage = () => (
         display grid
         grid-template-columns repeat(2, 1fr)
         grid-auto-rows vwpx(216)
-      .imgs
+      .images
+        {/* opacity 0.5 */}
         font-size 0
-        margin-top 83px
-        margin-left 80px
-        margin-bottom 150px
+        margin-top vwpx(83)
+        margin-left vwpx(80)
+        margin-bottom vwpx(160)
+        .row
+          display flex
+          justify-content space-between
+        .i1
+          width vwpx(1205)
+          float right
+        .i2
+          width vwpx(844)
+          margin-top vwpx(70)
+        .i3
+          width vwpx(562)
+          margin-top vwpx(80)
+        .i4
+          width vwpx(562)
+          margin-top vwpx(80)
       .row
         display flex
         justify-content space-between

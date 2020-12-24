@@ -1,8 +1,8 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { Tag, Entry, getAllWorks, getWorksByTag, getWorkTags } from '../../../lib/api'
-import Layout from '../../../components/Layout'
-import { TagSelector } from '../../../components/TagSelector'
-import { WorkList } from '../../../components/WorkList'
+import Layout from 'components/Layout'
+import { TagSelector } from 'components/TagSelector'
+import { WorkList } from 'components/WorkList'
 
 type WorkIndexProps = {
   tags: Tag[],
@@ -11,7 +11,7 @@ type WorkIndexProps = {
 }
 
 const WorkIndex = ({ tags, active, works }: WorkIndexProps) => (
-  <Layout title="WORK">
+  <Layout title="Work">
     <TagSelector tags={tags} active={active} />
     <WorkList works={works} filter={active} />
   </Layout >

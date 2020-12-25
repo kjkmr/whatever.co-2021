@@ -93,9 +93,11 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
         body
           margin 0
           padding 0
+          background-color white
           font-family Apercu, 'Noto Sans JP', sans-serif
           font-size 1.5rem
           font-weight 200
+          color black
         a
           text-decoration none
           color black

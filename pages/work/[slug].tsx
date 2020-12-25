@@ -1,59 +1,72 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
-import { Tag, Entry, Credit, Person, getAllWorks, getPostDetails } from '../../lib/api'
-import Layout from '../../components/Layout'
-import { Grad, GradImg } from '../../components/Grad'
-import WorkTag from '../../components/WorkTag'
+import { Tag, Entry, Credit, Person, getAllWorks, getPostDetails } from 'lib/api'
+import Layout from 'components/Layout'
+import { Grad, GradImg } from 'components/Grad'
+import WorkTag from 'components/WorkTag'
 
 
-const Header = ({ work }: { work: Entry }) => (
-  <div className="header">
-    <div className="image"><GradImg><img src={work.image} width="1286" height="688" /></GradImg></div>
-    <div className="info">
-      <div className="inner">
-        <Grad><div className="date">{work.date}</div></Grad>
-        <Grad><div className="title" dangerouslySetInnerHTML={{ __html: work.title }}></div></Grad>
-        <Grad><div className="tags">
-          {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} link={true} />)}
-        </div></Grad>
+const Header = ({ work }: { work: Entry }) => {
+  const [scrollY, setScrollY] = useState(0)
+  const onScroll = () => setScrollY(window.pageYOffset)
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  })
+  return (
+    <div className="header">
+      <div className="image" style={{ height: `calc((100vw - 80px) * ${688 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={work.image} alt="" /></GradImg></div>
+      <div className="info">
+        <div className="inner">
+          <Grad><div className="date">{work.date}</div></Grad>
+          <Grad><div className="title" dangerouslySetInnerHTML={{ __html: work.title }}></div></Grad>
+          <Grad><div className="tags">
+            {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} link={true} />)}
+          </div></Grad>
+        </div>
       </div>
-    </div>
-    <style jsx>{`
+      <style jsx>{`
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .header
         position relative
         font-size 0
       .image
-        position absolute
-        top 0
-        left 0
+        position fixed
+        top 80px
+        left 80px
+        overflow hidden
         img
+          width vwpx(1286)
+          height vwpx(688)
           object-fit cover
       .info
         position relative
-        padding-top 459px
-        padding-right 486px
+        padding-top vwpx(459)
+        padding-right vwpx(486)
       .inner
         background-color white
-        padding-top 52px
-        padding-bottom 60px
-        padding-left 80px
+        padding-top vwpx(52)
+        padding-bottom vwpx(60)
+        padding-left vwpx(80)
       .date
         display inline-block
-        font-size 16px
+        font-size vwpx(16)
       .title
         display inline-block
-        font-size 84px
+        font-size vwpx(84)
         font-weight bold
         line-height 1.2em
-        margin-top 29px
-        margin-left -6px
+        margin-top vwpx(29)
+        margin-left vwpx(-6)
       .tags
         display inline-block
-        margin-top 33px
+        margin-top vwpx(33)
     `}</style>
-  </div>
-)
+    </div>
+  )
+}
 
 const Body = ({ content }: any) => {
   const body = useRef<HTMLDivElement>(null)

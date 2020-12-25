@@ -27,46 +27,79 @@ const Header = ({ work }: { work: Entry }) => {
         </div>
       </div>
       <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
-      .header
-        position relative
-        font-size 0
-      .image
-        position fixed
-        top 80px
-        left 80px
-        overflow hidden
-        img
-          width vwpx(1286)
-          height vwpx(688)
-          object-fit cover
-      .info
-        position relative
-        padding-top vwpx(459)
-        padding-right vwpx(486)
-      .inner
-        background-color white
-        padding-top vwpx(52)
-        padding-bottom vwpx(60)
-        padding-left vwpx(80)
-      .date
-        display inline-block
-        font-size vwpx(16)
-      .title
-        display inline-block
-        font-size vwpx(84)
-        font-weight bold
-        line-height 1.2em
-        margin-top vwpx(29)
-        margin-left vwpx(-6)
-      .tags
-        display inline-block
-        margin-top vwpx(33)
-    `}</style>
+        vwpx(px)
+          'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+        .header
+          position relative
+          font-size 0
+          margin-bottom vwpx(19)
+        .image
+          position fixed
+          top 80px
+          left 80px
+          overflow hidden
+          img
+            width vwpx(1286)
+            height vwpx(688)
+            object-fit cover
+        .info
+          position relative
+          padding-top vwpx(459)
+          padding-right vwpx(486)
+        .inner
+          background-color white
+          padding-top vwpx(52)
+          padding-bottom vwpx(60)
+          padding-left vwpx(80)
+        .date
+          display inline-block
+          font-size vwpx(16)
+        .title
+          display inline-block
+          font-size vwpx(84)
+          font-weight bold
+          line-height 1.2em
+          margin-top vwpx(29)
+          margin-left vwpx(-6)
+        .tags
+          display inline-block
+          margin-top vwpx(33)
+      `}</style>
     </div>
   )
 }
+
+const Excerpt = ({ title, description }: { title: string, description: string }) => (
+  <div className="excerpt">
+    <div className="text">
+      <div className="title" dangerouslySetInnerHTML={{ __html: title }}></div>
+      <div className="desc" dangerouslySetInnerHTML={{ __html: description }}></div>
+    </div>
+    <div className="image">
+      <img src="/_/ns@2x.jpg" alt="" />
+    </div>
+    <style jsx>{`
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      .excerpt
+        margin-left vwpx(80)
+        margin-bottom vwpx(141)
+        display grid
+        grid-template-columns auto vwpx(573)
+        grid-gap vwpx(70)
+      .title
+        font-size vwpx(30)
+        font-weight bold
+        line-height vwpx(54)
+        margin-top vwpx(-8)
+        margin-bottom vwpx(34)
+      .desc
+        line-height 3.0rem
+      .image img
+        width vwpx(573)
+    `}</style>
+  </div>
+)
 
 const Body = ({ content }: any) => {
   const body = useRef<HTMLDivElement>(null)
@@ -96,8 +129,8 @@ const Body = ({ content }: any) => {
             height auto
           p, table
             margin 20px 0
-            font-size 18px
-            line-height 2em
+            font-size 1.5rem
+            line-height 3.0rem
             word-wrap break-word
           .aspect-ratio
             position relative
@@ -193,6 +226,7 @@ const Credits = ({ credit }: { credit: Credit[] }) => (
 const WorkDetail = ({ work }: { work: Entry }) => (
   <Layout title={work.title} side="Work" backto="/work/category/all">
     <Header work={work} />
+    <Excerpt title={'未来の日用品店『New Stand Tokyo』をオープンしました。'} description={'Whatever が WTFC と共同運営しているコワーキングビル「WHEREVER」の 1F に、NY 発の未来の日用品店『New Stand Tokyo』をオープンしました。Whatever は、ショップブランディング、空間デザイン、商品キュレーションや Web サイト等、全てのクリエイティブディレクションを担当しています。<br/><br/><a href="https://newstand.jp/">https://newstand.jp/</a>'} />
     <Body content={work.content} />
     <Credits credit={work.credit || []} />
   </Layout >

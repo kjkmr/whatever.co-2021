@@ -4,7 +4,7 @@ import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 
 const Genres = () => (
-  <div className={LangStyle('container')}>
+  <div className={LangStyle('genres')}>
     <div className="inner">
       <div className="image"><GradImg><img src="/about/genres@2x.png" /></GradImg></div>
       <div className="content">
@@ -16,45 +16,47 @@ const Genres = () => (
       </div>
     </div>
     <style jsx>{`
-      vwp(p)
-        'calc((100vw - 80px) * %s)' % p
-      .container
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      .genres
         width 100%
-        margin-bottom vwp(0.0465)
+        margin-bottom vwpx(59)
+        min-height vwpx(544)
       .inner
         display flex
         justify-content space-between
       .image img
-        width vwp(0.3755)
-        margin-left vwp(0.062)
-        margin-top vwp(0.0465)
+        width vwpx(484)
+        margin-left vwpx(80)
+        margin-top vwpx(60)
       .content
         border-top 1px solid #D0D0D0
-        width vwp(0.5)
-        padding-top vwp(0.081)
+        width vwpx(643)
+        padding-top vwpx(104)
       h3
         display inline-block
         overflow hidden
-        font-size vwp(0.0217)
+        font-size vwpx(28)
         margin 0
+        margin-left vwpx(-1)
       h1
         display inline-block
         overflow hidden
-        font-size vwp(0.0653)
+        font-size vwpx(84)
         margin 0
-        margin-top vwp(0.0045)
-        margin-bottom 17px
-        margin-left vwp(-0.002)
+        margin-top vwpx(6)
+        margin-bottom vwpx(16)
+        margin-left vwpx(-3)
       h2
         display inline-block
         overflow hidden
-        font-size vwp(0.0187)
+        font-size vwpx(24)
         margin 0
-        margin-top vwp(0.0045)
+        margin-top vwpx(6)
       p
-        margin-top vwp(0.014)
-        margin-right vwp(0.06)
-        line-height 2em
+        margin-top vwpx(19)
+        margin-right vwpx(77)
+        line-height 3.0rem
       .more
         a
           display inline-block
@@ -63,25 +65,25 @@ const Genres = () => (
           border none
           border-bottom 1px solid
           background none
-          margin-top vwp(0.019)
+          margin-top vwpx(24)
           margin-right 20px
           padding-bottom 11px
           padding-right 30px
           padding-left 0
       .en
         h1
-          margin-bottom vwp(0.005)
+          margin-bottom vwpx(5)
         p
           font-size 1.6rem
-          line-height 1.9em
+          line-height 3.0rem
         .more a
-          margin-top vwp(0.018)
+          margin-top vwpx(23)
     `}</style>
   </div>
 )
 
 const Cultures = () => (
-  <div className={LangStyle('container')}>
+  <div className={LangStyle('cultures')}>
     <div className="inner">
       <div className="content">
         <Grad><h3>Crossborder :</h3></Grad>
@@ -93,45 +95,48 @@ const Cultures = () => (
       <div className="image"><GradImg><img src="/about/cultures@2x.png" /></GradImg></div>
     </div>
     <style jsx>{`
-      vwp(p)
-        'calc((100vw - 80px) * %s)' % p
-      .container
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      .cultures
         width 100%
-        margin-bottom vwp(0.0455)
+        margin-bottom vwpx(58)
+        min-height vwpx(546)
       .inner
         display flex
         justify-content space-between
-        margin-left vwp(0.062)
+        margin-left vwpx(80)
       .image img
-        width vwp(0.3755)
-        margin-right vwp(0.062)
-        margin-top vwp(0.049)
+        width vwpx(484)
+        margin-right vwpx(79)
+        margin-top vwpx(62)
       .content
         border-top 1px solid #D0D0D0
-        width vwp(0.439)
-        padding-top vwp(0.071)
+        width vwpx(564)
+        padding-top vwpx(91)
       h3
         display inline-block
         overflow hidden
-        font-size vwp(0.0217)
+        font-size vwpx(28)
         margin 0
+        margin-left vwpx(-1)
       h1
         display inline-block
         overflow hidden
-        font-size vwp(0.0653)
+        font-size vwpx(84)
         margin 0
-        margin-top vwp(0.0045)
-        margin-bottom 17px
-        margin-left vwp(-0.002)
+        margin-top vwpx(6)
+        margin-bottom vwpx(16)
+        margin-left vwpx(-3)
       h2
         display inline-block
         overflow hidden
-        font-size vwp(0.0187)
+        font-size vwpx(24)
         margin 0
-        margin-top vwp(0.0045)
+        margin-top vwpx(6)
+        margin-left vwpx(-1)
       p
-        margin-top vwp(0.014)
-        line-height 2em
+        margin-top vwpx(19)
+        line-height 3.0rem
       .more
         a
           display inline-block
@@ -140,24 +145,23 @@ const Cultures = () => (
           border none
           border-bottom 1px solid
           background none
-          margin-top vwp(0.019)
+          margin-top vwpx(25)
           margin-right 20px
           padding-bottom 11px
           padding-right 30px
           padding-left 0
       .en
         .content
-          padding-top vwp(0.0805)
+          padding-top vwpx(103)
         p
-          margin-top vwp(0.006)
+          margin-top vwpx(8)
           font-size 1.6rem
-          line-height 1.9em
     `}</style>
   </div>
 )
 
 const Workstyle = () => (
-  <div className={LangStyle('container')}>
+  <div className={LangStyle('workstyle')}>
     <div className="inner">
       <div className="image"><GradImg><img src="/about/workstyle@2x.png" /></GradImg></div>
       <div className="content">
@@ -169,44 +173,46 @@ const Workstyle = () => (
       </div>
     </div>
     <style jsx>{`
-      vwp(p)
-        'calc((100vw - 80px) * %s)' % p
-      .container
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      .workstyle
         width 100%
-        margin-bottom vwp(0.1245)
+        margin-bottom vwpx(159)
+        min-height vwpx(550)
       .inner
         display flex
         justify-content space-between
       .image img
-        width calc((100vw - 80px) * 0.3755)
-        margin-left vwp(0.062)
-        margin-top vwp(0.047)
+        width vwpx(484)
+        margin-left vwpx(80)
+        margin-top vwpx(60)
       .content
         border-top 1px solid #D0D0D0
-        width vwp(0.5)
-        padding-top vwp(0.07)
+        width vwpx(643)
+        padding-top vwpx(90)
       h3
         display inline-block
         overflow hidden
-        font-size vwp(0.0217)
+        font-size vwpx(28)
         margin 0
+        margin-left vwpx(-1)
       h1
         display inline-block
         overflow hidden
-        font-size vwp(0.0653)
+        font-size vwpx(84)
         margin 0
-        margin-top vwp(0.0045)
-        margin-bottom 17px
+        margin-top vwpx(6)
+        margin-bottom vwpx(16)
       h2
         display inline-block
         overflow hidden
-        font-size vwp(0.0187)
+        font-size vwpx(24)
         margin 0
-        margin-top vwp(0.0045)
+        margin-top vwpx(6)
       p
-        margin-top vwp(0.014)
-        margin-right vwp(0.0625)
-        line-height 2em
+        margin-top vwpx(19)
+        margin-right vwpx(80)
+        line-height 3.0rem
       .more
         a
           display inline-block
@@ -215,24 +221,23 @@ const Workstyle = () => (
           border none
           border-bottom 1px solid
           background none
-          margin-top vwp(0.019)
+          margin-top vwpx(24)
           margin-right 20px
           padding-bottom 11px
           padding-right 30px
           padding-left 0
       .en
         .content
-          padding-top vwp(0.1185)
+          padding-top vwpx(152)
         p
-          margin-top vwp(0.002)
+          margin-top vwpx(4)
           font-size 1.6rem
-          line-height 1.9em
     `}</style>
   </div>
 )
 
 const AboutPage = () => (
-  <Layout title="About">
+  <Layout title="About" side="About">
     <div className={LangStyle()}>
       <div className="head">
         <Grad><h1>Crossborder</h1></Grad>
@@ -254,36 +259,36 @@ const AboutPage = () => (
     <Workstyle />
 
     <style jsx>{`
-      vwp(p)
-        'calc((100vw - 80px) * %s)' % p
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .head
-        margin-top vwp(0.049)
-        margin-bottom vwp(0.068)
-        margin-left vwp(-0.005)
+        margin-top vwpx(63)
+        margin-bottom vwpx(87)
+        margin-left vwpx(-6)
         font-size 0
         h1
           margin 0
           display inline-block
-          font-size vwp(0.1089)
-          line-height 1.09em
+          font-size vwpx(140)
+          line-height vwpx(152)
           overflow hidden
       .text
-        margin-left vwp(0.062)
-        margin-bottom vwp(0.0915)
-        font-size vwp(0.01557)
+        margin-left vwpx(80)
+        margin-bottom vwpx(117)
+        font-size vwpx(20)
         font-weight bold
-        line-height vwp(0.018)
+        line-height vwpx(23)
         >div.p
           margin 0
-          margin-bottom vwp(0.0325)
+          margin-bottom vwpx(42)
         span
           display inline-block
           overflow hidden
-          margin-bottom vwp(0.0101)
+          margin-bottom vwpx(13)
       .en
         .text
-          font-size vwp(0.0171)
-          margin-bottom vwp(0.085)
+          font-size vwpx(22)
+          margin-bottom vwpx(109)
     `}</style>
   </Layout>
 )

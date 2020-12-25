@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
-import { Member, Entry, getAllMembers, getMemberDetail, getWorksByTag } from 'lib/api'
+import { Member, Entry, getAllMembers, getMemberDetail, getWorksByTag, getNewsByTag } from 'lib/api'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 import { WorkList } from 'components/WorkList'
@@ -24,7 +24,7 @@ const MemberInfo = ({ member }: { member: Member }) => {
           <Grad><div className="name">{member.name}</div></Grad>
           <div className="description" ><Grad><div dangerouslySetInnerHTML={{ __html: member.content || '' }}></div></Grad></div>
           <div className="links">
-            {member.links.map((link: any) => <Grad><div>- <a href={link.href} target="_blank" rel="noopener noreferrer">{link.name}</a></div></Grad>)}
+            {member.links.filter((l: any) => l.url).map((link: any) => <Grad><div>- <a href={link.href} target="_blank" rel="noopener noreferrer">{link.name}</a></div></Grad>)}
           </div>
         </div>
       </div>
@@ -165,8 +165,8 @@ const RelatedNews = ({ news }: { news: Entry[] }) => (
 const MemberDetail = ({ member, works, news }: { member: Member, works: Entry[], news: Entry[] }) => (
   <Layout title={member.name} side="Team" backto="/team">
     <MemberInfo member={member} />
-    <RelatedWork works={works.slice(0, 6)} />
-    <RelatedNews news={news} />
+    {works.length ? <RelatedWork works={works} /> : null}
+    {news.length ? <RelatedNews news={news} /> : null}
   </Layout >
 )
 
@@ -184,28 +184,7 @@ export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const slug: string = params?.slug as string
   const member = await getMemberDetail(slug, locale)
-  const works = await getWorksByTag(slug)
-  const news = [
-    {
-      date: 'June 8, 2020',
-      title: '記事掲載『死者に権利はあるのか？ 死後データの意思表明プラットフォーム「D.E.A.D」特別鼎談』',
-      image: '/_/rel_news1.jpg',
-    },
-    {
-      date: 'February 25, 2020',
-      title: '富永 勇亮と川村真司がSXSW2020のにスピーカーとして登壇',
-      image: '/_/rel_news2.jpg',
-    },
-    {
-      date: 'October 28, 2019',
-      title: 'Taiwan Creativity Week「台灣創意週」にて富永勇亮が登壇',
-      image: '/_/rel_news3.jpg',
-    },
-    {
-      date: 'February 6, 2019',
-      title: 'インタビュー記事掲載『Campaign Japan』',
-      image: '/_/rel_news4.jpg',
-    },
-  ]
+  const works = await getWorksByTag(slug, 100, locale)
+  const news = await getNewsByTag(slug, 100, locale)
   return { props: { member, works, news } }
 }

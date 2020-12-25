@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
-import { Entry, Tag, getLatestNews, getWorksByTag } from 'lib/api'
+import { Entry, Tag, getNews, getWorksByTag } from 'lib/api'
 import { t, LangStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import WorkTag from 'components/WorkTag'
@@ -325,6 +325,6 @@ export default IndexPage
 
 export const getStaticProps: GetStaticProps = async () => {
   const works = await getWorksByTag('featured', 4)
-  const news = await getLatestNews()
+  const news = await getNews(4)
   return { props: { works, news } }
 }

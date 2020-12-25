@@ -204,8 +204,8 @@ export async function getFeaturedWork(): Promise<Entry[]> {
 }
 
 
-export async function getAllNews(): Promise<Entry[]> {
-  const data = await wp.posts().perPage(20).embed().param({ categories: 5, _fields: 'slug,title,date,content,_links,_embedded' })
+export async function getNews(maxEntries = 100): Promise<Entry[]> {
+  const data = await wp.posts().perPage(maxEntries).embed().param({ categories: 5, _fields: 'slug,title,date,content,_links,_embedded' })
   return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
@@ -216,12 +216,16 @@ export async function getAllNews(): Promise<Entry[]> {
 }
 
 
-export async function getLatestNews(): Promise<Entry[]> {
-  const data = await wp.posts().perPage(4).embed().param({ categories: 5, _fields: 'slug,title,date,_links,_embedded' })
+export async function getNewsByTag(tagSlug: string, maxEntries: number = 100, locale: string = 'ja'): Promise<Entry[]> {
+  const tag = await wp.tags().slug(tagSlug)
+  const data = await (wp.posts().tags(tag[0].id).perPage(maxEntries).embed().param({ categories: 5, _fields: 'slug,title,date,content,_links,_embedded', lang: locale }))
+  const tags: { [id: number]: Tag } = {};
+  (await getWorkTags(locale)).forEach(t => tags[t.id] = t)
   return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
     date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
+    content: replaceToCDN(e.content.rendered),
     image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
   }))
 }

@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next'
-import { Entry, getAllNews } from '../../lib/api'
+import { Entry, getNews } from '../../lib/api'
 import Layout from '../../components/Layout'
 import { Grad, GradImg } from '../../components/Grad'
 
@@ -56,6 +56,6 @@ const NewsIndex = ({ entries }: { entries: Entry[] }) => (
 export default NewsIndex
 
 export const getStaticProps: GetStaticProps = async () => {
-  const entries = await getAllNews()
+  const entries = await getNews()
   return { props: { entries } }
 }

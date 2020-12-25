@@ -1,137 +1,132 @@
-import Image from 'next/image'
-import Layout from '../components/Layout'
-import { Grad, GradImg } from '../components/Grad'
-
-type AddressData = {
-  region: string
-  address: string
-  phone?: string
-  representative?: string
-}
-
-const data: AddressData[] = [
-  {
-    region: 'TOKYO',
-    address: 'WHEREVER 7F, 7-2-8 Roppongi, Minato-ku, Tokyo 106-0032, Japan',
-    phone: '+81-3-6427-6022',
-    representative: ' Yusuke Tominaga',
-  },
-  {
-    region: 'NEW YORK',
-    address: '347 W 36th St, #902 New York, NY 10018 U.S.A.',
-    phone: '+1-347-801-7789',
-    representative: 'Masashi Kawamura / Qanta Shimizu',
-  },
-  {
-    region: 'TAIPEI',
-    address: '18F, No.97, Songren Rd., Xinyi Dist., Taipei City 110, Taiwan',
-    phone: '+886-908-222-101',
-    representative: 'Eiji Muroichi',
-  },
-  {
-    region: 'BERLIN',
-    address: 'Friedrichstraße 68, 10117 Berlin, Germany',
-  },
-]
+import { t, ta, LangStyle } from 'lib/i18n'
+import Layout from 'components/Layout'
+import { Grad, GradImg, GradLink } from 'components/Grad'
 
 const Head = () => (
-  <div className="head">
-    <Grad><div>For new business,</div></Grad>
-    <Grad><div>career and media inquiries,</div></Grad>
-    <Grad><div>contact us.</div></Grad>
+  <div className={LangStyle('head')}>
+    <img src="/contact/head@2x.png" alt="" />
+    {t('contact.title').split('\n').map((line, index) => <Grad key={index}><div>{line}</div></Grad>)}
     <div className="mailto"><GradImg><a href="mailto:hello@whatever.co">hello@whatever.co</a></GradImg></div>
-    <GradImg><a href="mailto:hello@whatever.co">hello@whatever.co</a></GradImg>
     <style jsx>{`
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .head
-        margin-top 145px
-        margin-left 39px
+        position relative
+        margin-top vwpx(137)
+        margin-left vwpx(39)
         font-size 0
+        >img
+          position absolute
+          top vwpx(-140)
+          right vwpx(-15)
+          width vwpx(745.69)
         div
           display inline-block
-          font-size 48px
+          font-size vwpx(38)
           font-weight bold
-          margin-bottom 12px
-        .mailto
-          width 300px
-          height 80px
-          margin-top 59px
-          background-color black
-          a
-            display flex
-            justify-content center
-            align-items center
-            width 300px
-            height 80px
-            font-size 18px
-            font-weight bold
-            letter-spacing 0.04em
-            color white
+          line-height vwpx(60)
+      .mailto
+        width vwpx(300)
+        height vwpx(80)
+        margin-top vwpx(67)
+        background-color black
+        a
+          display flex
+          justify-content center
+          align-items center
+          width vwpx(300)
+          height vwpx(80)
+          font-size vwpx(18)
+          font-weight bold
+          letter-spacing 0.04em
+          color white
+      .en
+        &.head
+          div
+            font-size vwpx(48)
     `}</style>
   </div>
 )
 
-const Address = ({ data }: { data: AddressData }) => (
+const Address = ({ data }: { data: any }) => (
   <div className="container">
-    <Grad><h2 className="region">{data.region}</h2></Grad>
-    <Grad><a href="#" className="address">{data.address}</a></Grad>
+    <Grad><h2 className="region">{data.name}</h2></Grad>
+    <div className="address"><GradLink className="address" href={data.maplink} target="_blank" rel="noopener noreferrer">{data.address}</GradLink></div>
     {data.phone ? <Grad><div className="phone">{data.phone}</div></Grad> : null}
-    {data.representative ? <Grad><div className="repr">Representative: {data.representative}</div></Grad> : null}
+    {data.representative ? <Grad><div className="repr">{data.representative}</div></Grad> : null}
     <style jsx>{`
+      vwpx(px)
+          'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .container
         font-size 0
       .region
         display inline-block
-        font-size 24px
+        font-size vwpx(24)
         font-weight bold
-        margin-bottom 34px
+        margin-bottom vwpx(34)
       .address
         display inline-block
-        font-size 16px
-        padding-bottom 2px
-        border-bottom 1px solid red
-        margin-bottom 13px
+        font-size 1.5rem
+        line-height 1em
+        margin-bottom 6px
       .phone
         display inline-block
-        font-size 16px
+        font-size 1.5rem
+        line-height 1em
         margin-bottom 16px
       .repr
         display inline-block
-        font-size 16px
+        font-size 1.5rem
+        line-height 1em
     `}</style>
   </div>
 )
 
-const AboutPage = () => (
-  <Layout title="About">
+const ContactPage = () => (
+  <Layout title="Contact">
     <Head />
     <div className="address">
-      {data.map(data => <Address key={data.region} data={data} />)}
+      {ta('contact.addresses').map(data => <Address key={data.name} data={data} />)}
     </div>
-    <div className="imgs">
-      <div className="row" style={{ marginBottom: '80px' }}>
-        <GradImg><Image src="/contact/whatever_4F_005@2x.jpg" alt="" width={562} height={375} /></GradImg>
-        <GradImg><Image src="/contact/whatever_3F_004@2x.jpg" alt="" width={562} height={375} /></GradImg>
-      </div>
-      <div style={{ marginBottom: '80px', display: 'inline-block' }}><GradImg><Image src="/contact/whatever_6F_004@2x.jpg" alt="" width={844} height={562.5} /></GradImg></div>
-      <div style={{ marginBottom: '80px' }}><GradImg><Image src="/contact/whatever_7F_002@2x.jpg" alt="" width={1205} height={804} /></GradImg></div>
+    <div className="images">
+      <img src="/contact/whatever_7F_002@2x.jpg" alt="" className="i1" />
+      <img src="/contact/whatever_6F_004@2x.jpg" alt="" className="i2" />
       <div className="row">
-        <GradImg><Image src="/contact/whatever_4F_008@2x.jpg" alt="" width={562} height={375} /></GradImg>
-        <GradImg><Image src="/contact/whatever_4F_009@2x.jpg" alt="" width={562} height={750} /></GradImg>
+        <img src="/contact/whatever_4F_005@2x.jpg" alt="" className="i3" />
+        <img src="/contact/whatever_3F_004@2x.jpg" alt="" className="i4" />
       </div>
     </div>
     <style jsx>{`
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .address
-        margin-top 270px
-        margin-left 80px
-        margin-right 20px
+        margin-top vwpx(203)
+        margin-left vwpx(80)
+        margin-right vwpx(16)
         display grid
         grid-template-columns repeat(2, 1fr)
-        grid-auto-rows 216px
-      .imgs
+        grid-auto-rows vwpx(216)
+      .images
+        {/* opacity 0.5 */}
         font-size 0
-        margin-top 83px
-        margin-left 80px
-        margin-bottom 150px
+        margin-top vwpx(83)
+        margin-left vwpx(80)
+        margin-bottom vwpx(160)
+        .row
+          display flex
+          justify-content space-between
+        .i1
+          width vwpx(1205)
+          float right
+        .i2
+          width vwpx(844)
+          margin-top vwpx(70)
+        .i3
+          width vwpx(562)
+          margin-top vwpx(80)
+        .i4
+          width vwpx(562)
+          margin-top vwpx(80)
       .row
         display flex
         justify-content space-between
@@ -140,4 +135,4 @@ const AboutPage = () => (
   </Layout >
 )
 
-export default AboutPage
+export default ContactPage

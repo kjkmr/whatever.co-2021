@@ -1,161 +1,124 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
-import { Entry, Tag, getLatestNews, getWorksByTag } from '../lib/api'
-import Layout from '../components/Layout'
-import WorkTag from '../components/WorkTag'
-import { Grad, GradImg } from '../components/Grad'
+import { Entry, Tag, getNews, getWorksByTag } from 'lib/api'
+import { t, LangStyle } from 'lib/i18n'
+import Layout from 'components/Layout'
+import WorkTag from 'components/WorkTag'
+import { Grad, GradImg } from 'components/Grad'
 
-const Showreel = () => (
-  <div className="reel">
-    <video src="/index/reel-preview.mp4" autoPlay={true} ></video>
-    <button >Watch Reel</button>
-    <style jsx>{`
-      .reel
-        position relative
-        width 100%
-        background-color black
-        font-size 0
-      video
-        width 1286px
-        height 728px
-        object-fit cover
-      button
-        width 256px
-        height 80px
-        border none
-        background-color black
-        color white
-        position absolute
-        right 0
-        bottom -40px
-        font-size 17.5px
-        font-weight bold
-        letter-spacing 0.03em
-    `}</style>
-  </div>
-)
-
-const AboutLink = ({ title, desc, image, ix }: { title: string, desc: string, image: string, ix?: number }) => (
-  <div className="container">
-    <Link href={`/about/${title}`}>
-      <a>
-        <div className="image" style={{ marginLeft: ix || 0 }}> <GradImg><img src={image} alt="" width="340" height="340" /></GradImg></div>
-        <div className="titles">
-          <Grad><div className="pre">Crossing the border of</div></Grad>
-          <Grad><div className="what">{title}</div></Grad>
-        </div>
-        <Grad><div className="desc">{desc}</div></Grad>
-        <div className="more">Show more</div>
-      </a>
-    </Link>
-    <style jsx>{`
-      .container
-        position relative
-        width 416px
-        font-size 0
-      .image
-        img
-          object-fit contain
-      .titles
-        position relative
-        margin-top 9px
-        margin-right 64px
-        padding-top 39px
-        padding-left 1px
-        height 98px
-        .pre
-          display inline-block
-          font-size 20px
-          font-weight 700
-        .what
-          display inline-block
-          margin-top 8px
-          font-size 70px
+const Showreel = () => {
+  const [scrollY, setScrollY] = useState(0)
+  const onScroll = () => setScrollY(window.pageYOffset)
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  })
+  return (
+    <div className="showreel">
+      <div className="video" style={{ height: `calc((100vh - 40px) - ${scrollY}px)` }}>
+        <video src="/index/reel-preview.mp4" autoPlay={true} loop></video>
+      </div>
+      <button >Watch Reel</button>
+      <style jsx>{`
+        .showreel
+          position relative
+          width 100%
+          height calc(100vh - 40px)
+          background-color black
+          font-size 0
+        .video
+          position fixed
+          top 0
+          left 80px
+          overflow hidden
+        video
+          width calc(100vw - 80px)
+          height calc(100vh - 40px)
+          object-fit cover
+        button
+          width 256px
+          height 80px
+          border none
+          background-color black
+          color white
+          position absolute
+          right 0
+          bottom -40px
+          font-size 1.8rem
           font-weight bold
-      .desc
-        font-size 18px
-        font-weight 200
-        line-height 1.8em
-        margin-top 24px
-        width 335px
-        min-height 186px
-      .more
-        font-size 20px
-        font-weight 700
-    `}</style>
-  </div>
-)
+          letter-spacing 0.04em
+      `}</style>
+    </div>
+  )
+}
 
 const Crossborder = () => (
-  <div className="container">
+  <div className={LangStyle('container')}>
     <div className="title">
       <Grad><h1>Crossborder</h1></Grad>
-      <Grad><h1>Creative Studio.</h1></Grad>
+      <Grad><h1>Creative Studio</h1></Grad>
     </div>
     <div className="desc">
-      <Grad><h2>Whatever is a cross-border creative studio.</h2></Grad>
-    </div>
-    <div className="cats">
-      <AboutLink title="genres" desc="At Whatever, as our name implies, we create anything.We plan, develop and implement experiences that no one has ever seen before." image="/index/genres@2x.png" ix={-10} />
-      <AboutLink title="cultures" desc="At Whatever, we have a proven track record of working with brands around the world and can support branding and content development across borders and cultures." image="/index/cultures@2x.png" />
-      <AboutLink title="profession" desc="The “diversity of people” at Whatever is the greatest value we have." image="/index/profession@2x.png" />
+      <Grad><h2>{t('index.whateveris1')}</h2></Grad>
+      {t('index.whateveris2') ? <Grad><h2 style={{ marginLeft: 'calc((100vw - 80px) * 0.14)' }}>{t('index.whateveris2')}</h2></Grad> : null}
     </div>
     <div className="link">
-      <Grad>
-        <Link href="/about">
-          <a>About Us</a>
-        </Link>
-      </Grad>
+      <Link href="/about">
+        <a>Learn more</a>
+      </Link>
     </div>
     <style jsx>{`
       .container
         position relative
-        margin-top 136px
+        margin-top calc((100vw - 80px) * 0.125)
         img
           display block
       .title
         font-size 0
-        margin-left -7px
+        margin-left calc((100vw - 80px) * -0.005)
         h1
           display inline-block
-          font-size 175px
+          font-size calc((100vw - 80px) * 0.1353)
           font-weight bold
-          line-height 176px
+          line-height calc((100vw - 80px) * 0.1353)
           margin 0
-          margin-bottom 16px
+          margin-bottom calc((100vw - 80px) * 0.013)
       .desc
         position relative
-        margin-top 66px
-        margin-left 80px
+        margin-top calc((100vw - 80px) * 0.051)
+        margin-left calc((100vw - 80px) * 0.063)
         font-size 0
         h2
           display inline-block
-          font-size 46px
-          margin 0
-          margin-bottom 24px
-      .c1
-        position absolute
-        top -161px
-        left -87px
-      .c2
-        margin-left 74px
-      .cats
-        display flex
-        justify-content space-between
-        margin-top 63px
-      .link
-        text-align right
-        font-size 24px
-        font-weight 700
-        margin-top 75px
-        a
-          display inline-block
-          padding-right 115px
-          padding-left 3px
-          padding-bottom 10px
-          border-bottom 1px solid red
+          font-size calc((100vw - 80px) * 0.028)
           font-weight bold
+          line-height calc((100vw - 80px) * 0.032)
+          margin 0
+          margin-bottom calc((100vw - 80px) * 0.019)
+      .link
+        display flex
+        justify-content flex-end
+        margin-top calc((100vw - 80px) * 0.096)
+        border-top 1px solid #D0D0D0
+        a
+          display flex
+          justify-content center
+          align-items center
+          color white
+          font-size 1.8rem
+          font-weight bold
+          letter-spacing 0.04em
+          width 256px
+          height 60px
+          background-color black
+          margin-top -31px
+      .en
+        .desc
+          margin-top calc((100vw - 80px) * 0.0505)
+          margin-left calc((100vw - 80px) * 0.0615)
+          h2
+            font-size calc((100vw - 80px) * 0.0358)
     `}</style>
   </div>
 )
@@ -164,12 +127,12 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
   <div className="container">
     <Link href={`/work/${work.slug}`}>
       <a>
-        <div className="image"><GradImg><img src={work.image} width="677" height="381" /></GradImg></div>
+        <div className="image"><GradImg><img src={work.image} /></GradImg></div>
         <div className="text">
           <Grad><div className="date">{work.date}</div></Grad>
           <Grad><div className="title">{work.title}</div></Grad>
-          <Grad><div className="head">Lorem ipsum dolor sit amet</div></Grad>
-          <Grad><div className="desc">Morbi imperdiet placerat magna, et faucibus quam molestie eget. Nam faucibus nunc et dui aliquam scelerisque. In laoreet nisl sed tellus tincidunt, et scelerisque dolor fermentum. Duis enim nisi, vehicula in lorem eget, consectetur sagittis neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at suscipit urna.</div></Grad>
+          <Grad><div className="subtitle">{work.subtitle}</div></Grad>
+          <Grad><div className="overview">{work.overview}</div></Grad>
           <Grad><div className="tags">
             {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
           </div></Grad>
@@ -180,57 +143,55 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
       .container
         position relative
         background-repeat no-repeat
-        background-position-x 5px
-        padding-top 23px
-        padding-left 584px
-        margin-bottom 100px
+        padding-top calc((100vw - 80px) * 0.047)
+        padding-left calc((100vw - 80px) * 0.477)
+        margin-bottom calc((100vw - 80px) * 0.062)
       .image
         position absolute
         top 0
-        left 5px
+        left 0
         img
+          width calc((100vw - 80px) * 0.523328149)
+          height calc((100vw - 80px) * 0.294712286)
           object-fit cover
       .text
         position relative
         background-color white
-        min-height 298px
-        padding-top 60px
-        padding-left 62px
-        padding-right 80px
+        padding-top calc((100vw - 80px) * 0.039)
+        padding-left calc((100vw - 80px) * 0.046)
+        padding-right calc((100vw - 80px) * 0.0613)
+        min-height calc((100vw - 80px) * (0.294712286 - 0.047 - 0.039))
         font-size 0
       .date
         display inline-block
         overflow hidden
-        font-size 12px
+        font-size 1.4rem
         font-weight 200
       .title
         display inline-block
         overflow hidden
-        font-size 48px
+        margin-top 1.9rem
+        font-size calc((100vw - 80px) * 0.0373)
         font-weight bold
-        line-height 1.3em
-        margin-top 18px
-      .head
+        line-height 1.2em
+      .subtitle
         display inline-block
         overflow hidden
-        margin-top 9px
-        font-size 24px
+        margin-top 1.2rem
+        font-size calc((100vw - 80px) * 0.0173)
         font-weight bold
-        line-height 1.3em
-      .desc
+        line-height 1.4em
+      .overview
         display inline-block
         overflow hidden
-        margin-top 10px
-        line-height 1.8em
-        font-size 18px
+        margin-top 1.5rem
+        line-height 2em
+        font-size 1.5rem
         font-weight light
-        height 96px
-        overflow hidden
-        text-overflow ellipsis
       .tags
         display inline-block
         overflow hidden
-        margin-top 30px
+        margin-top 3rem
     `}</style>
   </div>
 )
@@ -240,33 +201,35 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
     <Grad><h1>Featured Works</h1></Grad>
     {works.map(work => <FeaturedWorkItem key={work.slug} work={work} />)}
     <div className="link">
-      <Grad>
-        <Link href="/work">
-          <a>All Works</a>
-        </Link>
-      </Grad>
+      <Link href="/work">
+        <a>All Works</a>
+      </Link>
     </div>
     <style jsx>{`
       .container
-        margin-top 89px
-        margin-left -5px
+        margin-top calc((100vw - 80px) * 0.065)
       h1
         display inline-block
-        font-size 70px
+        font-size calc((100vw - 80px) * 0.028)
+        font-weight bold
         margin 0
-        margin-bottom 52px
+        margin-left -0.3rem
+        margin-bottom 7rem
       .link
-        text-align right
-        font-size 24px
-        font-weight 700
-        margin-top 75px
+        display flex
+        justify-content flex-end
+        margin-top calc((100vw - 80px) * 0.06)
         a
-          display inline-block
-          padding-right 195px
-          padding-left 3px
-          padding-bottom 10px
-          border-bottom 1px solid red
+          display flex
+          justify-content center
+          align-items center
+          color white
+          font-size 1.8rem
           font-weight bold
+          letter-spacing 0.04em
+          width 256px
+          height 60px
+          background-color black
     `}</style>
   </div>
 )
@@ -278,80 +241,80 @@ const NewsItem = ({ data }: { data: Entry }) => (
     <Grad><div className="title">{data.title}</div></Grad>
     <style jsx>{`
       .container
-        width 256px
-        margin-right 60px
+        width 18.740849195vw
+        margin-right 4.39238653vw
         font-size 0
       img
-        width 256px
-        height 144px
+        width 18.740849195vw
+        height 10.541727672vw
         object-fit cover
         display block
       .date
         display inline-block
         overflow hidden
-        font-size 12px
+        font-size 1.4rem
         font-weight 200
-        margin-top 20px
+        margin-top 1.45em
       .title
         display inline-block
         overflow hidden
-        font-size 18px
+        font-size 1.5rem
         font-weight bold
-        margin-top 9px
-        line-height 1.6em
+        margin-top 0.6em
+        line-height 2em
     `}</style>
   </div>
 )
 
-const FeaturedNews = ({ news }: { news: Entry[] }) => (
+const LatestNews = ({ news }: { news: Entry[] }) => (
   <div className="container">
-    <Grad><h1>Featured News</h1></Grad>
+    <Grad><h1>Latest News</h1></Grad>
     <div className="items">
       {news.map(item => <NewsItem key={item.slug} data={item} />)}
     </div>
     <div className="link">
-      <Grad>
-        <Link href="/news">
-          <a>All News</a>
-        </Link>
-      </Grad>
+      <Link href="/news">
+        <a>All News</a>
+      </Link>
     </div>
 
     <style jsx>{`
       .container
-        margin-top 72px
-        padding 80px 80px
+        margin-top 5.85vw
+        padding 5.85vw
         background-color #F4F4F4
-        height 415px
       h1
         display inline-block
         overflow hidden
-        font-size 35px
+        font-size 2.56vw
         letter-spacing 0.012em
         margin 0
-        margin-left -2px
+        margin-left -0.18vw
       .items
         display flex
-        margin-top 50px
+        margin-top 3.65vw
       .link
-        text-align right
-        font-size 24px
-        font-weight 700
-        margin-top 60px
-        margin-right -80px
+        display flex
+        justify-content flex-end
+        margin-top 5.05vw
+        margin-right -5.85vw
         a
-          display inline-block
-          padding-right 204px
-          padding-left 3px
-          padding-bottom 10px
-          border-bottom 1px solid red
+          display flex
+          justify-content center
+          align-items center
+          color white
+          font-size 1.8rem
           font-weight bold
+          letter-spacing 0.04em
+          width 256px
+          height 60px
+          background-color black
     `}</style>
   </div>
 )
 
 const IndexPage = ({ works, news }: { works: Entry[], news: Entry[] }) => (
-  <Layout showHeader={false} footer={<FeaturedNews news={news} />}>
+  <Layout showHeader={false} footer={<LatestNews news={news} />}>
     <Showreel />
     <Crossborder />
     <FeaturedWorks works={works} />
@@ -361,7 +324,7 @@ const IndexPage = ({ works, news }: { works: Entry[], news: Entry[] }) => (
 export default IndexPage
 
 export const getStaticProps: GetStaticProps = async () => {
-  const works = await getWorksByTag('featured', 3)
-  const news = await getLatestNews()
+  const works = await getWorksByTag('featured', 4)
+  const news = await getNews(4)
   return { props: { works, news } }
 }

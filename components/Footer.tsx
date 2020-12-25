@@ -1,15 +1,25 @@
+import * as React from 'react'
+import { animateScroll as scroll } from 'react-scroll'
+import ContactForm from 'components/ContactForm'
+import SNSButtons from 'components/SNSButtons'
+
+const toTop = () => {
+  scroll.scrollToTop({
+    duration: 200,
+    smooth: 'easeOutQuint',
+  })
+}
+
+
 const Footer = () => (
   <div className="container">
-    <img src="/whatever.png" />
-    <div className="text">For new business, career and media inquires, contact us.</div>
-    <div className="contact">Contact us</div>
-    <input className="email" type="text" placeholder="Email address"></input>
-    <div className="subscribe">Subscribe to our newsletter</div>
+    <img src="/footer/whatever.png" />
+    <ContactForm />
     <div className="sns">
-      <img src="/sns.png" />
+      <SNSButtons />
       <div className="copyright">© Whatever Inc.</div>
     </div>
-    <div className="pagetop"><hr />Page Top</div>
+    <div className="pagetop"><hr /><span onClick={toTop}>Page Top</span></div>
 
     <style jsx>{`
       .container
@@ -18,40 +28,24 @@ const Footer = () => (
         padding 100px 80px
         color white
         background-color #333333
-      img
-        display block
-      .text
-        margin-top 100px
-      .contact
-        margin-top 32px
-        font-weight bold
-        letter-spacing 0.04em
-      .email
-        border-radius 30px
-        border 1px solid white
-        background-color transparent
-        width 384px
-        padding 17px 26px
-        margin-top 106px
-        color white
-      .subscribe
-        margin-top 30px
-        font-weight bold
-        letter-spacing 0.0em
+        >img
+          display block
+          margin-bottom 98px
       .sns
         position absolute
-        bottom 100px
+        bottom 99px
         right 80px
       .copyright
-        font-size 12px
+        font-size 1.2rem
+        font-weight light
         text-align right
         margin-top 30px
       .pagetop
         position absolute
-        top 213px
+        top 215px
         right 80px
-        font-size 12px
-        letter-spacing 0.05em
+        font-size 1.2rem
+        letter-spacing 0.07em
         transform rotate(90deg)
         transform-origin top right
         hr
@@ -60,6 +54,9 @@ const Footer = () => (
           border none
           border-top 1px solid white
           margin-right 20px
+        span
+          vertical-align 3px
+          cursor pointer
     `}</style>
   </div>
 )

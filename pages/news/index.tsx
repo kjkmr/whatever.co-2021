@@ -1,10 +1,10 @@
 import { GetStaticProps } from 'next'
-import { Entry, getAllNews } from '../../lib/api'
-import Layout from '../../components/Layout'
-import { Grad, GradImg } from '../../components/Grad'
+import { Entry, getNews } from 'lib/api'
+import Layout from 'components/Layout'
+import { Grad, GradImg } from 'components/Grad'
 
 const NewsItem = ({ entry }: { entry: Entry }) => (
-  <div className="container">
+  <div className="news-item">
     <div className="image"><GradImg><img src={entry.image} alt="" /></GradImg></div>
     <div className="info">
       <Grad><div className="date">{entry.date}</div></Grad>
@@ -12,42 +12,47 @@ const NewsItem = ({ entry }: { entry: Entry }) => (
       <Grad><div className="desc" dangerouslySetInnerHTML={{ __html: entry.content || '' }} /></Grad>
     </div>
     <style jsx>{`
-      .container
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      .news-item
         display grid
-        grid-template-columns 611px 531px
-        grid-gap 65px
+        grid-template-columns vwpx(611) auto
+        grid-gap vwpx(64)
         font-size 0
-        margin-bottom 100px
+        margin-bottom vwpx(100)
+        margin-right vwpx(80)
       .image
         img
-          width 611px
-          height 345px
+          width vwpx(611)
+          height vwpx(345)
           object-fit cover
       .date
         display inline-block
-        font-size 12px
+        font-size 1.4rem
         font-weight light
       .title
         display inline-block
-        font-size 36px
+        font-size vwpx(30)
         font-weight bold
-        margin-top 8px
+        line-height vwpx(48)
+        margin-top vwpx(13)
       .desc
         display inline-block
-        font-size 16px
+        font-size 1.5rem
         font-weight light
-        margin-top 30px
+        line-height 3.0rem
+        margin-top vwpx(18)
     `}</style>
   </div>
 )
 
 const NewsIndex = ({ entries }: { entries: Entry[] }) => (
-  <Layout title="WORK">
-    <div className="container">
+  <Layout title="News" side="News">
+    <div className="news-index">
       {entries.map(entry => <NewsItem key={entry.slug} entry={entry} />)}
     </div>
     <style jsx>{`
-      .container
+      .news-index
         margin-top 40px
     `}</style>
   </Layout >
@@ -56,6 +61,6 @@ const NewsIndex = ({ entries }: { entries: Entry[] }) => (
 export default NewsIndex
 
 export const getStaticProps: GetStaticProps = async () => {
-  const entries = await getAllNews()
+  const entries = await getNews()
   return { props: { entries } }
 }

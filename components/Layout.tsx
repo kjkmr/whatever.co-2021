@@ -1,41 +1,40 @@
-import { ReactNode, useCallback } from 'react'
+import { ReactNode } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import Header from 'components/Header'
+import Footer from 'components/Footer'
 import Menu from './Menu'
-import useEventListener from '../lib/useEventListener'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+
+const useTemplate = 0
 
 type Props = {
   showHeader?: boolean
   title?: string
+  side?: string
+  backto?: string
   children?: ReactNode
   footer?: ReactNode
 }
 
-const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
-  let container: HTMLDivElement
-  const ref = useCallback(node => {
-    if (!node) return
-    container = node
-    const s = window.innerWidth / 1366
-    container.style.transform = `scale(${s})`
-  }, [])
-  // @ts-ignore TS6133
-  useEventListener('resize', (event: Event) => {
-    container.style.transform = `scale(${window.innerWidth / 1366})`
-  })
+const Layout = ({ children, footer, title = '', side = '', backto = '', showHeader = true }: Props) => {
+  const templateStyle: { [prop: string]: string } = {}
+  if (useTemplate) {
+    templateStyle.backgroundImage = `url(/_/News_index_${useRouter().locale!}.png)`
+  }
   return (
-    <div className="scale" ref={ref}>
+    <div>
       <Head>
         <title>{title ? title + " ― " : ""}Whatever Inc.</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js" integrity="sha512-oAY57i8MXmaOP7pAylNLnULAM4QLV3uGnvnXVY4zF229/zFzTvG2/5YIgH8iN8oZR2hnbkiDPd4JCJGaH4oG6g==" crossOrigin="anonymous"></script>
       </Head>
 
-      <div className="container" >
+      <div className="container" style={templateStyle}>
         <div className="contents">
-          <Menu />
+          <Menu title={side} backto={backto ? { name: side, href: backto } : undefined} />
           <div className="main">
             {showHeader ? <Header /> : <div />}
             {children}
@@ -46,17 +45,16 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
       </div>
 
       <style jsx>{`
-        .scale
-          transform-origin top left
-          width 1366px
         .container
           position relative
-          width 1366px
+          width 100%
+          background-repeat no-repeat
+          background-position left top
         .contents
           display flex
           align-items flex-start
         .main
-          width calc(100% - 80px)
+          width calc(100vw - 80px)
       `}</style>
 
       <style jsx global>{`
@@ -87,16 +85,19 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
               url('/common/fonts/apercu-bold.ttf') format('truetype')
           font-weight 700
           font-style normal
-        html, body
+        
+        html
           margin 0
           padding 0
+          font-size 10px
         body
-          {/* background-image: url('/_/Top.png') */}
-          background-repeat no-repeat
-          background-position center top
-          font-family Apercu
-          font-size 16px
+          margin 0
+          padding 0
+          background-color white
+          font-family Apercu, 'Noto Sans JP', sans-serif
+          font-size 1.5rem
           font-weight 200
+          color black
         a
           text-decoration none
           color black
@@ -111,7 +112,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
           margin 1em 0
           font-size 0
         figcaption
-          font-size 13px
+          font-size 1.3em
           font-style italic
           margin-top 0.5em
           margin-bottom 1.5em

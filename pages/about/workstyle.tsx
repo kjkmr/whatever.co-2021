@@ -154,7 +154,7 @@ const Section3 = () => (
 )
 
 const Profession = () => (
-  <Layout title="About" footer={<Footer left="Cultures" right="Genres" />}>
+  <Layout title="About" side="About" backto="/about" footer={<Footer left="Cultures" right="Genres" />}>
     <Header title="Workstyle" subtitle={t('about.workstyle.title')} desc={t('about.workstyle.description')} image="/about/workstyle/head@2x.png" ty={{ ja: 1 }} iy={{ ja: -22, en: -44 }} />
     <Section1 />
     <Section2 />

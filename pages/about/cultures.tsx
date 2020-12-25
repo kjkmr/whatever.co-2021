@@ -148,7 +148,7 @@ const Section2 = () => (
 )
 
 const Cultures = () => (
-  <Layout title="About" footer={<Footer left="Genres" right="Workstyle" />}>
+  <Layout title="About" side="About" backto="/about" footer={<Footer left="Genres" right="Workstyle" />}>
     <div className="container">
       <Header title="Cultures" subtitle={t('about.cultures.title')} desc={t('about.cultures.description')} image="/about/cultures/head@2x.png" ty={{ en: 19 }} iy={{ ja: -15, en: -38 }} />
       <Section1 />

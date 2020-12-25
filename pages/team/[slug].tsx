@@ -44,7 +44,7 @@ const MemberInfo = ({ member }: { member: Member }) => (
         background-color white
         padding vwpx(80)
         font-size 0
-        min-height vwpx(372)
+        min-height vwpx(500)
       .region
         display inline-block
         overflow hidden
@@ -154,7 +154,7 @@ const RelatedNews = ({ news }: { news: Entry[] }) => (
 
 
 const MemberDetail = ({ member, works, news }: { member: Member, works: Entry[], news: Entry[] }) => (
-  <Layout title={member.name}>
+  <Layout title={member.name} side="Team" backto="/team">
     <MemberInfo member={member} />
     <RelatedWork works={works.slice(0, 6)} />
     <RelatedNews news={news} />

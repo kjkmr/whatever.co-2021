@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
 import { Member, Entry, getAllMembers, getMemberDetail, getWorksByTag } from 'lib/api'
@@ -6,79 +7,87 @@ import { Grad, GradImg } from 'components/Grad'
 import { WorkList } from 'components/WorkList'
 
 
-const MemberInfo = ({ member }: { member: Member }) => (
-  <div className="member-info">
-    <div className="image"><GradImg><img src={member.image} alt="" width="643" height="688" /></GradImg></div>
-    <div className="info">
-      <div className="inner">
-        <Grad><div className="region">{member.region.join(' / ')}</div></Grad>
-        <Grad><div className="title">{member.title}</div></Grad>
-        <Grad><div className="name">{member.name}</div></Grad>
-        <div className="description" ><Grad><div dangerouslySetInnerHTML={{ __html: member.content || '' }}></div></Grad></div>
-        <div className="links">
-          {member.links.map((link: any) => <Grad><div>- <a href={link.href} target="_blank" rel="noopener noreferrer">{link.name}</a></div></Grad>)}
+const MemberInfo = ({ member }: { member: Member }) => {
+  const [scrollY, setScrollY] = useState(0)
+  const onScroll = () => setScrollY(window.pageYOffset)
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  })
+  return (
+    <div className="member-info">
+      <div className="image" style={{ height: `calc((100vw - 80px) * ${688 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={member.image} alt="" /></GradImg></div>
+      <div className="info">
+        <div className="inner">
+          <Grad><div className="region">{member.region.join(' / ')}</div></Grad>
+          <Grad><div className="title">{member.title}</div></Grad>
+          <Grad><div className="name">{member.name}</div></Grad>
+          <div className="description" ><Grad><div dangerouslySetInnerHTML={{ __html: member.content || '' }}></div></Grad></div>
+          <div className="links">
+            {member.links.map((link: any) => <Grad><div>- <a href={link.href} target="_blank" rel="noopener noreferrer">{link.name}</a></div></Grad>)}
+          </div>
         </div>
       </div>
-    </div>
-    <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
-      .member-info
-        position relative
-        margin 0
-        margin-bottom vwpx(30)
-      .image
-        position absolute
-        top 0
-        left 0
-        width vwpx(643)
-        height vwpx(688)
-        overflow hidden
-        img
-          object-fit cover
-      .info
-        position relative
-        padding-top vwpx(156)
-        padding-left vwpx(563)
-      .inner
-        background-color white
-        padding vwpx(80)
-        font-size 0
-        min-height vwpx(500)
-      .region
-        display inline-block
-        overflow hidden
-        font-size vwpx(12)
-      .title
-        display inline-block
-        overflow hidden
-        font-size vwpx(18)
-        margin-top vwpx(27)
-      .name
-        display inline-block
-        overflow hidden
-        font-size vwpx(42)
-        font-weight bold
-        margin-top vwpx(12)
-      .description
-        font-size 1.5rem
-        line-height 3.0rem
-        margin-top vwpx(34)
-        margin-bottom 30px
-        p
+      <style jsx>{`
+        vwpx(px)
+          'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+        .member-info
+          position relative
           margin 0
-      .links
-        div
+          margin-bottom vwpx(30)
+        .image
+          position fixed
+          top 80px
+          left 80px
+          overflow hidden
+          img
+            width vwpx(643)
+            height vwpx(688)
+            object-fit cover
+        .info
+          position relative
+          padding-top vwpx(156)
+          padding-left vwpx(563)
+        .inner
+          background-color white
+          padding vwpx(80)
+          font-size 0
+          min-height vwpx(500)
+        .region
           display inline-block
+          overflow hidden
+          font-size vwpx(12)
+        .title
+          display inline-block
+          overflow hidden
+          font-size vwpx(18)
+          margin-top vwpx(27)
+        .name
+          display inline-block
+          overflow hidden
+          font-size vwpx(42)
+          font-weight bold
+          margin-top vwpx(12)
+        .description
           font-size 1.5rem
-          margin-bottom 9px
-        a
-          padding-bottom 5px
-          border-bottom 1px solid red
-          display inline-block
-    `}</style>
-  </div>
-)
+          line-height 3.0rem
+          margin-top vwpx(34)
+          margin-bottom 30px
+          p
+            margin 0
+        .links
+          div
+            display inline-block
+            font-size 1.5rem
+            margin-bottom 9px
+          a
+            padding-bottom 5px
+            border-bottom 1px solid red
+            display inline-block
+      `}</style>
+    </div>
+  )
+}
 
 
 const RelatedWork = ({ works }: { works: Entry[] }) => (

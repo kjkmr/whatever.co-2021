@@ -178,7 +178,7 @@ const Credits = ({ credit }: { credit: Credit[] }) => (
 )
 
 const WorkDetail = ({ work }: { work: Entry }) => (
-  <Layout title={work.title}>
+  <Layout title={work.title} side="Work" backto="/work/category/all">
     <Header work={work} />
     <Body content={work.content} />
     <Credits credit={work.credit || []} />

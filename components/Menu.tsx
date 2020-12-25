@@ -22,13 +22,25 @@ const LangLink = ({ lang, label }: { lang: string, label: string }) => {
   )
 }
 
-const Menu = ({ title }: { title?: string }) => {
+
+type MenuProps = {
+  title?: string
+  backto?: {
+    name: string,
+    href: string
+  }
+}
+
+const Menu = ({ title, backto }: MenuProps) => {
   const [opened, setOpened] = useState(false)
   const onclick = () => { setOpened(!opened) }
   return (
     <div className="container">
-      <div className="title">{title}</div>
-      <div className="langselect"><LangLink lang="ja" label="JA" /> / <LangLink lang="en" label="EN" /> / <LangLink lang="zh-hans" label="ZH" /></div>
+      <div className="vertical">
+        <div className="title">{title}</div>
+        {backto ? <div className="back"><Link href={backto.href}><a>Back to {backto.name}</a></Link><div className="line"></div></div> : null}
+        <div className="langselect"><LangLink lang="ja" label="JA" /> / <LangLink lang="en" label="EN" /> / <LangLink lang="zh-hans" label="ZH" /></div>
+      </div>
       <div className="black"></div>
       <div className="menu" style={{ display: opened ? 'flex' : 'none' }}>
         <ul>
@@ -55,6 +67,43 @@ const Menu = ({ title }: { title?: string }) => {
           z-index 10000
           width 80px
           height 100vh
+        .vertical
+          position absolute
+          display flex
+          justify-content space-between
+          {/* background-color rgba(0, 0, 255, 0.1) */}
+          width calc(100vh - 80px)
+          height 80px
+          top 80px
+          left 80px
+          transform-origin top left
+          transform rotate(90deg)
+        .title
+          font-size 2rem
+          font-weight bold
+          user-select none
+          margin-left 40px
+          margin-top 31px
+        .back
+          position relative
+          font-size 1.0rem
+          letter-spacing 0.08rem
+          margin-left 34px
+          margin-top 35px
+          text-align center
+          .line
+            position absolute
+            left 33px
+            bottom 0
+            height 15px
+            border-left 1px solid #333333
+        .langselect
+          font-size 1.2rem
+          letter-spacing 0.12em
+          color #cccccc
+          user-select none
+          margin-right 38px
+          margin-top 36px
         .black
           position absolute
           top 0
@@ -62,16 +111,6 @@ const Menu = ({ title }: { title?: string }) => {
           width 80px
           height 80px      
           background-color #000
-        .title
-          position absolute
-          top 120px
-          left 49px
-          width 200px
-          font-size 2rem
-          font-weight bold
-          transform-origin top left
-          transform rotate(90deg)
-          user-select none
         .menu
           display none
           justify-content space-between
@@ -131,17 +170,6 @@ const Menu = ({ title }: { title?: string }) => {
           .l2
             top 39px
             transform rotate(-45deg)
-        .langselect
-          position absolute
-          font-size 1.2rem
-          letter-spacing 0.12em
-          left 44px
-          bottom 110px
-          transform rotate(90deg)
-          transform-origin top left
-          white-space pre
-          color #cccccc
-          user-select none
       `}</style>
     </div>
   )

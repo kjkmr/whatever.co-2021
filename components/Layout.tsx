@@ -10,14 +10,16 @@ const useTemplate = 0
 type Props = {
   showHeader?: boolean
   title?: string
+  side?: string
+  backto?: string
   children?: ReactNode
   footer?: ReactNode
 }
 
-const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
+const Layout = ({ children, footer, title = '', side = '', backto = '', showHeader = true }: Props) => {
   const templateStyle: { [prop: string]: string } = {}
   if (useTemplate) {
-    templateStyle.backgroundImage = `url(/_/Work_index_${useRouter().locale!}.png)`
+    templateStyle.backgroundImage = `url(/_/Work_detail_${useRouter().locale!}.png)`
   }
   return (
     <div>
@@ -32,7 +34,7 @@ const Layout = ({ children, footer, title = "", showHeader = true }: Props) => {
 
       <div className="container" style={templateStyle}>
         <div className="contents">
-          <Menu title={title} />
+          <Menu title={side} backto={backto ? { name: side, href: backto } : undefined} />
           <div className="main">
             {showHeader ? <Header /> : <div />}
             {children}

@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { Entry, Tag, getLatestNews, getWorksByTag } from 'lib/api'
@@ -7,35 +7,51 @@ import Layout from 'components/Layout'
 import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
 
-const Showreel = () => (
-  <div className="reel">
-    <video src="/index/reel-preview.mp4" autoPlay={true} ></video>
-    <button >Watch Reel</button>
-    <style jsx>{`
-      .reel
-        position relative
-        width 100%
-        background-color black
-        font-size 0
-      video
-        width calc(100vw - 80px)
-        height calc(100vh - 40px)
-        object-fit cover
-      button
-        width 256px
-        height 80px
-        border none
-        background-color black
-        color white
-        position absolute
-        right 0
-        bottom -40px
-        font-size 1.8rem
-        font-weight bold
-        letter-spacing 0.04em
-    `}</style>
-  </div>
-)
+const Showreel = () => {
+  const [scrollY, setScrollY] = useState(0)
+  const onScroll = () => setScrollY(window.pageYOffset)
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  })
+  return (
+    <div className="showreel">
+      <div className="video" style={{ height: `calc((100vh - 40px) - ${scrollY}px)` }}>
+        <video src="/index/reel-preview.mp4" autoPlay={true} loop></video>
+      </div>
+      <button >Watch Reel</button>
+      <style jsx>{`
+        .showreel
+          position relative
+          width 100%
+          height calc(100vh - 40px)
+          background-color black
+          font-size 0
+        .video
+          position fixed
+          top 0
+          left 80px
+          overflow hidden
+        video
+          width calc(100vw - 80px)
+          height calc(100vh - 40px)
+          object-fit cover
+        button
+          width 256px
+          height 80px
+          border none
+          background-color black
+          color white
+          position absolute
+          right 0
+          bottom -40px
+          font-size 1.8rem
+          font-weight bold
+          letter-spacing 0.04em
+      `}</style>
+    </div>
+  )
+}
 
 const Crossborder = () => (
   <div className={LangStyle('container')}>

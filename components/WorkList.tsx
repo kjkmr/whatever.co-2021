@@ -147,8 +147,6 @@ export const WorkList = ({ filter, works }: WorkListProps) => (
         display grid
         grid-template-columns repeat(3, 1fr)
         column-gap vwpx(77)
-        {/* grid-auto-rows vwpx(430) */}
-        margin-bottom 100px
     `}</style>
   </div>
 )

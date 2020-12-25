@@ -1,9 +1,9 @@
+import React from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
-import Layout from '../../components/Layout'
-import { Member, getAllMembers } from '../../lib/api'
-import { Grad, GradImg } from '../../components/Grad'
-import React from 'react'
+import { Member, getAllMembers } from 'lib/api'
+import Layout from 'components/Layout'
+import { Grad, GradImg } from 'components/Grad'
 
 const TeamIndex = ({ members }: { members: Member[] }) => (
   <Layout title="Team" side="Team">

@@ -123,6 +123,8 @@ export const Grad = ({ children }: any) => {
           position relative
           overflow hidden
           visibility hidden
+          p
+            margin 0
         .grad-effect-text
           position absolute
           top 0
@@ -134,6 +136,8 @@ export const Grad = ({ children }: any) => {
           -webkit-background-clip text
           -webkit-text-fill-color transparent
           visibility hidden
+          p
+            margin 0
         .grad-effect-img
           position absolute
           top 0

@@ -1,81 +1,79 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { Member, Entry, getAllMembers, getMemberDetail, getWorksByTag } from '../../lib/api'
-import Layout from '../../components/Layout'
-import { Grad, GradImg } from '../../components/Grad'
-import { WorkList } from '../../components/WorkList'
+import Link from 'next/link'
+import { Member, Entry, getAllMembers, getMemberDetail, getWorksByTag } from 'lib/api'
+import Layout from 'components/Layout'
+import { Grad, GradImg } from 'components/Grad'
+import { WorkList } from 'components/WorkList'
 
 
 const MemberInfo = ({ member }: { member: Member }) => (
-  <div className="container">
+  <div className="member-info">
     <div className="image"><GradImg><img src={member.image} alt="" width="643" height="688" /></GradImg></div>
     <div className="info">
       <div className="inner">
         <Grad><div className="region">{member.region.join(' / ')}</div></Grad>
         <Grad><div className="title">{member.title}</div></Grad>
         <Grad><div className="name">{member.name}</div></Grad>
-        <Grad><div className="description" dangerouslySetInnerHTML={{ __html: member.content || '' }} /></Grad>
-        <div>
-          <ul>{member.links.map((link: any) => <li key={link.url}><Grad><span>- <a href={link.url}>{link.name}</a></span></Grad></li>)}</ul>
+        <div className="description" ><Grad><div dangerouslySetInnerHTML={{ __html: member.content || '' }}></div></Grad></div>
+        <div className="links">
+          {member.links.map((link: any) => <Grad><div>- <a href={link.href} target="_blank" rel="noopener noreferrer">{link.name}</a></div></Grad>)}
         </div>
       </div>
     </div>
     <style jsx>{`
-      .container
-        {/* opacity 0.5 */}
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      .member-info
         position relative
         margin 0
-        margin-bottom 40px
+        margin-bottom vwpx(30)
       .image
         position absolute
         top 0
         left 0
-        width 643
-        height 688
+        width vwpx(643)
+        height vwpx(688)
         overflow hidden
         img
           object-fit cover
       .info
         position relative
-        padding-top 156px
-        padding-left 563px
+        padding-top vwpx(156)
+        padding-left vwpx(563)
       .inner
         background-color white
-        padding 80px
+        padding vwpx(80)
         font-size 0
-        min-height 372px
+        min-height vwpx(372)
       .region
         display inline-block
-        font-size 11px
-        letter-spacing 0.02em
+        overflow hidden
+        font-size vwpx(12)
       .title
         display inline-block
-        font-size 18px
-        margin-top 28px
+        overflow hidden
+        font-size vwpx(18)
+        margin-top vwpx(27)
       .name
         display inline-block
-        font-size 48px
+        overflow hidden
+        font-size vwpx(42)
         font-weight bold
-        margin-top 23px
+        margin-top vwpx(12)
       .description
-        font-size 15px
-        letter-spacing 0.01em
-        line-height 2.15em
-        margin-top 35px
-        margin-bottom 42px
+        font-size 1.5rem
+        line-height 3.0rem
+        margin-top vwpx(34)
+        margin-bottom 30px
         p
           margin 0
-      ul
-        margin 0
-        padding 0
-      li
-        font-size 16px
-        list-style-type none
-        margin-bottom 10px
-        overflow hidden
-        span
+      .links
+        div
           display inline-block
+          font-size 1.5rem
+          margin-bottom 9px
         a
-          padding-bottom 2px
+          padding-bottom 5px
           border-bottom 1px solid red
           display inline-block
     `}</style>
@@ -84,26 +82,82 @@ const MemberInfo = ({ member }: { member: Member }) => (
 
 
 const RelatedWork = ({ works }: { works: Entry[] }) => (
-  <div className="container">
+  <div className="related-work">
     <h2>Related Work</h2>
     <WorkList works={works} />
     <style jsx>{`
-      .container
-        {/* opacity 0.5 */}
-        min-height 1000px
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      .related-work
+        {/* opacity 0.5
+        min-height 1000px */}
+        margin-bottom vwpx(74)
       h2
-        font-size 36px
+        font-size vwpx(36)
+        margin 0
+        margin-bottom vwpx(72)
     `}</style>
   </div>
 )
 
 
-const MemberDetail = ({ member, works }: { member: Member, works: Entry[] }) => (
+const RelatedNews = ({ news }: { news: Entry[] }) => (
+  <div className="related-news">
+    <h2>Related News</h2>
+    <div className="news-list">
+      {news.map(entry => (
+        <Link href="/news">
+          <a className="news-item">
+            <img src={entry.image} alt="" />
+            <div className="text">
+              <div className="date">{entry.date}</div>
+              <div className="title" dangerouslySetInnerHTML={{ __html: entry.title }}></div>
+            </div>
+          </a>
+        </Link>
+      ))}
+    </div>
+    <style jsx>{`
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      .related-news
+        {/* opacity 0.7 */}
+        margin-bottom vwpx(132)
+      h2
+        font-size vwpx(36)
+        margin 0
+        margin-bottom vwpx(72)
+      .news-list
+        margin-right vwpx(90)
+        display grid
+        grid-template-columns repeat(2, 1fr)
+        grid-gap vwpx(60) vwpx(70)
+      .news-item
+        display grid
+        grid-template-columns vwpx(271) auto
+        column-gap vwpx(30)
+        img
+          width vwpx(271)
+          height vwpx(152)
+          object-fit cover
+      .date
+        font-size vwpx(14)
+        margin-top vwpx(-2)
+      .title
+        font-size vwpx(15)
+        font-weight bold
+        line-height vwpx(30)
+        margin-top vwpx(14)
+  `}</style>
+  </div>
+)
+
+
+const MemberDetail = ({ member, works, news }: { member: Member, works: Entry[], news: Entry[] }) => (
   <Layout title={member.name}>
     <MemberInfo member={member} />
-    <RelatedWork works={works} />
-    <style jsx>{`
-    `}</style>
+    <RelatedWork works={works.slice(0, 6)} />
+    <RelatedNews news={news} />
   </Layout >
 )
 
@@ -122,5 +176,27 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const slug: string = params?.slug as string
   const member = await getMemberDetail(slug, locale)
   const works = await getWorksByTag(slug)
-  return { props: { member, works } }
+  const news = [
+    {
+      date: 'June 8, 2020',
+      title: '記事掲載『死者に権利はあるのか？ 死後データの意思表明プラットフォーム「D.E.A.D」特別鼎談』',
+      image: '/_/rel_news1.jpg',
+    },
+    {
+      date: 'February 25, 2020',
+      title: '富永 勇亮と川村真司がSXSW2020のにスピーカーとして登壇',
+      image: '/_/rel_news2.jpg',
+    },
+    {
+      date: 'October 28, 2019',
+      title: 'Taiwan Creativity Week「台灣創意週」にて富永勇亮が登壇',
+      image: '/_/rel_news3.jpg',
+    },
+    {
+      date: 'February 6, 2019',
+      title: 'インタビュー記事掲載『Campaign Japan』',
+      image: '/_/rel_news4.jpg',
+    },
+  ]
+  return { props: { member, works, news } }
 }

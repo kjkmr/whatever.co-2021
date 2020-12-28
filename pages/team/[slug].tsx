@@ -143,6 +143,7 @@ const RelatedNews = ({ news }: { news: Entry[] }) => (
         display grid
         grid-template-columns vwpx(271) auto
         column-gap vwpx(30)
+        border none
         img
           width vwpx(271)
           height vwpx(152)

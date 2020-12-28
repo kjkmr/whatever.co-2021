@@ -12,6 +12,7 @@ const Header = () => (
         align-items flex-start
       a
         display block
+        border none
       img
         margin-top 32px
         margin-right 30px

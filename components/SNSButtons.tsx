@@ -14,6 +14,7 @@ const SNSButtons = () => (
           background-repeat no-repeat
           background-size 25px 25px
           margin-left 15px
+          border none
     `}</style>
   </div>
 )

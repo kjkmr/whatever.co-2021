@@ -17,6 +17,7 @@ const LangLink = ({ lang, label }: { lang: string, label: string }) => {
           color black
         a
           color #cccccc
+          border none
       `}</style>
     </span>
   )
@@ -91,6 +92,8 @@ const Menu = ({ title, backto }: MenuProps) => {
           margin-left 34px
           margin-top 35px
           text-align center
+          a
+            border none
           .line
             position absolute
             left 33px
@@ -138,6 +141,7 @@ const Menu = ({ title, backto }: MenuProps) => {
               margin-bottom 57px
             a
               color white
+              border none
           .sns
             position absolute
             right 205px

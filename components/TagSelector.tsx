@@ -34,6 +34,7 @@ const TagItem = ({ name, slug, focused }: { name: string, slug: string, focused:
         width 100%
         height 100%
         padding-top 1px
+        border none
       .focused
         border 1px solid red
         z-index 100

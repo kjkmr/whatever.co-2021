@@ -77,6 +77,7 @@ const Member = ({ image, title, name, slug }: { image: string, title: string, na
       .member
         font-size 0
         display block
+        border none
       img
         width vwpx(245)
       .title
@@ -136,6 +137,7 @@ const Section2 = () => (
           letter-spacing 0.04em
           color white
           background-color black
+          border none
       .en
         .t
           font-size 1.6rem

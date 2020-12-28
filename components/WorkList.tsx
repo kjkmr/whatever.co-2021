@@ -5,7 +5,7 @@ import { Grad, GradImg } from 'components/Grad'
 
 
 const LargeWork = ({ work }: { work: Entry }) => (
-  <div className="container">
+  <div className="large-work">
     <Link href={`/work/${work.slug}`} prefetch={false}>
       <a>
         <div className="image">
@@ -24,7 +24,7 @@ const LargeWork = ({ work }: { work: Entry }) => (
     <style jsx>{`
       vwpx(px)
         'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
-      .container
+      .large-work
         grid-column span 2
         grid-row span 2
         padding-bottom vwpx(77)
@@ -64,7 +64,7 @@ const LargeWork = ({ work }: { work: Entry }) => (
 )
 
 const SmallWork = ({ work }: { work: Entry }) => (
-  <div className="container">
+  <div className="small-work">
     <Link href={`/work/${work.slug}`} prefetch={false}>
       <a>
         <div className="image">
@@ -83,7 +83,7 @@ const SmallWork = ({ work }: { work: Entry }) => (
     <style jsx>{`
       vwpx(px)
         'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
-      .container
+      .small-work
         position relative
         padding-bottom vwpx(77)
       .image

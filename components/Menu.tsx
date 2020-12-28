@@ -1,56 +1,23 @@
 import { useState } from 'react'
-import { useRouter } from 'next/router'
 import Link from 'next/link'
 import classNames from 'classnames/bind'
 import ContactForm from 'components/ContactForm'
 import SNSButtons from 'components/SNSButtons'
 
-const LangLink = ({ lang, label }: { lang: string, label: string }) => {
-  const { locale, pathname, query } = useRouter()
-  return (
-    <span>
-      { locale != lang
-        ? <Link href={{ pathname, query }} locale={lang}><a>{label}</a></Link>
-        : <>{label}</>}
-      <style jsx>{`
-        span
-          color black
-        a
-          color #cccccc
-          border none
-      `}</style>
-    </span>
-  )
-}
-
-
-type MenuProps = {
-  title?: string
-  backto?: {
-    name: string,
-    href: string
-  }
-}
-
-const Menu = ({ title, backto }: MenuProps) => {
+const Menu = () => {
   const [opened, setOpened] = useState(false)
   const onclick = () => { setOpened(!opened) }
   return (
     <div className="container">
-      <div className="vertical">
-        <div className="title">{title}</div>
-        {backto ? <div className="back"><Link href={backto.href}><a>Back to {backto.name}</a></Link><div className="line"></div></div> : null}
-        <div className="langselect"><LangLink lang="ja" label="JA" /> / <LangLink lang="en" label="EN" /> / <LangLink lang="zh-hans" label="ZH" /></div>
-      </div>
       <div className="black"></div>
       <div className="menu" style={{ display: opened ? 'flex' : 'none' }}>
         <ul>
-          <li><Link href="/"><a>Top</a></Link></li>
-          <li><Link href="/work/category/all"><a>Work</a></Link></li>
-          <li><Link href="/about"><a>About</a></Link></li>
-          <li><Link href="/team"><a>Team</a></Link></li>
-          <li><Link href="/news"><a>News</a></Link></li>
-          <li><Link href="/contact"><a>Contact</a></Link></li>
+          <li><Link href="/"><a onClick={onclick}>Top</a></Link></li>
+          <li><Link href="/work/category/all"><a onClick={onclick}>Work</a></Link></li>
+          <li><Link href="/about"><a onClick={onclick}>About</a></Link></li>
+          <li><Link href="/team"><a onClick={onclick}>Team</a></Link></li>
+          <li><Link href="/news"><a onClick={onclick}>News</a></Link></li>
+          <li><Link href="/contact"><a onClick={onclick}>Contact</a></Link></li>
         </ul>
         <div className="contact">
           <ContactForm />
@@ -64,49 +31,8 @@ const Menu = ({ title, backto }: MenuProps) => {
 
       <style jsx>{`
         .container
-          position relative
+          position fixed
           z-index 10000
-          width 80px
-          height 100vh
-        .vertical
-          position absolute
-          display flex
-          justify-content space-between
-          {/* background-color rgba(0, 0, 255, 0.1) */}
-          width calc(100vh - 80px)
-          height 80px
-          top 80px
-          left 80px
-          transform-origin top left
-          transform rotate(90deg)
-        .title
-          font-size 2rem
-          font-weight bold
-          user-select none
-          margin-left 40px
-          margin-top 31px
-        .back
-          position relative
-          font-size 1.0rem
-          letter-spacing 0.08rem
-          margin-left 34px
-          margin-top 35px
-          text-align center
-          a
-            border none
-          .line
-            position absolute
-            left 33px
-            bottom 0
-            height 15px
-            border-left 1px solid #333333
-        .langselect
-          font-size 1.2rem
-          letter-spacing 0.12em
-          color #cccccc
-          user-select none
-          margin-right 38px
-          margin-top 36px
         .black
           position absolute
           top 0

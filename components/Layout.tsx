@@ -57,6 +57,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           align-items flex-start
         .main
           width calc(100vw - 80px)
+          margin-left 80px
       `}</style>
 
       <style jsx global>{`

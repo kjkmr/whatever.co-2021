@@ -36,7 +36,8 @@ const Sidebar = ({ title, backto }: SidebarProps) => (
     </div>
     <style jsx>{`
       .sidebar
-        position relative
+        position fixed
+        z-index 9999
         width 80px
         height 100vh
       .vertical

@@ -106,6 +106,7 @@ export const Footer = ({ left, right }: { left: string, right: string }) => (
           display flex
           align-items center
           color white
+          border none
         .line
           border-top 1px solid #fff
           width 40px

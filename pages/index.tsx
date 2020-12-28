@@ -113,6 +113,7 @@ const Crossborder = () => (
           height 60px
           background-color black
           margin-top -31px
+          border none
       .en
         .desc
           margin-top calc((100vw - 80px) * 0.0505)
@@ -230,6 +231,7 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
           width 256px
           height 60px
           background-color black
+          border none
     `}</style>
   </div>
 )
@@ -309,6 +311,7 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
           width 256px
           height 60px
           background-color black
+          border none
     `}</style>
   </div>
 )

@@ -32,6 +32,8 @@ const TeamIndex = ({ members }: { members: Member[] }) => (
           grid-auto-rows vwpx(427)
           margin-top 40px
           font-size 0
+        a
+          border none
         img
           width vwpx(260)
           height vwpx(260)

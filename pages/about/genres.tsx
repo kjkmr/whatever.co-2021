@@ -165,9 +165,7 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
         font-weight bold
         a
           display inline-block
-          padding-bottom 6px
           padding-right 4px
-          border-bottom 1px solid red
       .desc
         margin-top 3px
         margin-bottom 32px

@@ -1,9 +1,10 @@
 import { ReactNode } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import Menu from 'components/Menu'
+import Sidebar from 'components/Sidebar'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import Menu from './Menu'
 
 const useTemplate = 0
 
@@ -19,7 +20,7 @@ type Props = {
 const Layout = ({ children, footer, title = '', side = '', backto = '', showHeader = true }: Props) => {
   const templateStyle: { [prop: string]: string } = {}
   if (useTemplate) {
-    templateStyle.backgroundImage = `url(/_/News_index_${useRouter().locale!}.png)`
+    templateStyle.backgroundImage = `url(/_/Team_detail_${useRouter().locale!}.png)`
   }
   return (
     <div>
@@ -34,7 +35,8 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
 
       <div className="container" style={templateStyle}>
         <div className="contents">
-          <Menu title={side} backto={backto ? { name: side, href: backto } : undefined} />
+          <Menu />
+          <Sidebar title={side} backto={backto ? { name: side, href: backto } : undefined} />
           <div className="main">
             {showHeader ? <Header /> : <div />}
             {children}
@@ -55,6 +57,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           align-items flex-start
         .main
           width calc(100vw - 80px)
+          margin-left 80px
       `}</style>
 
       <style jsx global>{`
@@ -101,6 +104,8 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
         a
           text-decoration none
           color black
+          padding-bottom 0.5rem
+          border-bottom 1px solid red
         button
           cursor pointer
         img

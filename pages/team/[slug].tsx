@@ -24,7 +24,7 @@ const MemberInfo = ({ member }: { member: Member }) => {
           <Grad><div className="name">{member.name}</div></Grad>
           <div className="description" ><Grad><div dangerouslySetInnerHTML={{ __html: member.content || '' }}></div></Grad></div>
           <div className="links">
-            {member.links.filter((l: any) => l.url).map((link: any) => <Grad><div>- <a href={link.href} target="_blank" rel="noopener noreferrer">{link.name}</a></div></Grad>)}
+            {member.links.filter((l: any) => l.url).map((link: any) => <Grad key={link.url}><div>- <a href={link.url} target="_blank" rel="noopener noreferrer">{link.name}</a></div></Grad>)}
           </div>
         </div>
       </div>
@@ -32,6 +32,7 @@ const MemberInfo = ({ member }: { member: Member }) => {
         vwpx(px)
           'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
         .member-info
+          {/* opacity 0.5 */}
           position relative
           margin 0
           margin-bottom vwpx(30)
@@ -69,20 +70,17 @@ const MemberInfo = ({ member }: { member: Member }) => {
           font-weight bold
           margin-top vwpx(12)
         .description
+          display inline-block
           font-size 1.5rem
           line-height 3.0rem
-          margin-top vwpx(34)
-          margin-bottom 30px
-          p
-            margin 0
+          margin-top vwpx(19)
+          margin-bottom 15px
         .links
           div
             display inline-block
             font-size 1.5rem
             margin-bottom 9px
           a
-            padding-bottom 5px
-            border-bottom 1px solid red
             display inline-block
       `}</style>
     </div>
@@ -115,7 +113,7 @@ const RelatedNews = ({ news }: { news: Entry[] }) => (
     <h2>Related News</h2>
     <div className="news-list">
       {news.map(entry => (
-        <Link href="/news">
+        <Link key={entry.slug} href="/news">
           <a className="news-item">
             <img src={entry.image} alt="" />
             <div className="text">
@@ -145,6 +143,7 @@ const RelatedNews = ({ news }: { news: Entry[] }) => (
         display grid
         grid-template-columns vwpx(271) auto
         column-gap vwpx(30)
+        border none
         img
           width vwpx(271)
           height vwpx(152)

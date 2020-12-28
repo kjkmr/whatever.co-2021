@@ -13,15 +13,21 @@ const Inner = ({ name }: { name: string }) => (
         letter-spacing 0.03em
         padding 9px 10px 7px
         margin-right 10px
-        pointer-events none
     `}</style>
   </span>
 )
 
 const WorkTag = ({ tag, link = false }: { tag: Tag, link?: boolean }) => (
-  link
-    ? <Link href={`/work/category/${tag.slug}`}><a><Inner name={tag.name} /></a></Link>
-    : <Inner name={tag ? tag.name : '???'} />
+  <>
+    {link
+      ? <Link href={`/work/category/${tag.slug}`}><a><Inner name={tag.name} /></a></Link>
+      : <Inner name={tag ? tag.name : '???'} />}
+    <style jsx>{`
+      a
+        border none
+        padding 0
+    `}</style>
+  </>
 )
 
 export default WorkTag

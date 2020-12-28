@@ -40,6 +40,8 @@ const Head = () => (
           font-weight bold
           letter-spacing 0.04em
           color white
+          border none
+          padding 0
       .en
         &.head
           div

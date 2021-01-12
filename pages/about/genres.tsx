@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { t, LangStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
@@ -403,3 +404,7 @@ const GenrePage = () => (
 )
 
 export default GenrePage
+
+export const getStaticProps: GetStaticProps = async () => {
+  return { props: {} }
+}

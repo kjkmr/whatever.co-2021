@@ -1,4 +1,5 @@
 import React from 'react'
+import { GetStaticProps } from 'next'
 import { t, LangStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Header, Footer, SectionTitle } from 'components/About'
@@ -165,3 +166,7 @@ const Profession = () => (
 )
 
 export default Profession
+
+export const getStaticProps: GetStaticProps = async () => {
+  return { props: {} }
+}

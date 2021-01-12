@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next'
 import { t, ta, LangStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Grad, GradImg, GradLink } from 'components/Grad'
@@ -138,3 +139,7 @@ const ContactPage = () => (
 )
 
 export default ContactPage
+
+export const getStaticProps: GetStaticProps = async () => {
+  return { props: {} }
+}

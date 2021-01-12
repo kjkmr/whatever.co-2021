@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { t, ta, LangStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
@@ -160,3 +161,7 @@ const Cultures = () => (
 )
 
 export default Cultures
+
+export const getStaticProps: GetStaticProps = async () => {
+  return { props: {} }
+}

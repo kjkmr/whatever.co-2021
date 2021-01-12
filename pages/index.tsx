@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { Entry, Tag, getNews, getWorksByTag } from 'lib/api'
-import { t, LangStyle } from 'lib/i18n'
+import { ta, LangStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
@@ -60,8 +60,8 @@ const Crossborder = () => (
       <Grad><h1>Creative Studio</h1></Grad>
     </div>
     <div className="desc">
-      <Grad><h2>{t('index.whateveris1')}</h2></Grad>
-      {t('index.whateveris2') ? <Grad><h2 style={{ marginLeft: 'calc((100vw - 80px) * 0.14)' }}>{t('index.whateveris2')}</h2></Grad> : null}
+      <Grad><h2>{ta('top_whatever')[0]}</h2></Grad>
+      {ta('top_whatever')[1] ? <Grad><h2 style={{ marginLeft: 'calc((100vw - 80px) * 0.14)' }}>{ta('top_whatever')[1]}</h2></Grad> : null}
     </div>
     <div className="link">
       <Link href="/about">

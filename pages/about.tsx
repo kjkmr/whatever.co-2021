@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { t, LangStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
@@ -246,7 +247,7 @@ const AboutPage = () => (
       <div className="text">
         {[1, 2, 3, 4].map(n => (
           <div key={n} className="p">
-            {t(`about.index.statement${n}`).split('\n').map((line, index) => (
+            {t(`about_index_statement${n}`).split('\n').map((line, index) => (
               <Grad key={index}><span>{line}</span></Grad>
             ))}
           </div>
@@ -294,3 +295,7 @@ const AboutPage = () => (
 )
 
 export default AboutPage
+
+export const getStaticProps: GetStaticProps = async () => {
+  return { props: {} }
+}

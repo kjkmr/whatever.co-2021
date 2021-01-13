@@ -6,7 +6,7 @@ import Sidebar from 'components/Sidebar'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 
-const useTemplate = 0
+const useTemplate = 1
 
 type Props = {
   showHeader?: boolean
@@ -20,7 +20,7 @@ type Props = {
 const Layout = ({ children, footer, title = '', side = '', backto = '', showHeader = true }: Props) => {
   const templateStyle: { [prop: string]: string } = {}
   if (useTemplate) {
-    templateStyle.backgroundImage = `url(/_/Team_detail_${useRouter().locale!}.png)`
+    templateStyle.backgroundImage = `url(/_/Top_1366_${useRouter().locale!}.png)`
   }
   return (
     <div>

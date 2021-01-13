@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { Entry, Tag, getNews, getWorksByTag } from 'lib/api'
-import { ta, langStyle } from 'lib/i18n'
+import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
@@ -53,15 +53,14 @@ const Showreel = () => {
   )
 }
 
-const Crossborder = () => (
-  <div className={langStyle('container')}>
+const Tagline = () => (
+  <div className={langStyle('tagline')}>
     <div className="title">
-      <Grad><h1>Crossborder</h1></Grad>
-      <Grad><h1>Creative Studio</h1></Grad>
+      <Grad><h1>Make whatever.</h1></Grad>
+      <Grad><h1 className="line2">Rules, whatever.</h1></Grad>
     </div>
     <div className="desc">
-      <Grad><h2>{ta('top_whatever')![0]}</h2></Grad>
-      {ta('top_whatever')![1] ? <Grad><h2 style={{ marginLeft: 'calc((100vw - 80px) * 0.14)' }}>{ta('top_whatever')![1]}</h2></Grad> : null}
+      {t('top_whatever')?.split('\n').map(line => <Grad><h2>{line}</h2></Grad>)}
     </div>
     <div className="link">
       <Link href="/about">
@@ -69,37 +68,39 @@ const Crossborder = () => (
       </Link>
     </div>
     <style jsx>{`
-      .container
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      .tagline
         position relative
-        margin-top calc((100vw - 80px) * 0.125)
+        margin-top vwpx(160)
         img
           display block
       .title
         font-size 0
-        margin-left calc((100vw - 80px) * -0.005)
+        margin-left vwpx(-11)
         h1
           display inline-block
-          font-size calc((100vw - 80px) * 0.1353)
+          font-size vwpx(154)
           font-weight bold
-          line-height calc((100vw - 80px) * 0.1353)
           margin 0
-          margin-bottom calc((100vw - 80px) * 0.013)
+          margin-bottom vwpx(14)
+          &.line2
+            margin-left vwpx(77)
       .desc
         position relative
-        margin-top calc((100vw - 80px) * 0.051)
-        margin-left calc((100vw - 80px) * 0.063)
+        margin-top vwpx(69)
+        margin-left vwpx(80)
         font-size 0
         h2
           display inline-block
-          font-size calc((100vw - 80px) * 0.028)
+          font-size vwpx(26)
           font-weight bold
-          line-height calc((100vw - 80px) * 0.032)
+          line-height vwpx(60)
           margin 0
-          margin-bottom calc((100vw - 80px) * 0.019)
       .link
         display flex
         justify-content flex-end
-        margin-top calc((100vw - 80px) * 0.096)
+        margin-top vwpx(151)
         border-top 1px solid #D0D0D0
         a
           display flex
@@ -116,16 +117,18 @@ const Crossborder = () => (
           border none
       .en
         .desc
-          margin-top calc((100vw - 80px) * 0.0505)
-          margin-left calc((100vw - 80px) * 0.0615)
+          margin-top vwpx(66)
+          margin-left vwpx(80)
           h2
-            font-size calc((100vw - 80px) * 0.0358)
+            font-size vwpx(26)
+        .link
+          margin-top vwpx(154)
     `}</style>
   </div>
 )
 
 const FeaturedWorkItem = ({ work }: { work: Entry }) => (
-  <div className="container">
+  <div className="work">
     <Link href={`/work/${work.slug}`}>
       <a>
         <div className="image"><GradImg><img src={work.image} /></GradImg></div>
@@ -141,27 +144,29 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
       </a>
     </Link>
     <style jsx>{`
-      .container
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      .work
         position relative
         background-repeat no-repeat
-        padding-top calc((100vw - 80px) * 0.047)
-        padding-left calc((100vw - 80px) * 0.477)
-        margin-bottom calc((100vw - 80px) * 0.062)
+        padding-top vwpx(61)
+        padding-left vwpx(613)
+        margin-bottom vwpx(80)
       .image
         position absolute
         top 0
         left 0
         img
-          width calc((100vw - 80px) * 0.523328149)
-          height calc((100vw - 80px) * 0.294712286)
+          width vwpx(673)
+          height vwpx(379)
           object-fit cover
       .text
         position relative
         background-color white
-        padding-top calc((100vw - 80px) * 0.039)
-        padding-left calc((100vw - 80px) * 0.046)
-        padding-right calc((100vw - 80px) * 0.0613)
-        min-height calc((100vw - 80px) * (0.294712286 - 0.047 - 0.039))
+        padding-top vwpx(50)
+        padding-left vwpx(59)
+        padding-right vwpx(79)
+        min-height vwpx(268)
         font-size 0
       .date
         display inline-block
@@ -171,21 +176,21 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
       .title
         display inline-block
         overflow hidden
-        margin-top 1.9rem
-        font-size calc((100vw - 80px) * 0.0373)
+        margin-top vwpx(19)
+        font-size vwpx(48)
         font-weight bold
         line-height 1.2em
       .subtitle
         display inline-block
         overflow hidden
-        margin-top 1.2rem
-        font-size calc((100vw - 80px) * 0.0173)
+        margin-top vwpx(12)
+        font-size vwpx(22)
         font-weight bold
         line-height 1.4em
       .overview
         display inline-block
         overflow hidden
-        margin-top 1.5rem
+        margin-top vwpx(16)
         line-height 2em
         font-size 1.5rem
         font-weight light
@@ -207,19 +212,20 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
       </Link>
     </div>
     <style jsx>{`
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .container
-        margin-top calc((100vw - 80px) * 0.065)
+        margin-top vwpx(107)
       h1
         display inline-block
-        font-size calc((100vw - 80px) * 0.028)
+        font-size vwpx(36)
         font-weight bold
         margin 0
-        margin-left -0.3rem
-        margin-bottom 7rem
+        margin-left vwpx(-3)
+        margin-bottom vwpx(72)
       .link
         display flex
         justify-content flex-end
-        margin-top calc((100vw - 80px) * 0.06)
         a
           display flex
           justify-content center
@@ -232,6 +238,7 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
           height 60px
           background-color black
           border none
+          padding 0
     `}</style>
   </div>
 )
@@ -319,7 +326,7 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
 const IndexPage = ({ works, news }: { works: Entry[], news: Entry[] }) => (
   <Layout showHeader={false} footer={<LatestNews news={news} />}>
     <Showreel />
-    <Crossborder />
+    <Tagline />
     <FeaturedWorks works={works} />
   </Layout>
 )

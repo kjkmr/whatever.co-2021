@@ -60,8 +60,8 @@ const Crossborder = () => (
       <Grad><h1>Creative Studio</h1></Grad>
     </div>
     <div className="desc">
-      <Grad><h2>{ta('top_whatever')[0]}</h2></Grad>
-      {ta('top_whatever')[1] ? <Grad><h2 style={{ marginLeft: 'calc((100vw - 80px) * 0.14)' }}>{ta('top_whatever')[1]}</h2></Grad> : null}
+      <Grad><h2>{ta('top_whatever')![0]}</h2></Grad>
+      {ta('top_whatever')![1] ? <Grad><h2 style={{ marginLeft: 'calc((100vw - 80px) * 0.14)' }}>{ta('top_whatever')![1]}</h2></Grad> : null}
     </div>
     <div className="link">
       <Link href="/about">

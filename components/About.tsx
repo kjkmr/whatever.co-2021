@@ -18,7 +18,7 @@ export const Header = ({ title, subtitle, desc, image, ty, iy }: HeaderProps) =>
   return (
     <div className={langStyle('header')}>
       <div className="text" style={{ marginTop: `calc((100vw - 80px) * ${(ty && ty[locale] ? ty[locale] : 0) / (1366 - 80)})` }}>
-        <Grad><div className="t1">Crossborder :</div></Grad>
+        <Grad><div className="t1">Whatever</div></Grad>
         <Grad><div className="t2">{title}</div></Grad>
         {subtitle != '-' ? <Grad><div className="t3" >{subtitle}</div></Grad> : null}
         <div className="t4"><Grad><div dangerouslySetInnerHTML={{ __html: desc.replace(/\n/g, '<br />') }} /></Grad></div>
@@ -27,49 +27,49 @@ export const Header = ({ title, subtitle, desc, image, ty, iy }: HeaderProps) =>
         <img src={image} alt="" />
       </div>
       <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
-      .header
-        display flex
-        justify-content space-between
-        font-size 0
-        margin 0
-        margin-top vwpx(40)
-        margin-left vwpx(40)
-      .text
-        width vwpx(562)
-      .t1
-        display inline-block
-        margin-bottom vwpx(12)
-        font-size vwpx(32)
-        font-weight bold
-      .t2
-        display inline-block
-        margin-left vwpx(-5)
-        margin-bottom vwpx(42)
-        font-size vwpx(140)
-        font-weight bold
-      .t3
-        display inline-block
-        margin-bottom vwpx(40)
-        font-size vwpx(30)
-        font-weight bold
-      .t4
-        font-size vwpx(18)
-        font-weight bold
-        line-height 2.15em
-      .image
-        img
-          width vwpx(564)
-          margin-right vwpx(80)
-      .en
-        &.header
-          margin-top vwpx(63)
+        vwpx(px)
+          'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+        .header
+          display flex
+          justify-content space-between
+          font-size 0
+          margin 0
+          margin-top vwpx(22)
+          margin-left vwpx(40)
+        .text
+          width vwpx(562)
+        .t1
+          display inline-block
+          margin-bottom vwpx(12)
+          font-size vwpx(32)
+          font-weight bold
+        .t2
+          display inline-block
+          margin-left vwpx(-5)
+          margin-bottom vwpx(42)
+          font-size vwpx(140)
+          font-weight bold
+        .t3
+          display inline-block
+          margin-bottom vwpx(40)
+          font-size vwpx(30)
+          font-weight bold
         .t4
-          font-size vwpx(20)
-          font-weight normal
-          line-height 1.9em
-    `}</style>
+          font-size vwpx(18)
+          font-weight bold
+          line-height 2.15em
+        .image
+          img
+            width vwpx(564)
+            margin-right vwpx(80)
+        .en
+          &.header
+            margin-top vwpx(44)
+          .t4
+            font-size vwpx(20)
+            font-weight normal
+            line-height 1.9em
+      `}</style>
     </div>
   )
 }

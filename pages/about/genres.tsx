@@ -31,7 +31,7 @@ const Section1 = () => (
       .section1
         position relative
         min-height vwpx(1293)
-        margin-top vwpx(159)
+        margin-top vwpx(143)
         margin-left vwpx(80)
         margin-bottom vwpx(88)
       .t
@@ -66,26 +66,28 @@ const Section1 = () => (
       .images img
         position absolute
         &.i1
-          top 0
+          top vwpx(-21)
           right 0
           width vwpx(523)
         &.i2
-          top vwpx(366)
+          top vwpx(345)
           right vwpx(208)
           width vwpx(231)
         &.i3
-          top vwpx(531)
+          top vwpx(510)
           right vwpx(80)
           width vwpx(185)
         &.i4
-          top vwpx(842)
+          top vwpx(762)
           right vwpx(142)
           width vwpx(461)
         &.i5
-          top vwpx(1062)
+          top vwpx(982)
           right 0
           width vwpx(231)
       .en
+        &.section1
+          margin-top vwpx(147)
         .t
           margin-top vwpx(52)
           margin-bottom vwpx(88)
@@ -95,6 +97,17 @@ const Section1 = () => (
         ul li
           font-size 1.6rem
           line-height 2em
+        .images img
+          &.i1
+            top vwpx(24)
+          &.i2
+            top vwpx(390)
+          &.i3
+            top vwpx(555)
+          &.i4
+            top vwpx(810)
+          &.i5
+            top vwpx(1030)
     `}</style>
   </div>
 )
@@ -224,11 +237,11 @@ const Products = () => (
         position absolute
         &.i1
           width vwpx(523)
-          top vwpx(36)
+          top vwpx(86)
           right 0
         &.i2
           width vwpx(213)
-          top vwpx(371)
+          top vwpx(421)
           right vwpx(80)
       .en
         &.products
@@ -239,6 +252,11 @@ const Products = () => (
         .t
           font-size 1.6rem
           margin-bottom 40px
+        .images img
+          &.i1
+            top vwpx(117)
+          &.i2
+            top vwpx(452)
     `}</style>
   </div>
 )
@@ -281,12 +299,12 @@ const Brands = () => (
         position absolute
         &.i1
           width vwpx(604)
-          top vwpx(-132)
+          top vwpx(7)
           right 0
         &.i2
           width vwpx(337)
-          top vwpx(180)
-          right 0
+          top vwpx(253)
+          right vwpx(38)
       .en
         &.brands
           margin-bottom vwpx(114)
@@ -296,6 +314,11 @@ const Brands = () => (
         .t
           font-size 1.6rem
           margin-bottom 40px
+        .images img
+          &.i1
+            top vwpx(25)
+          &.i2
+            top vwpx(272)
     `}</style>
   </div>
 )
@@ -322,7 +345,7 @@ const Investment = () => (
       .investment
         position relative
         min-height vwpx(503)
-        margin-bottom vwpx(190)
+        margin-bottom vwpx(170)
         >img
           position absolute
       .text
@@ -337,20 +360,26 @@ const Investment = () => (
       .images img
         position absolute
         &.i1
-          width vwpx(443)
-          top vwpx(-50)
-          right vwpx(80)
+          width vwpx(363)
+          top vwpx(-20)
+          right vwpx(160)
         &.i2
           width vwpx(375)
-          top vwpx(363)
+          top vwpx(313)
           right 0
       .en
         &.investment
           min-height vwpx(503)
+          margin-bottom vwpx(153)
         h2
           font-size vwpx(24)
         .t
           font-size 1.6rem
+        .images img
+          &.i1
+            top vwpx(-12)
+          &.i2
+            top vwpx(321)
     `}</style>
   </div>
 )
@@ -397,7 +426,7 @@ const Section3 = () => (
 const GenrePage = () => (
   <Layout title="About" side="About" backto="/about" footer={<Footer left="Workstyle" right="Cultures" />}>
     <div className="container">
-      <Header title="Genres" subtitle={t('genres_title')!} desc={t('genres_description')!} image="/about/genres/head@2x.png" />
+      <Header title="Genres" subtitle={t('genres_title')!} desc={t('genres_description')!} image="/about/pict01.svg" iy={{ en: -21 }} />
       <Section1 />
       <Section2 />
       <Section3 />

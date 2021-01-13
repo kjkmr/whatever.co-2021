@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { Entry, Tag, getNews, getWorksByTag } from 'lib/api'
-import { ta, LangStyle } from 'lib/i18n'
+import { ta, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
@@ -54,7 +54,7 @@ const Showreel = () => {
 }
 
 const Crossborder = () => (
-  <div className={LangStyle('container')}>
+  <div className={langStyle('container')}>
     <div className="title">
       <Grad><h1>Crossborder</h1></Grad>
       <Grad><h1>Creative Studio</h1></Grad>

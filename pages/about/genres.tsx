@@ -1,12 +1,12 @@
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
-import { t, LangStyle } from 'lib/i18n'
+import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Header, Footer, SectionTitle } from 'components/About'
 import { Grad } from 'components/Grad'
 
 const Section1 = () => (
-  <div className={LangStyle('section1')}>
+  <div className={langStyle('section1')}>
     <SectionTitle num="01" nx={-5} tx={{ ja: -4, en: -4 }} ty={{ en: -3 }} title={t('genres_1_title')!} />
     <div className="t">
       {t('genres_1_body')!.split('\n').map((line, index) => <Grad key={index}><p key={index}>{line}</p></Grad>)}
@@ -100,7 +100,7 @@ const Section1 = () => (
 )
 
 const Section2 = () => (
-  <div className={LangStyle('section2')}>
+  <div className={langStyle('section2')}>
     <SectionTitle num="02" title={t('genres_2_title')!} nx={-4} tx={{ ja: -14 }} ty={{ ja: 28 }} />
     <div className="t">{t('genres_2_body')}</div>
     <div className="g">
@@ -161,7 +161,7 @@ const Section2 = () => (
 )
 
 const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: string }) => (
-  <div className={LangStyle()}>
+  <div className={langStyle()}>
     <div className="name"><Link href={`/work/${link}`}><a>- {name}</a></Link></div>
     <div className="desc">{desc}</div>
     <style jsx>{`
@@ -187,7 +187,7 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
 )
 
 const Products = () => (
-  <div className={LangStyle('products')}>
+  <div className={langStyle('products')}>
     <div className="text">
       <h2>{t('genres_3_inhouse_title')}</h2>
       <div className="t">{t('genres_3_inhouse_body')}</div>
@@ -244,7 +244,7 @@ const Products = () => (
 )
 
 const Brands = () => (
-  <div className={LangStyle('brands')}>
+  <div className={langStyle('brands')}>
     <div className="text">
       <h2>{t('genres_3_brands_title')}</h2>
       <div className="t">{t('genres_3_brands_body')}</div>
@@ -301,7 +301,7 @@ const Brands = () => (
 )
 
 const Investment = () => (
-  <div className={LangStyle('investment')}>
+  <div className={langStyle('investment')}>
     <div className="text">
       <h2>{t('genres_3_investment_title')}</h2>
       <div className="t">{t('genres_3_investment_body')}</div>
@@ -356,7 +356,7 @@ const Investment = () => (
 )
 
 const Section3 = () => (
-  <div className={LangStyle('section3')}>
+  <div className={langStyle('section3')}>
     <SectionTitle num="03" nx={-5} title={t('genres_3_title')!} tx={{ ja: 1, en: 1 }} ty={{ ja: 24, en: -1 }} />
     <div className="content">
       <div className="t">{t('genres_3_body')}</div>

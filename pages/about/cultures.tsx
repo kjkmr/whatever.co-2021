@@ -1,11 +1,11 @@
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
-import { t, LangStyle } from 'lib/i18n'
+import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Header, Footer, SectionTitle } from 'components/About'
 
 const Section1 = () => (
-  <div className={LangStyle('section1')}>
+  <div className={langStyle('section1')}>
     <SectionTitle num="01" nx={-5} tx={{ ja: -4 }} ty={{ ja: 26 }} title={t('cultures_1_title')!} />
     <div className="t">{t('cultures_1_body')}</div>
     <h2>{t('cultures_1_inhouse')}<hr /></h2>
@@ -68,7 +68,7 @@ const Section1 = () => (
 
 const Member = ({ image, title, name, slug }: { image: string, title: string, name: string, slug: string }) => (
   <Link href={`/team/${slug}`}>
-    <a className={LangStyle('member')}>
+    <a className={langStyle('member')}>
       <img src={`/about/cultures/${image}@2x.jpg`} alt="" />
       <div className="title">{title}</div>
       <div className="name">{name}</div>
@@ -100,7 +100,7 @@ const Member = ({ image, title, name, slug }: { image: string, title: string, na
 )
 
 const Section2 = () => (
-  <div className={LangStyle('section2')}>
+  <div className={langStyle('section2')}>
     <SectionTitle num="02" nx={-4} title={t('cultures_2_title')!} tx={{ ja: -3, en: 5 }} ty={{ ja: 27, en: 26 }} />
     <div className="t">{t('cultures_2_body')}</div>
     <div className="members">

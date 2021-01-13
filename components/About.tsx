@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { LangStyle } from 'lib/i18n'
+import { langStyle } from 'lib/i18n'
 import { Grad } from './Grad'
 
 type HeaderProps = {
@@ -16,7 +16,7 @@ export const Header = ({ title, subtitle, desc, image, ty, iy }: HeaderProps) =>
   const router = useRouter()
   const locale = router.locale || router.defaultLocale!
   return (
-    <div className={LangStyle('header')}>
+    <div className={langStyle('header')}>
       <div className="text" style={{ marginTop: `calc((100vw - 80px) * ${(ty && ty[locale] ? ty[locale] : 0) / (1366 - 80)})` }}>
         <Grad><div className="t1">Crossborder :</div></Grad>
         <Grad><div className="t2">{title}</div></Grad>
@@ -142,7 +142,7 @@ export const SectionTitle = ({ num, title, nx, tx, ty }: SectionTitleProps) => {
     marginLeft: `calc((100vw - 80px) * ${(45 + (tx && tx[locale] ? tx[locale] : 0)) / (1366 - 80)})`
   }
   return (
-    <div className={LangStyle('head')}>
+    <div className={langStyle('head')}>
       <div className="num" style={numStyle}>{num}</div>
       <div className="title" style={titleStyle} dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, '<br />') }} />
       <style jsx>{`

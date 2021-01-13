@@ -1,11 +1,11 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import { t, LangStyle } from 'lib/i18n'
+import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Header, Footer, SectionTitle } from 'components/About'
 
 const Section1 = () => (
-  <div className={LangStyle('section1')}>
+  <div className={langStyle('section1')}>
     <SectionTitle num="01" nx={-5} title={t('workstyle_1_title')!} tx={{ ja: -5, en: -4 }} ty={{ ja: 26, en: 26 }} />
     <div className="t">{t('workstyle_1_body')}</div>
     <style jsx>{`
@@ -101,7 +101,7 @@ const Alliance = ({ logo, data, desc }: { logo: string, data: AllianceData, desc
 }
 
 const Section2 = () => (
-  <div className={LangStyle('section2')}>
+  <div className={langStyle('section2')}>
     <SectionTitle num="02" nx={-5} title={t('workstyle_2_title')!} tx={{ ja: -3, en: -3 }} ty={{ ja: 28, en: 28 }} />
     <div className="t">{t('workstyle_2_body')}</div>
     <div className="alliance">

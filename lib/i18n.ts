@@ -43,7 +43,7 @@ export function ta(key: string): any[] | undefined {
   return t(key)?.split('\n')
 }
 
-export function LangStyle(classes?: string): string {
+export function langStyle(classes?: string): string {
   const router = useRouter()
   const langStyle: { [key: string]: any } = {}
   langStyle[router.locale!] = true;

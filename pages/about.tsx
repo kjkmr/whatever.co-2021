@@ -1,11 +1,11 @@
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
-import { t, LangStyle } from 'lib/i18n'
+import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 
 const Genres = () => (
-  <div className={LangStyle('genres')}>
+  <div className={langStyle('genres')}>
     <div className="inner">
       <div className="image"><GradImg><img src="/about/genres@2x.png" /></GradImg></div>
       <div className="content">
@@ -84,7 +84,7 @@ const Genres = () => (
 )
 
 const Cultures = () => (
-  <div className={LangStyle('cultures')}>
+  <div className={langStyle('cultures')}>
     <div className="inner">
       <div className="content">
         <Grad><h3>Crossborder :</h3></Grad>
@@ -162,7 +162,7 @@ const Cultures = () => (
 )
 
 const Workstyle = () => (
-  <div className={LangStyle('workstyle')}>
+  <div className={langStyle('workstyle')}>
     <div className="inner">
       <div className="image"><GradImg><img src="/about/workstyle@2x.png" /></GradImg></div>
       <div className="content">
@@ -239,7 +239,7 @@ const Workstyle = () => (
 
 const AboutPage = () => (
   <Layout title="About" side="About">
-    <div className={LangStyle()}>
+    <div className={langStyle()}>
       <div className="head">
         <Grad><h1>Crossborder</h1></Grad>
         <Grad><h1>Creative Studio</h1></Grad>

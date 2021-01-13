@@ -1,10 +1,10 @@
 import { GetStaticProps } from 'next'
-import { t, LangStyle } from 'lib/i18n'
+import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Grad, GradImg, GradLink } from 'components/Grad'
 
 const Head = () => (
-  <div className={LangStyle('head')}>
+  <div className={langStyle('head')}>
     <img src="/contact/head@2x.png" alt="" />
     {t('contact_title')?.split('\n').map((line, index) => <Grad key={index}><div>{line}</div></Grad>)}
     <div className="mailto"><GradImg><a href="mailto:hello@whatever.co">hello@whatever.co</a></GradImg></div>

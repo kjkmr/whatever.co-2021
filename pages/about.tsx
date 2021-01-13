@@ -9,11 +9,11 @@ const Genres = () => (
     <div className="inner">
       <div className="image"><GradImg><img src="/about/genres@2x.png" /></GradImg></div>
       <div className="content">
-        <Grad><h3>Crossborder :</h3></Grad>
+        <Grad><h3>Whatever</h3></Grad>
         <Grad><h1>Genres</h1></Grad>
         {t('about_genres_title') != '-' ? <Grad><h2>{t('about_genres_title')}</h2></Grad> : null}
         <Grad><p dangerouslySetInnerHTML={{ __html: t('about_genres_description')?.replace('\n', '<br />') || '' }}></p></Grad>
-        <div className="more"><Grad><Link href="/about/genres"><a>Show more</a></Link></Grad></div>
+        <div className="more"><Grad><Link href="/about/genres"><a>Learn more</a></Link></Grad></div>
       </div>
     </div>
     <style jsx>{`
@@ -21,17 +21,15 @@ const Genres = () => (
         'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .genres
         width 100%
-        margin-bottom vwpx(59)
-        min-height vwpx(544)
+        margin-bottom vwpx(60)
       .inner
         display flex
         justify-content space-between
       .image img
         width vwpx(484)
         margin-left vwpx(80)
-        margin-top vwpx(60)
+        margin-top vwpx(43)
       .content
-        border-top 1px solid #D0D0D0
         width vwpx(643)
         padding-top vwpx(104)
       h3
@@ -67,11 +65,7 @@ const Genres = () => (
           border-bottom 1px solid
           background none
           margin-top vwpx(24)
-          margin-right 20px
-          padding-bottom 11px
-          padding-right 30px
-          padding-left 0
-      .en
+          padding-bottom 6px
         h1
           margin-bottom vwpx(5)
         p
@@ -83,25 +77,24 @@ const Genres = () => (
   </div>
 )
 
-const Cultures = () => (
-  <div className={langStyle('cultures')}>
+const Workstyle = () => (
+  <div className={langStyle('workstyle')}>
     <div className="inner">
       <div className="content">
-        <Grad><h3>Crossborder :</h3></Grad>
-        <Grad><h1>Cultures</h1></Grad>
-        {t('about_cultures_title') != '-' ? <Grad><h2>{t('about_cultures_title')}</h2></Grad> : null}
-        <Grad><p dangerouslySetInnerHTML={{ __html: t('about_cultures_description')?.replace('\n', '<br />') || '' }}></p></Grad>
-        <div className="more"><Grad><Link href="/about/cultures"><a>Show more</a></Link></Grad></div>
+        <Grad><h3>Whatever</h3></Grad>
+        <Grad><h1>Workstyle</h1></Grad>
+        {t('about_workstyle_title') != '-' ? <Grad><h2>{t('about_workstyle_title')}</h2></Grad> : null}
+        <Grad><p dangerouslySetInnerHTML={{ __html: t('about_workstyle_description')?.replace('\n', '<br />') || '' }}></p></Grad>
+        <div className="more"><Grad><Link href="/about/workstyle"><a>Learn more</a></Link></Grad></div>
       </div>
-      <div className="image"><GradImg><img src="/about/cultures@2x.png" /></GradImg></div>
+      <div className="image"><GradImg><img src="/about/workstyle@2x.png" /></GradImg></div>
     </div>
     <style jsx>{`
       vwpx(px)
         'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
-      .cultures
+      .workstyle
         width 100%
-        margin-bottom vwpx(58)
-        min-height vwpx(546)
+        margin-bottom vwpx(52)
       .inner
         display flex
         justify-content space-between
@@ -113,7 +106,7 @@ const Cultures = () => (
       .content
         border-top 1px solid #D0D0D0
         width vwpx(564)
-        padding-top vwpx(91)
+        padding-top vwpx(135)
       h3
         display inline-block
         overflow hidden
@@ -148,9 +141,7 @@ const Cultures = () => (
           background none
           margin-top vwpx(25)
           margin-right 20px
-          padding-bottom 11px
-          padding-right 30px
-          padding-left 0
+          padding-bottom 6px
       .en
         .content
           padding-top vwpx(103)
@@ -161,25 +152,24 @@ const Cultures = () => (
   </div>
 )
 
-const Workstyle = () => (
-  <div className={langStyle('workstyle')}>
+const Location = () => (
+  <div className={langStyle('location')}>
     <div className="inner">
-      <div className="image"><GradImg><img src="/about/workstyle@2x.png" /></GradImg></div>
+      <div className="image"><GradImg><img src="/about/cultures@2x.png" /></GradImg></div>
       <div className="content">
-        <Grad><h3>Crossborder :</h3></Grad>
-        <Grad><h1>Workstyle</h1></Grad>
-        {t('about_workstyle_title') != '-' ? <Grad><h2>{t('about_workstyle_title')}</h2></Grad> : null}
-        <Grad><p dangerouslySetInnerHTML={{ __html: t('about_workstyle_description')?.replace('\n', '<br />') || '' }}></p></Grad>
-        <div className="more"><Grad><Link href="/about/workstyle"><a>Show more</a></Link></Grad></div>
+        <Grad><h3>Whatever</h3></Grad>
+        <Grad><h1>Location</h1></Grad>
+        {t('about_location_title') != '-' ? <Grad><h2>{t('about_location_title')}</h2></Grad> : null}
+        <Grad><p dangerouslySetInnerHTML={{ __html: t('about_location_description')?.replace('\n', '<br />') || '' }}></p></Grad>
+        <div className="more"><Grad><Link href="/about/location"><a>Learn more</a></Link></Grad></div>
       </div>
     </div>
     <style jsx>{`
       vwpx(px)
         'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
-      .workstyle
+      .location
         width 100%
-        margin-bottom vwpx(159)
-        min-height vwpx(550)
+        margin-bottom vwpx(165)
       .inner
         display flex
         justify-content space-between
@@ -190,7 +180,7 @@ const Workstyle = () => (
       .content
         border-top 1px solid #D0D0D0
         width vwpx(643)
-        padding-top vwpx(90)
+        padding-top vwpx(128)
       h3
         display inline-block
         overflow hidden
@@ -224,9 +214,7 @@ const Workstyle = () => (
           background none
           margin-top vwpx(24)
           margin-right 20px
-          padding-bottom 11px
-          padding-right 30px
-          padding-left 0
+          padding-bottom 7px
       .en
         .content
           padding-top vwpx(152)
@@ -241,8 +229,7 @@ const AboutPage = () => (
   <Layout title="About" side="About">
     <div className={langStyle()}>
       <div className="head">
-        <Grad><h1>Crossborder</h1></Grad>
-        <Grad><h1>Creative Studio</h1></Grad>
+        <Grad><h1>What’s Whatever<span className="q">?</span></h1></Grad>
       </div>
       <div className="text">
         {t('about_statement')?.split('\n\n').map((p, i) => (
@@ -256,16 +243,16 @@ const AboutPage = () => (
     </div>
 
     <Genres />
-    <Cultures />
     <Workstyle />
+    <Location />
 
     <style jsx>{`
       vwpx(px)
         'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .head
-        margin-top vwpx(63)
-        margin-bottom vwpx(87)
-        margin-left vwpx(-6)
+        margin-top vwpx(93)
+        margin-bottom vwpx(57)
+        margin-left vwpx(40)
         font-size 0
         h1
           margin 0
@@ -273,12 +260,14 @@ const AboutPage = () => (
           font-size vwpx(140)
           line-height vwpx(152)
           overflow hidden
+          .q
+            font-family 'Noto Sans JP'
       .text
         margin-left vwpx(80)
-        margin-bottom vwpx(117)
-        font-size vwpx(20)
+        margin-bottom vwpx(87)
+        font-size vwpx(28)
         font-weight bold
-        line-height vwpx(23)
+        line-height vwpx(37)
         >div.p
           margin 0
           margin-bottom vwpx(42)

@@ -1,20 +1,22 @@
+import { GetStaticProps } from 'next'
 import Link from 'next/link'
-import { t, LangStyle } from 'lib/i18n'
+import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Header, Footer, SectionTitle } from 'components/About'
 import { Grad } from 'components/Grad'
 
 const Section1 = () => (
-  <div className={LangStyle('section1')}>
-    <SectionTitle num="01" nx={-5} tx={{ ja: -4, en: -4 }} ty={{ en: -3 }} title={t('about.genres.1.title')} />
+  <div className={langStyle('section1')}>
+    <SectionTitle num="01" nx={-5} tx={{ ja: -4, en: -4 }} ty={{ en: -3 }} title={t('genres_1_title')!} />
     <div className="t">
-      {t('about.genres.1.body').split('\n').map((line, index) => <Grad key={index}><p key={index}>{line}</p></Grad>)}
+      {t('genres_1_body')!.split('\n').map((line, index) => <Grad key={index}><p key={index}>{line}</p></Grad>)}
     </div>
-    <Grad><h2>{t('about.genres.1.example.title')}</h2></Grad>
+    <Grad><h2>{t('genres_1_example_title')}</h2></Grad>
     <ul>
-      {[1, 2, 3, 4, 5].map(n => (
-        <Grad key={n}><li key={n}><span>{t(`about.genres.1.example.${n}.name`)}</span><br />{t(`about.genres.1.example.${n}.content`)}</li></Grad>
-      ))}
+      {t('genres_1_example_items')!.split('\n\n').map((item, index) => {
+        const [title, desc] = item.split('\n')
+        return <Grad key={index}><li key={index}><span>{title}</span><br />{desc}</li></Grad>
+      })}
     </ul>
     <div className="images">
       <img src="/about/genres/image@2x.jpg" alt="" className="i1" />
@@ -98,18 +100,21 @@ const Section1 = () => (
 )
 
 const Section2 = () => (
-  <div className={LangStyle('section2')}>
-    <SectionTitle num="02" title={t('about.genres.2.title')} nx={-4} tx={{ ja: -14 }} ty={{ ja: 28 }} />
-    <div className="t">{t('about.genres.2.body')}</div>
+  <div className={langStyle('section2')}>
+    <SectionTitle num="02" title={t('genres_2_title')!} nx={-4} tx={{ ja: -14 }} ty={{ ja: 28 }} />
+    <div className="t">{t('genres_2_body')}</div>
     <div className="g">
-      {[1, 2, 3, 4].map(n => (
-        <div key={n}>
-          <div className="title" dangerouslySetInnerHTML={{ __html: t(`about.genres.2.roles.${n}.category`).replace(/\n/g, '<br />') }}></div>
-          <ul>
-            {t(`about.genres.2.roles.${n}.roles`).split(',').map(role => <li key={role}>{role}</li>)}
-          </ul>
-        </div>
-      ))}
+      {['project', 'creative', 'tech', 'business'].map(key => {
+        const [title, roles] = t(`genres_2_${key}`)!.split('\n\n')
+        return (
+          <div key={key}>
+            <div className="title" dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, '<br />') }}></div>
+            <ul>
+              {roles?.split('\n').map(role => <li key={role}>{role}</li>)}
+            </ul>
+          </div>
+        )
+      })}
     </div>
     <style jsx>{`
       vwpx(px)
@@ -156,7 +161,7 @@ const Section2 = () => (
 )
 
 const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: string }) => (
-  <div className={LangStyle()}>
+  <div className={langStyle()}>
     <div className="name"><Link href={`/work/${link}`}><a>- {name}</a></Link></div>
     <div className="desc">{desc}</div>
     <style jsx>{`
@@ -182,14 +187,15 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
 )
 
 const Products = () => (
-  <div className={LangStyle('products')}>
+  <div className={langStyle('products')}>
     <div className="text">
-      <h2>{t('about.genres.3.inhouse.title')}</h2>
-      <div className="t">{t('about.genres.3.inhouse.body')}</div>
+      <h2>{t('genres_3_inhouse_title')}</h2>
+      <div className="t">{t('genres_3_inhouse_body')}</div>
       <div className="items">
-        {[1, 2, 3, 4, 5, 6].map(n => (
-          <WorkLink key={n} name={t(`about.genres.3.inhouse.items.${n}.title`)} link={t(`about.genres.3.inhouse.items.${n}.link`)} desc={t(`about.genres.3.inhouse.items.${n}.description`)} />
-        ))}
+        {t('genres_3_inhouse_items')?.split('\n\n').map(item => {
+          const [name, link, desc] = item.split('\n')
+          return <WorkLink key={link} name={name} link={link} desc={desc} />
+        })}
       </div>
     </div>
     <div className="images">
@@ -238,14 +244,15 @@ const Products = () => (
 )
 
 const Brands = () => (
-  <div className={LangStyle('brands')}>
+  <div className={langStyle('brands')}>
     <div className="text">
-      <h2>{t('about.genres.3.brands.title')}</h2>
-      <div className="t">{t('about.genres.3.brands.body')}</div>
+      <h2>{t('genres_3_brands_title')}</h2>
+      <div className="t">{t('genres_3_brands_body')}</div>
       <div className="items">
-        {[1, 2, 3].map(n => (
-          <WorkLink key={n} name={t(`about.genres.3.brands.items.${n}.title`)} link={t(`about.genres.3.brands.items.${n}.link`)} desc={t(`about.genres.3.brands.items.${n}.description`)} />
-        ))}
+        {t('genres_3_brands_items')?.split('\n\n').map(item => {
+          const [name, link, desc] = item.split('\n')
+          return <WorkLink key={link} name={name} link={link} desc={desc} />
+        })}
       </div>
     </div>
     <div className="images">
@@ -294,14 +301,15 @@ const Brands = () => (
 )
 
 const Investment = () => (
-  <div className={LangStyle('investment')}>
+  <div className={langStyle('investment')}>
     <div className="text">
-      <h2>{t('about.genres.3.investment.title')}</h2>
-      <div className="t">{t('about.genres.3.investment.body')}</div>
+      <h2>{t('genres_3_investment_title')}</h2>
+      <div className="t">{t('genres_3_investment_body')}</div>
       <div className="items">
-        {[1, 2, 3].map(n => (
-          <WorkLink key={n} name={t(`about.genres.3.investment.items.${n}.title`)} link={t(`about.genres.3.investment.items.${n}.link`)} desc={t(`about.genres.3.investment.items.${n}.description`)} />
-        ))}
+        {t('genres_3_investment_items')?.split('\n\n').map(item => {
+          const [name, link, desc] = item.split('\n')
+          return <WorkLink key={link} name={name} link={link} desc={desc} />
+        })}
       </div>
     </div>
     <div className="images">
@@ -348,10 +356,10 @@ const Investment = () => (
 )
 
 const Section3 = () => (
-  <div className={LangStyle('section3')}>
-    <SectionTitle num="03" nx={-5} title={t('about.genres.3.title')} tx={{ ja: 1, en: 1 }} ty={{ ja: 24, en: -1 }} />
+  <div className={langStyle('section3')}>
+    <SectionTitle num="03" nx={-5} title={t('genres_3_title')!} tx={{ ja: 1, en: 1 }} ty={{ ja: 24, en: -1 }} />
     <div className="content">
-      <div className="t">{t('about.genres.3.body')}</div>
+      <div className="t">{t('genres_3_body')}</div>
       <img src="/about/genres/3/0474_B_1005@2x.jpg" alt="" />
     </div>
     <Products />
@@ -389,7 +397,7 @@ const Section3 = () => (
 const GenrePage = () => (
   <Layout title="About" side="About" backto="/about" footer={<Footer left="Workstyle" right="Cultures" />}>
     <div className="container">
-      <Header title="Genres" subtitle={t('about.genres.title')} desc={t('about.genres.description')} image="/about/genres/head@2x.png" />
+      <Header title="Genres" subtitle={t('genres_title')!} desc={t('genres_description')!} image="/about/genres/head@2x.png" />
       <Section1 />
       <Section2 />
       <Section3 />
@@ -403,3 +411,7 @@ const GenrePage = () => (
 )
 
 export default GenrePage
+
+export const getStaticProps: GetStaticProps = async () => {
+  return { props: {} }
+}

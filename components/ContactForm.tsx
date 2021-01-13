@@ -10,10 +10,10 @@ const ContactForm = () => {
   langStyle[router.locale!] = true;
   return (
     <div className={classNames(langStyle)}>
-      <div className="text">{t('contactform.contacthere')}</div>
-      <div className="contact"><Link href="/contact"><a>{t('contactform.inquiry')}</a></Link></div>
+      <div className="text">{t('contactform_contacthere')}</div>
+      <div className="contact"><Link href="/contact"><a>{t('contactform_inquiry')}</a></Link></div>
       <div className="newsletter">
-        <div className="subscribe">{t('contactform.register')}</div>
+        <div className="subscribe">{t('contactform_register')}</div>
         <form action="">
           <input className="email" type="text" placeholder="Email address"></input>
           <input className="submit" type="submit" value="" />

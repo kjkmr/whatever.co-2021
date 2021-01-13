@@ -1,15 +1,16 @@
+import { GetStaticProps } from 'next'
 import Link from 'next/link'
-import { t, ta, LangStyle } from 'lib/i18n'
+import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Header, Footer, SectionTitle } from 'components/About'
 
 const Section1 = () => (
-  <div className={LangStyle('section1')}>
-    <SectionTitle num="01" nx={-5} tx={{ ja: -4 }} ty={{ ja: 26 }} title={t('about.cultures.1.title')} />
-    <div className="t">{t('about.cultures.1.body')}</div>
-    <h2>{t('about.cultures.1.inhouse')}<hr /></h2>
+  <div className={langStyle('section1')}>
+    <SectionTitle num="01" nx={-5} tx={{ ja: -4 }} ty={{ ja: 26 }} title={t('cultures_1_title')!} />
+    <div className="t">{t('cultures_1_body')}</div>
+    <h2>{t('cultures_1_inhouse')}<hr /></h2>
     <img className="logos1" src="/about/cultures/logos1@2x.png" alt="" />
-    <h2>{t('about.cultures.1.overseas')}<hr /></h2>
+    <h2>{t('cultures_1_overseas')}<hr /></h2>
     <img className="logos2" src="/about/cultures/logos2@2x.png" alt="" />
     <style jsx>{`
       vwpx(px)
@@ -67,7 +68,7 @@ const Section1 = () => (
 
 const Member = ({ image, title, name, slug }: { image: string, title: string, name: string, slug: string }) => (
   <Link href={`/team/${slug}`}>
-    <a className={LangStyle('member')}>
+    <a className={langStyle('member')}>
       <img src={`/about/cultures/${image}@2x.jpg`} alt="" />
       <div className="title">{title}</div>
       <div className="name">{name}</div>
@@ -99,11 +100,14 @@ const Member = ({ image, title, name, slug }: { image: string, title: string, na
 )
 
 const Section2 = () => (
-  <div className={LangStyle('section2')}>
-    <SectionTitle num="02" nx={-4} title={t('about.cultures.2.title')} tx={{ ja: -3, en: 5 }} ty={{ ja: 27, en: 26 }} />
-    <div className="t">{t('about.cultures.2.body')}</div>
+  <div className={langStyle('section2')}>
+    <SectionTitle num="02" nx={-4} title={t('cultures_2_title')!} tx={{ ja: -3, en: 5 }} ty={{ ja: 27, en: 26 }} />
+    <div className="t">{t('cultures_2_body')}</div>
     <div className="members">
-      {ta('about.cultures.2.members').map(m => <Member key={m.slug} image={m.slug} title={m.title} name={m.name} slug={m.slug} />)}
+      {t('cultures_2_members')?.split('\n\n').map(member => {
+        const [title, name, link] = member.split('\n')
+        return <Member key={link} image={link} title={title} name={name} slug={link} />
+      })}
     </div>
     <div className="link"><Link href="/team"><a>All Members</a></Link></div>
     <style jsx>{`
@@ -152,7 +156,7 @@ const Section2 = () => (
 const Cultures = () => (
   <Layout title="About" side="About" backto="/about" footer={<Footer left="Genres" right="Workstyle" />}>
     <div className="container">
-      <Header title="Cultures" subtitle={t('about.cultures.title')} desc={t('about.cultures.description')} image="/about/cultures/head@2x.png" ty={{ en: 19 }} iy={{ ja: -15, en: -38 }} />
+      <Header title="Cultures" subtitle={t('cultures_title')!} desc={t('cultures_description')!} image="/about/cultures/head@2x.png" ty={{ en: 19 }} iy={{ ja: -15, en: -38 }} />
       <Section1 />
       <Section2 />
     </div>
@@ -160,3 +164,7 @@ const Cultures = () => (
 )
 
 export default Cultures
+
+export const getStaticProps: GetStaticProps = async () => {
+  return { props: {} }
+}

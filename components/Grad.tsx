@@ -107,8 +107,10 @@ export const Grad = ({ children }: any) => {
       const entry = entries[0]
       if (!entry.isIntersecting) { return }
       doAnime(base, grad, box).onfinish = () => {
-        base.removeChild(grad)
-        base.removeChild(box)
+        if (grad.parentNode == base) {
+          base.removeChild(grad)
+          base.removeChild(box)
+        }
         base.classList.remove('grad-effect-base')
       }
       object.unobserve(base)

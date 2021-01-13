@@ -1,17 +1,18 @@
+import { GetStaticProps } from 'next'
 import Link from 'next/link'
-import { t, LangStyle } from 'lib/i18n'
+import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 
 const Genres = () => (
-  <div className={LangStyle('genres')}>
+  <div className={langStyle('genres')}>
     <div className="inner">
       <div className="image"><GradImg><img src="/about/genres@2x.png" /></GradImg></div>
       <div className="content">
         <Grad><h3>Crossborder :</h3></Grad>
         <Grad><h1>Genres</h1></Grad>
-        {t('about.index.genres.title') ? <Grad><h2>{t('about.index.genres.title')}</h2></Grad> : null}
-        <Grad><p dangerouslySetInnerHTML={{ __html: t('about.index.genres.description').replace('\n', '<br />') }}></p></Grad>
+        {t('about_genres_title') != '-' ? <Grad><h2>{t('about_genres_title')}</h2></Grad> : null}
+        <Grad><p dangerouslySetInnerHTML={{ __html: t('about_genres_description')?.replace('\n', '<br />') || '' }}></p></Grad>
         <div className="more"><Grad><Link href="/about/genres"><a>Show more</a></Link></Grad></div>
       </div>
     </div>
@@ -83,13 +84,13 @@ const Genres = () => (
 )
 
 const Cultures = () => (
-  <div className={LangStyle('cultures')}>
+  <div className={langStyle('cultures')}>
     <div className="inner">
       <div className="content">
         <Grad><h3>Crossborder :</h3></Grad>
         <Grad><h1>Cultures</h1></Grad>
-        {t('about.index.cultures.title') ? <Grad><h2>{t('about.index.cultures.title')}</h2></Grad> : null}
-        <Grad><p dangerouslySetInnerHTML={{ __html: t('about.index.cultures.description').replace('\n', '<br />') }}></p></Grad>
+        {t('about_cultures_title') != '-' ? <Grad><h2>{t('about_cultures_title')}</h2></Grad> : null}
+        <Grad><p dangerouslySetInnerHTML={{ __html: t('about_cultures_description')?.replace('\n', '<br />') || '' }}></p></Grad>
         <div className="more"><Grad><Link href="/about/cultures"><a>Show more</a></Link></Grad></div>
       </div>
       <div className="image"><GradImg><img src="/about/cultures@2x.png" /></GradImg></div>
@@ -161,14 +162,14 @@ const Cultures = () => (
 )
 
 const Workstyle = () => (
-  <div className={LangStyle('workstyle')}>
+  <div className={langStyle('workstyle')}>
     <div className="inner">
       <div className="image"><GradImg><img src="/about/workstyle@2x.png" /></GradImg></div>
       <div className="content">
         <Grad><h3>Crossborder :</h3></Grad>
         <Grad><h1>Workstyle</h1></Grad>
-        {t('about.index.workstyle.title') ? <Grad><h2>{t('about.index.workstyle.title')}</h2></Grad> : null}
-        <Grad><p dangerouslySetInnerHTML={{ __html: t('about.index.workstyle.description').replace('\n', '<br />') }}></p></Grad>
+        {t('about_workstyle_title') != '-' ? <Grad><h2>{t('about_workstyle_title')}</h2></Grad> : null}
+        <Grad><p dangerouslySetInnerHTML={{ __html: t('about_workstyle_description')?.replace('\n', '<br />') || '' }}></p></Grad>
         <div className="more"><Grad><Link href="/about/workstyle"><a>Show more</a></Link></Grad></div>
       </div>
     </div>
@@ -238,15 +239,15 @@ const Workstyle = () => (
 
 const AboutPage = () => (
   <Layout title="About" side="About">
-    <div className={LangStyle()}>
+    <div className={langStyle()}>
       <div className="head">
         <Grad><h1>Crossborder</h1></Grad>
         <Grad><h1>Creative Studio</h1></Grad>
       </div>
       <div className="text">
-        {[1, 2, 3, 4].map(n => (
-          <div key={n} className="p">
-            {t(`about.index.statement${n}`).split('\n').map((line, index) => (
+        {t('about_statement')?.split('\n\n').map((p, i) => (
+          <div key={i} className="p">
+            {p.split('\n').map((line, index) => (
               <Grad key={index}><span>{line}</span></Grad>
             ))}
           </div>
@@ -294,3 +295,7 @@ const AboutPage = () => (
 )
 
 export default AboutPage
+
+export const getStaticProps: GetStaticProps = async () => {
+  return { props: {} }
+}

@@ -1,12 +1,13 @@
 import React from 'react'
-import { t, LangStyle } from 'lib/i18n'
+import { GetStaticProps } from 'next'
+import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Header, Footer, SectionTitle } from 'components/About'
 
 const Section1 = () => (
-  <div className={LangStyle('section1')}>
-    <SectionTitle num="01" nx={-5} title={t('about.workstyle.1.title')} tx={{ ja: -5, en: -4 }} ty={{ ja: 26, en: 26 }} />
-    <div className="t">{t('about.workstyle.1.body')}</div>
+  <div className={langStyle('section1')}>
+    <SectionTitle num="01" nx={-5} title={t('workstyle_1_title')!} tx={{ ja: -5, en: -4 }} ty={{ ja: 26, en: 26 }} />
+    <div className="t">{t('workstyle_1_body')}</div>
     <style jsx>{`
       vwpx(px)
         'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
@@ -100,11 +101,11 @@ const Alliance = ({ logo, data, desc }: { logo: string, data: AllianceData, desc
 }
 
 const Section2 = () => (
-  <div className={LangStyle('section2')}>
-    <SectionTitle num="02" nx={-5} title={t('about.workstyle.2.title')} tx={{ ja: -3, en: -3 }} ty={{ ja: 28, en: 28 }} />
-    <div className="t">{t('about.workstyle.2.body')}</div>
+  <div className={langStyle('section2')}>
+    <SectionTitle num="02" nx={-5} title={t('workstyle_2_title')!} tx={{ ja: -3, en: -3 }} ty={{ ja: 28, en: 28 }} />
+    <div className="t">{t('workstyle_2_body')}</div>
     <div className="alliance">
-      {Object.keys(AllianceData).map(key => <Alliance key={key} logo={key} data={AllianceData[key]} desc={t(`about.workstyle.2.alliances.${key}`)} />)}
+      {Object.keys(AllianceData).map(key => <Alliance key={key} logo={key} data={AllianceData[key]} desc={t(`workstyle_2_${key}`)!} />)}
     </div>
     <style jsx>{`
       vwpx(px)
@@ -155,7 +156,7 @@ const Section3 = () => (
 
 const Profession = () => (
   <Layout title="About" side="About" backto="/about" footer={<Footer left="Cultures" right="Genres" />}>
-    <Header title="Workstyle" subtitle={t('about.workstyle.title')} desc={t('about.workstyle.description')} image="/about/workstyle/head@2x.png" ty={{ ja: 1 }} iy={{ ja: -22, en: -44 }} />
+    <Header title="Workstyle" subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="/about/workstyle/head@2x.png" ty={{ ja: 1 }} iy={{ ja: -22, en: -44 }} />
     <Section1 />
     <Section2 />
     <Section3 />
@@ -165,3 +166,7 @@ const Profession = () => (
 )
 
 export default Profession
+
+export const getStaticProps: GetStaticProps = async () => {
+  return { props: {} }
+}

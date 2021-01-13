@@ -1,37 +1,49 @@
+import fs from 'fs'
 import { useRouter } from 'next/router'
 import classNames from 'classnames/bind'
-import { resources } from './resources'
+import resources from './resource.json'
 
-function _t(key: string): string | any[] | null {
-  const router = useRouter()
-  const paths = key.split('.')
-  paths.unshift(router.locale || router.defaultLocale!)
-  let result: any = resources
-  while (paths.length) {
-    // console.log(paths)
-    // console.log(result)
-    // console.log(result.hasOwnProperty(paths[0]))
-    if (result.hasOwnProperty(paths[0])) {
-      result = result[paths[0]]
-      paths.shift()
-    } else {
-      break;
+var LANGS: string[] = resources.langs
+var STRINGS: { [key: string]: string[] } = resources.strings
+
+export async function loadResources() {
+  if (global.window) {
+    // do nothing on browser
+    return
+  }
+  const response = await fetch('https://script.google.com/macros/s/AKfycbyBPS0U7V3I1fDhUITigGzioonYX4L58B_DjLpaH_0QYC1b3WW5NwXRvw/exec')
+  const data = await response.json()
+  LANGS = data.shift().slice(1)
+  STRINGS = {}
+  data.forEach((row: string[]) => {
+    const key = row.shift()
+    if (key) {
+      STRINGS![key] = row
+    }
+  })
+  fs.writeFileSync('lib/resource.json', JSON.stringify({ langs: LANGS, strings: STRINGS }, null, 2))
+  console.log('Translate resource updated')
+  return
+}
+
+export function t(key: string, returnKeyIfNotFound: boolean = true): string | undefined {
+  if (STRINGS.hasOwnProperty(key)) {
+    const router = useRouter()
+    const lang = router.locale || router.defaultLocale!
+    const i = LANGS?.findIndex(c => c === lang)
+    if (i !== undefined && STRINGS[key][i]) {
+      return STRINGS[key][i]
     }
   }
-  return paths.length == 0 ? result : null
+  console.log(`key '${key}' not found`)
+  return returnKeyIfNotFound ? `{${key}}` : undefined
 }
 
-export function t(key: string): string {
-  const ret = _t(key)
-  return typeof ret === 'string' ? ret : `{${key}}`
+export function ta(key: string): any[] | undefined {
+  return t(key)?.split('\n')
 }
 
-export function ta(key: string): any[] {
-  const ret = _t(key)
-  return Array.isArray(ret) ? ret : []
-}
-
-export function LangStyle(classes?: string): string {
+export function langStyle(classes?: string): string {
   const router = useRouter()
   const langStyle: { [key: string]: any } = {}
   langStyle[router.locale!] = true;

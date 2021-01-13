@@ -7,10 +7,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 }
 
 MyApp.getInitialProps = async (appContext: AppContext) => {
-  // console.log(`MyApp.getInitialProps: ${global.window}`)
-  if (!global.window) {
-    loadResources()
-  }
+  loadResources()
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);
   return { ...appProps }

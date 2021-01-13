@@ -1,1 +1,159 @@
-{"langs":["ja","en","zh-hans"],"strings":{"top_whatever":["Whateverは様々な領域を越えて活動する\nクロスボーダー・クリエイティブ・スタジオです。","Whatever is a cross-border creative studio.",""],"about_index_statement1":["わたしたちは、クロスボーダーに活動するクリエイティブスタジオ。","Whatever is a cross-border creative studio.",""],"about_index_statement2":["みんながオンラインでつながって、世界はグンと近くなった。\nでもそれによって、これまで気づかなかった様々な境界線も見えてきた。\nわたしたちは、その境界を、跳び越える。\nあっちの良さを知っていれば、こっちをもっと良くできるから。\nこっちとあっちをつなげることで、生まれる新しい感動があるから。","The world has become a much closer place now that we are all online, \nbut it’s also brought us closer to boundaries we never noticed before.\nBut it’s also brought us closer to boundaries that we never noticed before.\nWe’re going to jump over those boundaries.\nIf we know the goodness of that world, we can make this one better.\nBecause there will be new emotions created by connecting this world with that one.",""],"about_index_statement3":["東京、ニューヨーク、台北、ベルリンの拠点を活かし、国や言葉というボーダーを越える。\nブランディングから、テレビ番組、プロダクト、新事業開発まで、様々な領域のボーダーを越える。\n考えるだけでもなく、作るだけでもない、クリエイティブ・プロセスのボーダーを越える。","With bases in Tokyo, New York, Taipei, and Berlin, we are able to transcend the borders of country and language.\nWe cross borders in a variety of fields, from branding to TV programs, products, and new business development.\nWe cross the borders of the creative process, which is neither just thinking about it nor just creating it.",""],"about_index_statement4":["そうすることで、あっちもこっちも関係なく、\n世界中が一つになって感動できるようなアイデアを実現していきます。","By doing so, it doesn’t matter whether you are here or there.\nWe will realize ideas that will bring the world together and inspire.",""]}}
+{
+  "langs": [
+    "ja",
+    "en",
+    "zh-hans"
+  ],
+  "strings": {
+    "top_whatever": [
+      "Whateverは様々な領域を越えて活動する\nクロスボーダー・クリエイティブ・スタジオです。",
+      "Whatever is a cross-border creative studio.",
+      ""
+    ],
+    "contactform_contacthere": [
+      "新規プロジェクト、採用、メディア掲載など各種ご相談はこちらまで",
+      "",
+      ""
+    ],
+    "contactform_inquiry": [
+      "お問い合わせ",
+      "",
+      ""
+    ],
+    "contactform_register": [
+      "ニュースレターに登録",
+      "",
+      ""
+    ],
+    "about_index_statement": [
+      "わたしたちは、クロスボーダーに活動するクリエイティブスタジオ。\n\nみんながオンラインでつながって、世界はグンと近くなった。\nでもそれによって、これまで気づかなかった様々な境界線も見えてきた。\nわたしたちは、その境界を、跳び越える。\nあっちの良さを知っていれば、こっちをもっと良くできるから。\nこっちとあっちをつなげることで、生まれる新しい感動があるから。\n\n東京、ニューヨーク、台北、ベルリンの拠点を活かし、国や言葉というボーダーを越える。\nブランディングから、テレビ番組、プロダクト、新事業開発まで、様々な領域のボーダーを越える。\n考えるだけでもなく、作るだけでもない、クリエイティブ・プロセスのボーダーを越える。\n\nそうすることで、あっちもこっちも関係なく、\n世界中が一つになって感動できるようなアイデアを実現していきます。",
+      "Whatever is a cross-border creative studio.\n\nThe world has become a much closer place now that we are all online, \nbut it’s also brought us closer to boundaries we never noticed before.\nBut it’s also brought us closer to boundaries that we never noticed before.\nWe’re going to jump over those boundaries.\nIf we know the goodness of that world, we can make this one better.\nBecause there will be new emotions created by connecting this world with that one.\n\nWith bases in Tokyo, New York, Taipei, and Berlin, we are able to transcend the borders of country and language.\nWe cross borders in a variety of fields, from branding to TV programs, products, and new business development.\nWe cross the borders of the creative process, which is neither just thinking about it nor just creating it.\n\nBy doing so, it doesn’t matter whether you are here or there.\nWe will realize ideas that will bring the world together and inspire.",
+      ""
+    ],
+    "about_index_genres_title": [
+      "ジャンルの境界線を越える",
+      "",
+      ""
+    ],
+    "about_index_genres_description": [
+      "Whatever では、その名の通り、なんでもつくります。グローバルブランドのビジョン開発から、広告、テレビ番組、プロダクトに、お店まで。\n「考えて作れる」チームを活かし、メディアやジャンルといった枠組みを飛び越えて誰も見たことがないような体験の、企画から開発・実装まで行っています。",
+      "",
+      ""
+    ],
+    "about_index_cultures_title": [
+      "国と文化の境界線を越える",
+      "",
+      ""
+    ],
+    "about_index_cultures_description": [
+      "Whatever に集ってくれた「多様な人々」こそが、我々の持つ一番のバリューです。通常の雇用形態やクライアント・リレーションに囚われず、より優秀な人々が集まり、共に新しい体験を生み出していけるようなコミュニティをつくっています。組織や商習慣といった境界を越えて、もっと自由に、もっと「作れる」環境を大切に活動しています。",
+      "",
+      ""
+    ],
+    "about_index_workstyle_title": [
+      "働き方の境界線を越える",
+      "",
+      ""
+    ],
+    "about_index_workstyle_description": [
+      "Whatever に集ってくれた「多様な人々」こそが、我々の持つ一番のバリューです。通常の雇用形態やクライアント・リレーションに囚われず、より優秀な人々が集まり、共に新しい体験を生み出していけるようなコミュニティをつくっています。組織や商習慣といった境界を越えて、もっと自由に、もっと「作れる」環境を大切に活動しています。",
+      "",
+      ""
+    ],
+    "contact_title": [
+      "新規プロジェクト、\n採用、メディア掲載など\n各種ご相談はこちらまで",
+      "",
+      ""
+    ],
+    "contact_tokyo_name": [
+      "TOKYO",
+      "",
+      ""
+    ],
+    "contact_tokyo_address": [
+      "〒106-0032 東京都港区六本木 7 丁目 2 番 8 号 WHEREVER 7F",
+      "",
+      ""
+    ],
+    "contact_tokyo_link": [
+      "https://g.page/whatever-inc",
+      "",
+      ""
+    ],
+    "contact_tokyo_phone": [
+      "03-6427-6022",
+      "",
+      ""
+    ],
+    "contact_tokyo_representative": [
+      "代表 : 富永 勇亮",
+      "",
+      ""
+    ],
+    "contact_newyork_name": [
+      "NEW YORK",
+      "",
+      ""
+    ],
+    "contact_newyork_address": [
+      "347 W 36th St, #902 New York, NY 10018 U.S.A.",
+      "",
+      ""
+    ],
+    "contact_newyork_link": [
+      "https://goo.gl/maps/x7zKNoj7ixG2",
+      "",
+      ""
+    ],
+    "contact_newyork_phone": [
+      "+1-347-801-7789",
+      "",
+      ""
+    ],
+    "contact_newyork_representative": [
+      "代表 : 川村 真司 / 清水 幹太",
+      "",
+      ""
+    ],
+    "contact_taipei_name": [
+      "TAIPEI",
+      "",
+      ""
+    ],
+    "contact_taipei_address": [
+      "18F, No.97, Songren Rd., Xinyi Dist., Taipei City 110, Taiwan",
+      "",
+      ""
+    ],
+    "contact_taipei_link": [
+      "https://goo.gl/maps/1ytCrzEK9EPKGWxe8",
+      "",
+      ""
+    ],
+    "contact_taipei_phone": [
+      "+886-908-222-101",
+      "",
+      ""
+    ],
+    "contact_taipei_representative": [
+      "代表 : 室市 栄二",
+      "",
+      ""
+    ],
+    "contact_berlin_name": [
+      "BERLIN",
+      "",
+      ""
+    ],
+    "contact_berlin_address": [
+      "Friedrichstraße 68, 10117 Berlin, Germany",
+      "",
+      ""
+    ],
+    "contact_berlin_link": [
+      "https://goo.gl/maps/JJ9c4hEupRFWHB5X6",
+      "",
+      ""
+    ]
+  }
+}

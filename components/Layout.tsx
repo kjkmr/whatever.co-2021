@@ -6,7 +6,7 @@ import Sidebar from 'components/Sidebar'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 
-const useTemplate = 1
+const useTemplate = 0
 
 type Props = {
   showHeader?: boolean

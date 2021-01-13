@@ -4,12 +4,7 @@ import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 
-
-type DetailProps = {
-  title: string
-}
-
-const Detail = ({ title }: DetailProps) => {
+const Detail = ({ title }: { title: string }) => {
   const key = title.toLowerCase()
   const subtitle = t(`about_${key}_title`)
   return (

@@ -11,8 +11,8 @@ const Genres = () => (
       <div className="content">
         <Grad><h3>Crossborder :</h3></Grad>
         <Grad><h1>Genres</h1></Grad>
-        {t('about_index_genres_title') ? <Grad><h2>{t('about_index_genres_title')}</h2></Grad> : null}
-        <Grad><p dangerouslySetInnerHTML={{ __html: t('about_index_genres_description')?.replace('\n', '<br />') || '' }}></p></Grad>
+        {t('about_genres_title') != '-' ? <Grad><h2>{t('about_genres_title')}</h2></Grad> : null}
+        <Grad><p dangerouslySetInnerHTML={{ __html: t('about_genres_description')?.replace('\n', '<br />') || '' }}></p></Grad>
         <div className="more"><Grad><Link href="/about/genres"><a>Show more</a></Link></Grad></div>
       </div>
     </div>
@@ -89,8 +89,8 @@ const Cultures = () => (
       <div className="content">
         <Grad><h3>Crossborder :</h3></Grad>
         <Grad><h1>Cultures</h1></Grad>
-        {t('about_index_cultures_title') ? <Grad><h2>{t('about_index_cultures_title')}</h2></Grad> : null}
-        <Grad><p dangerouslySetInnerHTML={{ __html: t('about_index_cultures_description')?.replace('\n', '<br />') || '' }}></p></Grad>
+        {t('about_cultures_title') != '-' ? <Grad><h2>{t('about_cultures_title')}</h2></Grad> : null}
+        <Grad><p dangerouslySetInnerHTML={{ __html: t('about_cultures_description')?.replace('\n', '<br />') || '' }}></p></Grad>
         <div className="more"><Grad><Link href="/about/cultures"><a>Show more</a></Link></Grad></div>
       </div>
       <div className="image"><GradImg><img src="/about/cultures@2x.png" /></GradImg></div>
@@ -168,8 +168,8 @@ const Workstyle = () => (
       <div className="content">
         <Grad><h3>Crossborder :</h3></Grad>
         <Grad><h1>Workstyle</h1></Grad>
-        {t('about_index_workstyle_title') ? <Grad><h2>{t('about_index_workstyle_title')}</h2></Grad> : null}
-        <Grad><p dangerouslySetInnerHTML={{ __html: t('about_index_workstyle_description')?.replace('\n', '<br />') || '' }}></p></Grad>
+        {t('about_workstyle_title') != '-' ? <Grad><h2>{t('about_workstyle_title')}</h2></Grad> : null}
+        <Grad><p dangerouslySetInnerHTML={{ __html: t('about_workstyle_description')?.replace('\n', '<br />') || '' }}></p></Grad>
         <div className="more"><Grad><Link href="/about/workstyle"><a>Show more</a></Link></Grad></div>
       </div>
     </div>
@@ -245,7 +245,7 @@ const AboutPage = () => (
         <Grad><h1>Creative Studio</h1></Grad>
       </div>
       <div className="text">
-        {t('about_index_statement')?.split('\n\n').map((p, i) => (
+        {t('about_statement')?.split('\n\n').map((p, i) => (
           <div key={i} className="p">
             {p.split('\n').map((line, index) => (
               <Grad key={index}><span>{line}</span></Grad>

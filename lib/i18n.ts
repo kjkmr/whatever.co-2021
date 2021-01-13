@@ -26,17 +26,17 @@ export async function loadResources() {
   return
 }
 
-export function t(key: string, check: boolean = false): string | undefined {
+export function t(key: string, returnKeyIfNotFound: boolean = true): string | undefined {
   if (STRINGS.hasOwnProperty(key)) {
     const router = useRouter()
     const lang = router.locale || router.defaultLocale!
     const i = LANGS?.findIndex(c => c === lang)
-    if (i !== undefined) {
-      return STRINGS[key][i] || `{${key}}`
+    if (i !== undefined && STRINGS[key][i]) {
+      return STRINGS[key][i]
     }
   }
   console.log(`key '${key}' not found`)
-  return check ? undefined : `{${key}}`
+  return returnKeyIfNotFound ? `{${key}}` : undefined
 }
 
 export function ta(key: string): any[] | undefined {

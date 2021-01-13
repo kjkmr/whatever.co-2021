@@ -20,7 +20,7 @@ export const Header = ({ title, subtitle, desc, image, ty, iy }: HeaderProps) =>
       <div className="text" style={{ marginTop: `calc((100vw - 80px) * ${(ty && ty[locale] ? ty[locale] : 0) / (1366 - 80)})` }}>
         <Grad><div className="t1">Crossborder :</div></Grad>
         <Grad><div className="t2">{title}</div></Grad>
-        {subtitle ? <Grad><div className="t3" >{subtitle}</div></Grad> : null}
+        {subtitle != '-' ? <Grad><div className="t3" >{subtitle}</div></Grad> : null}
         <div className="t4"><Grad><div dangerouslySetInnerHTML={{ __html: desc.replace(/\n/g, '<br />') }} /></Grad></div>
       </div>
       <div className="image" style={{ marginTop: `calc((100vw - 80px) * ${(iy && iy[locale] ? iy[locale] : 0) / (1366 - 80)})` }}>

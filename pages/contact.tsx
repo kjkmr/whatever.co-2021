@@ -55,8 +55,8 @@ const Address = ({ data }: { data: any }) => (
   <div className="container">
     <Grad><h2 className="region">{data.name}</h2></Grad>
     <div className="address"><GradLink className="address" href={data.maplink} target="_blank" rel="noopener noreferrer">{data.address}</GradLink></div>
-    {data.phone ? <Grad><div className="phone">{data.phone}</div></Grad> : null}
-    {data.representative ? <Grad><div className="repr">{data.representative}</div></Grad> : null}
+    {data.phone != '-' ? <Grad><div className="phone">{data.phone}</div></Grad> : null}
+    {data.representative != '-' ? <Grad><div className="repr">{data.representative}</div></Grad> : null}
     <style jsx>{`
       vwpx(px)
           'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
@@ -90,12 +90,7 @@ const ContactPage = () => {
   const keys = ['name', 'address', 'link', 'phone', 'representative']
   const addresses = regions.map(region => {
     const data: { [key: string]: string } = {}
-    keys.forEach(key => {
-      const val = t(`contact_${region}_${key}`, true)
-      if (val) {
-        data[key] = val
-      }
-    })
+    keys.forEach(key => data[key] = t(`contact_${region}_${key}`)!)
     return data
   })
   return (

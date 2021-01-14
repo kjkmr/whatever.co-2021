@@ -20,7 +20,7 @@ type Props = {
 const Layout = ({ children, footer, title = '', side = '', backto = '', showHeader = true }: Props) => {
   const templateStyle: { [prop: string]: string } = {}
   if (useTemplate) {
-    templateStyle.backgroundImage = `url(/_/About_detail_01_${useRouter().locale!}.png)`
+    templateStyle.backgroundImage = `url(/_/About_detail_02_${useRouter().locale!}.png)`
     // templateStyle.backgroundPosition = 'top 11px left'
   }
   return (

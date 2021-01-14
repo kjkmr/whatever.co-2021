@@ -221,13 +221,13 @@
       ""
     ],
     "workstyle_title": [
-      "働き方の境界線を越える",
+      "どんな働き方でも。",
       "-",
       ""
     ],
     "workstyle_description": [
-      "Whatever に集まってくれた「多様な人々」こそが、我々の持つ一番のバリューです。通常の雇用形態やクライアント・リレーションに囚われず、より優秀な人々が集まり、共に新しい体験を生み出していけるようなコミュニティをつくっています。\n組織や商習慣といった境界を越えて、もっと自由に、もっと「作れる」環境を大切に活動しています。",
-      "The people who come to Whatever are our greatest value. We are creating a community where the best and brightest people can come together to create new experiences together, without being confined by conventional employment patterns or client relations. We value an environment where people can create more freely and without boundaries of organization or business practices.",
+      "各メンバーやチームが最大限にクリエイティビティを発揮できるように、通常の雇用形態だけではなく、Co-Creator 制度を取り入れています。業務に対するコミットメントがない上に、Whatever のネットワークや知見、設備を自由に使うことができます。また弊社に入ってくるプロジェクトに自由に手を上げることができ、そのタイミングからプロジェクトベースのフィーが発生するという仕組みになっています。フレキシブルな業務スタイルによって、それぞれのキャリアやライフステージに合わせた働き方ができます。",
+      "In order to allow each member and team to maximize their creativity, we have adopted a Co-Creator system in addition to the normal employment system. In addition to having no commitment to the work, you can freely use Whatever’s network, knowledge, and facilities. In addition, you can freely raise your hand to any project that comes into our company, and from that point on, you will be paid a project-based fee. The flexible work style allows you to work in a way that suits your career and life stage.",
       ""
     ],
     "workstyle_1_title": [
@@ -252,7 +252,7 @@
     ],
     "workstyle_2_bassdrum": [
       "世界初のテクニカルディレクターコレクティブ。出資、オフィススペースの提供をはじめ、事業戦略支援や Saqoosha が役員として、富永が社外取締役として参画しています。",
-      "The world’s first technical director collective.\\nWe provide office space, business strategy support and executive staffing.",
+      "The world’s first technical director collective.\nWe provide office space, business strategy support and executive staffing.",
       ""
     ],
     "workstyle_2_wtfc": [
@@ -262,12 +262,12 @@
     ],
     "workstyle_2_cotodama": [
       "Lyric Speaker の開発、ソフトウェア、ライセンス提供を行うために、SIX，WOW，THE GUILD との共同出資で設立したジョイントベンチャー。弊社 CTO である Saqoosha が、CTO として参画しています。",
-      "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "A joint venture established with SIX, WOW, and THE GUILD to provide development, software, and licensing for Lyric Speaker. Our CTO, Saqoosha, is participating in this venture as CTO.",
       ""
     ],
     "workstyle_2_yummysake": [
       "機械学習 × ブラインドテイスティングで好みの日本酒を判別するサービス。アルゴリズムの開発、出資、事業戦略支援を行っています。",
-      "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "A service that uses machine learning x blind tasting to identify your favorite sake. We are developing the algorithm, investing in the company, and supporting the business strategy.",
       ""
     ],
     "workstyle_2_kasa": [
@@ -283,6 +283,26 @@
     "workstyle_2_newstand": [
       "NY 発のリテールスタートアップ New Stand。そのアメリカ外初の店舗である New Stand Tokyo の経営とブランディングを担当しています。",
       "I’m in charge of the management and branding of New Stand Tokyo, a retail start-up from New York, and its first store outside of the United States.",
+      ""
+    ],
+    "workstyle_3_title": [
+      "クリエイティブコミューンの運営",
+      "Management of creative communes",
+      ""
+    ],
+    "workstyle_3_body": [
+      "こうした豊富なメンバーたちが集える場所として、WTFC とクリエイティブコミューン WHEREVER の共同運営を行っています。ここは Whatever、WTFC、Bassdrum の作業拠点であると同時に、5F にあるシェアオフィススペースや 1F の New Stand Tokyo を通して、様々なクリエイティブスタッフが出入りし、共創し合える場として機能しています。",
+      "WTFC and the creative commune WHEREVER are jointly managed as a place where these rich members can gather. This is not only the work base for Whatever, WTFC, and Bassdrum, but also functions as a place where various creative staff can come and go and co-create through the shared office space on the 5th floor and New Stand Tokyo on the 1st floor.",
+      ""
+    ],
+    "workstyle_3_features": [
+      "01\n8 階建て、約 900㎡ のビル一棟に約 70 人の様々な個人クリエイターやチームが入居しています\n\n02\n入居者同士のシナジーを生み出せるメンバーを集めるため、ポートフォリオチェックと面接を通して、入居者を厳正に審査させていただいています。\n\n03\n外苑東通りに面した 1F のスペース (122.6㎡) が、入居者にもご利用いただけるギャラリーとなっています。\n\n04\n2F にはキッチンを完備したラウンジがあり、入居者の交流や、各種イベントのスペースとして活用しています。\n\n05\n東北新社と Whatever による合同事業会社 WTFC が、共同運営を行い、日々入居者の快適な環境とホスピタリティ向上に努めています。",
+      "01\nAn eight-story building of about 900 square meters is home to about 70 individual creators and teams.\n\n02\nIn order to gather members who can create synergy among the residents, we strictly screen the residents through portfolio checks and interviews.\n\n03\nThe first floor space (122.6㎡) facing Gaien Higashi Dori is a gallery that can be used by residents.\n\n04\nOn the second floor, there is a lounge with a fully equipped kitchen, which is used as a space for residents to interact and hold various events.\n\n05\nWTFC, a joint venture between Tohoku Shinsha and Whatever, jointly manages the facility and strives to improve the comfort and hospitality of the residents on a daily basis.",
+      ""
+    ],
+    "workstyle_3_about": [
+      "RF\n休憩スペース（2020 年内完成予定）\n\n7F\nWhatever オフィス\n\n6F\nBASSDRUM オフィス & 共同 FAB スペース\n\n5F\nコワーキングスペース\n\n4F\n会議室×４室\n\n3F\nWTFC オフィス\n\n2F\nオープン MTG / イベントスペース / カフェカウンター\n\n1F\nギャラリー / イベントスペース / ショールーム",
+      "RF\nRest area (to be completed by the end of 2020)\n\n7F\nWhatever office\n\n6F\nBASSDRUM Office & Shared FAB Space\n\n5F\nCoworking space\n\n4F\n4 meeting rooms\n\n3F\nWTFC office\n\n2F\nOpen MTG / Event space / Cafe counter\n\n1F\nGallery / Event Space / Showroom",
       ""
     ],
     "contact_title": [

@@ -80,15 +80,15 @@ export const Footer = ({ left, right }: { left: string, right: string }) => (
       <a style={{ borderRight: '1px solid #333' }}>
         <div className="line"></div>
         <div style={{ marginLeft: 40 }}>
-          <div className="cb">Crossborder :</div>
+          <div className="whatever">Whatever</div>
           <div className="title">{left}</div>
         </div>
       </a>
     </Link>
     <Link href={`/about/${right.toLowerCase()}`}>
       <a style={{ justifyContent: 'flex-end' }}>
-        <div style={{ marginRight: 40 }}>
-          <div className="cb">Crossborder :</div>
+        <div style={{ marginRight: 40, textAlign: 'right' }}>
+          <div className="whatever">Whatever</div>
           <div className="title">{right}</div>
         </div>
         <div className="line"></div>
@@ -110,15 +110,15 @@ export const Footer = ({ left, right }: { left: string, right: string }) => (
         .line
           border-top 1px solid #fff
           width 40px
-        .cb
+        .whatever
           font-size 1.2rem
           font-weight normal
           letter-spacing 0.1em
-          margin-top 2px
+          margin-top 9px
         .title
           font-size 2.4rem
           font-weight bold
-          margin-top 8px
+          margin-top 7px
     `}</style>
   </div>
 )

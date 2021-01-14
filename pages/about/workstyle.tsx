@@ -12,16 +12,19 @@ const Section1 = () => (
       vwpx(px)
         'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .section1
-        margin-top vwpx(120)
+        margin-top vwpx(85)
         margin-left vwpx(80)
       .t
         margin-top vwpx(43)
         margin-right vwpx(80)
         font-size 1.5rem
         line-height 3.0rem
-      .en .t
-        margin-top vwpx(41)
-        font-size 1.6rem
+      .en
+        &.section1
+          margin-top vwpx(110)
+        .t
+          margin-top vwpx(41)
+          font-size 1.6rem
     `}</style>
   </div>
 )
@@ -133,39 +136,167 @@ const Section2 = () => (
   </div >
 )
 
-const Section3 = () => (
-  <div className="container">
-    <SectionTitle num="03" nx={-5} title="Management of the<br/>Creative Commune" tx={{ ja: -16 }} />
-    <div className="t">As a place for these rich members to meet, we are jointly managing the creative commune WHEREVER with WTFC. In addition to serving as a base for Whatever, WTFC and Bassdrum, WHEREVER also functions as a place for cross-pollination of various creative staff through the shared office space on the 5th floor and New Stand Tokyo on the 1st floor.</div>
+const Features = () => (
+  <div className={langStyle('features')}>
+    <h2>FEATURES：</h2>
+    <div className="images">
+      <img src="/about/workstyle/image@2x.jpg" alt="" className="i1" />
+      <img src="/about/workstyle/Image 3@2x.jpg" alt="" className="i2" />
+      <img src="/about/workstyle/image-1@2x.jpg" alt="" className="i3" />
+    </div>
+    <div className="items">
+      {t('workstyle_3_features')?.split('\n\n').map(item => {
+        const [n, desc] = item.split('\n')
+        return (<div>
+          <div className="name">- {n}</div>
+          <div className="desc">{desc}</div>
+        </div>)
+      })}
+    </div>
     <style jsx>{`
-      .container
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      .features
         position relative
-        margin-top 117px
-        margin-left 80px
-        margin-bottom 295px
-        >img
-          position absolute
-      .t
-        font-size 1.6rem
+        margin-top vwpx(161)
+        min-height vwpx(750)
+      .images img
+        position absolute
+        &.i1
+          width vwpx(546)
+          top vwpx(-106)
+          right 0
+        &.i2
+          width vwpx(427)
+          top vwpx(250)
+          right vwpx(80)
+        &.i3
+          width vwpx(288)
+          top vwpx(461)
+          right 0
+      h2
+        margin 0
+        font-size vwpx(24)
+      .items
+        margin-top vwpx(46)
+        width vwpx(525)
+      .name
+        font-size 1.5rem
+        font-weight bold
+      .desc
+        margin-top 1.1rem
+        margin-bottom 3.3rem
+        margin-left 1.0rem
         line-height 3.0rem
-        margin-top 31px
-        margin-right 80px
+      .en
+        &.features
+          margin-top vwpx(172)
+        .items
+          margin-top vwpx(45)
+        .name
+          font-size 1.6rem
+        .desc
+          font-size 1.6rem
+          margin-top 1.0rem
     `}</style>
   </div>
 )
 
-const Profession = () => (
-  <Layout title="About" side="About" backto="/about" footer={<Footer left="Cultures" right="Genres" />}>
-    <Header title="Workstyle" subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="/about/workstyle/head@2x.png" ty={{ ja: 1 }} iy={{ ja: -22, en: -44 }} />
+const About = () => (
+  <div className={langStyle('about')}>
+    <div className="images">
+      <img src="/about/workstyle/image 4@2x.jpg" alt="" />
+    </div>
+    <div className="text">
+      <h2>ABOUT：</h2>
+      <div className="items">
+        {t('workstyle_3_about')?.split('\n\n').map(item => {
+          const [n, desc] = item.split('\n')
+          return (<div>
+            <div className="name">- {n}</div>
+            <div className="desc">{desc}</div>
+          </div>)
+        })}
+      </div>
+    </div>
+    <style jsx>{`
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      .about
+        margin-top vwpx(105)
+        display flex
+      .images img
+        width vwpx(523)
+      .text
+        margin-left vwpx(80)
+        margin-top vwpx(-8)
+      h2
+        margin 0
+        font-size vwpx(24)
+      .items
+        margin-top vwpx(46)
+        width vwpx(525)
+      .name
+        font-size 1.5rem
+        font-weight bold
+      .desc
+        margin-top 1.1rem
+        margin-bottom 3.3rem
+        margin-left 1.0rem
+        line-height 3.0rem
+      .en
+        .items
+          margin-top vwpx(45)
+        .name
+          font-size 1.6rem
+        .desc
+          font-size 1.6rem
+          margin-top 1.0rem
+    `}</style>
+  </div>
+)
+
+const Section3 = () => (
+  <div className={langStyle('section3')}>
+    <SectionTitle num="03" nx={-5} title={t('workstyle_3_title')!} tx={{ ja: -3, en: -3 }} ty={{ ja: 24, en: 24 }} />
+    <div className="t">{t('workstyle_3_body')}</div>
+    <Features />
+    <About />
+    <style jsx>{`
+      vwpx(px)
+        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      .section3
+        position relative
+        margin-top vwpx(117)
+        margin-left vwpx(80)
+        margin-bottom vwpx(110)
+        >img
+          position absolute
+      .t
+        font-size 1.5rem
+        line-height 3.0rem
+        margin-top vwpx(33)
+        margin-right vwpx(80)
+      .en
+        &.section3
+          margin-top vwpx(87)
+        .t
+          font-size 1.6rem
+          margin-top vwpx(32)
+    `}</style>
+  </div>
+)
+
+const Workstyle = () => (
+  <Layout title="About" side="About" backto="/about" footer={<Footer left="Genres" right="Location" />}>
+    <Header title="Workstyle" subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="/about/pict02.svg" ty={{ ja: -19, en: -19 }} iy={{ en: -21 }} />
     <Section1 />
     <Section2 />
     <Section3 />
-    <style jsx>{`
-    `}</style>
   </Layout>
 )
 
-export default Profession
+export default Workstyle
 
 export const getStaticProps: GetStaticProps = async () => {
   return { props: {} }

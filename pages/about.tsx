@@ -13,7 +13,7 @@ const Detail = ({ title }: { title: string }) => {
       <Grad><h1>{title}</h1></Grad>
       {subtitle != '-' ? <Grad><h2>{subtitle}</h2></Grad> : null}
       <Grad><p dangerouslySetInnerHTML={{ __html: t(`about_${key}_description`)?.replace('\n', '<br />') || '' }}></p></Grad>
-      <div className="more"><Grad><Link href="/about/genres"><a>Learn more</a></Link></Grad></div>
+      <div className="more"><Grad><Link href={`/about/${key}`}><a>Learn more</a></Link></Grad></div>
       <style jsx>{`
         vwpx(px)
           'calc((100vw - 80px) * %s)' % (px / (1366 - 80))

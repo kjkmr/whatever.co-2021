@@ -424,7 +424,7 @@ const Section3 = () => (
 )
 
 const GenrePage = () => (
-  <Layout title="About" side="About" backto="/about" footer={<Footer left="Workstyle" right="Cultures" />}>
+  <Layout title="About" side="About" backto="/about" footer={<Footer left="Location" right="Workstyle" />}>
     <div className="container">
       <Header title="Genres" subtitle={t('genres_title')!} desc={t('genres_description')!} image="/about/pict01.svg" iy={{ en: -21 }} />
       <Section1 />

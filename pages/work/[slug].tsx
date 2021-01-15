@@ -16,7 +16,7 @@ const Header = ({ work }: { work: Entry }) => {
   })
   return (
     <div className="header">
-      <div className="image" style={{ height: `calc((100vw - 80px) * ${688 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={work.image} alt="" /></GradImg></div>
+      <div className="image" style={{ height: `calc((100vw - 80px) * ${688 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={work.hero_image} alt="" /></GradImg></div>
       <div className="info">
         <div className="inner">
           <Grad><div className="date">{work.date}</div></Grad>
@@ -69,14 +69,14 @@ const Header = ({ work }: { work: Entry }) => {
   )
 }
 
-const Excerpt = ({ title, description }: { title: string, description: string }) => (
+const Excerpt = ({ title, description, image }: { title: string, description: string, image: string }) => (
   <div className="excerpt">
     <div className="text">
       <div className="title" dangerouslySetInnerHTML={{ __html: title }}></div>
       <div className="desc" dangerouslySetInnerHTML={{ __html: description }}></div>
     </div>
     <div className="image">
-      <img src="/_/ns@2x.jpg" alt="" />
+      <img src={image} alt="" />
     </div>
     <style jsx>{`
       vwpx(px)
@@ -97,6 +97,8 @@ const Excerpt = ({ title, description }: { title: string, description: string })
         line-height 3.0rem
       .image img
         width vwpx(573)
+        height vwpx(324)
+        object-fit cover
     `}</style>
   </div>
 )
@@ -250,7 +252,7 @@ const Credits = ({ credit }: { credit: Credit[] }) => (
 const WorkDetail = ({ work }: { work: Entry }) => (
   <Layout title={work.title} side="Work" backto="/work/category/all">
     <Header work={work} />
-    <Excerpt title={work.subtitle || '(Subtitle)'} description={work.overview || '(Overview)'} />
+    <Excerpt title={work.subtitle || '(Subtitle)'} description={work.overview || '(Overview)'} image={work.side_image || ''} />
     <Body content={work.content} />
     <Credits credit={work.credit || []} />
   </Layout >

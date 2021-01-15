@@ -238,6 +238,8 @@ export async function getPostDetails(slug: string, locale: string = 'ja'): Promi
   return {
     slug: data.slug,
     title: data.title.rendered,
+    subtitle: data.acf?.subtitle,
+    overview: data.acf?.overview,
     content: replaceToCDN(data.content.rendered),
     date: DateTime.fromISO(data.date).toFormat(`LLL dd, yyyy`),
     image: replaceToCDN(data._embedded['wp:featuredmedia'][0].source_url),

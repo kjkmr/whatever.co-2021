@@ -32,7 +32,7 @@ const Header = ({ work }: { work: Entry }) => {
         .header
           position relative
           font-size 0
-          margin-bottom vwpx(19)
+          margin-bottom vwpx(40)
         .image
           position fixed
           top 80px
@@ -92,7 +92,7 @@ const Excerpt = ({ title, description }: { title: string, description: string })
         font-weight bold
         line-height vwpx(54)
         margin-top vwpx(-8)
-        margin-bottom vwpx(34)
+        margin-bottom vwpx(42)
       .desc
         line-height 3.0rem
       .image img
@@ -118,17 +118,19 @@ const Body = ({ content }: any) => {
       <div ref={body} className="body" dangerouslySetInnerHTML={{ __html: content || '' }} />
       <style jsx>{`
         .body
-          width 900px
+          max-width 900px
           padding 0
           margin 0 auto 130px
       `}</style>
       <style jsx global>{`
+        vwpx(px)
+          'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
         .body
           img
             width 100%
             height auto
           p, table
-            margin 20px 0
+            margin 30px 0
             font-size 1.5rem
             line-height 3.0rem
             word-wrap break-word
@@ -143,6 +145,30 @@ const Body = ({ content }: any) => {
             height 100%
             left 0
             top 0
+          .block-3-images-a
+            display grid
+            grid-template-columns repeat(2, 1fr)
+            grid-gap vwpx(82)
+            width vwpx(1206)
+            margin-top vwpx(143)
+            margin-left vwpx(-113)
+            margin-bottom vwpx(144)
+            >:nth-child(1)
+              grid-column span 2
+              object-fit cover
+          .block-3-images-b
+            display grid
+            grid-template-columns repeat(2, 1fr)
+            grid-gap vwpx(82)
+            width vwpx(1206)
+            margin-top vwpx(143)
+            margin-left vwpx(-113)
+            margin-bottom vwpx(144)
+            >:nth-child(3)
+              grid-column span 2
+              width vwpx(844)
+              height vwpx(474)
+              object-fit cover
       `}</style>
     </div>
   )
@@ -158,67 +184,65 @@ const CreditMember = ({ member }: { member: Person }) => {
     }
   }
   return (
-    <div className="container">
+    <div className="member">
       <Grad><div className="role">{member.role}</div></Grad>
       <Grad><div className="name">
         {name}
         {member.company ? <span className="company">&nbsp;{member.url ? <a href={member.url} target="_blank" rel="noopener noreferrer">({member.company})</a> : `(${member.company})`}</span> : null}
       </div></Grad>
       <style jsx>{`
-      .container
-        margin-bottom 40px
-        font-size 0
-      .role
-        display inline-block
-        font-size 12px
-        font-weight light
-      .name
-        display inline-block
-        font-size 16px
-        font-weight normal
-        margin-top 7px
-      .company
-        display inline-block
-      a, :global(.credit-name-link)
-        display inline-block
-        padding-bottom 1px
-        border-bottom 1px solid red
-    `}</style>
+        .member
+          margin-bottom 37px
+          font-size 0
+          font-weight light
+        .role
+          display inline-block
+          font-size 1.2rem
+          line-height 1.2rem
+        .name
+          display inline-block
+          font-size 1.5rem
+          line-height 2.1rem
+          margin-top 3px
+        .company
+          display inline-block
+        a, :global(.credit-name-link)
+          display inline-block
+          padding-bottom 1px
+          border-bottom 1px solid red
+      `}</style>
     </div>
   )
 }
 
 const CreditGroup = ({ credit }: { credit: Credit }) => (
-  <div className="container">
+  <div className="credit-group">
     {credit.members.map(member => <CreditMember key={member.name} member={member} />)}
     <style jsx>{`
-      .container
+      .credit-group
         display grid
         grid-template-columns repeat(4, 1fr)
+        grid-column-gap 60px
     `}</style>
   </div>
 )
 
 const Credits = ({ credit }: { credit: Credit[] }) => (
-  <div className="container">
+  <div className="credits">
     <Grad><h2>Credit</h2></Grad>
     {credit.map((credit, index) => <CreditGroup key={index} credit={credit} />)}
     <style jsx>{`
-      .container
-        width 980px
+      .credits
+        width 900px
         margin auto
-        margin-top -5px
-        margin-left 192px
-        margin-bottom 120px
+        margin-top -16px
+        margin-bottom 135px
         font-size 0
       h2
         display inline-block
         font-size 24px
         font-weight bold
         margin-bottom 77px
-      .credits
-        display grid
-        grid-template-columns repeat(4, 1fr)
     `}</style>
   </div>
 )
@@ -226,7 +250,7 @@ const Credits = ({ credit }: { credit: Credit[] }) => (
 const WorkDetail = ({ work }: { work: Entry }) => (
   <Layout title={work.title} side="Work" backto="/work/category/all">
     <Header work={work} />
-    <Excerpt title={'未来の日用品店『New Stand Tokyo』をオープンしました。'} description={'Whatever が WTFC と共同運営しているコワーキングビル「WHEREVER」の 1F に、NY 発の未来の日用品店『New Stand Tokyo』をオープンしました。Whatever は、ショップブランディング、空間デザイン、商品キュレーションや Web サイト等、全てのクリエイティブディレクションを担当しています。<br/><br/><a href="https://newstand.jp/">https://newstand.jp/</a>'} />
+    <Excerpt title={work.subtitle || '(Subtitle)'} description={work.overview || '(Overview)'} />
     <Body content={work.content} />
     <Credits credit={work.credit || []} />
   </Layout >

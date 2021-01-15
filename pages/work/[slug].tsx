@@ -27,8 +27,7 @@ const Header = ({ work }: { work: Entry }) => {
         </div>
       </div>
       <style jsx>{`
-        vwpx(px)
-          'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+        @import 'lib/vw.styl'
         .header
           position relative
           font-size 0
@@ -79,8 +78,7 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
       <img src={image} alt="" />
     </div>
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .excerpt
         margin-left vwpx(80)
         margin-bottom vwpx(141)
@@ -125,8 +123,7 @@ const Body = ({ content }: any) => {
           margin 0 auto 130px
       `}</style>
       <style jsx global>{`
-        vwpx(px)
-          'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+        @import 'lib/vw.styl'
         .body
           img
             width 100%
@@ -147,14 +144,15 @@ const Body = ({ content }: any) => {
             height 100%
             left 0
             top 0
+          .block-images
+            width vwpx(1206)
+            margin-top vwpx(143)
+            margin-left calc(((100vw - 80px - 900px) / 2 - ((100vw - 80px) * (80 / (1366 - 80)))) * -1)
+            margin-bottom vwpx(144)
           .block-3-images-a
             display grid
             grid-template-columns repeat(2, 1fr)
             grid-gap vwpx(82)
-            width vwpx(1206)
-            margin-top vwpx(143)
-            margin-left vwpx(-113)
-            margin-bottom vwpx(144)
             >:nth-child(1)
               grid-column span 2
               object-fit cover
@@ -162,10 +160,6 @@ const Body = ({ content }: any) => {
             display grid
             grid-template-columns repeat(2, 1fr)
             grid-gap vwpx(82)
-            width vwpx(1206)
-            margin-top vwpx(143)
-            margin-left vwpx(-113)
-            margin-bottom vwpx(144)
             >:nth-child(3)
               grid-column span 2
               width vwpx(844)

@@ -115,7 +115,7 @@ const RelatedNews = ({ news }: { news: Entry[] }) => (
       {news.map(entry => (
         <Link key={entry.slug} href="/news">
           <a className="news-item">
-            <img src={entry.image} alt="" />
+            <img src={entry.hero_image} alt="" />
             <div className="text">
               <div className="date">{entry.date}</div>
               <div className="title" dangerouslySetInnerHTML={{ __html: entry.title }}></div>

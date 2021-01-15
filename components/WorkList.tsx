@@ -9,7 +9,7 @@ const LargeWork = ({ work }: { work: Entry }) => (
     <Link href={`/work/${work.slug}`} prefetch={false}>
       <a>
         <div className="image">
-          <GradImg><img src={work.image} /></GradImg>
+          <GradImg><img src={work.hero_image} /></GradImg>
         </div>
       </a>
     </Link>
@@ -68,7 +68,7 @@ const SmallWork = ({ work }: { work: Entry }) => (
     <Link href={`/work/${work.slug}`} prefetch={false}>
       <a>
         <div className="image">
-          <GradImg><img src={work.image} /></GradImg>
+          <GradImg><img src={work.hero_image} /></GradImg>
         </div>
         <div className="text">
           <Grad><div className="date">{work.date}</div></Grad>

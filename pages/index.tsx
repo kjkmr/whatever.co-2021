@@ -131,7 +131,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
   <div className="work">
     <Link href={`/work/${work.slug}`}>
       <a>
-        <div className="image"><GradImg><img src={work.image} /></GradImg></div>
+        <div className="image"><GradImg><img src={work.hero_image} /></GradImg></div>
         <div className="text">
           <Grad><div className="date">{work.date}</div></Grad>
           <Grad><div className="title">{work.title}</div></Grad>
@@ -245,7 +245,7 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
 
 const NewsItem = ({ data }: { data: Entry }) => (
   <div className="container">
-    <GradImg><img src={data.image} width="256" height="144" /></GradImg>
+    <GradImg><img src={data.hero_image} width="256" height="144" /></GradImg>
     <Grad><div className="date">{data.date}</div></Grad>
     <Grad><div className="title">{data.title}</div></Grad>
     <style jsx>{`

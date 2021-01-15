@@ -5,7 +5,7 @@ import { Grad, GradImg } from 'components/Grad'
 
 const NewsItem = ({ entry }: { entry: Entry }) => (
   <div className="news-item">
-    <div className="image"><GradImg><img src={entry.image} alt="" /></GradImg></div>
+    <div className="image"><GradImg><img src={entry.hero_image} alt="" /></GradImg></div>
     <div className="info">
       <Grad><div className="date">{entry.date}</div></Grad>
       <Grad><div className="title">{entry.title}</div></Grad>

@@ -1,47 +1,53 @@
 import { GetStaticProps } from 'next'
+import Link from 'next/link'
 import { Entry, getNews } from 'lib/api'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 
 const NewsItem = ({ entry }: { entry: Entry }) => (
   <div className="news-item">
-    <div className="image"><GradImg><img src={entry.hero_image} alt="" /></GradImg></div>
-    <div className="info">
-      <Grad><div className="date">{entry.date}</div></Grad>
-      <Grad><div className="title">{entry.title}</div></Grad>
-      <Grad><div className="desc" dangerouslySetInnerHTML={{ __html: entry.content || '' }} /></Grad>
-    </div>
+    <Link href={`/news/${entry.slug}`}>
+      <a>
+        <div className="image"><GradImg><img src={entry.hero_image} alt="" /></GradImg></div>
+        <div className="info">
+          <Grad><div className="date">{entry.date}</div></Grad>
+          <Grad><div className="title">{entry.title}</div></Grad>
+          <Grad><div className="desc" dangerouslySetInnerHTML={{ __html: entry.content || '' }} /></Grad>
+        </div>
+      </a>
+    </Link>
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .news-item
-        display grid
-        grid-template-columns vwpx(611) auto
-        grid-gap vwpx(64)
         font-size 0
-        margin-bottom vwpx(100)
-        margin-right vwpx(80)
+        width vwpx(593)
       .image
         img
-          width vwpx(611)
-          height vwpx(345)
+          width vwpx(593)
+          height vwpx(334)
           object-fit cover
       .date
         display inline-block
-        font-size 1.4rem
+        font-size 1.2rem
         font-weight 300
+        margin-top 3.0rem
       .title
         display inline-block
-        font-size vwpx(30)
+        font-size 2.0rem
         font-weight bold
-        line-height vwpx(48)
-        margin-top vwpx(13)
+        line-height 3.0rem
+        margin-top 1.3rem
       .desc
-        display inline-block
+        display -webkit-box
+        -webkit-box-orient vertical
+        -webkit-line-clamp 4
+        overflow hidden
+        text-overflow ellipsis
         font-size 1.5rem
         font-weight 300
         line-height 3.0rem
-        margin-top vwpx(18)
+        margin-top 0.0rem
+        width vwpx(561)
     `}</style>
   </div>
 )
@@ -52,8 +58,12 @@ const NewsIndex = ({ entries }: { entries: Entry[] }) => (
       {entries.map(entry => <NewsItem key={entry.slug} entry={entry} />)}
     </div>
     <style jsx>{`
+      @import 'lib/vw.styl'
       .news-index
-        margin-top 40px
+        margin-top 88px
+        display grid
+        grid-template-columns 1fr 1fr
+        grid-gap vwpx(92) vwpx(100)
     `}</style>
   </Layout >
 )

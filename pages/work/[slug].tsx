@@ -31,7 +31,7 @@ const Header = ({ work }: { work: Entry }) => {
         .header
           position relative
           font-size 0
-          margin-bottom vwpx(40)
+          margin-bottom vwpx(60)
         .image
           position fixed
           top 80px

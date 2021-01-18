@@ -137,13 +137,13 @@ const RelatedLinks = ({ news }: { news: Entry[] }) => (
           height vwpx(144)
           object-fit cover
       .date
-        font-size vwpx(14)
-        margin-top vwpx(16)
+        font-size 1.4rem
+        margin-top 1.6rem
       .title
-        font-size vwpx(15)
+        font-size 1.5rem
         font-weight bold
-        line-height vwpx(24)
-        margin-top vwpx(12)
+        line-height 2.4rem
+        margin-top 1.2rem
   `}</style>
   </div>
 )

@@ -14,29 +14,27 @@ const TagItem = ({ name, slug, focused }: { name: string, slug: string, focused:
         position relative
         z-index 0
         display inline-block
-        padding 0 50px
+        padding 0
         margin 0
         margin-right 10px
         margin-bottom 10px
         list-style-type none
-        border 1px solid #B4B4B4
-        height 42px
         text-align center
         vertical-align middle
       a
         display flex
         justify-content center
         align-items center
-        width 100%
-        height 100%
-        border none
+        box-sizing border-box
+        border 1px solid #B4B4B4
+        height 44px
+        padding 0 50px
       .focused
-        border-color red
-        border-width 2px
-        padding 0 49px
-        height 40px
         z-index 100
         a
+          padding 0 49px
+          border-width 2px
+          border-color red
           color red
       .inner
         display inline-block
@@ -53,10 +51,10 @@ export const TagSelector = ({ tags, active }: { tags?: Tag[], active: string }) 
     <TagItem name="All" slug='all' focused={active == "all"} />
     {tags?.map(tag => <TagItem key={tag.slug} name={tag.name} slug={tag.slug} focused={tag.slug == active} />)}
     <style jsx>{`
-      @import 'lib/vw.styl'
       .tag-selector
+        max-width calc(1366px - 80px * 3)
         padding 0
-        margin 47px 80px vwpx(97)
+        margin 47px auto 97px
     `}</style>
   </ol>
 )

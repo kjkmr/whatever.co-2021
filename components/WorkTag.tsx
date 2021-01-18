@@ -7,7 +7,7 @@ const Inner = ({ name }: { name: string }) => (
     <style jsx>{`
       span
         display inline-block
-        border 1px solid black
+        border 1px solid #B4B4B4
         font-size 12px
         font-weight light
         letter-spacing 0.03em

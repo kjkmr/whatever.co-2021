@@ -29,10 +29,8 @@ const MemberInfo = ({ member }: { member: Member }) => {
         </div>
       </div>
       <style jsx>{`
-        vwpx(px)
-          'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+        @import 'lib/vw.styl'
         .member-info
-          {/* opacity 0.5 */}
           position relative
           margin 0
           margin-bottom vwpx(30)
@@ -93,28 +91,24 @@ const RelatedWork = ({ works }: { works: Entry[] }) => (
     <h2>Related Work</h2>
     <WorkList works={works} />
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .related-work
-        {/* opacity 0.5
-        min-height 1000px */}
-        margin-bottom vwpx(74)
+        margin-bottom vwpx(73)
       h2
-        font-size vwpx(36)
         margin 0
-        margin-bottom vwpx(72)
+        margin-bottom vwpx(50)
     `}</style>
   </div>
 )
 
 
-const RelatedNews = ({ news }: { news: Entry[] }) => (
-  <div className="related-news">
-    <h2>Related News</h2>
-    <div className="news-list">
+const RelatedLinks = ({ news }: { news: Entry[] }) => (
+  <div className="related-links">
+    <h2>Related Links</h2>
+    <div className="list">
       {news.map(entry => (
         <Link key={entry.slug} href="/news">
-          <a className="news-item">
+          <a className="item">
             <img src={entry.hero_image} alt="" />
             <div className="text">
               <div className="date">{entry.date}</div>
@@ -125,37 +119,31 @@ const RelatedNews = ({ news }: { news: Entry[] }) => (
       ))}
     </div>
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
-      .related-news
-        {/* opacity 0.7 */}
+      @import 'lib/vw.styl'
+      .related-links
         margin-bottom vwpx(132)
       h2
-        font-size vwpx(36)
         margin 0
-        margin-bottom vwpx(72)
-      .news-list
+        margin-bottom vwpx(50)
+      .list
         margin-right vwpx(90)
         display grid
-        grid-template-columns repeat(2, 1fr)
-        grid-gap vwpx(60) vwpx(70)
-      .news-item
-        display grid
-        grid-template-columns vwpx(271) auto
-        column-gap vwpx(30)
+        grid-template-columns repeat(4, 1fr)
+        grid-gap vwpx(60)
+      .item
         border none
         img
-          width vwpx(271)
-          height vwpx(152)
+          width vwpx(256)
+          height vwpx(144)
           object-fit cover
       .date
         font-size vwpx(14)
-        margin-top vwpx(-2)
+        margin-top vwpx(16)
       .title
         font-size vwpx(15)
         font-weight bold
-        line-height vwpx(30)
-        margin-top vwpx(14)
+        line-height vwpx(24)
+        margin-top vwpx(12)
   `}</style>
   </div>
 )
@@ -165,14 +153,14 @@ const MemberDetail = ({ member, works, news }: { member: Member, works: Entry[],
   <Layout title={member.name} side="Team" backto="/team">
     <MemberInfo member={member} />
     {works.length ? <RelatedWork works={works} /> : null}
-    {news.length ? <RelatedNews news={news} /> : null}
+    {news.length ? <RelatedLinks news={news} /> : null}
   </Layout >
 )
 
 export default MemberDetail
 
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-  const members = await getAllMembers(1)
+  const members = await getAllMembers()
   const paths = (locales || ['ja']).map(locale => members.map((m) => ({ params: { slug: m.slug }, locale }))).flat()
   return {
     paths,

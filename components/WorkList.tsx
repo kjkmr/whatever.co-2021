@@ -6,7 +6,7 @@ import { Grad, GradImg } from 'components/Grad'
 
 const LargeWork = ({ work }: { work: Entry }) => (
   <div className="large-work">
-    <Link href={`/work/${work.slug}`} prefetch={false}>
+    <Link href={`/work/${work.slug}`}>
       <a>
         <div className="image">
           <GradImg><img src={work.hero_image} /></GradImg>
@@ -15,7 +15,7 @@ const LargeWork = ({ work }: { work: Entry }) => (
     </Link>
     <div className="text">
       <Grad><div className="date">{work.date}</div></Grad>
-      <Grad><div className="title"><Link href={`/work/${work.slug}`} prefetch={false}><a dangerouslySetInnerHTML={{ __html: work.title }}></a></Link></div></Grad>
+      <Grad><div className="title"><Link href={`/work/${work.slug}`}><a dangerouslySetInnerHTML={{ __html: work.title }}></a></Link></div></Grad>
       <Grad><div className="head">{'NY発の未来の日用品店'}</div></Grad>
       <Grad><div className="tags">
         {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
@@ -64,7 +64,7 @@ const LargeWork = ({ work }: { work: Entry }) => (
 
 const SmallWork = ({ work }: { work: Entry }) => (
   <div className="small-work">
-    <Link href={`/work/${work.slug}`} prefetch={false}>
+    <Link href={`/work/${work.slug}`}>
       <a>
         <div className="image">
           <GradImg><img src={work.hero_image} /></GradImg>

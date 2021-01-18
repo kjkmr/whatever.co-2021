@@ -9,7 +9,7 @@ const TeamIndex = ({ members }: { members: Member[] }) => (
   <Layout title="Team" side="Team">
     <div className="container">
       {members.map(m => (
-        <Link href={`/team/${m.slug}`} key={m.slug} prefetch={false}>
+        <Link href={`/team/${m.slug}`} key={m.slug}>
           <a >
             <div >
               <GradImg><img src={m.image} alt="" /></GradImg>

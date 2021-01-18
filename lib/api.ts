@@ -239,9 +239,9 @@ export async function getPostDetails(slug: string, locale: string = 'ja'): Promi
   return {
     slug: data.slug,
     title: data.title.rendered,
-    subtitle: data.acf?.subtitle,
-    overview: data.acf?.overview,
-    side_image: replaceToCDN(data.acf?.side_image?.url),
+    subtitle: data.acf?.subtitle || null,
+    overview: data.acf?.overview || null,
+    side_image: replaceToCDN(data.acf?.side_image?.url) || '',
     content: replaceToCDN(data.content.rendered),
     date: DateTime.fromISO(data.date).toFormat(`LLL dd, yyyy`),
     hero_image: replaceToCDN(data._embedded['wp:featuredmedia'][0].source_url),

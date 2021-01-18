@@ -45,14 +45,15 @@ const TeamIndex = ({ members }: { members: Member[] }) => (
         .title
           display inline-block
           font-size vwpx(14)
-          font-weight bold
+          font-weight 300
           margin-top vwpx(12)
         .name
           display inline-block
-          font-size vwpx(20)
+          font-size vwpx(18)
+          line-height vwpx(18)
           font-weight bold
           letter-spacing 0.05em
-          margin-top vwpx(8)
+          margin-top vwpx(14)
       `}</style>
     </div>
   </Layout>

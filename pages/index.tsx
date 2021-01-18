@@ -193,7 +193,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
         margin-top vwpx(16)
         line-height 2em
         font-size 1.5rem
-        font-weight light
+        font-weight 300
       .tags
         display inline-block
         overflow hidden

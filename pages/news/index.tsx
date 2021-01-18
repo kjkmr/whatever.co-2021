@@ -29,7 +29,7 @@ const NewsItem = ({ entry }: { entry: Entry }) => (
       .date
         display inline-block
         font-size 1.4rem
-        font-weight light
+        font-weight 300
       .title
         display inline-block
         font-size vwpx(30)
@@ -39,7 +39,7 @@ const NewsItem = ({ entry }: { entry: Entry }) => (
       .desc
         display inline-block
         font-size 1.5rem
-        font-weight light
+        font-weight 300
         line-height 3.0rem
         margin-top vwpx(18)
     `}</style>

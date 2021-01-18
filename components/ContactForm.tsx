@@ -23,7 +23,7 @@ const ContactForm = () => {
         .text
           color white
           font-size 1.5rem
-          font-weight light
+          font-weight 300
           margin-top 4px
         .contact
           margin-top 32px
@@ -39,7 +39,7 @@ const ContactForm = () => {
           margin-top 106px
           .subscribe
             font-size 1.5rem
-            font-weight light
+            font-weight 300
             letter-spacing 0.0em
             color white
           form
@@ -53,7 +53,7 @@ const ContactForm = () => {
             display inline-block
             color white
             font-size 1.6rem
-            font-weight light
+            font-weight 300
             margin 0
             padding 14px 24px
             width 340px

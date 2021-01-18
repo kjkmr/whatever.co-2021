@@ -37,7 +37,7 @@ const Footer = () => (
         right 80px
       .copyright
         font-size 1.2rem
-        font-weight light
+        font-weight 300
         text-align right
         margin-top 30px
       .pagetop

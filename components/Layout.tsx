@@ -63,6 +63,8 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
       `}</style>
 
       <style jsx global>{`
+        @import 'lib/vw.styl'
+
         @font-face
           font-family Apercu
           src url('/common/fonts/apercu-medium.eot')
@@ -79,7 +81,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
               url('/common/fonts/apercu-light.woff') format('woff'),
               url('/common/fonts/apercu-light.woff2') format('woff2'),
               url('/common/fonts/apercu-light.ttf') format('truetype')
-          font-weight 200
+          font-weight 300
           font-style normal
         @font-face
           font-family Apercu
@@ -90,7 +92,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
               url('/common/fonts/apercu-bold.ttf') format('truetype')
           font-weight 700
           font-style normal
-        
+
         html
           margin 0
           padding 0
@@ -103,6 +105,8 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           font-size 1.5rem
           font-weight 200
           color black
+        h2
+          font-size vwpx(24)
         a
           text-decoration none
           color black

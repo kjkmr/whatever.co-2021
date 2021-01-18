@@ -9,7 +9,7 @@ const Inner = ({ name }: { name: string }) => (
         display inline-block
         border 1px solid #B4B4B4
         font-size 12px
-        font-weight light
+        font-weight 300
         letter-spacing 0.03em
         padding 9px 10px 7px
         margin-right 10px

@@ -217,7 +217,7 @@ const CreditMember = ({ member }: { member: Person }) => {
         .member
           margin-bottom 37px
           font-size 0
-          font-weight light
+          font-weight 300
         .role
           display inline-block
           font-size 1.2rem

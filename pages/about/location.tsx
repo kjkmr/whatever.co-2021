@@ -83,7 +83,7 @@ const Member = ({ image, title, name, slug }: { image: string, title: string, na
         width vwpx(245)
       .title
         font-size vwpx(14)
-        font-weight light
+        font-weight 300
         line-height vwpx(14)
         margin-top vwpx(20)
       .name

@@ -107,6 +107,12 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           color black
         h2
           font-size vwpx(24)
+        p
+          margin 2em 0
+          img
+            width 100%
+            height auto
+            margin auto
         a
           text-decoration none
           color black

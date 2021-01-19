@@ -16,25 +16,24 @@ const NewsDetail = ({ entry }: { entry: Entry }) => (
     <style jsx>{`
       @import 'lib/vw.styl'
       .news
-        {/* opacity 0.7 */}
-        margin 0 80px 160px
+        {/* opacity 0.5 */}
+        margin 0 80px 140px
         font-size 0
-        position relative
       .image
-        position absolute
         img
           width vwpx2(1126, 240)
           height vwpx2(633, 240)
           object-fit cover
       .white
         background-color white
-        margin-top vwpx2(562, 240)
+        margin-top -70px
         display inline-block
-        padding-right 30px
+        padding-right 100px
+        margin-right 80px
       .date
         font-size 1.6rem
         font-weight 300
-        margin-top 89px
+        margin-top 88px
       .title
         font-size 3.0rem
         font-weight bold

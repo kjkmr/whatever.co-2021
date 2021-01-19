@@ -12,7 +12,7 @@ const NewsItem = ({ entry }: { entry: Entry }) => (
         <div className="info">
           <Grad><div className="date">{entry.date}</div></Grad>
           <Grad><div className="title">{entry.title}</div></Grad>
-          <Grad><div className="desc" dangerouslySetInnerHTML={{ __html: entry.content || '' }} /></Grad>
+          <Grad><div className="desc" dangerouslySetInnerHTML={{ __html: entry.content?.split('<!--more-->')[0] || '' }} /></Grad>
         </div>
       </a>
     </Link>

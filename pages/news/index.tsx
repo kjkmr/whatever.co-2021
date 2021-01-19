@@ -61,6 +61,7 @@ const NewsIndex = ({ entries }: { entries: Entry[] }) => (
       @import 'lib/vw.styl'
       .news-index
         margin-top 88px
+        margin-bottom 150px
         display grid
         grid-template-columns 1fr 1fr
         grid-gap vwpx(92) vwpx(100)
@@ -70,7 +71,7 @@ const NewsIndex = ({ entries }: { entries: Entry[] }) => (
 
 export default NewsIndex
 
-export const getStaticProps: GetStaticProps = async () => {
-  const entries = await getNews()
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  const entries = await getNews(100, locale)
   return { props: { entries } }
 }

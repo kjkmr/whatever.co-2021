@@ -205,8 +205,8 @@ export async function getFeaturedWork(): Promise<Entry[]> {
 }
 
 
-export async function getNews(maxEntries = 100): Promise<Entry[]> {
-  const data = await wp.posts().perPage(maxEntries).embed().param({ categories: 5, _fields: 'slug,title,date,content,_links,_embedded' })
+export async function getNews(maxEntries = 100, locale: string = 'ja'): Promise<Entry[]> {
+  const data = await wp.posts().perPage(maxEntries).embed().param({ categories: 5, _fields: 'slug,title,date,content,_links,_embedded', lang: locale })
   return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,

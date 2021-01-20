@@ -221,7 +221,7 @@ const Section3 = () => (
 
 const Workstyle = () => (
   <Layout title="About" side="About" backto="/about" footer={<Footer left="Genres" right="Location" />}>
-    <Header headerMargin={65} title="Workstyle" titleSize={112} titleMargin={18} subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="/about/pict02.svg" imageWidth={586} ty={{}} iy={{}} />
+    <Header headerMargin={65} title="Workstyle" titleSize={112} titleMargin={18} subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="/about/pict02.svg" imageWidth={586} />
     <Section1 />
     <Section2 />
     <Section3 />

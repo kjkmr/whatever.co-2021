@@ -159,19 +159,16 @@ type SectionTitleProps = {
   num: string
   title: string
   body: string
-  nx?: number
-  tx?: { [locale: string]: number }
-  ty?: { [locale: string]: number }
 }
 
-export const SectionHeader = ({ num, title, body, nx, tx, ty }: SectionTitleProps) => {
-  const router = useRouter()
-  const locale = router.locale || router.defaultLocale!
+export const SectionHeader = ({ num, title, body }: SectionTitleProps) => {
+  // const router = useRouter()
+  // const locale = router.locale || router.defaultLocale!
   const numStyle = {
-    transform: `translateX(calc((100vw - 80px) * ${(nx || -7) / (1366 - 80)}))`
+    // transform: `translateX(calc((100vw - 80px) * ${(nx || -7) / (1366 - 80)}))`
   }
   const titleStyle = {
-    marginTop: `calc((100vw - 80px) * ${(4 + (ty && ty[locale] ? ty[locale] : 0)) / (1366 - 80)})`,
+    // marginTop: `calc((100vw - 80px) * ${(4 + (ty && ty[locale] ? ty[locale] : 0)) / (1366 - 80)})`,
     // marginLeft: `calc((100vw - 80px) * ${(7 + (tx && tx[locale] ? tx[locale] : 0)) / (1366 - 80)})`,
   }
   return (

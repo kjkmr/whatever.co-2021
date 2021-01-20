@@ -16,7 +16,7 @@ const Header = ({ work }: { work: Entry }) => {
   })
   return (
     <div className="header">
-      <div className="image" style={{ height: `calc((100vw - 80px) * ${688 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={work.image} alt="" /></GradImg></div>
+      <div className="image" style={{ height: `calc((100vw - 80px) * ${688 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={work.hero_image} alt="" /></GradImg></div>
       <div className="info">
         <div className="inner">
           <Grad><div className="date">{work.date}</div></Grad>
@@ -27,12 +27,11 @@ const Header = ({ work }: { work: Entry }) => {
         </div>
       </div>
       <style jsx>{`
-        vwpx(px)
-          'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+        @import 'lib/vw.styl'
         .header
           position relative
           font-size 0
-          margin-bottom vwpx(19)
+          margin-bottom vwpx(60)
         .image
           position fixed
           top 80px
@@ -69,18 +68,17 @@ const Header = ({ work }: { work: Entry }) => {
   )
 }
 
-const Excerpt = ({ title, description }: { title: string, description: string }) => (
+const Excerpt = ({ title, description, image }: { title: string, description: string, image: string }) => (
   <div className="excerpt">
     <div className="text">
       <div className="title" dangerouslySetInnerHTML={{ __html: title }}></div>
       <div className="desc" dangerouslySetInnerHTML={{ __html: description }}></div>
     </div>
     <div className="image">
-      <img src="/_/ns@2x.jpg" alt="" />
+      <img src={image} alt="" />
     </div>
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .excerpt
         margin-left vwpx(80)
         margin-bottom vwpx(141)
@@ -92,11 +90,13 @@ const Excerpt = ({ title, description }: { title: string, description: string })
         font-weight bold
         line-height vwpx(54)
         margin-top vwpx(-8)
-        margin-bottom vwpx(34)
+        margin-bottom vwpx(42)
       .desc
         line-height 3.0rem
       .image img
         width vwpx(573)
+        height vwpx(324)
+        object-fit cover
     `}</style>
   </div>
 )
@@ -118,17 +118,18 @@ const Body = ({ content }: any) => {
       <div ref={body} className="body" dangerouslySetInnerHTML={{ __html: content || '' }} />
       <style jsx>{`
         .body
-          width 900px
+          max-width 900px
           padding 0
           margin 0 auto 130px
       `}</style>
       <style jsx global>{`
+        @import 'lib/vw.styl'
         .body
           img
             width 100%
             height auto
           p, table
-            margin 20px 0
+            margin 30px 0
             font-size 1.5rem
             line-height 3.0rem
             word-wrap break-word
@@ -143,7 +144,55 @@ const Body = ({ content }: any) => {
             height 100%
             left 0
             top 0
-      `}</style>
+          .block-images
+            width vwpx(1206)
+            margin-top vwpx(143)
+            margin-left calc(((100vw - 80px - 900px) / 2 - ((100vw - 80px) * (80 / (1366 - 80)))) * -1)
+            margin-bottom vwpx(144)
+            grid-template-columns 1fr 1fr
+            gap: vwpx(82) vwpx(78)
+            font-size 0
+            img
+              &.block-image-small
+                  width vwpx(564)
+                  height vwpx(317)
+                  object-fit cover
+              &.block-image-medium
+                  width vwpx(844)
+                  height vwpx(475)
+                  object-fit cover
+              &.block-image-large
+                  width vwpx(1206)
+                  height vwpx(678)
+                  object-fit cover
+          .block-2-images >:first-child
+            margin-bottom 82px
+          .block-3-images-a
+            display grid
+            >:nth-child(1)
+              grid-column span 2
+              object-fit cover
+          .block-3-images-b
+            display grid
+            >:nth-child(3)
+              grid-column span 2
+              width vwpx(844)
+              height vwpx(474)
+              object-fit cover
+          .block-4-images-a
+            display grid
+          .block-4-images-a
+            >:first-child, >:last-child
+              grid-column span 2
+          .block-4-images-b
+            display grid
+            >:first-child
+              grid-column span 2
+              margin-right 0
+              margin-left auto
+            >:last-child
+              grid-column span 2
+        `}</style>
     </div>
   )
 }
@@ -158,67 +207,65 @@ const CreditMember = ({ member }: { member: Person }) => {
     }
   }
   return (
-    <div className="container">
+    <div className="member">
       <Grad><div className="role">{member.role}</div></Grad>
       <Grad><div className="name">
         {name}
         {member.company ? <span className="company">&nbsp;{member.url ? <a href={member.url} target="_blank" rel="noopener noreferrer">({member.company})</a> : `(${member.company})`}</span> : null}
       </div></Grad>
       <style jsx>{`
-      .container
-        margin-bottom 40px
-        font-size 0
-      .role
-        display inline-block
-        font-size 12px
-        font-weight light
-      .name
-        display inline-block
-        font-size 16px
-        font-weight normal
-        margin-top 7px
-      .company
-        display inline-block
-      a, :global(.credit-name-link)
-        display inline-block
-        padding-bottom 1px
-        border-bottom 1px solid red
-    `}</style>
+        .member
+          margin-bottom 37px
+          font-size 0
+          font-weight 300
+        .role
+          display inline-block
+          font-size 1.2rem
+          line-height 1.2rem
+        .name
+          display inline-block
+          font-size 1.5rem
+          line-height 2.1rem
+          margin-top 3px
+        .company
+          display inline-block
+        a, :global(.credit-name-link)
+          display inline-block
+          padding-bottom 1px
+          border-bottom 1px solid red
+      `}</style>
     </div>
   )
 }
 
 const CreditGroup = ({ credit }: { credit: Credit }) => (
-  <div className="container">
+  <div className="credit-group">
     {credit.members.map(member => <CreditMember key={member.name} member={member} />)}
     <style jsx>{`
-      .container
+      .credit-group
         display grid
         grid-template-columns repeat(4, 1fr)
+        grid-column-gap 60px
     `}</style>
   </div>
 )
 
 const Credits = ({ credit }: { credit: Credit[] }) => (
-  <div className="container">
+  <div className="credits">
     <Grad><h2>Credit</h2></Grad>
     {credit.map((credit, index) => <CreditGroup key={index} credit={credit} />)}
     <style jsx>{`
-      .container
-        width 980px
+      .credits
+        width 900px
         margin auto
-        margin-top -5px
-        margin-left 192px
-        margin-bottom 120px
+        margin-top -16px
+        margin-bottom 135px
         font-size 0
       h2
         display inline-block
         font-size 24px
         font-weight bold
         margin-bottom 77px
-      .credits
-        display grid
-        grid-template-columns repeat(4, 1fr)
     `}</style>
   </div>
 )
@@ -226,7 +273,7 @@ const Credits = ({ credit }: { credit: Credit[] }) => (
 const WorkDetail = ({ work }: { work: Entry }) => (
   <Layout title={work.title} side="Work" backto="/work/category/all">
     <Header work={work} />
-    <Excerpt title={'未来の日用品店『New Stand Tokyo』をオープンしました。'} description={'Whatever が WTFC と共同運営しているコワーキングビル「WHEREVER」の 1F に、NY 発の未来の日用品店『New Stand Tokyo』をオープンしました。Whatever は、ショップブランディング、空間デザイン、商品キュレーションや Web サイト等、全てのクリエイティブディレクションを担当しています。<br/><br/><a href="https://newstand.jp/">https://newstand.jp/</a>'} />
+    <Excerpt title={work.subtitle || '(Subtitle)'} description={work.overview || '(Overview)'} image={work.side_image || ''} />
     <Body content={work.content} />
     <Credits credit={work.credit || []} />
   </Layout >
@@ -236,7 +283,7 @@ const WorkDetail = ({ work }: { work: Entry }) => (
 export default WorkDetail
 
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-  const works = await getAllWorks(1)
+  const works = await getAllWorks()
   const paths = (locales || []).map(locale => works.map((w: any) => ({ params: { slug: w.slug }, locale }))).flat()
   return {
     paths,

@@ -6,8 +6,8 @@
   ],
   "strings": {
     "top_whatever": [
-      "Whateverは様々な領域を越えて活動する\nクロスボーダー・クリエイティブ・スタジオです。",
-      "Whatever is a cross-border creative studio.",
+      "わたしたちは、誰も見たことがないようなアイデアを考え、\nあらゆる方法でそれを実現していくクロスボータークリエイティブスタジオ。\n考えるだけではなく、作るだけでもなく、「考えて作る」からこそ生み出せる\nアイデアと実現力を武器に、世界中の人々に驚き愛されるような体験を作り続けています。",
+      "Whatever is a worldwide creative organism that morphs and mutates across mediums and borders. We explore the thresholds of the unknown to conceive new cultural ideas and experiences, by any means necessary. ",
       ""
     ],
     "contactform_contacthere": [
@@ -26,52 +26,52 @@
       ""
     ],
     "about_statement": [
-      "わたしたちは、クロスボーダーに活動するクリエイティブスタジオ。\n\nみんながオンラインでつながって、世界はグンと近くなった。\nでもそれによって、これまで気づかなかった様々な境界線も見えてきた。\nわたしたちは、その境界を、跳び越える。\nあっちの良さを知っていれば、こっちをもっと良くできるから。\nこっちとあっちをつなげることで、生まれる新しい感動があるから。\n\n東京、ニューヨーク、台北、ベルリンの拠点を活かし、国や言葉というボーダーを越える。\nブランディングから、テレビ番組、プロダクト、新事業開発まで、様々な領域のボーダーを越える。\n考えるだけでもなく、作るだけでもない、クリエイティブ・プロセスのボーダーを越える。\n\nそうすることで、あっちもこっちも関係なく、\n世界中が一つになって感動できるようなアイデアを実現していきます。",
-      "Whatever is a cross-border creative studio.\n\nThe world has become a much closer place now that we are all online, \nbut it’s also brought us closer to boundaries we never noticed before.\nBut it’s also brought us closer to boundaries that we never noticed before.\nWe’re going to jump over those boundaries.\nIf we know the goodness of that world, we can make this one better.\nBecause there will be new emotions created by connecting this world with that one.\n\nWith bases in Tokyo, New York, Taipei, and Berlin, we are able to transcend the borders of country and language.\nWe cross borders in a variety of fields, from branding to TV programs, products, and new business development.\nWe cross the borders of the creative process, which is neither just thinking about it nor just creating it.\n\nBy doing so, it doesn’t matter whether you are here or there.\nWe will realize ideas that will bring the world together and inspire.",
+      "社会にこれまでなかった便利さや体験したこともないような楽しさを提供するために、\nWhatever は、なんでも考え、なんでも作ります。",
+      "Whatever will think of anything and create anything in order to provide society\nwith convenience and enjoyment never before experienced.",
       ""
     ],
     "about_genres_title": [
-      "ジャンルの境界線を越える",
+      "どんなジャンルでも。",
       "-",
       ""
     ],
     "about_genres_description": [
-      "Whatever では、その名の通り、なんでもつくります。グローバルブランドのビジョン開発から、広告、テレビ番組、プロダクトに、お店まで。\n「考えて作れる」チームを活かし、メディアやジャンルといった枠組みを飛び越えて誰も見たことがないような体験の、企画から開発・実装まで行っています。",
-      "At Whatever, we do exactly what the name implies: we create anything. From global brand vision development to advertising, TV shows, products, and stores. We make the most of our team’s ability to “think and create” to transcend the boundaries of media and genres, from planning to development and implementation of never-before-seen experiences.",
-      ""
-    ],
-    "about_cultures_title": [
-      "国と文化の境界線を越える",
-      "-",
-      ""
-    ],
-    "about_cultures_description": [
-      "Whatever に集ってくれた「多様な人々」こそが、我々の持つ一番のバリューです。通常の雇用形態やクライアント・リレーションに囚われず、より優秀な人々が集まり、共に新しい体験を生み出していけるようなコミュニティをつくっています。組織や商習慣といった境界を越えて、もっと自由に、もっと「作れる」環境を大切に活動しています。",
-      "At Whatever, we have a proven track record of working with brands around the world, which enables us to support branding and content development across borders and cultures.\nWith four offices in Tokyo, New York, Taiwan and Berlin, and a world-class staff, Whatever can plan and produce world-class brand communications and products.",
+      "ブランディングから、TVCM、テレビ番組、プロダクト、新事業開発まで、ジャンルにこだわらず様々な領域でクリエイティブな発想を活かしたコンテンツやソリューションを生み続けています。",
+      "From branding to TV commercials, TV programs, products, and new business development, Whatever Genres continues to produce content and solutions that utilize creative thinking in a variety of fields regardless of genre.",
       ""
     ],
     "about_workstyle_title": [
-      "働き方の境界線を越える",
+      "どんな働き方でも。",
       "-",
       ""
     ],
     "about_workstyle_description": [
-      "Whatever に集ってくれた「多様な人々」こそが、我々の持つ一番のバリューです。通常の雇用形態やクライアント・リレーションに囚われず、より優秀な人々が集まり、共に新しい体験を生み出していけるようなコミュニティをつくっています。組織や商習慣といった境界を越えて、もっと自由に、もっと「作れる」環境を大切に活動しています。",
-      "Whatever is also actively involved in in-house product and business development.\nWe also provide product development and R&D support for a variety of brands, as well as branding and investment support for startups.",
+      "そうした多種多様なプロジェクトを実現するための働き方も、こだわらないことにこだわっています。",
+      "Our process is exploration. R&D is the compass that pushes us forward. ",
+      ""
+    ],
+    "about_location_title": [
+      "世界中どんな地域でも。",
+      "-",
+      ""
+    ],
+    "about_location_description": [
+      "そんな環境の中、東京、ニューヨーク、台北、ベルリンの拠点を活かしながら、文化や言葉の壁を越え世界を舞台に日々様々な創作活動を行っています。",
+      "Based in Tokyo, New York, Taipei, and Berlin, our multidisciplinary team is driven by a diversity of perspectives that allows us to achieve otherwise impossible advancements in advertising, entertainment and technology.",
       ""
     ],
     "genres_title": [
-      "ジャンルの境界線を越える",
+      "どんなジャンルでも。",
       "-",
       ""
     ],
     "genres_description": [
-      "Whatever では、その名の通り、なんでもつくります。\nグローバルブランドのビジョン開発から、広告、テレビ番組、プロダクトに、お店まで。\n「考えて作れる」チームを活かし、メディアやジャンルといった枠組みを飛び越えて誰も見たことがないような体験の、企画から開発・実装まで行っています。",
-      "At Whatever, we do exactly what our name implies - we create everything. From global brand vision development to advertising, TV shows, products, and stores. We make the most of our team’s ability to “think and create” to transcend the boundaries of media and genres, from planning to development and implementation of never-before-seen experiences.",
+      "Whatever ではクライアントや社会の課題を解決するために、その名の通り、なんでもつくります。\nグローバルブランドのビジョン開発から、広告、テレビ番組、プロダクトに、お店まで。\n「考えて作れる」チームを活かし、メディアやジャンルといった枠組みを飛び越えて誰も見たことがないような体験の、企画から開発・実装まで行っています。",
+      "By “thinking and making” under one roof, we strive to create beautiful and unexpected experiences that capture the imagination of our audiences and move business forward. \nWe collaborate with partners of all shapes and sizes and compete against the voice in our heads telling us we can always do better.\n",
       ""
     ],
     "genres_1_title": [
-      "様々な領域での\nクリエイティブ開発の知見",
+      "様々な領域でのクリエイティブ開発の知見",
       "Knowledge of creative\ndevelopment in a\nvariety of areas",
       ""
     ],
@@ -86,7 +86,7 @@
       ""
     ],
     "genres_1_example_items": [
-      "ブランディング\nブランドロゴ、ブランドガイドライン、ビジョンステートメント、など\n\nプロダクト\nプロダクトコンセプト、プロダクトデザイン、WEBサービス、プロトタイピング、など\n\nマーケティング\nTVCM、OOH、ウェブサイト、アプリ、イベント、インスタレーション、など\n\nコンテンツ\nミュージックビデオ、テレビ番組、AR/VRコンテンツ、など\n\nスペース\n常設展示、ショップデザイン、イベントデザイン、など",
+      "ブランディング\nブランドロゴ\nブランドガイドライン\nビジョンステートメント\n\nプロダクト\nプロダクトコンセプト\nプロダクトデザイン\nWEB サービス\nプロトタイピング\n\nマーケティング\nTVCM\nOOH\nウェブサイト\nアプリ\nイベント\nインスタレーション\n\nコンテンツ\nミュージックビデオ\nテレビ番組\nAR / VR コンテンツ\n\nスペース\n常設展示\nショップデザイン\nイベントデザイン",
       "Branding\nBrand logo, brand guidelines, vision statement, etc.\n\nProduct\nProduct concepts, product design, web services, prototyping, etc.\n\nMarketing\n TV commercials, OOH, websites, apps, events, installations, etc.\n\nContent\nMusic videos, TV shows, AR/VR content, etc.\n\nSpace\nPermanent exhibitions, shop design, event design, etc.",
       ""
     ],
@@ -106,7 +106,7 @@
       ""
     ],
     "genres_2_creative": [
-      "Creative\nDevelopment\n\nクリエイティブディレクター\nサウンドアーティスト\nアートディレクター\n建築家,デザイナー\nコピーライター\nイラストレーター\nコレオグラファー",
+      "Creative\nDevelopment\n\nクリエイティブディレクター\nサウンドアーティスト\nアートディレクター\n建築家\nデザイナー\nコピーライター\nイラストレーター\nコレオグラファー",
       "Creative\nDevelopment\n\nCreative Director\nSound Artist\nArt Director\nArchitects\nDesigner\nCopywriter\nIllustrator\nChoreographer",
       ""
     ],
@@ -131,12 +131,12 @@
       ""
     ],
     "genres_3_inhouse_title": [
-      "自社プロダクト開発",
+      "自社プロダクト開発：",
       "In-house product development",
       ""
     ],
     "genres_3_inhouse_body": [
-      "ロジックだけで考えたら実現できると到底思えないような突飛なアイデアや、ビジネスになるかどうかわからないけど実現したら世の中がちょっと幸せになるようなアイデアを、なんちゃってのプロトタイプやR&Dだけで終わらせることなく、自分たちの事業として実現し社会に問うという実証実験を繰り返しています。",
+      "ロジックだけで考えたら実現できると到底思えないような突飛なアイデアや、ビジネスになるかどうかわからないけど実現したら世の中がちょっと幸せになるようなアイデアを、なんちゃってのラピッドプロトタイピングやR&Dだけで終わらせることなく、自分たちの事業として実現し社会に問うという実証実験を繰り返しています。",
       "We don’t stop at just prototypes and R&D, but rather, we do not stop at just prototypes and R&D. We do not stop at outlandish ideas that may not seem feasible based on logic alone, or ideas that may or may not be viable for business but would make the world a little happier if they were realized.",
       ""
     ],
@@ -146,7 +146,7 @@
       ""
     ],
     "genres_3_brands_title": [
-      "ブランドとの共同開発",
+      "ブランドとの共同開発：",
       "Joint development with brands",
       ""
     ],
@@ -161,7 +161,7 @@
       ""
     ],
     "genres_3_investment_title": [
-      "クリエイティブ投資",
+      "クリエイティブ投資：",
       "Creative Investment",
       ""
     ],
@@ -171,63 +171,18 @@
       ""
     ],
     "genres_3_investment_items": [
-      "Cotodama（Lyric Speaker）\nhttps://lyric-speaker.com/\nSIX，WOW，THE GUILD との共同出資で設立したジョイントベンチャー。CTO として Saqoosha が参画し、Lyric Speaker のモーショングラフィックや演出などのソフトウェア開発を担当。\n\nYummy Sake\nhttps://yummysake.jp/\nAI × ブラインドテイスティングで好みの日本酒を判別するサービス。CTO として貴田が参画し、アルゴリズムの開発、出資、事業戦略を支援。\n\nCradle\nhttps://cradle.care/\nSputniko! 氏が立ち上げた卵子凍結コンサルティングサービス。CCO として川村が参画し、ブランド全体のクリエイティブディレクションを担当。",
+      "Cotodama（Lyric Speaker）\nhttps://lyric-speaker.com/\nSIX，WOW，THE GUILD との共同出資で設立したジョイントベンチャー。CTO として Saqoosha が参画し、Lyric Speaker のモーショングラフィックや演出などのソフトウェア開発を担当。\n\nYummy Sake\nhttps://yummysake.jp/\nAI × ブラインドテイスティングで好みの日本酒を判別するサービス。CTO として貴田が参画し、アルゴリズムの開発、出資、事業戦略を支援。",
       "Cotodama（Lyric Speaker）\nhttps://lyric-speaker.com/\nSaqoosha is a joint venture with SIX, WOW and THE GUILD, with Saqoosha taking part as CTO and in charge of software development for Lyric Speaker’s motion graphics and direction.\n\nYummy Sake\nhttps://yummysake.jp/\nA service that uses AI and blind tasting to identify the sake you like, with Takata joining as CTO to support algorithm development, investment and business strategy.\n\nCradle\nhttps://cradle.care/\nKawamura joined Sputniko as CCO and was in charge of the overall creative direction of the brand.",
       ""
     ],
-    "cultures_title": [
-      "国と文化の境界線を越える",
-      "-",
-      ""
-    ],
-    "cultures_description": [
-      "Whatever では、世界を舞台に様々なブランドを支援して\nきた実績を活かし、国境・文化を越えたブランディングやコンテンツ開発をサポートすることができます。\n東京・ニューヨーク・台湾・ベルリンという4拠点と、\n世界最高水準の人材を活かして、世界で通用するブランド・コミュニケーションやプロダクトの企画制作が可能です。",
-      "At Whatever, we have a proven track record of working with brands around the world and can support branding and content development across borders and cultures.\nWe can plan and produce world-class brand communications and products by utilizing our four offices in Tokyo, New York, Taiwan and Berlin, and our world-class human resources.",
-      ""
-    ],
-    "cultures_1_title": [
-      "豊富な国内・海外プロジェクトの実績",
-      "Extensive experience in domestic\nand overseas projects",
-      ""
-    ],
-    "cultures_1_body": [
-      "Whatever では、世界を舞台に様々なブランドを支援してきた実績を活かし、クロスボーダーにブランディングや事業開発をサポートすることが可能です。日本から世界へと舞台を広げたい企業や、海外から日本市場へのエントリーを考えている企業を、東京・ニューヨーク・台湾・ベルリンという世界4拠点を活かしながらお手伝いしていきます。",
-      "At Whatever, we can provide cross-border branding and business development support, leveraging our experience in working with a wide range of brands around the world. We can help companies that are looking to expand from Japan to the world or enter the Japanese market from abroad with our four global offices in Tokyo, New York, Taiwan and Berlin.",
-      ""
-    ],
-    "cultures_1_inhouse": [
-      "日本から海外へ進出する際のクリエイティブ支援実績",
-      "In-house product development",
-      ""
-    ],
-    "cultures_1_overseas": [
-      "海外から日本へ進出する際のクリエイティブ支援実績",
-      "Creative support for overseas companies entering the Japanese market",
-      ""
-    ],
-    "cultures_2_title": [
-      "世界最高水準のクリエイティブ・チーム",
-      "World-class creative team",
-      ""
-    ],
-    "cultures_2_body": [
-      "世界を舞台に企業のマーケティングやブランディング、ビジネス開発で成果を出してきた、クリエイターやプロデューサーたちが在籍しています。ブランド・コミュニケーションのみならず、プロダクト開発や事業開発といった領域でのクリエイティブ開発を成功させてきた知見を活かし、パートナー企業の事業状況や成長ステージに合わせて、適切な支援を行っていきます。",
-      "We have creators and producers who have achieved success in corporate marketing, branding and business development around the world. With the knowledge of successful creative development in the areas of brand communication, product development, and business development, we provide appropriate support for our partner companies in accordance with their business conditions and growth stage.",
-      ""
-    ],
-    "cultures_2_members": [
-      "COO\n川村 真司\nmasa\n\nProducer / Creative Director\nMark Stein\nmark\n\nAssociate Creative Director\nShiny Lee\nshiny\n\n???\nJane Rosch\njane\n\nDesign Director\n室市 栄二\neiji\n\nCorporate Development Director\n井上 裕太\nyuta\n\nBusiness / Strategic Director\n金子 佳\nkei\n\nProducer\n畑間 翔太\nshota",
-      "COO\nMasashi Kawamura\nmasa\n\nProducer / Creative Director\nMark Stein\nmark\n\nAssociate Creative Director\nShiny Lee\nshiny\n\n???\nJane Rosch\njane\n\nDesign Director\nEiji Murochi\neiji\n\nCorporate Development Director\nYuta Inoue\nyuta\n\nBusiness / Strategic Director\nKei Kaneko\nkei\n\nProducer\nShota Hatama\nshota",
-      ""
-    ],
     "workstyle_title": [
-      "働き方の境界線を越える",
+      "どんな働き方でも。",
       "-",
       ""
     ],
     "workstyle_description": [
-      "Whatever に集まってくれた「多様な人々」こそが、我々の持つ一番のバリューです。通常の雇用形態やクライアント・リレーションに囚われず、より優秀な人々が集まり、共に新しい体験を生み出していけるようなコミュニティをつくっています。\n組織や商習慣といった境界を越えて、もっと自由に、もっと「作れる」環境を大切に活動しています。",
-      "The people who come to Whatever are our greatest value. We are creating a community where the best and brightest people can come together to create new experiences together, without being confined by conventional employment patterns or client relations. We value an environment where people can create more freely and without boundaries of organization or business practices.",
+      "Whatever に集ってくれた「人」こそが、我々の持つ一番のバリューです。\n通常の雇用形態やクライアント・リレーションに囚われず、より優秀な人々が集まり、共に新しい体験を生み出していけるようなコミュニティをつくっています。\n組織や商習慣といった境界を越えて、もっと自由に、もっと「作れる」環境を大切に活動しています。",
+      "In order to allow each member and team to maximize their creativity, we have adopted a Co-Creator system in addition to the normal employment system. In addition to having no commitment to the work, you can freely use Whatever’s network, knowledge, and facilities. In addition, you can freely raise your hand to any project that comes into our company, and from that point on, you will be paid a project-based fee. The flexible work style allows you to work in a way that suits your career and life stage.",
       ""
     ],
     "workstyle_1_title": [
@@ -252,7 +207,7 @@
     ],
     "workstyle_2_bassdrum": [
       "世界初のテクニカルディレクターコレクティブ。出資、オフィススペースの提供をはじめ、事業戦略支援や Saqoosha が役員として、富永が社外取締役として参画しています。",
-      "The world’s first technical director collective.\\nWe provide office space, business strategy support and executive staffing.",
+      "The world’s first technical director collective.\nWe provide office space, business strategy support and executive staffing.",
       ""
     ],
     "workstyle_2_wtfc": [
@@ -262,12 +217,12 @@
     ],
     "workstyle_2_cotodama": [
       "Lyric Speaker の開発、ソフトウェア、ライセンス提供を行うために、SIX，WOW，THE GUILD との共同出資で設立したジョイントベンチャー。弊社 CTO である Saqoosha が、CTO として参画しています。",
-      "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "A joint venture established with SIX, WOW, and THE GUILD to provide development, software, and licensing for Lyric Speaker. Our CTO, Saqoosha, is participating in this venture as CTO.",
       ""
     ],
     "workstyle_2_yummysake": [
       "機械学習 × ブラインドテイスティングで好みの日本酒を判別するサービス。アルゴリズムの開発、出資、事業戦略支援を行っています。",
-      "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "A service that uses machine learning x blind tasting to identify your favorite sake. We are developing the algorithm, investing in the company, and supporting the business strategy.",
       ""
     ],
     "workstyle_2_kasa": [
@@ -283,6 +238,71 @@
     "workstyle_2_newstand": [
       "NY 発のリテールスタートアップ New Stand。そのアメリカ外初の店舗である New Stand Tokyo の経営とブランディングを担当しています。",
       "I’m in charge of the management and branding of New Stand Tokyo, a retail start-up from New York, and its first store outside of the United States.",
+      ""
+    ],
+    "workstyle_3_title": [
+      "クリエイティブコミューンの運営",
+      "Management of creative communes",
+      ""
+    ],
+    "workstyle_3_body": [
+      "こうした豊富なメンバーたちが集える場所として、WTFC とクリエイティブコミューン WHEREVER の共同運営を行っています。ここは Whatever、WTFC、Bassdrum の作業拠点であると同時に、5F にあるシェアオフィススペースや 1F の New Stand Tokyo を通して、様々なクリエイティブスタッフが出入りし、共創し合える場として機能しています。",
+      "WTFC and the creative commune WHEREVER are jointly managed as a place where these rich members can gather. This is not only the work base for Whatever, WTFC, and Bassdrum, but also functions as a place where various creative staff can come and go and co-create through the shared office space on the 5th floor and New Stand Tokyo on the 1st floor.",
+      ""
+    ],
+    "workstyle_3_features": [
+      "01\n8 階建て、約 900㎡ のビル一棟に約 70 人の様々な個人クリエイターやチームが入居しています\n\n02\n入居者同士のシナジーを生み出せるメンバーを集めるため、ポートフォリオチェックと面接を通して、入居者を厳正に審査させていただいています。\n\n03\n外苑東通りに面した 1F のスペース (122.6㎡) が、入居者にもご利用いただけるギャラリーとなっています。\n\n04\n2F にはキッチンを完備したラウンジがあり、入居者の交流や、各種イベントのスペースとして活用しています。\n\n05\n東北新社と Whatever による合同事業会社 WTFC が、共同運営を行い、日々入居者の快適な環境とホスピタリティ向上に努めています。",
+      "01\nAn eight-story building of about 900 square meters is home to about 70 individual creators and teams.\n\n02\nIn order to gather members who can create synergy among the residents, we strictly screen the residents through portfolio checks and interviews.\n\n03\nThe first floor space (122.6㎡) facing Gaien Higashi Dori is a gallery that can be used by residents.\n\n04\nOn the second floor, there is a lounge with a fully equipped kitchen, which is used as a space for residents to interact and hold various events.\n\n05\nWTFC, a joint venture between Tohoku Shinsha and Whatever, jointly manages the facility and strives to improve the comfort and hospitality of the residents on a daily basis.",
+      ""
+    ],
+    "workstyle_3_about": [
+      "1F\nギャラリー / イベントスペース / ショールーム\n\n2F\nオープン MTG / イベントスペース / カフェカウンター\n\n3F\nWTFC オフィス\n\n4F\n会議室×４室\n\n5F\nコワーキングスペース\n\n6F\nBASSDRUM オフィス & 共同 FAB スペース\n\nRF\n休憩スペース（2020 年内完成予定）",
+      "RF\nRest area (to be completed by the end of 2020)\n\n7F\nWhatever office\n\n6F\nBASSDRUM Office & Shared FAB Space\n\n5F\nCoworking space\n\n4F\n4 meeting rooms\n\n3F\nWTFC office\n\n2F\nOpen MTG / Event space / Cafe counter\n\n1F\nGallery / Event Space / Showroom",
+      ""
+    ],
+    "location_title": [
+      "世界中どんな地域でも。",
+      "-",
+      ""
+    ],
+    "location_description": [
+      "Whatever では、世界を舞台に様々なブランドを支援してきた実績を活かし、国境・文化を越えたブランディングやコンテンツ開発をサポートすることができます。\n東京・ニューヨーク・台湾・ベルリンという4拠点と、グローバル経験が豊富な人材を活かして、世界で通用するブランド・コミュニケーションやプロダクトの企画制作が可能です。",
+      "Whatever is able to support branding and content development across borders and cultures by leveraging our experience in supporting various brands on the global stage. With four offices (Tokyo, New York, Taiwan, and Berlin) and personnel with extensive global experience, we can plan and produce brand communications and products that can be used worldwide.",
+      ""
+    ],
+    "location_1_title": [
+      "豊富な国内・海外プロジェクトの実績",
+      "Extensive experience in domestic\nand overseas projects",
+      ""
+    ],
+    "location_1_body": [
+      "Whatever では、世界を舞台に様々なブランドを支援してきた実績を活かし、クロスボーダーにブランディングや事業開発をサポートすることが可能です。日本から世界へと舞台を広げたい企業や、海外から日本市場へのエントリーを考えている企業を、東京・ニューヨーク・台湾・ベルリンという世界4拠点を活かしながらお手伝いしていきます。",
+      "At Whatever, we can provide cross-border branding and business development support, leveraging our experience in working with a wide range of brands around the world. We can help companies that are looking to expand from Japan to the world or enter the Japanese market from abroad with our four global offices in Tokyo, New York, Taiwan and Berlin.",
+      ""
+    ],
+    "location_1_inhouse": [
+      "日本から海外へ進出する際のクリエイティブ支援実績：",
+      "In-house product development",
+      ""
+    ],
+    "location_1_overseas": [
+      "海外から日本へ進出する際のクリエイティブ支援実績：",
+      "Creative support for overseas companies entering the Japanese market",
+      ""
+    ],
+    "location_2_title": [
+      "国際経験豊富なグローバル・タレント",
+      "World-class creative team",
+      ""
+    ],
+    "location_2_body": [
+      "世界を舞台に企業のマーケティングやブランディング、ビジネス開発で成果を出してきた、クリエイターやプロデューサーたちが在籍しています。ブランド・コミュニケーションのみならず、プロダクト開発や事業開発といった領域でのクリエイティブ開発を成功させてきた知見を活かし、パートナー企業の事業状況や成長ステージに合わせて、適切な支援を行っていきます。",
+      "We have creators and producers who have achieved success in corporate marketing, branding and business development around the world. With the knowledge of successful creative development in the areas of brand communication, product development, and business development, we provide appropriate support for our partner companies in accordance with their business conditions and growth stage.",
+      ""
+    ],
+    "location_2_members": [
+      "COO\n川村 真司\nmasa\n\n???\nAramique\naramique\n\nProducer / Creative Director\nMark Stein\nmark\n\nAssociate Creative Director\nShiny Lee\nshiny\n\n???\nJane Rosch\njane\n\nDesign Director\n室市 栄二\neiji\n\nCorporate Development Director\n井上 裕太\nyuta\n\nBusiness / Strategic Director\n金子 佳\nkei",
+      "COO\nMasashi Kawamura\nmasa\n\n???\nAramique\naramique\n\nProducer / Creative Director\nMark Stein\nmark\n\nAssociate Creative Director\nShiny Lee\nshiny\n\n???\nJane Rosch\njane\n\nDesign Director\nEiji Murochi\neiji\n\nCorporate Development Director\nYuta Inoue\nyuta\n\nBusiness / Strategic Director\nKei Kaneko\nkei",
       ""
     ],
     "contact_title": [

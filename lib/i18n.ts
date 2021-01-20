@@ -7,7 +7,7 @@ var LANGS: string[] = resources.langs
 var STRINGS: { [key: string]: string[] } = resources.strings
 
 export async function loadResources() {
-  if (global.window) {
+  if (global.window || true) {
     // do nothing on browser
     return
   }
@@ -22,7 +22,7 @@ export async function loadResources() {
     }
   })
   fs.writeFileSync('lib/resource.json', JSON.stringify({ langs: LANGS, strings: STRINGS }, null, 2))
-  console.log('Translate resource updated')
+  // console.log('Translate resource updated')
   return
 }
 
@@ -35,7 +35,7 @@ export function t(key: string, returnKeyIfNotFound: boolean = true): string | un
       return STRINGS[key][i]
     }
   }
-  console.log(`key '${key}' not found`)
+  // console.log(`key '${key}' not found`)
   return returnKeyIfNotFound ? `{${key}}` : undefined
 }
 

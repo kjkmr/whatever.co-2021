@@ -1,162 +1,84 @@
 import { GetStaticProps } from 'next'
-import Link from 'next/link'
 import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
+import BlackButton from 'components/BlackButton'
+import React from 'react'
+
+const Detail = ({ title }: { title: string }) => {
+  const key = title.toLowerCase()
+  const subtitle = t(`about_${key}_title`)
+  return (
+    <div className={langStyle('detail')}>
+      <Grad><h3>Whatever</h3></Grad>
+      <Grad><h1>{title}</h1></Grad>
+      {subtitle != '-' ? <Grad><h2>{subtitle}</h2></Grad> : null}
+      <Grad><p dangerouslySetInnerHTML={{ __html: t(`about_${key}_description`)?.replace('\n', '<br />') || '' }}></p></Grad>
+      <div className="more"><BlackButton text="Learn more" link={`/about/${key}`} /></div>
+      <style jsx>{`
+        @import 'lib/vw.styl'
+        .detail
+          font-size 0
+        h3
+          display inline-block
+          overflow hidden
+          font-size 3.6rem
+          margin 0
+        h1
+          display inline-block
+          overflow hidden
+          font-size vwpx_min(102)
+          margin 0
+          margin-top vwpx_min(14)
+          margin-bottom vwpx_min(16)
+          margin-left vwpx_min(-3)
+        h2
+          display inline-block
+          overflow hidden
+          font-size vwpx_min(24)
+          margin 0
+          margin-top vwpx_min(7)
+        p
+          margin 0
+          margin-top vwpx_min(21)
+          font-size 1.5rem
+          line-height 3.0rem
+        .more
+          margin-top 4.8rem
+        .en
+          h1
+            margin-bottom vwpx(6)
+          p
+            font-size 1.6rem
+      `}</style>
+    </div>
+  )
+}
 
 const Genres = () => (
   <div className={langStyle('genres')}>
     <div className="inner">
-      <div className="image"><GradImg><img src="/about/genres@2x.png" /></GradImg></div>
-      <div className="content">
-        <Grad><h3>Crossborder :</h3></Grad>
-        <Grad><h1>Genres</h1></Grad>
-        {t('about_genres_title') != '-' ? <Grad><h2>{t('about_genres_title')}</h2></Grad> : null}
-        <Grad><p dangerouslySetInnerHTML={{ __html: t('about_genres_description')?.replace('\n', '<br />') || '' }}></p></Grad>
-        <div className="more"><Grad><Link href="/about/genres"><a>Show more</a></Link></Grad></div>
-      </div>
+      <div className="image"><GradImg><img src="/about/pict01.svg" /></GradImg></div>
+      <div className="detail"><Detail title="Genres" /></div>
     </div>
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .genres
         width 100%
-        margin-bottom vwpx(59)
-        min-height vwpx(544)
+        margin-bottom vwpx(80)
       .inner
         display flex
         justify-content space-between
+        align-items center
+        margin-left vwpx(40)
+        margin-right vwpx(80)
       .image img
-        width vwpx(484)
+        width vwpx(603)
+      .detail
         margin-left vwpx(80)
-        margin-top vwpx(60)
-      .content
-        border-top 1px solid #D0D0D0
-        width vwpx(643)
-        padding-top vwpx(104)
-      h3
-        display inline-block
-        overflow hidden
-        font-size vwpx(28)
-        margin 0
-        margin-left vwpx(-1)
-      h1
-        display inline-block
-        overflow hidden
-        font-size vwpx(84)
-        margin 0
-        margin-top vwpx(6)
-        margin-bottom vwpx(16)
-        margin-left vwpx(-3)
-      h2
-        display inline-block
-        overflow hidden
-        font-size vwpx(24)
-        margin 0
-        margin-top vwpx(6)
-      p
-        margin-top vwpx(19)
-        margin-right vwpx(77)
-        line-height 3.0rem
-      .more
-        a
-          display inline-block
-          font-weight bold
-          font-size 2rem
-          border none
-          border-bottom 1px solid
-          background none
-          margin-top vwpx(24)
-          margin-right 20px
-          padding-bottom 11px
-          padding-right 30px
-          padding-left 0
       .en
-        h1
-          margin-bottom vwpx(5)
-        p
-          font-size 1.6rem
-          line-height 3.0rem
-        .more a
-          margin-top vwpx(23)
-    `}</style>
-  </div>
-)
-
-const Cultures = () => (
-  <div className={langStyle('cultures')}>
-    <div className="inner">
-      <div className="content">
-        <Grad><h3>Crossborder :</h3></Grad>
-        <Grad><h1>Cultures</h1></Grad>
-        {t('about_cultures_title') != '-' ? <Grad><h2>{t('about_cultures_title')}</h2></Grad> : null}
-        <Grad><p dangerouslySetInnerHTML={{ __html: t('about_cultures_description')?.replace('\n', '<br />') || '' }}></p></Grad>
-        <div className="more"><Grad><Link href="/about/cultures"><a>Show more</a></Link></Grad></div>
-      </div>
-      <div className="image"><GradImg><img src="/about/cultures@2x.png" /></GradImg></div>
-    </div>
-    <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
-      .cultures
-        width 100%
-        margin-bottom vwpx(58)
-        min-height vwpx(546)
-      .inner
-        display flex
-        justify-content space-between
-        margin-left vwpx(80)
-      .image img
-        width vwpx(484)
-        margin-right vwpx(79)
-        margin-top vwpx(62)
-      .content
-        border-top 1px solid #D0D0D0
-        width vwpx(564)
-        padding-top vwpx(91)
-      h3
-        display inline-block
-        overflow hidden
-        font-size vwpx(28)
-        margin 0
-        margin-left vwpx(-1)
-      h1
-        display inline-block
-        overflow hidden
-        font-size vwpx(84)
-        margin 0
-        margin-top vwpx(6)
-        margin-bottom vwpx(16)
-        margin-left vwpx(-3)
-      h2
-        display inline-block
-        overflow hidden
-        font-size vwpx(24)
-        margin 0
-        margin-top vwpx(6)
-        margin-left vwpx(-1)
-      p
-        margin-top vwpx(19)
-        line-height 3.0rem
-      .more
-        a
-          display inline-block
-          font-weight bold
-          font-size 2rem
-          border none
-          border-bottom 1px solid
-          background none
-          margin-top vwpx(25)
-          margin-right 20px
-          padding-bottom 11px
-          padding-right 30px
-          padding-left 0
-      .en
-        .content
-          padding-top vwpx(103)
-        p
-          margin-top vwpx(8)
-          font-size 1.6rem
+        .detail
+          padding-top vwpx(4)
     `}</style>
   </div>
 )
@@ -164,72 +86,59 @@ const Cultures = () => (
 const Workstyle = () => (
   <div className={langStyle('workstyle')}>
     <div className="inner">
-      <div className="image"><GradImg><img src="/about/workstyle@2x.png" /></GradImg></div>
-      <div className="content">
-        <Grad><h3>Crossborder :</h3></Grad>
-        <Grad><h1>Workstyle</h1></Grad>
-        {t('about_workstyle_title') != '-' ? <Grad><h2>{t('about_workstyle_title')}</h2></Grad> : null}
-        <Grad><p dangerouslySetInnerHTML={{ __html: t('about_workstyle_description')?.replace('\n', '<br />') || '' }}></p></Grad>
-        <div className="more"><Grad><Link href="/about/workstyle"><a>Show more</a></Link></Grad></div>
-      </div>
+      <div className="detail"><Detail title="Workstyle" /></div>
+      <div className="image"><GradImg><img src="/about/pict02.svg" /></GradImg></div>
     </div>
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .workstyle
         width 100%
-        margin-bottom vwpx(159)
-        min-height vwpx(550)
+        margin-bottom vwpx(110)
       .inner
         display flex
         justify-content space-between
-      .image img
-        width vwpx(484)
-        margin-left vwpx(80)
-        margin-top vwpx(60)
-      .content
-        border-top 1px solid #D0D0D0
-        width vwpx(643)
-        padding-top vwpx(90)
-      h3
-        display inline-block
-        overflow hidden
-        font-size vwpx(28)
-        margin 0
-        margin-left vwpx(-1)
-      h1
-        display inline-block
-        overflow hidden
-        font-size vwpx(84)
-        margin 0
-        margin-top vwpx(6)
-        margin-bottom vwpx(16)
-      h2
-        display inline-block
-        overflow hidden
-        font-size vwpx(24)
-        margin 0
-        margin-top vwpx(6)
-      p
-        margin-top vwpx(19)
+        align-items center
+        margin-left vwpx(43)
         margin-right vwpx(80)
-        line-height 3.0rem
-      .more
-        a
-          display inline-block
-          font-weight bold
-          font-size 2rem
-          border none
-          border-bottom 1px solid
-          background none
-          margin-top vwpx(24)
-          margin-right 20px
-          padding-bottom 11px
-          padding-right 30px
-          padding-left 0
+      .detail
+        margin-right vwpx(80)
+      .image img
+        width vwpx(603)
       .en
-        .content
-          padding-top vwpx(152)
+        .detail
+          padding-bottom vwpx(2)
+        p
+          margin-top vwpx(8)
+          font-size 1.6rem
+    `}</style>
+  </div>
+)
+
+const Location = () => (
+  <div className={langStyle('location')}>
+    <div className="inner">
+      <div className="image"><GradImg><img src="/about/pict03.svg" /></GradImg></div>
+      <div className="detail"><Detail title="Location" /></div>
+    </div>
+    <style jsx>{`
+      @import 'lib/vw.styl'
+      .location
+        width 100%
+        margin-bottom vwpx(170)
+      .inner
+        display flex
+        justify-content space-between
+        align-items center
+        margin-left vwpx(40)
+        margin-right vwpx(80)
+      .image img
+        width vwpx(563)
+      .detail
+        font-size 0
+        margin-left vwpx(120)
+      .en
+        .detail
+          padding-bottom vwpx(2)
         p
           margin-top vwpx(4)
           font-size 1.6rem
@@ -239,10 +148,9 @@ const Workstyle = () => (
 
 const AboutPage = () => (
   <Layout title="About" side="About">
-    <div className={langStyle()}>
+    <div className={langStyle('about')}>
       <div className="head">
-        <Grad><h1>Crossborder</h1></Grad>
-        <Grad><h1>Creative Studio</h1></Grad>
+        <Grad><h1>What’s Whatever<span className="q">?</span></h1></Grad>
       </div>
       <div className="text">
         {t('about_statement')?.split('\n\n').map((p, i) => (
@@ -256,29 +164,30 @@ const AboutPage = () => (
     </div>
 
     <Genres />
-    <Cultures />
     <Workstyle />
+    <Location />
 
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
+      .about
+        margin-top vwpx(94)
+        margin-bottom vwpx(150)
       .head
-        margin-top vwpx(63)
-        margin-bottom vwpx(87)
-        margin-left vwpx(-6)
+        margin-bottom vwpx(66)
+        margin-left vwpx(81)
         font-size 0
         h1
           margin 0
           display inline-block
-          font-size vwpx(140)
-          line-height vwpx(152)
+          font-size vwpx(129)
           overflow hidden
+          .q
+            font-family 'Noto Sans JP'
       .text
-        margin-left vwpx(80)
-        margin-bottom vwpx(117)
-        font-size vwpx(20)
+        margin-left vwpx(118)
+        font-size vwpx(26)
         font-weight bold
-        line-height vwpx(23)
+        line-height vwpx(36)
         >div.p
           margin 0
           margin-bottom vwpx(42)
@@ -287,9 +196,12 @@ const AboutPage = () => (
           overflow hidden
           margin-bottom vwpx(13)
       .en
+        &.about
+          margin-bottom vwpx(131)
+        .head
+          margin-bottom vwpx(54)
         .text
-          font-size vwpx(22)
-          margin-bottom vwpx(109)
+          font-size vwpx(30)
     `}</style>
   </Layout>
 )

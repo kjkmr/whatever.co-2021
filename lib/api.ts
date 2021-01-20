@@ -7,8 +7,8 @@ const wp = new WPAPI({ endpoint: process.env.WORDPRESS_API_URL })
 // console.log(process.env.WORDPRESS_URL, process.env.CDN_URL)
 
 const re = new RegExp(`${process.env.WORDPRESS_URL}/wp-content/`, 'g')
-const replaceToCDN = (url: string): string => {
-  const result = url.replace(re, process.env.CDN_URL + '/wp-content/')
+const replaceToCDN = (url: string | undefined): string | undefined => {
+  const result = url?.replace(re, process.env.CDN_URL + '/wp-content/')
   // console.log(url, '->', result)
   return result
 }
@@ -68,12 +68,13 @@ export type Credit = {
 
 export type Entry = {
   slug: string
+  date?: string
   title: string
   subtitle?: string
   overview?: string
-  date?: string
+  side_image?: string
+  hero_image?: string
   content?: string
-  image?: string
   tags?: Tag[]
   credit?: Credit[] | null
 }
@@ -138,7 +139,7 @@ export async function getAllMembers(maxCount: number = 100, locale: string = 'ja
     slug: e.slug,
     name: e.title.rendered,
     title: e.acf.title,
-    image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
+    image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url)!,
     region: Array.isArray(e.acf.region) ? e.acf.region : [],
     links: parseLinks(e.acf.rel_links || ''),
     coCreator: e.acf['co-creator'],
@@ -153,7 +154,7 @@ export async function getMemberDetail(slug: string, locale: string = 'ja'): Prom
     name: data.title.rendered,
     title: data.acf.title,
     content: replaceToCDN(data.content.rendered),
-    image: replaceToCDN(data._embedded['wp:featuredmedia'][0].source_url),
+    image: replaceToCDN(data._embedded['wp:featuredmedia'][0].source_url)!,
     region: data.acf.region,
     links: parseLinks(data.acf.rel_links),
     coCreator: data.acf['co-creator'],
@@ -170,7 +171,7 @@ export async function getAllWorks(maxCount: number = 100, locale: string = 'ja')
     slug: e.slug,
     title: e.title.rendered,
     date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
-    image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
+    hero_image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
     tags: e.tags.map((t: number) => tags[t]).filter((t: Tag) => t)
   }))
 }
@@ -187,7 +188,7 @@ export async function getWorksByTag(tagSlug: string, numEntries: number = 100, l
     subtitle: e.acf?.subtitle || '',
     overview: e.acf?.overview || '',
     date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
-    image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
+    hero_image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
     tags: e.tags.map((t: number) => tags[t]).filter((t: Tag) => t)
   }))
 }
@@ -199,19 +200,19 @@ export async function getFeaturedWork(): Promise<Entry[]> {
     slug: e.slug,
     title: e.title.rendered,
     date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
-    image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
+    hero_image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
   }))
 }
 
 
-export async function getNews(maxEntries = 100): Promise<Entry[]> {
-  const data = await wp.posts().perPage(maxEntries).embed().param({ categories: 5, _fields: 'slug,title,date,content,_links,_embedded' })
+export async function getNews(maxEntries = 100, locale: string = 'ja'): Promise<Entry[]> {
+  const data = await wp.posts().perPage(maxEntries).embed().param({ categories: 5, _fields: 'slug,title,date,content,_links,_embedded', lang: locale })
   return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
     date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
     content: replaceToCDN(e.content.rendered),
-    image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
+    hero_image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
   }))
 }
 
@@ -226,7 +227,7 @@ export async function getNewsByTag(tagSlug: string, maxEntries: number = 100, lo
     title: e.title.rendered,
     date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
     content: replaceToCDN(e.content.rendered),
-    image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
+    hero_image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
   }))
 }
 
@@ -238,9 +239,12 @@ export async function getPostDetails(slug: string, locale: string = 'ja'): Promi
   return {
     slug: data.slug,
     title: data.title.rendered,
+    subtitle: data.acf?.subtitle || null,
+    overview: data.acf?.overview || null,
+    side_image: replaceToCDN(data.acf?.side_image?.url) || '',
     content: replaceToCDN(data.content.rendered),
     date: DateTime.fromISO(data.date).toFormat(`LLL dd, yyyy`),
-    image: replaceToCDN(data._embedded['wp:featuredmedia'][0].source_url),
+    hero_image: replaceToCDN(data._embedded['wp:featuredmedia'][0].source_url),
     tags: data.tags.map((t: number) => tags[t]).filter((t: Tag) => t),
     credit: data.acf?.credit ? parseCredit(data.acf.credit) : null,
   }
@@ -254,6 +258,6 @@ export async function getPageDetails(slug: string): Promise<Entry> {
     slug,
     title: data[0].title.rendered,
     content: replaceToCDN(data[0].content.rendered),
-    image: media ? replaceToCDN(media[0].source_url) : ''
+    hero_image: media ? replaceToCDN(media[0].source_url) : ''
   }
 }

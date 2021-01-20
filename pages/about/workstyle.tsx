@@ -1,171 +1,234 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
+import Link from 'next/link'
 import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
-import { Header, Footer, SectionTitle } from 'components/About'
+import { Header, Footer, SectionHeader } from 'components/About'
 
 const Section1 = () => (
   <div className={langStyle('section1')}>
-    <SectionTitle num="01" nx={-5} title={t('workstyle_1_title')!} tx={{ ja: -5, en: -4 }} ty={{ ja: 26, en: 26 }} />
-    <div className="t">{t('workstyle_1_body')}</div>
+    <hr />
+    <SectionHeader num="01" title={t('workstyle_1_title')!} body={t('workstyle_1_body')!} />
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .section1
-        margin-top vwpx(120)
+        margin-top vwpx(96)
         margin-left vwpx(80)
-      .t
-        margin-top vwpx(43)
         margin-right vwpx(80)
-        font-size 1.5rem
-        line-height 3.0rem
-      .en .t
-        margin-top vwpx(41)
-        font-size 1.6rem
+      hr
+        margin 0
+        border 0
+        border-top 1px solid #B4B4B4
+        width vwpx_min(252)
+        margin-bottom vwpx(105)
     `}</style>
   </div>
 )
 
 type AllianceData = {
-  width: number
-  height: number
-  mt?: number
-  mb?: number
+  name: string,
+  link: string,
 }
 
 const AllianceData: { [key: string]: AllianceData } = {
   bassdrum: {
-    width: 178,
-    height: 37,
+    name: 'Bassdrum',
+    link: 'https://bassdrum.org/',
   },
   wtfc: {
-    width: 113,
-    height: 32,
+    name: 'WTFC',
+    link: 'https://wtfc.jp/',
   },
   cotodama: {
-    width: 229,
-    height: 49,
-    mb: 8,
+    name: 'Cotodama',
+    link: 'https://lyric-speaker.com/company.html',
   },
   yummysake: {
-    width: 228,
-    height: 35,
-    mb: 8,
+    name: 'Yummy Sake',
+    link: 'https://yummysake.jp/',
   },
   kasa: {
-    width: 123,
-    height: 39,
-    mt: -2,
-    mb: 8,
-  },
-  cradle: {
-    width: 127,
-    height: 46,
-    mt: -1,
-    mb: 7,
+    name: 'KASA',
+    link: 'https://kasa-made.com/',
   },
   newstand: {
-    width: 209,
-    height: 22,
-    mt: -6,
-    mb: -6,
+    name: 'New Stand',
+    link: 'https://www.newstand.com/',
   },
 }
 
-const Alliance = ({ logo, data, desc }: { logo: string, data: AllianceData, desc: string }) => {
-  const imageStyle = {
-    width: `calc((100vw - 80px) * ${data.width / (1366 - 80)})`,
-    height: `calc((100vw - 80px) * ${data.height / (1366 - 80)})`,
-  }
+const Alliance = ({ slug }: { slug: string }) => {
   return (
-    <div className="container">
-      <div className="image" style={{
-        // marginTop: `calc((100vw - 80px) * ${(data.mt || 0) / (1366 - 80)}`,
-        // marginBottom: `calc((100vw - 80px) * ${(data.mb || 0) / (1366 - 80)}`,
-      }}><img src={`/about/workstyle/${logo}@2x.png`} alt="" style={imageStyle} /></div>
-      <div className="t" dangerouslySetInnerHTML={{ __html: desc.replace(/\n/g, '<br />') }}></div>
+    <div className="alliance">
+      <Link href={AllianceData[slug].link}>
+        <a target="_blank" rel="noopener noreferrer">
+          <img src={`/about/workstyle/${slug}@2x.png`} alt="" />
+          <div className="name">{AllianceData[slug].name}</div>
+          <div className="desc" dangerouslySetInnerHTML={{ __html: t(`workstyle_2_${slug}`)!.replace(/\n/g, '<br />') }}></div>
+        </a>
+      </Link>
       <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
-      .t
-        line-height 3.0rem
-      .image
-        display flex
-        justify-content center
-        align-items center
-        width 100%
-        height vwpx(120)
-    `}</style>
+        @import 'lib/vw.styl'
+        a
+          display block
+          border none
+          padding 0
+        img
+          width vwpx(335)
+          height vwpx(189)
+          margin-bottom 2.2rem
+          box-sizing border-box
+          border 1px solid #CCCCCC
+          object-fit cover
+        .name
+          font-size 1.8rem
+          font-weight bold
+          margin-bottom 1.6rem
+        .desc
+          font-size 1.2rem
+          line-height 2.4rem
+      `}</style>
     </div>
   )
 }
 
 const Section2 = () => (
   <div className={langStyle('section2')}>
-    <SectionTitle num="02" nx={-5} title={t('workstyle_2_title')!} tx={{ ja: -3, en: -3 }} ty={{ ja: 28, en: 28 }} />
-    <div className="t">{t('workstyle_2_body')}</div>
+    <SectionHeader num="02" title={t('workstyle_2_title')!} body={t('workstyle_2_body')!} />
     <div className="alliance">
-      {Object.keys(AllianceData).map(key => <Alliance key={key} logo={key} data={AllianceData[key]} desc={t(`workstyle_2_${key}`)!} />)}
+      {Object.keys(AllianceData).map(key => <Alliance key={key} slug={key} />)}
     </div>
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .section2
-        margin-top vwpx(118)
-        margin-left vwpx(80)
-      .t
-        line-height 3.0rem
-        margin-top vwpx(39)
-        margin-right vwpx(80)
+        margin vwpx(226) vwpx(80) vwpx(226)
       .alliance
         display grid
-        grid-template-columns repeat(2, 1fr)
-        grid-gap vwpx(57) vwpx(120)
-        margin-top vwpx(47)
-        margin-right vwpx(80)
-      .en
-        .t
-          font-size 1.6rem
-        .alliance
-          margin-top vwpx(18)
-          font-size 1.6rem
+        grid-template-columns repeat(3, 1fr)
+        grid-gap vwpx(54) vwpx(60)
+        margin-top -2.1rem
     `}</style>
   </div >
 )
 
-const Section3 = () => (
-  <div className="container">
-    <SectionTitle num="03" nx={-5} title="Management of the<br/>Creative Commune" tx={{ ja: -16 }} />
-    <div className="t">As a place for these rich members to meet, we are jointly managing the creative commune WHEREVER with WTFC. In addition to serving as a base for Whatever, WTFC and Bassdrum, WHEREVER also functions as a place for cross-pollination of various creative staff through the shared office space on the 5th floor and New Stand Tokyo on the 1st floor.</div>
+const Features = () => (
+  <div className={langStyle('features')}>
+    <h2>FEATURES：</h2>
+    <div className="items">
+      {t('workstyle_3_features')?.split('\n\n').map(item => {
+        const [n, desc] = item.split('\n')
+        return (<>
+          <div className="name">- {n}</div>
+          <div className="desc">{desc}</div>
+        </>)
+      })}
+    </div>
     <style jsx>{`
-      .container
+      @import 'lib/vw.styl'
+      .features
         position relative
-        margin-top 117px
-        margin-left 80px
-        margin-bottom 295px
-        >img
-          position absolute
-      .t
-        font-size 1.6rem
+      h2
+        margin 0
+        font-size vwpx(24)
+      .items
+        margin-top vwpx(37)
+        display grid
+        grid-template-columns 70px auto
+        grid-gap 3.4rem 0
+      .name
+        font-size 1.8rem
+        font-weight bold
         line-height 3.0rem
-        margin-top 31px
-        margin-right 80px
+      .desc
+        line-height 3.0rem
     `}</style>
   </div>
 )
 
-const Profession = () => (
-  <Layout title="About" side="About" backto="/about" footer={<Footer left="Cultures" right="Genres" />}>
-    <Header title="Workstyle" subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="/about/workstyle/head@2x.png" ty={{ ja: 1 }} iy={{ ja: -22, en: -44 }} />
+const About = () => (
+  <div className={langStyle('about')}>
+    <div className="text">
+      <h2>ABOUT：</h2>
+      <div className="items">
+        {t('workstyle_3_about')?.split('\n\n').map(item => {
+          const [n, desc] = item.split('\n')
+          return (<>
+            <div className="name">- {n}</div>
+            <div className="desc">{desc}</div>
+          </>)
+        })}
+      </div>
+    </div>
+    <style jsx>{`
+      @import 'lib/vw.styl'
+      h2
+        margin 0
+        font-size vwpx_min(24)
+      .items
+        margin-top vwpx(37)
+        display grid
+        grid-template-columns 70px auto
+        grid-gap 3.4rem 0
+      .name
+        font-size 1.8rem
+        font-weight bold
+        line-height 3.0rem
+      .desc
+        font-size 1.5rem
+        line-height 3.0rem
+    `}</style>
+  </div>
+)
+
+const Section3 = () => (
+  <div className={langStyle('section3')}>
+    <SectionHeader num="03" title={t('workstyle_3_title')!} body={t('workstyle_3_body')!} />
+    <div className="images">
+      <img src="/about/workstyle/03_1@2x.jpg" alt="" className="i1" />
+      <img src="/about/workstyle/03_2@2x.jpg" alt="" className="i2" />
+      <img src="/about/workstyle/03_3@2x.jpg" alt="" className="i3" />
+    </div>
+    <div className="columns">
+      <About />
+      <Features />
+    </div>
+    <style jsx>{`
+      @import 'lib/vw.styl'
+      .section3
+        margin vwpx(117) vwpx(80) vwpx(190)
+      .images
+        position relative
+        height vwpx2(1030, 160)
+        margin-bottom vwpx2(92, 160)
+        img
+          position absolute
+        .i1
+          width vwpx2(1206, 160)
+        .i2
+          width vwpx2(684, 160)
+          top vwpx2(566, 160)
+          right 0
+        .i3
+          width vwpx2(498, 160)
+          top vwpx2(747, 160)
+      .columns
+        display grid
+        grid-template-columns repeat(2, 1fr)
+        grid-gap 80px
+    `}</style>
+  </div>
+)
+
+const Workstyle = () => (
+  <Layout title="About" side="About" backto="/about" footer={<Footer left="Genres" right="Location" />}>
+    <Header headerMargin={65} title="Workstyle" titleSize={112} titleMargin={18} subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="/about/pict02.svg" imageWidth={586} />
     <Section1 />
     <Section2 />
     <Section3 />
-    <style jsx>{`
-    `}</style>
   </Layout>
 )
 
-export default Profession
+export default Workstyle
 
 export const getStaticProps: GetStaticProps = async () => {
   return { props: {} }

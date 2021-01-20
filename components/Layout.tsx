@@ -6,7 +6,13 @@ import Sidebar from 'components/Sidebar'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 
-const useTemplate = 0
+let templateName: string
+// templateName = 'Top_1366'
+// templateName = 'About_index'
+// templateName = 'About_detail_01'
+// templateName = 'About_detail_02'
+// templateName = 'About_detail_03'
+// templateName = 'News_detail'
 
 type Props = {
   showHeader?: boolean
@@ -19,8 +25,9 @@ type Props = {
 
 const Layout = ({ children, footer, title = '', side = '', backto = '', showHeader = true }: Props) => {
   const templateStyle: { [prop: string]: string } = {}
-  if (useTemplate) {
-    templateStyle.backgroundImage = `url(/_/Team_detail_${useRouter().locale!}.png)`
+  if (templateName) {
+    templateStyle.backgroundImage = `url(/_/${templateName}_${useRouter().locale!}.png)`
+    // templateStyle.backgroundPosition = 'top -40px left'
   }
   return (
     <div>
@@ -61,6 +68,8 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
       `}</style>
 
       <style jsx global>{`
+        @import 'lib/vw.styl'
+
         @font-face
           font-family Apercu
           src url('/common/fonts/apercu-medium.eot')
@@ -77,7 +86,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
               url('/common/fonts/apercu-light.woff') format('woff'),
               url('/common/fonts/apercu-light.woff2') format('woff2'),
               url('/common/fonts/apercu-light.ttf') format('truetype')
-          font-weight 200
+          font-weight 300
           font-style normal
         @font-face
           font-family Apercu
@@ -88,7 +97,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
               url('/common/fonts/apercu-bold.ttf') format('truetype')
           font-weight 700
           font-style normal
-        
+
         html
           margin 0
           padding 0
@@ -101,6 +110,20 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           font-size 1.5rem
           font-weight 200
           color black
+        h1
+          font-size vwpx_min(36)
+          font-weight bold
+          margin 0
+        h2
+          font-size vwpx_min(24)
+          font-weight bold
+          margin 0
+        p
+          margin 2em 0
+          img
+            width 100%
+            height auto
+            margin auto
         a
           text-decoration none
           color black

@@ -6,24 +6,23 @@ import { Grad, GradImg } from 'components/Grad'
 
 const LargeWork = ({ work }: { work: Entry }) => (
   <div className="large-work">
-    <Link href={`/work/${work.slug}`} prefetch={false}>
+    <Link href={`/work/${work.slug}`}>
       <a>
         <div className="image">
-          <GradImg><img src={work.image} /></GradImg>
+          <GradImg><img src={work.hero_image} /></GradImg>
         </div>
       </a>
     </Link>
     <div className="text">
       <Grad><div className="date">{work.date}</div></Grad>
-      <Grad><div className="title"><Link href={`/work/${work.slug}`} prefetch={false}><a dangerouslySetInnerHTML={{ __html: work.title }}></a></Link></div></Grad>
+      <Grad><div className="title"><Link href={`/work/${work.slug}`}><a dangerouslySetInnerHTML={{ __html: work.title }}></a></Link></div></Grad>
       <Grad><div className="head">{'NY発の未来の日用品店'}</div></Grad>
       <Grad><div className="tags">
         {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
       </div></Grad>
     </div>
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .large-work
         grid-column span 2
         grid-row span 2
@@ -35,40 +34,40 @@ const LargeWork = ({ work }: { work: Entry }) => (
           height vwpx(467)
           object-fit cover
       .text
-        margin-top vwpx(23)
+        margin-top vwpx(30)
         font-size 0
       .date
         display inline-block
         overflow hidden
-        font-size vwpx(14)
+        font-size 1.4rem
       .title
         display inline-block
         overflow hidden
-        font-size vwpx(48)
+        font-size 3.6rem
         font-weight bold
-        margin-top vwpx(8)
+        margin-top 2.5rem
         letter-spacing 0.0001em
       .head
         display inline-block
         overflow hidden
-        margin-top vwpx(16)
-        font-size vwpx(22)
+        margin-top 1.5rem
+        font-size 2.0rem
         font-weight bold
         letter-spacing 0.001em
       .tags
         display inline-block
         overflow hidden
-        margin-top vwpx(26)
+        margin-top 2.5rem
     `}</style>
   </div>
 )
 
 const SmallWork = ({ work }: { work: Entry }) => (
   <div className="small-work">
-    <Link href={`/work/${work.slug}`} prefetch={false}>
+    <Link href={`/work/${work.slug}`}>
       <a>
         <div className="image">
-          <GradImg><img src={work.image} /></GradImg>
+          <GradImg><img src={work.hero_image} /></GradImg>
         </div>
         <div className="text">
           <Grad><div className="date">{work.date}</div></Grad>
@@ -85,7 +84,7 @@ const SmallWork = ({ work }: { work: Entry }) => (
         'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
       .small-work
         position relative
-        padding-bottom vwpx(77)
+        padding-bottom vwpx(78)
       .image
         font-size 0
         img
@@ -94,27 +93,27 @@ const SmallWork = ({ work }: { work: Entry }) => (
           object-fit cover
       .text
         position relative
-        margin-top vwpx(19)
+        margin-top 2.0rem
         font-size 0
       .date
         display inline-block
         overflow hidden
-        font-size vwpx(14)
+        font-size 1.2rem
       .title
         display inline-block
         overflow hidden
-        font-size vwpx(24)
+        font-size 2.0rem
         font-weight bold
-        line-height vwpx(32)
-        margin-top vwpx(6)
+        line-height 3.2rem
+        margin-top 0.6rem
       .head
-        font-size vwpx(15)
+        font-size 1.5rem
         font-weight bold
-        margin-top vwpx(2)
+        margin-top 0.2rem
       .tags
         display inline-block
         overflow hidden
-        margin-top vwpx(17)
+        margin-top 1.7rem
     `}</style>
   </div>
 )

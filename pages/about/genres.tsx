@@ -2,402 +2,237 @@ import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
-import { Header, Footer, SectionTitle } from 'components/About'
+import { Header, Footer, SectionHeader } from 'components/About'
 import { Grad } from 'components/Grad'
+import React from 'react'
 
 const Section1 = () => (
   <div className={langStyle('section1')}>
-    <SectionTitle num="01" nx={-5} tx={{ ja: -4, en: -4 }} ty={{ en: -3 }} title={t('genres_1_title')!} />
-    <div className="t">
-      {t('genres_1_body')!.split('\n').map((line, index) => <Grad key={index}><p key={index}>{line}</p></Grad>)}
+    <hr />
+    <SectionHeader num="01" title={t('genres_1_title')!} body={t('genres_1_body')!} />
+    <div className="images">
+      <img src="/about/genres/01_1@2x.jpg" alt="" className="i1" />
+      <img src="/about/genres/01_2@2x.jpg" alt="" className="i2" />
+      <img src="/about/genres/01_3@2x.jpg" alt="" className="i3" />
+      <img src="/about/genres/01_4@2x.jpg" alt="" className="i4" />
     </div>
     <Grad><h2>{t('genres_1_example_title')}</h2></Grad>
-    <ul>
+    <div className="example-items">
       {t('genres_1_example_items')!.split('\n\n').map((item, index) => {
-        const [title, desc] = item.split('\n')
-        return <Grad key={index}><li key={index}><span>{title}</span><br />{desc}</li></Grad>
+        const [title, ...desc] = item.split('\n')
+        return (
+          <div className="item" key={index}>
+            <div className="title">- {title}</div>
+            <ul>
+              {desc.map((d, i) => (<li key={i}>{d}</li>))}
+            </ul>
+            <div>など</div>
+          </div>
+        )
       })}
-    </ul>
-    <div className="images">
-      <img src="/about/genres/image@2x.jpg" alt="" className="i1" />
-      <img src="/about/genres/image-1@2x.jpg" alt="" className="i2" />
-      <img src="/about/genres/image-2@2x.jpg" alt="" className="i3" />
-      <img src="/about/genres/image-3@2x.jpg" alt="" className="i4" />
-      <img src="/about/genres/image-4@2x.jpg" alt="" className="i5" />
     </div>
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .section1
-        position relative
-        min-height vwpx(1293)
-        margin-top vwpx(159)
+        margin-top vwpx(106)
         margin-left vwpx(80)
-        margin-bottom vwpx(88)
-      .t
-        width vwpx(523)
-        line-height 3.0rem
-        margin-top vwpx(43)
-        margin-bottom vwpx(87)
-        p
-          margin-top vwpx(30)
+        margin-right vwpx(80)
+        margin-bottom vwpx(238)
+      hr
+        margin 0
+        border 0
+        border-top 1px solid #B4B4B4
+        width vwpx_min(252)
+        margin-bottom vwpx(105)
+      .images
+        position relative
+        height vwpx2(1230, 160)
+        margin-bottom vwpx2(94, 160)
+        img
+          position absolute
+          &.i1
+            top 0
+            left 0
+            width vwpx2(912, 160)
+          &.i2
+            top vwpx2(435, 160)
+            right vwpx2(-80, 160)
+            width vwpx2(502, 160)
+          &.i3
+            top vwpx2(641, 160)
+            left vwpx2(140, 160)
+            width vwpx2(418, 160)
+          &.i4
+            top vwpx2(829, 160)
+            right vwpx2(85, 160)
+            width vwpx2(433, 160)
       h2
-        font-size vwpx(20)
+        font-size vwpx_min(20)
         font-weight bold
         margin 0
-        margin-bottom vwpx(36)
+        margin-bottom vwpx(43)
         padding 0
         display inline-block
         overflow hidden
-      ul
-        margin 0
-        margin-left 10px
-        padding 0
-        width 510px
-        list-style-type '- '
-        li
-          margin 0
-          margin-bottom 24px
-          padding 0
-          font-size 1.5rem
-          line-height 3.2rem
-          >span
+      .example-items
+        display flex
+        flex-wrap wrap
+        align-items flex-start
+        .item
+          border-left 1px solid #B4B4B4
+          padding-top 1.7rem
+          padding-bottom 1.7rem
+          padding-left 38px
+          width 375px
+          box-sizing border-box
+          .title
             font-weight bold
-      .images img
-        position absolute
-        &.i1
-          top 0
-          right 0
-          width vwpx(523)
-        &.i2
-          top vwpx(366)
-          right vwpx(208)
-          width vwpx(231)
-        &.i3
-          top vwpx(531)
-          right vwpx(80)
-          width vwpx(185)
-        &.i4
-          top vwpx(842)
-          right vwpx(142)
-          width vwpx(461)
-        &.i5
-          top vwpx(1062)
-          right 0
-          width vwpx(231)
-      .en
-        .t
-          margin-top vwpx(52)
-          margin-bottom vwpx(88)
-          font-size 1.6rem
-        h2
-          font-size vwpx(24)
-        ul li
-          font-size 1.6rem
-          line-height 2em
+            margin-bottom 2.0rem
+          ul
+            margin 0
+            padding 0
+            li
+              list-style '・' inside
+              margin-bottom 0.9rem
     `}</style>
   </div>
 )
 
 const Section2 = () => (
   <div className={langStyle('section2')}>
-    <SectionTitle num="02" title={t('genres_2_title')!} nx={-4} tx={{ ja: -14 }} ty={{ ja: 28 }} />
-    <div className="t">{t('genres_2_body')}</div>
-    <div className="g">
-      {['project', 'creative', 'tech', 'business'].map(key => {
-        const [title, roles] = t(`genres_2_${key}`)!.split('\n\n')
-        return (
-          <div key={key}>
-            <div className="title" dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, '<br />') }}></div>
-            <ul>
-              {roles?.split('\n').map(role => <li key={role}>{role}</li>)}
-            </ul>
-          </div>
-        )
-      })}
-    </div>
+    <SectionHeader num="02" title={t('genres_2_title')!} body={t('genres_2_body')!} />
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .section2
         margin-left vwpx(80)
         margin-right vwpx(80)
-        margin-bottom vwpx(136)
-      .t
-        margin-top vwpx(42)
-        font-size 1.5rem
-        line-height 3.0rem
-      .g
-        display grid
-        grid-template-columns repeat(4, 1fr)
-        grid-gap 0
-        margin-top 76px
-        >div
-          margin-left -2px
-          border-left 2px solid #E0E0E0
-          border-right 2px solid #E0E0E0
-          padding 0 vwpx(40)
-        .title
-          font-size vwpx(18)
-          font-weight bold
-          line-height 2.7rem
-          margin-bottom 21px
-        ul
-          margin 0
-          margin-left -1px
-          padding 0
-          list-style inside '- '
-          li
-            font-size 1.2rem
-            line-height 3.2rem
-      .en
-        .t
-          font-size 1.6rem
-          line-height 1.9em
-        ul li
-          font-size 1.4rem
+        margin-bottom vwpx(226)
     `}</style>
   </div>
 )
 
-const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: string }) => (
-  <div className={langStyle()}>
-    <div className="name"><Link href={`/work/${link}`}><a>- {name}</a></Link></div>
-    <div className="desc">{desc}</div>
-    <style jsx>{`
-      .name
-        font-size 1.5rem
-        font-weight bold
+const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: string }) => {
+  let image = link
+  let target = ''
+  if (link?.startsWith('http')) {
+    image = link.split('/')[2].replace(/[^\w]+/g, '-')
+    target = '_blank'
+  } else {
+    link = `/work/${link}`
+  }
+  return (
+    <div className={langStyle('work-link')}>
+      <Link href={link}>
+        <a target={target} rel="noopener noreferrer">
+          <img src={`/about/genres/${image}@2x.jpg`} alt="" />
+          <div className="name">{name}</div>
+          <div className="desc">{desc}</div>
+        </a>
+      </Link>
+      <style jsx>{`
+        @import 'lib/vw.styl'
+        .work-link
+          font-size 0
         a
-          display inline-block
-          padding-right 4px
-      .desc
-        margin-top 3px
-        margin-bottom 32px
-        margin-left 10px
-        line-height 3.0rem
-      .en
+          border none
+          display block
+        img
+          width vwpx2(335, 160)
+          height vwpx2(189, 160)
+          object-fit cover
         .name
-          font-size 1.6rem
+          font-size 1.8rem
+          font-weight bold
+          line-height 1.8rem
+          margin-top 2.6rem
         .desc
-          font-size 1.6rem
-          margin-bottom 31px
-    `}</style>
-  </div>
-)
+          margin-top 1.7rem
+          margin-right 2rem
+          font-size 1.2rem
+          line-height 2.4rem
+      `}</style>
+    </div>
+  )
+}
 
-const Products = () => (
-  <div className={langStyle('products')}>
+const WorkList = ({ title, body, items }: { title: string, body: string, items: string }) => (
+  <div className={langStyle('work-list')}>
     <div className="text">
-      <h2>{t('genres_3_inhouse_title')}</h2>
-      <div className="t">{t('genres_3_inhouse_body')}</div>
+      <h2>{title}</h2>
+      <div className="t">{body}</div>
       <div className="items">
-        {t('genres_3_inhouse_items')?.split('\n\n').map(item => {
+        {items.split('\n\n').map(item => {
           const [name, link, desc] = item.split('\n')
           return <WorkLink key={link} name={name} link={link} desc={desc} />
         })}
       </div>
     </div>
-    <div className="images">
-      <img src="/about/genres/3/image@2x.jpg" alt="" className="i1" />
-      <img src="/about/genres/3/image-1@2x.jpg" alt="" className="i2" />
-    </div>
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
-      .products
+      @import 'lib/vw.styl'
+      .work-list
         position relative
-        min-height vwpx(730)
-        margin-bottom vwpx(98)
-      .text
-        width vwpx(520)
+        margin-bottom vwpx(100)
       h2
-        font-size vwpx(20)
+        font-size vwpx_min(20)
         font-weight bold
         margin 0
-        margin-bottom vwpx(21)
+        margin-bottom vwpx_min(30)
       .t
-        margin-bottom 34px
+        margin-bottom 5.0rem
         font-size 1.5rem
         line-height 3.0rem
-      .images img
-        position absolute
-        &.i1
-          width vwpx(523)
-          top vwpx(36)
-          right 0
-        &.i2
-          width vwpx(213)
-          top vwpx(371)
-          right vwpx(80)
-      .en
-        &.products
-          margin-bottom vwpx(115)
-          min-height vwpx(786)
-        h2
-          font-size vwpx(24)
-        .t
-          font-size 1.6rem
-          margin-bottom 40px
-    `}</style>
-  </div>
-)
-
-const Brands = () => (
-  <div className={langStyle('brands')}>
-    <div className="text">
-      <h2>{t('genres_3_brands_title')}</h2>
-      <div className="t">{t('genres_3_brands_body')}</div>
-      <div className="items">
-        {t('genres_3_brands_items')?.split('\n\n').map(item => {
-          const [name, link, desc] = item.split('\n')
-          return <WorkLink key={link} name={name} link={link} desc={desc} />
-        })}
-      </div>
-    </div>
-    <div className="images">
-      <img src="/about/genres/3/toio@2x.jpg" alt="" className="i1" />
-      <img src="/about/genres/3/F_IH_6210@2x.jpg" alt="" className="i2" />
-    </div>
-    <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
-      .brands
-        position relative
-        min-height vwpx(473)
-        margin-bottom vwpx(110)
-        >img
-          position absolute
-      .text
-        width vwpx(513)
-      h2
-        font-size vwpx(20)
-        margin 0
-        margin-bottom vwpx(21)
-      .t
-        line-height 3.0rem
-        margin-bottom 44px
-      .images img
-        position absolute
-        &.i1
-          width vwpx(604)
-          top vwpx(-132)
-          right 0
-        &.i2
-          width vwpx(337)
-          top vwpx(180)
-          right 0
-      .en
-        &.brands
-          margin-bottom vwpx(114)
-          min-height vwpx(525)
-        h2
-          font-size vwpx(24)
-        .t
-          font-size 1.6rem
-          margin-bottom 40px
-    `}</style>
-  </div>
-)
-
-const Investment = () => (
-  <div className={langStyle('investment')}>
-    <div className="text">
-      <h2>{t('genres_3_investment_title')}</h2>
-      <div className="t">{t('genres_3_investment_body')}</div>
-      <div className="items">
-        {t('genres_3_investment_items')?.split('\n\n').map(item => {
-          const [name, link, desc] = item.split('\n')
-          return <WorkLink key={link} name={name} link={link} desc={desc} />
-        })}
-      </div>
-    </div>
-    <div className="images">
-      <img src="/about/genres/3/image-2@2x.jpg" alt="" className="i1" />
-      <img src="/about/genres/3/image-3@2x.jpg" alt="" className="i2" />
-    </div>
-    <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
-      .investment
-        position relative
-        min-height vwpx(503)
-        margin-bottom vwpx(190)
-        >img
-          position absolute
-      .text
-        width vwpx(513)
-      h2
-        font-size vwpx(20)
-        margin 0
-        margin-bottom vwpx(21)
-      .t
-        line-height 3.0rem
-        margin-bottom 38px
-      .images img
-        position absolute
-        &.i1
-          width vwpx(443)
-          top vwpx(-50)
-          right vwpx(80)
-        &.i2
-          width vwpx(375)
-          top vwpx(363)
-          right 0
-      .en
-        &.investment
-          min-height vwpx(503)
-        h2
-          font-size vwpx(24)
-        .t
-          font-size 1.6rem
+      .items
+        display grid
+        grid-template-columns repeat(3, 1fr)
+        grid-gap vwpx2(38, 160) vwpx2(60, 160)
     `}</style>
   </div>
 )
 
 const Section3 = () => (
   <div className={langStyle('section3')}>
-    <SectionTitle num="03" nx={-5} title={t('genres_3_title')!} tx={{ ja: 1, en: 1 }} ty={{ ja: 24, en: -1 }} />
-    <div className="content">
-      <div className="t">{t('genres_3_body')}</div>
-      <img src="/about/genres/3/0474_B_1005@2x.jpg" alt="" />
+    <SectionHeader num="03" title={t('genres_3_title')!} body={t('genres_3_body')!} />
+    <div className="images">
+      <img src="/about/genres/03_1@2x.jpg" alt="" className="i1" />
+      <img src="/about/genres/03_2@2x.jpg" alt="" className="i2" />
+      <img src="/about/genres/03_3@2x.jpg" alt="" className="i3" />
     </div>
-    <Products />
-    <Brands />
-    <Investment />
+    <WorkList title={t('genres_3_inhouse_title')!} body={t('genres_3_inhouse_body')!} items={t('genres_3_inhouse_items')!} />
+    <WorkList title={t('genres_3_brands_title')!} body={t('genres_3_brands_body')!} items={t('genres_3_brands_items')!} />
+    <WorkList title={t('genres_3_investment_title')!} body={t('genres_3_investment_body')!} items={t('genres_3_investment_items')!} />
+    {/* <Brands />
+    <Investment /> */}
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .section3
         position relative
         margin-left vwpx(80)
-      .content
-        margin-top vwpx(43)
-        margin-bottom vwpx(106)
-        min-height vwpx(240)
-        overflow hidden
-      .t
-        width vwpx(523)
-        font-size 1.5rem
-        line-height 3.0rem
-      img
-        position absolute
-        top vwpx(196)
-        right 0
-        width vwpx(604)
-      .en
-        .t
-          font-size 1.6rem
-        .content
-          margin-bottom vwpx(79)
+        margin-right vwpx(80)
+        margin-bottom vwpx(190)
+      .images
+        position relative
+        height vwpx2(1113, 160)
+        margin-bottom vwpx2(75, 160)
+        img
+          position absolute
+        .i1
+          width vwpx2(1206, 160)
+        .i2
+          width vwpx2(470, 160)
+          top vwpx2(694, 160)
+          left vwpx2(113, 160)
+        .i3
+          width vwpx2(388, 160)
+          top vwpx2(485, 160)
+          left vwpx2(640, 160)
     `}</style>
   </div>
 )
 
 const GenrePage = () => (
-  <Layout title="About" side="About" backto="/about" footer={<Footer left="Workstyle" right="Cultures" />}>
+  <Layout title="About" side="About" backto="/about" footer={<Footer left="Location" right="Workstyle" />}>
     <div className="container">
-      <Header title="Genres" subtitle={t('genres_title')!} desc={t('genres_description')!} image="/about/genres/head@2x.png" />
+      <Header title="Genres" subtitle={t('genres_title')!} desc={t('genres_description')!} image="/about/pict01.svg" />
       <Section1 />
       <Section2 />
       <Section3 />

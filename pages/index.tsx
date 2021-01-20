@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { Entry, Tag, getNews, getWorksByTag } from 'lib/api'
-import { ta, langStyle } from 'lib/i18n'
+import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
+import BlackButton from 'components/BlackButton'
 import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
 
@@ -53,146 +54,129 @@ const Showreel = () => {
   )
 }
 
-const Crossborder = () => (
-  <div className={langStyle('container')}>
+const Tagline = () => (
+  <div className={langStyle('tagline')}>
     <div className="title">
-      <Grad><h1>Crossborder</h1></Grad>
-      <Grad><h1>Creative Studio</h1></Grad>
+      <Grad><h1>Make whatever.</h1></Grad>
+      <Grad><h1 className="line2">Rules, whatever.</h1></Grad>
     </div>
     <div className="desc">
-      <Grad><h2>{ta('top_whatever')![0]}</h2></Grad>
-      {ta('top_whatever')![1] ? <Grad><h2 style={{ marginLeft: 'calc((100vw - 80px) * 0.14)' }}>{ta('top_whatever')![1]}</h2></Grad> : null}
+      {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index}><h2>{line}</h2></Grad>)}
     </div>
     <div className="link">
-      <Link href="/about">
-        <a>Learn more</a>
-      </Link>
+      <BlackButton text="Learn more" link="/about" />
     </div>
     <style jsx>{`
-      .container
+      @import 'lib/vw.styl'
+      .tagline
         position relative
-        margin-top calc((100vw - 80px) * 0.125)
+        margin-top vwpx(198)
         img
           display block
       .title
         font-size 0
-        margin-left calc((100vw - 80px) * -0.005)
+        margin-left vwpx(69)
         h1
           display inline-block
-          font-size calc((100vw - 80px) * 0.1353)
+          font-size vwpx(143)
           font-weight bold
-          line-height calc((100vw - 80px) * 0.1353)
           margin 0
-          margin-bottom calc((100vw - 80px) * 0.013)
+          margin-bottom vwpx(13)
+          &.line2
+            margin-left vwpx(71)
       .desc
         position relative
-        margin-top calc((100vw - 80px) * 0.051)
-        margin-left calc((100vw - 80px) * 0.063)
+        margin-top vwpx(72)
+        margin-left vwpx(80)
         font-size 0
         h2
           display inline-block
-          font-size calc((100vw - 80px) * 0.028)
+          font-size vwpx(26)
           font-weight bold
-          line-height calc((100vw - 80px) * 0.032)
+          line-height vwpx(60)
           margin 0
-          margin-bottom calc((100vw - 80px) * 0.019)
       .link
         display flex
         justify-content flex-end
-        margin-top calc((100vw - 80px) * 0.096)
-        border-top 1px solid #D0D0D0
-        a
-          display flex
-          justify-content center
-          align-items center
-          color white
-          font-size 1.8rem
-          font-weight bold
-          letter-spacing 0.04em
-          width 256px
-          height 60px
-          background-color black
-          margin-top -31px
-          border none
+        margin-top vwpx(81)
       .en
         .desc
-          margin-top calc((100vw - 80px) * 0.0505)
-          margin-left calc((100vw - 80px) * 0.0615)
+          margin-top vwpx(66)
+          margin-left vwpx(80)
           h2
-            font-size calc((100vw - 80px) * 0.0358)
+            font-size vwpx(26)
+        .link
+          margin-top vwpx(154)
     `}</style>
   </div>
 )
 
 const FeaturedWorkItem = ({ work }: { work: Entry }) => (
-  <div className="container">
+  <div className="work">
     <Link href={`/work/${work.slug}`}>
       <a>
-        <div className="image"><GradImg><img src={work.image} /></GradImg></div>
-        <div className="text">
+        <div className="image"><GradImg><img src={work.hero_image} /></GradImg></div>
+        <div className="white">
           <Grad><div className="date">{work.date}</div></Grad>
           <Grad><div className="title">{work.title}</div></Grad>
-          <Grad><div className="subtitle">{work.subtitle}</div></Grad>
-          <Grad><div className="overview">{work.overview}</div></Grad>
-          <Grad><div className="tags">
-            {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
-          </div></Grad>
         </div>
+        <Grad><div className="subtitle">{work.subtitle}</div></Grad>
+        <Grad><div className="overview">{work.overview}</div></Grad>
+        <Grad><div className="tags">
+          {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
+        </div></Grad>
       </a>
     </Link>
     <style jsx>{`
-      .container
+      @import 'lib/vw.styl'
+      .work
         position relative
-        background-repeat no-repeat
-        padding-top calc((100vw - 80px) * 0.047)
-        padding-left calc((100vw - 80px) * 0.477)
-        margin-bottom calc((100vw - 80px) * 0.062)
+        a
+          border none
+          padding 0
       .image
-        position absolute
-        top 0
-        left 0
         img
-          width calc((100vw - 80px) * 0.523328149)
-          height calc((100vw - 80px) * 0.294712286)
+          width vwpx(594)
+          height vwpx(334)
           object-fit cover
-      .text
+      .white
         position relative
+        display inline-block
         background-color white
-        padding-top calc((100vw - 80px) * 0.039)
-        padding-left calc((100vw - 80px) * 0.046)
-        padding-right calc((100vw - 80px) * 0.0613)
-        min-height calc((100vw - 80px) * (0.294712286 - 0.047 - 0.039))
-        font-size 0
+        margin-top -40px
+        margin-right 40px
+        padding-top 40px
+        padding-right 50px
       .date
         display inline-block
         overflow hidden
-        font-size 1.4rem
-        font-weight 200
+        font-size 1.2rem
+        font-weight 300
       .title
         display inline-block
         overflow hidden
-        margin-top 1.9rem
-        font-size calc((100vw - 80px) * 0.0373)
+        margin-top 1.7rem
+        font-size 2.8rem
         font-weight bold
         line-height 1.2em
       .subtitle
         display inline-block
         overflow hidden
-        margin-top 1.2rem
-        font-size calc((100vw - 80px) * 0.0173)
+        margin-top 1.5rem
+        font-size 1.5rem
         font-weight bold
         line-height 1.4em
       .overview
         display inline-block
         overflow hidden
-        margin-top 1.5rem
+        margin-top 0.4rem
         line-height 2em
         font-size 1.5rem
-        font-weight light
+        font-weight 300
       .tags
         display inline-block
         overflow hidden
-        margin-top 3rem
+        margin-top 1.7rem
     `}</style>
   </div>
 )
@@ -200,118 +184,97 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
 const FeaturedWorks = ({ works }: { works: Entry[] }) => (
   <div className="container">
     <Grad><h1>Featured Works</h1></Grad>
-    {works.map(work => <FeaturedWorkItem key={work.slug} work={work} />)}
+    <div className="items">
+      {works.map(work => <FeaturedWorkItem key={work.slug} work={work} />)}
+    </div>
     <div className="link">
-      <Link href="/work">
-        <a>All Works</a>
-      </Link>
+      <BlackButton text="All Works" link="/work" />
     </div>
     <style jsx>{`
+      @import 'lib/vw.styl'
       .container
-        margin-top calc((100vw - 80px) * 0.065)
+        margin-top vwpx(92)
       h1
         display inline-block
-        font-size calc((100vw - 80px) * 0.028)
-        font-weight bold
-        margin 0
-        margin-left -0.3rem
-        margin-bottom 7rem
+        margin-left vwpx(-3)
+        margin-bottom vwpx(73)
+      .items
+        display grid
+        grid-template-columns repeat(2, 1fr)
+        grid-gap vwpx(98)
       .link
         display flex
         justify-content flex-end
-        margin-top calc((100vw - 80px) * 0.06)
-        a
-          display flex
-          justify-content center
-          align-items center
-          color white
-          font-size 1.8rem
-          font-weight bold
-          letter-spacing 0.04em
-          width 256px
-          height 60px
-          background-color black
-          border none
+        margin-top 77px
     `}</style>
   </div>
 )
 
 const NewsItem = ({ data }: { data: Entry }) => (
-  <div className="container">
-    <GradImg><img src={data.image} width="256" height="144" /></GradImg>
-    <Grad><div className="date">{data.date}</div></Grad>
-    <Grad><div className="title">{data.title}</div></Grad>
+  <div className="news-item">
+    <Link href={`/news/${data.slug}`}>
+      <a>
+        <GradImg><img src={data.hero_image} width="256" height="144" /></GradImg>
+        <Grad><div className="date">{data.date}</div></Grad>
+        <Grad><div className="title">{data.title}</div></Grad>
+      </a>
+    </Link>
     <style jsx>{`
-      .container
-        width 18.740849195vw
-        margin-right 4.39238653vw
+      @import 'lib/vw.styl'
+      .news-item
         font-size 0
       img
-        width 18.740849195vw
-        height 10.541727672vw
+        width vwpx2(256, 160)
+        height vwpx2(144, 160)
         object-fit cover
         display block
       .date
         display inline-block
         overflow hidden
-        font-size 1.4rem
-        font-weight 200
-        margin-top 1.45em
+        font-size 1.2rem
+        font-weight 300
+        margin-top 2.3rem
       .title
         display inline-block
         overflow hidden
         font-size 1.5rem
         font-weight bold
-        margin-top 0.6em
-        line-height 2em
+        margin-top 1.1rem
+        line-height 2.4rem
     `}</style>
   </div>
 )
 
 const LatestNews = ({ news }: { news: Entry[] }) => (
-  <div className="container">
+  <div className="latest-news">
     <Grad><h1>Latest News</h1></Grad>
     <div className="items">
       {news.map(item => <NewsItem key={item.slug} data={item} />)}
     </div>
     <div className="link">
-      <Link href="/news">
-        <a>All News</a>
-      </Link>
+      <BlackButton text="All News" link="/news" />
     </div>
 
     <style jsx>{`
-      .container
-        margin-top 5.85vw
-        padding 5.85vw
+      @import 'lib/vw.styl'
+      .latest-news
+        margin-top vwpx(80)
+        padding vwpx2(80, 160) 80px
         background-color #F4F4F4
       h1
         display inline-block
         overflow hidden
-        font-size 2.56vw
-        letter-spacing 0.012em
-        margin 0
-        margin-left -0.18vw
+        margin-left vwpx_min(-3)
       .items
-        display flex
-        margin-top 3.65vw
+        display grid
+        grid-template-columns repeat(4, 1fr)
+        grid-gap vwpx2(60, 160)
+        margin-top vwpx(49)
       .link
         display flex
         justify-content flex-end
-        margin-top 5.05vw
-        margin-right -5.85vw
-        a
-          display flex
-          justify-content center
-          align-items center
-          color white
-          font-size 1.8rem
-          font-weight bold
-          letter-spacing 0.04em
-          width 256px
-          height 60px
-          background-color black
-          border none
+        margin-top 80px
+        margin-right -80px
     `}</style>
   </div>
 )
@@ -319,7 +282,7 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
 const IndexPage = ({ works, news }: { works: Entry[], news: Entry[] }) => (
   <Layout showHeader={false} footer={<LatestNews news={news} />}>
     <Showreel />
-    <Crossborder />
+    <Tagline />
     <FeaturedWorks works={works} />
   </Layout>
 )

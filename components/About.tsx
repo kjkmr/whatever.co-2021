@@ -15,53 +15,66 @@ type HeaderProps = {
 export const Header = ({ title, subtitle, desc, image, ty, iy }: HeaderProps) => {
   const router = useRouter()
   const locale = router.locale || router.defaultLocale!
+  console.log(desc)
   return (
     <div className={langStyle('header')}>
-      <div className="text" style={{ marginTop: `calc((100vw - 80px) * ${(ty && ty[locale] ? ty[locale] : 0) / (1366 - 80)})` }}>
-        <Grad><div className="t1">Whatever</div></Grad>
-        <Grad><div className="t2">{title}</div></Grad>
-        {subtitle != '-' ? <Grad><div className="t3" >{subtitle}</div></Grad> : null}
-        <div className="t4"><Grad><div dangerouslySetInnerHTML={{ __html: desc.replace(/\n/g, '<br />') }} /></Grad></div>
+      <div className="upper">
+        <div className="text" style={{ marginTop: `calc((100vw - 80px) * ${(ty && ty[locale] ? ty[locale] : 0) / (1366 - 80)})` }}>
+          <Grad><div className="t1">Whatever</div></Grad>
+          <Grad><div className="t2">{title}</div></Grad>
+          {subtitle != '-' ? <Grad><div className="t3" ><span className="hr" />{subtitle}</div></Grad> : null}
+        </div>
+        <div className="image" style={{ marginTop: `calc((100vw - 80px) * ${(iy && iy[locale] ? iy[locale] : 0) / (1366 - 80)})` }}>
+          <img src={image} alt="" />
+        </div>
       </div>
-      <div className="image" style={{ marginTop: `calc((100vw - 80px) * ${(iy && iy[locale] ? iy[locale] : 0) / (1366 - 80)})` }}>
-        <img src={image} alt="" />
-      </div>
+      <div className="desc" dangerouslySetInnerHTML={{ __html: desc.replace(/\n/g, '<br />') }} />
       <style jsx>{`
-        vwpx(px)
-          'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+        @import 'lib/vw.styl'
         .header
+          font-size 0
+          margin vwpx(55) vwpx(80) 0
+        .upper
           display flex
           justify-content space-between
-          font-size 0
-          margin 0
-          margin-top vwpx(22)
-          margin-left vwpx(40)
+          align-items center
+          margin-bottom vwpx(101)
         .text
           width vwpx(562)
+          margin-bottom 9px
         .t1
           display inline-block
-          margin-bottom vwpx(12)
-          font-size vwpx(32)
+          font-size vwpx(62)
           font-weight bold
+          margin 0
+          margin-left vwpx(2)
+          margin-bottom vwpx(8)
         .t2
           display inline-block
-          margin-left vwpx(-5)
-          margin-bottom vwpx(42)
-          font-size vwpx(140)
+          font-size vwpx(124)
           font-weight bold
+          margin 0
+          margin-left vwpx(-4)
+          margin-bottom vwpx(56)
         .t3
           display inline-block
-          margin-bottom vwpx(40)
           font-size vwpx(30)
           font-weight bold
-        .t4
-          font-size vwpx(18)
-          font-weight bold
-          line-height 2.15em
+          margin 0
+          .hr
+            display inline-block
+            border-top 1px solid green
+            width vwpx(70)
+            margin-right vwpx(27)
+            margin-bottom vwpx(9)
         .image
           img
-            width vwpx(564)
-            margin-right vwpx(80)
+            width vwpx(607)
+            margin-right vwpx(34)
+        .desc
+          font-size 1.8rem
+          font-weight 700
+          line-height 4.0rem
         .en
           &.header
             margin-top vwpx(44)

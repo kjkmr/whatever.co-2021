@@ -1,8 +1,9 @@
 import { GetStaticProps } from 'next'
-import Link from 'next/link'
 import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
+import BlackButton from 'components/BlackButton'
+import React from 'react'
 
 const Detail = ({ title }: { title: string }) => {
   const key = title.toLowerCase()
@@ -13,54 +14,37 @@ const Detail = ({ title }: { title: string }) => {
       <Grad><h1>{title}</h1></Grad>
       {subtitle != '-' ? <Grad><h2>{subtitle}</h2></Grad> : null}
       <Grad><p dangerouslySetInnerHTML={{ __html: t(`about_${key}_description`)?.replace('\n', '<br />') || '' }}></p></Grad>
-      <div className="more"><Grad><Link href={`/about/${key}`}><a>Learn more</a></Link></Grad></div>
+      <div className="more"><BlackButton text="Learn more" link={`/about/${key}`} /></div>
       <style jsx>{`
-        vwpx(px)
-          'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+        @import 'lib/vw.styl'
         .detail
           font-size 0
         h3
           display inline-block
           overflow hidden
-          font-size vwpx(28)
+          font-size 3.6rem
           margin 0
-          margin-left vwpx(-1)
         h1
           display inline-block
           overflow hidden
-          font-size vwpx(84)
+          font-size vwpx_min(102)
           margin 0
-          margin-top vwpx(9)
-          margin-bottom vwpx(19)
-          margin-left vwpx(-3)
+          margin-top vwpx_min(14)
+          margin-bottom vwpx_min(16)
+          margin-left vwpx_min(-3)
         h2
           display inline-block
           overflow hidden
-          font-size vwpx(24)
+          font-size vwpx_min(24)
           margin 0
-          margin-top vwpx(7)
+          margin-top vwpx_min(7)
         p
-          margin-top vwpx(21)
-          {/* margin-right vwpx(77) */}
+          margin 0
+          margin-top vwpx_min(21)
           font-size 1.5rem
           line-height 3.0rem
         .more
-          a
-            display inline-block
-            font-weight bold
-            font-size 2rem
-            border none
-            border-bottom 1px solid
-            background none
-            margin-top vwpx(24)
-            padding-bottom 6px
-          h1
-            margin-bottom vwpx(5)
-          p
-            font-size 1.6rem
-            line-height 3.0rem
-          .more a
-            margin-top vwpx(23)
+          margin-top 4.8rem
         .en
           h1
             margin-bottom vwpx(6)
@@ -78,21 +62,20 @@ const Genres = () => (
       <div className="detail"><Detail title="Genres" /></div>
     </div>
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .genres
         width 100%
-        margin-bottom vwpx(59)
+        margin-bottom vwpx(80)
       .inner
         display flex
         justify-content space-between
         align-items center
+        margin-left vwpx(40)
+        margin-right vwpx(80)
       .image img
-        width vwpx(483)
-        margin-left vwpx(80)
+        width vwpx(603)
       .detail
-        width vwpx(563)
-        padding-right vwpx(80)
+        margin-left vwpx(80)
       .en
         .detail
           padding-top vwpx(4)
@@ -102,38 +85,27 @@ const Genres = () => (
 
 const Workstyle = () => (
   <div className={langStyle('workstyle')}>
-    <hr />
     <div className="inner">
-      <div className="content"><Detail title="Workstyle" /></div>
+      <div className="detail"><Detail title="Workstyle" /></div>
       <div className="image"><GradImg><img src="/about/pict02.svg" /></GradImg></div>
     </div>
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .workstyle
         width 100%
-        margin-bottom vwpx(51)
-      hr
-        margin 0
-        margin-left vwpx(80)
-        margin-right vwpx(643)
-        padding 0
-        border none
-        border-top 1px solid #999999
+        margin-bottom vwpx(110)
       .inner
         display flex
         justify-content space-between
         align-items center
-        margin-top vwpx(63)
-        margin-left vwpx(80)
+        margin-left vwpx(43)
+        margin-right vwpx(80)
+      .detail
+        margin-right vwpx(80)
       .image img
-        width vwpx(484)
-        margin-right vwpx(79)
-      .content
-        width vwpx(564)
-        padding-bottom vwpx(15)
+        width vwpx(603)
       .en
-        .content
+        .detail
           padding-bottom vwpx(2)
         p
           margin-top vwpx(8)
@@ -144,38 +116,28 @@ const Workstyle = () => (
 
 const Location = () => (
   <div className={langStyle('location')}>
-    <hr />
     <div className="inner">
       <div className="image"><GradImg><img src="/about/pict03.svg" /></GradImg></div>
-      <div className="content"><Detail title="Location" /></div>
+      <div className="detail"><Detail title="Location" /></div>
     </div>
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .location
         width 100%
-        margin-bottom vwpx(165)
-      hr
-        margin 0
-        margin-left vwpx(643)
-        padding 0
-        border none
-        border-top 1px solid #999999
+        margin-bottom vwpx(170)
       .inner
         display flex
         justify-content space-between
         align-items center
-        margin-top vwpx(59)
+        margin-left vwpx(40)
+        margin-right vwpx(80)
       .image img
-        width vwpx(484)
-        margin-left vwpx(80)
-      .content
         width vwpx(563)
-        padding-right vwpx(80)
-        padding-bottom vwpx(18)
+      .detail
         font-size 0
+        margin-left vwpx(120)
       .en
-        .content
+        .detail
           padding-bottom vwpx(2)
         p
           margin-top vwpx(4)
@@ -206,28 +168,26 @@ const AboutPage = () => (
     <Location />
 
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .about
-        margin-top vwpx(93)
-        margin-bottom vwpx(126)
+        margin-top vwpx(94)
+        margin-bottom vwpx(150)
       .head
-        margin-bottom vwpx(57)
-        margin-left vwpx(40)
+        margin-bottom vwpx(66)
+        margin-left vwpx(81)
         font-size 0
         h1
           margin 0
           display inline-block
-          font-size vwpx(140)
-          line-height vwpx(152)
+          font-size vwpx(129)
           overflow hidden
           .q
             font-family 'Noto Sans JP'
       .text
-        margin-left vwpx(80)
-        font-size vwpx(28)
+        margin-left vwpx(118)
+        font-size vwpx(26)
         font-weight bold
-        line-height vwpx(37)
+        line-height vwpx(36)
         >div.p
           margin 0
           margin-bottom vwpx(42)

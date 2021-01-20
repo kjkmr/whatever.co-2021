@@ -2,11 +2,11 @@ import React from 'react'
 import { GetStaticProps } from 'next'
 import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
-import { Header, Footer, SectionTitle } from 'components/About'
+import { Header, Footer, SectionHeader } from 'components/About'
 
 const Section1 = () => (
   <div className={langStyle('section1')}>
-    <SectionTitle num="01" nx={-5} title={t('workstyle_1_title')!} tx={{ ja: -5, en: -4 }} ty={{ ja: 26, en: 26 }} />
+    <SectionHeader num="01" nx={-5} title={t('workstyle_1_title')!} tx={{ ja: -5, en: -4 }} ty={{ ja: 26, en: 26 }} />
     <div className="t">{t('workstyle_1_body')}</div>
     <style jsx>{`
       vwpx(px)
@@ -105,7 +105,7 @@ const Alliance = ({ logo, data, desc }: { logo: string, data: AllianceData, desc
 
 const Section2 = () => (
   <div className={langStyle('section2')}>
-    <SectionTitle num="02" nx={-5} title={t('workstyle_2_title')!} tx={{ ja: -3, en: -3 }} ty={{ ja: 28, en: 28 }} />
+    <SectionHeader num="02" nx={-5} title={t('workstyle_2_title')!} tx={{ ja: -3, en: -3 }} ty={{ ja: 28, en: 28 }} />
     <div className="t">{t('workstyle_2_body')}</div>
     <div className="alliance">
       {Object.keys(AllianceData).map(key => <Alliance key={key} logo={key} data={AllianceData[key]} desc={t(`workstyle_2_${key}`)!} />)}
@@ -258,7 +258,7 @@ const About = () => (
 
 const Section3 = () => (
   <div className={langStyle('section3')}>
-    <SectionTitle num="03" nx={-5} title={t('workstyle_3_title')!} tx={{ ja: -3, en: -3 }} ty={{ ja: 24, en: 24 }} />
+    <SectionHeader num="03" nx={-5} title={t('workstyle_3_title')!} tx={{ ja: -3, en: -3 }} ty={{ ja: 24, en: 24 }} />
     <div className="t">{t('workstyle_3_body')}</div>
     <Features />
     <About />

@@ -2,11 +2,11 @@ import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
-import { Header, Footer, SectionTitle } from 'components/About'
+import { Header, Footer, SectionHeader } from 'components/About'
 
 const Section1 = () => (
   <div className={langStyle('section1')}>
-    <SectionTitle num="01" nx={-5} tx={{ ja: -4, en: -4 }} ty={{ ja: 26 }} title={t('location_1_title')!} />
+    <SectionHeader num="01" nx={-5} tx={{ ja: -4, en: -4 }} ty={{ ja: 26 }} title={t('location_1_title')!} />
     <div className="t">{t('location_1_body')}</div>
     <h2>{t('location_1_inhouse')}<hr /></h2>
     <img className="logos1" src="/about/location/logos1@2x.png" alt="" />
@@ -101,7 +101,7 @@ const Member = ({ image, title, name, slug }: { image: string, title: string, na
 
 const Section2 = () => (
   <div className={langStyle('section2')}>
-    <SectionTitle num="02" nx={-4} title={t('location_2_title')!} tx={{ ja: -3, en: 5 }} ty={{ ja: 27, en: 26 }} />
+    <SectionHeader num="02" nx={-4} title={t('location_2_title')!} tx={{ ja: -3, en: 5 }} ty={{ ja: 27, en: 26 }} />
     <div className="t">{t('location_2_body')}</div>
     <div className="members">
       {t('location_2_members')?.split('\n\n').map(member => {

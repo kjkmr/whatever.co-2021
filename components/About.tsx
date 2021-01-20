@@ -15,7 +15,6 @@ type HeaderProps = {
 export const Header = ({ title, subtitle, desc, image, ty, iy }: HeaderProps) => {
   const router = useRouter()
   const locale = router.locale || router.defaultLocale!
-  console.log(desc)
   return (
     <div className={langStyle('header')}>
       <div className="upper">
@@ -63,7 +62,7 @@ export const Header = ({ title, subtitle, desc, image, ty, iy }: HeaderProps) =>
           margin 0
           .hr
             display inline-block
-            border-top 1px solid green
+            border-top 1px solid #707070
             width vwpx(70)
             margin-right vwpx(27)
             margin-bottom vwpx(9)
@@ -72,7 +71,7 @@ export const Header = ({ title, subtitle, desc, image, ty, iy }: HeaderProps) =>
             width vwpx(607)
             margin-right vwpx(34)
         .desc
-          font-size 1.8rem
+          font-size vwpx_min(18)
           font-weight 700
           line-height 4.0rem
         .en
@@ -139,41 +138,52 @@ export const Footer = ({ left, right }: { left: string, right: string }) => (
 type SectionTitleProps = {
   num: string
   title: string
+  body: string
   nx?: number
   tx?: { [locale: string]: number }
   ty?: { [locale: string]: number }
 }
 
-export const SectionTitle = ({ num, title, nx, tx, ty }: SectionTitleProps) => {
+export const SectionHeader = ({ num, title, body, nx, tx, ty }: SectionTitleProps) => {
   const router = useRouter()
   const locale = router.locale || router.defaultLocale!
   const numStyle = {
-    marginLeft: `calc((100vw - 80px) * ${(nx || 0) / (1366 - 80)})`
+    transform: `translateX(calc((100vw - 80px) * ${(nx || -7) / (1366 - 80)}))`
   }
   const titleStyle = {
-    marginTop: `calc((100vw - 80px) * ${(17 + (ty && ty[locale] ? ty[locale] : 0)) / (1366 - 80)})`,
-    marginLeft: `calc((100vw - 80px) * ${(78 + (tx && tx[locale] ? tx[locale] : 0)) / (1366 - 80)})`,
+    marginTop: `calc((100vw - 80px) * ${(4 + (ty && ty[locale] ? ty[locale] : 0)) / (1366 - 80)})`,
+    // marginLeft: `calc((100vw - 80px) * ${(7 + (tx && tx[locale] ? tx[locale] : 0)) / (1366 - 80)})`,
   }
   return (
-    <div className={langStyle('head')}>
-      <div className="num" style={numStyle}>{num}</div>
-      <div className="title" style={titleStyle} dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, '<br />') }} />
+    <div className={langStyle('header')}>
+      <div className="row">
+        <div className="num" style={numStyle}>{num}</div>
+        <div className="title" style={titleStyle} dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, '<br />') }} />
+      </div>
+      <div className="body">
+        {body?.split('\n').map((line, index) => <Grad key={index}><p key={index}>{line}</p></Grad>)}
+      </div>
       <style jsx>{`
         @import 'lib/vw.styl'
-        .head
-          position relative
-          z-index 1
+        .row
           display flex
-          margin-left vwpx(-2)
         .num
-          font-size vwpx(180)
+          width vwpx_min(252)
+          font-size vwpx_min(180)
           font-weight bold
           -webkit-text-stroke 1px black
           -webkit-text-fill-color transparent
         .title
-          font-size vwpx(30)
+          font-size vwpx_min(30)
           font-weight bold
           line-height 1.81em
+        .body
+          margin-top vwpx(-94)
+          margin-left vwpx_min(252)
+          margin-bottom vwpx(90)
+          line-height 3.0rem
+          p
+            margin-top 2.0rem
         .en
           .title
             font-size vwpx(34)

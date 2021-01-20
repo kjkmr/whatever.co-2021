@@ -131,12 +131,12 @@
       ""
     ],
     "genres_3_inhouse_title": [
-      "自社プロダクト開発",
+      "自社プロダクト開発：",
       "In-house product development",
       ""
     ],
     "genres_3_inhouse_body": [
-      "ロジックだけで考えたら実現できると到底思えないような突飛なアイデアや、ビジネスになるかどうかわからないけど実現したら世の中がちょっと幸せになるようなアイデアを、なんちゃってのプロトタイプや R&D だけで終わらせることなく、自分たちの事業として実現し社会に問うという実証実験を繰り返しています。",
+      "ロジックだけで考えたら実現できると到底思えないような突飛なアイデアや、ビジネスになるかどうかわからないけど実現したら世の中がちょっと幸せになるようなアイデアを、なんちゃってのラピッドプロトタイピングやR&Dだけで終わらせることなく、自分たちの事業として実現し社会に問うという実証実験を繰り返しています。",
       "We don’t stop at just prototypes and R&D, but rather, we do not stop at just prototypes and R&D. We do not stop at outlandish ideas that may not seem feasible based on logic alone, or ideas that may or may not be viable for business but would make the world a little happier if they were realized.",
       ""
     ],
@@ -146,7 +146,7 @@
       ""
     ],
     "genres_3_brands_title": [
-      "ブランドとの共同開発",
+      "ブランドとの共同開発：",
       "Joint development with brands",
       ""
     ],
@@ -161,7 +161,7 @@
       ""
     ],
     "genres_3_investment_title": [
-      "クリエイティブ投資",
+      "クリエイティブ投資：",
       "Creative Investment",
       ""
     ],
@@ -171,7 +171,7 @@
       ""
     ],
     "genres_3_investment_items": [
-      "Cotodama（Lyric Speaker）\nhttps://lyric-speaker.com/\nSIX，WOW，THE GUILD との共同出資で設立したジョイントベンチャー。CTO として Saqoosha が参画し、Lyric Speaker のモーショングラフィックや演出などのソフトウェア開発を担当。\n\nYummy Sake\nhttps://yummysake.jp/\nAI × ブラインドテイスティングで好みの日本酒を判別するサービス。CTO として貴田が参画し、アルゴリズムの開発、出資、事業戦略を支援。\n\nCradle\nhttps://cradle.care/\nSputniko! 氏が立ち上げた卵子凍結コンサルティングサービス。CCO として川村が参画し、ブランド全体のクリエイティブディレクションを担当。",
+      "Cotodama（Lyric Speaker）\nhttps://lyric-speaker.com/\nSIX，WOW，THE GUILD との共同出資で設立したジョイントベンチャー。CTO として Saqoosha が参画し、Lyric Speaker のモーショングラフィックや演出などのソフトウェア開発を担当。\n\nYummy Sake\nhttps://yummysake.jp/\nAI × ブラインドテイスティングで好みの日本酒を判別するサービス。CTO として貴田が参画し、アルゴリズムの開発、出資、事業戦略を支援。",
       "Cotodama（Lyric Speaker）\nhttps://lyric-speaker.com/\nSaqoosha is a joint venture with SIX, WOW and THE GUILD, with Saqoosha taking part as CTO and in charge of software development for Lyric Speaker’s motion graphics and direction.\n\nYummy Sake\nhttps://yummysake.jp/\nA service that uses AI and blind tasting to identify the sake you like, with Takata joining as CTO to support algorithm development, investment and business strategy.\n\nCradle\nhttps://cradle.care/\nKawamura joined Sputniko as CCO and was in charge of the overall creative direction of the brand.",
       ""
     ],

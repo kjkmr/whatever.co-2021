@@ -114,7 +114,7 @@ const Section2 = () => (
 const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: string }) => {
   let image = link
   let target = ''
-  if (link.startsWith('http')) {
+  if (link?.startsWith('http')) {
     image = link.split('/')[2].replace(/[^\w]+/g, '-')
     target = '_blank'
   } else {

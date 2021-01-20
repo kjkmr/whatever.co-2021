@@ -137,8 +137,8 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
           border none
           display block
         img
-          width vwpx2(362, 160)
-          height vwpx2(204, 160)
+          width vwpx2(335, 160)
+          height vwpx2(189, 160)
           object-fit cover
         .name
           font-size 1.8rem
@@ -184,7 +184,7 @@ const WorkList = ({ title, body, items }: { title: string, body: string, items: 
       .items
         display grid
         grid-template-columns repeat(3, 1fr)
-        grid-gap vwpx2(47, 160) vwpx2(60, 160)
+        grid-gap vwpx2(38, 160) vwpx2(60, 160)
     `}</style>
   </div>
 )
@@ -208,7 +208,7 @@ const Section3 = () => (
         position relative
         margin-left vwpx(80)
         margin-right vwpx(80)
-        margin-bottom 190px
+        margin-bottom vwpx(190)
       .images
         position relative
         height vwpx2(1113, 160)

@@ -10,6 +10,7 @@ let templateName: string
 // templateName = 'Top_1366'
 // templateName = 'About_index'
 // templateName = 'About_detail_01'
+// templateName = 'About_detail_02'
 // templateName = 'News_detail'
 
 type Props = {
@@ -25,7 +26,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
   const templateStyle: { [prop: string]: string } = {}
   if (templateName) {
     templateStyle.backgroundImage = `url(/_/${templateName}_${useRouter().locale!}.png)`
-    templateStyle.backgroundPosition = 'top 18px left'
+    templateStyle.backgroundPosition = 'top -24px left'
   }
   return (
     <div>

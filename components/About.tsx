@@ -4,30 +4,50 @@ import { langStyle } from 'lib/i18n'
 import { Grad } from './Grad'
 
 type HeaderProps = {
+  headerMargin?: number
   title: string
+  titleSize?: number
+  titleMargin?: number
   subtitle: string
   desc: string
   image: string
+  imageWidth?: number
   ty?: { [locale: string]: number }
   iy?: { [locale: string]: number }
 }
 
-export const Header = ({ title, subtitle, desc, image, ty, iy }: HeaderProps) => {
+export const Header = (props: HeaderProps) => {
+  const { ty, iy } = props
   const router = useRouter()
   const locale = router.locale || router.defaultLocale!
+  const headerStyle = {
+    marginTop: `calc((100vw - 80px) * ${(props.headerMargin || 55) / (1366 - 80)})`,
+    marginBottom: `calc((100vw - 80px) * ${(props.headerMargin || 55) / (1366 - 80)})`,
+  }
+  const textStyle = {
+    marginTop: `calc((100vw - 80px) * ${(ty && ty[locale] ? ty[locale] : 0) / (1366 - 80)})`,
+  }
+  const titleStyle = {
+    fontSize: `calc((100vw - 80px) * ${(props.titleSize || 124) / (1366 - 80)})`,
+    marginTop: `calc((100vw - 80px) * ${(props.titleMargin || 8) / (1366 - 80)})`,
+  }
+  const imageStyle = {
+    marginTop: `calc((100vw - 80px) * ${(iy && iy[locale] ? iy[locale] : 0) / (1366 - 80)})`,
+    width: `calc((100vw - 80px) * ${(props.imageWidth || 607) / (1366 - 80)})`,
+  }
   return (
-    <div className={langStyle('header')}>
+    <div className={langStyle('header')} style={headerStyle}>
       <div className="upper">
-        <div className="text" style={{ marginTop: `calc((100vw - 80px) * ${(ty && ty[locale] ? ty[locale] : 0) / (1366 - 80)})` }}>
+        <div className="text" style={textStyle}>
           <Grad><div className="t1">Whatever</div></Grad>
-          <Grad><div className="t2">{title}</div></Grad>
-          {subtitle != '-' ? <Grad><div className="t3" ><span className="hr" />{subtitle}</div></Grad> : null}
+          <Grad><div className="t2" style={titleStyle}>{props.title}</div></Grad>
+          {props.subtitle != '-' ? <Grad><div className="t3" ><span className="hr" />{props.subtitle}</div></Grad> : null}
         </div>
-        <div className="image" style={{ marginTop: `calc((100vw - 80px) * ${(iy && iy[locale] ? iy[locale] : 0) / (1366 - 80)})` }}>
-          <img src={image} alt="" />
+        <div className="image" >
+          <img src={props.image} alt="" style={imageStyle} />
         </div>
       </div>
-      <div className="desc" dangerouslySetInnerHTML={{ __html: desc.replace(/\n/g, '<br />') }} />
+      <div className="desc" dangerouslySetInnerHTML={{ __html: props.desc.replace(/\n/g, '<br />') }} />
       <style jsx>{`
         @import 'lib/vw.styl'
         .header
@@ -47,12 +67,12 @@ export const Header = ({ title, subtitle, desc, image, ty, iy }: HeaderProps) =>
           font-weight bold
           margin 0
           margin-left vwpx(2)
-          margin-bottom vwpx(8)
         .t2
           display inline-block
-          font-size vwpx(124)
+          {/* font-size vwpx(124) */}
           font-weight bold
           margin 0
+          margin-top vwpx(8)
           margin-left vwpx(-4)
           margin-bottom vwpx(56)
         .t3

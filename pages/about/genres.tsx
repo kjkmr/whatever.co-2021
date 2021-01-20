@@ -42,7 +42,7 @@ const Section1 = () => (
         margin 0
         border 0
         border-top 1px solid green
-        width vwpx(252)
+        width vwpx_min(252)
         margin-bottom vwpx(105)
       .images
         position relative

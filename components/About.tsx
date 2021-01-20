@@ -151,36 +151,34 @@ export const SectionTitle = ({ num, title, nx, tx, ty }: SectionTitleProps) => {
     marginLeft: `calc((100vw - 80px) * ${(nx || 0) / (1366 - 80)})`
   }
   const titleStyle = {
-    marginTop: `calc((100vw - 80px) * ${(ty && ty[locale] ? ty[locale] : 0) / (1366 - 80)})`,
-    marginLeft: `calc((100vw - 80px) * ${(45 + (tx && tx[locale] ? tx[locale] : 0)) / (1366 - 80)})`
+    marginTop: `calc((100vw - 80px) * ${(17 + (ty && ty[locale] ? ty[locale] : 0)) / (1366 - 80)})`,
+    marginLeft: `calc((100vw - 80px) * ${(78 + (tx && tx[locale] ? tx[locale] : 0)) / (1366 - 80)})`,
   }
   return (
     <div className={langStyle('head')}>
       <div className="num" style={numStyle}>{num}</div>
       <div className="title" style={titleStyle} dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, '<br />') }} />
       <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
-      .head
-        position relative
-        z-index 1
-        display flex
-        padding-top vwpx(50)
-      .num
-        font-size vwpx(108)
-        font-weight bold
-        -webkit-text-stroke 1px black
-        -webkit-text-fill-color transparent
-        margin-top vwpx(5)
-      .title
-        font-size vwpx(30)
-        font-weight bold
-        line-height 1.81em
-      .en
+        @import 'lib/vw.styl'
+        .head
+          position relative
+          z-index 1
+          display flex
+          margin-left vwpx(-2)
+        .num
+          font-size vwpx(180)
+          font-weight bold
+          -webkit-text-stroke 1px black
+          -webkit-text-fill-color transparent
         .title
-          font-size vwpx(34)
-          line-height 1.6em
-    `}</style>
+          font-size vwpx(30)
+          font-weight bold
+          line-height 1.81em
+        .en
+          .title
+            font-size vwpx(34)
+            line-height 1.6em
+      `}</style>
     </div>
   )
 }

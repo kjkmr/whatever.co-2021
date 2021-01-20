@@ -7,107 +7,103 @@ import { Grad } from 'components/Grad'
 
 const Section1 = () => (
   <div className={langStyle('section1')}>
-    <SectionTitle num="01" nx={-5} tx={{ ja: -4, en: -4 }} ty={{ en: -3 }} title={t('genres_1_title')!} />
+    <hr />
+    <SectionTitle num="01" nx={-5} tx={{}} ty={{}} title={t('genres_1_title')!} />
     <div className="t">
       {t('genres_1_body')!.split('\n').map((line, index) => <Grad key={index}><p key={index}>{line}</p></Grad>)}
     </div>
-    <Grad><h2>{t('genres_1_example_title')}</h2></Grad>
-    <ul>
-      {t('genres_1_example_items')!.split('\n\n').map((item, index) => {
-        const [title, desc] = item.split('\n')
-        return <Grad key={index}><li key={index}><span>{title}</span><br />{desc}</li></Grad>
-      })}
-    </ul>
     <div className="images">
-      <img src="/about/genres/image@2x.jpg" alt="" className="i1" />
-      <img src="/about/genres/image-1@2x.jpg" alt="" className="i2" />
-      <img src="/about/genres/image-2@2x.jpg" alt="" className="i3" />
-      <img src="/about/genres/image-3@2x.jpg" alt="" className="i4" />
-      <img src="/about/genres/image-4@2x.jpg" alt="" className="i5" />
+      <img src="/about/genres/01_1@2x.jpg" alt="" className="i1" />
+      <img src="/about/genres/01_2@2x.jpg" alt="" className="i2" />
+      <img src="/about/genres/01_3@2x.jpg" alt="" className="i3" />
+      <img src="/about/genres/01_4@2x.jpg" alt="" className="i4" />
+    </div>
+    <Grad><h2>{t('genres_1_example_title')}</h2></Grad>
+    <div className="example-items">
+      {t('genres_1_example_items')!.split('\n\n').map((item, index) => {
+        const [title, ...desc] = item.split('\n')
+        return (
+          <div className="item">
+            <div className="title">- {title}</div>
+            <ul>
+              {desc.map((d, i) => (<li key={i}>{d}</li>))}
+            </ul>
+            <div>など</div>
+          </div>
+        )
+      })}
     </div>
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .section1
-        position relative
-        min-height vwpx(1293)
-        margin-top vwpx(143)
+        margin-top vwpx(106)
         margin-left vwpx(80)
         margin-bottom vwpx(88)
+      hr
+        margin 0
+        border 0
+        border-top 1px solid green
+        width vwpx(252)
+        margin-bottom vwpx(105)
       .t
-        width vwpx(523)
+        margin-top vwpx(-81)
+        margin-left vwpx(252)
+        margin-right vwpx(80)
+        margin-bottom vwpx(90)
         line-height 3.0rem
-        margin-top vwpx(43)
-        margin-bottom vwpx(87)
         p
-          margin-top vwpx(30)
+          margin-top 2.0rem
+      .images
+        position relative
+        height vwpx2(1230, 160)
+        margin-bottom vwpx2(94, 160)
+        img
+          position absolute
+          &.i1
+            top 0
+            left 0
+            width vwpx2(912, 160)
+          &.i2
+            top vwpx2(435, 160)
+            right 0
+            width vwpx2(502, 160)
+          &.i3
+            top vwpx2(641, 160)
+            left vwpx2(140, 160)
+            width vwpx2(418, 160)
+          &.i4
+            top vwpx2(829, 160)
+            right vwpx2(165, 160)
+            width vwpx2(433, 160)
       h2
         font-size vwpx(20)
         font-weight bold
         margin 0
-        margin-bottom vwpx(36)
+        margin-bottom vwpx(43)
         padding 0
         display inline-block
         overflow hidden
-      ul
-        margin 0
-        margin-left 10px
-        padding 0
-        width 510px
-        list-style-type '- '
-        li
-          margin 0
-          margin-bottom 24px
-          padding 0
-          font-size 1.5rem
-          line-height 3.2rem
-          >span
+      .example-items
+        display flex
+        flex-wrap wrap
+        align-items flex-start
+        margin-right 80px
+        .item
+          border-left 1px solid #B4B4B4
+          padding-top 1.7rem
+          padding-bottom 1.7rem
+          padding-left 38px
+          width 375px
+          box-sizing border-box
+          .title
             font-weight bold
-      .images img
-        position absolute
-        &.i1
-          top vwpx(-21)
-          right 0
-          width vwpx(523)
-        &.i2
-          top vwpx(345)
-          right vwpx(208)
-          width vwpx(231)
-        &.i3
-          top vwpx(510)
-          right vwpx(80)
-          width vwpx(185)
-        &.i4
-          top vwpx(762)
-          right vwpx(142)
-          width vwpx(461)
-        &.i5
-          top vwpx(982)
-          right 0
-          width vwpx(231)
-      .en
-        &.section1
-          margin-top vwpx(147)
-        .t
-          margin-top vwpx(52)
-          margin-bottom vwpx(88)
-          font-size 1.6rem
-        h2
-          font-size vwpx(24)
-        ul li
-          font-size 1.6rem
-          line-height 2em
-        .images img
-          &.i1
-            top vwpx(24)
-          &.i2
-            top vwpx(390)
-          &.i3
-            top vwpx(555)
-          &.i4
-            top vwpx(810)
-          &.i5
-            top vwpx(1030)
+            margin-bottom 2.0rem
+          ul
+            margin 0
+            padding 0
+            li
+              list-style '・' inside
+              margin-bottom 0.9rem
     `}</style>
   </div>
 )

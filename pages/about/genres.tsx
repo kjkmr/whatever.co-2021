@@ -41,7 +41,7 @@ const Section1 = () => (
       hr
         margin 0
         border 0
-        border-top 1px solid green
+        border-top 1px solid #B4B4B4
         width vwpx_min(252)
         margin-bottom vwpx(105)
       .images

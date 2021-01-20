@@ -18,7 +18,7 @@ const Section1 = () => (
       hr
         margin 0
         border 0
-        border-top 1px solid green
+        border-top 1px solid #B4B4B4
         width vwpx_min(252)
         margin-bottom vwpx(105)
     `}</style>
@@ -133,14 +133,13 @@ const Features = () => (
       .items
         margin-top vwpx(37)
         display grid
-        grid-template-columns 60px auto
+        grid-template-columns 70px auto
         grid-gap 3.4rem 0
       .name
         font-size 1.8rem
         font-weight bold
         line-height 3.0rem
       .desc
-        margin-left 1.0rem
         line-height 3.0rem
     `}</style>
   </div>

@@ -51,8 +51,13 @@ const NewsDetail = ({ entry }: { entry: Entry }) => (
 export default NewsDetail
 
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-  const entries = await getNews()
-  const paths = (locales || ['ja']).map(locale => entries.map((m) => ({ params: { slug: m.slug }, locale }))).flat()
+  const entries = await Promise.all(locales!.map(async (locale) => {
+    const entries = await getNews(100, locale)
+    return { locale, entries }
+  }))
+  const paths = entries.map(({ entries, locale }) => {
+    return entries.map((entry) => ({ params: { slug: entry.slug }, locale }))
+  }).flat()
   return {
     paths,
     fallback: false

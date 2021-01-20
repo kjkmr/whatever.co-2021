@@ -1,5 +1,8 @@
 vwpx(px)
   'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
 
+vwpx_min(px)
+  'max(calc((100vw - 80px) * %s), %srem)' % ((px / (1366 - 80)) (px / 10))
+
 vwpx2(px, margin)
   'calc((100vw - %spx) * %s)' % (margin (px / (1366 - margin)))

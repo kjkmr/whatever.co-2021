@@ -7,7 +7,8 @@ import Header from 'components/Header'
 import Footer from 'components/Footer'
 
 let templateName: string
-// templateName = 'About_detail_01'
+// templateName = 'Top_1366'
+// templateName = 'News_detail'
 
 type Props = {
   showHeader?: boolean
@@ -22,7 +23,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
   const templateStyle: { [prop: string]: string } = {}
   if (templateName) {
     templateStyle.backgroundImage = `url(/_/${templateName}_${useRouter().locale!}.png)`
-    templateStyle.backgroundPosition = 'top -3px left'
+    templateStyle.backgroundPosition = 'top 61px left'
   }
   return (
     <div>
@@ -105,8 +106,14 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           font-size 1.5rem
           font-weight 200
           color black
+        h1
+          font-size vwpx_min(36)
+          font-weight bold
+          margin 0
         h2
-          font-size vwpx(24)
+          font-size vwpx_min(24)
+          font-weight bold
+          margin 0
         p
           margin 2em 0
           img

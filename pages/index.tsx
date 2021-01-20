@@ -4,32 +4,9 @@ import Link from 'next/link'
 import { Entry, Tag, getNews, getWorksByTag } from 'lib/api'
 import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
+import BlackButton from 'components/BlackButton'
 import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
-
-const Button = ({ text, link }: { text: string, link: string }) => (
-  <>
-    <Link href={link}>
-      <a>{text}</a>
-    </Link>
-    <style jsx>{`
-      a
-        display flex
-        justify-content center
-        align-items center
-        color white
-        font-size 1.8rem
-        font-weight bold
-        letter-spacing 0.04em
-        box-sizing border-box
-        width 256px
-        height 60px
-        padding-top 4px
-        background-color black
-        border none
-  `}</style>
-  </>
-)
 
 const Showreel = () => {
   const [scrollY, setScrollY] = useState(0)
@@ -87,7 +64,7 @@ const Tagline = () => (
       {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index}><h2>{line}</h2></Grad>)}
     </div>
     <div className="link">
-      <Button text="Learn more" link="/about" />
+      <BlackButton text="Learn more" link="/about" />
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -211,7 +188,7 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
       {works.map(work => <FeaturedWorkItem key={work.slug} work={work} />)}
     </div>
     <div className="link">
-      <Button text="All Works" link="/work" />
+      <BlackButton text="All Works" link="/work" />
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -275,7 +252,7 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
       {news.map(item => <NewsItem key={item.slug} data={item} />)}
     </div>
     <div className="link">
-      <Button text="All News" link="/news" />
+      <BlackButton text="All News" link="/news" />
     </div>
 
     <style jsx>{`

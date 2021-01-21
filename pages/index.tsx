@@ -18,7 +18,7 @@ const Showreel = () => {
   return (
     <div className="showreel">
       <div className="video" style={{ height: `calc((100vh - 40px) - ${scrollY}px)` }}>
-        <video src="/index/reel-preview.mp4" autoPlay={true} loop></video>
+        <video src="/index/reel-preview.mp4" autoPlay={true} loop muted></video>
       </div>
       <button >Watch Reel</button>
       <style jsx>{`

@@ -1,7 +1,7 @@
 import { useCallback, SyntheticEvent } from 'react'
 
 const COLORS = ["#ff2300", "#ff9201", "#ffeb00", "#89e82b", "#00c745", "#29ebfe", "#0d44fb", "#a725fc", "#fd1eba"];
-const getColors = (): [string, string] => {
+export const getColors = (): [string, string] => {
   const i = Math.floor(Math.random() * COLORS.length)
   let j
   do {

@@ -5,21 +5,23 @@ import { Grad, GradImg } from 'components/Grad'
 
 
 const LargeWork = ({ work }: { work: Entry }) => (
-  <div className="large-work">
-    <Link href={`/work/${work.slug}`}>
-      <a>
-        <div className="image">
-          <GradImg><img src={work.hero_image} /></GradImg>
-        </div>
-      </a>
-    </Link>
-    <div className="text">
-      <Grad><div className="date">{work.date}</div></Grad>
-      <Grad><div className="title"><Link href={`/work/${work.slug}`}><a dangerouslySetInnerHTML={{ __html: work.title }}></a></Link></div></Grad>
-      <Grad><div className="head">{'NY発の未来の日用品店'}</div></Grad>
-      <Grad><div className="tags">
-        {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
-      </div></Grad>
+  <>
+    <div className="large-work">
+      <Link href={`/work/${work.slug}`}>
+        <a>
+          <div className="image">
+            <GradImg><img src={work.hero_image} /></GradImg>
+          </div>
+        </a>
+      </Link>
+      <div className="text">
+        <Grad><div className="date">{work.date}</div></Grad>
+        <Grad><div className="title"><Link href={`/work/${work.slug}`}><a dangerouslySetInnerHTML={{ __html: work.title }}></a></Link></div></Grad>
+        {work.subtitle ? (<Grad><div className="head">{work.subtitle}</div></Grad>) : null}
+        <Grad><div className="tags">
+          {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
+        </div></Grad>
+      </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -60,26 +62,28 @@ const LargeWork = ({ work }: { work: Entry }) => (
         overflow hidden
         margin-top 2.5rem
     `}</style>
-  </div>
+  </>
 )
 
 const SmallWork = ({ work }: { work: Entry }) => (
-  <div className="small-work">
-    <Link href={`/work/${work.slug}`}>
-      <a>
-        <div className="image">
-          <GradImg><img src={work.hero_image} /></GradImg>
-        </div>
-        <div className="text">
-          <Grad><div className="date">{work.date}</div></Grad>
-          <Grad><div className="title" dangerouslySetInnerHTML={{ __html: work.title }} /></Grad>
-          <Grad><div className="head">{'未来のリモート観戦席'}</div></Grad>
-          <Grad><div className="tags">
-            {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
-          </div></Grad>
-        </div>
-      </a>
-    </Link>
+  <>
+    <div className="small-work">
+      <Link href={`/work/${work.slug}`}>
+        <a>
+          <div className="image">
+            <GradImg><img src={work.hero_image} /></GradImg>
+          </div>
+          <div className="text">
+            <Grad><div className="date">{work.date}</div></Grad>
+            <Grad><div className="title" dangerouslySetInnerHTML={{ __html: work.title }} /></Grad>
+            {work.subtitle ? (<Grad><div className="head">{work.subtitle}</div></Grad>) : null}
+            <Grad><div className="tags">
+              {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
+            </div></Grad>
+          </div>
+        </a>
+      </Link>
+    </div>
     <style jsx>{`
       vwpx(px)
         'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
@@ -95,7 +99,7 @@ const SmallWork = ({ work }: { work: Entry }) => (
       .text
         position relative
         margin-top 2.0rem
-        margin-right 2.0rem
+        margin-right vwpx(20)
         font-size 0
       .date
         display inline-block
@@ -117,7 +121,7 @@ const SmallWork = ({ work }: { work: Entry }) => (
         overflow hidden
         margin-top 1.7rem
     `}</style>
-  </div>
+  </>
 )
 
 
@@ -127,27 +131,27 @@ type WorkListProps = {
 }
 
 export const WorkList = ({ filter, works }: WorkListProps) => (
-  <div className="works">
-    {works?.map(w => {
-      const tags = w.tags?.map(t => t.slug)
-      if (filter == "all") {
-        if (tags?.includes('featured')) {
-          return <LargeWork key={w.slug} work={w} />
+  <>
+    <div className="works">
+      {works?.map(w => {
+        const tags = w.tags?.map(t => t.slug)
+        if (filter == "all") {
+          if (tags?.includes('featured')) {
+            return <LargeWork key={w.slug} work={w} />
+          } else {
+            return <SmallWork key={w.slug} work={w} />
+          }
         } else {
           return <SmallWork key={w.slug} work={w} />
         }
-      } else {
-        return <SmallWork key={w.slug} work={w} />
-      }
-    })}
-
+      })}
+    </div>
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .works
         display grid
         grid-template-columns repeat(3, 1fr)
         column-gap vwpx(77)
     `}</style>
-  </div>
+  </>
 )

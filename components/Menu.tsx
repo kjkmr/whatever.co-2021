@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import classNames from 'classnames/bind'
+import LanguageSelector from 'components/LanguageSelector'
 import ContactForm from 'components/ContactForm'
 import SNSButtons from 'components/SNSButtons'
 
@@ -20,6 +21,7 @@ const Menu = () => {
           <li><Link href="/contact"><a onClick={onclick}>Contact</a></Link></li>
         </ul>
         <div className="contact">
+          <div className="langselect"><LanguageSelector activeColor="white" inactiveColor="#666666" separator="  /  " /></div>
           <ContactForm />
           <div className="sns"><SNSButtons /></div>
         </div>
@@ -30,6 +32,7 @@ const Menu = () => {
       </button>
 
       <style jsx>{`
+        @import 'lib/vw.styl'
         .container
           position fixed
           z-index 10000
@@ -49,7 +52,7 @@ const Menu = () => {
           width calc(100vw - 205px * 2)
           height calc(100vh - 152px * 2)
           padding 152px 205px
-          {/* background-image url(/_/menu_en.png)
+          {/* background-image url(/_/menu_ja.png)
           background-repeat no-repeat */}
           background-color #333333
           ul
@@ -61,17 +64,22 @@ const Menu = () => {
             margin 0
             margin-bottom 47px
             padding 0
-            font-size 36px
+            font-size vwpx_min(36)
             font-weight bold
             &:first-child
-              margin-bottom 57px
+              margin-bottom vwpx_min(57)
             a
               color white
               border none
+          .langselect
+            font-size 1.4rem
+            margin-top 5px
+            letter-spacing 0.06rem
+            margin-bottom 115px
           .sns
             position absolute
             right 205px
-            bottom 156px
+            bottom 152px
         .button
           position relative
           z-index 1

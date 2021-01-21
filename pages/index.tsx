@@ -170,7 +170,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
         display inline-block
         overflow hidden
         margin-top 0.4rem
-        margin-right 3.0rem
+        margin-right vwpx(30)
         line-height 2em
         font-size 1.5rem
         font-weight 300

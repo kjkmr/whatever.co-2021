@@ -43,7 +43,7 @@ const NewsDetail = ({ entry }: { entry: Entry }) => (
         font-size 1.5rem
         line-height 3.0rem
         max-width 900px
-        margin 95px auto
+        margin 65px auto 95px
     `}</style>
   </Layout >
 )

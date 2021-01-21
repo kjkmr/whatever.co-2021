@@ -93,7 +93,7 @@ export const Header = (props: HeaderProps) => {
         .desc
           font-size vwpx_min(18)
           font-weight 700
-          line-height 4.0rem
+          line-height vwpx_min(40)
         .en
           &.header
             margin-top vwpx(44)

@@ -9,27 +9,26 @@ const Head = () => (
     {t('contact_title')?.split('\n').map((line, index) => <Grad key={index}><div>{line}</div></Grad>)}
     <div className="mailto"><GradImg><a href="mailto:hello@whatever.co">hello@whatever.co</a></GradImg></div>
     <style jsx>{`
-      vwpx(px)
-        'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .head
         position relative
-        margin-top vwpx(137)
-        margin-left vwpx(39)
+        margin-top vwpx(189)
+        margin-left vwpx(80)
         font-size 0
         >img
           position absolute
-          top vwpx(-140)
-          right vwpx(-15)
-          width vwpx(745.69)
+          top vwpx(-184)
+          right vwpx(-24)
+          width vwpx(900)
         div
           display inline-block
-          font-size vwpx(38)
+          font-size vwpx(30)
           font-weight bold
-          line-height vwpx(60)
+          line-height vwpx(52)
       .mailto
         width vwpx(300)
         height vwpx(80)
-        margin-top vwpx(67)
+        margin-top vwpx(47)
         background-color black
         a
           display flex
@@ -58,8 +57,7 @@ const Address = ({ data }: { data: any }) => (
     {data.phone != '-' ? <Grad><div className="phone">{data.phone}</div></Grad> : null}
     {data.representative != '-' ? <Grad><div className="repr">{data.representative}</div></Grad> : null}
     <style jsx>{`
-      vwpx(px)
-          'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+      @import 'lib/vw.styl'
       .container
         font-size 0
       .region
@@ -94,7 +92,7 @@ const ContactPage = () => {
     return data
   })
   return (
-    <Layout title="Contact">
+    <Layout title="Contact" side="Contact">
       <Head />
       <div className="address">
         {addresses.map((data: any) => <Address key={data.name} data={data} />)}
@@ -108,21 +106,19 @@ const ContactPage = () => {
         </div>
       </div>
       <style jsx>{`
-        vwpx(px)
-          'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
+        @import 'lib/vw.styl'
         .address
-          margin-top vwpx(203)
+          margin-top vwpx(244)
           margin-left vwpx(80)
           margin-right vwpx(16)
           display grid
           grid-template-columns repeat(2, 1fr)
           grid-auto-rows vwpx(216)
         .images
-          {/* opacity 0.5 */}
           font-size 0
-          margin-top vwpx(83)
+          margin-top vwpx(64)
           margin-left vwpx(80)
-          margin-bottom vwpx(160)
+          margin-bottom vwpx(200)
           .row
             display flex
             justify-content space-between

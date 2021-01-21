@@ -16,7 +16,7 @@ const Header = ({ work }: { work: Entry }) => {
   })
   return (
     <div className="header">
-      <div className="image" style={{ height: `calc((100vw - 80px) * ${688 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={work.hero_image} alt="" /></GradImg></div>
+      <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={work.hero_image} alt="" /></GradImg></div>
       <div className="info">
         <div className="inner">
           <Grad><div className="date">{work.date}</div></Grad>
@@ -39,30 +39,32 @@ const Header = ({ work }: { work: Entry }) => {
           overflow hidden
           img
             width vwpx(1286)
-            height vwpx(688)
+            height vwpx(723)
             object-fit cover
         .info
+          display inline-block
           position relative
-          padding-top vwpx(459)
-          padding-right vwpx(486)
+          margin-top vwpx(610)
+          margin-right 80px
         .inner
           background-color white
-          padding-top vwpx(52)
-          padding-bottom vwpx(60)
+          padding-top vwpx(58)
           padding-left vwpx(80)
+          padding-right vwpx(100)
+          padding-bottom vwpx(60)
         .date
           display inline-block
           font-size vwpx(16)
         .title
           display inline-block
-          font-size vwpx(84)
+          font-size vwpx(60)
           font-weight bold
           line-height 1.2em
           margin-top vwpx(29)
           margin-left vwpx(-6)
         .tags
           display inline-block
-          margin-top vwpx(33)
+          margin-top vwpx(31)
       `}</style>
     </div>
   )
@@ -81,10 +83,10 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
       @import 'lib/vw.styl'
       .excerpt
         margin-left vwpx(80)
-        margin-bottom vwpx(141)
+        margin-bottom vwpx(147)
         display grid
-        grid-template-columns auto vwpx(573)
-        grid-gap vwpx(70)
+        grid-template-columns auto vwpx(562)
+        grid-gap vwpx(80)
       .title
         font-size vwpx(30)
         font-weight bold
@@ -94,8 +96,8 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
       .desc
         line-height 3.0rem
       .image img
-        width vwpx(573)
-        height vwpx(324)
+        width vwpx(562)
+        height vwpx(318)
         object-fit cover
     `}</style>
   </div>

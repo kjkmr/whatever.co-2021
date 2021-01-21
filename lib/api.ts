@@ -34,7 +34,7 @@ export async function getAllTags(locale: string): Promise<Tag[]> {
 
 
 export async function getWorkTags(locale: string): Promise<Tag[]> {
-  return (await getAllTags(locale)).filter((t: any) => t.type == 'work')
+  return (await getAllTags(locale)).filter((t: any) => t.type == 'work' && t.slug != 'featured')
 }
 
 

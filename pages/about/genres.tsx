@@ -75,15 +75,14 @@ const Section1 = () => (
         display inline-block
         overflow hidden
       .example-items
-        display flex
-        flex-wrap wrap
-        align-items flex-start
+        display grid
+        grid-template-columns repeat(3, 1fr)
+        grid-gap 0
         .item
           border-left 1px solid #B4B4B4
           padding-top 1.7rem
           padding-bottom 1.7rem
           padding-left 38px
-          width 375px
           box-sizing border-box
           .title
             font-weight bold
@@ -147,7 +146,6 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
           margin-top 2.6rem
         .desc
           margin-top 1.7rem
-          margin-right 2rem
           font-size 1.2rem
           line-height 2.4rem
       `}</style>

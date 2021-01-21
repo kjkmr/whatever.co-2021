@@ -35,6 +35,7 @@ const LargeWork = ({ work }: { work: Entry }) => (
           object-fit cover
       .text
         margin-top vwpx(30)
+        margin-right vwpx(20)
         font-size 0
       .date
         display inline-block
@@ -94,6 +95,7 @@ const SmallWork = ({ work }: { work: Entry }) => (
       .text
         position relative
         margin-top 2.0rem
+        margin-right 2.0rem
         font-size 0
       .date
         display inline-block

@@ -34,7 +34,7 @@ export async function getAllTags(locale: string): Promise<Tag[]> {
 
 
 export async function getWorkTags(locale: string): Promise<Tag[]> {
-  return (await getAllTags(locale)).filter((t: any) => t.type == 'work' && t.slug != 'featured')
+  return (await getAllTags(locale)).filter((t: any) => t.type == 'work')
 }
 
 
@@ -163,13 +163,15 @@ export async function getMemberDetail(slug: string, locale: string = 'ja'): Prom
 
 
 export async function getAllWorks(maxCount: number = 100, locale: string = 'ja'): Promise<Entry[]> {
-  const data = await (wp.posts().perPage(maxCount).embed().param({ categories: 4, _fields: 'slug,title,date,tags,_links,_embedded', lang: locale }))
+  const data = await (wp.posts().perPage(maxCount).embed().param({ categories: 4, _fields: 'slug,title,date,tags,_links,_embedded,acf', lang: locale }))
   // const data = await getAll(wp.posts().perPage(100).embed().param({ categories: 4, _fields: 'slug,title,date,_links,_embedded' }))
   const tags: { [id: number]: Tag } = {};
   (await getWorkTags(locale)).forEach(t => tags[t.id] = t)
   return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
+    subtitle: e.acf?.subtitle || '',
+    overview: e.acf?.overview || '',
     date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
     hero_image: replaceToCDN(e._embedded['wp:featuredmedia'][0].source_url),
     tags: e.tags.map((t: number) => tags[t]).filter((t: Tag) => t)

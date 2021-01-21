@@ -5,6 +5,7 @@ import { Member, getAllMembers } from 'lib/api'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 
+/*
 function shuffle<T>(array: T[]) {
   const out = Array.from(array);
   for (let i = out.length - 1; i > 0; i--) {
@@ -15,6 +16,7 @@ function shuffle<T>(array: T[]) {
   }
   return out;
 }
+*/
 
 const TeamIndex = ({ members }: { members: Member[] }) => (
   <Layout title="Team" side="Team">

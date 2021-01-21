@@ -5,21 +5,23 @@ import { Grad, GradImg } from 'components/Grad'
 
 
 const LargeWork = ({ work }: { work: Entry }) => (
-  <div className="large-work">
-    <Link href={`/work/${work.slug}`}>
-      <a>
-        <div className="image">
-          <GradImg><img src={work.hero_image} /></GradImg>
-        </div>
-      </a>
-    </Link>
-    <div className="text">
-      <Grad><div className="date">{work.date}</div></Grad>
-      <Grad><div className="title"><Link href={`/work/${work.slug}`}><a dangerouslySetInnerHTML={{ __html: work.title }}></a></Link></div></Grad>
-      {work.subtitle ? (<Grad><div className="head">{work.subtitle}</div></Grad>) : null}
-      <Grad><div className="tags">
-        {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
-      </div></Grad>
+  <>
+    <div className="large-work">
+      <Link href={`/work/${work.slug}`}>
+        <a>
+          <div className="image">
+            <GradImg><img src={work.hero_image} /></GradImg>
+          </div>
+        </a>
+      </Link>
+      <div className="text">
+        <Grad><div className="date">{work.date}</div></Grad>
+        <Grad><div className="title"><Link href={`/work/${work.slug}`}><a dangerouslySetInnerHTML={{ __html: work.title }}></a></Link></div></Grad>
+        {work.subtitle ? (<Grad><div className="head">{work.subtitle}</div></Grad>) : null}
+        <Grad><div className="tags">
+          {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
+        </div></Grad>
+      </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -60,26 +62,28 @@ const LargeWork = ({ work }: { work: Entry }) => (
         overflow hidden
         margin-top 2.5rem
     `}</style>
-  </div>
+  </>
 )
 
 const SmallWork = ({ work }: { work: Entry }) => (
-  <div className="small-work">
-    <Link href={`/work/${work.slug}`}>
-      <a>
-        <div className="image">
-          <GradImg><img src={work.hero_image} /></GradImg>
-        </div>
-        <div className="text">
-          <Grad><div className="date">{work.date}</div></Grad>
-          <Grad><div className="title" dangerouslySetInnerHTML={{ __html: work.title }} /></Grad>
-          {work.subtitle ? (<Grad><div className="head">{work.subtitle}</div></Grad>) : null}
-          <Grad><div className="tags">
-            {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
-          </div></Grad>
-        </div>
-      </a>
-    </Link>
+  <>
+    <div className="small-work">
+      <Link href={`/work/${work.slug}`}>
+        <a>
+          <div className="image">
+            <GradImg><img src={work.hero_image} /></GradImg>
+          </div>
+          <div className="text">
+            <Grad><div className="date">{work.date}</div></Grad>
+            <Grad><div className="title" dangerouslySetInnerHTML={{ __html: work.title }} /></Grad>
+            {work.subtitle ? (<Grad><div className="head">{work.subtitle}</div></Grad>) : null}
+            <Grad><div className="tags">
+              {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
+            </div></Grad>
+          </div>
+        </a>
+      </Link>
+    </div>
     <style jsx>{`
       vwpx(px)
         'calc((100vw - 80px) * %s)' % (px / (1366 - 80))
@@ -117,7 +121,7 @@ const SmallWork = ({ work }: { work: Entry }) => (
         overflow hidden
         margin-top 1.7rem
     `}</style>
-  </div>
+  </>
 )
 
 

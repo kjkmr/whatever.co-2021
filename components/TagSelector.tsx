@@ -2,7 +2,7 @@ import { useCallback } from 'react'
 import Link from 'next/link'
 import classNames from 'classnames/bind'
 import { Tag } from 'lib/api'
-import { Grad, getColors } from './Grad'
+import { Grad, getColors } from 'components/Grad'
 
 const TagItem = ({ name, slug, focused }: { name: string, slug: string, focused: boolean }) => {
   const ref = useCallback(node => {
@@ -18,10 +18,16 @@ const TagItem = ({ name, slug, focused }: { name: string, slug: string, focused:
     }
   }, [focused])
   return (
-    <li className={classNames('tag-item', { focused })}>
-      <Link href={`/work/category/${slug}`} passHref>
-        <a ref={ref}><span className="inner">{name}</span></a>
-      </Link>
+    <>
+      <li className={classNames('tag-item', { focused })}>
+        <Grad>
+          <div>
+            <Link href={`/work/category/${slug}`} passHref>
+              <a ref={ref}><span className="inner">{name}</span></a>
+            </Link>
+          </div>
+        </Grad>
+      </li>
       <style jsx>{`
         @import 'lib/vw.styl'
         .tag-item
@@ -56,21 +62,23 @@ const TagItem = ({ name, slug, focused }: { name: string, slug: string, focused:
           margin-top 4px
           font-size 1.4rem
       `}</style>
-    </li>
+    </>
   )
 }
 
 export const TagSelector = ({ tags, active }: { tags?: Tag[], active: string }) => (
-  <nav className="tag-selector">
-    <ol>
-      <TagItem name="All" slug='all' focused={active == "all"} />
-      {tags?.map(tag => <TagItem key={tag.slug} name={tag.name} slug={tag.slug} focused={tag.slug == active} />)}
-    </ol>
+  <>
+    <nav className="tag-selector">
+      <ol>
+        <TagItem name="All" slug='all' focused={active == "all"} />
+        {tags?.map(tag => <TagItem key={tag.slug} name={tag.name} slug={tag.slug} focused={tag.slug == active} />)}
+      </ol>
+    </nav>
     <style jsx>{`
       .tag-selector
         max-width calc(1366px - 80px * 3)
         padding 0
         margin 47px auto 97px
     `}</style>
-  </nav>
+  </>
 )

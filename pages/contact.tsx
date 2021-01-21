@@ -5,7 +5,7 @@ import { Grad, GradImg, GradLink } from 'components/Grad'
 
 const Head = () => (
   <div className={langStyle('head')}>
-    <img src="/contact/head@2x.png" alt="" />
+    <img src="/contact/pict04.svg" alt="" />
     {t('contact_title')?.split('\n').map((line, index) => <Grad key={index}><div>{line}</div></Grad>)}
     <div className="mailto"><GradImg><a href="mailto:hello@whatever.co">hello@whatever.co</a></GradImg></div>
     <style jsx>{`

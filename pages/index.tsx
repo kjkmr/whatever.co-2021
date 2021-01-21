@@ -13,6 +13,7 @@ const Showreel = () => {
   const onScroll = () => setScrollY(window.pageYOffset)
   useEffect(() => {
     window.addEventListener('scroll', onScroll)
+    onScroll()
     return () => window.removeEventListener('scroll', onScroll)
   })
   return (

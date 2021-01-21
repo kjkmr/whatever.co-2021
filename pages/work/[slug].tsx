@@ -16,15 +16,17 @@ const Header = ({ work }: { work: Entry }) => {
     return () => window.removeEventListener('scroll', onScroll)
   })
   return (
-    <div className="header">
-      <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={work.hero_image} alt="" /></GradImg></div>
-      <div className="info">
-        <div className="inner">
-          <Grad><div className="date">{work.date}</div></Grad>
-          <Grad><div className="title" dangerouslySetInnerHTML={{ __html: work.title }}></div></Grad>
-          <Grad><div className="tags">
-            {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} link={true} />)}
-          </div></Grad>
+    <>
+      <div className="header">
+        <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={work.hero_image} alt="" /></GradImg></div>
+        <div className="info">
+          <div className="inner">
+            <Grad><div className="date">{work.date}</div></Grad>
+            <Grad><div className="title" dangerouslySetInnerHTML={{ __html: work.title }}></div></Grad>
+            <Grad><div className="tags">
+              {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} link={true} />)}
+            </div></Grad>
+          </div>
         </div>
       </div>
       <style jsx>{`
@@ -67,18 +69,20 @@ const Header = ({ work }: { work: Entry }) => {
           display inline-block
           margin-top vwpx(31)
       `}</style>
-    </div>
+    </>
   )
 }
 
 const Excerpt = ({ title, description, image }: { title: string, description: string, image: string }) => (
-  <div className="excerpt">
-    <div className="text">
-      <div className="title" dangerouslySetInnerHTML={{ __html: title }}></div>
-      <div className="desc" dangerouslySetInnerHTML={{ __html: description }}></div>
-    </div>
-    <div className="image">
-      <img src={image} alt="" />
+  <>
+    <div className="excerpt">
+      <div className="text">
+        <div className="title" dangerouslySetInnerHTML={{ __html: title }}></div>
+        <div className="desc" dangerouslySetInnerHTML={{ __html: description }}></div>
+      </div>
+      <div className="image">
+        <img src={image} alt="" />
+      </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -101,12 +105,11 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
         height vwpx(318)
         object-fit cover
     `}</style>
-  </div>
+  </>
 )
 
 const Body = ({ content }: any) => {
   const body = useRef<HTMLDivElement>(null)
-
   useEffect(() => {
     body.current?.querySelectorAll('iframe').forEach(iframe => {
       const wrapper = document.createElement('div')
@@ -115,9 +118,8 @@ const Body = ({ content }: any) => {
       wrapper.appendChild(iframe)
     })
   })
-
   return (
-    <div>
+    <>
       <div ref={body} className="body" dangerouslySetInnerHTML={{ __html: content || '' }} />
       <style jsx>{`
         .body
@@ -196,7 +198,7 @@ const Body = ({ content }: any) => {
             >:last-child
               grid-column span 2
         `}</style>
-    </div>
+    </>
   )
 }
 
@@ -210,12 +212,14 @@ const CreditMember = ({ member }: { member: Person }) => {
     }
   }
   return (
-    <div className="member">
-      <Grad><div className="role">{member.role}</div></Grad>
-      <Grad><div className="name">
-        {name}
-        {member.company ? <span className="company">&nbsp;{member.url ? <a href={member.url} target="_blank" rel="noopener noreferrer">({member.company})</a> : `(${member.company})`}</span> : null}
-      </div></Grad>
+    <>
+      <div className="member">
+        <Grad><div className="role">{member.role}</div></Grad>
+        <Grad><div className="name">
+          {name}
+          {member.company ? <span className="company">&nbsp;{member.url ? <a href={member.url} target="_blank" rel="noopener noreferrer">({member.company})</a> : `(${member.company})`}</span> : null}
+        </div></Grad>
+      </div>
       <style jsx>{`
         .member
           margin-bottom 37px
@@ -237,26 +241,30 @@ const CreditMember = ({ member }: { member: Person }) => {
           padding-bottom 1px
           border-bottom 1px solid red
       `}</style>
-    </div>
+    </>
   )
 }
 
 const CreditGroup = ({ credit }: { credit: Credit }) => (
-  <div className="credit-group">
-    {credit.members.map(member => <CreditMember key={member.name} member={member} />)}
+  <>
+    <div className="credit-group">
+      {credit.members.map(member => <CreditMember key={member.name} member={member} />)}
+    </div>
     <style jsx>{`
       .credit-group
         display grid
         grid-template-columns repeat(4, 1fr)
         grid-column-gap 60px
     `}</style>
-  </div>
+  </>
 )
 
 const Credits = ({ credit }: { credit: Credit[] }) => (
-  <div className="credits">
-    <Grad><h2>Credit</h2></Grad>
-    {credit.map((credit, index) => <CreditGroup key={index} credit={credit} />)}
+  <>
+    <div className="credits">
+      <Grad><h2>Credit</h2></Grad>
+      {credit.map((credit, index) => <CreditGroup key={index} credit={credit} />)}
+    </div>
     <style jsx>{`
       .credits
         width 900px
@@ -270,7 +278,7 @@ const Credits = ({ credit }: { credit: Credit[] }) => (
         font-weight bold
         margin-bottom 77px
     `}</style>
-  </div>
+  </>
 )
 
 const WorkDetail = ({ work }: { work: Entry }) => (

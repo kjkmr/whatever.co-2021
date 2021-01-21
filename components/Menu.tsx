@@ -9,28 +9,29 @@ const Menu = () => {
   const [opened, setOpened] = useState(false)
   const onclick = () => { setOpened(!opened) }
   return (
-    <div className="container">
-      <div className="black"></div>
-      <div className="menu" style={{ display: opened ? 'flex' : 'none' }}>
-        <ul>
-          <li><Link href="/"><a onClick={onclick}>Top</a></Link></li>
-          <li><Link href="/work/category/all"><a onClick={onclick}>Work</a></Link></li>
-          <li><Link href="/about"><a onClick={onclick}>About</a></Link></li>
-          <li><Link href="/team"><a onClick={onclick}>Team</a></Link></li>
-          <li><Link href="/news"><a onClick={onclick}>News</a></Link></li>
-          <li><Link href="/contact"><a onClick={onclick}>Contact</a></Link></li>
-        </ul>
-        <div className="contact">
-          <div className="langselect"><LanguageSelector activeColor="white" inactiveColor="#666666" separator="  /  " onSelected={() => { setOpened(false) }} /></div>
-          <ContactForm />
-          <div className="sns"><SNSButtons /></div>
+    <>
+      <div className="container">
+        <div className="black"></div>
+        <div className="menu" style={{ display: opened ? 'flex' : 'none' }}>
+          <ul>
+            <li><Link href="/"><a onClick={onclick}>Top</a></Link></li>
+            <li><Link href="/work/category/all"><a onClick={onclick}>Work</a></Link></li>
+            <li><Link href="/about"><a onClick={onclick}>About</a></Link></li>
+            <li><Link href="/team"><a onClick={onclick}>Team</a></Link></li>
+            <li><Link href="/news"><a onClick={onclick}>News</a></Link></li>
+            <li><Link href="/contact"><a onClick={onclick}>Contact</a></Link></li>
+          </ul>
+          <div className="contact">
+            <div className="langselect"><LanguageSelector activeColor="white" inactiveColor="#666666" separator="  /  " onSelected={onclick} /></div>
+            <ContactForm />
+            <div className="sns"><SNSButtons /></div>
+          </div>
         </div>
+        <button className={classNames('button', { close: opened })} onClick={onclick}>
+          <div className="l1"></div>
+          <div className="l2"></div>
+        </button>
       </div>
-      <button className={classNames('button', { close: opened })} onClick={onclick}>
-        <div className="l1"></div>
-        <div className="l2"></div>
-      </button>
-
       <style jsx>{`
         @import 'lib/vw.styl'
         .container
@@ -109,7 +110,7 @@ const Menu = () => {
             top 39px
             transform rotate(-45deg)
       `}</style>
-    </div>
+    </>
   )
 }
 

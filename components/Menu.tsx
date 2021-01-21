@@ -21,7 +21,7 @@ const Menu = () => {
           <li><Link href="/contact"><a onClick={onclick}>Contact</a></Link></li>
         </ul>
         <div className="contact">
-          <div className="langselect"><LanguageSelector activeColor="white" inactiveColor="#666666" separator="  /  " /></div>
+          <div className="langselect"><LanguageSelector activeColor="white" inactiveColor="#666666" separator="  /  " onSelected={() => { setOpened(false) }} /></div>
           <ContactForm />
           <div className="sns"><SNSButtons /></div>
         </div>

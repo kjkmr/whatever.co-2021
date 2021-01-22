@@ -184,7 +184,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
     <div className="work">
       <Link href={`/work/${work.slug}`}>
         <a>
-          <div className="image"><GradImg><img src={work.hero_image} /></GradImg></div>
+          <div className="image"><GradImg reactMouse={true}><img src={work.hero_image} /></GradImg></div>
           <div className="white">
             <Grad><div className="date">{work.date}</div></Grad>
             <Grad><div className="title">{work.title}</div></Grad>
@@ -192,7 +192,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
           <Grad><div className="subtitle">{work.subtitle}</div></Grad>
           <Grad><div className="overview">{work.overview}</div></Grad>
           <Grad><div className="tags">
-            {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
+            {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
           </div></Grad>
         </a>
       </Link>
@@ -204,6 +204,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
         a
           border none
           padding 0
+          background-color gray
       .image
         img
           width vwpx(594)
@@ -289,7 +290,7 @@ const NewsItem = ({ data }: { data: Entry }) => (
     <div className="news-item">
       <Link href={`/news/${data.slug}`}>
         <a>
-          <GradImg><img src={data.hero_image} width="256" height="144" /></GradImg>
+          <GradImg reactMouse={true}><img src={data.hero_image} width="256" height="144" /></GradImg>
           <Grad><div className="date">{data.date}</div></Grad>
           <Grad><div className="title">{data.title}</div></Grad>
         </a>

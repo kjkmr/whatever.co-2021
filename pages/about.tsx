@@ -46,6 +46,7 @@ const Detail = ({ title }: { title: string }) => {
           font-size 1.5rem
           line-height 3.0rem
         .more
+          display inline-block
           margin-top 4.8rem
         .en
           h1

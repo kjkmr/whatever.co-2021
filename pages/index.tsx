@@ -56,16 +56,18 @@ const Showreel = () => {
 }
 
 const Tagline = () => (
-  <div className={langStyle('tagline')}>
-    <div className="title">
-      <Grad><h1>Make whatever.</h1></Grad>
-      <Grad><h1 className="line2">Rules, whatever.</h1></Grad>
-    </div>
-    <div className="desc">
-      {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index}><h2>{line}</h2></Grad>)}
-    </div>
-    <div className="link">
-      <BlackButton text="Learn more" link="/about" />
+  <>
+    <div className={langStyle('tagline')}>
+      <div className="title">
+        <Grad><h1>Make whatever.</h1></Grad>
+        <Grad><h1 className="line2">Rules, whatever.</h1></Grad>
+      </div>
+      <div className="desc">
+        {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index}><h2>{line}</h2></Grad>)}
+      </div>
+      <div className="link">
+        <BlackButton text="Learn more" link="/about" />
+      </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -109,7 +111,7 @@ const Tagline = () => (
         .link
           margin-top vwpx(154)
     `}</style>
-  </div>
+  </>
 )
 
 const FeaturedWorkItem = ({ work }: { work: Entry }) => (

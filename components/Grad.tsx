@@ -1,4 +1,4 @@
-import { ReactNode, SyntheticEvent, useCallback } from 'react'
+import { ReactNode, SyntheticEvent, useCallback, useEffect, useRef } from 'react'
 
 const COLORS = ["#ff2300", "#ff9201", "#ffeb00", "#89e82b", "#00c745", "#29ebfe", "#0d44fb", "#a725fc", "#fd1eba"];
 export const getColors = (): [string, string] => {
@@ -174,10 +174,10 @@ export const Grad = ({ children }: { children?: ReactNode }) => {
   )
 }
 
-export const GradImg = ({ children, reactMouse }: { children?: ReactNode, reactMouse?: boolean }) => {
-  const ref = useCallback(node => {
-    if (!node) return
-
+export const GradImg = ({ children, mouseEntered }: { children?: ReactNode, mouseEntered?: boolean }) => {
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const node = ref.current!
     node.classList.add('grad-effect-base')
     const img = node.children[0]
 
@@ -202,46 +202,47 @@ export const GradImg = ({ children, reactMouse }: { children?: ReactNode, reactM
       }
       object.unobserve(img)
     }).observe(img)
-
-    if (reactMouse) {
-      const over: HTMLDivElement[] = []
-      node.addEventListener('mouseenter', () => {
-        const el = document.createElement('div')
-        el.classList.add('grad-effect-over')
-        const [colorA, colorB] = getColors()
-        el.style.backgroundImage = `linear-gradient(to right, ${colorA}, ${colorB})`
-        node.appendChild(el)
-        over.push(el)
-        el.animate(
-          [
-            { left: '-100%', easing: 'cubic-bezier(0.80, 0.000, 0.200, 1.0)' },
-            { left: '0%' },
-          ],
-          {
-            duration: 125,
-            iterations: 1,
-            fill: "both"
-          }
-        )
-      })
-      node.addEventListener('mouseleave', () => {
-        const el = over.shift()
-        if (!el) return
-        el.animate(
-          [
-            { left: '100%', easing: 'cubic-bezier(0.80, 0.000, 0.200, 1.0)' },
-          ],
-          {
-            duration: 125,
-            iterations: 1,
-            fill: "both"
-          }
-        ).onfinish = () => {
-          el.parentNode?.removeChild(el)
-        }
-      })
-    }
   }, [])
+
+  const els = useRef<HTMLDivElement[]>([])
+  useEffect(() => {
+    if (mouseEntered === undefined) return;
+    if (mouseEntered) {
+      const el = document.createElement('div')
+      el.classList.add('grad-effect-over')
+      const [colorA, colorB] = getColors()
+      el.style.backgroundImage = `linear-gradient(to right, ${colorA}, ${colorB})`
+      ref.current?.appendChild(el)
+      els.current?.push(el)
+      el.animate(
+        [
+          { left: '-100%', easing: 'cubic-bezier(0.80, 0.000, 0.200, 1.0)' },
+          { left: '0%' },
+        ],
+        {
+          duration: 125,
+          iterations: 1,
+          fill: "both"
+        }
+      )
+    } else {
+      const el = els.current?.shift()
+      if (!el) return
+      el.animate(
+        [
+          { left: '100%', easing: 'cubic-bezier(0.80, 0.000, 0.200, 1.0)' },
+        ],
+        {
+          duration: 125,
+          iterations: 1,
+          fill: "both"
+        }
+      ).onfinish = () => {
+        el.parentNode?.removeChild(el)
+      }
+    }
+  }, [mouseEntered])
+
   return (
     <>
       <div className="grad-image" ref={ref}>

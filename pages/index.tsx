@@ -179,79 +179,82 @@ const Tagline = () => (
   </>
 )
 
-const FeaturedWorkItem = ({ work }: { work: Entry }) => (
-  <>
-    <div className="work">
-      <Link href={`/work/${work.slug}`}>
-        <a>
-          <div className="image"><GradImg reactMouse={true}><img src={work.hero_image} /></GradImg></div>
-          <div className="white">
-            <Grad><div className="date">{work.date}</div></Grad>
-            <Grad><div className="title">{work.title}</div></Grad>
-          </div>
-          <Grad><div className="subtitle">{work.subtitle}</div></Grad>
-          <Grad><div className="overview">{work.overview}</div></Grad>
-          <Grad><div className="tags">
-            {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
-          </div></Grad>
-        </a>
-      </Link>
-    </div>
-    <style jsx>{`
-      @import 'lib/vw.styl'
-      .work
-        position relative
-        a
-          border none
-          padding 0
-          background-color gray
-      .image
-        img
-          width vwpx(594)
-          height vwpx(334)
-          object-fit cover
-      .white
-        position relative
-        display inline-block
-        background-color white
-        margin-top -40px
-        margin-right 40px
-        padding-top 40px
-        padding-right 50px
-      .date
-        display inline-block
-        overflow hidden
-        font-size 1.2rem
-        font-weight 300
-      .title
-        display inline-block
-        overflow hidden
-        margin-top 1.7rem
-        font-size 2.8rem
-        font-weight bold
-        line-height 1.2em
-      .subtitle
-        display inline-block
-        overflow hidden
-        margin-top 2.1rem
-        font-size 1.5rem
-        font-weight bold
-        line-height 1.4em
-      .overview
-        display inline-block
-        overflow hidden
-        margin-top 0.7rem
-        margin-right vwpx(30)
-        line-height 2em
-        font-size 1.5rem
-        font-weight 300
-      .tags
-        display inline-block
-        overflow hidden
-        margin-top 2.0rem
-    `}</style>
-  </>
-)
+const FeaturedWorkItem = ({ work }: { work: Entry }) => {
+  const [entered, setEntered] = useState(false)
+  return (
+    <>
+      <div className="work">
+        <Link href={`/work/${work.slug}`}>
+          <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
+            <div className="image"><GradImg mouseEntered={entered}><img src={work.hero_image} /></GradImg></div>
+            <div className="white">
+              <Grad><div className="date">{work.date}</div></Grad>
+              <Grad><div className="title">{work.title}</div></Grad>
+            </div>
+            <Grad><div className="subtitle">{work.subtitle}</div></Grad>
+            <Grad><div className="overview">{work.overview}</div></Grad>
+            <Grad><div className="tags">
+              {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
+            </div></Grad>
+          </a>
+        </Link>
+      </div>
+      <style jsx>{`
+        @import 'lib/vw.styl'
+        .work
+          position relative
+          a
+            border none
+            padding 0
+            background-color gray
+        .image
+          img
+            width vwpx(594)
+            height vwpx(334)
+            object-fit cover
+        .white
+          position relative
+          display inline-block
+          background-color white
+          margin-top -40px
+          margin-right 40px
+          padding-top 40px
+          padding-right 50px
+        .date
+          display inline-block
+          overflow hidden
+          font-size 1.2rem
+          font-weight 300
+        .title
+          display inline-block
+          overflow hidden
+          margin-top 1.7rem
+          font-size 2.8rem
+          font-weight bold
+          line-height 1.2em
+        .subtitle
+          display inline-block
+          overflow hidden
+          margin-top 2.1rem
+          font-size 1.5rem
+          font-weight bold
+          line-height 1.4em
+        .overview
+          display inline-block
+          overflow hidden
+          margin-top 0.7rem
+          margin-right vwpx(30)
+          line-height 2em
+          font-size 1.5rem
+          font-weight 300
+        .tags
+          display inline-block
+          overflow hidden
+          margin-top 2.0rem
+      `}</style>
+    </>
+  )
+}
 
 const FeaturedWorks = ({ works }: { works: Entry[] }) => (
   <>
@@ -285,42 +288,45 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
   </>
 )
 
-const NewsItem = ({ data }: { data: Entry }) => (
-  <>
-    <div className="news-item">
-      <Link href={`/news/${data.slug}`}>
-        <a>
-          <GradImg reactMouse={true}><img src={data.hero_image} width="256" height="144" /></GradImg>
-          <Grad><div className="date">{data.date}</div></Grad>
-          <Grad><div className="title">{data.title}</div></Grad>
-        </a>
-      </Link>
-    </div>
-    <style jsx>{`
-      @import 'lib/vw.styl'
-      .news-item
-        font-size 0
-      img
-        width vwpx2(256, 160)
-        height vwpx2(144, 160)
-        object-fit cover
-        display block
-      .date
-        display inline-block
-        overflow hidden
-        font-size 1.2rem
-        font-weight 300
-        margin-top 2.3rem
-      .title
-        display inline-block
-        overflow hidden
-        font-size 1.5rem
-        font-weight bold
-        margin-top 1.1rem
-        line-height 2.4rem
-    `}</style>
-  </>
-)
+const NewsItem = ({ data }: { data: Entry }) => {
+  const [entered, setEntered] = useState(false)
+  return (
+    <>
+      <div className="news-item">
+        <Link href={`/news/${data.slug}`}>
+          <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
+            <GradImg mouseEntered={entered}><img src={data.hero_image} width="256" height="144" /></GradImg>
+            <Grad><div className="date">{data.date}</div></Grad>
+            <Grad><div className="title">{data.title}</div></Grad>
+          </a>
+        </Link>
+      </div>
+      <style jsx>{`
+        @import 'lib/vw.styl'
+        .news-item
+          font-size 0
+        img
+          width vwpx2(256, 160)
+          height vwpx2(144, 160)
+          object-fit cover
+          display block
+        .date
+          display inline-block
+          overflow hidden
+          font-size 1.2rem
+          font-weight 300
+          margin-top 2.3rem
+        .title
+          display inline-block
+          overflow hidden
+          font-size 1.5rem
+          font-weight bold
+          margin-top 1.1rem
+          line-height 2.4rem
+      `}</style>
+    </>
+  )
+}
 
 const LatestNews = ({ news }: { news: Entry[] }) => (
   <>

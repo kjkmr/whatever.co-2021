@@ -180,21 +180,23 @@ const Tagline = () => (
 )
 
 const FeaturedWorkItem = ({ work }: { work: Entry }) => (
-  <div className="work">
-    <Link href={`/work/${work.slug}`}>
-      <a>
-        <div className="image"><GradImg><img src={work.hero_image} /></GradImg></div>
-        <div className="white">
-          <Grad><div className="date">{work.date}</div></Grad>
-          <Grad><div className="title">{work.title}</div></Grad>
-        </div>
-        <Grad><div className="subtitle">{work.subtitle}</div></Grad>
-        <Grad><div className="overview">{work.overview}</div></Grad>
-        <Grad><div className="tags">
-          {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
-        </div></Grad>
-      </a>
-    </Link>
+  <>
+    <div className="work">
+      <Link href={`/work/${work.slug}`}>
+        <a>
+          <div className="image"><GradImg><img src={work.hero_image} /></GradImg></div>
+          <div className="white">
+            <Grad><div className="date">{work.date}</div></Grad>
+            <Grad><div className="title">{work.title}</div></Grad>
+          </div>
+          <Grad><div className="subtitle">{work.subtitle}</div></Grad>
+          <Grad><div className="overview">{work.overview}</div></Grad>
+          <Grad><div className="tags">
+            {work.tags?.map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
+          </div></Grad>
+        </a>
+      </Link>
+    </div>
     <style jsx>{`
       @import 'lib/vw.styl'
       .work
@@ -230,14 +232,14 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
       .subtitle
         display inline-block
         overflow hidden
-        margin-top 1.5rem
+        margin-top 2.1rem
         font-size 1.5rem
         font-weight bold
         line-height 1.4em
       .overview
         display inline-block
         overflow hidden
-        margin-top 0.4rem
+        margin-top 0.7rem
         margin-right vwpx(30)
         line-height 2em
         font-size 1.5rem
@@ -245,24 +247,27 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => (
       .tags
         display inline-block
         overflow hidden
-        margin-top 1.7rem
+        margin-top 2.0rem
     `}</style>
-  </div>
+  </>
 )
 
 const FeaturedWorks = ({ works }: { works: Entry[] }) => (
-  <div className="container">
-    <Grad><h1>Featured Works</h1></Grad>
-    <div className="items">
-      {works.map(work => <FeaturedWorkItem key={work.slug} work={work} />)}
-    </div>
-    <div className="link">
-      <BlackButton link="/work" >All Works</BlackButton>
+  <>
+    <div className="container">
+      <Grad><h1>Featured Works</h1></Grad>
+      <div className="items">
+        {works.map(work => <FeaturedWorkItem key={work.slug} work={work} />)}
+      </div>
+      <div className="link">
+        <BlackButton link="/work" >All Works</BlackButton>
+      </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
       .container
         margin-top vwpx(92)
+        font-size 0
       h1
         display inline-block
         margin-left vwpx(-3)
@@ -274,20 +279,22 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
       .link
         display flex
         justify-content flex-end
-        margin-top 77px
+        margin-top 80px
     `}</style>
-  </div>
+  </>
 )
 
 const NewsItem = ({ data }: { data: Entry }) => (
-  <div className="news-item">
-    <Link href={`/news/${data.slug}`}>
-      <a>
-        <GradImg><img src={data.hero_image} width="256" height="144" /></GradImg>
-        <Grad><div className="date">{data.date}</div></Grad>
-        <Grad><div className="title">{data.title}</div></Grad>
-      </a>
-    </Link>
+  <>
+    <div className="news-item">
+      <Link href={`/news/${data.slug}`}>
+        <a>
+          <GradImg><img src={data.hero_image} width="256" height="144" /></GradImg>
+          <Grad><div className="date">{data.date}</div></Grad>
+          <Grad><div className="title">{data.title}</div></Grad>
+        </a>
+      </Link>
+    </div>
     <style jsx>{`
       @import 'lib/vw.styl'
       .news-item
@@ -311,24 +318,26 @@ const NewsItem = ({ data }: { data: Entry }) => (
         margin-top 1.1rem
         line-height 2.4rem
     `}</style>
-  </div>
+  </>
 )
 
 const LatestNews = ({ news }: { news: Entry[] }) => (
-  <div className="latest-news">
-    <Grad><h1>Latest News</h1></Grad>
-    <div className="items">
-      {news.map(item => <NewsItem key={item.slug} data={item} />)}
-    </div>
-    <div className="link">
-      <BlackButton link="/news" >All News</BlackButton>
-    </div>
-
+  <>
+    <div className="latest-news">
+      <Grad><h1>Latest News</h1></Grad>
+      <div className="items">
+        {news.map(item => <NewsItem key={item.slug} data={item} />)}
+      </div>
+      <div className="link">
+        <BlackButton link="/news" >All News</BlackButton>
+      </div>
+    </div >
     <style jsx>{`
       @import 'lib/vw.styl'
       .latest-news
         margin-top vwpx(80)
         padding vwpx2(80, 160) 80px
+        font-size 0
         background-color #F4F4F4
       h1
         display inline-block
@@ -338,14 +347,14 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
         display grid
         grid-template-columns repeat(4, 1fr)
         grid-gap vwpx2(60, 160)
-        margin-top vwpx(49)
+        margin-top vwpx(52)
       .link
         display flex
         justify-content flex-end
-        margin-top 80px
+        margin-top 78px
         margin-right -80px
     `}</style>
-  </div >
+  </>
 )
 
 const IndexPage = ({ works, news }: { works: Entry[], news: Entry[] }) => (

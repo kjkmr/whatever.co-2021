@@ -39,7 +39,7 @@ const Footer = () => (
         font-size 1.2rem
         font-weight 300
         text-align right
-        margin-top 30px
+        margin-top 26px
       .pagetop
         position absolute
         top 215px

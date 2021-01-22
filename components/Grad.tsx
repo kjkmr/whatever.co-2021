@@ -11,23 +11,20 @@ export const getColors = (): [string, string] => {
 }
 
 const setup = (base: Element, colorA: string, colorB: string): [Element, Element] => {
-  const grad = document.createElement('div')
-  base.childNodes.forEach((e: Node) => {
-    grad.appendChild(e.cloneNode(true))
-  })
   base.classList.add('grad-effect-base')
-  grad.classList.add('grad-effect-text')
-  grad.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB})`
-  base.appendChild(grad)
-  const box = document.createElement('div')
-  box.classList.add('grad-effect-box')
-  box.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`
-  base.appendChild(box)
-  return [grad, box]
+  const fade = document.createElement('div')
+  fade.classList.add('grad-effect-fade')
+  fade.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB})`
+  base.appendChild(fade)
+  const slide = document.createElement('div')
+  slide.classList.add('grad-effect-slide')
+  slide.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`
+  base.appendChild(slide)
+  return [fade, slide]
 }
 
-const doAnime = (base: Element, grad: Element, box: Element, duration: number = 250) => {
-  const delay = Math.random() * 500
+const doAnime = (base: Element, fade: Element, slide: Element, duration: number = 250) => {
+  const delay = Math.random() * 700
   base.animate(
     [
       {
@@ -48,7 +45,7 @@ const doAnime = (base: Element, grad: Element, box: Element, duration: number = 
       fill: "both"
     }
   )
-  box.animate(
+  slide.animate(
     [
       {
         left: "-100%"
@@ -69,7 +66,7 @@ const doAnime = (base: Element, grad: Element, box: Element, duration: number = 
       fill: "both"
     }
   )
-  return grad.animate(
+  return fade.animate(
     [
       {
         visibility: "hidden",
@@ -102,15 +99,13 @@ export const Grad = ({ children }: { children?: ReactNode }) => {
     if (!node) return
     const base = node.children[0]
     const [colorA, colorB] = getColors()
-    const [grad, box] = setup(base, colorA, colorB)
+    const [fade, slide] = setup(base, colorA, colorB)
     new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
       const entry = entries[0]
       if (!entry.isIntersecting) { return }
-      doAnime(base, grad, box).onfinish = () => {
-        if (grad.parentNode == base) {
-          base.removeChild(grad)
-          base.removeChild(box)
-        }
+      doAnime(base, fade, slide).onfinish = () => {
+        fade.parentNode?.removeChild(fade)
+        slide.parentNode?.removeChild(slide)
         base.classList.remove('grad-effect-base')
       }
       object.unobserve(base)
@@ -126,20 +121,22 @@ export const Grad = ({ children }: { children?: ReactNode }) => {
           position relative
           overflow hidden
           visibility hidden
-        .grad-effect-text
+          background-color white
+        .grad-effect-fade
           position absolute
           top 0
           left 0
-          color transparent
+          width 100%
+          height 100%
           background-image url(/noise.png), linear-gradient(to right, #fbe105, #f91fae)
           background-blend-mode overlay, normal
-          background-clip text
-          -webkit-background-clip text
-          -webkit-text-fill-color transparent
+          mix-blend-mode screen
           visibility hidden
+          user-select none
+          pointer-events none
           > *
             background-color: transparent !important
-        .grad-effect-img
+        .grad-effect-image
           position absolute
           top 0
           left 0
@@ -150,7 +147,7 @@ export const Grad = ({ children }: { children?: ReactNode }) => {
           background-size auto, 100% 100%
           background-blend-mode overlay, normal
           visibility hidden
-        .grad-effect-box
+        .grad-effect-slide
           position absolute
           background-color white
           background-image url(/noise.png), linear-gradient(to right, #fbe105, #f91fae, #f91fae)
@@ -161,6 +158,8 @@ export const Grad = ({ children }: { children?: ReactNode }) => {
           width 100%
           height 100%
           visibility visible
+          user-select none
+          pointer-events none
         .grad-effect-over
           position absolute
           top 0
@@ -169,6 +168,8 @@ export const Grad = ({ children }: { children?: ReactNode }) => {
           height 100%
           background-color red
           mix-blend-mode screen
+          user-select none
+          pointer-events none
       `}</style>
     </>
   )
@@ -182,13 +183,13 @@ export const GradImg = ({ children, mouseEntered }: { children?: ReactNode, mous
     const img = node.children[0]
 
     const grad = document.createElement('div')
-    grad.classList.add('grad-effect-img')
+    grad.classList.add('grad-effect-image')
     const [colorA, colorB] = getColors()
     grad.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB})`
     node.appendChild(grad)
 
     const box = document.createElement('div')
-    box.classList.add('grad-effect-box')
+    box.classList.add('grad-effect-slide')
     box.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`
     node.appendChild(box)
 

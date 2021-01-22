@@ -316,6 +316,7 @@ const NewsItem = ({ data }: { data: Entry }) => {
           font-size 1.2rem
           font-weight 300
           margin-top 2.3rem
+          mix-blend-mode multiply
         .title
           display inline-block
           overflow hidden
@@ -323,6 +324,7 @@ const NewsItem = ({ data }: { data: Entry }) => {
           font-weight bold
           margin-top 1.1rem
           line-height 2.4rem
+          mix-blend-mode multiply
       `}</style>
     </>
   )
@@ -345,11 +347,12 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
         margin-top vwpx(80)
         padding vwpx2(80, 160) 80px
         font-size 0
-        background-color #F4F4F4
+        background-color #f4f4f4
       h1
         display inline-block
         overflow hidden
         margin-left vwpx_min(-3)
+        mix-blend-mode multiply
       .items
         display grid
         grid-template-columns repeat(4, 1fr)

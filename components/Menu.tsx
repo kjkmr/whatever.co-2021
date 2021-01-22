@@ -11,9 +11,8 @@ const Menu = () => {
   const onclick = () => { setOpened(!opened) }
   return (
     <>
-      <div className="container">
-        <div className="black"></div>
-        <div className="menu" style={{ display: opened ? 'flex' : 'none' }}>
+      <div className="menu">
+        <div className="menu-full" style={{ display: opened ? 'flex' : 'none' }}>
           <ul>
             <li><Link href="/"><a onClick={onclick}>Top</a></Link></li>
             <li><Link href="/work/category/all"><a onClick={onclick}>Work</a></Link></li>
@@ -30,6 +29,7 @@ const Menu = () => {
         </div>
         <div className={classNames('button', { close: opened })}>
           <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onclick}>
+            <div className="black" style={{ display: opened ? 'none' : 'block' }}></div>
             <div className="l1"></div>
             <div className="l2"></div>
           </BlackButton>
@@ -37,7 +37,7 @@ const Menu = () => {
       </div>
       <style jsx>{`
         @import 'lib/vw.styl'
-        .container
+        .menu
           position fixed
           z-index 10000
         .black
@@ -47,7 +47,7 @@ const Menu = () => {
           width 80px
           height 80px      
           background-color #000
-        .menu
+        .menu-full
           display none
           justify-content space-between
           position absolute

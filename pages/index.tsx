@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { Entry, Tag, getNews, getWorksByTag } from 'lib/api'
@@ -8,6 +8,67 @@ import BlackButton from 'components/BlackButton'
 import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
 
+const Player = ({ onClick }: { onClick?: any }) => (
+  <>
+    <div className="player">
+      <div className="aspect-ratio">
+        <iframe src="https://www.youtube.com/embed/rsBTSWTbH4I?autoplay=1;controls=0;rel=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+      </div>
+      <button className="close-button" onClick={onClick}>
+        <div className="l1"></div>
+        <div className="l2"></div>
+      </button>
+    </div>
+    <style jsx>{`
+      .player
+        position fixed
+        top 0
+        left 0
+        box-sizing border-box
+        width 100vw
+        height 100vh
+        padding 80px
+        background-color #222222
+        z-index 20000
+        display flex
+        justify-content center
+        align-items center
+        .aspect-ratio
+          position relative
+          width 'min(100%, calc((100vh - 160px) / 9 * 16))' % null
+          height 'min(100%, calc((100vw - 160px) / 16 * 9))' % null
+          iframe
+            position absolute
+            top 0
+            left 0
+            width 100%
+            height 100%
+        button.close-button
+          position absolute
+          top 0
+          left 0
+          width 80px
+          height 80px
+          padding 0
+          border 0
+          background-color transparent
+          .l1,.l2
+            position absolute
+            width 20px
+            height 2px
+            background-color white
+          .l1
+            top 39px
+            left 30px
+            transform rotate(45deg)
+          .l2
+            top 39px
+            left 30px
+            transform rotate(-45deg)
+    `}</style>
+  </>
+)
+
 const Showreel = () => {
   const [scrollY, setScrollY] = useState(0)
   const onScroll = () => setScrollY(window.pageYOffset)
@@ -16,12 +77,25 @@ const Showreel = () => {
     onScroll()
     return () => window.removeEventListener('scroll', onScroll)
   })
+  const video = useRef<HTMLVideoElement>(null)
+  const [showPlayer, setShowPlayer] = useState(false)
+  const onClickWatch = () => {
+    setShowPlayer(true)
+    video.current?.pause()
+  }
+  const onClose = () => {
+    video.current?.play()
+    setShowPlayer(false)
+  }
   return (
-    <div className="showreel">
-      <div className="video" style={{ height: `calc((100vh - 40px) - ${scrollY}px)` }}>
-        <video src="/index/reel-preview.mp4" autoPlay={true} loop muted></video>
+    <>
+      <div className="showreel">
+        <div className="video" style={{ height: `calc((100vh - 40px) - ${scrollY}px)` }}>
+          <video ref={video} src="/index/reel-preview.mp4" autoPlay={true} loop muted></video>
+        </div>
+        <div className="button"><BlackButton text="Watch Reel" height={80} onClick={onClickWatch} /></div>
       </div>
-      <div className="button"><BlackButton text="Watch Reel" height={80} onClick={console.log} /></div>
+      {showPlayer ? <Player onClick={onClose} /> : null}
       <style jsx>{`
         .showreel
           position relative
@@ -43,7 +117,7 @@ const Showreel = () => {
           right 0
           bottom -40px
       `}</style>
-    </div>
+    </>
   )
 }
 

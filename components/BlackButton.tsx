@@ -69,6 +69,7 @@ const BlackButton = ({ text, link, height = 60, onClick }: { text: string, link?
           z-index 0
           overflow hidden
           cursor pointer
+          user-select none
       `}</style>
       <style jsx global>{`
         .black-button-bg

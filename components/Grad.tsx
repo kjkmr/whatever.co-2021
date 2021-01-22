@@ -136,6 +136,8 @@ export const Grad = ({ children }: any) => {
           -webkit-background-clip text
           -webkit-text-fill-color transparent
           visibility hidden
+          > *
+            background-color: transparent !important
         .grad-effect-img
           position absolute
           top 0

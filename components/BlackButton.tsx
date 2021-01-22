@@ -2,9 +2,10 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { Grad, getColors } from 'components/Grad'
 
-const BlackButton = ({ text, link }: { text: string, link: string }) => {
+const bgs: HTMLDivElement[] = []
+
+const BlackButton = ({ text, link, height = 60, onClick }: { text: string, link?: string, height?: number, onClick?: any }) => {
   const ref = useRef<HTMLAnchorElement>(null)
-  const bgs: HTMLDivElement[] = []
   const onMousEnter = () => {
     const bg = document.createElement('div')
     bg.classList.add('black-button-bg')
@@ -43,9 +44,10 @@ const BlackButton = ({ text, link }: { text: string, link: string }) => {
     <>
       <Grad>
         <div>
-          <Link href={link}>
-            <a ref={ref} onMouseEnter={onMousEnter} onMouseLeave={onMouseLeave}>{text}</a>
-          </Link>
+          {link
+            ? <Link href={link}><a ref={ref} onMouseEnter={onMousEnter} onMouseLeave={onMouseLeave}>{text}</a></Link>
+            : <a ref={ref} onMouseEnter={onMousEnter} onMouseLeave={onMouseLeave} onClick={onClick}>{text}</a>
+          }
         </div>
       </Grad>
       <style jsx>{`
@@ -59,13 +61,14 @@ const BlackButton = ({ text, link }: { text: string, link: string }) => {
           letter-spacing 0.04em
           box-sizing border-box
           width 256px
-          height 60px
+          height ${height}px
           padding-top 4px
           background-color black
           border none
           position relative
           z-index 0
           overflow hidden
+          cursor pointer
       `}</style>
       <style jsx global>{`
         .black-button-bg

@@ -21,7 +21,7 @@ const Showreel = () => {
       <div className="video" style={{ height: `calc((100vh - 40px) - ${scrollY}px)` }}>
         <video src="/index/reel-preview.mp4" autoPlay={true} loop muted></video>
       </div>
-      <button >Watch Reel</button>
+      <div className="button"><BlackButton text="Watch Reel" height={80} onClick={console.log} /></div>
       <style jsx>{`
         .showreel
           position relative
@@ -38,18 +38,10 @@ const Showreel = () => {
           width calc(100vw - 80px)
           height calc(100vh - 40px)
           object-fit cover
-        button
-          width 256px
-          height 80px
-          border none
-          background-color black
-          color white
+        .button
           position absolute
           right 0
           bottom -40px
-          font-size 1.8rem
-          font-weight bold
-          letter-spacing 0.04em
       `}</style>
     </div>
   )

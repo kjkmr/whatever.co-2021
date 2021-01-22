@@ -9,12 +9,14 @@ const Detail = ({ title }: { title: string }) => {
   const key = title.toLowerCase()
   const subtitle = t(`about_${key}_title`)
   return (
-    <div className={langStyle('detail')}>
-      <Grad><h3>Whatever</h3></Grad>
-      <Grad><h1>{title}</h1></Grad>
-      {subtitle != '-' ? <Grad><h2>{subtitle}</h2></Grad> : null}
-      <Grad><p dangerouslySetInnerHTML={{ __html: t(`about_${key}_description`)?.replace('\n', '<br />') || '' }}></p></Grad>
-      <div className="more"><BlackButton link={`/about/${key}`} >Learn more</BlackButton></div>
+    <>
+      <div className={langStyle('detail')}>
+        <Grad><h3>Whatever</h3></Grad>
+        <Grad><h1>{title}</h1></Grad>
+        {subtitle != '-' ? <Grad><h2>{subtitle}</h2></Grad> : null}
+        <Grad><p dangerouslySetInnerHTML={{ __html: t(`about_${key}_description`)?.replace('\n', '<br />') || '' }}></p></Grad>
+        <div className="more"><BlackButton link={`/about/${key}`} >Learn more</BlackButton></div>
+      </div>
       <style jsx>{`
         @import 'lib/vw.styl'
         .detail
@@ -51,15 +53,17 @@ const Detail = ({ title }: { title: string }) => {
           p
             font-size 1.6rem
       `}</style>
-    </div>
+    </>
   )
 }
 
 const Genres = () => (
-  <div className={langStyle('genres')}>
-    <div className="inner">
-      <div className="image"><GradImg><img src="/about/pict01.svg" /></GradImg></div>
-      <div className="detail"><Detail title="Genres" /></div>
+  <>
+    <div className={langStyle('genres')}>
+      <div className="inner">
+        <div className="image"><GradImg><img src="/about/pict01.svg" /></GradImg></div>
+        <div className="detail"><Detail title="Genres" /></div>
+      </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -80,14 +84,16 @@ const Genres = () => (
         .detail
           padding-top vwpx(4)
     `}</style>
-  </div>
+  </>
 )
 
 const Workstyle = () => (
-  <div className={langStyle('workstyle')}>
-    <div className="inner">
-      <div className="detail"><Detail title="Workstyle" /></div>
-      <div className="image"><GradImg><img src="/about/pict02.svg" /></GradImg></div>
+  <>
+    <div className={langStyle('workstyle')}>
+      <div className="inner">
+        <div className="detail"><Detail title="Workstyle" /></div>
+        <div className="image"><GradImg><img src="/about/pict02.svg" /></GradImg></div>
+      </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -111,14 +117,16 @@ const Workstyle = () => (
           margin-top vwpx(8)
           font-size 1.6rem
     `}</style>
-  </div>
+  </>
 )
 
 const Location = () => (
-  <div className={langStyle('location')}>
-    <div className="inner">
-      <div className="image"><GradImg><img src="/about/pict03.svg" /></GradImg></div>
-      <div className="detail"><Detail title="Location" /></div>
+  <>
+    <div className={langStyle('location')}>
+      <div className="inner">
+        <div className="image"><GradImg><img src="/about/pict03.svg" /></GradImg></div>
+        <div className="detail"><Detail title="Location" /></div>
+      </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -143,30 +151,30 @@ const Location = () => (
           margin-top vwpx(4)
           font-size 1.6rem
     `}</style>
-  </div>
+  </>
 )
 
 const AboutPage = () => (
-  <Layout title="About" side="About">
-    <div className={langStyle('about')}>
-      <div className="head">
-        <Grad><h1>What’s Whatever<span className="q">?</span></h1></Grad>
+  <>
+    <Layout title="About" side="About">
+      <div className={langStyle('about')}>
+        <div className="head">
+          <Grad><h1>What’s Whatever<span className="q">?</span></h1></Grad>
+        </div>
+        <div className="text">
+          {t('about_statement')?.split('\n\n').map((p, i) => (
+            <div key={i} className="p">
+              {p.split('\n').map((line, index) => (
+                <Grad key={index}><span>{line}</span></Grad>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
-      <div className="text">
-        {t('about_statement')?.split('\n\n').map((p, i) => (
-          <div key={i} className="p">
-            {p.split('\n').map((line, index) => (
-              <Grad key={index}><span>{line}</span></Grad>
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
-
-    <Genres />
-    <Workstyle />
-    <Location />
-
+      <Genres />
+      <Workstyle />
+      <Location />
+    </Layout>
     <style jsx>{`
       @import 'lib/vw.styl'
       .about
@@ -203,7 +211,7 @@ const AboutPage = () => (
         .text
           font-size vwpx(30)
     `}</style>
-  </Layout>
+  </>
 )
 
 export default AboutPage

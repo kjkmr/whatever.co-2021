@@ -47,6 +47,7 @@ const Menu = () => {
           width 80px
           height 80px      
           background-color #000
+          z-index -2
         .menu-full
           display none
           justify-content space-between

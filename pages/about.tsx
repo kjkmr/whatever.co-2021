@@ -14,7 +14,7 @@ const Detail = ({ title }: { title: string }) => {
       <Grad><h1>{title}</h1></Grad>
       {subtitle != '-' ? <Grad><h2>{subtitle}</h2></Grad> : null}
       <Grad><p dangerouslySetInnerHTML={{ __html: t(`about_${key}_description`)?.replace('\n', '<br />') || '' }}></p></Grad>
-      <div className="more"><BlackButton text="Learn more" link={`/about/${key}`} /></div>
+      <div className="more"><BlackButton link={`/about/${key}`} >Learn more</BlackButton></div>
       <style jsx>{`
         @import 'lib/vw.styl'
         .detail

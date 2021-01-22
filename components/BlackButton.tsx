@@ -1,10 +1,19 @@
-import { useRef } from 'react'
+import { useRef, ReactNode } from 'react'
 import Link from 'next/link'
 import { Grad, getColors } from 'components/Grad'
 
 const bgs: HTMLDivElement[] = []
 
-const BlackButton = ({ text, link, height = 60, onClick }: { text: string, link?: string, height?: number, onClick?: any }) => {
+type BlackButtonProps = {
+  children?: ReactNode
+  link?: string
+  width?: string
+  height?: string
+  backgroundColor?: string
+  onClick?: any
+}
+
+const BlackButton = ({ children, link, width = '256px', height = '60px', backgroundColor = 'black', onClick }: BlackButtonProps) => {
   const ref = useRef<HTMLAnchorElement>(null)
   const onMousEnter = () => {
     const bg = document.createElement('div')
@@ -45,8 +54,8 @@ const BlackButton = ({ text, link, height = 60, onClick }: { text: string, link?
       <Grad>
         <div>
           {link
-            ? <Link href={link}><a ref={ref} onMouseEnter={onMousEnter} onMouseLeave={onMouseLeave}>{text}</a></Link>
-            : <a ref={ref} onMouseEnter={onMousEnter} onMouseLeave={onMouseLeave} onClick={onClick}>{text}</a>
+            ? <Link href={link}><a ref={ref} onMouseEnter={onMousEnter} onMouseLeave={onMouseLeave}>{children}</a></Link>
+            : <a ref={ref} onMouseEnter={onMousEnter} onMouseLeave={onMouseLeave} onClick={onClick}>{children}</a>
           }
         </div>
       </Grad>
@@ -60,10 +69,10 @@ const BlackButton = ({ text, link, height = 60, onClick }: { text: string, link?
           font-weight bold
           letter-spacing 0.04em
           box-sizing border-box
-          width 256px
-          height ${height}px
+          width ${width}
+          height ${height}
           padding-top 4px
-          background-color black
+          background-color ${backgroundColor}
           border none
           position relative
           z-index 0

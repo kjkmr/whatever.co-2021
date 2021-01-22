@@ -108,7 +108,7 @@ const Section2 = () => (
         return <Member key={link} image={link} title={title} name={name} slug={link} />
       })}
     </div>
-    <div className="link"><BlackButton text="All Members" link="/team" /></div>
+    <div className="link"><BlackButton link="/team" >All Members</BlackButton></div>
     <style jsx>{`
       @import 'lib/vw.styl'
       .section2

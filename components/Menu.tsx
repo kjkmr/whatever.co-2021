@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import classNames from 'classnames/bind'
+import BlackButton from 'components/BlackButton'
 import LanguageSelector from 'components/LanguageSelector'
 import ContactForm from 'components/ContactForm'
 import SNSButtons from 'components/SNSButtons'
@@ -27,10 +28,12 @@ const Menu = () => {
             <div className="sns"><SNSButtons /></div>
           </div>
         </div>
-        <button className={classNames('button', { close: opened })} onClick={onclick}>
-          <div className="l1"></div>
-          <div className="l2"></div>
-        </button>
+        <div className={classNames('button', { close: opened })}>
+          <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onclick}>
+            <div className="l1"></div>
+            <div className="l2"></div>
+          </BlackButton>
+        </div>
       </div>
       <style jsx>{`
         @import 'lib/vw.styl'

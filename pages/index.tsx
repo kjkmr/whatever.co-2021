@@ -14,10 +14,12 @@ const Player = ({ onClick }: { onClick?: any }) => (
       <div className="aspect-ratio">
         <iframe src="https://www.youtube.com/embed/rsBTSWTbH4I?autoplay=1;controls=0;rel=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
       </div>
-      <button className="close-button" onClick={onClick}>
-        <div className="l1"></div>
-        <div className="l2"></div>
-      </button>
+      <div className="close-button">
+        <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onClick}>
+          <div className="l1"></div>
+          <div className="l2"></div>
+        </BlackButton>
+      </div>
     </div>
     <style jsx>{`
       .player
@@ -43,15 +45,10 @@ const Player = ({ onClick }: { onClick?: any }) => (
             left 0
             width 100%
             height 100%
-        button.close-button
+        .close-button
           position absolute
           top 0
           left 0
-          width 80px
-          height 80px
-          padding 0
-          border 0
-          background-color transparent
           .l1,.l2
             position absolute
             width 20px
@@ -93,7 +90,9 @@ const Showreel = () => {
         <div className="video" style={{ height: `calc((100vh - 40px) - ${scrollY}px)` }}>
           <video ref={video} src="/index/reel-preview.mp4" autoPlay={true} loop muted></video>
         </div>
-        <div className="button"><BlackButton text="Watch Reel" height={80} onClick={onClickWatch} /></div>
+        <div className="button">
+          <BlackButton height="80px" onClick={onClickWatch} >Watch Reel</BlackButton>
+        </div>
       </div>
       {showPlayer ? <Player onClick={onClose} /> : null}
       <style jsx>{`
@@ -132,7 +131,7 @@ const Tagline = () => (
         {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index}><h2>{line}</h2></Grad>)}
       </div>
       <div className="link">
-        <BlackButton text="Learn more" link="/about" />
+        <BlackButton link="/about" >Learn more</BlackButton>
       </div>
     </div>
     <style jsx>{`
@@ -258,7 +257,7 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
       {works.map(work => <FeaturedWorkItem key={work.slug} work={work} />)}
     </div>
     <div className="link">
-      <BlackButton text="All Works" link="/work" />
+      <BlackButton link="/work" >All Works</BlackButton>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -322,7 +321,7 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
       {news.map(item => <NewsItem key={item.slug} data={item} />)}
     </div>
     <div className="link">
-      <BlackButton text="All News" link="/news" />
+      <BlackButton link="/news" >All News</BlackButton>
     </div>
 
     <style jsx>{`
@@ -346,7 +345,7 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
         margin-top 80px
         margin-right -80px
     `}</style>
-  </div>
+  </div >
 )
 
 const IndexPage = ({ works, news }: { works: Entry[], news: Entry[] }) => (

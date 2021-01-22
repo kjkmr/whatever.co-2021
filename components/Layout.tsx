@@ -12,7 +12,10 @@ let templateName: string
 // templateName = 'About_detail_01'
 // templateName = 'About_detail_02'
 // templateName = 'About_detail_03'
+// templateName = 'Work_detail'
 // templateName = 'News_detail'
+// templateName = 'Contact'
+// templateName = 'menu'
 
 type Props = {
   showHeader?: boolean
@@ -27,7 +30,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
   const templateStyle: { [prop: string]: string } = {}
   if (templateName) {
     templateStyle.backgroundImage = `url(/_/${templateName}_${useRouter().locale!}.png)`
-    // templateStyle.backgroundPosition = 'top -40px left'
+    // templateStyle.backgroundPosition = 'top -13px left'
   }
   return (
     <div>
@@ -132,7 +135,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
         button
           cursor pointer
         img
-          pointer-events none
+          {/* pointer-events none */}
           user-select none
         *:focus
           outline none

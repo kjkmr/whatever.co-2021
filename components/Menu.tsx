@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import classNames from 'classnames/bind'
+import BlackButton from 'components/BlackButton'
+import LanguageSelector from 'components/LanguageSelector'
 import ContactForm from 'components/ContactForm'
 import SNSButtons from 'components/SNSButtons'
 
@@ -8,28 +10,33 @@ const Menu = () => {
   const [opened, setOpened] = useState(false)
   const onclick = () => { setOpened(!opened) }
   return (
-    <div className="container">
-      <div className="black"></div>
-      <div className="menu" style={{ display: opened ? 'flex' : 'none' }}>
-        <ul>
-          <li><Link href="/"><a onClick={onclick}>Top</a></Link></li>
-          <li><Link href="/work/category/all"><a onClick={onclick}>Work</a></Link></li>
-          <li><Link href="/about"><a onClick={onclick}>About</a></Link></li>
-          <li><Link href="/team"><a onClick={onclick}>Team</a></Link></li>
-          <li><Link href="/news"><a onClick={onclick}>News</a></Link></li>
-          <li><Link href="/contact"><a onClick={onclick}>Contact</a></Link></li>
-        </ul>
-        <div className="contact">
-          <ContactForm />
-          <div className="sns"><SNSButtons /></div>
+    <>
+      <div className="container">
+        <div className="black"></div>
+        <div className="menu" style={{ display: opened ? 'flex' : 'none' }}>
+          <ul>
+            <li><Link href="/"><a onClick={onclick}>Top</a></Link></li>
+            <li><Link href="/work/category/all"><a onClick={onclick}>Work</a></Link></li>
+            <li><Link href="/about"><a onClick={onclick}>About</a></Link></li>
+            <li><Link href="/team"><a onClick={onclick}>Team</a></Link></li>
+            <li><Link href="/news"><a onClick={onclick}>News</a></Link></li>
+            <li><Link href="/contact"><a onClick={onclick}>Contact</a></Link></li>
+          </ul>
+          <div className="contact">
+            <div className="langselect"><LanguageSelector activeColor="white" inactiveColor="#666666" separator="  /  " onSelected={onclick} /></div>
+            <ContactForm />
+            <div className="sns"><SNSButtons /></div>
+          </div>
+        </div>
+        <div className={classNames('button', { close: opened })}>
+          <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onclick}>
+            <div className="l1"></div>
+            <div className="l2"></div>
+          </BlackButton>
         </div>
       </div>
-      <button className={classNames('button', { close: opened })} onClick={onclick}>
-        <div className="l1"></div>
-        <div className="l2"></div>
-      </button>
-
       <style jsx>{`
+        @import 'lib/vw.styl'
         .container
           position fixed
           z-index 10000
@@ -49,7 +56,7 @@ const Menu = () => {
           width calc(100vw - 205px * 2)
           height calc(100vh - 152px * 2)
           padding 152px 205px
-          {/* background-image url(/_/menu_en.png)
+          {/* background-image url(/_/menu_ja.png)
           background-repeat no-repeat */}
           background-color #333333
           ul
@@ -61,17 +68,22 @@ const Menu = () => {
             margin 0
             margin-bottom 47px
             padding 0
-            font-size 36px
+            font-size vwpx_min(36)
             font-weight bold
             &:first-child
-              margin-bottom 57px
+              margin-bottom vwpx_min(57)
             a
               color white
               border none
+          .langselect
+            font-size 1.4rem
+            margin-top 5px
+            letter-spacing 0.06rem
+            margin-bottom 115px
           .sns
             position absolute
             right 205px
-            bottom 156px
+            bottom 152px
         .button
           position relative
           z-index 1
@@ -101,7 +113,7 @@ const Menu = () => {
             top 39px
             transform rotate(-45deg)
       `}</style>
-    </div>
+    </>
   )
 }
 

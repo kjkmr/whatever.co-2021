@@ -1,4 +1,4 @@
-import { useCallback, SyntheticEvent } from 'react'
+import { ReactNode, SyntheticEvent, useCallback, useEffect, useRef } from 'react'
 
 const COLORS = ["#ff2300", "#ff9201", "#ffeb00", "#89e82b", "#00c745", "#29ebfe", "#0d44fb", "#a725fc", "#fd1eba"];
 export const getColors = (): [string, string] => {
@@ -54,11 +54,11 @@ const doAnime = (base: Element, grad: Element, box: Element, duration: number = 
         left: "-100%"
       },
       {
-        backgroundPosition: "0% 0%",
+        backgroundPosition: "0 0, 0 0",
         left: 0
       },
       {
-        backgroundPosition: "100% 0%",
+        backgroundPosition: "0 0, 100% 0",
         left: "100%"
       }
     ],
@@ -97,7 +97,7 @@ const doAnime = (base: Element, grad: Element, box: Element, duration: number = 
   )
 }
 
-export const Grad = ({ children }: any) => {
+export const Grad = ({ children }: { children?: ReactNode }) => {
   const ref = useCallback(node => {
     if (!node) return
     const base = node.children[0]
@@ -117,9 +117,10 @@ export const Grad = ({ children }: any) => {
     }).observe(base)
   }, [])
   return (
-    <div ref={ref}>
-      {children}
-
+    <>
+      <div ref={ref}>
+        {children}
+      </div>
       <style jsx global>{`
         .grad-effect-base
           position relative
@@ -136,6 +137,8 @@ export const Grad = ({ children }: any) => {
           -webkit-background-clip text
           -webkit-text-fill-color transparent
           visibility hidden
+          > *
+            background-color: transparent !important
         .grad-effect-img
           position absolute
           top 0
@@ -144,7 +147,7 @@ export const Grad = ({ children }: any) => {
           height 100%
           background-color white
           background-image url(/noise.png), linear-gradient(to right, #fbe105, #f91fae)
-          background-size auto, 200% 100%
+          background-size auto, 100% 100%
           background-blend-mode overlay, normal
           visibility hidden
         .grad-effect-box
@@ -158,15 +161,23 @@ export const Grad = ({ children }: any) => {
           width 100%
           height 100%
           visibility visible
+        .grad-effect-over
+          position absolute
+          top 0
+          left 0
+          width 100%
+          height 100%
+          background-color red
+          mix-blend-mode screen
       `}</style>
-    </div>
+    </>
   )
 }
 
-export const GradImg = ({ children }: any) => {
-  const ref = useCallback(node => {
-    if (!node) return
-
+export const GradImg = ({ children, mouseEntered }: { children?: ReactNode, mouseEntered?: boolean }) => {
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const node = ref.current!
     node.classList.add('grad-effect-base')
     const img = node.children[0]
 
@@ -187,18 +198,63 @@ export const GradImg = ({ children }: any) => {
       doAnime(img, grad, box, 200).onfinish = () => {
         node.removeChild(grad)
         node.removeChild(box)
+        node.classList.remove('grad-effect-base')
       }
       object.unobserve(img)
     }).observe(img)
   }, [])
+
+  const els = useRef<HTMLDivElement[]>([])
+  useEffect(() => {
+    if (mouseEntered === undefined) return;
+    if (mouseEntered) {
+      const el = document.createElement('div')
+      el.classList.add('grad-effect-over')
+      const [colorA, colorB] = getColors()
+      el.style.backgroundImage = `linear-gradient(to right, ${colorA}, ${colorB})`
+      ref.current?.appendChild(el)
+      els.current?.push(el)
+      el.animate(
+        [
+          { left: '-100%', easing: 'cubic-bezier(0.80, 0.000, 0.200, 1.0)' },
+          { left: '0%' },
+        ],
+        {
+          duration: 125,
+          iterations: 1,
+          fill: "both"
+        }
+      )
+    } else {
+      const el = els.current?.shift()
+      if (!el) return
+      el.animate(
+        [
+          { left: '100%', easing: 'cubic-bezier(0.80, 0.000, 0.200, 1.0)' },
+        ],
+        {
+          duration: 125,
+          iterations: 1,
+          fill: "both"
+        }
+      ).onfinish = () => {
+        el.parentNode?.removeChild(el)
+      }
+    }
+  }, [mouseEntered])
+
   return (
-    <div className="container" ref={ref}>
-      {children}
+    <>
+      <div className="grad-image" ref={ref}>
+        {children}
+      </div>
       <style jsx>{`
-        .container
+        .grad-image
           font-size 0
+          position relative
+          overflow hidden
       `}</style>
-    </div>
+    </>
   )
 }
 

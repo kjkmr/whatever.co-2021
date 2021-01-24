@@ -6,9 +6,11 @@ import Layout from 'components/Layout'
 import { Header, Footer, SectionHeader } from 'components/About'
 
 const Section1 = () => (
-  <div className={langStyle('section1')}>
-    <hr />
-    <SectionHeader num="01" title={t('workstyle_1_title')!} body={t('workstyle_1_body')!} />
+  <>
+    <div className={langStyle('section1')}>
+      <hr />
+      <SectionHeader num="01" title={t('workstyle_1_title')!} body={t('workstyle_1_body')!} />
+    </div>
     <style jsx>{`
       @import 'lib/vw.styl'
       .section1
@@ -22,7 +24,7 @@ const Section1 = () => (
         width vwpx_min(252)
         margin-bottom vwpx(105)
     `}</style>
-  </div>
+  </>
 )
 
 type AllianceData = {
@@ -59,14 +61,16 @@ const AllianceData: { [key: string]: AllianceData } = {
 
 const Alliance = ({ slug }: { slug: string }) => {
   return (
-    <div className="alliance">
-      <Link href={AllianceData[slug].link}>
-        <a target="_blank" rel="noopener noreferrer">
-          <img src={`/about/workstyle/${slug}@2x.png`} alt="" />
-          <div className="name">{AllianceData[slug].name}</div>
-          <div className="desc" dangerouslySetInnerHTML={{ __html: t(`workstyle_2_${slug}`)!.replace(/\n/g, '<br />') }}></div>
-        </a>
-      </Link>
+    <>
+      <div className="alliance">
+        <Link href={AllianceData[slug].link}>
+          <a target="_blank" rel="noopener noreferrer">
+            <img src={`/about/workstyle/${slug}@2x.png`} alt="" />
+            <div className="name">{AllianceData[slug].name}</div>
+            <div className="desc" dangerouslySetInnerHTML={{ __html: t(`workstyle_2_${slug}`)!.replace(/\n/g, '<br />') }}></div>
+          </a>
+        </Link>
+      </div>
       <style jsx>{`
         @import 'lib/vw.styl'
         a
@@ -82,46 +86,50 @@ const Alliance = ({ slug }: { slug: string }) => {
           object-fit cover
         .name
           font-size 1.8rem
-          font-weight bold
+          font-weight 500
           margin-bottom 1.6rem
         .desc
           font-size 1.2rem
           line-height 2.4rem
       `}</style>
-    </div>
+    </>
   )
 }
 
 const Section2 = () => (
-  <div className={langStyle('section2')}>
-    <SectionHeader num="02" title={t('workstyle_2_title')!} body={t('workstyle_2_body')!} />
-    <div className="alliance">
-      {Object.keys(AllianceData).map(key => <Alliance key={key} slug={key} />)}
-    </div>
+  <>
+    <div className={langStyle('section2')}>
+      <SectionHeader num="02" title={t('workstyle_2_title')!} body={t('workstyle_2_body')!} />
+      <div className="alliance">
+        {Object.keys(AllianceData).map(key => <Alliance key={key} slug={key} />)}
+      </div>
+    </div >
     <style jsx>{`
       @import 'lib/vw.styl'
       .section2
-        margin vwpx(226) vwpx(80) vwpx(226)
+        margin vwpx(196) vwpx(80) vwpx(226)
       .alliance
         display grid
         grid-template-columns repeat(3, 1fr)
         grid-gap vwpx(54) vwpx(60)
-        margin-top -2.1rem
+        margin-top 4.2rem
     `}</style>
-  </div >
+  </>
 )
 
 const Features = () => (
-  <div className={langStyle('features')}>
-    <h2>FEATURES：</h2>
-    <div className="items">
-      {t('workstyle_3_features')?.split('\n\n').map(item => {
-        const [n, desc] = item.split('\n')
-        return (<>
-          <div className="name">- {n}</div>
-          <div className="desc">{desc}</div>
-        </>)
-      })}
+  <>
+    <div className={langStyle('features')}>
+      <h2>FEATURES：</h2>
+      <div className="items">
+        {t('workstyle_3_features')?.split('\n\n').map(item => {
+          const [n, desc] = item.split('\n')
+          return (<>
+            <div className="name">- {n}</div>
+            <div className="desc">{desc}</div>
+          </>)
+        })}
+      </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -137,26 +145,28 @@ const Features = () => (
         grid-gap 3.4rem 0
       .name
         font-size 1.8rem
-        font-weight bold
+        font-weight 500
         line-height 3.0rem
       .desc
         line-height 3.0rem
     `}</style>
-  </div>
+  </>
 )
 
 const About = () => (
-  <div className={langStyle('about')}>
-    <div className="text">
-      <h2>ABOUT：</h2>
-      <div className="items">
-        {t('workstyle_3_about')?.split('\n\n').map(item => {
-          const [n, desc] = item.split('\n')
-          return (<>
-            <div className="name">- {n}</div>
-            <div className="desc">{desc}</div>
-          </>)
-        })}
+  <>
+    <div className={langStyle('about')}>
+      <div className="text">
+        <h2>ABOUT：</h2>
+        <div className="items">
+          {t('workstyle_3_about')?.split('\n\n').map(item => {
+            const [n, desc] = item.split('\n')
+            return (<>
+              <div className="name">- {n}</div>
+              <div className="desc">{desc}</div>
+            </>)
+          })}
+        </div>
       </div>
     </div>
     <style jsx>{`
@@ -171,26 +181,28 @@ const About = () => (
         grid-gap 3.4rem 0
       .name
         font-size 1.8rem
-        font-weight bold
+        font-weight 500
         line-height 3.0rem
       .desc
-        font-size 1.5rem
+        font-size var(--font-size-ja)
         line-height 3.0rem
     `}</style>
-  </div>
+  </>
 )
 
 const Section3 = () => (
-  <div className={langStyle('section3')}>
-    <SectionHeader num="03" title={t('workstyle_3_title')!} body={t('workstyle_3_body')!} />
-    <div className="images">
-      <img src="/about/workstyle/03_1@2x.jpg" alt="" className="i1" />
-      <img src="/about/workstyle/03_2@2x.jpg" alt="" className="i2" />
-      <img src="/about/workstyle/03_3@2x.jpg" alt="" className="i3" />
-    </div>
-    <div className="columns">
-      <About />
-      <Features />
+  <>
+    <div className={langStyle('section3')}>
+      <SectionHeader num="03" title={t('workstyle_3_title')!} body={t('workstyle_3_body')!} />
+      <div className="images">
+        <img src="/about/workstyle/03_1@2x.jpg" alt="" className="i1" />
+        <img src="/about/workstyle/03_2@2x.jpg" alt="" className="i2" />
+        <img src="/about/workstyle/03_3@2x.jpg" alt="" className="i3" />
+      </div>
+      <div className="columns">
+        <About />
+        <Features />
+      </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -199,6 +211,7 @@ const Section3 = () => (
       .images
         position relative
         height vwpx2(1030, 160)
+        margin-top vwpx2(64, 160)
         margin-bottom vwpx2(92, 160)
         img
           position absolute
@@ -216,7 +229,7 @@ const Section3 = () => (
         grid-template-columns repeat(2, 1fr)
         grid-gap 80px
     `}</style>
-  </div>
+  </>
 )
 
 const Workstyle = () => (

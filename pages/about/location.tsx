@@ -7,27 +7,29 @@ import BlackButton from 'components/BlackButton'
 import React from 'react'
 
 const Section1 = () => (
-  <div className={langStyle('section1')}>
-    <hr />
-    <SectionHeader num="01" title={t('location_1_title')!} body={t('location_1_body')!} />
-    <h2>{t('location_1_inhouse')}</h2>
-    <div className="logos">
-      <img src="/about/location/whill.png" alt="WILL" />
-      <img src="/about/location/muji.png" alt="MIJI" />
-      <img src="/about/location/sony.png" alt="SONY" />
-      <img src="/about/location/cotodama.png" alt="Cotodama" />
-      <img src="/about/location/avex.png" alt="avex group" />
-    </div>
-    <h2>{t('location_1_overseas')}</h2>
-    <div className="logos" style={{ marginBottom: -1 }}>
-      <img src="/about/location/slack.png" alt="Slack" />
-      <img src="/about/location/shopify.png" alt="Shopify" />
-      <img src="/about/location/airbnb.png" alt="Airbnb" />
-      <img src="/about/location/google.png" alt="Google" />
-      <img src="/about/location/hermes.png" alt="HERMES" /></div>
-    <div className="logos2">
-      <img src="/about/location/intel.png" alt="intel" />
-      <img src="/about/location/newstand.png" alt="NEW STAND" />
+  <>
+    <div className={langStyle('section1')}>
+      <hr />
+      <SectionHeader num="01" title={t('location_1_title')!} body={t('location_1_body')!} />
+      <h2>{t('location_1_inhouse')}</h2>
+      <div className="logos">
+        <img src="/about/location/whill.png" alt="WILL" />
+        <img src="/about/location/muji.png" alt="MIJI" />
+        <img src="/about/location/sony.png" alt="SONY" />
+        <img src="/about/location/cotodama.png" alt="Cotodama" />
+        <img src="/about/location/avex.png" alt="avex group" />
+      </div>
+      <h2>{t('location_1_overseas')}</h2>
+      <div className="logos" style={{ marginBottom: -1 }}>
+        <img src="/about/location/slack.png" alt="Slack" />
+        <img src="/about/location/shopify.png" alt="Shopify" />
+        <img src="/about/location/airbnb.png" alt="Airbnb" />
+        <img src="/about/location/google.png" alt="Google" />
+        <img src="/about/location/hermes.png" alt="HERMES" /></div>
+      <div className="logos2">
+        <img src="/about/location/intel.png" alt="intel" />
+        <img src="/about/location/newstand.png" alt="NEW STAND" />
+      </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -43,9 +45,8 @@ const Section1 = () => (
         width vwpx_min(252)
         margin-bottom vwpx(105)
       h2
-        margin 0
-        font-size vwpx(20)
-        margin-bottom 5.6rem
+        margin 5.6rem 0
+        font-size vwpx_min(20)
       .logos, .logos2
         display grid
         grid-template-columns repeat(5, 1fr)
@@ -66,37 +67,42 @@ const Section1 = () => (
       .logos2
         grid-template-columns repeat(2, 1fr)
         width vwpx2(452, 240)
+      .en
+        h2
+          font-size vwpx_min(24)
     `}</style>
-  </div>
+  </>
 )
 
 const Member = ({ image, title, name, slug }: { image: string, title: string, name: string, slug: string }) => (
-  <Link href={`/team/${slug}`}>
-    <a className={langStyle('member')}>
-      <img src={`/about/location/${image}@2x.jpg`} alt="" />
-      <div className="title">{title}</div>
-      <div className="name">{name}</div>
-      <style jsx>{`
-        @import 'lib/vw.styl'
-        .member
-          font-size 0
-          display block
-          border none
-        img
-          width vwpx(245)
-        .title
-          font-size 1.4rem
-          font-weight 300
-          line-height 1.4rem
-          margin-top 1.9rem
-        .name
-          font-size 1.8rem
-          font-weight bold
-          line-height 1.8rem
-          margin-top 1.2rem
-      `}</style>
-    </a>
-  </Link>
+  <>
+    <Link href={`/team/${slug}`}>
+      <a className={langStyle('member')}>
+        <img src={`/about/location/${image}@2x.jpg`} alt="" />
+        <div className="title">{title}</div>
+        <div className="name">{name}</div>
+      </a>
+    </Link>
+    <style jsx>{`
+      @import 'lib/vw.styl'
+      .member
+        font-size 0
+        display block
+        border none
+      img
+        width vwpx(245)
+      .title
+        font-size 1.4rem
+        font-weight 300
+        line-height 1.4rem
+        margin-top 1.9rem
+      .name
+        font-size 1.8rem
+        font-weight 500
+        line-height 1.8rem
+        margin-top 1.2rem
+    `}</style>
+  </>
 )
 
 const Section2 = () => (

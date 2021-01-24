@@ -7,29 +7,32 @@ import { Grad } from 'components/Grad'
 import React from 'react'
 
 const Section1 = () => (
-  <div className={langStyle('section1')}>
-    <hr />
-    <SectionHeader num="01" title={t('genres_1_title')!} body={t('genres_1_body')!} />
-    <div className="images">
-      <img src="/about/genres/01_1@2x.jpg" alt="" className="i1" />
-      <img src="/about/genres/01_2@2x.jpg" alt="" className="i2" />
-      <img src="/about/genres/01_3@2x.jpg" alt="" className="i3" />
-      <img src="/about/genres/01_4@2x.jpg" alt="" className="i4" />
-    </div>
-    <Grad><h2>{t('genres_1_example_title')}</h2></Grad>
-    <div className="example-items">
-      {t('genres_1_example_items')!.split('\n\n').map((item, index) => {
-        const [title, ...desc] = item.split('\n')
-        return (
-          <div className="item" key={index}>
-            <div className="title">- {title}</div>
-            <ul>
-              {desc.map((d, i) => (<li key={i}>{d}</li>))}
-            </ul>
-            <div>など</div>
-          </div>
-        )
-      })}
+  <>
+    <div className={langStyle('section1')}>
+      <hr />
+      <SectionHeader num="01" title={t('genres_1_title')!} body={t('genres_1_body')!} />
+      <div className="images">
+        <img src="/about/genres/01_1@2x.jpg" alt="" className="i1" />
+        <img src="/about/genres/01_2@2x.jpg" alt="" className="i2" />
+        <img src="/about/genres/01_3@2x.jpg" alt="" className="i3" />
+        <img src="/about/genres/01_4@2x.jpg" alt="" className="i4" />
+      </div>
+      <Grad><h2>{t('genres_1_example_title')}</h2></Grad>
+      <div className="example-items">
+        {t('genres_1_example_items')!.split('\n\n').map((item, index) => {
+          const [title, ...desc] = item.split('\n')
+          const etc = desc.pop()
+          return (
+            <div className="item" key={index}>
+              <div className="title">- {title}</div>
+              <ul>
+                {desc.map((d, i) => (<li key={i}>{d}</li>))}
+              </ul>
+              <div>{etc}</div>
+            </div>
+          )
+        })}
+      </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -47,6 +50,7 @@ const Section1 = () => (
       .images
         position relative
         height vwpx2(1230, 160)
+        margin-top vwpx2(93, 160)
         margin-bottom vwpx2(94, 160)
         img
           position absolute
@@ -78,14 +82,15 @@ const Section1 = () => (
         display grid
         grid-template-columns repeat(3, 1fr)
         grid-gap 0
+        align-items start
         .item
           border-left 1px solid #B4B4B4
           padding-top 1.7rem
           padding-bottom 1.7rem
-          padding-left 38px
+          padding-left 3.8rem
           box-sizing border-box
           .title
-            font-weight bold
+            font-weight 700
             margin-bottom 2.0rem
           ul
             margin 0
@@ -93,13 +98,31 @@ const Section1 = () => (
             li
               list-style '・' inside
               margin-bottom 0.9rem
+      .en
+        h2
+          font-size vwpx_min(24)
+        .example-items
+          font-size 1.7rem
+          font-weight 200
+          .item
+            padding-top 2.0rem
+            padding-left 3.9rem
+            padding-bottom 1.1rem
+            .title
+              margin-bottom 2.4rem
+            ul
+              margin-bottom 1.1rem
+              li
+                line-height 1.25em
     `}</style>
-  </div>
+  </>
 )
 
 const Section2 = () => (
-  <div className={langStyle('section2')}>
-    <SectionHeader num="02" title={t('genres_2_title')!} body={t('genres_2_body')!} />
+  <>
+    <div className={langStyle('section2')}>
+      <SectionHeader num="02" title={t('genres_2_title')!} body={t('genres_2_body')!} />
+    </div>
     <style jsx>{`
       @import 'lib/vw.styl'
       .section2
@@ -107,7 +130,7 @@ const Section2 = () => (
         margin-right vwpx(80)
         margin-bottom vwpx(226)
     `}</style>
-  </div>
+  </>
 )
 
 const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: string }) => {
@@ -120,14 +143,16 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
     link = `/work/${link}`
   }
   return (
-    <div className={langStyle('work-link')}>
-      <Link href={link}>
-        <a target={target} rel="noopener noreferrer">
-          <img src={`/about/genres/${image}@2x.jpg`} alt="" />
-          <div className="name">{name}</div>
-          <div className="desc">{desc}</div>
-        </a>
-      </Link>
+    <>
+      <div className={langStyle('work-link')}>
+        <Link href={link}>
+          <a target={target} rel="noopener noreferrer">
+            <img src={`/about/genres/${image}@2x.jpg`} alt="" />
+            <div className="name">{name}</div>
+            <div className="desc">{desc}</div>
+          </a>
+        </Link>
+      </div>
       <style jsx>{`
         @import 'lib/vw.styl'
         .work-link
@@ -143,26 +168,28 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
           font-size 1.8rem
           font-weight bold
           line-height 1.8rem
-          margin-top 2.6rem
+          margin-top 2.5rem
         .desc
           margin-top 1.7rem
           font-size 1.2rem
           line-height 2.4rem
       `}</style>
-    </div>
+    </>
   )
 }
 
 const WorkList = ({ title, body, items }: { title: string, body: string, items: string }) => (
-  <div className={langStyle('work-list')}>
-    <div className="text">
-      <h2>{title}</h2>
-      <div className="t">{body}</div>
-      <div className="items">
-        {items.split('\n\n').map(item => {
-          const [name, link, desc] = item.split('\n')
-          return <WorkLink key={link} name={name} link={link} desc={desc} />
-        })}
+  <>
+    <div className={langStyle('work-list')}>
+      <div className="text">
+        <div className="title">{title}</div>
+        <div className="t">{body}</div>
+        <div className="items">
+          {items.split('\n\n').map(item => {
+            const [name, link, desc] = item.split('\n')
+            return <WorkLink key={link} name={name} link={link} desc={desc} />
+          })}
+        </div>
       </div>
     </div>
     <style jsx>{`
@@ -170,36 +197,41 @@ const WorkList = ({ title, body, items }: { title: string, body: string, items: 
       .work-list
         position relative
         margin-bottom vwpx(100)
-      h2
+      .title
         font-size vwpx_min(20)
-        font-weight bold
+        font-weight 500
         margin 0
         margin-bottom vwpx_min(30)
       .t
-        margin-bottom 5.0rem
-        font-size 1.5rem
+        margin-bottom 5.2rem
+        font-size var(--font-size-ja)
         line-height 3.0rem
       .items
         display grid
         grid-template-columns repeat(3, 1fr)
         grid-gap vwpx2(38, 160) vwpx2(60, 160)
+      .en
+        .title
+          font-size vwpx_min(24)
+        .t
+          font-size var(--font-size-en)
     `}</style>
-  </div>
+  </>
 )
 
 const Section3 = () => (
-  <div className={langStyle('section3')}>
-    <SectionHeader num="03" title={t('genres_3_title')!} body={t('genres_3_body')!} />
-    <div className="images">
-      <img src="/about/genres/03_1@2x.jpg" alt="" className="i1" />
-      <img src="/about/genres/03_2@2x.jpg" alt="" className="i2" />
-      <img src="/about/genres/03_3@2x.jpg" alt="" className="i3" />
+  <>
+    <div className={langStyle('section3')}>
+      <SectionHeader num="03" title={t('genres_3_title')!} body={t('genres_3_body')!} />
+      <div className="images">
+        <img src="/about/genres/03_1@2x.jpg" alt="" className="i1" />
+        <img src="/about/genres/03_2@2x.jpg" alt="" className="i2" />
+        <img src="/about/genres/03_3@2x.jpg" alt="" className="i3" />
+      </div>
+      <WorkList title={t('genres_3_inhouse_title')!} body={t('genres_3_inhouse_body')!} items={t('genres_3_inhouse_items')!} />
+      <WorkList title={t('genres_3_brands_title')!} body={t('genres_3_brands_body')!} items={t('genres_3_brands_items')!} />
+      <WorkList title={t('genres_3_investment_title')!} body={t('genres_3_investment_body')!} items={t('genres_3_investment_items')!} />
     </div>
-    <WorkList title={t('genres_3_inhouse_title')!} body={t('genres_3_inhouse_body')!} items={t('genres_3_inhouse_items')!} />
-    <WorkList title={t('genres_3_brands_title')!} body={t('genres_3_brands_body')!} items={t('genres_3_brands_items')!} />
-    <WorkList title={t('genres_3_investment_title')!} body={t('genres_3_investment_body')!} items={t('genres_3_investment_items')!} />
-    {/* <Brands />
-    <Investment /> */}
     <style jsx>{`
       @import 'lib/vw.styl'
       .section3
@@ -210,7 +242,8 @@ const Section3 = () => (
       .images
         position relative
         height vwpx2(1113, 160)
-        margin-bottom vwpx2(75, 160)
+        margin-top vwpx2(60, 160)
+        margin-bottom vwpx2(100, 160)
         img
           position absolute
         .i1
@@ -224,23 +257,25 @@ const Section3 = () => (
           top vwpx2(485, 160)
           left vwpx2(640, 160)
     `}</style>
-  </div>
+  </>
 )
 
 const GenrePage = () => (
-  <Layout title="About" side="About" backto="/about" footer={<Footer left="Location" right="Workstyle" />}>
-    <div className="container">
-      <Header title="Genres" subtitle={t('genres_title')!} desc={t('genres_description')!} image="/about/pict01.svg" />
-      <Section1 />
-      <Section2 />
-      <Section3 />
-    </div>
+  <>
+    <Layout title="About" side="About" backto="/about" footer={<Footer left="Location" right="Workstyle" />}>
+      <div className="container">
+        <Header title="Genres" subtitle={t('genres_title')!} desc={t('genres_description')!} image="/about/pict01.svg" />
+        <Section1 />
+        <Section2 />
+        <Section3 />
+      </div>
+    </Layout>
     <style jsx>{`
       .container
         min-height 5000px
         margin-bottom 110px
     `}</style>
-  </Layout>
+  </>
 )
 
 export default GenrePage

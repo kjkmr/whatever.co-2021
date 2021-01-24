@@ -7,7 +7,7 @@ var LANGS: string[] = resources.langs
 var STRINGS: { [key: string]: string[] } = resources.strings
 
 export async function loadResources() {
-  if (global.window || true) {
+  if (global.window) {
     // do nothing on browser
     return
   }

@@ -95,12 +95,14 @@ export const Header = (props: HeaderProps) => {
           font-weight 700
           line-height vwpx_min(40)
         .en
-          &.header
-            margin-top vwpx(44)
-          .t4
-            font-size vwpx(20)
-            font-weight normal
-            line-height 1.9em
+          .upper
+            margin-bottom vwpx(95)
+          .t1
+            font-size vwpx(64)
+          .t2
+            margin-bottom vwpx(16)
+          .desc
+            font-weight 400
       `}</style>
     </div>
   )
@@ -175,36 +177,44 @@ export const SectionHeader = ({ num, title, body }: SectionTitleProps) => {
     <div className={langStyle('header')}>
       <div className="row">
         <div className="num" style={numStyle}>{num}</div>
-        <div className="title" style={titleStyle} dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, '<br />') }} />
-      </div>
-      <div className="body">
-        {body?.split('\n').map((line, index) => <Grad key={index}><p key={index}>{line}</p></Grad>)}
+        <div>
+          <div className="title" style={titleStyle} dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, '<br />') }} />
+          <div className="body">
+            {body?.split('\n').map((line, index) => <Grad key={index}><p key={index}>{line}</p></Grad>)}
+          </div>
+        </div>
       </div>
       <style jsx>{`
         @import 'lib/vw.styl'
         .row
-          display flex
+          display grid
+          grid-template-columns vwpx_min(252) auto
+          grid-gap 0
         .num
           width vwpx_min(252)
           font-size vwpx_min(180)
           font-weight bold
           -webkit-text-stroke 1px black
           -webkit-text-fill-color transparent
+          transform translateX(vwpx(-7))
         .title
           font-size vwpx_min(30)
           font-weight bold
           line-height 1.81em
+          margin-top vwpx(4)
         .body
-          margin-top vwpx(-94)
-          margin-left vwpx_min(252)
-          margin-bottom vwpx(90)
+          margin-top vwpx(45)
           line-height 3.0rem
           p
-            margin-top 2.0rem
+            margin 3.0rem 0
         .en
           .title
             font-size vwpx(34)
             line-height 1.6em
+            margin-top vwpx(5)
+          .body
+            font-size 1.7rem
+            font-weight 300
       `}</style>
     </div>
   )

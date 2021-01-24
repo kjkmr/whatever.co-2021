@@ -43,6 +43,7 @@ const Detail = ({ title }: { title: string }) => {
         p
           margin 0
           margin-top vwpx_min(21)
+          margin-left 0.3rem
           font-size 1.5rem
           line-height 3.0rem
         .more
@@ -50,9 +51,9 @@ const Detail = ({ title }: { title: string }) => {
           margin-top 4.8rem
         .en
           h1
-            margin-bottom vwpx(6)
+            margin-bottom 0
           p
-            font-size 1.6rem
+            font-size 1.7rem
       `}</style>
     </>
   )
@@ -81,9 +82,6 @@ const Genres = () => (
         width vwpx(603)
       .detail
         margin-left vwpx(80)
-      .en
-        .detail
-          padding-top vwpx(4)
     `}</style>
   </>
 )
@@ -205,12 +203,9 @@ const AboutPage = () => (
           overflow hidden
           margin-bottom vwpx(13)
       .en
-        &.about
-          margin-bottom vwpx(131)
-        .head
-          margin-bottom vwpx(54)
         .text
           font-size vwpx(30)
+          line-height vwpx(37)
     `}</style>
   </>
 )

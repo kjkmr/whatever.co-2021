@@ -95,21 +95,24 @@ const doAnime = (base: Element, fade: Element, slide: Element, duration: number 
 }
 
 export const Grad = ({ children }: { children?: ReactNode }) => {
-  const ref = useCallback(node => {
-    if (!node) return
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const node = ref.current!
     const base = node.children[0]
     const [colorA, colorB] = getColors()
     const [fade, slide] = setup(base, colorA, colorB)
+    const cleanup = () => {
+      fade.parentNode?.removeChild(fade)
+      slide.parentNode?.removeChild(slide)
+      base.classList.remove('grad-effect-base')
+    }
     new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
       const entry = entries[0]
       if (!entry.isIntersecting) { return }
-      doAnime(base, fade, slide).onfinish = () => {
-        fade.parentNode?.removeChild(fade)
-        slide.parentNode?.removeChild(slide)
-        base.classList.remove('grad-effect-base')
-      }
+      doAnime(base, fade, slide).onfinish = cleanup
       object.unobserve(base)
     }).observe(base)
+    return cleanup
   }, [])
   return (
     <>
@@ -130,7 +133,7 @@ export const Grad = ({ children }: { children?: ReactNode }) => {
           height 100%
           background-image url(/noise.png), linear-gradient(to right, #fbe105, #f91fae)
           background-blend-mode overlay, normal
-          mix-blend-mode screen
+          mix-blend-mode lighten
           visibility hidden
           user-select none
           pointer-events none
@@ -175,7 +178,7 @@ export const Grad = ({ children }: { children?: ReactNode }) => {
   )
 }
 
-export const GradImg = ({ children, mouseEntered }: { children?: ReactNode, mouseEntered?: boolean }) => {
+export const GradImg = ({ children, lighten, mouseEntered }: { children?: ReactNode, lighten?: boolean, mouseEntered?: boolean }) => {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const node = ref.current!
@@ -184,6 +187,10 @@ export const GradImg = ({ children, mouseEntered }: { children?: ReactNode, mous
 
     const grad = document.createElement('div')
     grad.classList.add('grad-effect-image')
+    if (lighten === true) {
+      // @ts-ignore
+      grad.style.mixBlendMode = 'lighten'
+    }
     const [colorA, colorB] = getColors()
     grad.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB})`
     node.appendChild(grad)
@@ -193,16 +200,20 @@ export const GradImg = ({ children, mouseEntered }: { children?: ReactNode, mous
     box.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`
     node.appendChild(box)
 
+    const cleanup = () => {
+      grad?.parentNode?.removeChild(grad)
+      box?.parentNode?.removeChild(box)
+      node.classList.remove('grad-effect-base')
+    }
+
     new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
       const entry = entries[0]
       if (!entry.isIntersecting) { return }
-      doAnime(img, grad, box, 200).onfinish = () => {
-        node.removeChild(grad)
-        node.removeChild(box)
-        node.classList.remove('grad-effect-base')
-      }
+      doAnime(img, grad, box, 200).onfinish = cleanup
       object.unobserve(img)
     }).observe(img)
+
+    return cleanup
   }, [])
 
   const els = useRef<HTMLDivElement[]>([])

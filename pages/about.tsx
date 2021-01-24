@@ -63,7 +63,7 @@ const Genres = () => (
   <>
     <div className={langStyle('genres')}>
       <div className="inner">
-        <div className="image"><GradImg><img src="/about/pict01.svg" /></GradImg></div>
+        <div className="image"><GradImg lighten={true}><img src="/about/pict01.svg" /></GradImg></div>
         <div className="detail"><Detail title="Genres" /></div>
       </div>
     </div>
@@ -80,6 +80,7 @@ const Genres = () => (
         margin-right vwpx(80)
       .image img
         width vwpx(603)
+        background-color white
       .detail
         margin-left vwpx(80)
     `}</style>
@@ -91,7 +92,7 @@ const Workstyle = () => (
     <div className={langStyle('workstyle')}>
       <div className="inner">
         <div className="detail"><Detail title="Workstyle" /></div>
-        <div className="image"><GradImg><img src="/about/pict02.svg" /></GradImg></div>
+        <div className="image"><GradImg lighten={true}><img src="/about/pict02.svg" /></GradImg></div>
       </div>
     </div>
     <style jsx>{`
@@ -109,6 +110,7 @@ const Workstyle = () => (
         margin-right vwpx(80)
       .image img
         width vwpx(603)
+        background-color white
       .en
         .detail
           padding-bottom vwpx(2)
@@ -123,7 +125,7 @@ const Location = () => (
   <>
     <div className={langStyle('location')}>
       <div className="inner">
-        <div className="image"><GradImg><img src="/about/pict03.svg" /></GradImg></div>
+        <div className="image"><GradImg lighten={true}><img src="/about/pict03.svg" /></GradImg></div>
         <div className="detail"><Detail title="Location" /></div>
       </div>
     </div>
@@ -140,6 +142,7 @@ const Location = () => (
         margin-right vwpx(80)
       .image img
         width vwpx(563)
+        background-color white
       .detail
         font-size 0
         margin-left vwpx(120)

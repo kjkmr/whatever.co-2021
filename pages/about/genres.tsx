@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Header, Footer, SectionHeader } from 'components/About'
-import { Grad } from 'components/Grad'
+import { Grad, GradImg } from 'components/Grad'
 import React from 'react'
 
 const Section1 = () => (
@@ -12,23 +12,27 @@ const Section1 = () => (
       <hr />
       <SectionHeader num="01" title={t('genres_1_title')!} body={t('genres_1_body')!} />
       <div className="images">
-        <img src="/about/genres/01_1@2x.jpg" alt="" className="i1" />
-        <img src="/about/genres/01_2@2x.jpg" alt="" className="i2" />
-        <img src="/about/genres/01_3@2x.jpg" alt="" className="i3" />
-        <img src="/about/genres/01_4@2x.jpg" alt="" className="i4" />
+        <div className="i1"><GradImg><img src="/about/genres/01_1@2x.jpg" alt="" /></GradImg></div>
+        <div className="i2"><GradImg><img src="/about/genres/01_2@2x.jpg" alt="" /></GradImg></div>
+        <div className="i3"><GradImg><img src="/about/genres/01_3@2x.jpg" alt="" /></GradImg></div>
+        <div className="i4"><GradImg><img src="/about/genres/01_4@2x.jpg" alt="" /></GradImg></div>
       </div>
-      <Grad><h2>{t('genres_1_example_title')}</h2></Grad>
+      <h2><Grad className="example-title">{t('genres_1_example_title')}</Grad></h2>
       <div className="example-items">
         {t('genres_1_example_items')!.split('\n\n').map((item, index) => {
           const [title, ...desc] = item.split('\n')
           const etc = desc.pop()
           return (
-            <div className="item" key={index}>
-              <div className="title">- {title}</div>
-              <ul>
-                {desc.map((d, i) => (<li key={i}>{d}</li>))}
-              </ul>
-              <div>{etc}</div>
+            <div key={index}>
+              <Grad>
+                <div className="item">
+                  <div className="title">- {title}</div>
+                  <ul>
+                    {desc.map((d, i) => (<li key={i}>{d}</li>))}
+                  </ul>
+                  <div>{etc}</div>
+                </div>
+              </Grad>
             </div>
           )
         })}
@@ -41,6 +45,7 @@ const Section1 = () => (
         margin-left vwpx(80)
         margin-right vwpx(80)
         margin-bottom vwpx(238)
+        font-size 0
       hr
         margin 0
         border 0
@@ -50,64 +55,70 @@ const Section1 = () => (
       .images
         position relative
         height vwpx2(1230, 160)
-        margin-top vwpx2(93, 160)
+        margin-top vwpx2(60, 160)
         margin-bottom vwpx2(94, 160)
-        img
+        >div
           position absolute
-          &.i1
-            top 0
-            left 0
-            width vwpx2(912, 160)
-          &.i2
-            top vwpx2(435, 160)
-            right vwpx2(-80, 160)
-            width vwpx2(502, 160)
-          &.i3
-            top vwpx2(641, 160)
-            left vwpx2(140, 160)
-            width vwpx2(418, 160)
-          &.i4
-            top vwpx2(829, 160)
-            right vwpx2(85, 160)
-            width vwpx2(433, 160)
+        img
+          width 100%
+        .i1
+          top 0
+          left 0
+          width vwpx2(912, 160)
+        .i2
+          top vwpx2(435, 160)
+          right vwpx2(-80, 160)
+          width vwpx2(502, 160)
+        .i3
+          top vwpx2(641, 160)
+          left vwpx2(140, 160)
+          width vwpx2(418, 160)
+        .i4
+          top vwpx2(829, 160)
+          right vwpx2(85, 160)
+          width vwpx2(433, 160)
       h2
-        font-size vwpx_min(20)
-        font-weight bold
         margin 0
-        margin-bottom vwpx(43)
+        margin-bottom vwpx(46)
         padding 0
-        display inline-block
-        overflow hidden
+        font-size 0
+        :global(.example-title)
+          font-size vwpx_min(20)
+          font-weight 500
       .example-items
         display grid
         grid-template-columns repeat(3, 1fr)
         grid-gap 0
         align-items start
         .item
+          display inline-block
           border-left 1px solid #B4B4B4
           padding-top 1.7rem
           padding-bottom 1.7rem
           padding-left 3.8rem
           box-sizing border-box
+          font-size var(--font-size-ja)
           .title
             font-weight 700
             margin-bottom 2.0rem
           ul
             margin 0
             padding 0
+            display inline-block
             li
               list-style '・' inside
               margin-bottom 0.9rem
       .en
         h2
-          font-size vwpx_min(24)
+          :global(.example-title)
+            font-size vwpx_min(24)
         .example-items
-          font-size 1.7rem
-          font-weight 200
           .item
             padding-top 2.0rem
             padding-left 3.9rem
             padding-bottom 1.1rem
+            font-size var(--font-size-en)
+            font-weight 200
             .title
               margin-bottom 2.4rem
             ul
@@ -128,7 +139,7 @@ const Section2 = () => (
       .section2
         margin-left vwpx(80)
         margin-right vwpx(80)
-        margin-bottom vwpx(226)
+        margin-bottom vwpx(195)
     `}</style>
   </>
 )
@@ -147,9 +158,9 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
       <div className={langStyle('work-link')}>
         <Link href={link}>
           <a target={target} rel="noopener noreferrer">
-            <img src={`/about/genres/${image}@2x.jpg`} alt="" />
-            <div className="name">{name}</div>
-            <div className="desc">{desc}</div>
+            <GradImg><img src={`/about/genres/${image}@2x.jpg`} alt="" /></GradImg>
+            <div><Grad className="work-link-name">{name}</Grad></div>
+            <div><Grad className="work-link-desc">{desc}</Grad></div>
           </a>
         </Link>
       </div>
@@ -157,22 +168,23 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
         @import 'lib/vw.styl'
         .work-link
           font-size 0
-        a
-          border none
-          display block
-        img
-          width vwpx2(335, 160)
-          height vwpx2(189, 160)
-          object-fit cover
-        .name
-          font-size 1.8rem
-          font-weight bold
-          line-height 1.8rem
-          margin-top 2.5rem
-        .desc
-          margin-top 1.7rem
-          font-size 1.2rem
-          line-height 2.4rem
+          a
+            border none
+            display inline-block
+          img
+            width vwpx2(335, 160)
+            height vwpx2(189, 160)
+            object-fit cover
+          :global(.work-link-name)
+            font-size 1.8rem
+            font-weight bold
+            line-height 1.8rem
+            margin-top 2.5rem
+          :global(.work-link-desc)
+            display inline-block
+            margin-top 1.7rem
+            font-size 1.2rem
+            line-height 2.4rem
       `}</style>
     </>
   )
@@ -182,8 +194,8 @@ const WorkList = ({ title, body, items }: { title: string, body: string, items: 
   <>
     <div className={langStyle('work-list')}>
       <div className="text">
-        <div className="title">{title}</div>
-        <div className="t">{body}</div>
+        <div><Grad className="work-list-title">{title}</Grad></div>
+        <div><Grad className="work-list-desc">{body}</Grad></div>
         <div className="items">
           {items.split('\n\n').map(item => {
             const [name, link, desc] = item.split('\n')
@@ -197,15 +209,16 @@ const WorkList = ({ title, body, items }: { title: string, body: string, items: 
       .work-list
         position relative
         margin-bottom vwpx(100)
-      .title
-        font-size vwpx_min(20)
-        font-weight 500
-        margin 0
-        margin-bottom vwpx_min(30)
-      .t
-        margin-bottom 5.2rem
-        font-size var(--font-size-ja)
-        line-height 3.0rem
+        font-size 0
+        :global(.work-list-title)
+          font-size vwpx_min(20)
+          font-weight 500
+          margin 0
+          margin-bottom vwpx_min(30)
+        :global(.work-list-desc)
+          margin-bottom 5.2rem
+          font-size var(--font-size-ja)
+          line-height 3.0rem
       .items
         display grid
         grid-template-columns repeat(3, 1fr)
@@ -224,9 +237,9 @@ const Section3 = () => (
     <div className={langStyle('section3')}>
       <SectionHeader num="03" title={t('genres_3_title')!} body={t('genres_3_body')!} />
       <div className="images">
-        <img src="/about/genres/03_1@2x.jpg" alt="" className="i1" />
-        <img src="/about/genres/03_2@2x.jpg" alt="" className="i2" />
-        <img src="/about/genres/03_3@2x.jpg" alt="" className="i3" />
+        <div className="i1"><GradImg><img src="/about/genres/03_1@2x.jpg" alt="" /></GradImg></div>
+        <div className="i2"><GradImg><img src="/about/genres/03_2@2x.jpg" alt="" /></GradImg></div>
+        <div className="i3"><GradImg><img src="/about/genres/03_3@2x.jpg" alt="" /></GradImg></div>
       </div>
       <WorkList title={t('genres_3_inhouse_title')!} body={t('genres_3_inhouse_body')!} items={t('genres_3_inhouse_items')!} />
       <WorkList title={t('genres_3_brands_title')!} body={t('genres_3_brands_body')!} items={t('genres_3_brands_items')!} />
@@ -244,8 +257,10 @@ const Section3 = () => (
         height vwpx2(1113, 160)
         margin-top vwpx2(60, 160)
         margin-bottom vwpx2(100, 160)
-        img
+        >div
           position absolute
+        img
+          width 100%
         .i1
           width vwpx2(1206, 160)
         .i2

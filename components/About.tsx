@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { langStyle } from 'lib/i18n'
-import { Grad } from './Grad'
+import { Grad, GradImg } from './Grad'
+import React from 'react'
 
 type HeaderProps = {
   headerMargin?: number
@@ -36,18 +37,24 @@ export const Header = (props: HeaderProps) => {
     width: `calc((100vw - 80px) * ${(props.imageWidth || 607) / (1366 - 80)})`,
   }
   return (
-    <div className={langStyle('header')} style={headerStyle}>
-      <div className="upper">
-        <div className="text" style={textStyle}>
-          <Grad><div className="t1">Whatever</div></Grad>
-          <Grad><div className="t2" style={titleStyle}>{props.title}</div></Grad>
-          {props.subtitle != '-' ? <Grad><div className="t3" ><span className="hr" />{props.subtitle}</div></Grad> : null}
+    <>
+      <div className={langStyle('header')} style={headerStyle}>
+        <div className="upper">
+          <div className="text" style={textStyle}>
+            <Grad><div className="t1">Whatever</div></Grad>
+            <Grad><div className="t2" style={titleStyle}>{props.title}</div></Grad>
+            {props.subtitle != '-' ? <Grad><div className="t3" ><span className="hr" />{props.subtitle}</div></Grad> : null}
+          </div>
+          <div className="image" >
+            <GradImg lighten={true}>
+              <img src={props.image} alt="" style={imageStyle} />
+            </GradImg>
+          </div>
         </div>
-        <div className="image" >
-          <img src={props.image} alt="" style={imageStyle} />
+        <div className="desc">
+          {props.desc.split('\n').map((line, index) => <Grad key={index}><div className="desc-line">{line}</div></Grad>)}
         </div>
-      </div>
-      <div className="desc" dangerouslySetInnerHTML={{ __html: props.desc.replace(/\n/g, '<br />') }} />
+      </div >
       <style jsx>{`
         @import 'lib/vw.styl'
         .header
@@ -87,16 +94,19 @@ export const Header = (props: HeaderProps) => {
             margin-right vwpx(27)
             margin-bottom vwpx(9)
         .image
+          font-size 0
+          margin-right vwpx(34)
           img
             width vwpx(607)
-            margin-right vwpx(34)
-        .desc
+            background-color white
+        .desc-line
+          display inline-block
           font-size vwpx_min(18)
           font-weight 700
           line-height vwpx_min(40)
         .en
           .upper
-            margin-bottom vwpx(95)
+            margin-bottom vwpx(103)
           .t1
             font-size vwpx(64)
           .t2
@@ -104,7 +114,7 @@ export const Header = (props: HeaderProps) => {
           .desc
             font-weight 400
       `}</style>
-    </div>
+    </>
   )
 }
 
@@ -163,59 +173,60 @@ type SectionTitleProps = {
   body: string
 }
 
-export const SectionHeader = ({ num, title, body }: SectionTitleProps) => {
-  // const router = useRouter()
-  // const locale = router.locale || router.defaultLocale!
-  const numStyle = {
-    // transform: `translateX(calc((100vw - 80px) * ${(nx || -7) / (1366 - 80)}))`
-  }
-  const titleStyle = {
-    // marginTop: `calc((100vw - 80px) * ${(4 + (ty && ty[locale] ? ty[locale] : 0)) / (1366 - 80)})`,
-    // marginLeft: `calc((100vw - 80px) * ${(7 + (tx && tx[locale] ? tx[locale] : 0)) / (1366 - 80)})`,
-  }
-  return (
-    <div className={langStyle('header')}>
-      <div className="row">
-        <div className="num" style={numStyle}>{num}</div>
+export const SectionHeader = ({ num, title, body }: SectionTitleProps) => (
+  <div className={langStyle('header')}>
+    <div className="row">
+      <div className="num-column">
+        <Grad className="num">{num}</Grad>
+      </div>
+      <div>
         <div>
-          <div className="title" style={titleStyle} dangerouslySetInnerHTML={{ __html: title.replace(/\n/g, '<br />') }} />
-          <div className="body">
-            {body?.split('\n').map((line, index) => <Grad key={index}><p key={index}>{line}</p></Grad>)}
-          </div>
+          {title.split('\n').map((line, index) => (
+            <Grad key={index} className="title">{line}</Grad>
+          ))}
+        </div>
+        <div className="body">
+          {body?.split('\n').map((line, index) => <Grad key={index} className="body-line" inline={false}><div key={index}>{line}</div></Grad>)}
         </div>
       </div>
-      <style jsx>{`
-        @import 'lib/vw.styl'
+    </div>
+    <style jsx>{`
+      @import 'lib/vw.styl'
+      .header
+        font-size 0
         .row
           display grid
           grid-template-columns vwpx_min(252) auto
           grid-gap 0
-        .num
+          align-items start
+        .num-column
           width vwpx_min(252)
+        :global(.num)
           font-size vwpx_min(180)
           font-weight bold
           -webkit-text-stroke 1px black
           -webkit-text-fill-color transparent
           transform translateX(vwpx(-7))
-        .title
+        :global(.title)
           font-size vwpx_min(30)
           font-weight bold
           line-height 1.81em
           margin-top vwpx(4)
         .body
-          margin-top vwpx(45)
+          margin-top vwpx(48)
           line-height 3.0rem
-          p
+          :global(.body-line)
+            font-size var(--font-size-ja)
             margin 3.0rem 0
-        .en
-          .title
-            font-size vwpx(34)
-            line-height 1.6em
-            margin-top vwpx(5)
-          .body
-            font-size 1.7rem
+      .en
+        .title
+          font-size vwpx(34)
+          line-height 1.6em
+          margin-top vwpx(5)
+        .body
+          :global(.body-line)
+            font-size var(--font-size-en)
             font-weight 300
-      `}</style>
-    </div>
-  )
-}
+    `}</style>
+  </div>
+)

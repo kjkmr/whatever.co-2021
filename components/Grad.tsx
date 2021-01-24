@@ -94,17 +94,20 @@ const doAnime = (base: Element, fade: Element, slide: Element, duration: number 
   )
 }
 
-export const Grad = ({ children }: { children?: ReactNode }) => {
+export const Grad = ({ children, className, inline = true }: { children?: ReactNode, className?: string, inline?: boolean }) => {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    const node = ref.current!
-    const base = node.children[0]
+    const base = ref.current!
     const [colorA, colorB] = getColors()
     const [fade, slide] = setup(base, colorA, colorB)
+    if (inline) {
+      base.style.display = 'inline-block'
+    }
     const cleanup = () => {
       fade.parentNode?.removeChild(fade)
       slide.parentNode?.removeChild(slide)
       base.classList.remove('grad-effect-base')
+      base.style.display = ''
     }
     new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
       const entry = entries[0]
@@ -116,7 +119,7 @@ export const Grad = ({ children }: { children?: ReactNode }) => {
   }, [])
   return (
     <>
-      <div ref={ref}>
+      <div ref={ref} className={className}>
         {children}
       </div>
       <style jsx global>{`
@@ -125,6 +128,7 @@ export const Grad = ({ children }: { children?: ReactNode }) => {
           overflow hidden
           visibility hidden
           background-color white
+          {/* mix-blend-mode multiply */}
         .grad-effect-fade
           position absolute
           top 0

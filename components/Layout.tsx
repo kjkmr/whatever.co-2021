@@ -30,31 +30,31 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
   const templateStyle: { [prop: string]: string } = {}
   if (templateName) {
     templateStyle.backgroundImage = `url(/_/${templateName}_${useRouter().locale!}.png)`
-    // templateStyle.backgroundPosition = 'top -13px left'
+    // templateStyle.backgroundPosition = 'top -156px left'
   }
   return (
-    <div>
-      <Head>
-        <title>{title ? title + " ― " : ""}Whatever Inc.</title>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js" integrity="sha512-oAY57i8MXmaOP7pAylNLnULAM4QLV3uGnvnXVY4zF229/zFzTvG2/5YIgH8iN8oZR2hnbkiDPd4JCJGaH4oG6g==" crossOrigin="anonymous"></script>
-      </Head>
-
-      <div className="container" style={templateStyle}>
-        <div className="contents">
-          <Menu />
-          <Sidebar title={side} backto={backto ? { name: side, href: backto } : undefined} />
-          <div className="main">
-            {showHeader ? <Header /> : <div />}
-            {children}
+    <>
+      <div>
+        <Head>
+          <title>{title ? title + " ― " : ""}Whatever Inc.</title>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js" integrity="sha512-oAY57i8MXmaOP7pAylNLnULAM4QLV3uGnvnXVY4zF229/zFzTvG2/5YIgH8iN8oZR2hnbkiDPd4JCJGaH4oG6g==" crossOrigin="anonymous"></script>
+        </Head>
+        <div className="container" style={templateStyle}>
+          <div className="contents">
+            <Menu />
+            <Sidebar title={side} backto={backto ? { name: side, href: backto } : undefined} />
+            <div className="main">
+              {showHeader ? <Header /> : <div />}
+              {children}
+            </div>
           </div>
+          {footer}
+          <Footer />
         </div>
-        {footer}
-        <Footer />
-      </div>
+      </div >
 
       <style jsx>{`
         .container
@@ -73,14 +73,34 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
       <style jsx global>{`
         @import 'lib/vw.styl'
 
+        {/*
+        Noto Sans JP
+        https://fonts.google.com/specimen/Noto+Sans+JP
+        Thin 100
+        Light 300
+        Regular 400
+        Medium 500
+        Bold 700
+        Black 900
+        */}
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500;700&display=swap')
+
+        {/*
+        200 apercu-extralight.ttf
+        300 apercu-light.ttf
+        400 apercu-regular.ttf
+        500 apercu-medium.ttf
+        700 apercu-bold.ttf
+        900 apercu-black.ttf
+        */}
         @font-face
           font-family Apercu
-          src url('/common/fonts/apercu-medium.eot')
-          src url('/common/fonts/apercu-medium.eot?#iefix') format('embedded-opentype'),
-              url('/common/fonts/apercu-medium.woff') format('woff'),
-              url('/common/fonts/apercu-medium.woff2') format('woff2'),
-              url('/common/fonts/apercu-medium.ttf') format('truetype')
-          font-weight 400
+          src url('/common/fonts/apercu-extralight.eot')
+          src url('/common/fonts/apercu-extralight.eot?#iefix') format('embedded-opentype'),
+              url('/common/fonts/apercu-extralight.woff') format('woff'),
+              url('/common/fonts/apercu-extralight.woff2') format('woff2'),
+              url('/common/fonts/apercu-extralight.ttf') format('truetype')
+          font-weight 200
           font-style normal
         @font-face
           font-family Apercu
@@ -93,6 +113,15 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           font-style normal
         @font-face
           font-family Apercu
+          src url('/common/fonts/apercu-medium.eot')
+          src url('/common/fonts/apercu-medium.eot?#iefix') format('embedded-opentype'),
+              url('/common/fonts/apercu-medium.woff') format('woff'),
+              url('/common/fonts/apercu-medium.woff2') format('woff2'),
+              url('/common/fonts/apercu-medium.ttf') format('truetype')
+          font-weight 400
+          font-style normal
+        @font-face
+          font-family Apercu
           src url('/common/fonts/apercu-bold.eot')
           src url('/common/fonts/apercu-bold.eot?#iefix') format('embedded-opentype'),
               url('/common/fonts/apercu-bold.woff') format('woff'),
@@ -100,6 +129,10 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
               url('/common/fonts/apercu-bold.ttf') format('truetype')
           font-weight 700
           font-style normal
+
+        :root
+          --font-size-ja 1.5rem
+          --font-size-en 1.7rem
 
         html
           margin 0
@@ -111,7 +144,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           background-color white
           font-family Apercu, 'Noto Sans JP', sans-serif
           font-size 1.5rem
-          font-weight 200
+          font-weight 300
           color black
         h1
           font-size vwpx_min(36)
@@ -149,7 +182,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           margin-bottom 1.5em
           text-align left
       `}</style>
-    </div >
+    </>
   )
 }
 

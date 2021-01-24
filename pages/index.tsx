@@ -183,16 +183,16 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
   const [entered, setEntered] = useState(false)
   return (
     <>
-      <div className="work">
+      <div className="fetured-work-item">
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image"><GradImg mouseEntered={entered}><img src={work.hero_image} /></GradImg></div>
             <div className="white">
-              <Grad><div className="date">{work.date}</div></Grad>
-              <Grad><div className="title">{work.title}</div></Grad>
+              <div><Grad className="date">{work.date}</Grad></div>
+              <div><Grad className="title">{work.title}</Grad></div>
             </div>
-            <Grad><div className="subtitle">{work.subtitle}</div></Grad>
-            <Grad><div className="overview">{work.overview}</div></Grad>
+            <div><Grad className="subtitle">{work.subtitle}</Grad></div>
+            <div><Grad className="overview">{work.overview}</Grad></div>
             <Grad><div className="tags">
               {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
             </div></Grad>
@@ -201,56 +201,49 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
       </div>
       <style jsx>{`
         @import 'lib/vw.styl'
-        .work
+        .fetured-work-item
           position relative
+          font-size 0
           a
             border none
             padding 0
             background-color gray
-        .image
-          img
-            width vwpx(594)
-            height vwpx(334)
-            object-fit cover
-        .white
-          position relative
-          display inline-block
-          background-color white
-          margin-top -40px
-          margin-right 40px
-          padding-top 40px
-          padding-right 50px
-        .date
-          display inline-block
-          overflow hidden
-          font-size 1.2rem
-          font-weight 300
-        .title
-          display inline-block
-          overflow hidden
-          margin-top 1.7rem
-          font-size 2.8rem
-          font-weight bold
-          line-height 1.2em
-        .subtitle
-          display inline-block
-          overflow hidden
-          margin-top 2.1rem
-          font-size 1.5rem
-          font-weight bold
-          line-height 1.4em
-        .overview
-          display inline-block
-          overflow hidden
-          margin-top 0.7rem
-          margin-right vwpx(30)
-          line-height 2em
-          font-size 1.5rem
-          font-weight 300
-        .tags
-          display inline-block
-          overflow hidden
-          margin-top 2.0rem
+          .image
+            img
+              width vwpx(594)
+              height vwpx(334)
+              object-fit cover
+          .white
+            position relative
+            display inline-block
+            background-color white
+            margin-top -40px
+            margin-right 40px
+            padding-top 40px
+            padding-right 50px
+            :global(.date)
+              font-size 1.2rem
+              font-weight 300
+            :global(.title)
+              margin-top 2.0rem
+              font-size 2.8rem
+              font-weight 500
+              line-height 1.2em
+          :global(.subtitle)
+            margin-top 1.8rem
+            font-size var(--font-size-ja)
+            font-weight 500
+            line-height 1.4em
+          :global(.overview)
+            margin-top 0.7rem
+            margin-right vwpx(30)
+            font-size var(--font-size-ja)
+            font-weight 300
+            line-height 2em
+          .tags
+            display inline-block
+            overflow hidden
+            margin-top 2.0rem
       `}</style>
     </>
   )
@@ -258,8 +251,8 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
 
 const FeaturedWorks = ({ works }: { works: Entry[] }) => (
   <>
-    <div className="container">
-      <Grad><h1>Featured Works</h1></Grad>
+    <div className="featured-works">
+      <h1><Grad className="featured-works-title">Featured Works</Grad></h1>
       <div className="items">
         {works.map(work => <FeaturedWorkItem key={work.slug} work={work} />)}
       </div>
@@ -269,21 +262,23 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
-      .container
+      .featured-works
         margin-top vwpx(92)
         font-size 0
-      h1
-        display inline-block
-        margin-left vwpx(-3)
-        margin-bottom vwpx(73)
-      .items
-        display grid
-        grid-template-columns repeat(2, 1fr)
-        grid-gap vwpx(98)
-      .link
-        display flex
-        justify-content flex-end
-        margin-top 80px
+        h1
+          margin-left vwpx(-3)
+          margin-bottom vwpx(73)
+          font-size 0
+          :global(.featured-works-title)
+            font-size vwpx_min(36)
+        .items
+          display grid
+          grid-template-columns repeat(2, 1fr)
+          grid-gap vwpx(100) vwpx(98)
+        .link
+          display flex
+          justify-content flex-end
+          margin-top 80px
     `}</style>
   </>
 )
@@ -296,8 +291,8 @@ const NewsItem = ({ data }: { data: Entry }) => {
         <Link href={`/news/${data.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <GradImg mouseEntered={entered}><img src={data.hero_image} width="256" height="144" /></GradImg>
-            <Grad><div className="date">{data.date}</div></Grad>
-            <Grad><div className="title">{data.title}</div></Grad>
+            <div><Grad className="date">{data.date}</Grad></div>
+            <div><Grad className="title">{data.title}</Grad></div>
           </a>
         </Link>
       </div>
@@ -305,26 +300,25 @@ const NewsItem = ({ data }: { data: Entry }) => {
         @import 'lib/vw.styl'
         .news-item
           font-size 0
-        img
-          width vwpx2(256, 160)
-          height vwpx2(144, 160)
-          object-fit cover
-          display block
-        .date
-          display inline-block
-          overflow hidden
-          font-size 1.2rem
-          font-weight 300
-          margin-top 2.3rem
-          mix-blend-mode multiply
-        .title
-          display inline-block
-          overflow hidden
-          font-size 1.5rem
-          font-weight bold
-          margin-top 1.1rem
-          line-height 2.4rem
-          mix-blend-mode multiply
+          a
+            display inline-block
+            padding 0
+            border none
+          img
+            width vwpx2(256, 160)
+            height vwpx2(144, 160)
+            object-fit cover
+          :global(.date)
+            font-size 1.2rem
+            font-weight 300
+            margin-top 2.3rem
+            mix-blend-mode multiply
+          :global(.title)
+            margin-top 1.1rem
+            font-size var(--font-size-ja)
+            font-weight bold
+            line-height 2.4rem
+            mix-blend-mode multiply
       `}</style>
     </>
   )
@@ -333,7 +327,7 @@ const NewsItem = ({ data }: { data: Entry }) => {
 const LatestNews = ({ news }: { news: Entry[] }) => (
   <>
     <div className="latest-news">
-      <Grad><h1>Latest News</h1></Grad>
+      <h1><Grad className="latest-news-title">Latest News</Grad></h1>
       <div className="items">
         {news.map(item => <NewsItem key={item.slug} data={item} />)}
       </div>
@@ -348,11 +342,12 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
         padding vwpx2(80, 160) 80px
         font-size 0
         background-color #f4f4f4
-      h1
-        display inline-block
-        overflow hidden
-        margin-left vwpx_min(-3)
-        mix-blend-mode multiply
+        h1
+          font-size 0
+        :global(.latest-news-title)
+          margin-left vwpx_min(-3)
+          font-size vwpx_min(36)
+          mix-blend-mode multiply
       .items
         display grid
         grid-template-columns repeat(4, 1fr)

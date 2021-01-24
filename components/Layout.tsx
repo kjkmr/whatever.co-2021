@@ -148,11 +148,11 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           color black
         h1
           font-size vwpx_min(36)
-          font-weight bold
+          font-weight 700
           margin 0
         h2
           font-size vwpx_min(24)
-          font-weight bold
+          font-weight 700
           margin 0
         p
           margin 2em 0

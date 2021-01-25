@@ -154,8 +154,7 @@ const Tagline = () => (
             margin-left vwpx(71)
       .desc
         position relative
-        margin-top vwpx(72)
-        margin-left vwpx(80)
+        margin vwpx(72) vwpx(80) 0
         font-size 0
         h2
           display inline-block
@@ -183,7 +182,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
   const [entered, setEntered] = useState(false)
   return (
     <>
-      <div className="fetured-work-item">
+      <div className={langStyle('fetured-work-item')}>
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image"><GradImg mouseEntered={entered}><img src={work.hero_image} /></GradImg></div>
@@ -227,12 +226,12 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
             :global(.title)
               margin-top 2.0rem
               font-size 2.8rem
-              font-weight 500
+              font-weight 700
               line-height 1.2em
           :global(.subtitle)
             margin-top 1.8rem
             font-size var(--font-size-ja)
-            font-weight 500
+            font-weight 700
             line-height 1.4em
           :global(.overview)
             margin-top 0.7rem
@@ -242,6 +241,9 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
             line-height 2em
           :global(.tags)
             margin-top 2.0rem
+        .en
+          :global(.overview)
+            font-weight 400
       `}</style>
     </>
   )
@@ -303,8 +305,8 @@ const NewsItem = ({ data }: { data: Entry }) => {
             padding 0
             border none
           img
-            width vwpx2(256, 160)
-            height vwpx2(144, 160)
+            width vwpx0(256)
+            height vwpx0(144)
             object-fit cover
           :global(.date)
             font-size 1.2rem
@@ -337,25 +339,25 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
       @import 'lib/vw.styl'
       .latest-news
         margin-top vwpx(80)
-        padding vwpx2(80, 160) 80px
+        padding vwpx0(80)
         font-size 0
         background-color #f4f4f4
         h1
           font-size 0
         :global(.latest-news-title)
-          margin-left vwpx_min(-3)
-          font-size vwpx_min(36)
+          margin-left vwpx0_min(-3)
+          font-size vwpx0_min(36)
           mix-blend-mode multiply
       .items
         display grid
         grid-template-columns repeat(4, 1fr)
-        grid-gap vwpx2(60, 160)
-        margin-top vwpx(52)
+        grid-gap vwpx0(60)
+        margin-top vwpx0(52)
       .link
         display flex
         justify-content flex-end
         margin-top 78px
-        margin-right -80px
+        margin-right vwpx0(-80)
     `}</style>
   </>
 )

@@ -30,7 +30,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
   const templateStyle: { [prop: string]: string } = {}
   if (templateName) {
     templateStyle.backgroundImage = `url(/_/${templateName}_${useRouter().locale!}.png)`
-    // templateStyle.backgroundPosition = 'top -156px left'
+    // templateStyle.backgroundPosition = 'top 178px left'
   }
   return (
     <>
@@ -113,12 +113,21 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           font-style normal
         @font-face
           font-family Apercu
+          src url('/common/fonts/apercu-regular.eot')
+          src url('/common/fonts/apercu-regular.eot?#iefix') format('embedded-opentype'),
+              url('/common/fonts/apercu-regular.woff') format('woff'),
+              url('/common/fonts/apercu-regular.woff2') format('woff2'),
+              url('/common/fonts/apercu-regular.ttf') format('truetype')
+          font-weight 400
+          font-style normal
+        @font-face
+          font-family Apercu
           src url('/common/fonts/apercu-medium.eot')
           src url('/common/fonts/apercu-medium.eot?#iefix') format('embedded-opentype'),
               url('/common/fonts/apercu-medium.woff') format('woff'),
               url('/common/fonts/apercu-medium.woff2') format('woff2'),
               url('/common/fonts/apercu-medium.ttf') format('truetype')
-          font-weight 400
+          font-weight 500
           font-style normal
         @font-face
           font-family Apercu

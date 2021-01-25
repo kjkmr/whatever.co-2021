@@ -42,10 +42,7 @@ const Section1 = () => (
     <style jsx>{`
       @import 'lib/vw.styl'
       .section1
-        margin-top vwpx(106)
-        margin-left vwpx(80)
-        margin-right vwpx(80)
-        margin-bottom vwpx(238)
+        margin vwpx(106) vwpx(80) vwpx(238)
         font-size 0
       hr
         margin 0
@@ -85,7 +82,7 @@ const Section1 = () => (
         font-size 0
         :global(.example-title)
           font-size vwpx_min(20)
-          font-weight 500
+          font-weight 700
       .example-items
         display grid
         grid-template-columns repeat(3, 1fr)
@@ -192,7 +189,7 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
             object-fit cover
           :global(.work-link-name)
             font-size 1.8rem
-            font-weight bold
+            font-weight 700
             line-height 1.8rem
             margin-top 2.5rem
           :global(.work-link-desc)
@@ -200,6 +197,10 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
             margin-top 1.7rem
             font-size 1.2rem
             line-height 2.4rem
+        .en
+          :global(.work-link-desc)
+            font-size 1.4rem
+            font-weight 400
       `}</style>
     </>
   )
@@ -223,11 +224,11 @@ const WorkList = ({ title, body, items }: { title: string, body: string, items: 
       @import 'lib/vw.styl'
       .work-list
         position relative
-        margin-bottom vwpx(100)
+        margin-bottom vwpx(110)
         font-size 0
         :global(.work-list-title)
           font-size vwpx_min(20)
-          font-weight 500
+          font-weight 700
           margin 0
           margin-bottom vwpx_min(30)
         :global(.work-list-desc)
@@ -237,12 +238,13 @@ const WorkList = ({ title, body, items }: { title: string, body: string, items: 
       .items
         display grid
         grid-template-columns repeat(3, 1fr)
-        grid-gap vwpx2(38, 160) vwpx2(60, 160)
+        grid-gap vwpx2(52, 160) vwpx2(60, 160)
       .en
-        .title
+        :global(.work-list-title)
           font-size vwpx_min(24)
-        .t
+        :global(.work-list-desc)
           font-size var(--font-size-en)
+          font-weight 400
     `}</style>
   </>
 )

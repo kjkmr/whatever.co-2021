@@ -24,7 +24,7 @@ const setup = (base: Element, colorA: string, colorB: string): [Element, Element
 }
 
 const doAnime = (base: Element, fade: Element, slide: Element, duration: number = 250) => {
-  const delay = Math.random() * 700
+  const delay = Math.random() * 500
   base.animate(
     [
       {

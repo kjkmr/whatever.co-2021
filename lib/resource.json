@@ -7,7 +7,7 @@
   "strings": {
     "top_whatever": [
       "わたしたちは、誰も見たことがないようなアイデアを考え、\nあらゆる方法でそれを実現していくクロスボータークリエイティブスタジオ。\n考えるだけではなく、作るだけでもなく、「考えて作る」からこそ生み出せる\nアイデアと実現力を武器に、世界中の人々に驚き愛されるような体験を作り続けています。",
-      "Whatever is a worldwide creative organism that morphs and mutates across mediums and borders. We explore the thresholds of the unknown to conceive new cultural ideas and experiences, by any means necessary. ",
+      "Whatever is a worldwide creative organism that morphs and mutates across mediums and\nborders. We explore the thresholds of the unknown to conceive new cultural ideas and\nexperiences, by any means necessary. ",
       ""
     ],
     "contactform_contacthere": [
@@ -172,7 +172,7 @@
     ],
     "genres_3_investment_items": [
       "Cotodama（Lyric Speaker）\nhttps://lyric-speaker.com/\nSIX，WOW，THE GUILD との共同出資で設立したジョイントベンチャー。CTO として Saqoosha が参画し、Lyric Speaker のモーショングラフィックや演出などのソフトウェア開発を担当。\n\nYummy Sake\nhttps://yummysake.jp/\nAI × ブラインドテイスティングで好みの日本酒を判別するサービス。CTO として貴田が参画し、アルゴリズムの開発、出資、事業戦略を支援。",
-      "Cotodama（Lyric Speaker）\nhttps://lyric-speaker.com/\nSaqoosha formed a joint venture with SIX, WOW and THE GUILD, with Saqoosha taking part as CTO and in charge of software development for Lyric Speaker’s motion graphics and direction.\n\nYummy Sake\nhttps://yummysake.jp/\nA service that uses AI and blind tasting to identify the sake you like, with Takata joining as CTO to support algorithm development, investment and business strategy.\n\nCradle\nhttps://cradle.care/\nKawamura joined Sputniko as CCO and was in charge of the overall creative direction of the brand.",
+      "Cotodama（Lyric Speaker）\nhttps://lyric-speaker.com/\nSaqoosha formed a joint venture with SIX, WOW and THE GUILD, with Saqoosha taking part as CTO and in charge of software development for Lyric Speaker’s motion graphics and direction.\n\nYummy Sake\nhttps://yummysake.jp/\nA service that uses AI and blind tasting to identify the sake you like, with Takata joining as CTO to support algorithm development, investment and business strategy.",
       ""
     ],
     "workstyle_title": [
@@ -257,7 +257,7 @@
     ],
     "workstyle_3_about": [
       "1F\nギャラリー / イベントスペース / ショールーム\n\n2F\nオープン MTG / イベントスペース / カフェカウンター\n\n3F\nWTFC オフィス\n\n4F\n会議室×４室\n\n5F\nコワーキングスペース\n\n6F\nBASSDRUM オフィス & 共同 FAB スペース\n\nRF\n休憩スペース（2020 年内完成予定）",
-      "RF\nRest area (to be completed by the end of 2020)\n\n7F\nWhatever office\n\n6F\nBASSDRUM Office & Shared FAB Space\n\n5F\nCoworking space\n\n4F\n4 meeting rooms\n\n3F\nWTFC office\n\n2F\nOpen MTG / Event space / Cafe counter\n\n1F\nGallery / Event Space / Showroom",
+      "1F\nGallery / Event Space / Showroom\n\n2F\nOpen MTG / Event space / Cafe counter\n\n3F\nWTFC office\n\n4F\n4 meeting rooms\n\n5F\nCoworking space\n\n6F\nBASSDRUM Office & Shared FAB Space\n\n7F\nWhatever office\n\nRF\nRest area (to be completed by the end of 2020)",
       ""
     ],
     "location_title": [
@@ -267,7 +267,7 @@
     ],
     "location_description": [
       "Whatever では、世界を舞台に様々なブランドを支援してきた実績を活かし、国境・文化を越えたブランディングやコンテンツ開発をサポートすることができます。\n東京・ニューヨーク・台湾・ベルリンという4拠点と、グローバル経験が豊富な人材を活かして、世界で通用するブランド・コミュニケーションやプロダクトの企画制作が可能です。",
-      "Whatever is able to support branding and content development across borders and cultures by leveraging our experience in supporting various brands on the global stage. With four offices (Tokyo, New York, Taiwan, and Berlin) and personnel with extensive global experience, we can plan and produce brand communications and products that can be used worldwide.",
+      "Whatever is able to support branding and content development across borders and cultures by leveraging our experience in supporting various brands on the global stage.\nWith four offices (Tokyo, New York, Taiwan, and Berlin) and personnel with extensive global experience, we can plan and produce brand communications and products that can be used worldwide.",
       ""
     ],
     "location_1_title": [

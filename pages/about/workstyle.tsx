@@ -76,7 +76,7 @@ const Alliance = ({ slug }: { slug: string }) => {
   }, [])
   return (
     <>
-      <div className="alliance">
+      <div className={langStyle('alliance')}>
         <Link href={AllianceData[slug].link}>
           <a ref={ref} target="_blank" rel="noopener noreferrer">
             <GradImg mouseEntered={entered}><img src={`/about/workstyle/${slug}@2x.png`} alt="" /></GradImg>
@@ -107,6 +107,10 @@ const Alliance = ({ slug }: { slug: string }) => {
           :global(.desc)
             font-size 1.2rem
             line-height 2.4rem
+        .en
+          :global(.desc)
+            font-size 1.4rem
+            font-weight 400
       `}</style>
     </>
   )
@@ -167,6 +171,12 @@ const ItemList = ({ title, items }: { title: string, items: string }) => (
           :global(.desc)
             font-size var(--font-size-ja)
             line-height 3.0rem
+      .en
+        .items
+          grid-gap 3.6rem 0
+          :global(.desc)
+            font-size 1.7rem
+            font-weight 400
     `}</style>
   </>
 )

@@ -78,16 +78,14 @@ const ContactForm = () => (
           border none
           vertical-align middle
           cursor pointer
-      .ja, .zh-hans
-        .text
-          font-size 1.4rem
-          margin-top 0
-        .contact
-          margin-top 26px
+      .en
+        :global(.text)
+          font-size 1.5rem
         .newsletter
-          margin-top 65px
-          .subscribe
-            font-size 1.4rem
+          :global(.subscribe)
+            font-size 1.5rem
+          .email
+            font-size 1.5rem
     `}</style>
   </>
 )

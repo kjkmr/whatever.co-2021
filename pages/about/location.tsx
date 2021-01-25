@@ -83,7 +83,7 @@ const Section1 = () => (
           grid-template-columns repeat(2, 1fr)
           width vwpx2(452, 240)
       .en
-        h2
+        :global(.subtitle)
           font-size vwpx_min(24)
     `}</style>
   </>

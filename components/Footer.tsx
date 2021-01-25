@@ -1,7 +1,7 @@
 import { animateScroll as scroll } from 'react-scroll'
 import ContactForm from 'components/ContactForm'
 import SNSButtons from 'components/SNSButtons'
-import { Grad, GradImg } from 'components/Grad'
+import { Grad } from 'components/Grad'
 
 const toTop = () => {
   scroll.scrollToTop({

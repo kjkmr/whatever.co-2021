@@ -1,4 +1,4 @@
-import { ReactNode, SyntheticEvent, useCallback, useEffect, useRef } from 'react'
+import { ReactNode, SyntheticEvent, CSSProperties, useCallback, useEffect, useRef } from 'react'
 
 const COLORS = ["#ff2300", "#ff9201", "#ffeb00", "#89e82b", "#00c745", "#29ebfe", "#0d44fb", "#a725fc", "#fd1eba"];
 export const getColors = (): [string, string] => {
@@ -94,7 +94,7 @@ const doAnime = (base: Element, fade: Element, slide: Element, duration: number 
   )
 }
 
-export const Grad = ({ children, className, whiteText = false, inline = true }: { children?: ReactNode, className?: string, whiteText?: boolean, inline?: boolean }) => {
+export const Grad = ({ children, className, style, whiteText = false, inline = true }: { children?: ReactNode, className?: string, style?: CSSProperties, whiteText?: boolean, inline?: boolean }) => {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const base = ref.current!
@@ -123,7 +123,7 @@ export const Grad = ({ children, className, whiteText = false, inline = true }: 
   }, [])
   return (
     <>
-      <div ref={ref} className={className}>
+      <div ref={ref} className={className} style={style}>
         {children}
       </div>
       <style jsx global>{`

@@ -1,35 +1,61 @@
+import { useRef, useState, useEffect } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Header, Footer, SectionHeader } from 'components/About'
 import BlackButton from 'components/BlackButton'
-import React from 'react'
+import { Grad, GradImg } from 'components/Grad'
+
+
+const LogoGrid = ({ list, className = '' }: { list: string[], className?: string }) => (
+  <>
+    <div className={`logo-grid ${className}`}>
+      {list.map((name) => (
+        <div key={name} className="inner"><Grad className="image"><img src={`/about/location/${name.replace(/[^\w+]/g, '').toLowerCase()}.png`} alt={name} /></Grad></div>
+      ))}
+    </div>
+    <style jsx>{`
+      .logo-grid
+        display grid
+        grid-template-columns repeat(5, 1fr)
+        grid-gap 0
+        border 1px solid #cccccc
+        box-sizing border-box
+        width 100%
+        {/* opacity 0.5 */}
+        .inner
+          display flex
+          justify-content center
+          margin 49px 0
+          padding 25px 0
+          border-right 1px solid #cccccc
+          &:last-child
+            border none
+        :global(.image)
+          width calc(100% * (175 / 225))
+          img
+            box-sizing border-box
+            margin auto
+            width 100%
+    `}</style>
+  </>
+)
 
 const Section1 = () => (
   <>
     <div className={langStyle('section1')}>
       <hr />
       <SectionHeader num="01" title={t('location_1_title')!} body={t('location_1_body')!} />
-      <h2>{t('location_1_inhouse')}</h2>
-      <div className="logos">
-        <img src="/about/location/whill.png" alt="WILL" />
-        <img src="/about/location/muji.png" alt="MIJI" />
-        <img src="/about/location/sony.png" alt="SONY" />
-        <img src="/about/location/cotodama.png" alt="Cotodama" />
-        <img src="/about/location/avex.png" alt="avex group" />
-      </div>
-      <h2>{t('location_1_overseas')}</h2>
-      <div className="logos" style={{ marginBottom: -1 }}>
-        <img src="/about/location/slack.png" alt="Slack" />
-        <img src="/about/location/shopify.png" alt="Shopify" />
-        <img src="/about/location/airbnb.png" alt="Airbnb" />
-        <img src="/about/location/google.png" alt="Google" />
-        <img src="/about/location/hermes.png" alt="HERMES" /></div>
-      <div className="logos2">
+      <div><Grad className="subtitle">{t('location_1_inhouse')}</Grad></div>
+      <LogoGrid className="logo1" list={['WHILL', 'MUJI', 'SONY', 'Cotodama', 'avex group']} />
+      <div><Grad className="subtitle">{t('location_1_overseas')}</Grad></div>
+      <LogoGrid className="logo2" list={['Slack', 'Shopify', 'Airbnb', 'Google', 'HERMES']} />
+      <LogoGrid className="logo3" list={['intel', 'NEW STAND']} />
+      {/* <div className="logos2">
         <img src="/about/location/intel.png" alt="intel" />
         <img src="/about/location/newstand.png" alt="NEW STAND" />
-      </div>
+      </div> */}
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -38,35 +64,24 @@ const Section1 = () => (
         margin-bottom vwpx(128)
         margin-left vwpx(80)
         width vwpx(1126)
-      hr
-        margin 0
-        border 0
-        border-top 1px solid #B4B4B4
-        width vwpx_min(252)
-        margin-bottom vwpx(105)
-      h2
-        margin 5.6rem 0
-        font-size vwpx_min(20)
-      .logos, .logos2
-        display grid
-        grid-template-columns repeat(5, 1fr)
-        grid-gap 0
-        border 1px solid #CCCCCC
-        margin-bottom 94px
-        box-sizing border-box
-        width vwpx2(1126, 240)
-        img
-          width 100%
-          height vwpx2(124, 240)
-          margin vwpx2(50, 240) 0
-          object-fit cover
-          border-right 1px solid #CCCCCC
-          mix-blend-mode multiply
-          &:last-child
-            border none
-      .logos2
-        grid-template-columns repeat(2, 1fr)
-        width vwpx2(452, 240)
+        font-size 0
+        hr
+          margin 0
+          border 0
+          border-top 1px solid #b4b4b4
+          width vwpx_min(252)
+          margin-bottom vwpx(105)
+        :global(.subtitle)
+          margin 5.6rem 0
+          font-size vwpx_min(20)
+          font-weight 700
+        :global(.logo1)
+          margin-bottom 4.0rem
+        :global(.logo2)
+          margin-bottom -1px
+        :global(.logo3)
+          grid-template-columns repeat(2, 1fr)
+          width vwpx2(452, 240)
       .en
         h2
           font-size vwpx_min(24)
@@ -74,47 +89,65 @@ const Section1 = () => (
   </>
 )
 
-const Member = ({ image, title, name, slug }: { image: string, title: string, name: string, slug: string }) => (
-  <>
-    <Link href={`/team/${slug}`}>
-      <a className={langStyle('member')}>
-        <img src={`/about/location/${image}@2x.jpg`} alt="" />
-        <div className="title">{title}</div>
-        <div className="name">{name}</div>
-      </a>
-    </Link>
-    <style jsx>{`
-      @import 'lib/vw.styl'
-      .member
-        font-size 0
-        display block
-        border none
-      img
-        width vwpx(245)
-      .title
-        font-size 1.4rem
-        font-weight 300
-        line-height 1.4rem
-        margin-top 1.9rem
-      .name
-        font-size 1.8rem
-        font-weight 500
-        line-height 1.8rem
-        margin-top 1.2rem
-    `}</style>
-  </>
-)
+const Member = ({ image, title, name, slug }: { image: string, title: string, name: string, slug: string }) => {
+  const ref = useRef<HTMLAnchorElement>(null)
+  const [entered, setEntered] = useState(false)
+  useEffect(() => {
+    const node = ref.current!
+    const onMouseEnter = () => setEntered(true)
+    const onMouseLeave = () => setEntered(false)
+    node.addEventListener('mouseenter', onMouseEnter)
+    node.addEventListener('mouseleave', onMouseLeave)
+    return () => {
+      node.removeEventListener('mouseenter', onMouseEnter)
+      node.removeEventListener('mouseleave', onMouseLeave)
+    }
+  }, [])
+  return (
+    <>
+      <Link href={`/team/${slug}`}>
+        <a ref={ref} className={langStyle('member')}>
+          <div><GradImg mouseEntered={entered}><img src={`/about/location/${image}@2x.jpg`} alt="" /></GradImg></div>
+          <div><Grad className="title">{title}</Grad></div>
+          <div><Grad className="name">{name}</Grad></div>
+        </a>
+      </Link>
+      <style jsx>{`
+        @import 'lib/vw.styl'
+        .member
+          display block
+          padding 0
+          border none
+          font-size 0
+          img
+            width vwpx(245)
+          :global(.title)
+            font-size 1.4rem
+            font-weight 300
+            line-height 1.4rem
+            margin-top 1.9rem
+          :global(.name)
+            font-size 1.8rem
+            font-weight 500
+            line-height 1.8rem
+            margin-top 1.2rem
+      `}</style>
+    </>
+  )
+}
 
 const Section2 = () => (
-  <div className={langStyle('section2')}>
-    <SectionHeader num="02" title={t('location_2_title')!} body={t('location_2_body')!} />
-    <div className="members">
-      {t('location_2_members')?.split('\n\n').map(member => {
-        const [title, name, link] = member.split('\n')
-        return <Member key={link} image={link} title={title} name={name} slug={link} />
-      })}
+  <>
+    <div className={langStyle('section2')}>
+      <SectionHeader num="02" title={t('location_2_title')!} body={t('location_2_body')!} />
+      <div className="members">
+        {t('location_2_members')?.split('\n\n').map(member => {
+          const [title, name, link] = member.split('\n')
+          return <Member key={link} image={link} title={title} name={name} slug={link} />
+        })}
+      </div>
+      <div className="link"><BlackButton link="/team" >All Members</BlackButton></div>
     </div>
-    <div className="link"><BlackButton link="/team" >All Members</BlackButton></div>
     <style jsx>{`
       @import 'lib/vw.styl'
       .section2
@@ -126,12 +159,12 @@ const Section2 = () => (
       .members
         display grid
         grid-template-columns repeat(4, 1fr)
-        grid-gap vwpx(70) vwpx(75)
+        grid-gap vwpx(75)
         margin-top vwpx(60)
       .link
         display flex
         justify-content flex-end
-        margin-top vwpx(73)
+        margin-top vwpx(78)
         margin-right vwpx(-80)
       .en
         .t
@@ -140,7 +173,7 @@ const Section2 = () => (
         .members
           margin-top vwpx(61)
     `}</style>
-  </div>
+  </>
 )
 
 const Location = () => (

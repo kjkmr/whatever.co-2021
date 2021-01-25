@@ -139,11 +139,11 @@ const ItemList = ({ title, items }: { title: string, items: string }) => (
     <div className={langStyle('about')}>
       <div><Grad className="title">{title}</Grad></div>
       <div className="items">
-        {items.split('\n\n').map(item => {
+        {items.split('\n\n').map((item, index) => {
           const [n, desc] = item.split('\n')
           return (<>
-            <div><Grad className="name">- {n}</Grad></div>
-            <div><Grad className="desc">{desc}</Grad></div>
+            <div key={index}><Grad className="name">- {n}</Grad></div>
+            <div key={index + 100}><Grad className="desc">{desc}</Grad></div>
           </>)
         })}
       </div>
@@ -217,7 +217,7 @@ const Section3 = () => (
 
 const Workstyle = () => (
   <Layout title="About" side="About" backto="/about" footer={<Footer left="Genres" right="Location" />}>
-    <Header headerMargin={65} title="Workstyle" titleSize={112} titleMargin={18} subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="/about/pict02.svg" imageWidth={586} />
+    <Header headerMargin={65} title="Workstyle" titleSize={112} titleMargin={10} subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="/about/pict02.svg" imageWidth={586} />
     <Section1 />
     <Section2 />
     <Section3 />

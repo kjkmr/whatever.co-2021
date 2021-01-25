@@ -168,7 +168,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
         button
           cursor pointer
         img
-          {/* pointer-events none */}
+          pointer-events none
           user-select none
         *:focus
           outline none

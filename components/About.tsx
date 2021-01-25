@@ -28,9 +28,11 @@ export const Header = (props: HeaderProps) => {
   const textStyle = {
     marginTop: `calc((100vw - 80px) * ${(ty && ty[locale] ? ty[locale] : 0) / (1366 - 80)})`,
   }
-  const titleStyle = {
-    fontSize: `calc((100vw - 80px) * ${(props.titleSize || 124) / (1366 - 80)})`,
+  const titleStyle1 = {
     marginTop: `calc((100vw - 80px) * ${(props.titleMargin || 8) / (1366 - 80)})`,
+  }
+  const titleStyle2 = {
+    fontSize: `calc((100vw - 80px) * ${(props.titleSize || 124) / (1366 - 80)})`,
   }
   const imageStyle = {
     marginTop: `calc((100vw - 80px) * ${(iy && iy[locale] ? iy[locale] : 0) / (1366 - 80)})`,
@@ -41,14 +43,13 @@ export const Header = (props: HeaderProps) => {
       <div className={langStyle('header')} style={headerStyle}>
         <div className="upper">
           <div className="text" style={textStyle}>
-            <Grad><div className="t1">Whatever</div></Grad>
-            <Grad><div className="t2" style={titleStyle}>{props.title}</div></Grad>
-            {props.subtitle != '-' ? <Grad><div className="t3" ><span className="hr" />{props.subtitle}</div></Grad> : null}
+            <div><Grad className="t1">Whatever</Grad></div>
+            <div style={titleStyle1}><Grad className="t2" style={titleStyle2}>{props.title}</Grad></div>
+            {/* <Grad><div className="t2" style={titleStyle}>{props.title}</div></Grad> */}
+            {props.subtitle != '-' ? <div><Grad className="t3" ><span className="hr" />{props.subtitle}</Grad></div> : null}
           </div>
           <div className="image" >
-            <GradImg lighten={true}>
-              <img src={props.image} alt="" style={imageStyle} />
-            </GradImg>
+            <GradImg lighten={true}><img src={props.image} alt="" style={imageStyle} /></GradImg>
           </div>
         </div>
         <div className="desc">
@@ -68,31 +69,28 @@ export const Header = (props: HeaderProps) => {
         .text
           width vwpx(562)
           margin-bottom 9px
-        .t1
-          display inline-block
-          font-size vwpx(62)
-          font-weight bold
-          margin 0
-          margin-left vwpx(2)
-        .t2
-          display inline-block
-          {/* font-size vwpx(124) */}
-          font-weight bold
-          margin 0
-          margin-top vwpx(8)
-          margin-left vwpx(-4)
-          margin-bottom vwpx(56)
-        .t3
-          display inline-block
-          font-size vwpx(30)
-          font-weight bold
-          margin 0
-          .hr
-            display inline-block
-            border-top 1px solid #707070
-            width vwpx(70)
-            margin-right vwpx(27)
-            margin-bottom vwpx(9)
+          :global(.t1)
+            font-size vwpx(62)
+            font-weight bold
+            margin 0
+            margin-left vwpx(2)
+          :global(.t2)
+            font-size vwpx(124)
+            font-weight bold
+            margin 0
+            margin-top vwpx(8)
+            margin-left vwpx(-4)
+            margin-bottom vwpx(56)
+          :global(.t3)
+            font-size vwpx(30)
+            font-weight bold
+            margin 0
+            .hr
+              display inline-block
+              border-top 1px solid #707070
+              width vwpx(70)
+              margin-right vwpx(27)
+              margin-bottom vwpx(9)
         .image
           font-size 0
           margin-right vwpx(34)

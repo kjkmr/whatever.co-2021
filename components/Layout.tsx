@@ -12,6 +12,7 @@ let templateName: string
 // templateName = 'About_detail_01'
 // templateName = 'About_detail_02'
 // templateName = 'About_detail_03'
+// templateName = 'Work_index'
 // templateName = 'Work_detail'
 // templateName = 'News_detail'
 // templateName = 'Contact'

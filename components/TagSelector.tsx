@@ -21,11 +21,9 @@ const TagItem = ({ name, slug, focused }: { name: string, slug: string, focused:
     <>
       <li className={classNames('tag-item', { focused })}>
         <Grad>
-          <div>
-            <Link href={`/work/category/${slug}`} passHref>
-              <a ref={ref}><span className="inner">{name}</span></a>
-            </Link>
-          </div>
+          <Link href={`/work/category/${slug}`} passHref>
+            <a ref={ref}><span className="inner">{name}</span></a>
+          </Link>
         </Grad>
       </li>
       <style jsx>{`
@@ -39,6 +37,7 @@ const TagItem = ({ name, slug, focused }: { name: string, slug: string, focused:
           list-style-type none
           text-align center
           vertical-align middle
+          font-size 0
         a
           display flex
           justify-content center
@@ -59,8 +58,9 @@ const TagItem = ({ name, slug, focused }: { name: string, slug: string, focused:
           display inline-block
           letter-spacing 0.02em
           overflow hidden
-          margin-top 4px
+          margin-top 2px
           font-size 1.4rem
+          font-weight 300
       `}</style>
     </>
   )

@@ -1,8 +1,6 @@
-import { useRef, ReactNode } from 'react'
+import { ReactNode, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { Grad, getColors } from 'components/Grad'
-
-const bgs: HTMLDivElement[] = []
 
 type BlackButtonProps = {
   children?: ReactNode
@@ -15,13 +13,14 @@ type BlackButtonProps = {
 
 const BlackButton = ({ children, link, width = '256px', height = '60px', backgroundColor = 'black', onClick }: BlackButtonProps) => {
   const ref = useRef<HTMLAnchorElement>(null)
-  const onMousEnter = () => {
+  const bgs = useRef<HTMLDivElement[]>([])
+  const onMouseEnter = () => {
     const bg = document.createElement('div')
     bg.classList.add('black-button-bg')
     const [colorA, colorB] = getColors()
     bg.style.backgroundImage = `linear-gradient(to right, ${colorA}, ${colorB})`
     ref.current?.appendChild(bg)
-    bgs.push(bg)
+    bgs.current.push(bg)
     bg.animate(
       [
         { left: '-100%', easing: 'cubic-bezier(0.80, 0.000, 0.200, 1.0)' },
@@ -35,7 +34,7 @@ const BlackButton = ({ children, link, width = '256px', height = '60px', backgro
     )
   }
   const onMouseLeave = () => {
-    const bg = bgs.shift()!
+    const bg = bgs.current.shift()!
     bg.animate(
       [
         { left: '100%', easing: 'cubic-bezier(0.80, 0.000, 0.200, 1.0)' },
@@ -49,13 +48,22 @@ const BlackButton = ({ children, link, width = '256px', height = '60px', backgro
       bg.parentNode?.removeChild(bg)
     }
   }
+  useEffect(() => {
+    ref.current?.addEventListener('mouseenter', onMouseEnter)
+    ref.current?.addEventListener('mouseleave', onMouseLeave)
+    return () => {
+      ref.current?.removeEventListener('mouseenter', onMouseEnter)
+      ref.current?.removeEventListener('mouseleave', onMouseLeave)
+      bgs.current.forEach(bg => bg.parentNode?.removeChild(bg))
+    }
+  }, [])
   return (
     <>
       <Grad>
         <div>
           {link
-            ? <Link href={link}><a ref={ref} onMouseEnter={onMousEnter} onMouseLeave={onMouseLeave}>{children}</a></Link>
-            : <a ref={ref} onMouseEnter={onMousEnter} onMouseLeave={onMouseLeave} onClick={onClick}>{children}</a>
+            ? <Link href={link}><a ref={ref} >{children}</a></Link>
+            : <a ref={ref} onClick={onClick}>{children}</a>
           }
         </div>
       </Grad>

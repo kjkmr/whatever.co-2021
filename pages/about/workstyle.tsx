@@ -1,14 +1,17 @@
-import React from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Header, Footer, SectionHeader } from 'components/About'
+import { Grad, GradImg } from 'components/Grad'
 
 const Section1 = () => (
-  <div className={langStyle('section1')}>
-    <hr />
-    <SectionHeader num="01" title={t('workstyle_1_title')!} body={t('workstyle_1_body')!} />
+  <>
+    <div className={langStyle('section1')}>
+      <hr />
+      <SectionHeader num="01" title={t('workstyle_1_title')!} body={t('workstyle_1_body')!} />
+    </div>
     <style jsx>{`
       @import 'lib/vw.styl'
       .section1
@@ -22,7 +25,7 @@ const Section1 = () => (
         width vwpx_min(252)
         margin-bottom vwpx(105)
     `}</style>
-  </div>
+  </>
 )
 
 type AllianceData = {
@@ -58,139 +61,139 @@ const AllianceData: { [key: string]: AllianceData } = {
 }
 
 const Alliance = ({ slug }: { slug: string }) => {
+  const ref = useRef<HTMLAnchorElement>(null)
+  const [entered, setEntered] = useState(false)
+  useEffect(() => {
+    const node = ref.current!
+    const onMouseEnter = () => setEntered(true)
+    const onMouseLeave = () => setEntered(false)
+    node.addEventListener('mouseenter', onMouseEnter)
+    node.addEventListener('mouseleave', onMouseLeave)
+    return () => {
+      node.removeEventListener('mouseenter', onMouseEnter)
+      node.removeEventListener('mouseleave', onMouseLeave)
+    }
+  }, [])
   return (
-    <div className="alliance">
-      <Link href={AllianceData[slug].link}>
-        <a target="_blank" rel="noopener noreferrer">
-          <img src={`/about/workstyle/${slug}@2x.png`} alt="" />
-          <div className="name">{AllianceData[slug].name}</div>
-          <div className="desc" dangerouslySetInnerHTML={{ __html: t(`workstyle_2_${slug}`)!.replace(/\n/g, '<br />') }}></div>
-        </a>
-      </Link>
+    <>
+      <div className={langStyle('alliance')}>
+        <Link href={AllianceData[slug].link}>
+          <a ref={ref} target="_blank" rel="noopener noreferrer">
+            <GradImg mouseEntered={entered}><img src={`/about/workstyle/${slug}@2x.png`} alt="" /></GradImg>
+            <div><Grad className="name">{AllianceData[slug].name}</Grad></div>
+            <div><Grad className="desc"><div dangerouslySetInnerHTML={{ __html: t(`workstyle_2_${slug}`)!.replace(/\n/g, '<br />') }}></div></Grad></div>
+          </a>
+        </Link>
+      </div>
       <style jsx>{`
         @import 'lib/vw.styl'
-        a
-          display block
-          border none
-          padding 0
-        img
-          width vwpx(335)
-          height vwpx(189)
-          margin-bottom 2.2rem
-          box-sizing border-box
-          border 1px solid #CCCCCC
-          object-fit cover
-        .name
-          font-size 1.8rem
-          font-weight bold
-          margin-bottom 1.6rem
-        .desc
-          font-size 1.2rem
-          line-height 2.4rem
+        .alliance
+          font-size 0
+          a
+            display block
+            border none
+            padding 0
+          img
+            width vwpx(335)
+            height vwpx(189)
+            box-sizing border-box
+            border 1px solid #cccccc
+            object-fit cover
+          :global(.name)
+            font-size 1.8rem
+            font-weight 500
+            margin-top 2.5rem
+            margin-bottom 1.6rem
+          :global(.desc)
+            font-size 1.2rem
+            line-height 2.4rem
+        .en
+          :global(.desc)
+            font-size 1.4rem
+            font-weight 400
       `}</style>
-    </div>
+    </>
   )
 }
 
+
 const Section2 = () => (
-  <div className={langStyle('section2')}>
-    <SectionHeader num="02" title={t('workstyle_2_title')!} body={t('workstyle_2_body')!} />
-    <div className="alliance">
-      {Object.keys(AllianceData).map(key => <Alliance key={key} slug={key} />)}
-    </div>
+  <>
+    <div className={langStyle('section2')}>
+      <SectionHeader num="02" title={t('workstyle_2_title')!} body={t('workstyle_2_body')!} />
+      <div className="alliance">
+        {Object.keys(AllianceData).map(key => <Alliance key={key} slug={key} />)}
+      </div>
+    </div >
     <style jsx>{`
       @import 'lib/vw.styl'
       .section2
-        margin vwpx(226) vwpx(80) vwpx(226)
+        margin vwpx(196) vwpx(80) vwpx(226)
       .alliance
         display grid
         grid-template-columns repeat(3, 1fr)
         grid-gap vwpx(54) vwpx(60)
-        margin-top -2.1rem
+        margin-top 3.9rem
     `}</style>
-  </div >
+  </>
 )
 
-const Features = () => (
-  <div className={langStyle('features')}>
-    <h2>FEATURES：</h2>
-    <div className="items">
-      {t('workstyle_3_features')?.split('\n\n').map(item => {
-        const [n, desc] = item.split('\n')
-        return (<>
-          <div className="name">- {n}</div>
-          <div className="desc">{desc}</div>
-        </>)
-      })}
-    </div>
-    <style jsx>{`
-      @import 'lib/vw.styl'
-      .features
-        position relative
-      h2
-        margin 0
-        font-size vwpx(24)
-      .items
-        margin-top vwpx(37)
-        display grid
-        grid-template-columns 70px auto
-        grid-gap 3.4rem 0
-      .name
-        font-size 1.8rem
-        font-weight bold
-        line-height 3.0rem
-      .desc
-        line-height 3.0rem
-    `}</style>
-  </div>
-)
-
-const About = () => (
-  <div className={langStyle('about')}>
-    <div className="text">
-      <h2>ABOUT：</h2>
+const ItemList = ({ title, items }: { title: string, items: string }) => (
+  <>
+    <div className={langStyle('about')}>
+      <div><Grad className="title">{title}</Grad></div>
       <div className="items">
-        {t('workstyle_3_about')?.split('\n\n').map(item => {
+        {items.split('\n\n').map((item, index) => {
           const [n, desc] = item.split('\n')
           return (<>
-            <div className="name">- {n}</div>
-            <div className="desc">{desc}</div>
+            <div key={index}><Grad className="name">- {n}</Grad></div>
+            <div key={index + 100}><Grad className="desc">{desc}</Grad></div>
           </>)
         })}
       </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
-      h2
-        margin 0
-        font-size vwpx_min(24)
-      .items
-        margin-top vwpx(37)
-        display grid
-        grid-template-columns 70px auto
-        grid-gap 3.4rem 0
-      .name
-        font-size 1.8rem
-        font-weight bold
-        line-height 3.0rem
-      .desc
-        font-size 1.5rem
-        line-height 3.0rem
+      .about
+        font-size 0
+        :global(.title)
+          font-size vwpx_min(24)
+          font-weight 700
+        .items
+          margin-top vwpx(37)
+          display grid
+          grid-template-columns 70px auto
+          grid-gap 3.4rem 0
+          :global(.name)
+            font-size 1.8rem
+            font-weight 500
+            line-height 3.0rem
+          :global(.desc)
+            font-size var(--font-size-ja)
+            line-height 3.0rem
+      .en
+        .items
+          grid-gap 3.6rem 0
+          :global(.desc)
+            font-size 1.7rem
+            font-weight 400
     `}</style>
-  </div>
+  </>
 )
 
 const Section3 = () => (
-  <div className={langStyle('section3')}>
-    <SectionHeader num="03" title={t('workstyle_3_title')!} body={t('workstyle_3_body')!} />
-    <div className="images">
-      <img src="/about/workstyle/03_1@2x.jpg" alt="" className="i1" />
-      <img src="/about/workstyle/03_2@2x.jpg" alt="" className="i2" />
-      <img src="/about/workstyle/03_3@2x.jpg" alt="" className="i3" />
-    </div>
-    <div className="columns">
-      <About />
-      <Features />
+  <>
+    <div className={langStyle('section3')}>
+      <SectionHeader num="03" title={t('workstyle_3_title')!} body={t('workstyle_3_body')!} />
+      <div className="images">
+        <div className="i1"><GradImg><img src="/about/workstyle/03_1@2x.jpg" alt="" /></GradImg></div>
+        <div className="i2"><GradImg><img src="/about/workstyle/03_2@2x.jpg" alt="" /></GradImg></div>
+        <div className="i3"><GradImg><img src="/about/workstyle/03_3@2x.jpg" alt="" /></GradImg></div>
+      </div>
+      <div className="columns">
+        <ItemList title="ABOUT：" items={t('workstyle_3_about')!} />
+        <ItemList title="FEATURES：" items={t('workstyle_3_features')!} />
+      </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -198,30 +201,33 @@ const Section3 = () => (
         margin vwpx(117) vwpx(80) vwpx(190)
       .images
         position relative
-        height vwpx2(1030, 160)
-        margin-bottom vwpx2(92, 160)
-        img
+        height vwpx(1030)
+        margin-top vwpx(60)
+        margin-bottom vwpx(92)
+        >div
           position absolute
+        img
+          width 100%
         .i1
-          width vwpx2(1206, 160)
+          width vwpx(1206)
         .i2
-          width vwpx2(684, 160)
-          top vwpx2(566, 160)
+          width vwpx(684)
+          top vwpx(566)
           right 0
         .i3
-          width vwpx2(498, 160)
-          top vwpx2(747, 160)
+          width vwpx(498)
+          top vwpx(747)
       .columns
         display grid
         grid-template-columns repeat(2, 1fr)
         grid-gap 80px
     `}</style>
-  </div>
+  </>
 )
 
 const Workstyle = () => (
   <Layout title="About" side="About" backto="/about" footer={<Footer left="Genres" right="Location" />}>
-    <Header headerMargin={65} title="Workstyle" titleSize={112} titleMargin={18} subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="/about/pict02.svg" imageWidth={586} />
+    <Header headerMargin={65} title="Workstyle" titleSize={112} titleMargin={10} subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="/about/pict02.svg" imageWidth={586} />
     <Section1 />
     <Section2 />
     <Section3 />

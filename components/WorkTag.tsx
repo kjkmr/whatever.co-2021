@@ -13,6 +13,8 @@ const Inner = ({ name }: { name: string }) => (
         letter-spacing 0.03em
         padding 9px 10px 7px
         margin-right 10px
+        &:last-child
+          margin-right 0
     `}</style>
   </span>
 )
@@ -24,6 +26,7 @@ const WorkTag = ({ tag, link = false }: { tag: Tag, link?: boolean }) => (
       : <Inner name={tag ? tag.name : '???'} />}
     <style jsx>{`
       a
+        display inline-block
         border none
         padding 0
     `}</style>

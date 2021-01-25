@@ -1,47 +1,58 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { t, langStyle } from 'lib/i18n'
+import { Grad } from 'components/Grad'
 
 const ContactForm = () => (
   <>
     <div className={langStyle('contact-form')}>
-      <div className="text">{t('contactform_contacthere')}</div>
-      <div className="contact"><Link href="/contact"><a>{t('contactform_inquiry')}</a></Link></div>
+      <div><Grad className="text" whiteText={true}>{t('contactform_contacthere')}</Grad></div>
+      <div><Grad className="contact" whiteText={true}><Link href="/contact"><a>{t('contactform_inquiry')}</a></Link></Grad></div>
       <div className="newsletter">
-        <div className="subscribe">{t('contactform_register')}</div>
-        <form action="">
-          <input className="email" type="text" placeholder="Email address"></input>
-          <input className="submit" type="submit" value="" />
-        </form>
+        <div><Grad className="subscribe" whiteText={true}>{t('contactform_register')}</Grad></div>
+        <div>
+          <Grad className="form" whiteText={true}>
+            <form action="">
+              <input className="email" type="text" placeholder="Email address"></input>
+              <input className="submit" type="submit" value="" />
+            </form>
+          </Grad>
+        </div>
       </div>
     </div>
     <style jsx>{`
-      .text
-        color white
-        font-size 1.5rem
-        font-weight 300
-        margin-top 4px
-      .contact
-        margin-top 32px
-        a
+      .contact-form
+        font-size 0
+        :global(.text)
           color white
-          font-size 1.6rem
-          font-weight bold
-          letter-spacing 0.04em
-          padding-bottom 9px
-          padding-right 28px
-          border-bottom 1px solid white
+          font-size 1.4rem
+          font-weight 300
+          mix-blend-mode lighten
+        :global(.contact)
+          margin-top 26px
+          mix-blend-mode lighten
+          a
+            display inline-block
+            color white
+            font-size 1.6rem
+            font-weight bold
+            letter-spacing 0.04em
+            padding-bottom 7px
+            padding-right 28px
+            border-bottom 1px solid white
       .newsletter
         margin-top 106px
-        .subscribe
-          font-size 1.5rem
+        :global(.subscribe)
+          font-size 1.4rem
           font-weight 300
-          letter-spacing 0.0em
           color white
-        form
+          mix-blend-mode lighten
+        :global(.form)
+          margin-top 1.8rem
+          mix-blend-mode lighten
+        :global(form)
           display inline-block
           margin 0
-          margin-top 18px
           padding 0
           border-radius 30px
           border 1px solid white
@@ -67,16 +78,14 @@ const ContactForm = () => (
           border none
           vertical-align middle
           cursor pointer
-      .ja, .zh-hans
-        .text
-          font-size 1.4rem
-          margin-top 0
-        .contact
-          margin-top 26px
+      .en
+        :global(.text)
+          font-size 1.5rem
         .newsletter
-          margin-top 73px
-          .subscribe
-            font-size 1.4rem
+          :global(.subscribe)
+            font-size 1.5rem
+          .email
+            font-size 1.5rem
     `}</style>
   </>
 )

@@ -5,31 +5,33 @@ import BlackButton from 'components/BlackButton'
 import LanguageSelector from 'components/LanguageSelector'
 import ContactForm from 'components/ContactForm'
 import SNSButtons from 'components/SNSButtons'
+import { Grad } from 'components/Grad'
 
 const Menu = () => {
   const [opened, setOpened] = useState(false)
   const onclick = () => { setOpened(!opened) }
   return (
     <>
-      <div className="container">
-        <div className="black"></div>
-        <div className="menu" style={{ display: opened ? 'flex' : 'none' }}>
+      <div className="menu">
+        <div className="menu-full" style={{ display: opened ? 'flex' : 'none' }}>
           <ul>
-            <li><Link href="/"><a onClick={onclick}>Top</a></Link></li>
-            <li><Link href="/work/category/all"><a onClick={onclick}>Work</a></Link></li>
-            <li><Link href="/about"><a onClick={onclick}>About</a></Link></li>
-            <li><Link href="/team"><a onClick={onclick}>Team</a></Link></li>
-            <li><Link href="/news"><a onClick={onclick}>News</a></Link></li>
-            <li><Link href="/contact"><a onClick={onclick}>Contact</a></Link></li>
+            <li><Grad whiteText={true}><Link href="/"><a onClick={onclick}>Top</a></Link></Grad></li>
+            <li><Grad whiteText={true}><Link href="/work/category/all"><a onClick={onclick}>Work</a></Link></Grad></li>
+            <li><Grad whiteText={true}><Link href="/about"><a onClick={onclick}>About</a></Link></Grad></li>
+            <li><Grad whiteText={true}><Link href="/team"><a onClick={onclick}>Team</a></Link></Grad></li>
+            <li><Grad whiteText={true}><Link href="/news"><a onClick={onclick}>News</a></Link></Grad></li>
+            <li><Grad whiteText={true}><Link href="/contact"><a onClick={onclick}>Contact</a></Link></Grad></li>
           </ul>
           <div className="contact">
-            <div className="langselect"><LanguageSelector activeColor="white" inactiveColor="#666666" separator="  /  " onSelected={onclick} /></div>
+            <div><Grad className="langselect" whiteText={true}><LanguageSelector activeColor="white" inactiveColor="#666666" separator="  /  " onSelected={onclick} /></Grad></div>
+            {/* <div className="langselect"><LanguageSelector activeColor="white" inactiveColor="#666666" separator="  /  " onSelected={onclick} /></div> */}
             <ContactForm />
-            <div className="sns"><SNSButtons /></div>
+            <div><Grad className="sns" whiteText={true}><SNSButtons /></Grad></div>
           </div>
         </div>
         <div className={classNames('button', { close: opened })}>
           <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onclick}>
+            <div className="black" style={{ display: opened ? 'none' : 'block' }}></div>
             <div className="l1"></div>
             <div className="l2"></div>
           </BlackButton>
@@ -37,9 +39,10 @@ const Menu = () => {
       </div>
       <style jsx>{`
         @import 'lib/vw.styl'
-        .container
+        .menu
           position fixed
           z-index 10000
+          font-size 0
         .black
           position absolute
           top 0
@@ -47,7 +50,8 @@ const Menu = () => {
           width 80px
           height 80px      
           background-color #000
-        .menu
+          z-index -2
+        .menu-full
           display none
           justify-content space-between
           position absolute
@@ -68,22 +72,25 @@ const Menu = () => {
             margin 0
             margin-bottom 47px
             padding 0
-            font-size vwpx_min(36)
-            font-weight bold
+            mix-blend-mode lighten
             &:first-child
               margin-bottom vwpx_min(57)
             a
+              font-size vwpx_min(36)
+              font-weight bold
               color white
               border none
-          .langselect
+          :global(.langselect)
             font-size 1.4rem
             margin-top 5px
             letter-spacing 0.06rem
             margin-bottom 115px
-          .sns
+            mix-blend-mode lighten
+          :global(.sns)
             position absolute
             right 205px
             bottom 152px
+            mix-blend-mode lighten
         .button
           position relative
           z-index 1

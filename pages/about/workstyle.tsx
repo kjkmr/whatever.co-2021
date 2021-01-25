@@ -1,9 +1,10 @@
-import React from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Header, Footer, SectionHeader } from 'components/About'
+import { Grad, GradImg } from 'components/Grad'
 
 const Section1 = () => (
   <>
@@ -60,41 +61,57 @@ const AllianceData: { [key: string]: AllianceData } = {
 }
 
 const Alliance = ({ slug }: { slug: string }) => {
+  const ref = useRef<HTMLAnchorElement>(null)
+  const [entered, setEntered] = useState(false)
+  useEffect(() => {
+    const node = ref.current!
+    const onMouseEnter = () => setEntered(true)
+    const onMouseLeave = () => setEntered(false)
+    node.addEventListener('mouseenter', onMouseEnter)
+    node.addEventListener('mouseleave', onMouseLeave)
+    return () => {
+      node.removeEventListener('mouseenter', onMouseEnter)
+      node.removeEventListener('mouseleave', onMouseLeave)
+    }
+  }, [])
   return (
     <>
       <div className="alliance">
         <Link href={AllianceData[slug].link}>
-          <a target="_blank" rel="noopener noreferrer">
-            <img src={`/about/workstyle/${slug}@2x.png`} alt="" />
-            <div className="name">{AllianceData[slug].name}</div>
-            <div className="desc" dangerouslySetInnerHTML={{ __html: t(`workstyle_2_${slug}`)!.replace(/\n/g, '<br />') }}></div>
+          <a ref={ref} target="_blank" rel="noopener noreferrer">
+            <GradImg mouseEntered={entered}><img src={`/about/workstyle/${slug}@2x.png`} alt="" /></GradImg>
+            <div><Grad className="name">{AllianceData[slug].name}</Grad></div>
+            <div><Grad className="desc"><div dangerouslySetInnerHTML={{ __html: t(`workstyle_2_${slug}`)!.replace(/\n/g, '<br />') }}></div></Grad></div>
           </a>
         </Link>
       </div>
       <style jsx>{`
         @import 'lib/vw.styl'
-        a
-          display block
-          border none
-          padding 0
-        img
-          width vwpx(335)
-          height vwpx(189)
-          margin-bottom 2.2rem
-          box-sizing border-box
-          border 1px solid #CCCCCC
-          object-fit cover
-        .name
-          font-size 1.8rem
-          font-weight 500
-          margin-bottom 1.6rem
-        .desc
-          font-size 1.2rem
-          line-height 2.4rem
+        .alliance
+          font-size 0
+          a
+            display block
+            border none
+            padding 0
+          img
+            width vwpx(335)
+            height vwpx(189)
+            box-sizing border-box
+            border 1px solid #cccccc
+            object-fit cover
+          :global(.name)
+            font-size 1.8rem
+            font-weight 500
+            margin-top 2.5rem
+            margin-bottom 1.6rem
+          :global(.desc)
+            font-size 1.2rem
+            line-height 2.4rem
       `}</style>
     </>
   )
 }
+
 
 const Section2 = () => (
   <>
@@ -112,80 +129,44 @@ const Section2 = () => (
         display grid
         grid-template-columns repeat(3, 1fr)
         grid-gap vwpx(54) vwpx(60)
-        margin-top 4.2rem
+        margin-top 3.9rem
     `}</style>
   </>
 )
 
-const Features = () => (
+const ItemList = ({ title, items }: { title: string, items: string }) => (
   <>
-    <div className={langStyle('features')}>
-      <h2>FEATURES：</h2>
+    <div className={langStyle('about')}>
+      <div><Grad className="title">{title}</Grad></div>
       <div className="items">
-        {t('workstyle_3_features')?.split('\n\n').map(item => {
+        {items.split('\n\n').map(item => {
           const [n, desc] = item.split('\n')
           return (<>
-            <div className="name">- {n}</div>
-            <div className="desc">{desc}</div>
+            <div><Grad className="name">- {n}</Grad></div>
+            <div><Grad className="desc">{desc}</Grad></div>
           </>)
         })}
       </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
-      .features
-        position relative
-      h2
-        margin 0
-        font-size vwpx(24)
-      .items
-        margin-top vwpx(37)
-        display grid
-        grid-template-columns 70px auto
-        grid-gap 3.4rem 0
-      .name
-        font-size 1.8rem
-        font-weight 500
-        line-height 3.0rem
-      .desc
-        line-height 3.0rem
-    `}</style>
-  </>
-)
-
-const About = () => (
-  <>
-    <div className={langStyle('about')}>
-      <div className="text">
-        <h2>ABOUT：</h2>
-        <div className="items">
-          {t('workstyle_3_about')?.split('\n\n').map(item => {
-            const [n, desc] = item.split('\n')
-            return (<>
-              <div className="name">- {n}</div>
-              <div className="desc">{desc}</div>
-            </>)
-          })}
-        </div>
-      </div>
-    </div>
-    <style jsx>{`
-      @import 'lib/vw.styl'
-      h2
-        margin 0
-        font-size vwpx_min(24)
-      .items
-        margin-top vwpx(37)
-        display grid
-        grid-template-columns 70px auto
-        grid-gap 3.4rem 0
-      .name
-        font-size 1.8rem
-        font-weight 500
-        line-height 3.0rem
-      .desc
-        font-size var(--font-size-ja)
-        line-height 3.0rem
+      .about
+        font-size 0
+        :global(.title)
+          font-size vwpx_min(24)
+          font-weight 700
+        .items
+          margin-top vwpx(37)
+          display grid
+          grid-template-columns 70px auto
+          grid-gap 3.4rem 0
+          :global(.name)
+            font-size 1.8rem
+            font-weight 500
+            line-height 3.0rem
+          :global(.desc)
+            font-size var(--font-size-ja)
+            line-height 3.0rem
     `}</style>
   </>
 )
@@ -195,13 +176,13 @@ const Section3 = () => (
     <div className={langStyle('section3')}>
       <SectionHeader num="03" title={t('workstyle_3_title')!} body={t('workstyle_3_body')!} />
       <div className="images">
-        <img src="/about/workstyle/03_1@2x.jpg" alt="" className="i1" />
-        <img src="/about/workstyle/03_2@2x.jpg" alt="" className="i2" />
-        <img src="/about/workstyle/03_3@2x.jpg" alt="" className="i3" />
+        <div className="i1"><GradImg><img src="/about/workstyle/03_1@2x.jpg" alt="" /></GradImg></div>
+        <div className="i2"><GradImg><img src="/about/workstyle/03_2@2x.jpg" alt="" /></GradImg></div>
+        <div className="i3"><GradImg><img src="/about/workstyle/03_3@2x.jpg" alt="" /></GradImg></div>
       </div>
       <div className="columns">
-        <About />
-        <Features />
+        <ItemList title="ABOUT：" items={t('workstyle_3_about')!} />
+        <ItemList title="FEATURES：" items={t('workstyle_3_features')!} />
       </div>
     </div>
     <style jsx>{`
@@ -211,10 +192,12 @@ const Section3 = () => (
       .images
         position relative
         height vwpx2(1030, 160)
-        margin-top vwpx2(64, 160)
+        margin-top vwpx2(60, 160)
         margin-bottom vwpx2(92, 160)
-        img
+        >div
           position absolute
+        img
+          width 100%
         .i1
           width vwpx2(1206, 160)
         .i2

@@ -94,12 +94,16 @@ const doAnime = (base: Element, fade: Element, slide: Element, duration: number 
   )
 }
 
-export const Grad = ({ children, className, inline = true }: { children?: ReactNode, className?: string, inline?: boolean }) => {
+export const Grad = ({ children, className, whiteText = false, inline = true }: { children?: ReactNode, className?: string, whiteText?: boolean, inline?: boolean }) => {
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
     const base = ref.current!
     const [colorA, colorB] = getColors()
     const [fade, slide] = setup(base, colorA, colorB)
+    if (whiteText) {
+      base.classList.add('grad-effect-black')
+      fade.classList.add('grad-effect-multiply')
+    }
     if (inline) {
       base.style.display = 'inline-block'
     }
@@ -128,7 +132,8 @@ export const Grad = ({ children, className, inline = true }: { children?: ReactN
           overflow hidden
           visibility hidden
           background-color white
-          {/* mix-blend-mode multiply */}
+        .grad-effect-black
+          background-color black
         .grad-effect-fade
           position absolute
           top 0
@@ -143,6 +148,8 @@ export const Grad = ({ children, className, inline = true }: { children?: ReactN
           pointer-events none
           > *
             background-color: transparent !important
+        .grad-effect-multiply
+          mix-blend-mode multiply
         .grad-effect-image
           position absolute
           top 0
@@ -156,7 +163,6 @@ export const Grad = ({ children, className, inline = true }: { children?: ReactN
           visibility hidden
         .grad-effect-slide
           position absolute
-          background-color white
           background-image url(/noise.png), linear-gradient(to right, #fbe105, #f91fae, #f91fae)
           background-size auto, 200% 100%
           background-blend-mode overlay, normal

@@ -193,9 +193,9 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
             </div>
             <div><Grad className="subtitle">{work.subtitle}</Grad></div>
             <div><Grad className="overview">{work.overview}</Grad></div>
-            <Grad><div className="tags">
-              {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
-            </div></Grad>
+            <div><Grad className="tags">
+              <div>{work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}</div>
+            </Grad></div>
           </a>
         </Link>
       </div>
@@ -240,9 +240,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
             font-size var(--font-size-ja)
             font-weight 300
             line-height 2em
-          .tags
-            display inline-block
-            overflow hidden
+          :global(.tags)
             margin-top 2.0rem
       `}</style>
     </>

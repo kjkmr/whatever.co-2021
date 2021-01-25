@@ -16,6 +16,7 @@ const LogoGrid = ({ list, className = '' }: { list: string[], className?: string
       ))}
     </div>
     <style jsx>{`
+      @import 'lib/vw.styl'
       .logo-grid
         display grid
         grid-template-columns repeat(5, 1fr)
@@ -27,8 +28,8 @@ const LogoGrid = ({ list, className = '' }: { list: string[], className?: string
         .inner
           display flex
           justify-content center
-          margin 49px 0
-          padding 25px 0
+          margin vwpx(49) 0
+          padding vwpx(25) 0
           border-right 1px solid #cccccc
           &:last-child
             border none
@@ -52,18 +53,11 @@ const Section1 = () => (
       <div><Grad className="subtitle">{t('location_1_overseas')}</Grad></div>
       <LogoGrid className="logo2" list={['Slack', 'Shopify', 'Airbnb', 'Google', 'HERMES']} />
       <LogoGrid className="logo3" list={['intel', 'NEW STAND']} />
-      {/* <div className="logos2">
-        <img src="/about/location/intel.png" alt="intel" />
-        <img src="/about/location/newstand.png" alt="NEW STAND" />
-      </div> */}
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
       .section1
-        margin-top vwpx(108)
-        margin-bottom vwpx(128)
-        margin-left vwpx(80)
-        width vwpx(1126)
+        margin vwpx(108) vwpx(80) vwpx(128)
         font-size 0
         hr
           margin 0
@@ -81,7 +75,7 @@ const Section1 = () => (
           margin-bottom -1px
         :global(.logo3)
           grid-template-columns repeat(2, 1fr)
-          width vwpx2(452, 240)
+          width vwpx(450.5)
       .en
         :global(.subtitle)
           font-size vwpx_min(24)
@@ -177,13 +171,20 @@ const Section2 = () => (
 )
 
 const Location = () => (
-  <Layout title="About" side="About" backto="/about" footer={<Footer left="Workstyle" right="Genres" />}>
-    <div className="container">
-      <Header headerMargin={79} title="Location" subtitle={t('location_title')!} desc={t('location_description')!} image="/about/pict03.svg" imageWidth={554} />
-      <Section1 />
-      <Section2 />
-    </div>
-  </Layout>
+  <>
+    <Layout title="About" side="About" backto="/about" footer={<Footer left="Workstyle" right="Genres" />}>
+      <div className="location">
+        <Header headerMargin={79} title="Location" subtitle={t('location_title')!} desc={t('location_description')!} image="/about/pict03.svg" imageWidth={554} />
+        <Section1 />
+        <Section2 />
+      </div>
+    </Layout>
+    <style jsx>{`
+      @import 'lib/vw.styl'
+      {/* .location
+        margin 80px vwpx(80) 0 */}
+    `}</style>
+  </>
 )
 
 export default Location

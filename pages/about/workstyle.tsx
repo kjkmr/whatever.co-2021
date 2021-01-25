@@ -201,22 +201,22 @@ const Section3 = () => (
         margin vwpx(117) vwpx(80) vwpx(190)
       .images
         position relative
-        height vwpx2(1030, 160)
-        margin-top vwpx2(60, 160)
-        margin-bottom vwpx2(92, 160)
+        height vwpx(1030)
+        margin-top vwpx(60)
+        margin-bottom vwpx(92)
         >div
           position absolute
         img
           width 100%
         .i1
-          width vwpx2(1206, 160)
+          width vwpx(1206)
         .i2
-          width vwpx2(684, 160)
-          top vwpx2(566, 160)
+          width vwpx(684)
+          top vwpx(566)
           right 0
         .i3
-          width vwpx2(498, 160)
-          top vwpx2(747, 160)
+          width vwpx(498)
+          top vwpx(747)
       .columns
         display grid
         grid-template-columns repeat(2, 1fr)

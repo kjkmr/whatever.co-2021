@@ -52,9 +52,9 @@ const Section1 = () => (
         margin-bottom vwpx(105)
       .images
         position relative
-        height vwpx2(1230, 160)
-        margin-top vwpx2(60, 160)
-        margin-bottom vwpx2(94, 160)
+        height vwpx(1230)
+        margin-top vwpx(60)
+        margin-bottom vwpx(94)
         >div
           position absolute
         img
@@ -62,19 +62,19 @@ const Section1 = () => (
         .i1
           top 0
           left 0
-          width vwpx2(912, 160)
+          width vwpx(912)
         .i2
-          top vwpx2(435, 160)
-          right vwpx2(-80, 160)
-          width vwpx2(502, 160)
+          top vwpx(435)
+          right vwpx(-80)
+          width vwpx(502)
         .i3
-          top vwpx2(641, 160)
-          left vwpx2(140, 160)
-          width vwpx2(418, 160)
+          top vwpx(641)
+          left vwpx(140)
+          width vwpx(418)
         .i4
-          top vwpx2(829, 160)
-          right vwpx2(85, 160)
-          width vwpx2(433, 160)
+          top vwpx(829)
+          right vwpx(85)
+          width vwpx(433)
       h2
         margin 0
         margin-bottom vwpx(46)
@@ -184,8 +184,8 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
             border none
             padding 0
           img
-            width vwpx2(335, 160)
-            height vwpx2(189, 160)
+            width vwpx(335)
+            height vwpx(189)
             object-fit cover
           :global(.work-link-name)
             font-size 1.8rem
@@ -238,7 +238,7 @@ const WorkList = ({ title, body, items }: { title: string, body: string, items: 
       .items
         display grid
         grid-template-columns repeat(3, 1fr)
-        grid-gap vwpx2(52, 160) vwpx2(60, 160)
+        grid-gap vwpx(52) vwpx(60)
       .en
         :global(.work-list-title)
           font-size vwpx_min(24)
@@ -271,23 +271,23 @@ const Section3 = () => (
         margin-bottom vwpx(190)
       .images
         position relative
-        height vwpx2(1113, 160)
-        margin-top vwpx2(60, 160)
-        margin-bottom vwpx2(100, 160)
+        height vwpx(1113)
+        margin-top vwpx(60)
+        margin-bottom vwpx(100)
         >div
           position absolute
         img
           width 100%
         .i1
-          width vwpx2(1206, 160)
+          width vwpx(1206)
         .i2
-          width vwpx2(470, 160)
-          top vwpx2(694, 160)
-          left vwpx2(113, 160)
+          width vwpx(470)
+          top vwpx(694)
+          left vwpx(113)
         .i3
-          width vwpx2(388, 160)
-          top vwpx2(485, 160)
-          left vwpx2(640, 160)
+          width vwpx(388)
+          top vwpx(485)
+          left vwpx(640)
     `}</style>
   </>
 )

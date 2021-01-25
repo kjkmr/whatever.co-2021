@@ -5,7 +5,7 @@ import { Member, getAllMembers } from 'lib/api'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 
-/*
+// /*
 function shuffle<T>(array: T[]) {
   const out = Array.from(array);
   for (let i = out.length - 1; i > 0; i--) {
@@ -16,7 +16,7 @@ function shuffle<T>(array: T[]) {
   }
   return out;
 }
-*/
+// */
 
 const SingleMember = ({ member: m }: { member: Member }) => {
   const [entered, setEntered] = useState(false)
@@ -61,21 +61,23 @@ const SingleMember = ({ member: m }: { member: Member }) => {
 }
 
 const TeamIndex = ({ members }: { members: Member[] }) => (
-  <Layout title="Team" side="Team">
-    <div className="container">
-      {members.map(m => <SingleMember key={m.slug} member={m} />)}
-      <style jsx>{`
-        @import 'lib/vw.styl'
-        .container
-          display grid
-          grid-template-columns repeat(4, 1fr)
-          column-gap vwpx(82)
-          grid-auto-rows vwpx(425)
-          align-items start
-          margin-top 40px
-      `}</style>
-    </div>
-  </Layout>
+  <>
+    <Layout title="Team" side="Team">
+      <div className="container">
+        {shuffle(members).map(m => <SingleMember key={Math.random()} member={m} />)}
+      </div>
+    </Layout>
+    <style jsx>{`
+      @import 'lib/vw.styl'
+      .container
+        display grid
+        grid-template-columns repeat(4, 1fr)
+        column-gap vwpx(82)
+        grid-auto-rows vwpx(425)
+        align-items start
+        margin-top 40px
+    `}</style>
+  </>
 )
 
 export default TeamIndex

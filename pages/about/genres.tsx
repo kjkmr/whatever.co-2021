@@ -1,3 +1,4 @@
+import { useRef, useState, useEffect } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { t, langStyle } from 'lib/i18n'
@@ -153,12 +154,25 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
   } else {
     link = `/work/${link}`
   }
+  const ref = useRef<HTMLAnchorElement>(null)
+  const [entered, setEntered] = useState(false)
+  useEffect(() => {
+    const node = ref.current!
+    const onMouseEnter = () => setEntered(true)
+    const onMouseLeave = () => setEntered(false)
+    node.addEventListener('mouseenter', onMouseEnter)
+    node.addEventListener('mouseleave', onMouseLeave)
+    return () => {
+      node.removeEventListener('mouseenter', onMouseEnter)
+      node.removeEventListener('mouseleave', onMouseLeave)
+    }
+  }, [])
   return (
     <>
       <div className={langStyle('work-link')}>
         <Link href={link}>
-          <a target={target} rel="noopener noreferrer">
-            <GradImg><img src={`/about/genres/${image}@2x.jpg`} alt="" /></GradImg>
+          <a ref={ref} target={target} rel="noopener noreferrer">
+            <GradImg mouseEntered={entered}><img src={`/about/genres/${image}@2x.jpg`} alt="" /></GradImg>
             <div><Grad className="work-link-name">{name}</Grad></div>
             <div><Grad className="work-link-desc">{desc}</Grad></div>
           </a>
@@ -169,8 +183,9 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
         .work-link
           font-size 0
           a
-            border none
             display inline-block
+            border none
+            padding 0
           img
             width vwpx2(335, 160)
             height vwpx2(189, 160)

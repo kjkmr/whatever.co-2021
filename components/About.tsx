@@ -119,28 +119,31 @@ export const Header = (props: HeaderProps) => {
 }
 
 export const Footer = ({ left, right }: { left: string, right: string }) => (
-  <div className="footer">
-    <Link href={`/about/${left.toLowerCase()}`}>
-      <a style={{ borderRight: '1px solid #333' }}>
-        <div className="line"></div>
-        <div style={{ marginLeft: 40 }}>
-          <div className="whatever">Whatever</div>
-          <div className="title">{left}</div>
-        </div>
-      </a>
-    </Link>
-    <Link href={`/about/${right.toLowerCase()}`}>
-      <a style={{ justifyContent: 'flex-end' }}>
-        <div style={{ marginRight: 40, textAlign: 'right' }}>
-          <div className="whatever">Whatever</div>
-          <div className="title">{right}</div>
-        </div>
-        <div className="line"></div>
-      </a>
-    </Link>
+  <>
+    <div className="footer">
+      <Link href={`/about/${left.toLowerCase()}`}>
+        <a style={{ borderRight: '1px solid #333' }}>
+          <div className="line"></div>
+          <div style={{ marginLeft: 40 }}>
+            <div><Grad className="whatever" whiteText={true}>Whatever</Grad></div>
+            <div><Grad className="title" whiteText={true}>{left}</Grad></div>
+          </div>
+        </a>
+      </Link>
+      <Link href={`/about/${right.toLowerCase()}`}>
+        <a style={{ justifyContent: 'flex-end' }}>
+          <div style={{ marginRight: 40, textAlign: 'right' }}>
+            <div><Grad className="whatever" whiteText={true}>Whatever</Grad></div>
+            <div><Grad className="title" whiteText={true}>{right}</Grad></div>
+          </div>
+          <div className="line"></div>
+        </a>
+      </Link>
+    </div>
     <style jsx>{`
       .footer
         height 160px
+        font-size 0
         color white
         background-color black
         display grid
@@ -154,17 +157,17 @@ export const Footer = ({ left, right }: { left: string, right: string }) => (
         .line
           border-top 1px solid #fff
           width 40px
-        .whatever
+        :global(.whatever)
           font-size 1.2rem
-          font-weight normal
+          font-weight 400
           letter-spacing 0.1em
           margin-top 9px
-        .title
+        :global(.title)
           font-size 2.4rem
-          font-weight bold
+          font-weight 700
           margin-top 7px
     `}</style>
-  </div>
+  </>
 )
 
 type SectionTitleProps = {

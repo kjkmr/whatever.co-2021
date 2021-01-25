@@ -85,7 +85,7 @@ const ContactForm = () => (
         .contact
           margin-top 26px
         .newsletter
-          margin-top 73px
+          margin-top 65px
           .subscribe
             font-size 1.4rem
     `}</style>

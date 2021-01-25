@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { Member, getAllMembers } from 'lib/api'
@@ -18,53 +18,61 @@ function shuffle<T>(array: T[]) {
 }
 */
 
+const SingleMember = ({ member: m }: { member: Member }) => {
+  const [entered, setEntered] = useState(false)
+  return (
+    <>
+      <Link href={`/team/${m.slug}`} key={m.slug}>
+        <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
+          <div>
+            <GradImg mouseEntered={entered}><img src={m.image} alt="" /></GradImg>
+            <div><Grad className="region">{m.region.join(' / ')}</Grad></div>
+            <div><Grad className="title">{m.title}</Grad></div>
+            <div><Grad className="name">{m.name}</Grad></div>
+          </div>
+        </a>
+      </Link>
+      <style jsx>{`
+        @import 'lib/vw.styl'
+        a
+          border none
+          padding 0
+          font-size 0
+          img
+            width vwpx(260)
+            height vwpx(260)
+            object-fit cover
+          :global(.region)
+            font-size 1.0rem
+            letter-spacing 0.01em
+            margin-top 1.9rem
+          :global(.title)
+            font-size 1.4rem
+            font-weight 300
+            margin-top 1.2rem
+          :global(.name)
+            font-size 1.8rem
+            font-weight 500
+            line-height 2.0em
+            margin-top 0.4rem
+      `}</style>
+    </>
+  )
+}
+
 const TeamIndex = ({ members }: { members: Member[] }) => (
   <Layout title="Team" side="Team">
     <div className="container">
-      {members.map(m => (
-        <Link href={`/team/${m.slug}`} key={m.slug}>
-          <a>
-            <div>
-              <GradImg><img src={m.image} alt="" /></GradImg>
-              <Grad><div className="region">{m.region.join(' / ')}</div></Grad>
-              <Grad><div className="title">{m.title}</div></Grad>
-              <Grad><div className="name">{m.name}</div></Grad>
-            </div>
-          </a>
-        </Link>
-      ))}
-
+      {members.map(m => <SingleMember key={m.slug} member={m} />)}
       <style jsx>{`
         @import 'lib/vw.styl'
         .container
           display grid
           grid-template-columns repeat(4, 1fr)
-          column-gap vwpx(81)
-          grid-auto-rows vwpx(427)
+          column-gap vwpx(82)
+          grid-auto-rows vwpx(425)
+          align-items start
           margin-top 40px
-          font-size 0
-        a
-          border none
-        img
-          width vwpx(260)
-          height vwpx(260)
-        .region
-          display inline-block
-          font-size 1.0rem
-          letter-spacing 0.01em
-          margin-top 2.0rem
-        .title
-          display inline-block
-          font-size 1.4rem
-          font-weight 300
-          margin-top 1.2rem
-        .name
-          display inline-block
-          font-size 1.8rem
-          line-height 1.8rem
-          font-weight bold
-          letter-spacing 0.05em
-          margin-top 1.4rem
       `}</style>
     </div>
   </Layout>

@@ -15,6 +15,7 @@ let templateName: string
 // templateName = 'Work_index'
 // templateName = 'Work_detail'
 // templateName = 'News_detail'
+// templateName = 'Team_index'
 // templateName = 'Contact'
 // templateName = 'menu'
 

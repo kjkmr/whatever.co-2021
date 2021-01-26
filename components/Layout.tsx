@@ -16,6 +16,7 @@ let templateName: string
 // templateName = 'Work_detail'
 // templateName = 'News_detail'
 // templateName = 'Team_index'
+// templateName = 'Team_detail'
 // templateName = 'Contact'
 // templateName = 'menu'
 
@@ -32,7 +33,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
   const templateStyle: { [prop: string]: string } = {}
   if (templateName) {
     templateStyle.backgroundImage = `url(/_/${templateName}_${useRouter().locale!}.png)`
-    // templateStyle.backgroundPosition = 'top 178px left'
+    // templateStyle.backgroundPosition = 'top 2526px left'
   }
   return (
     <>

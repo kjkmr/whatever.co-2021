@@ -106,15 +106,15 @@ const SmallWork = ({ work }: { work: Entry }) => {
             :global(.title)
               font-size 2.0rem
               font-weight 700
-              line-height 3.2rem
-              margin-top 0.6rem
+              line-height 2.8rem
+              margin-top 0.8rem
             :global(.subtitle)
               font-size 1.5rem
               font-weight 300
               line-height 2.1rem
-              margin-top 0.2rem
+              margin-top 0.5rem
             :global(.tags)
-              margin-top 1.7rem
+              margin-top 1.5rem
       `}</style>
     </>
   )

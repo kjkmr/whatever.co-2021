@@ -1,11 +1,10 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { Member, getAllMembers } from 'lib/api'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 
-/*
 function shuffle<T>(array: T[]) {
   const out = Array.from(array);
   for (let i = out.length - 1; i > 0; i--) {
@@ -16,59 +15,74 @@ function shuffle<T>(array: T[]) {
   }
   return out;
 }
-*/
 
-const TeamIndex = ({ members }: { members: Member[] }) => (
-  <Layout title="Team" side="Team">
-    <div className="container">
-      {members.map(m => (
-        <Link href={`/team/${m.slug}`} key={m.slug}>
-          <a>
-            <div>
-              <GradImg><img src={m.image} alt="" /></GradImg>
-              <Grad><div className="region">{m.region.join(' / ')}</div></Grad>
-              <Grad><div className="title">{m.title}</div></Grad>
-              <Grad><div className="name">{m.name}</div></Grad>
-            </div>
-          </a>
-        </Link>
-      ))}
-
+const SingleMember = ({ member: m }: { member: Member }) => {
+  const [entered, setEntered] = useState(false)
+  return (
+    <>
+      <Link href={`/team/${m.slug}`}>
+        <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
+          <div>
+            <GradImg mouseEntered={entered}><img src={m.image} alt="" /></GradImg>
+            <div><Grad className="region">{m.region.join(' / ')}</Grad></div>
+            <div><Grad className="title">{m.title}</Grad></div>
+            <div><Grad className="name">{m.name}</Grad></div>
+          </div>
+        </a>
+      </Link>
       <style jsx>{`
         @import 'lib/vw.styl'
-        .container
+        a
+          display block
+          border none
+          padding 0
+          font-size 0
+          img
+            width vwpx(260)
+            height vwpx(260)
+            object-fit cover
+          :global(.region)
+            font-size 1.0rem
+            letter-spacing 0.01em
+            margin-top 1.9rem
+          :global(.title)
+            font-size 1.4rem
+            font-weight 300
+            margin-top 1.2rem
+          :global(.name)
+            font-size 1.8rem
+            font-weight 500
+            line-height 2.0em
+            margin-top 0.4rem
+      `}</style>
+    </>
+  )
+}
+
+const TeamIndex = ({ members }: { members: Member[] }) => {
+  const [shuffled, setShuffled] = useState<Member[]>([])
+  useEffect(() => { setShuffled(shuffle(members)) }, [])
+  return (
+    <>
+      <Layout title="Team" side="Team">
+        <div className="team-index">
+          {shuffled.map(m => <SingleMember key={m.slug} member={m} />)}
+        </div>
+      </Layout>
+      <style jsx>{`
+        @import 'lib/vw.styl'
+        .team-index
           display grid
           grid-template-columns repeat(4, 1fr)
-          column-gap vwpx(81)
-          grid-auto-rows vwpx(427)
+          column-gap vwpx(82)
+          grid-auto-rows vwpx(425)
+          align-items start
           margin-top 40px
-          font-size 0
-        a
-          border none
-        img
-          width vwpx(260)
-          height vwpx(260)
-        .region
-          display inline-block
-          font-size 1.0rem
-          letter-spacing 0.01em
-          margin-top 2.0rem
-        .title
-          display inline-block
-          font-size 1.4rem
-          font-weight 300
-          margin-top 1.2rem
-        .name
-          display inline-block
-          font-size 1.8rem
-          line-height 1.8rem
-          font-weight bold
-          letter-spacing 0.05em
-          margin-top 1.4rem
+          min-height 100vh
       `}</style>
-    </div>
-  </Layout>
-)
+    </>
+  )
+}
 
 export default TeamIndex
 

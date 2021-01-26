@@ -1,13 +1,16 @@
 import { GetStaticProps } from 'next'
 import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
+import BlackButton from 'components/BlackButton'
 import { Grad, GradImg, GradLink } from 'components/Grad'
 
 const Head = () => (
-  <div className={langStyle('head')}>
-    <img src="/contact/pict04.svg" alt="" />
-    {t('contact_title')?.split('\n').map((line, index) => <Grad key={index}><div>{line}</div></Grad>)}
-    <div className="mailto"><GradImg><a href="mailto:hello@whatever.co">hello@whatever.co</a></GradImg></div>
+  <>
+    <div className={langStyle('head')}>
+      <div className="image"><GradImg lighten={true}><img src="/contact/pict04.svg" alt="" /></GradImg></div>
+      {t('contact_title')?.split('\n').map((line, index) => <div key={index}><Grad className="title" key={index}>{line}</Grad></div>)}
+      <div className="mailto"><BlackButton width="300px" height="80px" link="mailto:hello@whatever.co">hello@whatever.co</BlackButton></div>
+    </div>
     <style jsx>{`
       @import 'lib/vw.styl'
       .head
@@ -15,72 +18,60 @@ const Head = () => (
         margin-top vwpx(189)
         margin-left vwpx(80)
         font-size 0
-        >img
+        .image
           position absolute
           top vwpx(-184)
           right vwpx(-24)
-          width vwpx(900)
-        div
-          display inline-block
+          background-color white
+          img
+            width vwpx(900)
+        :global(.title)
+          position relative
           font-size vwpx(30)
           font-weight bold
           line-height vwpx(52)
+          mix-blend-mode multiply
       .mailto
-        width vwpx(300)
-        height vwpx(80)
         margin-top vwpx(47)
-        background-color black
-        a
-          display flex
-          justify-content center
-          align-items center
-          width vwpx(300)
-          height vwpx(80)
-          font-size vwpx(18)
-          font-weight bold
-          letter-spacing 0.04em
-          color white
-          border none
-          padding 0
       .en
-        &.head
-          div
-            font-size vwpx(48)
+        &.head :global(.title)
+          font-size vwpx(36)
+          line-height vwpx(54)
+        .mailto
+          margin-top vwpx(41)
     `}</style>
-  </div>
+  </>
 )
 
 const Address = ({ data }: { data: any }) => (
-  <div className="container">
-    <Grad><h2 className="region">{data.name}</h2></Grad>
-    <div className="address"><GradLink className="address" href={data.maplink} target="_blank" rel="noopener noreferrer">{data.address}</GradLink></div>
-    {data.phone != '-' ? <Grad><div className="phone">{data.phone}</div></Grad> : null}
-    {data.representative != '-' ? <Grad><div className="repr">{data.representative}</div></Grad> : null}
+  <>
+    <div className="container">
+      <div><Grad className="region">{data.name}</Grad></div>
+      <div className="address"><GradLink href={data.maplink} target="_blank" rel="noopener noreferrer">{data.address}</GradLink></div>
+      {data.phone != '-' ? <div><Grad className="phone">{data.phone}</Grad></div> : null}
+      {data.representative != '-' ? <div><Grad className="repr">{data.representative}</Grad></div> : null}
+    </div>
     <style jsx>{`
       @import 'lib/vw.styl'
       .container
         font-size 0
-      .region
-        display inline-block
-        font-size vwpx(24)
-        font-weight bold
-        margin-bottom vwpx(34)
-      .address
-        display inline-block
-        font-size 1.5rem
-        line-height 1em
-        margin-bottom 6px
-      .phone
-        display inline-block
-        font-size 1.5rem
-        line-height 1em
-        margin-bottom 16px
-      .repr
-        display inline-block
-        font-size 1.5rem
-        line-height 1em
+        :global(.region)
+          font-size vwpx_min(24)
+          font-weight bold
+          margin-bottom vwpx_min(34)
+        .address
+          font-size var(--font-size-ja)
+          line-height 1em
+          margin-bottom 0.6rem
+        :global(.phone)
+          font-size var(--font-size-ja)
+          line-height 1em
+          margin-bottom 1.6rem
+        :global(.repr)
+          font-size var(--font-size-ja)
+          line-height 1em
     `}</style>
-  </div>
+  </>
 )
 
 const ContactPage = () => {
@@ -98,11 +89,11 @@ const ContactPage = () => {
         {addresses.map((data: any) => <Address key={data.name} data={data} />)}
       </div>
       <div className="images">
-        <img src="/contact/whatever_7F_002@2x.jpg" alt="" className="i1" />
-        <img src="/contact/whatever_6F_004@2x.jpg" alt="" className="i2" />
+        <div className="i1"><GradImg><img src="/contact/whatever_7F_002@2x.jpg" alt="" /></GradImg></div>
+        <div className="i2"><GradImg><img src="/contact/whatever_6F_004@2x.jpg" alt="" /></GradImg></div>
         <div className="row">
-          <img src="/contact/whatever_4F_005@2x.jpg" alt="" className="i3" />
-          <img src="/contact/whatever_3F_004@2x.jpg" alt="" className="i4" />
+          <div className="i3"><GradImg><img src="/contact/whatever_4F_005@2x.jpg" alt="" /></GradImg></div>
+          <div className="i4"><GradImg><img src="/contact/whatever_3F_004@2x.jpg" alt="" /></GradImg></div>
         </div>
       </div>
       <style jsx>{`
@@ -119,12 +110,13 @@ const ContactPage = () => {
           margin-top vwpx(64)
           margin-left vwpx(80)
           margin-bottom vwpx(200)
+          img
+            width 100%
           .row
             display flex
             justify-content space-between
           .i1
-            width vwpx(1205)
-            float right
+            width vwpx(1206)
           .i2
             width vwpx(844)
             margin-top vwpx(70)

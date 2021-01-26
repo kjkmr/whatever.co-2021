@@ -8,11 +8,11 @@ const Inner = ({ name }: { name: string }) => (
       span
         display inline-block
         border 1px solid #B4B4B4
-        font-size 12px
+        font-size 1.2rem
         font-weight 300
         letter-spacing 0.03em
-        padding 9px 10px 7px
-        margin-right 10px
+        padding 0.9rem 1.0rem 0.7rem
+        margin-right 1.0rem
         &:last-child
           margin-right 0
     `}</style>
@@ -29,6 +29,9 @@ const WorkTag = ({ tag, link = false }: { tag: Tag, link?: boolean }) => (
         display inline-block
         border none
         padding 0
+        margin-right 1.0rem
+        &:last-child
+          margin-right 0
     `}</style>
   </>
 )

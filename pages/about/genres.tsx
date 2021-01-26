@@ -180,7 +180,7 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
         .work-link
           font-size 0
           a
-            display inline-block
+            display block
             border none
             padding 0
           img

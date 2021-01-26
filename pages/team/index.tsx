@@ -33,6 +33,7 @@ const SingleMember = ({ member: m }: { member: Member }) => {
       <style jsx>{`
         @import 'lib/vw.styl'
         a
+          display block
           border none
           padding 0
           font-size 0

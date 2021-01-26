@@ -33,6 +33,10 @@ const LargeWork = ({ work }: { work: Entry }) => {
           grid-row span 2
           padding-bottom vwpx(77)
           font-size 0
+          a
+            display block
+            border none
+            padding 0
           .image img
             width vwpx(832)
             height vwpx(467)
@@ -46,9 +50,6 @@ const LargeWork = ({ work }: { work: Entry }) => {
               font-size 3.6rem
               font-weight 700
               margin-top 2.2rem
-              a
-                border none
-                padding 0
             :global(.subtitle)
               margin-top 1.0rem
               font-size 2.0rem
@@ -87,6 +88,10 @@ const SmallWork = ({ work }: { work: Entry }) => {
           position relative
           padding-bottom vwpx(78)
           font-size 0
+          a
+            display block
+            border none
+            padding 0
           .image img
             width vwpx(377)
             height vwpx(212)
@@ -103,9 +108,6 @@ const SmallWork = ({ work }: { work: Entry }) => {
               font-weight 700
               line-height 3.2rem
               margin-top 0.6rem
-              a
-                border none
-                padding 0
             :global(.subtitle)
               font-size 1.5rem
               font-weight 300

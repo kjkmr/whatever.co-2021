@@ -204,9 +204,9 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
           position relative
           font-size 0
           a
+            display block
             border none
             padding 0
-            background-color gray
           .image
             img
               width vwpx(594)
@@ -301,7 +301,7 @@ const NewsItem = ({ data }: { data: Entry }) => {
         .news-item
           font-size 0
           a
-            display inline-block
+            display block
             padding 0
             border none
           img

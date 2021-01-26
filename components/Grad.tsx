@@ -1,4 +1,4 @@
-import { ReactNode, SyntheticEvent, CSSProperties, useCallback, useEffect, useLayoutEffect, useRef } from 'react'
+import { ReactNode, SyntheticEvent, CSSProperties, useCallback, useLayoutEffect, useRef } from 'react'
 
 const COLORS = ["#ff2300", "#ff9201", "#ffeb00", "#89e82b", "#00c745", "#29ebfe", "#0d44fb", "#a725fc", "#fd1eba"];
 export const getColors = (): [string, string] => {

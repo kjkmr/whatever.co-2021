@@ -35,7 +35,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
   const templateStyle: { [prop: string]: string } = {}
   if (templateName) {
     templateStyle.backgroundImage = `url(/_/${templateName}_${useRouter().locale!}.png)`
-    templateStyle.backgroundPosition = 'top 1180px left'
+    templateStyle.backgroundPosition = 'top 35px left'
   }
   return (
     <>

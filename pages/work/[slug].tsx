@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useLayoutEffect } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
 import classnames from 'classnames'
 import { Tag, Entry, Credit, Person, getAllWorks, getPostDetails } from 'lib/api'
 import Layout from 'components/Layout'
-import { Grad, GradImg } from 'components/Grad'
+import { Grad, GradImg, setup, setupImage } from 'components/Grad'
 import WorkTag from 'components/WorkTag'
 
 
@@ -111,14 +111,42 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
 
 const Body = ({ content }: any) => {
   const body = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    body.current?.querySelectorAll('iframe').forEach(iframe => {
-      const wrapper = document.createElement('div')
-      wrapper.classList.add('aspect-ratio')
-      iframe.parentNode?.insertBefore(wrapper, iframe)
-      wrapper.appendChild(iframe)
+  useLayoutEffect(() => {
+    const cleanups: (() => void)[] = []
+    body.current?.querySelectorAll('p').forEach(p => {
+      const nodeName = p.firstChild?.nodeName.toLocaleLowerCase()
+      switch (nodeName) {
+        case 'img':
+        case 'iframe': {
+          const node = p.firstChild!
+          const base = document.createElement('div')
+          base.classList.add('img')
+          if (nodeName == 'iframe') {
+            base.classList.add('aspect-ratio')
+          }
+          p.parentNode?.insertBefore(base, p)
+          base.appendChild(node)
+          p.parentNode?.removeChild(p)
+          cleanups.push(setupImage(base))
+          break
+        }
+        default: {
+          const base = document.createElement('div')
+          base.classList.add('p')
+          p.parentNode?.insertBefore(base, p)
+          base.appendChild(p)
+          cleanups.push(setup(base, false, false))
+        }
+      }
     })
-  })
+    body.current?.querySelectorAll('.block-images > img').forEach(img => {
+      const base = document.createElement('div')
+      img.parentNode?.insertBefore(base, img)
+      base.appendChild(img)
+      cleanups.push(setupImage(base))
+    })
+    return () => { cleanups.forEach(c => c()) }
+  }, [])
   return (
     <>
       <div ref={body} className="body" dangerouslySetInnerHTML={{ __html: content || '' }} />
@@ -134,11 +162,18 @@ const Body = ({ content }: any) => {
           img
             width 100%
             height auto
+          .img
+            font-size 0
+            position relative
+            overflow hidden
+            margin 3.0rem 0
           p, table
-            margin 30px 0
+            margin 0
             font-size 1.5rem
             line-height 3.0rem
             word-wrap break-word
+          .p
+            margin 3.0rem 0
           .aspect-ratio
             position relative
             width 100%

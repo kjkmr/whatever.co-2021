@@ -1,4 +1,4 @@
-import { ReactNode, SyntheticEvent, CSSProperties, useCallback, useEffect, useRef } from 'react'
+import { ReactNode, SyntheticEvent, CSSProperties, useCallback, useEffect, useLayoutEffect, useRef } from 'react'
 
 const COLORS = ["#ff2300", "#ff9201", "#ffeb00", "#89e82b", "#00c745", "#29ebfe", "#0d44fb", "#a725fc", "#fd1eba"];
 export const getColors = (): [string, string] => {
@@ -10,7 +10,7 @@ export const getColors = (): [string, string] => {
   return [COLORS[i], COLORS[j]]
 }
 
-const setup = (base: Element, colorA: string, colorB: string): [Element, Element] => {
+const _setup = (base: Element, colorA: string, colorB: string): [Element, Element] => {
   base.classList.add('grad-effect-base')
   const fade = document.createElement('div')
   fade.classList.add('grad-effect-fade')
@@ -94,33 +94,34 @@ const doAnime = (base: Element, fade: Element, slide: Element, duration: number 
   )
 }
 
+export const setup = (base: HTMLElement, whiteText: boolean = false, inline: boolean = true): () => void => {
+  const [colorA, colorB] = getColors()
+  const [fade, slide] = _setup(base, colorA, colorB)
+  if (whiteText) {
+    base.classList.add('grad-effect-black')
+    fade.classList.add('grad-effect-multiply')
+  }
+  if (inline) {
+    base.style.display = 'inline-block'
+  }
+  const cleanup = () => {
+    fade.parentNode?.removeChild(fade)
+    slide.parentNode?.removeChild(slide)
+    base.classList.remove('grad-effect-base')
+    // base.style.display = ''
+  }
+  new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
+    const entry = entries[0]
+    if (!entry.isIntersecting) { return }
+    doAnime(base, fade, slide).onfinish = cleanup
+    object.unobserve(base)
+  }).observe(base)
+  return cleanup
+}
+
 export const Grad = ({ children, className, style, whiteText = false, inline = true }: { children?: ReactNode, className?: string, style?: CSSProperties, whiteText?: boolean, inline?: boolean }) => {
   const ref = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const base = ref.current!
-    const [colorA, colorB] = getColors()
-    const [fade, slide] = setup(base, colorA, colorB)
-    if (whiteText) {
-      base.classList.add('grad-effect-black')
-      fade.classList.add('grad-effect-multiply')
-    }
-    if (inline) {
-      base.style.display = 'inline-block'
-    }
-    const cleanup = () => {
-      fade.parentNode?.removeChild(fade)
-      slide.parentNode?.removeChild(slide)
-      base.classList.remove('grad-effect-base')
-      // base.style.display = ''
-    }
-    new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
-      const entry = entries[0]
-      if (!entry.isIntersecting) { return }
-      doAnime(base, fade, slide).onfinish = cleanup
-      object.unobserve(base)
-    }).observe(base)
-    return cleanup
-  }, [])
+  useLayoutEffect(() => setup(ref.current!, whiteText, inline), [])
   return (
     <>
       <div ref={ref} className={className} style={style}>
@@ -188,46 +189,46 @@ export const Grad = ({ children, className, style, whiteText = false, inline = t
   )
 }
 
+export const setupImage = (node: HTMLElement, lighten: boolean = false) => {
+  node.classList.add('grad-effect-base')
+  const img = node.children[0]
+
+  const grad = document.createElement('div')
+  grad.classList.add('grad-effect-image')
+  if (lighten === true) {
+    // @ts-ignore
+    grad.style.mixBlendMode = 'lighten'
+  }
+  const [colorA, colorB] = getColors()
+  grad.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB})`
+  node.appendChild(grad)
+
+  const box = document.createElement('div')
+  box.classList.add('grad-effect-slide')
+  box.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`
+  node.appendChild(box)
+
+  const cleanup = () => {
+    grad?.parentNode?.removeChild(grad)
+    box?.parentNode?.removeChild(box)
+    node.classList.remove('grad-effect-base')
+  }
+
+  new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
+    const entry = entries[0]
+    if (!entry.isIntersecting) { return }
+    doAnime(img, grad, box, 200).onfinish = cleanup
+    object.unobserve(img)
+  }).observe(img)
+  return cleanup
+}
+
 export const GradImg = ({ children, lighten, mouseEntered }: { children?: ReactNode, lighten?: boolean, mouseEntered?: boolean }) => {
   const ref = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const node = ref.current!
-    node.classList.add('grad-effect-base')
-    const img = node.children[0]
-
-    const grad = document.createElement('div')
-    grad.classList.add('grad-effect-image')
-    if (lighten === true) {
-      // @ts-ignore
-      grad.style.mixBlendMode = 'lighten'
-    }
-    const [colorA, colorB] = getColors()
-    grad.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB})`
-    node.appendChild(grad)
-
-    const box = document.createElement('div')
-    box.classList.add('grad-effect-slide')
-    box.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`
-    node.appendChild(box)
-
-    const cleanup = () => {
-      grad?.parentNode?.removeChild(grad)
-      box?.parentNode?.removeChild(box)
-      node.classList.remove('grad-effect-base')
-    }
-
-    new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
-      const entry = entries[0]
-      if (!entry.isIntersecting) { return }
-      doAnime(img, grad, box, 200).onfinish = cleanup
-      object.unobserve(img)
-    }).observe(img)
-
-    return cleanup
-  }, [])
+  useLayoutEffect(() => setupImage(ref.current!, lighten === true), [])
 
   const els = useRef<HTMLDivElement[]>([])
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (mouseEntered === undefined) return;
     if (mouseEntered) {
       const el = document.createElement('div')
@@ -297,7 +298,7 @@ export const GradLink = ({ children, href, target, rel }: any) => {
         target.style.backgroundImage = 'none'
       }
     }
-    const [grad, box] = setup(base, colorA, colorB)
+    const [grad, box] = _setup(base, colorA, colorB)
     new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
       const entry = entries[0]
       if (!entry.isIntersecting) { return }

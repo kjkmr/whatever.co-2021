@@ -1,11 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { Member, getAllMembers } from 'lib/api'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 
-// /*
 function shuffle<T>(array: T[]) {
   const out = Array.from(array);
   for (let i = out.length - 1; i > 0; i--) {
@@ -16,13 +15,12 @@ function shuffle<T>(array: T[]) {
   }
   return out;
 }
-// */
 
 const SingleMember = ({ member: m }: { member: Member }) => {
   const [entered, setEntered] = useState(false)
   return (
     <>
-      <Link href={`/team/${m.slug}`} key={m.slug}>
+      <Link href={`/team/${m.slug}`}>
         <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
           <div>
             <GradImg mouseEntered={entered}><img src={m.image} alt="" /></GradImg>
@@ -60,25 +58,31 @@ const SingleMember = ({ member: m }: { member: Member }) => {
   )
 }
 
-const TeamIndex = ({ members }: { members: Member[] }) => (
-  <>
-    <Layout title="Team" side="Team">
-      <div className="container">
-        {shuffle(members).map(m => <SingleMember key={Math.random()} member={m} />)}
-      </div>
-    </Layout>
-    <style jsx>{`
-      @import 'lib/vw.styl'
-      .container
-        display grid
-        grid-template-columns repeat(4, 1fr)
-        column-gap vwpx(82)
-        grid-auto-rows vwpx(425)
-        align-items start
-        margin-top 40px
-    `}</style>
-  </>
-)
+const TeamIndex = ({ members }: { members: Member[] }) => {
+  const [shuffled, setShuffled] = useState<Member[]>([])
+  useEffect(() => {
+    setShuffled(shuffle(members))
+  }, [members])
+  return (
+    <>
+      <Layout title="Team" side="Team">
+        <div className="container">
+          {shuffled.map(m => <SingleMember key={m.slug} member={m} />)}
+        </div>
+      </Layout>
+      <style jsx>{`
+        @import 'lib/vw.styl'
+        .container
+          display grid
+          grid-template-columns repeat(4, 1fr)
+          column-gap vwpx(82)
+          grid-auto-rows vwpx(425)
+          align-items start
+          margin-top 40px
+      `}</style>
+    </>
+  )
+}
 
 export default TeamIndex
 

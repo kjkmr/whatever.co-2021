@@ -15,7 +15,7 @@ const NewsItem = ({ entry }: { entry: Entry }) => {
             <GradImg mouseEntered={entered}><img src={entry.hero_image} alt="" /></GradImg>
             <div><Grad className="date">{entry.date}</Grad></div>
             <div><Grad className="title">{entry.title}</Grad></div>
-            <div><Grad className="desc"><div dangerouslySetInnerHTML={{ __html: entry.content?.split('<!--more-->')[0] || '' }} /></Grad></div>
+            <div><Grad className="desc"><div className="desc-inner" dangerouslySetInnerHTML={{ __html: entry.content?.split('<!--more-->')[0] || '' }}></div></Grad></div>
           </a>
         </Link>
       </div>
@@ -38,18 +38,22 @@ const NewsItem = ({ entry }: { entry: Entry }) => {
             line-height 3.0rem
             margin-top 1.3rem
           :global(.desc)
+            margin-top 1.6rem
+            width vwpx(561)
+          .desc-inner
             display -webkit-box
             -webkit-box-orient vertical
-            -webkit-line-clamp 4
+            -webkit-line-clamp 3
             overflow hidden
             text-overflow ellipsis
             font-size var(--font-size-ja)
             font-weight 300
             line-height 3.0rem
-            margin-top 1.6rem
-            width vwpx(561)
             :global(p)
               margin 0
+            :global(a)
+              border none
+              padding 0
       `}</style>
     </>
   )

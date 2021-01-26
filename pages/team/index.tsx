@@ -61,25 +61,24 @@ const SingleMember = ({ member: m }: { member: Member }) => {
 
 const TeamIndex = ({ members }: { members: Member[] }) => {
   const [shuffled, setShuffled] = useState<Member[]>([])
-  useEffect(() => {
-    setShuffled(shuffle(members))
-  }, [members])
+  useEffect(() => { setShuffled(shuffle(members)) }, [])
   return (
     <>
       <Layout title="Team" side="Team">
-        <div className="container">
+        <div className="team-index">
           {shuffled.map(m => <SingleMember key={m.slug} member={m} />)}
         </div>
       </Layout>
       <style jsx>{`
         @import 'lib/vw.styl'
-        .container
+        .team-index
           display grid
           grid-template-columns repeat(4, 1fr)
           column-gap vwpx(82)
           grid-auto-rows vwpx(425)
           align-items start
           margin-top 40px
+          min-height 100vh
       `}</style>
     </>
   )

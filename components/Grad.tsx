@@ -310,11 +310,12 @@ export const GradLink = ({ children, href, target, rel }: any) => {
     }).observe(base)
   }, [])
   return (
-    <div ref={ref} className="container">
-      <a className="link" href={href} target={target} rel={rel}>{children}</a>
-
+    <>
+      <div ref={ref} className="grad-link">
+        <a className="link" href={href} target={target} rel={rel}>{children}</a>
+      </div>
       <style jsx>{`
-        .container
+        .grad-link
           overflow hidden
         .link
           display inline-block
@@ -328,6 +329,6 @@ export const GradLink = ({ children, href, target, rel }: any) => {
             -webkit-background-clip text
             -webkit-text-fill-color transparent
       `}</style>
-    </div>
+    </>
   )
 }

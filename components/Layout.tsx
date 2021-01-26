@@ -176,7 +176,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
         a
           text-decoration none
           color black
-          padding-bottom 0.5rem
+          padding-bottom 0.3rem
           border-bottom 1px solid red
         button
           cursor pointer

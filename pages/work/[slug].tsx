@@ -21,11 +21,11 @@ const Header = ({ work }: { work: Entry }) => {
         <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={work.hero_image} alt="" /></GradImg></div>
         <div className="info">
           <div className="inner">
-            <Grad><div className="date">{work.date}</div></Grad>
-            <Grad><div className="title" dangerouslySetInnerHTML={{ __html: work.title }}></div></Grad>
-            <Grad><div className="tags">
+            <div><Grad className="date">{work.date}</Grad></div>
+            <div><Grad className="title"><div dangerouslySetInnerHTML={{ __html: work.title }} /></Grad></div>
+            <div><Grad className="tags">
               {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} link={true} />)}
-            </div></Grad>
+            </Grad></div>
           </div>
         </div>
       </div>
@@ -55,19 +55,16 @@ const Header = ({ work }: { work: Entry }) => {
           padding-left vwpx(80)
           padding-right vwpx(100)
           padding-bottom vwpx(60)
-        .date
-          display inline-block
-          font-size vwpx(16)
-        .title
-          display inline-block
-          font-size vwpx(60)
-          font-weight bold
-          line-height 1.2em
-          margin-top vwpx(29)
-          margin-left vwpx(-6)
-        .tags
-          display inline-block
-          margin-top vwpx(31)
+          :global(.date)
+            font-size vwpx(16)
+          :global(.title)
+            font-size vwpx(60)
+            font-weight bold
+            line-height 1.2em
+            margin-top vwpx(29)
+            margin-left vwpx(-6)
+          :global(.tags)
+            margin-top vwpx(31)
       `}</style>
     </>
   )
@@ -77,29 +74,32 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
   <>
     <div className="excerpt">
       <div className="text">
-        <div className="title" dangerouslySetInnerHTML={{ __html: title }}></div>
-        <div className="desc" dangerouslySetInnerHTML={{ __html: description }}></div>
+        <div><Grad className="title"><div dangerouslySetInnerHTML={{ __html: title }} /></Grad></div>
+        <div><Grad className="desc"><div dangerouslySetInnerHTML={{ __html: description }}></div></Grad></div>
       </div>
       <div className="image">
-        <img src={image} alt="" />
+        <GradImg><img src={image} alt="" /></GradImg>
       </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
       .excerpt
         margin-left vwpx(80)
-        margin-bottom vwpx(147)
+        margin-bottom vwpx(150)
         display grid
         grid-template-columns auto vwpx(562)
         grid-gap vwpx(80)
-      .title
-        font-size vwpx(30)
-        font-weight bold
-        line-height vwpx(54)
-        margin-top vwpx(-8)
-        margin-bottom vwpx(42)
-      .desc
-        line-height 3.0rem
+        font-size 0
+      .text
+        :global(.title)
+          font-size vwpx(30)
+          font-weight bold
+          line-height vwpx(54)
+          margin-top vwpx(-8)
+          margin-bottom vwpx(42)
+        :global(.desc)
+          font-size var(--font-size-ja)
+          line-height 3.0rem
       .image img
         width vwpx(562)
         height vwpx(318)
@@ -214,32 +214,30 @@ const CreditMember = ({ member }: { member: Person }) => {
   return (
     <>
       <div className="member">
-        <Grad><div className="role">{member.role}</div></Grad>
-        <Grad><div className="name">
+        <div><Grad className="role">{member.role}</Grad></div>
+        <div><Grad className="name">
           {name}
           {member.company ? <span className="company">&nbsp;{member.url ? <a href={member.url} target="_blank" rel="noopener noreferrer">({member.company})</a> : `(${member.company})`}</span> : null}
-        </div></Grad>
+        </Grad></div>
       </div>
       <style jsx>{`
         .member
           margin-bottom 37px
           font-size 0
           font-weight 300
-        .role
-          display inline-block
-          font-size 1.2rem
-          line-height 1.2rem
-        .name
-          display inline-block
-          font-size 1.5rem
-          line-height 2.1rem
-          margin-top 3px
+          :global(.role)
+            font-size 1.2rem
+            line-height 1.2rem
+          :global(.name)
+            font-size 1.4rem
+            line-height 2.3rem
+            margin-top 3px
         .company
           display inline-block
         a, :global(.credit-name-link)
           display inline-block
-          padding-bottom 1px
-          border-bottom 1px solid red
+          padding-bottom 0
+          border-bottom 1px solid black
       `}</style>
     </>
   )
@@ -284,7 +282,7 @@ const Credits = ({ credit }: { credit: Credit[] }) => (
 const WorkDetail = ({ work }: { work: Entry }) => (
   <Layout title={work.title} side="Work" backto="/work/category/all">
     <Header work={work} />
-    <Excerpt title={work.subtitle || '(Subtitle)'} description={work.overview || '(Overview)'} image={work.side_image || ''} />
+    {work.subtitle ? <Excerpt title={work.subtitle || '(Subtitle)'} description={work.overview || '(Overview)'} image={work.side_image || ''} /> : null}
     <Body content={work.content} />
     <Credits credit={work.credit || []} />
   </Layout >

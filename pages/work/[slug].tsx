@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
+import classnames from 'classnames'
 import { Tag, Entry, Credit, Person, getAllWorks, getPostDetails } from 'lib/api'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
@@ -217,7 +218,7 @@ const CreditMember = ({ member }: { member: Person }) => {
         <div><Grad className="role">{member.role}</Grad></div>
         <div><Grad className="name">
           {name}
-          {member.company ? <span className="company">&nbsp;{member.url ? <a href={member.url} target="_blank" rel="noopener noreferrer">({member.company})</a> : `(${member.company})`}</span> : null}
+          {member.company ? <span className="company"> {member.url ? <a href={member.url} target="_blank" rel="noopener noreferrer">({member.company})</a> : `(${member.company})`}</span> : null}
         </Grad></div>
       </div>
       <style jsx>{`
@@ -229,15 +230,9 @@ const CreditMember = ({ member }: { member: Person }) => {
             font-size 1.2rem
             line-height 1.2rem
           :global(.name)
-            font-size 1.4rem
+            font-size var(--font-size-ja)
             line-height 2.3rem
             margin-top 3px
-        .company
-          display inline-block
-        a, :global(.credit-name-link)
-          display inline-block
-          padding-bottom 0
-          border-bottom 1px solid black
       `}</style>
     </>
   )
@@ -246,6 +241,9 @@ const CreditMember = ({ member }: { member: Person }) => {
 const CreditGroup = ({ credit }: { credit: Credit }) => (
   <>
     <div className="credit-group">
+      {credit.name
+        ? <div className={classnames('name', { spacer: credit.name == '-' })}><Grad className="credit-group-name">{credit.name != '-' ? credit.name : null}</Grad></div>
+        : null}
       {credit.members.map(member => <CreditMember key={member.name} member={member} />)}
     </div>
     <style jsx>{`
@@ -253,6 +251,15 @@ const CreditGroup = ({ credit }: { credit: Credit }) => (
         display grid
         grid-template-columns repeat(4, 1fr)
         grid-column-gap 60px
+        .name
+          grid-column span 4
+          margin-top 5.0rem
+          margin-bottom 3.8rem
+          &.spacer
+            margin-top 2.0rem
+        :global(.credit-group-name)
+          font-size var(--font-size-ja)
+          font-weight 700
     `}</style>
   </>
 )
@@ -260,7 +267,7 @@ const CreditGroup = ({ credit }: { credit: Credit }) => (
 const Credits = ({ credit }: { credit: Credit[] }) => (
   <>
     <div className="credits">
-      <Grad><h2>Credit</h2></Grad>
+      <div><Grad className="credits-title">Credit</Grad></div>
       {credit.map((credit, index) => <CreditGroup key={index} credit={credit} />)}
     </div>
     <style jsx>{`
@@ -270,11 +277,10 @@ const Credits = ({ credit }: { credit: Credit[] }) => (
         margin-top -16px
         margin-bottom 135px
         font-size 0
-      h2
-        display inline-block
-        font-size 24px
-        font-weight bold
-        margin-bottom 77px
+        :global(.credits-title)
+          font-size 2.4rem
+          font-weight bold
+          margin-bottom 77px
     `}</style>
   </>
 )

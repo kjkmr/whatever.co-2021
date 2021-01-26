@@ -103,11 +103,17 @@ const parseLinks = (data: string) => {
 const parseCredit = (data: string): Credit[] | undefined => {
   const credits: Credit[] = []
   let group: Credit = { members: [] }
+  let prevRole: string = ''
   Baby.parse(data).data.forEach((tokens: string[]) => {
-    const n = tokens.filter(t => t.length).length
+    let n = tokens.filter(t => t.length).length
+    if (n != 0 && !tokens[0]) {
+      tokens[0] = prevRole
+      n++
+    }
     if (n == 0) {
       credits.push(group)
       group = { members: [] }
+      prevRole = ''
     } else if (n == 1) {
       if (group.members.length) {
         credits.push(group)
@@ -116,6 +122,7 @@ const parseCredit = (data: string): Credit[] | undefined => {
         name: tokens[0],
         members: []
       }
+      prevRole = ''
     } else {
       const p: Person = {
         role: tokens[0],
@@ -124,6 +131,7 @@ const parseCredit = (data: string): Credit[] | undefined => {
         url: tokens[3] || null,
       }
       group.members.push(p)
+      prevRole = p.role
     }
   })
   if (group.members.length) {

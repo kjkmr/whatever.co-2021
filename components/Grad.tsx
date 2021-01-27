@@ -282,38 +282,41 @@ export const GradImg = ({ children, lighten, mouseEntered }: { children?: ReactN
   )
 }
 
+export const setupLink = (node: HTMLElement) => {
+  const [colorA, colorB] = getColors()
+  const linearGrad = `linear-gradient(to right, ${colorA}, ${colorB})`
+  node.style.borderImage = `${linearGrad} 1`
+  const onMouseEnter = () => {
+    node.style.backgroundImage = linearGrad
+    node.classList.add('grad-link-hover')
+  }
+  const onMouseLeave = () => {
+    node.style.backgroundImage = ''
+    node.classList.remove('grad-link-hover')
+  }
+  node.addEventListener('mouseenter', onMouseEnter)
+  node.addEventListener('mouseleave', onMouseLeave)
+  return () => {
+    node.removeEventListener('mouseenter', onMouseEnter)
+    node.removeEventListener('mouseleave', onMouseLeave)
+  }
+}
+
 export const GradLink = ({ children, href, target, rel, inlineBlock = false }: { children?: ReactNode, href?: string, target?: string, rel?: string, inlineBlock?: boolean }) => {
   const ref = useRef<HTMLAnchorElement>(null)
-  useLayoutEffect(() => {
-    const node = ref.current!
-    const [colorA, colorB] = getColors()
-    const linearGrad = `linear-gradient(to right, ${colorA}, ${colorB})`
-    node.style.borderImage = `${linearGrad} 1`
-    const onMouseEnter = () => {
-      node.style.backgroundImage = linearGrad
-    }
-    const onMouseLeave = () => {
-      node.style.backgroundImage = ''
-    }
-    node.addEventListener('mouseenter', onMouseEnter)
-    node.addEventListener('mouseleave', onMouseLeave)
-    return () => {
-      node.removeEventListener('mouseenter', onMouseEnter)
-      node.removeEventListener('mouseleave', onMouseLeave)
-    }
-  }, [])
+  useLayoutEffect(() => setupLink(ref.current!), [])
   return (
     <>
       <a ref={ref} className={classnames('grad-link', { 'inline-block': inlineBlock })} href={href} target={target} rel={rel}>{children}</a>
       <style jsx>{`
         .grad-link
           cursor pointer
-          &:hover
-            padding-bottom 2px
-            border-bottom-width 2px
-            background-clip text
-            -webkit-background-clip text
-            -webkit-text-fill-color transparent
+        :global(.grad-link-hover)
+          padding-bottom 2px
+          border-bottom-width 2px
+          background-clip text
+          -webkit-background-clip text
+          -webkit-text-fill-color transparent
         .inline-block
           display inline-block
       `}</style>

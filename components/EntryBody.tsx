@@ -34,6 +34,7 @@ const EntryBody = ({ content }: { content: string }) => {
     })
     body.current?.querySelectorAll('.block-images > img').forEach(img => {
       const base = document.createElement('div')
+      base.classList.add('img')
       img.parentNode?.insertBefore(base, img)
       base.appendChild(img)
       cleanups.push(setupImage(base))

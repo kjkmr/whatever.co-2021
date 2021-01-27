@@ -5,7 +5,7 @@ import BlackButton from 'components/BlackButton'
 import LanguageSelector from 'components/LanguageSelector'
 import ContactForm from 'components/ContactForm'
 import SNSButtons from 'components/SNSButtons'
-import { Grad } from 'components/Grad'
+import { Grad, GradImg } from 'components/Grad'
 
 const Menu = () => {
   const [opened, setOpened] = useState(false)
@@ -13,22 +13,24 @@ const Menu = () => {
   return (
     <>
       <div className="menu">
-        <div className="menu-full" style={{ display: opened ? 'flex' : 'none' }}>
-          <ul>
-            <li><Grad whiteText={true}><Link href="/"><a onClick={onclick}>Top</a></Link></Grad></li>
-            <li><Grad whiteText={true}><Link href="/work/category/all"><a onClick={onclick}>Work</a></Link></Grad></li>
-            <li><Grad whiteText={true}><Link href="/about"><a onClick={onclick}>About</a></Link></Grad></li>
-            <li><Grad whiteText={true}><Link href="/team"><a onClick={onclick}>Team</a></Link></Grad></li>
-            <li><Grad whiteText={true}><Link href="/news"><a onClick={onclick}>News</a></Link></Grad></li>
-            <li><Grad whiteText={true}><Link href="/contact"><a onClick={onclick}>Contact</a></Link></Grad></li>
-          </ul>
-          <div className="contact">
-            <div><Grad className="langselect" whiteText={true}><LanguageSelector activeColor="white" inactiveColor="#666666" separator="  /  " onSelected={onclick} /></Grad></div>
-            {/* <div className="langselect"><LanguageSelector activeColor="white" inactiveColor="#666666" separator="  /  " onSelected={onclick} /></div> */}
-            <ContactForm />
-            <div><Grad className="sns" whiteText={true}><SNSButtons /></Grad></div>
+        {opened ? <>
+          <Grad className="inner" inline={false} startImmediately />
+          <div className="menu-full">
+            <ul>
+              <li><Grad whiteText={true}><Link href="/"><a onClick={onclick}>Top</a></Link></Grad></li>
+              <li><Grad whiteText={true}><Link href="/work/category/all"><a onClick={onclick}>Work</a></Link></Grad></li>
+              <li><Grad whiteText={true}><Link href="/about"><a onClick={onclick}>About</a></Link></Grad></li>
+              <li><Grad whiteText={true}><Link href="/team"><a onClick={onclick}>Team</a></Link></Grad></li>
+              <li><Grad whiteText={true}><Link href="/news"><a onClick={onclick}>News</a></Link></Grad></li>
+              <li><Grad whiteText={true}><Link href="/contact"><a onClick={onclick}>Contact</a></Link></Grad></li>
+            </ul>
+            <div className="contact">
+              <div><Grad className="langselect" whiteText={true}><LanguageSelector activeColor="white" inactiveColor="#666666" separator="  /  " onSelected={onclick} /></Grad></div>
+              <ContactForm />
+              <div><Grad className="sns" whiteText={true}><SNSButtons /></Grad></div>
+            </div>
           </div>
-        </div>
+        </> : null}
         <div className={classNames('button', { close: opened })}>
           <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onclick}>
             <div className="black" style={{ display: opened ? 'none' : 'block' }}></div>
@@ -43,38 +45,37 @@ const Menu = () => {
           position fixed
           z-index 10000
           font-size 0
-        .black
+        :global(.inner)
           position absolute
           top 0
           left 0
-          width 80px
-          height 80px      
-          background-color #000
-          z-index -2
-        .menu-full
-          display none
-          justify-content space-between
-          position absolute
-          top 0
-          left 0
-          width calc(100vw - 205px * 2)
-          height calc(100vh - 152px * 2)
-          padding 152px 205px
+          width 100%
+          height 100%
           {/* background-image url(/_/menu_ja.png)
           background-repeat no-repeat */}
           background-color #333333
+        .menu-full
+          position relative
+          display flex
+          justify-content space-between
+          width calc(100vw - 205px * 2)
+          height calc(100vh - 152px * 2)
+          padding 152px 205px
           ul
             margin 0
             margin-top 4px
             padding 0
+            align-self center
           li
             list-style-type none
             margin 0
-            margin-bottom 47px
+            margin-bottom vwpx_min(47)
             padding 0
             mix-blend-mode lighten
             &:first-child
               margin-bottom vwpx_min(57)
+            &:last-child
+              margin-bottom 0
             a
               font-size vwpx_min(36)
               font-weight bold
@@ -89,10 +90,12 @@ const Menu = () => {
           :global(.sns)
             position absolute
             right 205px
-            bottom 152px
+            bottom 156px
             mix-blend-mode lighten
         .button
-          position relative
+          position absolute
+          top 0
+          left 0
           z-index 1
           width 80px
           height 80px
@@ -100,6 +103,14 @@ const Menu = () => {
           padding 0
           border none
           background transparent
+        .black
+          position absolute
+          top 0
+          left 0
+          width 80px
+          height 80px      
+          background-color #000
+          z-index -2
         .l1,.l2
           position absolute
           width 20px

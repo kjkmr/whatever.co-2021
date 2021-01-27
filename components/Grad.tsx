@@ -25,8 +25,8 @@ const _setup = (base: Element, colorA: string, colorB: string): [Element, Elemen
   return [fade, slide]
 }
 
-const doAnime = (base: Element, fade: Element, slide: Element, duration: number = 250) => {
-  const delay = Math.random() * 500
+const doAnime = (base: Element, fade: Element, slide: Element, duration: number = 250, startImmediately: boolean = false) => {
+  const delay = startImmediately ? 0 : Math.random() * 500
   base.animate(
     [
       {
@@ -96,7 +96,7 @@ const doAnime = (base: Element, fade: Element, slide: Element, duration: number 
   )
 }
 
-export const setup = (base: HTMLElement, whiteText: boolean = false, inline: boolean = true): () => void => {
+export const setup = (base: HTMLElement, whiteText: boolean = false, inline: boolean = true, startImmediately: boolean = false): () => void => {
   const [colorA, colorB] = getColors()
   const [fade, slide] = _setup(base, colorA, colorB)
   if (whiteText) {
@@ -115,15 +115,25 @@ export const setup = (base: HTMLElement, whiteText: boolean = false, inline: boo
   new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
     const entry = entries[0]
     if (!entry.isIntersecting) { return }
-    doAnime(base, fade, slide).onfinish = cleanup
+    doAnime(base, fade, slide, 250, startImmediately).onfinish = cleanup
     object.unobserve(base)
   }).observe(base)
   return cleanup
 }
 
-export const Grad = ({ children, className, style, whiteText = false, inline = true }: { children?: ReactNode, className?: string, style?: CSSProperties, whiteText?: boolean, inline?: boolean }) => {
+export type GradProps = {
+  children?: ReactNode
+  className?: string
+  style?: CSSProperties
+  whiteText?: boolean
+  inline?: boolean
+  startImmediately?: boolean
+}
+
+export const Grad = ({ children, className, style, whiteText = false, inline = true, startImmediately = false }: GradProps) => {
+
   const ref = useRef<HTMLDivElement>(null)
-  useLayoutEffect(() => setup(ref.current!, whiteText, inline), [])
+  useLayoutEffect(() => setup(ref.current!, whiteText, inline, startImmediately), [])
   return (
     <>
       <div ref={ref} className={className} style={style}>

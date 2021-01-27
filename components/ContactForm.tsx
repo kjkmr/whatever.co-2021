@@ -41,7 +41,7 @@ const ContactForm = () => (
             padding-right 28px
             border-bottom 1px solid white
       .newsletter
-        margin-top 106px
+        margin-top 65px
         :global(.subscribe)
           font-size 1.4rem
           font-weight 300

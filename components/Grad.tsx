@@ -1,4 +1,6 @@
-import { ReactNode, SyntheticEvent, CSSProperties, useCallback, useLayoutEffect, useRef } from 'react'
+import { ReactNode, CSSProperties, useRef } from 'react'
+import classnames from 'classnames'
+import { useLayoutEffect } from 'lib/useLayoutEffect'
 
 const COLORS = ["#ff2300", "#ff9201", "#ffeb00", "#89e82b", "#00c745", "#29ebfe", "#0d44fb", "#a725fc", "#fd1eba"];
 export const getColors = (): [string, string] => {
@@ -23,8 +25,8 @@ const _setup = (base: Element, colorA: string, colorB: string): [Element, Elemen
   return [fade, slide]
 }
 
-const doAnime = (base: Element, fade: Element, slide: Element, duration: number = 250) => {
-  const delay = Math.random() * 500
+const doAnime = (base: Element, fade: Element, slide: Element, duration: number = 250, startImmediately: boolean = false) => {
+  const delay = startImmediately ? 0 : Math.random() * 500
   base.animate(
     [
       {
@@ -94,7 +96,7 @@ const doAnime = (base: Element, fade: Element, slide: Element, duration: number 
   )
 }
 
-export const setup = (base: HTMLElement, whiteText: boolean = false, inline: boolean = true): () => void => {
+export const setup = (base: HTMLElement, whiteText: boolean = false, inline: boolean = true, startImmediately: boolean = false): () => void => {
   const [colorA, colorB] = getColors()
   const [fade, slide] = _setup(base, colorA, colorB)
   if (whiteText) {
@@ -113,15 +115,25 @@ export const setup = (base: HTMLElement, whiteText: boolean = false, inline: boo
   new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
     const entry = entries[0]
     if (!entry.isIntersecting) { return }
-    doAnime(base, fade, slide).onfinish = cleanup
+    doAnime(base, fade, slide, 250, startImmediately).onfinish = cleanup
     object.unobserve(base)
   }).observe(base)
   return cleanup
 }
 
-export const Grad = ({ children, className, style, whiteText = false, inline = true }: { children?: ReactNode, className?: string, style?: CSSProperties, whiteText?: boolean, inline?: boolean }) => {
+export type GradProps = {
+  children?: ReactNode
+  className?: string
+  style?: CSSProperties
+  whiteText?: boolean
+  inline?: boolean
+  startImmediately?: boolean
+}
+
+export const Grad = ({ children, className, style, whiteText = false, inline = true, startImmediately = false }: GradProps) => {
+
   const ref = useRef<HTMLDivElement>(null)
-  useLayoutEffect(() => setup(ref.current!, whiteText, inline), [])
+  useLayoutEffect(() => setup(ref.current!, whiteText, inline, startImmediately), [])
   return (
     <>
       <div ref={ref} className={className} style={style}>
@@ -157,7 +169,7 @@ export const Grad = ({ children, className, style, whiteText = false, inline = t
           left 0
           width 100%
           height 100%
-          background-color white
+          {/* background-color white */}
           background-image url(/noise.png), linear-gradient(to right, #fbe105, #f91fae)
           background-size auto, 100% 100%
           background-blend-mode overlay, normal
@@ -189,41 +201,109 @@ export const Grad = ({ children, className, style, whiteText = false, inline = t
   )
 }
 
-export const setupImage = (node: HTMLElement, lighten: boolean = false) => {
-  node.classList.add('grad-effect-base')
-  const img = node.children[0]
+const doAnimeImage = (base: Element, fade: Element, slide: Element, duration: number = 250, startImmediately: boolean = false) => {
+  const delay = startImmediately ? 0 : Math.random() * 500
+  base.animate(
+    [
+      {
+        visibility: "hidden"
+      },
+      {
+        offset: 0.001,
+        visibility: "visible"
+      },
+      {
+        visibility: "visible"
+      },
+    ],
+    {
+      duration: duration,
+      delay: duration / 2 + delay,
+      iterations: 1,
+      fill: "both"
+    }
+  )
+  slide.animate(
+    [
+      {
+        left: "-100%",
+        visibility: "visible",
+      },
+      {
+        backgroundPosition: "0 0, 0 0",
+        left: 0,
+        visibility: "hidden",
+      },
+      {
+        visibility: "hidden",
+      }
+    ],
+    {
+      duration: duration,
+      delay: delay,
+      iterations: 1,
+      fill: "both"
+    }
+  )
+  return fade.animate(
+    [
+      {
+        offset: 0.0001,
+        visibility: "visible",
+        opacity: 1
+      },
+      {
+        opacity: 0
+      }
+    ],
+    {
+      duration: duration * 4,
+      delay: duration / 2 + delay,
+      iterations: 1,
+      fill: "both"
+    }
+  )
+}
 
-  const grad = document.createElement('div')
-  grad.classList.add('grad-effect-image')
+export const setupImage = (node: HTMLElement, lighten: boolean = false) => {
+  const fade = document.createElement('div')
+  fade.classList.add('grad-effect-image')
   if (lighten === true) {
     // @ts-ignore
-    grad.style.mixBlendMode = 'lighten'
+    fade.style.mixBlendMode = 'lighten'
   }
   const [colorA, colorB] = getColors()
-  grad.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB})`
-  node.appendChild(grad)
+  fade.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB})`
+  node.appendChild(fade)
 
-  const box = document.createElement('div')
-  box.classList.add('grad-effect-slide')
-  box.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`
-  node.appendChild(box)
+  const slide = document.createElement('div')
+  slide.classList.add('grad-effect-slide')
+  slide.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`
+  node.appendChild(slide)
 
   const cleanup = () => {
-    grad?.parentNode?.removeChild(grad)
-    box?.parentNode?.removeChild(box)
+    fade?.parentNode?.removeChild(fade)
+    slide?.parentNode?.removeChild(slide)
     node.classList.remove('grad-effect-base')
   }
 
   new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
     const entry = entries[0]
     if (!entry.isIntersecting) { return }
-    doAnime(img, grad, box, 200).onfinish = cleanup
-    object.unobserve(img)
-  }).observe(img)
+    doAnimeImage(node, fade, slide).onfinish = cleanup
+    object.unobserve(node)
+  }).observe(node)
   return cleanup
 }
 
-export const GradImg = ({ children, lighten, mouseEntered }: { children?: ReactNode, lighten?: boolean, mouseEntered?: boolean }) => {
+export type GradImgProps = {
+  children?: ReactNode
+  className?: string
+  lighten?: boolean
+  mouseEntered?: boolean
+}
+
+export const GradImg = ({ children, className, lighten, mouseEntered }: GradImgProps) => {
   const ref = useRef<HTMLDivElement>(null)
   useLayoutEffect(() => setupImage(ref.current!, lighten === true), [])
 
@@ -268,7 +348,7 @@ export const GradImg = ({ children, lighten, mouseEntered }: { children?: ReactN
 
   return (
     <>
-      <div className="grad-image" ref={ref}>
+      <div className={classnames('grad-image', className)} ref={ref}>
         {children}
       </div>
       <style jsx>{`
@@ -281,54 +361,47 @@ export const GradImg = ({ children, lighten, mouseEntered }: { children?: ReactN
   )
 }
 
-export const GradLink = ({ children, href, target, rel }: any) => {
-  const ref = useCallback(node => {
-    if (!node) return
-    const base = node.children[0]
-    const [colorA, colorB] = getColors()
-    const linearGrad = `linear-gradient(to right, ${colorA}, ${colorB})`
-    base.style.borderImage = `${linearGrad} 1`
-    base.onmouseenter = ({ target }: SyntheticEvent) => {
-      if (target instanceof HTMLAnchorElement) {
-        target.style.backgroundImage = linearGrad
-      }
-    }
-    base.onmouseleave = ({ target }: SyntheticEvent) => {
-      if (target instanceof HTMLAnchorElement) {
-        target.style.backgroundImage = 'none'
-      }
-    }
-    const [grad, box] = _setup(base, colorA, colorB)
-    new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
-      const entry = entries[0]
-      if (!entry.isIntersecting) { return }
-      doAnime(base, grad, box).onfinish = () => {
-        base.removeChild(grad)
-        base.removeChild(box)
-        base.classList.remove('grad-effect-base')
-      }
-      object.unobserve(base)
-    }).observe(base)
-  }, [])
+export const setupLink = (node: HTMLElement) => {
+  const [colorA, colorB] = getColors()
+  const linearGrad = `linear-gradient(to right, ${colorA}, ${colorB})`
+  node.style.borderImage = `${linearGrad} 1`
+  const onMouseEnter = () => {
+    node.style.backgroundImage = linearGrad
+    node.classList.add('grad-link-hover')
+  }
+  const onMouseLeave = () => {
+    node.style.backgroundImage = ''
+    node.classList.remove('grad-link-hover')
+  }
+  node.addEventListener('mouseenter', onMouseEnter)
+  node.addEventListener('mouseleave', onMouseLeave)
+  return () => {
+    node.removeEventListener('mouseenter', onMouseEnter)
+    node.removeEventListener('mouseleave', onMouseLeave)
+  }
+}
+
+export type GradLinkProps = {
+  children?: ReactNode
+  className?: string
+  href?: string
+  target?: string
+  rel?: string
+  inlineBlock?: boolean
+  onClick?: any
+}
+
+export const GradLink = ({ children, className, href, target, rel, inlineBlock = false, onClick }: GradLinkProps) => {
+  const ref = useRef<HTMLAnchorElement>(null)
+  useLayoutEffect(() => setupLink(ref.current!), [])
   return (
     <>
-      <div ref={ref} className="grad-link">
-        <a className="link" href={href} target={target} rel={rel}>{children}</a>
-      </div>
+      <a ref={ref} className={classnames('grad-link', className, { 'inline-block': inlineBlock })} href={href} target={target} rel={rel} onClick={onClick}>{children}</a>
       <style jsx>{`
         .grad-link
-          overflow hidden
-        .link
+          cursor pointer
+        .inline-block
           display inline-block
-          padding-bottom 6px
-          border-bottom 1px solid green
-          overflow hidden
-          &:hover
-            padding-bottom 5px
-            border-bottom 2px solid green
-            background-clip text
-            -webkit-background-clip text
-            -webkit-text-fill-color transparent
       `}</style>
     </>
   )

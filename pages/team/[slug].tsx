@@ -1,19 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useState, useRef } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
+import { useLayoutEffect } from 'lib/useLayoutEffect'
 import { Member, Entry, getAllMembers, getMemberDetail, getWorksByTag, getNewsByTag } from 'lib/api'
 import Layout from 'components/Layout'
-import { Grad, GradImg } from 'components/Grad'
+import { Grad, GradImg, GradLink, setupLink } from 'components/Grad'
 import { WorkList } from 'components/WorkList'
 
 
 const MemberInfo = ({ member }: { member: Member }) => {
   const [scrollY, setScrollY] = useState(0)
   const onScroll = () => setScrollY(window.pageYOffset)
-  useEffect(() => {
+  const ref = useRef<HTMLDivElement>(null)
+  useLayoutEffect(() => {
     window.addEventListener('scroll', onScroll)
     onScroll()
-    return () => window.removeEventListener('scroll', onScroll)
+    const cleanups = [() => window.removeEventListener('scroll', onScroll)]
+    ref.current?.querySelectorAll('a').forEach(a => {
+      a.target = '_blank'
+      cleanups.push(setupLink(a))
+    })
+    return () => { cleanups.forEach(c => c()) }
   })
   return (
     <>
@@ -24,9 +31,9 @@ const MemberInfo = ({ member }: { member: Member }) => {
             <div><Grad className="region">{member.region.join(' / ')}</Grad></div>
             <div><Grad className="title">{member.title}</Grad></div>
             <div><Grad className="name">{member.name}</Grad></div>
-            <div><Grad className="description" inline={false}><div className="desc-inner" dangerouslySetInnerHTML={{ __html: member.content || '' }}></div></Grad></div>
+            <div><Grad className="description" inline={false}><div ref={ref} className="desc-inner" dangerouslySetInnerHTML={{ __html: member.content || '' }}></div></Grad></div>
             <div className="links">
-              {member.links.filter((l: any) => l.url).map((link: any) => <div key={link.url}><Grad className="link-item">- <a href={link.url} target="_blank" rel="noopener noreferrer">{link.name}</a></Grad></div>)}
+              {member.links.filter((l: any) => l.url).map((link: any) => <div key={link.url}><Grad className="link-item">- <GradLink href={link.url} target="_blank" rel="noopener noreferrer" inlineBlock={true}>{link.name}</GradLink></Grad></div>)}
             </div>
           </div>
         </div>
@@ -80,9 +87,7 @@ const MemberInfo = ({ member }: { member: Member }) => {
         .links
           :global(.link-item)
             font-size var(--font-size-ja)
-            margin-bottom 0.9rem
-            a
-              display inline-block
+            margin-bottom 1.1rem
       `}</style>
     </>
   )

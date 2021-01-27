@@ -47,7 +47,7 @@ const Address = ({ data }: { data: any }) => (
   <>
     <div className="container">
       <div><Grad className="region">{data.name}</Grad></div>
-      <div className="address"><GradLink href={data.maplink} target="_blank" rel="noopener noreferrer">{data.address}</GradLink></div>
+      <div><Grad className="address"><GradLink href={data.link} target="_blank" rel="noopener noreferrer" inlineBlock={true}>{data.address}</GradLink></Grad></div>
       {data.phone != '-' ? <div><Grad className="phone">{data.phone}</Grad></div> : null}
       {data.representative != '-' ? <div><Grad className="repr">{data.representative}</Grad></div> : null}
     </div>
@@ -58,15 +58,15 @@ const Address = ({ data }: { data: any }) => (
         :global(.region)
           font-size vwpx_min(24)
           font-weight bold
-          margin-bottom vwpx_min(34)
-        .address
+          margin-bottom vwpx_min(35)
+        :global(.address)
           font-size var(--font-size-ja)
           line-height 1em
-          margin-bottom 0.6rem
+          margin-bottom 1.1rem
         :global(.phone)
           font-size var(--font-size-ja)
           line-height 1em
-          margin-bottom 1.6rem
+          margin-bottom 1.5rem
         :global(.repr)
           font-size var(--font-size-ja)
           line-height 1em

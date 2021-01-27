@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { Entry, getNews } from 'lib/api'
 import Layout from 'components/Layout'
@@ -59,24 +60,27 @@ const NewsItem = ({ entry }: { entry: Entry }) => {
   )
 }
 
-const NewsIndex = ({ entries }: { entries: Entry[] }) => (
-  <>
-    <Layout title="News" side="News">
-      <div className="news-index">
-        {entries.map(entry => <NewsItem key={entry.slug} entry={entry} />)}
-      </div>
-    </Layout >
-    <style jsx>{`
-      @import 'lib/vw.styl'
-      .news-index
-        margin-top 90px
-        margin-bottom 150px
-        display grid
-        grid-template-columns 1fr 1fr
-        grid-gap vwpx(92) vwpx(100)
-    `}</style>
-  </>
-)
+const NewsIndex = ({ entries }: { entries: Entry[] }) => {
+  const locale = useRouter().locale || ''
+  return (
+    <>
+      <Layout title="News" side="News">
+        <div className="news-index">
+          {entries.map(entry => <NewsItem key={entry.slug + locale} entry={entry} />)}
+        </div>
+      </Layout >
+      <style jsx>{`
+        @import 'lib/vw.styl'
+        .news-index
+          margin-top 90px
+          margin-bottom 150px
+          display grid
+          grid-template-columns 1fr 1fr
+          grid-gap vwpx(92) vwpx(100)
+      `}</style>
+    </>
+  )
+}
 
 export default NewsIndex
 

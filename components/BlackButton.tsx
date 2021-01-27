@@ -9,9 +9,10 @@ type BlackButtonProps = {
   height?: string
   backgroundColor?: string
   onClick?: any
+  skipIn?: boolean
 }
 
-const BlackButton = ({ children, link, width = '256px', height = '60px', backgroundColor = 'black', onClick }: BlackButtonProps) => {
+const BlackButton = ({ children, link, width = '256px', height = '60px', backgroundColor = 'black', onClick, skipIn = false }: BlackButtonProps) => {
   const ref = useRef<HTMLAnchorElement>(null)
   const bgs = useRef<HTMLDivElement[]>([])
   const onMouseEnter = () => {
@@ -57,16 +58,14 @@ const BlackButton = ({ children, link, width = '256px', height = '60px', backgro
       bgs.current.forEach(bg => bg.parentNode?.removeChild(bg))
     }
   }, [])
-  return (
+  const inner = (
     <>
-      <Grad>
-        <div>
-          {link
-            ? <Link href={link}><a ref={ref} >{children}</a></Link>
-            : <a ref={ref} onClick={onClick}>{children}</a>
-          }
-        </div>
-      </Grad>
+      <div>
+        {link
+          ? <Link href={link}><a ref={ref} >{children}</a></Link>
+          : <a ref={ref} onClick={onClick}>{children}</a>
+        }
+      </div>
       <style jsx>{`
         a
           display flex
@@ -88,6 +87,11 @@ const BlackButton = ({ children, link, width = '256px', height = '60px', backgro
           cursor pointer
           user-select none
       `}</style>
+    </>
+  )
+  return (
+    <>
+      {skipIn ? <div>{inner}</div> : <Grad>{inner}</Grad>}
       <style jsx global>{`
         .black-button-bg
           position absolute

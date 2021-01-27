@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { Entry, Tag, getNews, getWorksByTag } from 'lib/api'
+import { useLayoutEffect } from 'lib/useLayoutEffect'
 import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import BlackButton from 'components/BlackButton'
@@ -11,11 +12,14 @@ import { Grad, GradImg } from 'components/Grad'
 const Player = ({ onClick }: { onClick?: any }) => (
   <>
     <div className="player">
-      <div className="aspect-ratio">
-        <iframe src="https://www.youtube.com/embed/rsBTSWTbH4I?autoplay=1;controls=0;rel=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+      <Grad className="player-bg" inline={false} startImmediately />
+      <div className="padding">
+        <Grad className="aspect-ratio" inline={false}>
+          <iframe src="https://www.youtube.com/embed/rsBTSWTbH4I?autoplay=1;controls=0;rel=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+        </Grad>
       </div>
       <div className="close-button">
-        <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onClick}>
+        <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onClick} skipIn>
           <div className="l1"></div>
           <div className="l2"></div>
         </BlackButton>
@@ -23,26 +27,34 @@ const Player = ({ onClick }: { onClick?: any }) => (
     </div>
     <style jsx>{`
       .player
-        position fixed
+        position absolute
         top 0
         left 0
         box-sizing border-box
         width 100vw
         height 100vh
-        padding 80px
-        background-color #222222
         z-index 20000
-        display flex
-        justify-content center
-        align-items center
-        .aspect-ratio
+        :global(.player-bg)
+          position absolute
+          top 0
+          height 0
+          width 100%
+          height 100%
+          background-color #222222
+        .padding
+          display flex
+          justify-content center
+          align-items center
           position relative
+          padding 80px
+          box-sizing border-box
+          width 100vw
+          height 100vh
+        :global(.aspect-ratio)
           width 'min(100%, calc((100vh - 160px) / 9 * 16))' % null
           height 'min(100%, calc((100vw - 160px) / 16 * 9))' % null
+          background-color black
           iframe
-            position absolute
-            top 0
-            left 0
             width 100%
             height 100%
         .close-button
@@ -69,7 +81,7 @@ const Player = ({ onClick }: { onClick?: any }) => (
 const Showreel = () => {
   const [scrollY, setScrollY] = useState(0)
   const onScroll = () => setScrollY(window.pageYOffset)
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.addEventListener('scroll', onScroll)
     onScroll()
     return () => window.removeEventListener('scroll', onScroll)
@@ -88,7 +100,9 @@ const Showreel = () => {
     <>
       <div className="showreel">
         <div className="video" style={{ height: `calc((100vh - 40px) - ${scrollY}px)` }}>
-          <video ref={video} src="/index/reel-preview.mp4" autoPlay={true} loop muted></video>
+          <GradImg>
+            <video ref={video} src="/index/reel-preview.mp4" autoPlay={true} loop muted></video>
+          </GradImg>
         </div>
         <div className="button">
           <BlackButton height="80px" onClick={onClickWatch} >Watch Reel</BlackButton>
@@ -100,7 +114,6 @@ const Showreel = () => {
           position relative
           width 100%
           height calc(100vh - 40px)
-          background-color black
           font-size 0
         .video
           position fixed

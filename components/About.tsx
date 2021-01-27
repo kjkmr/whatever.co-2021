@@ -138,6 +138,7 @@ export const Footer = ({ left, right }: { left: string, right: string }) => (
     </div>
     <style jsx>{`
       .footer
+        position relative
         height 160px
         font-size 0
         color white

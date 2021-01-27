@@ -374,12 +374,22 @@ export const setupLink = (node: HTMLElement) => {
   }
 }
 
-export const GradLink = ({ children, href, target, rel, inlineBlock = false }: { children?: ReactNode, href?: string, target?: string, rel?: string, inlineBlock?: boolean }) => {
+export type GradLinkProps = {
+  children?: ReactNode
+  className?: string
+  href?: string
+  target?: string
+  rel?: string
+  inlineBlock?: boolean
+  onClick?: any
+}
+
+export const GradLink = ({ children, className, href, target, rel, inlineBlock = false, onClick }: GradLinkProps) => {
   const ref = useRef<HTMLAnchorElement>(null)
   useLayoutEffect(() => setupLink(ref.current!), [])
   return (
     <>
-      <a ref={ref} className={classnames('grad-link', { 'inline-block': inlineBlock })} href={href} target={target} rel={rel}>{children}</a>
+      <a ref={ref} className={classnames('grad-link', className, { 'inline-block': inlineBlock })} href={href} target={target} rel={rel} onClick={onClick}>{children}</a>
       <style jsx>{`
         .grad-link
           cursor pointer

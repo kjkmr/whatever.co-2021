@@ -5,11 +5,11 @@ import BlackButton from 'components/BlackButton'
 import LanguageSelector from 'components/LanguageSelector'
 import ContactForm from 'components/ContactForm'
 import SNSButtons from 'components/SNSButtons'
-import { Grad, GradImg } from 'components/Grad'
+import { Grad, GradLink } from 'components/Grad'
 
 const Menu = () => {
   const [opened, setOpened] = useState(false)
-  const onclick = () => { setOpened(!opened) }
+  const onClick = () => { setOpened(!opened) }
   return (
     <>
       <div className="menu">
@@ -17,22 +17,22 @@ const Menu = () => {
           <Grad className="menu-bg" inline={false} startImmediately />
           <div className="menu-full">
             <ul>
-              <li><Grad whiteText={true}><Link href="/"><a onClick={onclick}>Top</a></Link></Grad></li>
-              <li><Grad whiteText={true}><Link href="/work/category/all"><a onClick={onclick}>Work</a></Link></Grad></li>
-              <li><Grad whiteText={true}><Link href="/about"><a onClick={onclick}>About</a></Link></Grad></li>
-              <li><Grad whiteText={true}><Link href="/team"><a onClick={onclick}>Team</a></Link></Grad></li>
-              <li><Grad whiteText={true}><Link href="/news"><a onClick={onclick}>News</a></Link></Grad></li>
-              <li><Grad whiteText={true}><Link href="/contact"><a onClick={onclick}>Contact</a></Link></Grad></li>
+              <li><Grad whiteText={true}><Link href="/"><GradLink className="menu-link" onClick={onClick}>Top</GradLink></Link></Grad></li>
+              <li><Grad whiteText={true}><Link href="/work/category/all"><GradLink className="menu-link" onClick={onClick}>Work</GradLink></Link></Grad></li>
+              <li><Grad whiteText={true}><Link href="/about"><GradLink className="menu-link" onClick={onClick}>About</GradLink></Link></Grad></li>
+              <li><Grad whiteText={true}><Link href="/team"><GradLink className="menu-link" onClick={onClick}>Team</GradLink></Link></Grad></li>
+              <li><Grad whiteText={true}><Link href="/news"><GradLink className="menu-link" onClick={onClick}>News</GradLink></Link></Grad></li>
+              <li><Grad whiteText={true}><Link href="/contact"><GradLink className="menu-link" onClick={onClick}>Contact</GradLink></Link></Grad></li>
             </ul>
             <div className="contact">
-              <div><Grad className="langselect" whiteText={true}><LanguageSelector activeColor="white" inactiveColor="#666666" separator="  /  " onSelected={onclick} /></Grad></div>
+              <div><Grad className="langselect" whiteText={true}><LanguageSelector activeColor="white" inactiveColor="#666666" separator="  /  " onSelected={onClick} /></Grad></div>
               <ContactForm />
               <div><Grad className="sns" whiteText={true}><SNSButtons /></Grad></div>
             </div>
           </div>
         </> : null}
         <div className={classNames('button', { close: opened })}>
-          <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onclick}>
+          <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onClick}>
             <div className="black" style={{ display: opened ? 'none' : 'block' }}></div>
             <div className="l1"></div>
             <div className="l2"></div>
@@ -76,7 +76,7 @@ const Menu = () => {
               margin-bottom vwpx_min(57)
             &:last-child
               margin-bottom 0
-            a
+            :global(.menu-link)
               font-size vwpx_min(36)
               font-weight bold
               color white

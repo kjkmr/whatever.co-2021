@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import { Tag, Entry, Credit, Person, getAllWorks, getPostDetails } from 'lib/api'
 import Layout from 'components/Layout'
 import EntryBody from 'components/EntryBody'
-import { Grad, GradImg } from 'components/Grad'
+import { Grad, GradImg, GradLink } from 'components/Grad'
 import WorkTag from 'components/WorkTag'
 
 const Header = ({ work }: { work: Entry }) => {
@@ -113,9 +113,9 @@ const CreditMember = ({ member }: { member: Person }) => {
   let name = <>{member.name}</>
   if (!member.company) {
     if (member.url?.match(/^[a-z\-]+$/)) {
-      name = <Link href={`/team/${member.url}`}><a className="credit-name-link">{member.name}</a></Link>
+      name = <Link href={`/team/${member.url}`}><GradLink>{member.name}</GradLink></Link>
     } else if (member.url) {
-      name = <a href={member.url} className="credit-name-link">{member.name}</a>
+      name = <GradLink href={member.url}>{member.name}</GradLink>
     }
   }
   return (
@@ -124,7 +124,7 @@ const CreditMember = ({ member }: { member: Person }) => {
         <div><Grad className="role">{member.role}</Grad></div>
         <div><Grad className="name">
           {name}
-          {member.company ? <span className="company"> {member.url ? <a href={member.url} target="_blank" rel="noopener noreferrer">({member.company})</a> : `(${member.company})`}</span> : null}
+          {member.company ? <span className="company"> {member.url ? <GradLink href={member.url} target="_blank" rel="noopener noreferrer">({member.company})</GradLink> : `(${member.company})`}</span> : null}
         </Grad></div>
       </div>
       <style jsx>{`

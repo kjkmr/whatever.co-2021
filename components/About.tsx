@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { langStyle } from 'lib/i18n'
 import { Grad, GradImg } from 'components/Grad'

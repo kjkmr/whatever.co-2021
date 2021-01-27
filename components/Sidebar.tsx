@@ -10,11 +10,20 @@ type SidebarProps = {
 }
 
 const Sidebar = ({ title, backto }: SidebarProps) => (
-  <div className="sidebar">
-    <div className="vertical">
-      <div className="title">{title}</div>
-      {backto ? <div className="back"><Link href={backto.href}><a>Back to {backto.name}</a></Link><div className="line"></div></div> : null}
-      <div className="langselect"><LanguageSelector /></div>
+  <>
+    <div className="sidebar">
+      <div className="vertical">
+        <div className="title">{title}</div>
+        {backto ? <div className="back">
+          <Link href={backto.href}>
+            <a>
+              <div className="text">Back to {backto.name}</div>
+              <div className="line" />
+            </a>
+          </Link>
+        </div> : null}
+        <div className="langselect"><LanguageSelector /></div>
+      </div>
     </div>
     <style jsx>{`
       .sidebar
@@ -41,17 +50,31 @@ const Sidebar = ({ title, backto }: SidebarProps) => (
         position relative
         font-size 1.0rem
         letter-spacing 0.08rem
-        margin-left 34px
-        margin-top 35px
+        margin-left 30px
+        margin-top 30px
         text-align center
         a
+          display flex
+          flex-direction column
+          align-items center
           border none
-        .line
-          position absolute
-          left 33px
-          bottom 0
-          height 15px
-          border-left 1px solid #333333
+          padding 5px 5px 0
+          {/* background-color lightgreen */}
+          transition all 0.15s cubic-bezier(0.80, 0.000, 0.200, 1.0)
+          &:hover
+            padding-top 15px
+            opacity 0.3
+            transition all 0.15s cubic-bezier(0.80, 0.000, 0.200, 1.0)
+            .text
+              margin-bottom 10px
+              transition all 0.15s cubic-bezier(0.80, 0.000, 0.200, 1.0)
+          .text
+            margin-bottom 20px
+            transition all 0.15s cubic-bezier(0.80, 0.000, 0.200, 1.0)
+          .line
+            height 15px
+            border-left 1px solid #333333
+            margin-right 2px
       .langselect
         font-size 1.2rem
         letter-spacing 0.12em
@@ -60,7 +83,7 @@ const Sidebar = ({ title, backto }: SidebarProps) => (
         margin-right 38px
         margin-top 36px
     `}</style>
-  </div>
+  </>
 )
 
 export default Sidebar

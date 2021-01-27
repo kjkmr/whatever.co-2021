@@ -1,6 +1,7 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
+import { useLayoutEffect } from 'lib/useLayoutEffect'
 import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Header, Footer, SectionHeader } from 'components/About'
@@ -63,7 +64,7 @@ const AllianceData: { [key: string]: AllianceData } = {
 const Alliance = ({ slug }: { slug: string }) => {
   const ref = useRef<HTMLAnchorElement>(null)
   const [entered, setEntered] = useState(false)
-  useEffect(() => {
+  useLayoutEffect(() => {
     const node = ref.current!
     const onMouseEnter = () => setEntered(true)
     const onMouseLeave = () => setEntered(false)
@@ -79,7 +80,7 @@ const Alliance = ({ slug }: { slug: string }) => {
       <div className={langStyle('alliance')}>
         <Link href={AllianceData[slug].link}>
           <a ref={ref} target="_blank" rel="noopener noreferrer">
-            <GradImg mouseEntered={entered}><img src={`/about/workstyle/${slug}@2x.png`} alt="" /></GradImg>
+            <div className="image"><GradImg mouseEntered={entered}><img src={`/about/workstyle/${slug}@2x.png`} alt="" /></GradImg></div>
             <div><Grad className="name">{AllianceData[slug].name}</Grad></div>
             <div><Grad className="desc"><div dangerouslySetInnerHTML={{ __html: t(`workstyle_2_${slug}`)!.replace(/\n/g, '<br />') }}></div></Grad></div>
           </a>
@@ -93,6 +94,8 @@ const Alliance = ({ slug }: { slug: string }) => {
             display block
             border none
             padding 0
+          .image
+            background-color white
           img
             width vwpx(335)
             height vwpx(189)

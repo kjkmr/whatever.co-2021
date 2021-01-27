@@ -356,6 +356,7 @@ export const GradImg = ({ children, className, lighten, mouseEntered }: GradImgP
           font-size 0
           position relative
           overflow hidden
+          visibility hidden
       `}</style>
     </>
   )

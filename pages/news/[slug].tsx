@@ -1,6 +1,7 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { Entry, getNews, getPostDetails } from 'lib/api'
 import Layout from 'components/Layout'
+import EntryBody from 'components/EntryBody'
 import { Grad, GradImg } from 'components/Grad'
 
 const NewsDetail = ({ entry }: { entry: Entry }) => (
@@ -11,12 +12,11 @@ const NewsDetail = ({ entry }: { entry: Entry }) => (
         <div><Grad className="date">{entry.date}</Grad></div>
         <div><Grad className="title"><div dangerouslySetInnerHTML={{ __html: entry.title }} /></Grad></div>
       </div>
-      <div className="body" dangerouslySetInnerHTML={{ __html: entry.content! }}></div>
+      <div className="body"><EntryBody content={entry.content!} /></div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
       .news
-        {/* opacity 0.5 */}
         margin 0 80px 140px
         font-size 0
       .image img
@@ -40,9 +40,6 @@ const NewsDetail = ({ entry }: { entry: Entry }) => (
           line-height 4.0rem
           margin-top 18px
       .body
-        font-size 1.5rem
-        line-height 3.0rem
-        max-width 900px
         margin 65px auto 95px
     `}</style>
   </Layout >

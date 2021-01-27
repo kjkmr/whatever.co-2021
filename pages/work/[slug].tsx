@@ -192,12 +192,18 @@ const Credits = ({ credit }: { credit: Credit[] }) => (
 )
 
 const WorkDetail = ({ work }: { work: Entry }) => (
-  <Layout title={work.title} side="Work" backto="/work/category/all">
-    <Header work={work} />
-    {work.subtitle ? <Excerpt title={work.subtitle || '(Subtitle)'} description={work.overview || '(Overview)'} image={work.side_image || ''} /> : null}
-    <EntryBody content={work.content!} />
-    <Credits credit={work.credit || []} />
-  </Layout >
+  <>
+    <Layout title={work.title} side="Work" backto="/work/category/all">
+      <Header work={work} />
+      {work.subtitle ? <Excerpt title={work.subtitle || '(Subtitle)'} description={work.overview || '(Overview)'} image={work.side_image || ''} /> : null}
+      <div className="body"><EntryBody content={work.content!} /></div>
+      <Credits credit={work.credit || []} />
+    </Layout >
+    <style jsx>{`
+      .body
+        margin-bottom 15.5rem
+    `}</style>
+  </>
 )
 
 export default WorkDetail

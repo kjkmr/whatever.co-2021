@@ -41,16 +41,16 @@ const EntryBody = ({ content }: { content: string }) => {
   }, [])
   return (
     <>
-      <div ref={body} className="body" dangerouslySetInnerHTML={{ __html: content || '' }} />
+      <div ref={body} className="entry-body" dangerouslySetInnerHTML={{ __html: content || '' }} />
       <style jsx>{`
-        .body
+        .entry-body
           max-width 900px
           padding 0
-          margin 0 auto 130px
+          margin 0 auto 0
       `}</style>
       <style jsx global>{`
         @import 'lib/vw.styl'
-        .body
+        .entry-body
           img
             width 100%
             height auto

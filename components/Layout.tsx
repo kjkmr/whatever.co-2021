@@ -35,7 +35,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
   const templateStyle: { [prop: string]: string } = {}
   if (templateName) {
     templateStyle.backgroundImage = `url(/_/${templateName}_${useRouter().locale!}.png)`
-    templateStyle.backgroundPosition = 'top 35px left'
+    // templateStyle.backgroundPosition = 'top -1747px left'
   }
   return (
     <>
@@ -177,7 +177,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
         a
           text-decoration none
           color black
-          padding-bottom 0.3rem
+          padding-bottom 3px
           border-bottom 1px solid black
         button
           cursor pointer

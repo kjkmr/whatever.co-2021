@@ -1,4 +1,5 @@
-import { ReactNode, SyntheticEvent, CSSProperties, useCallback, useLayoutEffect, useRef } from 'react'
+import { ReactNode, CSSProperties, useLayoutEffect, useRef } from 'react'
+import classnames from 'classnames'
 
 const COLORS = ["#ff2300", "#ff9201", "#ffeb00", "#89e82b", "#00c745", "#29ebfe", "#0d44fb", "#a725fc", "#fd1eba"];
 export const getColors = (): [string, string] => {
@@ -281,54 +282,40 @@ export const GradImg = ({ children, lighten, mouseEntered }: { children?: ReactN
   )
 }
 
-export const GradLink = ({ children, href, target, rel }: any) => {
-  const ref = useCallback(node => {
-    if (!node) return
-    const base = node.children[0]
+export const GradLink = ({ children, href, target, rel, inlineBlock = false }: { children?: ReactNode, href?: string, target?: string, rel?: string, inlineBlock?: boolean }) => {
+  const ref = useRef<HTMLAnchorElement>(null)
+  useLayoutEffect(() => {
+    const node = ref.current!
     const [colorA, colorB] = getColors()
     const linearGrad = `linear-gradient(to right, ${colorA}, ${colorB})`
-    base.style.borderImage = `${linearGrad} 1`
-    base.onmouseenter = ({ target }: SyntheticEvent) => {
-      if (target instanceof HTMLAnchorElement) {
-        target.style.backgroundImage = linearGrad
-      }
+    node.style.borderImage = `${linearGrad} 1`
+    const onMouseEnter = () => {
+      node.style.backgroundImage = linearGrad
     }
-    base.onmouseleave = ({ target }: SyntheticEvent) => {
-      if (target instanceof HTMLAnchorElement) {
-        target.style.backgroundImage = 'none'
-      }
+    const onMouseLeave = () => {
+      node.style.backgroundImage = ''
     }
-    const [grad, box] = _setup(base, colorA, colorB)
-    new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
-      const entry = entries[0]
-      if (!entry.isIntersecting) { return }
-      doAnime(base, grad, box).onfinish = () => {
-        base.removeChild(grad)
-        base.removeChild(box)
-        base.classList.remove('grad-effect-base')
-      }
-      object.unobserve(base)
-    }).observe(base)
+    node.addEventListener('mouseenter', onMouseEnter)
+    node.addEventListener('mouseleave', onMouseLeave)
+    return () => {
+      node.removeEventListener('mouseenter', onMouseEnter)
+      node.removeEventListener('mouseleave', onMouseLeave)
+    }
   }, [])
   return (
     <>
-      <div ref={ref} className="grad-link">
-        <a className="link" href={href} target={target} rel={rel}>{children}</a>
-      </div>
+      <a ref={ref} className={classnames('grad-link', { 'inline-block': inlineBlock })} href={href} target={target} rel={rel}>{children}</a>
       <style jsx>{`
         .grad-link
-          overflow hidden
-        .link
-          display inline-block
-          padding-bottom 6px
-          border-bottom 1px solid green
-          overflow hidden
+          cursor pointer
           &:hover
-            padding-bottom 5px
-            border-bottom 2px solid green
+            padding-bottom 2px
+            border-bottom-width 2px
             background-clip text
             -webkit-background-clip text
             -webkit-text-fill-color transparent
+        .inline-block
+          display inline-block
       `}</style>
     </>
   )

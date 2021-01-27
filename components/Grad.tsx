@@ -158,7 +158,7 @@ export const Grad = ({ children, className, style, whiteText = false, inline = t
           left 0
           width 100%
           height 100%
-          background-color white
+          {/* background-color white */}
           background-image url(/noise.png), linear-gradient(to right, #fbe105, #f91fae)
           background-size auto, 100% 100%
           background-blend-mode overlay, normal
@@ -191,40 +191,37 @@ export const Grad = ({ children, className, style, whiteText = false, inline = t
 }
 
 export const setupImage = (node: HTMLElement, lighten: boolean = false) => {
-  node.classList.add('grad-effect-base')
-  const img = node.children[0]
-
-  const grad = document.createElement('div')
-  grad.classList.add('grad-effect-image')
+  const fade = document.createElement('div')
+  fade.classList.add('grad-effect-image')
   if (lighten === true) {
     // @ts-ignore
-    grad.style.mixBlendMode = 'lighten'
+    fade.style.mixBlendMode = 'lighten'
   }
   const [colorA, colorB] = getColors()
-  grad.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB})`
-  node.appendChild(grad)
+  fade.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB})`
+  node.appendChild(fade)
 
-  const box = document.createElement('div')
-  box.classList.add('grad-effect-slide')
-  box.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`
-  node.appendChild(box)
+  const slide = document.createElement('div')
+  slide.classList.add('grad-effect-slide')
+  slide.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB}, ${colorB})`
+  node.appendChild(slide)
 
   const cleanup = () => {
-    grad?.parentNode?.removeChild(grad)
-    box?.parentNode?.removeChild(box)
+    fade?.parentNode?.removeChild(fade)
+    slide?.parentNode?.removeChild(slide)
     node.classList.remove('grad-effect-base')
   }
 
   new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
     const entry = entries[0]
     if (!entry.isIntersecting) { return }
-    doAnime(img, grad, box, 200).onfinish = cleanup
-    object.unobserve(img)
-  }).observe(img)
+    doAnime(node, fade, slide).onfinish = cleanup
+    object.unobserve(node)
+  }).observe(node)
   return cleanup
 }
 
-export const GradImg = ({ children, lighten, mouseEntered }: { children?: ReactNode, lighten?: boolean, mouseEntered?: boolean }) => {
+export const GradImg = ({ children, className, lighten, mouseEntered }: { children?: ReactNode, className?: string, lighten?: boolean, mouseEntered?: boolean }) => {
   const ref = useRef<HTMLDivElement>(null)
   useLayoutEffect(() => setupImage(ref.current!, lighten === true), [])
 
@@ -269,7 +266,7 @@ export const GradImg = ({ children, lighten, mouseEntered }: { children?: ReactN
 
   return (
     <>
-      <div className="grad-image" ref={ref}>
+      <div className={classnames('grad-image', className)} ref={ref}>
         {children}
       </div>
       <style jsx>{`

@@ -1,6 +1,7 @@
-import { useLayoutEffect, useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
+import { useLayoutEffect } from 'lib/useLayoutEffect'
 import { Member, Entry, getAllMembers, getMemberDetail, getWorksByTag, getNewsByTag } from 'lib/api'
 import Layout from 'components/Layout'
 import { Grad, GradImg, GradLink, setupLink } from 'components/Grad'

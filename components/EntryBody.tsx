@@ -1,4 +1,5 @@
-import { useRef, useLayoutEffect } from 'react'
+import { useRef } from 'react'
+import { useLayoutEffect } from 'lib/useLayoutEffect'
 import { setup, setupImage, setupLink } from 'components/Grad'
 
 const EntryBody = ({ content }: { content: string }) => {

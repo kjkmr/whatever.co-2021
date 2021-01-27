@@ -1,5 +1,6 @@
-import { ReactNode, CSSProperties, useLayoutEffect, useRef } from 'react'
+import { ReactNode, CSSProperties, useRef } from 'react'
 import classnames from 'classnames'
+import { useLayoutEffect } from 'lib/useLayoutEffect'
 
 const COLORS = ["#ff2300", "#ff9201", "#ffeb00", "#89e82b", "#00c745", "#29ebfe", "#0d44fb", "#a725fc", "#fd1eba"];
 export const getColors = (): [string, string] => {

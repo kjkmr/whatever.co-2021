@@ -1,28 +1,53 @@
-import { useCallback } from 'react'
+import { useRef } from 'react'
 import Link from 'next/link'
 import classNames from 'classnames/bind'
+import { useLayoutEffect } from 'lib/useLayoutEffect'
 import { Tag } from 'lib/api'
 import { Grad, getColors } from 'components/Grad'
 
 const TagItem = ({ name, slug, focused }: { name: string, slug: string, focused: boolean }) => {
-  const ref = useCallback(node => {
-    if (!node) return
+  const itemRef = useRef<HTMLLIElement>(null)
+  const anchorRef = useRef<HTMLAnchorElement>(null)
+  const onMouseEnter = () => {
+    itemRef.current?.classList.add('focused')
+    const node = anchorRef.current!
+    const [colorA, colorB] = getColors()
+    const grad = `linear-gradient(to right, ${colorA}, ${colorB})`
+    node.style.borderImage = `${grad} 1`
+    node.style.backgroundImage = grad
+  }
+  const onMouseLeave = () => {
+    itemRef.current?.classList.remove('focused')
+    const node = anchorRef.current!
+    node.style.borderImage = ''
+    node.style.backgroundImage = ''
+  }
+  useLayoutEffect(() => {
+    const node = anchorRef.current!
     if (focused) {
       const [colorA, colorB] = getColors()
       const grad = `linear-gradient(to right, ${colorA}, ${colorB})`
       node.style.borderImage = `${grad} 1`
       node.style.backgroundImage = grad
+      node.style.pointerEvents = 'none'
     } else {
       node.style.borderImage = ''
       node.style.backgroundImage = ''
+      node.addEventListener('mouseenter', onMouseEnter)
+      node.addEventListener('mouseleave', onMouseLeave)
+    }
+    return () => {
+      node.style.pointerEvents = ''
+      node.removeEventListener('mouseenter', onMouseEnter)
+      node.removeEventListener('mouseleave', onMouseLeave)
     }
   }, [focused])
   return (
     <>
-      <li className={classNames('tag-item', { focused })}>
+      <li ref={itemRef} className={classNames('tag-item', { focused })}>
         <Grad>
           <Link href={`/work/category/${slug}`} passHref>
-            <a ref={ref}><span className="inner">{name}</span></a>
+            <a ref={anchorRef} className="inner"><span className="text">{name}</span></a>
           </Link>
         </Grad>
       </li>
@@ -38,7 +63,8 @@ const TagItem = ({ name, slug, focused }: { name: string, slug: string, focused:
           text-align center
           vertical-align middle
           font-size 0
-        a
+          user-select none
+        .inner
           display flex
           justify-content center
           align-items center
@@ -46,21 +72,21 @@ const TagItem = ({ name, slug, focused }: { name: string, slug: string, focused:
           border 1px solid #B4B4B4
           height 44px
           padding 0 50px
-        .focused
-          a
-            padding 0 49px
-            border-width 2px
-            border-color green
-            background-clip text
-            -webkit-background-clip text
-            -webkit-text-fill-color transparent
-        .inner
+        .text
           display inline-block
           letter-spacing 0.02em
           overflow hidden
           margin-top 2px
           font-size 1.4rem
           font-weight 300
+        .focused
+          .inner
+            padding 0 49px
+            border-width 2px
+            border-color green
+            background-clip text
+            -webkit-background-clip text
+            -webkit-text-fill-color transparent
       `}</style>
     </>
   )

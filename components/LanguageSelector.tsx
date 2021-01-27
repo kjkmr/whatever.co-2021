@@ -6,12 +6,15 @@ const LangLink = ({ lang, label, activeColor, inactiveColor, onSelected }: { lan
   return (
     <>
       { locale != lang
-        ? <Link href={{ pathname, query }} locale={lang}><a style={{ color: inactiveColor }} onClick={onSelected}>{label}</a></Link>
+        ? <Link href={{ pathname, query }} locale={lang}><a onClick={onSelected}>{label}</a></Link>
         : <span style={{ color: activeColor }}>{label}</span>}
       <style jsx>{`
         a
           border none
           padding 0
+          color ${inactiveColor}
+          &:hover
+            color ${activeColor}
       `}</style>
     </>
   )

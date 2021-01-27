@@ -311,12 +311,6 @@ export const GradLink = ({ children, href, target, rel, inlineBlock = false }: {
       <style jsx>{`
         .grad-link
           cursor pointer
-        :global(.grad-link-hover)
-          padding-bottom 2px
-          border-bottom-width 2px
-          background-clip text
-          -webkit-background-clip text
-          -webkit-text-fill-color transparent
         .inline-block
           display inline-block
       `}</style>

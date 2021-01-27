@@ -1,5 +1,5 @@
 import { useRef, useLayoutEffect } from 'react'
-import { setup, setupImage } from 'components/Grad'
+import { setup, setupImage, setupLink } from 'components/Grad'
 
 const EntryBody = ({ content }: { content: string }) => {
   const body = useRef<HTMLDivElement>(null)
@@ -36,6 +36,10 @@ const EntryBody = ({ content }: { content: string }) => {
       img.parentNode?.insertBefore(base, img)
       base.appendChild(img)
       cleanups.push(setupImage(base))
+    })
+    body.current?.querySelectorAll('a').forEach(a => {
+      a.target = '_blank'
+      cleanups.push(setupLink(a))
     })
     return () => { cleanups.forEach(c => c()) }
   }, [])

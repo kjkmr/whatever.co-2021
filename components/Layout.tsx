@@ -195,6 +195,13 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           margin-top 0.5em
           margin-bottom 1.5em
           text-align left
+
+        .grad-link-hover
+          padding-bottom 2px
+          border-bottom-width 2px
+          background-clip text
+          -webkit-background-clip text
+          -webkit-text-fill-color transparent
       `}</style>
     </>
   )

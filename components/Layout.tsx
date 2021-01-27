@@ -31,6 +31,15 @@ type Props = {
   footer?: ReactNode
 }
 
+const decodeTitle = (rawhtml: string): string => {
+  if (!global.document) {
+    return rawhtml
+  }
+  const div = document.createElement('div')
+  div.innerHTML = rawhtml
+  return `${div.textContent ? div.textContent + " ― " : ""}Whatever Inc.`
+}
+
 const Layout = ({ children, footer, title = '', side = '', backto = '', showHeader = true }: Props) => {
   const templateStyle: { [prop: string]: string } = {}
   if (templateName) {
@@ -41,7 +50,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
     <>
       <div>
         <Head>
-          <title>{title ? title + " ― " : ""}Whatever Inc.</title>
+          <title>{decodeTitle(title)}</title>
           <meta charSet="utf-8" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />

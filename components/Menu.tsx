@@ -14,7 +14,7 @@ const Menu = () => {
     <>
       <div className="menu">
         {opened ? <>
-          <Grad className="inner" inline={false} startImmediately />
+          <Grad className="menu-bg" inline={false} startImmediately />
           <div className="menu-full">
             <ul>
               <li><Grad whiteText={true}><Link href="/"><a onClick={onclick}>Top</a></Link></Grad></li>
@@ -45,7 +45,7 @@ const Menu = () => {
           position fixed
           z-index 10000
           font-size 0
-        :global(.inner)
+        :global(.menu-bg)
           position absolute
           top 0
           left 0

@@ -12,39 +12,48 @@ import { Grad, GradImg } from 'components/Grad'
 const Player = ({ onClick }: { onClick?: any }) => (
   <>
     <div className="player">
-      <GradImg className="player-inner">
-        <div className="aspect-ratio">
+      <Grad className="player-bg" inline={false} startImmediately />
+      <div className="padding">
+        <Grad className="aspect-ratio" inline={false}>
           <iframe src="https://www.youtube.com/embed/rsBTSWTbH4I?autoplay=1;controls=0;rel=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-        </div>
-        <div className="close-button">
-          <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onClick} skipIn>
-            <div className="l1"></div>
-            <div className="l2"></div>
-          </BlackButton>
-        </div>
-      </GradImg>
+        </Grad>
+      </div>
+      <div className="close-button">
+        <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onClick} skipIn>
+          <div className="l1"></div>
+          <div className="l2"></div>
+        </BlackButton>
+      </div>
     </div>
     <style jsx>{`
       .player
-        position fixed
+        position absolute
         top 0
         left 0
         box-sizing border-box
         width 100vw
         height 100vh
-        background-color #222222
         z-index 20000
-        :global(.player-inner)
+        :global(.player-bg)
+          position absolute
+          top 0
+          height 0
           width 100%
           height 100%
-          padding 80px
-          box-sizing border-box
+          background-color #222222
+        .padding
           display flex
           justify-content center
           align-items center
-        .aspect-ratio
+          position relative
+          padding 80px
+          box-sizing border-box
+          width 100vw
+          height 100vh
+        :global(.aspect-ratio)
           width 'min(100%, calc((100vh - 160px) / 9 * 16))' % null
           height 'min(100%, calc((100vw - 160px) / 16 * 9))' % null
+          background-color black
           iframe
             width 100%
             height 100%

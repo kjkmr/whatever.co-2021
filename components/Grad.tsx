@@ -296,7 +296,14 @@ export const setupImage = (node: HTMLElement, lighten: boolean = false) => {
   return cleanup
 }
 
-export const GradImg = ({ children, className, lighten, mouseEntered }: { children?: ReactNode, className?: string, lighten?: boolean, mouseEntered?: boolean }) => {
+export type GradImgProps = {
+  children?: ReactNode
+  className?: string
+  lighten?: boolean
+  mouseEntered?: boolean
+}
+
+export const GradImg = ({ children, className, lighten, mouseEntered }: GradImgProps) => {
   const ref = useRef<HTMLDivElement>(null)
   useLayoutEffect(() => setupImage(ref.current!, lighten === true), [])
 

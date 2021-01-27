@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { langStyle } from 'lib/i18n'
-import { Grad, GradImg } from './Grad'
-import React from 'react'
+import { Grad, GradImg } from 'components/Grad'
+import BlackButton from 'components/BlackButton'
 
 type HeaderProps = {
   headerMargin?: number
@@ -117,40 +117,37 @@ export const Header = (props: HeaderProps) => {
 export const Footer = ({ left, right }: { left: string, right: string }) => (
   <>
     <div className="footer">
-      <Link href={`/about/${left.toLowerCase()}`}>
-        <a style={{ borderRight: '1px solid #333' }}>
-          <div className="line"></div>
-          <div style={{ marginLeft: 40 }}>
-            <div><Grad className="whatever" whiteText={true}>Whatever</Grad></div>
-            <div><Grad className="title" whiteText={true}>{left}</Grad></div>
-          </div>
-        </a>
-      </Link>
-      <Link href={`/about/${right.toLowerCase()}`}>
-        <a style={{ justifyContent: 'flex-end' }}>
-          <div style={{ marginRight: 40, textAlign: 'right' }}>
-            <div><Grad className="whatever" whiteText={true}>Whatever</Grad></div>
-            <div><Grad className="title" whiteText={true}>{right}</Grad></div>
-          </div>
-          <div className="line"></div>
-        </a>
-      </Link>
+      <BlackButton width="100%" height="100%" className="footer-button" link={`/about/${left.toLowerCase()}`}>
+        <div className="line"></div>
+        <div style={{ marginLeft: 40 }}>
+          <div className="whatever" >Whatever</div>
+          <div className="title" >{left}</div>
+        </div>
+      </BlackButton>
+      <BlackButton width="100%" height="100%" className="footer-button right" link={`/about/${right.toLowerCase()}`}>
+        <div style={{ marginRight: 40, textAlign: 'right' }}>
+          <div className="whatever" >Whatever</div>
+          <div className="title" >{right}</div>
+        </div>
+        <div className="line"></div>
+      </BlackButton>
     </div>
     <style jsx>{`
       .footer
         position relative
         height 160px
-        font-size 0
-        color white
-        background-color black
         display grid
         grid-template-columns repeat(2, 1fr)
         grid-gap 0
-        a
-          display flex
-          align-items center
-          color white
-          border none
+        :global(.footer-button)
+          width 100%
+          height 100%
+          border-right 1px solid #333333
+          box-sizing border-box
+          :global(a)
+            justify-content start
+        :global(.right a)
+          justify-content flex-end
         .line
           border-top 1px solid #fff
           width 40px

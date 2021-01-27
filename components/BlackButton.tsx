@@ -1,9 +1,11 @@
 import { ReactNode, useRef, useEffect } from 'react'
 import Link from 'next/link'
+import classnames from 'classnames'
 import { Grad, getColors } from 'components/Grad'
 
 type BlackButtonProps = {
   children?: ReactNode
+  className?: string
   link?: string
   width?: string
   height?: string
@@ -12,7 +14,7 @@ type BlackButtonProps = {
   skipIn?: boolean
 }
 
-const BlackButton = ({ children, link, width = '256px', height = '60px', backgroundColor = 'black', onClick, skipIn = false }: BlackButtonProps) => {
+const BlackButton = ({ children, className, link, width = '256px', height = '60px', backgroundColor = 'black', onClick, skipIn = false }: BlackButtonProps) => {
   const ref = useRef<HTMLAnchorElement>(null)
   const bgs = useRef<HTMLDivElement[]>([])
   const onMouseEnter = () => {
@@ -60,7 +62,7 @@ const BlackButton = ({ children, link, width = '256px', height = '60px', backgro
   }, [])
   const inner = (
     <>
-      <div>
+      <div className={classnames(className)}>
         {link
           ? <Link href={link}><a ref={ref} >{children}</a></Link>
           : <a ref={ref} onClick={onClick}>{children}</a>

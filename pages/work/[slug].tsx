@@ -113,7 +113,7 @@ const CreditMember = ({ member }: { member: Person }) => {
   let name = <>{member.name}</>
   if (!member.company) {
     if (member.url?.match(/^[a-z\-]+$/)) {
-      name = <Link href={`/team/${member.url}`}><GradLink>{member.name}</GradLink></Link>
+      name = <Link href={`/team/${member.url}`} passHref><GradLink>{member.name}</GradLink></Link>
     } else if (member.url) {
       name = <GradLink href={member.url}>{member.name}</GradLink>
     }

@@ -201,6 +201,70 @@ export const Grad = ({ children, className, style, whiteText = false, inline = t
   )
 }
 
+const doAnimeImage = (base: Element, fade: Element, slide: Element, duration: number = 250, startImmediately: boolean = false) => {
+  const delay = startImmediately ? 0 : Math.random() * 500
+  base.animate(
+    [
+      {
+        visibility: "hidden"
+      },
+      {
+        offset: 0.001,
+        visibility: "visible"
+      },
+      {
+        visibility: "visible"
+      },
+    ],
+    {
+      duration: duration,
+      delay: duration / 2 + delay,
+      iterations: 1,
+      fill: "both"
+    }
+  )
+  slide.animate(
+    [
+      {
+        left: "-100%",
+        visibility: "visible",
+      },
+      {
+        backgroundPosition: "0 0, 0 0",
+        left: 0,
+        visibility: "hidden",
+      },
+      {
+        visibility: "hidden",
+      }
+    ],
+    {
+      duration: duration,
+      delay: delay,
+      iterations: 1,
+      fill: "both"
+    }
+  )
+  return fade.animate(
+    [
+      {
+        offset: 0.0001,
+        visibility: "visible",
+        opacity: 1
+      },
+      {
+        opacity: 0
+      }
+    ],
+    {
+      duration: duration * 4,
+      delay: duration / 2 + delay,
+      iterations: 1,
+      fill: "both"
+    }
+  )
+}
+
 export const setupImage = (node: HTMLElement, lighten: boolean = false) => {
   const fade = document.createElement('div')
   fade.classList.add('grad-effect-image')
@@ -226,7 +290,7 @@ export const setupImage = (node: HTMLElement, lighten: boolean = false) => {
   new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
     const entry = entries[0]
     if (!entry.isIntersecting) { return }
-    doAnime(node, fade, slide).onfinish = cleanup
+    doAnimeImage(node, fade, slide).onfinish = cleanup
     object.unobserve(node)
   }).observe(node)
   return cleanup

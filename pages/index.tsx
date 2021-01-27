@@ -27,7 +27,7 @@ const Player = ({ onClick }: { onClick?: any }) => (
     </div>
     <style jsx>{`
       .player
-        position absolute
+        position fixed
         top 0
         left 0
         box-sizing border-box

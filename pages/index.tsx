@@ -151,15 +151,24 @@ const Showreel = () => {
 const Tagline = () => (
   <>
     <div className={langStyle('tagline')}>
-      <div className="title">
-        <Grad><h1>Make whatever.</h1></Grad>
-        <Grad><h1 className="line2">Rules, whatever.</h1></Grad>
-      </div>
+      {isMobile()
+        ? <div className="title">
+          <Grad className="line1" inline={false}>Make</Grad>
+          <Grad className="line2" inline={false}>whatever.</Grad>
+          <Grad className="line1" inline={false}>Rules,</Grad>
+          <Grad className="line2" inline={false}>whatever.</Grad>
+        </div>
+        : <div className="title">
+          <Grad className="line1" inline={false}>Make whatever.</Grad>
+          <Grad className="line2" inline={false}>Rules, whatever.</Grad>
+        </div>}
       <div className="desc">
-        {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index}><h2>{line}</h2></Grad>)}
+        {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index} className="line">{line}</Grad>)}
       </div>
       <div className="link">
-        <BlackButton link="/about" >Learn more</BlackButton>
+        {isMobile()
+          ? <BlackButton link="/about" width="187px" height="50px" >Learn more</BlackButton>
+          : <BlackButton link="/about" >Learn more</BlackButton>}
       </div>
     </div>
     <style jsx>{`
@@ -172,20 +181,18 @@ const Tagline = () => (
       .title
         font-size 0
         margin-left vwpx(69)
-        h1
-          display inline-block
+        :global(.line1, .line2)
           font-size vwpx(143)
           font-weight bold
           margin 0
           margin-bottom vwpx(13)
-          &.line2
-            margin-left vwpx(71)
+        :global(.line2)
+          margin-left vwpx(71)
       .desc
         position relative
         margin vwpx(72) vwpx(80) 0
         font-size 0
-        h2
-          display inline-block
+        :global(.line)
           font-size vwpx(26)
           font-weight bold
           line-height vwpx(60)
@@ -202,6 +209,24 @@ const Tagline = () => (
             font-size vwpx(26)
         .link
           margin-top vwpx(154)
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .tagline
+          margin-top vwpx(137)
+          .title
+            :global(.line1,.line2)
+              font-size vwpx(65.5)
+              margin-left vwpx(9)
+              margin-bottom vwpx(4.5)
+            :global(.line2)
+              margin-left vwpx(41)
+          .desc
+            margin vwpx(37) vwpx(50) 0
+            :global(.line)
+              font-size vwpx(15)
+              line-height vwpx(32)
+          .link
+            margin-top vwpx(50)
     `}</style>
   </>
 )
@@ -280,7 +305,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
 const FeaturedWorks = ({ works }: { works: Entry[] }) => (
   <>
     <div className="featured-works">
-      <h1><Grad className="featured-works-title">Featured Works</Grad></h1>
+      <Grad className="featured-works-title" inline={false}>Featured Works</Grad>
       <div className="items">
         {works.map(work => <FeaturedWorkItem key={work.slug} work={work} />)}
       </div>
@@ -293,20 +318,27 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
       .featured-works
         margin-top vwpx(92)
         font-size 0
-        h1
+        :global(.featured-works-title)
           margin-left vwpx(-3)
-          margin-bottom vwpx(73)
-          font-size 0
-          :global(.featured-works-title)
-            font-size vwpx_min(36)
+          font-size vwpx_min(36)
+          font-weight 700
         .items
           display grid
           grid-template-columns repeat(2, 1fr)
           grid-gap vwpx(100) vwpx(98)
+          margin-top vwpx(73)
         .link
           display flex
           justify-content flex-end
           margin-top 80px
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .featured-works
+          margin vwpx(117) vwpx(50) 0
+          :global(.featured-works-title)
+            font-size vwpx_min(38)
+          .items
+            grid-template-columns 1fr
     `}</style>
   </>
 )

@@ -4,10 +4,12 @@ import Link from 'next/link'
 import { Entry, Tag, getNews, getWorksByTag } from 'lib/api'
 import { useLayoutEffect } from 'lib/useLayoutEffect'
 import { t, langStyle } from 'lib/i18n'
+import { isMobile } from 'lib/isMobile'
 import Layout from 'components/Layout'
 import BlackButton from 'components/BlackButton'
 import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
+import { Desktop, Mobile } from 'components/Responsive'
 
 const Player = ({ onClick }: { onClick?: any }) => (
   <>
@@ -79,8 +81,9 @@ const Player = ({ onClick }: { onClick?: any }) => (
 )
 
 const Showreel = () => {
-  const [scrollY, setScrollY] = useState(0)
-  const onScroll = () => setScrollY(window.pageYOffset)
+  const [videoHeight, setVideoHeight] = useState('')
+  const videoMarginBottom = isMobile() ? 35 : 40
+  const onScroll = () => setVideoHeight(`calc((100vh - ${videoMarginBottom}px) - ${window.pageYOffset}px)`)
   useLayoutEffect(() => {
     window.addEventListener('scroll', onScroll)
     onScroll()
@@ -99,13 +102,14 @@ const Showreel = () => {
   return (
     <>
       <div className="showreel">
-        <div className="video" style={{ height: `calc((100vh - 40px) - ${scrollY}px)` }}>
+        <div className="video" style={{ height: videoHeight }}>
           <GradImg>
             <video ref={video} src="/index/reel-preview.mp4" autoPlay={true} loop muted></video>
           </GradImg>
         </div>
         <div className="button">
-          <BlackButton height="80px" onClick={onClickWatch} >Watch Reel</BlackButton>
+          <Desktop><BlackButton height="80px" onClick={onClickWatch} >Watch Reel</BlackButton></Desktop>
+          <Mobile><BlackButton width="187px" height="70px" onClick={onClickWatch} >Watch Reel</BlackButton></Mobile>
         </div>
       </div>
       {showPlayer ? <Player onClick={onClose} /> : null}
@@ -128,6 +132,17 @@ const Showreel = () => {
           position absolute
           right 0
           bottom -40px
+        @media (--mobile)
+          .showreel
+            height calc(100vh - 35px)
+          .video
+            left: 0
+          video
+            width: 100vw
+            height calc(100vh - 35px)
+          .button
+            width: 187px
+            bottom -35px
       `}</style>
     </>
   )
@@ -151,7 +166,7 @@ const Tagline = () => (
       @import 'lib/vw.styl'
       .tagline
         position relative
-        margin-top vwpx(198)
+        margin-top vwpx(211)
         img
           display block
       .title

@@ -88,6 +88,10 @@ const BlackButton = ({ children, className, link, width = '256px', height = '60p
           overflow hidden
           cursor pointer
           user-select none
+        @media (--mobile)
+          a
+            font-size 1.4rem
+            padding-top 2px
       `}</style>
     </>
   )

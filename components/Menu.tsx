@@ -6,6 +6,7 @@ import LanguageSelector from 'components/LanguageSelector'
 import ContactForm from 'components/ContactForm'
 import SNSButtons from 'components/SNSButtons'
 import { Grad, GradLink } from 'components/Grad'
+import { Desktop, Mobile } from 'components/Responsive'
 
 const Menu = () => {
   const [opened, setOpened] = useState(false)
@@ -32,11 +33,20 @@ const Menu = () => {
           </div>
         </> : null}
         <div className={classNames('button', { close: opened })}>
-          <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onClick}>
-            <div className="black" style={{ display: opened ? 'none' : 'block' }}></div>
-            <div className="l1"></div>
-            <div className="l2"></div>
-          </BlackButton>
+          <Desktop>
+            <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onClick}>
+              <div className="black" style={{ display: opened ? 'none' : 'block' }}></div>
+              <div className="l1"></div>
+              <div className="l2"></div>
+            </BlackButton>
+          </Desktop>
+          <Mobile>
+            <BlackButton width="50px" height="50px" backgroundColor="transparent" onClick={onClick}>
+              <div className="black" style={{ display: opened ? 'none' : 'block' }}></div>
+              <div className="l1"></div>
+              <div className="l2"></div>
+            </BlackButton>
+          </Mobile>
         </div>
       </div>
       <style jsx>{`
@@ -130,6 +140,19 @@ const Menu = () => {
           .l2
             top 39px
             transform rotate(-45deg)
+        @media (--mobile)
+          .black
+            width 50px
+            height 50px
+          .l1,.l2
+            width 10px
+            height 1px
+          .l1
+            top 21px
+            left 20px
+          .l2
+            bottom 21px
+            left 20px
       `}</style>
     </>
   )

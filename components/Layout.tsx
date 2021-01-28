@@ -21,6 +21,7 @@ let templateName: string
 // templateName = 'Team_detail'
 // templateName = 'Contact'
 // templateName = 'menu'
+// templateName = 'top_sp'
 
 type Props = {
   showHeader?: boolean
@@ -81,6 +82,13 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
         .main
           width calc(100vw - 80px)
           margin-left 80px
+        @media (--mobile)
+          .container
+            background-size 375px auto
+          .main
+            width 100%
+            margin 0
+            min-height 3000px
       `}</style>
     </>
   )

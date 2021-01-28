@@ -1,0 +1,115 @@
+@function vwpx($px)
+  @return calc((100vw - 80px) * #{$px / (1366 - 80)})
+
+// Noto Sans JP
+// https://fonts.google.com/specimen/Noto+Sans+JP
+// Thin 100
+// Light 300
+// Regular 400
+// Medium 500
+// Bold 700
+// Black 900
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300500700&display=block')
+
+// 200 apercu-extralight.ttf
+// 300 apercu-light.ttf
+// 400 apercu-regular.ttf
+// 500 apercu-medium.ttf
+// 700 apercu-bold.ttf
+// 900 apercu-black.ttf
+@font-face
+  font-family: Apercu
+  src: url("/common/fonts/apercu-extralight.eot")
+  src: url("/common/fonts/apercu-extralight.eot?#iefix") format('embedded-opentype'), url("/common/fonts/apercu-extralight.woff") format('woff'), url("/common/fonts/apercu-extralight.woff2") format('woff2'), url("/common/fonts/apercu-extralight.ttf") format('truetype')
+  font-weight: 200
+  font-style: normal
+  font-display: block
+
+@font-face
+  font-family: Apercu
+  src: url("/common/fonts/apercu-light.eot")
+  src: url("/common/fonts/apercu-light.eot?#iefix") format('embedded-opentype'), url("/common/fonts/apercu-light.woff") format('woff'), url("/common/fonts/apercu-light.woff2") format('woff2'), url("/common/fonts/apercu-light.ttf") format('truetype')
+  font-weight: 300
+  font-style: normal
+  font-display: block
+
+@font-face
+  font-family: Apercu
+  src: url("/common/fonts/apercu-regular.eot")
+  src: url("/common/fonts/apercu-regular.eot?#iefix") format('embedded-opentype'), url("/common/fonts/apercu-regular.woff") format('woff'), url("/common/fonts/apercu-regular.woff2") format('woff2'), url("/common/fonts/apercu-regular.ttf") format('truetype')
+  font-weight: 400
+  font-style: normal
+  font-display: block
+
+@font-face
+  font-family: Apercu
+  src: url("/common/fonts/apercu-medium.eot")
+  src: url("/common/fonts/apercu-medium.eot?#iefix") format('embedded-opentype'), url("/common/fonts/apercu-medium.woff") format('woff'), url("/common/fonts/apercu-medium.woff2") format('woff2'), url("/common/fonts/apercu-medium.ttf") format('truetype')
+  font-weight: 500
+  font-style: normal
+  font-display: block
+
+@font-face
+  font-family: Apercu
+  src: url("/common/fonts/apercu-bold.eot")
+  src: url("/common/fonts/apercu-bold.eot?#iefix") format('embedded-opentype'), url("/common/fonts/apercu-bold.woff") format('woff'), url("/common/fonts/apercu-bold.woff2") format('woff2'), url("/common/fonts/apercu-bold.ttf") format('truetype')
+  font-weight: 700
+  font-style: normal
+  font-display: block
+
+:root
+  --font-size-ja: 1.5rem
+  --font-size-en: 1.7rem
+
+html
+  margin: 0
+  padding: 0
+  font-size: 10px
+  hoge: vwpx(100)
+
+body
+  margin: 0
+  padding: 0
+  background-color: #fff
+  font-family: Apercu, 'Noto Sans JP', sans-serif
+  font-size: 1.5rem
+  font-weight: 300
+  color: #000
+
+p
+  margin: 2em 0
+
+  img
+    width: 100%
+    height: auto
+    margin: auto
+
+a
+  text-decoration: none
+  color: #000
+  padding-bottom: 3px
+  border-bottom: 1px solid #000
+
+button
+  cursor: pointer
+
+img
+  pointer-events: none
+  user-select: none
+
+*:focus
+  outline: none
+
+figure
+  margin: 1em 0
+  font-size: 0
+
+figcaption
+  font-size: 1.3em
+  font-style: italic
+  margin-top: 0.5em
+  margin-bottom: 1.5em
+  text-align: left
+
+@import 'grad'
+@import 'entry-body'

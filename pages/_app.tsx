@@ -1,6 +1,7 @@
 import App from 'next/app'
 import type { AppProps, AppContext } from 'next/app'
 import { loadResources } from 'lib/i18n'
+import 'styles/global.sass'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return <Component {...pageProps} />

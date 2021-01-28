@@ -135,69 +135,9 @@ export const Grad = ({ children, className, style, whiteText = false, inline = t
   const ref = useRef<HTMLDivElement>(null)
   useLayoutEffect(() => setup(ref.current!, whiteText, inline, startImmediately), [])
   return (
-    <>
-      <div ref={ref} className={className} style={style}>
-        {children}
-      </div>
-      <style jsx global>{`
-        .grad-effect-base
-          position relative
-          overflow hidden
-          visibility hidden
-          background-color white
-        .grad-effect-black
-          background-color black
-        .grad-effect-fade
-          position absolute
-          top 0
-          left 0
-          width 100%
-          height 100%
-          background-image url(/noise.png), linear-gradient(to right, #fbe105, #f91fae)
-          background-blend-mode overlay, normal
-          mix-blend-mode lighten
-          visibility hidden
-          user-select none
-          pointer-events none
-          > *
-            background-color: transparent !important
-        .grad-effect-multiply
-          mix-blend-mode multiply
-        .grad-effect-image
-          position absolute
-          top 0
-          left 0
-          width 100%
-          height 100%
-          {/* background-color white */}
-          background-image url(/noise.png), linear-gradient(to right, #fbe105, #f91fae)
-          background-size auto, 100% 100%
-          background-blend-mode overlay, normal
-          visibility hidden
-        .grad-effect-slide
-          position absolute
-          background-image url(/noise.png), linear-gradient(to right, #fbe105, #f91fae, #f91fae)
-          background-size auto, 200% 100%
-          background-blend-mode overlay, normal
-          top 0
-          left -100%
-          width 100%
-          height 100%
-          visibility visible
-          user-select none
-          pointer-events none
-        .grad-effect-over
-          position absolute
-          top 0
-          left 0
-          width 100%
-          height 100%
-          background-color red
-          mix-blend-mode screen
-          user-select none
-          pointer-events none
-      `}</style>
-    </>
+    <div ref={ref} className={className} style={style}>
+      {children}
+    </div>
   )
 }
 

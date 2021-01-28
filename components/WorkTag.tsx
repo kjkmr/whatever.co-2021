@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { Tag } from '../lib/api'
 
 const Inner = ({ name }: { name: string }) => (
-  <span>
-    {name}
+  <>
+    <span>{name}</span>
     <style jsx>{`
       span
         display inline-block
@@ -15,8 +15,13 @@ const Inner = ({ name }: { name: string }) => (
         margin-right 1.0rem
         &:last-child
           margin-right 0
+      @media (--mobile)
+        span
+          font-size 1.0rem
+          padding 0.4rem 0.5rem 0.3rem
+          margin-right 0.6rem
     `}</style>
-  </span>
+  </>
 )
 
 const WorkTag = ({ tag, link = false }: { tag: Tag, link?: boolean }) => (
@@ -32,6 +37,9 @@ const WorkTag = ({ tag, link = false }: { tag: Tag, link?: boolean }) => (
         margin-right 1.0rem
         &:last-child
           margin-right 0
+      @media (--mobile)
+        a
+          margin-right 0.6rem
     `}</style>
   </>
 )

@@ -167,7 +167,7 @@ const Tagline = () => (
       </div>
       <div className="link">
         {isMobile()
-          ? <BlackButton link="/about" width="187px" height="50px" >Learn more</BlackButton>
+          ? <BlackButton link="/about" width="187px" height="50px">Learn more</BlackButton>
           : <BlackButton link="/about" >Learn more</BlackButton>}
       </div>
     </div>
@@ -260,11 +260,10 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
             display block
             border none
             padding 0
-          .image
-            img
-              width vwpx(594)
-              height vwpx(334)
-              object-fit cover
+          .image img
+            width vwpx(594)
+            height vwpx(334)
+            object-fit cover
           .white
             position relative
             display inline-block
@@ -280,23 +279,48 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
               margin-top 2.0rem
               font-size 2.8rem
               font-weight 700
-              line-height 1.2em
+              line-height 1.2
           :global(.subtitle)
             margin-top 1.8rem
             font-size var(--font-size-ja)
             font-weight 700
-            line-height 1.4em
+            line-height 1.4
           :global(.overview)
             margin-top 0.7rem
             margin-right vwpx(30)
             font-size var(--font-size-ja)
             font-weight 300
-            line-height 2em
+            line-height 2.0
           :global(.tags)
             margin-top 2.0rem
         .en
           :global(.overview)
             font-weight 400
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          .fetured-work-item
+            margin-top vwpx(36)
+            .image
+              margin 0 vwpx(-30) 0 vwpx(-50)
+              img
+                width 100vw
+                height calc(100vw / 16 * 9)
+            .white
+              background-color transparent
+              padding 0
+              margin 0
+              :global(.date)
+                font-size 1.0rem
+                margin-top 2.5rem
+              :global(.title)
+                font-size 2.4rem
+                margin-top 1.1rem
+            :global(.subtitle)
+              font-size 1.2rem
+              margin-top 0.7rem
+            :global(.overview)
+              font-size 1.2rem
+              margin-top 1.5rem
       `}</style>
     </>
   )
@@ -310,7 +334,9 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
         {works.map(work => <FeaturedWorkItem key={work.slug} work={work} />)}
       </div>
       <div className="link">
-        <BlackButton link="/work" >All Works</BlackButton>
+        {isMobile()
+          ? <BlackButton link="/work" width="187px" height="50px">All Works</BlackButton>
+          : <BlackButton link="/work">All Works</BlackButton>}
       </div>
     </div>
     <style jsx>{`
@@ -334,11 +360,14 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .featured-works
-          margin vwpx(117) vwpx(50) 0
+          margin vwpx(106) vwpx(30) 0 vwpx(50)
           :global(.featured-works-title)
             font-size vwpx_min(38)
           .items
             grid-template-columns 1fr
+          .link
+            margin-top 60px
+            margin-right vwpx(-30)
     `}</style>
   </>
 )

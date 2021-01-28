@@ -18,17 +18,17 @@ const Menu = () => {
           <Grad className="menu-bg" inline={false} startImmediately />
           <div className="menu-full">
             <ul>
-              <li><Grad whiteText={true}><Link href="/"><GradLink className="menu-link" onClick={onClick}>Top</GradLink></Link></Grad></li>
-              <li><Grad whiteText={true}><Link href="/work/category/all"><GradLink className="menu-link" onClick={onClick}>Work</GradLink></Link></Grad></li>
-              <li><Grad whiteText={true}><Link href="/about"><GradLink className="menu-link" onClick={onClick}>About</GradLink></Link></Grad></li>
-              <li><Grad whiteText={true}><Link href="/team"><GradLink className="menu-link" onClick={onClick}>Team</GradLink></Link></Grad></li>
-              <li><Grad whiteText={true}><Link href="/news"><GradLink className="menu-link" onClick={onClick}>News</GradLink></Link></Grad></li>
-              <li><Grad whiteText={true}><Link href="/contact"><GradLink className="menu-link" onClick={onClick}>Contact</GradLink></Link></Grad></li>
+              <li><Grad whiteText inline><Link href="/"><GradLink className="menu-link" onClick={onClick}>Top</GradLink></Link></Grad></li>
+              <li><Grad whiteText inline><Link href="/work/category/all"><GradLink className="menu-link" onClick={onClick}>Work</GradLink></Link></Grad></li>
+              <li><Grad whiteText inline><Link href="/about"><GradLink className="menu-link" onClick={onClick}>About</GradLink></Link></Grad></li>
+              <li><Grad whiteText inline><Link href="/team"><GradLink className="menu-link" onClick={onClick}>Team</GradLink></Link></Grad></li>
+              <li><Grad whiteText inline><Link href="/news"><GradLink className="menu-link" onClick={onClick}>News</GradLink></Link></Grad></li>
+              <li><Grad whiteText inline><Link href="/contact"><GradLink className="menu-link" onClick={onClick}>Contact</GradLink></Link></Grad></li>
             </ul>
             <div className="contact">
-              <div><Grad className="langselect" whiteText={true}><LanguageSelector activeColor="white" inactiveColor="#666666" separator="  /  " onSelected={onClick} /></Grad></div>
+              <div><Grad className="langselect" whiteText inline><LanguageSelector activeColor="white" inactiveColor="#666666" separator="  /  " onSelected={onClick} /></Grad></div>
               <ContactForm />
-              <div><Grad className="sns" whiteText={true}><SNSButtons /></Grad></div>
+              <div><Grad className="sns" whiteText inline><SNSButtons /></Grad></div>
             </div>
           </div>
         </> : null}

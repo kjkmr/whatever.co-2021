@@ -6,12 +6,12 @@ import { Grad } from 'components/Grad'
 const ContactForm = () => (
   <>
     <div className={langStyle('contact-form')}>
-      <div><Grad className="text" whiteText={true}>{t('contactform_contacthere')}</Grad></div>
-      <div><Grad className="contact" whiteText={true}><Link href="/contact"><a>{t('contactform_inquiry')}</a></Link></Grad></div>
+      <div><Grad className="text" whiteText inline>{t('contactform_contacthere')}</Grad></div>
+      <div><Grad className="contact" whiteText inline><Link href="/contact"><a>{t('contactform_inquiry')}</a></Link></Grad></div>
       <div className="newsletter">
-        <div><Grad className="subscribe" whiteText={true}>{t('contactform_register')}</Grad></div>
+        <div><Grad className="subscribe" whiteText inline>{t('contactform_register')}</Grad></div>
         <div>
-          <Grad className="form" whiteText={true}>
+          <Grad className="form" whiteText inline>
             <form action="">
               <input className="email" type="text" placeholder="Email address"></input>
               <input className="submit" type="submit" value="" />

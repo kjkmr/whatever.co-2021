@@ -130,7 +130,7 @@ export type GradProps = {
   startImmediately?: boolean
 }
 
-export const Grad = ({ children, className, style, whiteText = false, inline = true, startImmediately = false }: GradProps) => {
+export const Grad = ({ children, className, style, whiteText = false, inline = false, startImmediately = false }: GradProps) => {
 
   const ref = useRef<HTMLDivElement>(null)
   useLayoutEffect(() => setup(ref.current!, whiteText, inline, startImmediately), [])

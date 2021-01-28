@@ -97,7 +97,7 @@ const BlackButton = ({ children, className, link, width = '256px', height = '60p
   )
   return (
     <>
-      {skipIn ? <div>{inner}</div> : <Grad>{inner}</Grad>}
+      {skipIn ? <div>{inner}</div> : <Grad inline>{inner}</Grad>}
       <style jsx global>{`
         .black-button-bg
           position absolute

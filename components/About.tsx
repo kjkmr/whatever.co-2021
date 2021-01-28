@@ -42,17 +42,17 @@ export const Header = (props: HeaderProps) => {
       <div className={langStyle('header')} style={headerStyle}>
         <div className="upper">
           <div className="text" style={textStyle}>
-            <div><Grad className="t1">Whatever</Grad></div>
-            <div style={titleStyle1}><Grad className="t2" style={titleStyle2}>{props.title}</Grad></div>
+            <div><Grad className="t1" inline>Whatever</Grad></div>
+            <div style={titleStyle1}><Grad className="t2" style={titleStyle2} inline>{props.title}</Grad></div>
             {/* <Grad><div className="t2" style={titleStyle}>{props.title}</div></Grad> */}
-            {props.subtitle != '-' ? <div><Grad className="t3" ><span className="hr" />{props.subtitle}</Grad></div> : null}
+            {props.subtitle != '-' ? <div><Grad className="t3" inline><span className="hr" />{props.subtitle}</Grad></div> : null}
           </div>
           <div className="image" >
             <GradImg lighten={true}><img src={props.image} alt="" style={imageStyle} /></GradImg>
           </div>
         </div>
         <div className="desc">
-          {props.desc.split('\n').map((line, index) => <Grad key={index}><div className="desc-line">{line}</div></Grad>)}
+          {props.desc.split('\n').map((line, index) => <Grad key={index} inline><div className="desc-line">{line}</div></Grad>)}
         </div>
       </div >
       <style jsx>{`
@@ -173,16 +173,16 @@ export const SectionHeader = ({ num, title, body }: SectionTitleProps) => (
   <div className={langStyle('header')}>
     <div className="row">
       <div className="num-column">
-        <Grad className="num">{num}</Grad>
+        <Grad className="num" inline>{num}</Grad>
       </div>
       <div>
         <div>
           {title.split('\n').map((line, index) => (
-            <Grad key={index} className="title">{line}</Grad>
+            <Grad key={index} className="title" inline>{line}</Grad>
           ))}
         </div>
         <div className="body">
-          {body?.split('\n').map((line, index) => <Grad key={index} className="body-line" inline={false}><div key={index}>{line}</div></Grad>)}
+          {body?.split('\n').map((line, index) => <Grad key={index} className="body-line"><div key={index}>{line}</div></Grad>)}
         </div>
       </div>
     </div>

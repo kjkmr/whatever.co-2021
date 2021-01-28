@@ -9,8 +9,8 @@ const NewsDetail = ({ entry }: { entry: Entry }) => (
     <div className="news">
       <div className="image"><GradImg><img src={entry.hero_image} alt="" /></GradImg></div>
       <div className="white">
-        <div><Grad className="date">{entry.date}</Grad></div>
-        <div><Grad className="title"><div dangerouslySetInnerHTML={{ __html: entry.title }} /></Grad></div>
+        <div><Grad className="date" inline>{entry.date}</Grad></div>
+        <div><Grad className="title" inline><div dangerouslySetInnerHTML={{ __html: entry.title }} /></Grad></div>
       </div>
       <div className="body"><EntryBody content={entry.content!} /></div>
     </div>

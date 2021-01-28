@@ -13,11 +13,11 @@ const toTop = () => {
 const Footer = () => (
   <>
     <div className="footer">
-      <div><Grad className="logo" whiteText={true}><img src="/footer/whatever.png" /></Grad></div>
+      <div><Grad className="logo" whiteText inline><img src="/footer/whatever.png" /></Grad></div>
       <ContactForm />
       <div className="sns">
-        <div><Grad className="sns-buttons" whiteText={true}><SNSButtons /></Grad></div>
-        <div style={{ textAlign: 'right' }}><Grad className="copyright" whiteText={true}>© Whatever Inc.</Grad></div>
+        <div><Grad className="sns-buttons" whiteText inline><SNSButtons /></Grad></div>
+        <div style={{ textAlign: 'right' }}><Grad className="copyright" whiteText inline>© Whatever Inc.</Grad></div>
       </div>
       <div className="pagetop"><hr /><span onClick={toTop}>Page Top</span></div>
     </div>

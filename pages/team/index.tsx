@@ -24,9 +24,9 @@ const SingleMember = ({ member: m }: { member: Member }) => {
         <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
           <div>
             <GradImg mouseEntered={entered}><img src={m.image} alt="" /></GradImg>
-            <div><Grad className="region">{m.region.join(' / ')}</Grad></div>
-            <div><Grad className="title">{m.title}</Grad></div>
-            <div><Grad className="name">{m.name}</Grad></div>
+            <div><Grad className="region" inline>{m.region.join(' / ')}</Grad></div>
+            <div><Grad className="title" inline>{m.title}</Grad></div>
+            <div><Grad className="name" inline>{m.name}</Grad></div>
           </div>
         </a>
       </Link>

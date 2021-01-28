@@ -12,7 +12,7 @@ const LogoGrid = ({ list, className = '' }: { list: string[], className?: string
   <>
     <div className={`logo-grid ${className}`}>
       {list.map((name) => (
-        <div key={name} className="inner"><Grad className="image"><img src={`/about/location/${name.replace(/[^\w+]/g, '').toLowerCase()}.png`} alt={name} /></Grad></div>
+        <div key={name} className="inner"><Grad className="image" inline><img src={`/about/location/${name.replace(/[^\w+]/g, '').toLowerCase()}.png`} alt={name} /></Grad></div>
       ))}
     </div>
     <style jsx>{`
@@ -48,9 +48,9 @@ const Section1 = () => (
     <div className={langStyle('section1')}>
       <hr />
       <SectionHeader num="01" title={t('location_1_title')!} body={t('location_1_body')!} />
-      <div><Grad className="subtitle">{t('location_1_inhouse')}</Grad></div>
+      <div><Grad className="subtitle" inline>{t('location_1_inhouse')}</Grad></div>
       <LogoGrid className="logo1" list={['WHILL', 'MUJI', 'SONY', 'Cotodama', 'avex group']} />
-      <div><Grad className="subtitle">{t('location_1_overseas')}</Grad></div>
+      <div><Grad className="subtitle" inline>{t('location_1_overseas')}</Grad></div>
       <LogoGrid className="logo2" list={['Slack', 'Shopify', 'Airbnb', 'Google', 'HERMES']} />
       <LogoGrid className="logo3" list={['intel', 'NEW STAND']} />
     </div>
@@ -102,8 +102,8 @@ const Member = ({ image, title, name, slug }: { image: string, title: string, na
       <Link href={`/team/${slug}`}>
         <a ref={ref} className={langStyle('member')}>
           <div><GradImg mouseEntered={entered}><img src={`/about/location/${image}@2x.jpg`} alt="" /></GradImg></div>
-          <div><Grad className="title">{title}</Grad></div>
-          <div><Grad className="name">{name}</Grad></div>
+          <div><Grad className="title" inline>{title}</Grad></div>
+          <div><Grad className="name" inline>{name}</Grad></div>
         </a>
       </Link>
       <style jsx>{`
@@ -171,20 +171,13 @@ const Section2 = () => (
 )
 
 const Location = () => (
-  <>
-    <Layout title="About" side="About" backto="/about" footer={<Footer left="Workstyle" right="Genres" />}>
-      <div className="location">
-        <Header headerMargin={79} title="Location" subtitle={t('location_title')!} desc={t('location_description')!} image="/about/pict03.svg" imageWidth={554} />
-        <Section1 />
-        <Section2 />
-      </div>
-    </Layout>
-    <style jsx>{`
-      @import 'lib/vw.styl'
-      {/* .location
-        margin 80px vwpx(80) 0 */}
-    `}</style>
-  </>
+  <Layout title="About" side="About" backto="/about" footer={<Footer left="Workstyle" right="Genres" />}>
+    <div className="location">
+      <Header headerMargin={79} title="Location" subtitle={t('location_title')!} desc={t('location_description')!} image="/about/pict03.svg" imageWidth={554} />
+      <Section1 />
+      <Section2 />
+    </div>
+  </Layout>
 )
 
 export default Location

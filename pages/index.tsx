@@ -153,14 +153,14 @@ const Tagline = () => (
     <div className={langStyle('tagline')}>
       {isMobile()
         ? <div className="title">
-          <Grad className="line1" inline={false}>Make</Grad>
-          <Grad className="line2" inline={false}>whatever.</Grad>
-          <Grad className="line1" inline={false}>Rules,</Grad>
-          <Grad className="line2" inline={false}>whatever.</Grad>
+          <Grad className="line1">Make</Grad>
+          <Grad className="line2">whatever.</Grad>
+          <Grad className="line1">Rules,</Grad>
+          <Grad className="line2">whatever.</Grad>
         </div>
         : <div className="title">
-          <Grad className="line1" inline={false}>Make whatever.</Grad>
-          <Grad className="line2" inline={false}>Rules, whatever.</Grad>
+          <Grad className="line1">Make whatever.</Grad>
+          <Grad className="line2">Rules, whatever.</Grad>
         </div>}
       <div className="desc">
         {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index} className="line">{line}</Grad>)}
@@ -190,7 +190,7 @@ const Tagline = () => (
           margin-left vwpx(71)
       .desc
         position relative
-        margin vwpx(72) vwpx(80) 0
+        margin vwpx(85) vwpx(80) 0
         font-size 0
         :global(.line)
           font-size vwpx(26)
@@ -240,12 +240,12 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image"><GradImg mouseEntered={entered}><img src={work.hero_image} /></GradImg></div>
             <div className="white">
-              <div><Grad className="date">{work.date}</Grad></div>
-              <div><Grad className="title">{work.title}</Grad></div>
+              <div><Grad className="date" inline>{work.date}</Grad></div>
+              <div><Grad className="title" inline>{work.title}</Grad></div>
             </div>
-            <div><Grad className="subtitle">{work.subtitle}</Grad></div>
-            <div><Grad className="overview">{work.overview}</Grad></div>
-            <div><Grad className="tags">
+            <div><Grad className="subtitle" inline>{work.subtitle}</Grad></div>
+            <div><Grad className="overview" inline>{work.overview}</Grad></div>
+            <div><Grad className="tags" inline>
               <div>{work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}</div>
             </Grad></div>
           </a>
@@ -305,7 +305,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
 const FeaturedWorks = ({ works }: { works: Entry[] }) => (
   <>
     <div className="featured-works">
-      <Grad className="featured-works-title" inline={false}>Featured Works</Grad>
+      <Grad className="featured-works-title" inline>Featured Works</Grad>
       <div className="items">
         {works.map(work => <FeaturedWorkItem key={work.slug} work={work} />)}
       </div>
@@ -351,8 +351,8 @@ const NewsItem = ({ data }: { data: Entry }) => {
         <Link href={`/news/${data.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <GradImg mouseEntered={entered}><img src={data.hero_image} width="256" height="144" /></GradImg>
-            <div><Grad className="date">{data.date}</Grad></div>
-            <div><Grad className="title">{data.title}</Grad></div>
+            <div><Grad className="date" inline>{data.date}</Grad></div>
+            <div><Grad className="title" inline>{data.title}</Grad></div>
           </a>
         </Link>
       </div>
@@ -387,7 +387,7 @@ const NewsItem = ({ data }: { data: Entry }) => {
 const LatestNews = ({ news }: { news: Entry[] }) => (
   <>
     <div className="latest-news">
-      <h1><Grad className="latest-news-title">Latest News</Grad></h1>
+      <h1><Grad className="latest-news-title" inline>Latest News</Grad></h1>
       <div className="items">
         {news.map(item => <NewsItem key={item.slug} data={item} />)}
       </div>

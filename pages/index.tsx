@@ -462,7 +462,7 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
         @import 'lib/vw-mobile.styl'
         .latest-news
           margin-top vwpx(75)
-          padding vwpx(75) 0 0 vwpx(50)
+          padding vwpx(75) 0 vwpx(75) vwpx(50)
           :global(.latest-news-title)
             font-size vwpx(18)
         .items

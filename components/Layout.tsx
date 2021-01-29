@@ -5,6 +5,8 @@ import Menu from 'components/Menu'
 import Sidebar from 'components/Sidebar'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
+import LanguageSelector from './LanguageSelector'
+import { isMobile } from 'lib/isMobile'
 
 let templateName: string
 // templateName = 'Top_1366'
@@ -45,8 +47,9 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
   const templateStyle: { [prop: string]: string } = {}
   if (templateName) {
     templateStyle.backgroundImage = `url(/_/${templateName}_${useRouter().locale!}.png)`
-    // templateStyle.backgroundPosition = 'top -1747px left'
+    // templateStyle.backgroundPosition = 'top -110px left'
   }
+  const mobile = isMobile()
   return (
     <>
       <div>
@@ -60,12 +63,13 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
         <div className="container" style={templateStyle}>
           <div className="contents">
             <Menu />
-            <Sidebar title={side} backto={backto ? { name: side, href: backto } : undefined} />
+            {mobile ? null : <Sidebar title={side} backto={backto ? { name: side, href: backto } : undefined} />}
             <div className="main">
               {showHeader ? <Header /> : <div />}
               {children}
             </div>
           </div>
+          {mobile ? <div className="langselect"><LanguageSelector /></div> : null}
           {footer}
           <Footer />
         </div>
@@ -76,6 +80,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           width 100%
           background-repeat no-repeat
           background-position left top
+          overflow hidden
         .contents
           display flex
           align-items flex-start
@@ -88,7 +93,12 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           .main
             width 100%
             margin 0
-            min-height 3000px
+          .langselect
+            position fixed
+            bottom 78px
+            left 30px
+            transform-origin top left
+            transform rotate(90deg)
       `}</style>
     </>
   )

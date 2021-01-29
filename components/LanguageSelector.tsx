@@ -25,8 +25,16 @@ const LanguageSelector = ({ activeColor = 'black', inactiveColor = '#cccccc', se
   <>
     <div className="language-selector"><LangLink lang="ja" label="JA" activeColor={activeColor} inactiveColor={inactiveColor} onSelected={onSelected} /><span className="sp" style={{ color: inactiveColor }} >{separator}</span><LangLink lang="en" label="EN" activeColor={activeColor} inactiveColor={inactiveColor} onSelected={onSelected} /><span className="sp" style={{ color: inactiveColor }}>{separator}</span><LangLink lang="zh-hans" label="ZH" activeColor={activeColor} inactiveColor={inactiveColor} onSelected={onSelected} /></div>
     <style jsx>{`
+      .language-selector
+        font-size 1.2rem
+        letter-spacing 0.12em
+        color #cccccc
+        user-select none
       .sp
         white-space pre
+      @media (--mobile)
+        .language-selector
+          font-size 1.0rem
     `}</style>
   </>
 )

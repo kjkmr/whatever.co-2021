@@ -76,10 +76,6 @@ const Sidebar = ({ title, backto }: SidebarProps) => (
             border-left 1px solid #333333
             margin-right 2px
       .langselect
-        font-size 1.2rem
-        letter-spacing 0.12em
-        color #cccccc
-        user-select none
         margin-right 38px
         margin-top 36px
     `}</style>

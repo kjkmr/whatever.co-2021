@@ -301,7 +301,7 @@ export const GradImg = ({ children, className, lighten, mouseEntered }: GradImgP
   )
 }
 
-export const setupLink = (node: HTMLElement, border: boolean) => {
+export const setupLink = (node: HTMLElement, border: boolean = true) => {
   const [colorA, colorB] = getColors()
   const linearGrad = `linear-gradient(to right, ${colorA}, ${colorB})`
   if (border) {

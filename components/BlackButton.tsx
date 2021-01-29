@@ -14,7 +14,7 @@ type BlackButtonProps = {
   skipIn?: boolean
 }
 
-const BlackButton = ({ children, className, link, width = '256px', height = '60px', backgroundColor = 'black', onClick, skipIn = false }: BlackButtonProps) => {
+const BlackButton = ({ children, className, link, backgroundColor = 'black', onClick, skipIn = false }: BlackButtonProps) => {
   const ref = useRef<HTMLAnchorElement>(null)
   const bgs = useRef<HTMLDivElement[]>([])
   const onMouseEnter = () => {
@@ -62,12 +62,10 @@ const BlackButton = ({ children, className, link, width = '256px', height = '60p
   }, [])
   const inner = (
     <>
-      <div className={classnames(className)}>
-        {link
-          ? <Link href={link}><a ref={ref} >{children}</a></Link>
-          : <a ref={ref} onClick={onClick}>{children}</a>
-        }
-      </div>
+      {link
+        ? <Link href={link}><a ref={ref} >{children}</a></Link>
+        : <a ref={ref} onClick={onClick}>{children}</a>
+      }
       <style jsx>{`
         a
           display flex
@@ -78,9 +76,9 @@ const BlackButton = ({ children, className, link, width = '256px', height = '60p
           font-weight bold
           letter-spacing 0.04em
           box-sizing border-box
-          width ${width}
-          height ${height}
           padding-top 4px
+          width 100%
+          height 100%
           background-color ${backgroundColor}
           border none
           position relative
@@ -95,10 +93,14 @@ const BlackButton = ({ children, className, link, width = '256px', height = '60p
       `}</style>
     </>
   )
+  const cls = classnames('black-button', className)
   return (
     <>
-      {skipIn ? <div>{inner}</div> : <Grad inline>{inner}</Grad>}
+      {skipIn ? <div className={cls}>{inner}</div> : <Grad className={cls}>{inner}</Grad>}
       <style jsx global>{`
+        .black-button
+          width 256px
+          height 60px
         .black-button-bg
           position absolute
           top 0
@@ -107,6 +109,10 @@ const BlackButton = ({ children, className, link, width = '256px', height = '60p
           height 100%
           background-color red
           z-index -1
+        @media (--mobile)
+          .black-button
+            width 187px
+            height 50px
       `}</style>
     </>
   )

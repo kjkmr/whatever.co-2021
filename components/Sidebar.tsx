@@ -78,6 +78,9 @@ const Sidebar = ({ title, backto }: SidebarProps) => (
       .langselect
         margin-right 38px
         margin-top 36px
+      @media (--mobile)
+        .sidebar
+          display none
     `}</style>
   </>
 )

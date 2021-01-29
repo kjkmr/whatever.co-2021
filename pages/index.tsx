@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { Entry, Tag, getNews, getWorksByTag } from 'lib/api'
@@ -9,7 +9,6 @@ import Layout from 'components/Layout'
 import BlackButton from 'components/BlackButton'
 import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
-import { Desktop, Mobile } from 'components/Responsive'
 
 const Player = ({ onClick }: { onClick?: any }) => (
   <>
@@ -107,10 +106,7 @@ const Showreel = () => {
             <video ref={video} src="/index/reel-preview.mp4" autoPlay={true} loop muted></video>
           </GradImg>
         </div>
-        <div className="button">
-          <Desktop><BlackButton height="80px" onClick={onClickWatch} >Watch Reel</BlackButton></Desktop>
-          <Mobile><BlackButton width="187px" height="70px" onClick={onClickWatch} >Watch Reel</BlackButton></Mobile>
-        </div>
+        <div className="watch-reel"><BlackButton className="button" onClick={onClickWatch}>Watch Reel</BlackButton></div>
       </div>
       {showPlayer ? <Player onClick={onClose} /> : null}
       <style jsx>{`
@@ -119,30 +115,39 @@ const Showreel = () => {
           width 100%
           height calc(100vh - 40px)
           font-size 0
-        .video
-          position fixed
-          top 0
-          left 80px
-          overflow hidden
-        video
-          width calc(100vw - 80px)
-          height calc(100vh - 40px)
-          object-fit cover
-        .button
-          position absolute
-          right 0
-          bottom -40px
+          .video
+            position fixed
+            top 0
+            left 80px
+            overflow hidden
+          video
+            width calc(100vw - 80px)
+            height calc(100vh - 40px)
+            object-fit cover
+          .watch-reel
+            position absolute
+            width 256px
+            height 80px
+            right 0
+            bottom -40px
+            :global(.button)
+              width 256px
+              height 80px
         @media (--mobile)
           .showreel
             height calc(100vh - 35px)
-          .video
-            left: 0
-          video
-            width: 100vw
-            height calc(100vh - 35px)
-          .button
-            width: 187px
-            bottom -35px
+            .video
+              left 0
+            video
+              width 100vw
+              height calc(100vh - 35px)
+            .watch-reel
+              width 187px
+              height 70px
+              bottom -35px
+              :global(.button)
+                width 187px
+                height 70px
       `}</style>
     </>
   )
@@ -151,23 +156,21 @@ const Showreel = () => {
 const Tagline = () => (
   <>
     <div className={langStyle('tagline')}>
-      {isMobile()
-        ? <div className="title">
+      <div className="title-desktop">
+        <Grad className="line1">Make whatever.</Grad>
+        <Grad className="line2">Rules, whatever.</Grad>
+      </div>
+      <div className="title-mobile">
           <Grad className="line1">Make</Grad>
           <Grad className="line2">whatever.</Grad>
           <Grad className="line1">Rules,</Grad>
           <Grad className="line2">whatever.</Grad>
-        </div>
-        : <div className="title">
-          <Grad className="line1">Make whatever.</Grad>
-          <Grad className="line2">Rules, whatever.</Grad>
-        </div>}
+      </div>
       <div className="desc">
         {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index} className="line">{line}</Grad>)}
       </div>
       <div className="link">
-        <Desktop><BlackButton link="/about" >Learn more</BlackButton></Desktop>
-        <Mobile><BlackButton link="/about" width="187px" height="50px">Learn more</BlackButton></Mobile>
+        <BlackButton link="/about" >Learn more</BlackButton>
       </div>
     </div>
     <style jsx>{`
@@ -177,23 +180,25 @@ const Tagline = () => (
         margin-top vwpx(211)
         img
           display block
-      .title
+      .title-desktop
         font-size 0
         margin-left vwpx(69)
         :global(.line1, .line2)
           font-size vwpx(143)
-          font-weight bold
+          font-weight 700
           margin 0
           margin-bottom vwpx(13)
         :global(.line2)
           margin-left vwpx(71)
+      .title-mobile
+        display none
       .desc
         position relative
         margin vwpx(85) vwpx(80) 0
         font-size 0
         :global(.line)
           font-size vwpx(26)
-          font-weight bold
+          font-weight 700
           line-height vwpx(60)
           margin 0
       .link
@@ -212,13 +217,18 @@ const Tagline = () => (
         @import 'lib/vw-mobile.styl'
         .tagline
           margin-top vwpx(137)
-          .title
-            :global(.line1,.line2)
+          .title-desktop
+            display none
+          .title-mobile
+            display block
+            margin-left vwpx(30)
+            :global(.line1, .line2)
               font-size vwpx(65.5)
-              margin-left vwpx(9)
+              font-weight 700
+              margin-left vwpx(-5)
               margin-bottom vwpx(4.5)
             :global(.line2)
-              margin-left vwpx(41)
+              margin-left vwpx(28)
           .desc
             margin vwpx(37) vwpx(50) 0
             :global(.line)
@@ -333,8 +343,7 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
         {works.map(work => <FeaturedWorkItem key={work.slug} work={work} />)}
       </div>
       <div className="link">
-        <Desktop><BlackButton link="/work">All Works</BlackButton></Desktop>
-        <Mobile><BlackButton link="/work" width="187px" height="50px">All Works</BlackButton></Mobile>
+        <BlackButton link="/work">All Works</BlackButton>
       </div>
     </div>
     <style jsx>{`
@@ -358,7 +367,7 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .featured-works
-          margin vwpx(106) vwpx(30) 0 vwpx(50)
+          margin vwpx(116) vwpx(30) 0 vwpx(50)
           :global(.featured-works-title)
             font-size vwpx_min(38)
           .items
@@ -431,8 +440,7 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
         {news.map(item => <NewsItem key={item.slug} data={item} />)}
       </div>
       <div className="link">
-        <Desktop><BlackButton link="/news" >All News</BlackButton></Desktop>
-        <Mobile><BlackButton link="/news" width="187px" height="50px">All News</BlackButton></Mobile>
+        <BlackButton link="/news" >All News</BlackButton>
       </div>
     </div >
     <style jsx>{`

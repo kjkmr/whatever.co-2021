@@ -2,7 +2,6 @@ import { animateScroll as scroll } from 'react-scroll'
 import ContactForm from 'components/ContactForm'
 import SNSButtons from 'components/SNSButtons'
 import { Grad } from 'components/Grad'
-import { Mobile } from './Responsive'
 
 const toTop = () => {
   scroll.scrollToTop({
@@ -16,7 +15,7 @@ const Footer = () => (
     <div className="footer">
       <div><Grad className="logo" whiteText inline><img src="/footer/whatever.png" /></Grad></div>
       <ContactForm />
-      <Mobile><hr /></Mobile>
+      <hr className="line" />
       <div className="sns">
         <div><Grad className="sns-buttons" whiteText inline><SNSButtons /></Grad></div>
         <div className="copyright"><Grad className="copyright-inner" whiteText inline>© Whatever Inc.</Grad></div>
@@ -35,6 +34,8 @@ const Footer = () => (
           display inline-block
           margin-bottom 97px
           mix-blend-mode lighten
+        .line
+          display none
         .sns
           position absolute
           bottom 99px
@@ -69,13 +70,14 @@ const Footer = () => (
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .footer
-          padding vwpx(75) vwpx(30) vwpx(50)
+          padding vwpx(74) vwpx(30) vwpx(50)
           height auto
           :global(.logo)
             margin-bottom 73px
             img
               width vwpx(117)
-          hr
+          hr.line
+            display block
             border none
             border-top 1px solid #707070
             margin-top 75px

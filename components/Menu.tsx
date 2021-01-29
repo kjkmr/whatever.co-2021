@@ -6,7 +6,6 @@ import LanguageSelector from 'components/LanguageSelector'
 import ContactForm from 'components/ContactForm'
 import SNSButtons from 'components/SNSButtons'
 import { Grad, GradLink } from 'components/Grad'
-import { Desktop, Mobile } from 'components/Responsive'
 
 const Menu = () => {
   const [opened, setOpened] = useState(false)
@@ -33,20 +32,11 @@ const Menu = () => {
           </div>
         </> : null}
         <div className={classNames('button', { close: opened })}>
-          <Desktop>
-            <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onClick}>
-              <div className="black" style={{ display: opened ? 'none' : 'block' }}></div>
-              <div className="l1"></div>
-              <div className="l2"></div>
-            </BlackButton>
-          </Desktop>
-          <Mobile>
-            <BlackButton width="50px" height="50px" backgroundColor="transparent" onClick={onClick}>
-              <div className="black" style={{ display: opened ? 'none' : 'block' }}></div>
-              <div className="l1"></div>
-              <div className="l2"></div>
-            </BlackButton>
-          </Mobile>
+          <BlackButton className="button-inner" backgroundColor="transparent" onClick={onClick}>
+            <div className="black" style={{ display: opened ? 'none' : 'block' }}></div>
+            <div className="l1"></div>
+            <div className="l2"></div>
+          </BlackButton>
         </div>
       </div>
       <style jsx>{`
@@ -113,6 +103,9 @@ const Menu = () => {
           padding 0
           border none
           background transparent
+          :global(.button-inner)
+            width 80px
+            height 80px
         .black
           position absolute
           top 0
@@ -141,6 +134,12 @@ const Menu = () => {
             top 39px
             transform rotate(-45deg)
         @media (--mobile)
+          .button
+            width 50px
+            height 50px
+            :global(.button-inner)
+              width 50px
+              height 50px
           .black
             width 50px
             height 50px

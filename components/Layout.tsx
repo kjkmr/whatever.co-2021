@@ -6,7 +6,6 @@ import Sidebar from 'components/Sidebar'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import LanguageSelector from './LanguageSelector'
-import { isMobile } from 'lib/isMobile'
 
 let templateName: string
 // templateName = 'Top_1366'
@@ -47,9 +46,8 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
   const templateStyle: { [prop: string]: string } = {}
   if (templateName) {
     templateStyle.backgroundImage = `url(/_/${templateName}_${useRouter().locale!}.png)`
-    // templateStyle.backgroundPosition = 'top -110px left'
+    // templateStyle.backgroundPosition = 'top -54px left'
   }
-  const mobile = isMobile()
   return (
     <>
       <div>
@@ -63,13 +61,13 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
         <div className="container" style={templateStyle}>
           <div className="contents">
             <Menu />
-            {mobile ? null : <Sidebar title={side} backto={backto ? { name: side, href: backto } : undefined} />}
+            <Sidebar title={side} backto={backto ? { name: side, href: backto } : undefined} />
             <div className="main">
               {showHeader ? <Header /> : <div />}
               {children}
             </div>
           </div>
-          {mobile ? <div className="langselect"><LanguageSelector /></div> : null}
+          <div className="langselect"><LanguageSelector /></div>
           {footer}
           <Footer />
         </div>
@@ -87,6 +85,8 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
         .main
           width calc(100vw - 80px)
           margin-left 80px
+        .langselect
+          display none
         @media (--mobile)
           .container
             background-size 375px auto
@@ -94,6 +94,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
             width 100%
             margin 0
           .langselect
+            display block
             position fixed
             bottom 78px
             left 30px

@@ -13,9 +13,9 @@ import { Grad, GradImg } from 'components/Grad'
 const Player = ({ onClick }: { onClick?: any }) => (
   <>
     <div className="player">
-      <Grad className="player-bg" inline={false} startImmediately />
+      <Grad className="player-bg" startImmediately />
       <div className="padding">
-        <Grad className="aspect-ratio" inline={false}>
+        <Grad className="aspect-ratio">
           <iframe src="https://www.youtube.com/embed/rsBTSWTbH4I?autoplay=1;controls=0;rel=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </Grad>
       </div>
@@ -161,10 +161,10 @@ const Tagline = () => (
         <Grad className="line2">Rules, whatever.</Grad>
       </div>
       <div className="title-mobile">
-          <Grad className="line1">Make</Grad>
-          <Grad className="line2">whatever.</Grad>
-          <Grad className="line1">Rules,</Grad>
-          <Grad className="line2">whatever.</Grad>
+        <Grad className="line1">Make</Grad>
+        <Grad className="line2">whatever.</Grad>
+        <Grad className="line1">Rules,</Grad>
+        <Grad className="line2">whatever.</Grad>
       </div>
       <div className="desc">
         {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index} className="line">{line}</Grad>)}

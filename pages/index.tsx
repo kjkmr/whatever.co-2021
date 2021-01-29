@@ -103,7 +103,7 @@ const Showreel = () => {
       <div className="showreel">
         <div className="video" style={{ height: videoHeight }}>
           <GradImg>
-            <video ref={video} src="/index/reel-preview.mp4" autoPlay={true} loop muted></video>
+            <video ref={video} src="/index/reel-preview.mp4" autoPlay playsInline loop muted></video>
           </GradImg>
         </div>
         <div className="watch-reel"><BlackButton className="button" onClick={onClickWatch}>Watch Reel</BlackButton></div>

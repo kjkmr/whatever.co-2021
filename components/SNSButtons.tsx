@@ -22,6 +22,11 @@ const SNSButtons = () => (
           border none
           &:first-child
             margin 0
+        @media (--mobile)
+          a
+            width 30px
+            height 30px
+            background-size 30px 30px
     `}</style>
   </>
 )

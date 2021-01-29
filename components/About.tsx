@@ -1,8 +1,7 @@
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { langStyle } from 'lib/i18n'
-import { Grad, GradImg } from './Grad'
-import React from 'react'
+import { Grad, GradImg } from 'components/Grad'
+import BlackButton from 'components/BlackButton'
 
 type HeaderProps = {
   headerMargin?: number
@@ -43,17 +42,17 @@ export const Header = (props: HeaderProps) => {
       <div className={langStyle('header')} style={headerStyle}>
         <div className="upper">
           <div className="text" style={textStyle}>
-            <div><Grad className="t1">Whatever</Grad></div>
-            <div style={titleStyle1}><Grad className="t2" style={titleStyle2}>{props.title}</Grad></div>
+            <div><Grad className="t1" inline>Whatever</Grad></div>
+            <div style={titleStyle1}><Grad className="t2" style={titleStyle2} inline>{props.title}</Grad></div>
             {/* <Grad><div className="t2" style={titleStyle}>{props.title}</div></Grad> */}
-            {props.subtitle != '-' ? <div><Grad className="t3" ><span className="hr" />{props.subtitle}</Grad></div> : null}
+            {props.subtitle != '-' ? <div><Grad className="t3" inline><span className="hr" />{props.subtitle}</Grad></div> : null}
           </div>
           <div className="image" >
             <GradImg lighten={true}><img src={props.image} alt="" style={imageStyle} /></GradImg>
           </div>
         </div>
         <div className="desc">
-          {props.desc.split('\n').map((line, index) => <Grad key={index}><div className="desc-line">{line}</div></Grad>)}
+          {props.desc.split('\n').map((line, index) => <Grad key={index} inline><div className="desc-line">{line}</div></Grad>)}
         </div>
       </div >
       <style jsx>{`
@@ -117,40 +116,37 @@ export const Header = (props: HeaderProps) => {
 export const Footer = ({ left, right }: { left: string, right: string }) => (
   <>
     <div className="footer">
-      <Link href={`/about/${left.toLowerCase()}`}>
-        <a style={{ borderRight: '1px solid #333' }}>
-          <div className="line"></div>
-          <div style={{ marginLeft: 40 }}>
-            <div><Grad className="whatever" whiteText={true}>Whatever</Grad></div>
-            <div><Grad className="title" whiteText={true}>{left}</Grad></div>
-          </div>
-        </a>
-      </Link>
-      <Link href={`/about/${right.toLowerCase()}`}>
-        <a style={{ justifyContent: 'flex-end' }}>
-          <div style={{ marginRight: 40, textAlign: 'right' }}>
-            <div><Grad className="whatever" whiteText={true}>Whatever</Grad></div>
-            <div><Grad className="title" whiteText={true}>{right}</Grad></div>
-          </div>
-          <div className="line"></div>
-        </a>
-      </Link>
+      <BlackButton width="100%" height="100%" className="footer-button" link={`/about/${left.toLowerCase()}`}>
+        <div className="line"></div>
+        <div style={{ marginLeft: 40 }}>
+          <div className="whatever" >Whatever</div>
+          <div className="title" >{left}</div>
+        </div>
+      </BlackButton>
+      <BlackButton width="100%" height="100%" className="footer-button right" link={`/about/${right.toLowerCase()}`}>
+        <div style={{ marginRight: 40, textAlign: 'right' }}>
+          <div className="whatever" >Whatever</div>
+          <div className="title" >{right}</div>
+        </div>
+        <div className="line"></div>
+      </BlackButton>
     </div>
     <style jsx>{`
       .footer
         position relative
         height 160px
-        font-size 0
-        color white
-        background-color black
         display grid
         grid-template-columns repeat(2, 1fr)
         grid-gap 0
-        a
-          display flex
-          align-items center
-          color white
-          border none
+        :global(.footer-button)
+          width 100%
+          height 100%
+          border-right 1px solid #333333
+          box-sizing border-box
+          :global(a)
+            justify-content start
+        :global(.right a)
+          justify-content flex-end
         .line
           border-top 1px solid #fff
           width 40px
@@ -177,16 +173,16 @@ export const SectionHeader = ({ num, title, body }: SectionTitleProps) => (
   <div className={langStyle('header')}>
     <div className="row">
       <div className="num-column">
-        <Grad className="num">{num}</Grad>
+        <Grad className="num" inline>{num}</Grad>
       </div>
       <div>
         <div>
           {title.split('\n').map((line, index) => (
-            <Grad key={index} className="title">{line}</Grad>
+            <Grad key={index} className="title" inline>{line}</Grad>
           ))}
         </div>
         <div className="body">
-          {body?.split('\n').map((line, index) => <Grad key={index} className="body-line" inline={false}><div key={index}>{line}</div></Grad>)}
+          {body?.split('\n').map((line, index) => <Grad key={index} className="body-line"><div key={index}>{line}</div></Grad>)}
         </div>
       </div>
     </div>

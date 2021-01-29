@@ -16,10 +16,10 @@ const LargeWork = ({ work }: { work: Entry }) => {
               <GradImg mouseEntered={entered}><img src={work.hero_image} /></GradImg>
             </div>
             <div className="text">
-              <div><Grad className="date">{work.date}</Grad></div>
-              <div><Grad className="title"><span dangerouslySetInnerHTML={{ __html: work.title }}></span></Grad></div>
-              {work.subtitle ? (<div><Grad className="subtitle">{work.subtitle}</Grad></div>) : null}
-              <div><Grad className="tags">
+              <div><Grad className="date" inline>{work.date}</Grad></div>
+              <div><Grad className="title" inline><span dangerouslySetInnerHTML={{ __html: work.title }}></span></Grad></div>
+              {work.subtitle ? (<div><Grad className="subtitle" inline>{work.subtitle}</Grad></div>) : null}
+              <div><Grad className="tags" inline>
                 {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
               </Grad></div>
             </div>
@@ -72,10 +72,10 @@ const SmallWork = ({ work }: { work: Entry }) => {
               <GradImg mouseEntered={entered}><img src={work.hero_image} /></GradImg>
             </div>
             <div className="text">
-              <div><Grad className="date">{work.date}</Grad></div>
-              <div><Grad className="title"><span dangerouslySetInnerHTML={{ __html: work.title }}></span></Grad></div>
-              {work.subtitle ? (<div><Grad className="subtitle">{work.subtitle}</Grad></div>) : null}
-              <div><Grad className="tags">
+              <div><Grad className="date" inline>{work.date}</Grad></div>
+              <div><Grad className="title" inline><span dangerouslySetInnerHTML={{ __html: work.title }}></span></Grad></div>
+              {work.subtitle ? (<div><Grad className="subtitle" inline>{work.subtitle}</Grad></div>) : null}
+              <div><Grad className="tags" inline>
                 {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
               </Grad></div>
             </div>

@@ -11,10 +11,10 @@ const Detail = ({ title }: { title: string }) => {
   return (
     <>
       <div className={langStyle('detail')}>
-        <div><Grad className="whatever">Whatever</Grad></div>
-        <div><Grad className="title">{title}</Grad></div>
-        {subtitle != '-' ? <div><Grad className="subtitle">{subtitle}</Grad></div> : null}
-        <div><Grad className="desc"><div dangerouslySetInnerHTML={{ __html: t(`about_${key}_description`)?.replace('\n', '<br />') || '' }}></div></Grad></div>
+        <div><Grad className="whatever" inline>Whatever</Grad></div>
+        <div><Grad className="title" inline>{title}</Grad></div>
+        {subtitle != '-' ? <div><Grad className="subtitle" inline>{subtitle}</Grad></div> : null}
+        <div><Grad className="desc" inline><div dangerouslySetInnerHTML={{ __html: t(`about_${key}_description`)?.replace('\n', '<br />') || '' }}></div></Grad></div>
         <div className="more"><BlackButton link={`/about/${key}`} >Learn more</BlackButton></div>
       </div>
       <style jsx>{`
@@ -157,12 +157,12 @@ const AboutPage = () => (
   <>
     <Layout title="About" side="About">
       <div className={langStyle('about')}>
-        <div><Grad className="head">What’s Whatever<span className="q">?</span></Grad></div>
+        <div><Grad className="head" inline>What’s Whatever<span className="q">?</span></Grad></div>
         <div className="text">
           {t('about_statement')?.split('\n\n').map((p, i) => (
             <div key={i}>
               {p.split('\n').map((line, index) => (
-                <Grad key={index} className="p">{line}</Grad>
+                <Grad key={index} className="p" inline>{line}</Grad>
               ))}
             </div>
           ))}

@@ -22,9 +22,9 @@ const Header = ({ work }: { work: Entry }) => {
         <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={work.hero_image} alt="" /></GradImg></div>
         <div className="info">
           <div className="inner">
-            <div><Grad className="date">{work.date}</Grad></div>
-            <div><Grad className="title"><div dangerouslySetInnerHTML={{ __html: work.title }} /></Grad></div>
-            <div><Grad className="tags">
+            <div><Grad className="date" inline>{work.date}</Grad></div>
+            <div><Grad className="title" inline><div dangerouslySetInnerHTML={{ __html: work.title }} /></Grad></div>
+            <div><Grad className="tags" inline>
               {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} link={true} />)}
             </Grad></div>
           </div>
@@ -75,8 +75,8 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
   <>
     <div className="excerpt">
       <div className="text">
-        <div><Grad className="title"><div dangerouslySetInnerHTML={{ __html: title }} /></Grad></div>
-        <div><Grad className="desc"><div dangerouslySetInnerHTML={{ __html: description }}></div></Grad></div>
+        <div><Grad className="title" inline><div dangerouslySetInnerHTML={{ __html: title }} /></Grad></div>
+        <div><Grad className="desc" inline><div dangerouslySetInnerHTML={{ __html: description }}></div></Grad></div>
       </div>
       <div className="image">
         <GradImg><img src={image} alt="" /></GradImg>
@@ -121,8 +121,8 @@ const CreditMember = ({ member }: { member: Person }) => {
   return (
     <>
       <div className="member">
-        <div><Grad className="role">{member.role}</Grad></div>
-        <div><Grad className="name">
+        <div><Grad className="role" inline>{member.role}</Grad></div>
+        <div><Grad className="name" inline>
           {name}
           {member.company ? <span className="company"> {member.url ? <GradLink href={member.url} target="_blank" rel="noopener noreferrer">({member.company})</GradLink> : `(${member.company})`}</span> : null}
         </Grad></div>
@@ -148,7 +148,7 @@ const CreditGroup = ({ credit }: { credit: Credit }) => (
   <>
     <div className="credit-group">
       {credit.name
-        ? <div className={classnames('name', { spacer: credit.name == '-' })}><Grad className="credit-group-name">{credit.name != '-' ? credit.name : null}</Grad></div>
+        ? <div className={classnames('name', { spacer: credit.name == '-' })}><Grad className="credit-group-name" inline>{credit.name != '-' ? credit.name : null}</Grad></div>
         : null}
       {credit.members.map(member => <CreditMember key={member.name} member={member} />)}
     </div>
@@ -173,7 +173,7 @@ const CreditGroup = ({ credit }: { credit: Credit }) => (
 const Credits = ({ credit }: { credit: Credit[] }) => (
   <>
     <div className="credits">
-      <div><Grad className="credits-title">Credit</Grad></div>
+      <div><Grad className="credits-title" inline>Credit</Grad></div>
       {credit.map((credit, index) => <CreditGroup key={index} credit={credit} />)}
     </div>
     <style jsx>{`

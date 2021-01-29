@@ -14,9 +14,9 @@ const NewsItem = ({ entry }: { entry: Entry }) => {
         <Link href={`/news/${entry.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <GradImg mouseEntered={entered}><img src={entry.hero_image} alt="" /></GradImg>
-            <div><Grad className="date">{entry.date}</Grad></div>
-            <div><Grad className="title">{entry.title}</Grad></div>
-            <div><Grad className="desc"><div className="desc-inner" dangerouslySetInnerHTML={{ __html: entry.content?.split('<!--more-->')[0] || '' }}></div></Grad></div>
+            <div><Grad className="date" inline>{entry.date}</Grad></div>
+            <div><Grad className="title" inline><div dangerouslySetInnerHTML={{ __html: entry.title }} /></Grad></div>
+            <div><Grad className="desc" inline><div className="desc-inner" dangerouslySetInnerHTML={{ __html: entry.content?.split('<!--more-->')[0] || '' }}></div></Grad></div>
           </a>
         </Link>
       </div>

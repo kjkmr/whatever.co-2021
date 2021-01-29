@@ -1,9 +1,11 @@
 import { ReactNode, useRef, useEffect } from 'react'
 import Link from 'next/link'
+import classnames from 'classnames'
 import { Grad, getColors } from 'components/Grad'
 
 type BlackButtonProps = {
   children?: ReactNode
+  className?: string
   link?: string
   width?: string
   height?: string
@@ -12,7 +14,7 @@ type BlackButtonProps = {
   skipIn?: boolean
 }
 
-const BlackButton = ({ children, link, width = '256px', height = '60px', backgroundColor = 'black', onClick, skipIn = false }: BlackButtonProps) => {
+const BlackButton = ({ children, className, link, backgroundColor = 'black', onClick, skipIn = false }: BlackButtonProps) => {
   const ref = useRef<HTMLAnchorElement>(null)
   const bgs = useRef<HTMLDivElement[]>([])
   const onMouseEnter = () => {
@@ -60,12 +62,10 @@ const BlackButton = ({ children, link, width = '256px', height = '60px', backgro
   }, [])
   const inner = (
     <>
-      <div>
-        {link
-          ? <Link href={link}><a ref={ref} >{children}</a></Link>
-          : <a ref={ref} onClick={onClick}>{children}</a>
-        }
-      </div>
+      {link
+        ? <Link href={link}><a ref={ref} >{children}</a></Link>
+        : <a ref={ref} onClick={onClick}>{children}</a>
+      }
       <style jsx>{`
         a
           display flex
@@ -76,9 +76,9 @@ const BlackButton = ({ children, link, width = '256px', height = '60px', backgro
           font-weight bold
           letter-spacing 0.04em
           box-sizing border-box
-          width ${width}
-          height ${height}
           padding-top 4px
+          width 100%
+          height 100%
           background-color ${backgroundColor}
           border none
           position relative
@@ -86,13 +86,21 @@ const BlackButton = ({ children, link, width = '256px', height = '60px', backgro
           overflow hidden
           cursor pointer
           user-select none
+        @media (--mobile)
+          a
+            font-size 1.4rem
+            padding-top 2px
       `}</style>
     </>
   )
+  const cls = classnames('black-button', className)
   return (
     <>
-      {skipIn ? <div>{inner}</div> : <Grad>{inner}</Grad>}
+      {skipIn ? <div className={cls}>{inner}</div> : <Grad className={cls}>{inner}</Grad>}
       <style jsx global>{`
+        .black-button
+          width 256px
+          height 60px
         .black-button-bg
           position absolute
           top 0
@@ -101,6 +109,10 @@ const BlackButton = ({ children, link, width = '256px', height = '60px', backgro
           height 100%
           background-color red
           z-index -1
+        @media (--mobile)
+          .black-button
+            width 187px
+            height 50px
       `}</style>
     </>
   )

@@ -130,74 +130,13 @@ export type GradProps = {
   startImmediately?: boolean
 }
 
-export const Grad = ({ children, className, style, whiteText = false, inline = true, startImmediately = false }: GradProps) => {
-
+export const Grad = ({ children, className, style, whiteText = false, inline = false, startImmediately = false }: GradProps) => {
   const ref = useRef<HTMLDivElement>(null)
   useLayoutEffect(() => setup(ref.current!, whiteText, inline, startImmediately), [])
   return (
-    <>
-      <div ref={ref} className={className} style={style}>
-        {children}
-      </div>
-      <style jsx global>{`
-        .grad-effect-base
-          position relative
-          overflow hidden
-          visibility hidden
-          background-color white
-        .grad-effect-black
-          background-color black
-        .grad-effect-fade
-          position absolute
-          top 0
-          left 0
-          width 100%
-          height 100%
-          background-image url(/noise.png), linear-gradient(to right, #fbe105, #f91fae)
-          background-blend-mode overlay, normal
-          mix-blend-mode lighten
-          visibility hidden
-          user-select none
-          pointer-events none
-          > *
-            background-color: transparent !important
-        .grad-effect-multiply
-          mix-blend-mode multiply
-        .grad-effect-image
-          position absolute
-          top 0
-          left 0
-          width 100%
-          height 100%
-          {/* background-color white */}
-          background-image url(/noise.png), linear-gradient(to right, #fbe105, #f91fae)
-          background-size auto, 100% 100%
-          background-blend-mode overlay, normal
-          visibility hidden
-        .grad-effect-slide
-          position absolute
-          background-image url(/noise.png), linear-gradient(to right, #fbe105, #f91fae, #f91fae)
-          background-size auto, 200% 100%
-          background-blend-mode overlay, normal
-          top 0
-          left -100%
-          width 100%
-          height 100%
-          visibility visible
-          user-select none
-          pointer-events none
-        .grad-effect-over
-          position absolute
-          top 0
-          left 0
-          width 100%
-          height 100%
-          background-color red
-          mix-blend-mode screen
-          user-select none
-          pointer-events none
-      `}</style>
-    </>
+    <div ref={ref} className={className} style={style}>
+      {children}
+    </div>
   )
 }
 
@@ -356,15 +295,18 @@ export const GradImg = ({ children, className, lighten, mouseEntered }: GradImgP
           font-size 0
           position relative
           overflow hidden
+          visibility hidden
       `}</style>
     </>
   )
 }
 
-export const setupLink = (node: HTMLElement) => {
+export const setupLink = (node: HTMLElement, border: boolean = true) => {
   const [colorA, colorB] = getColors()
   const linearGrad = `linear-gradient(to right, ${colorA}, ${colorB})`
-  node.style.borderImage = `${linearGrad} 1`
+  if (border) {
+    node.style.borderImage = `${linearGrad} 1`
+  }
   const onMouseEnter = () => {
     node.style.backgroundImage = linearGrad
     node.classList.add('grad-link-hover')
@@ -376,6 +318,8 @@ export const setupLink = (node: HTMLElement) => {
   node.addEventListener('mouseenter', onMouseEnter)
   node.addEventListener('mouseleave', onMouseLeave)
   return () => {
+    node.style.borderImage = ''
+    node.style.backgroundImage = ''
     node.removeEventListener('mouseenter', onMouseEnter)
     node.removeEventListener('mouseleave', onMouseLeave)
   }
@@ -388,18 +332,20 @@ export type GradLinkProps = {
   target?: string
   rel?: string
   inlineBlock?: boolean
+  border?: boolean
   onClick?: any
 }
 
-export const GradLink = ({ children, className, href, target, rel, inlineBlock = false, onClick }: GradLinkProps) => {
+export const GradLink = ({ children, className, href, target, rel, inlineBlock = false, border = true, onClick }: GradLinkProps) => {
   const ref = useRef<HTMLAnchorElement>(null)
-  useLayoutEffect(() => setupLink(ref.current!), [])
+  useLayoutEffect(() => setupLink(ref.current!, border), [])
   return (
     <>
       <a ref={ref} className={classnames('grad-link', className, { 'inline-block': inlineBlock })} href={href} target={target} rel={rel} onClick={onClick}>{children}</a>
       <style jsx>{`
         .grad-link
           cursor pointer
+          border none
         .inline-block
           display inline-block
       `}</style>

@@ -1,4 +1,3 @@
-import * as React from 'react'
 import Link from 'next/link'
 import { t, langStyle } from 'lib/i18n'
 import { Grad } from 'components/Grad'
@@ -6,12 +5,12 @@ import { Grad } from 'components/Grad'
 const ContactForm = () => (
   <>
     <div className={langStyle('contact-form')}>
-      <div><Grad className="text" whiteText={true}>{t('contactform_contacthere')}</Grad></div>
-      <div><Grad className="contact" whiteText={true}><Link href="/contact"><a>{t('contactform_inquiry')}</a></Link></Grad></div>
+      <div><Grad className="text" whiteText inline>{t('contactform_contacthere')}</Grad></div>
+      <div><Grad className="contact" whiteText inline><Link href="/contact"><a>{t('contactform_inquiry')}</a></Link></Grad></div>
       <div className="newsletter">
-        <div><Grad className="subscribe" whiteText={true}>{t('contactform_register')}</Grad></div>
+        <div><Grad className="subscribe" whiteText inline>{t('contactform_register')}</Grad></div>
         <div>
-          <Grad className="form" whiteText={true}>
+          <Grad className="form" whiteText>
             <form action="">
               <input className="email" type="text" placeholder="Email address"></input>
               <input className="submit" type="submit" value="" />
@@ -86,6 +85,36 @@ const ContactForm = () => (
             font-size 1.5rem
           .email
             font-size 1.5rem
+      @media (--mobile)
+        .contact-form
+          :global(.text)
+            font-size var(--font-size-ja)
+            line-height 1.8
+          :global(.contact)
+            margin-top 1.9rem
+            a
+              font-size 1.4rem
+              padding-bottom 0.5rem
+        .newsletter
+          margin-top 7.1rem
+          :global(.subscribe)
+            font-size var(--font-size-ja)
+          :global(.form)
+            margin-top 2.8rem
+          :global(form)
+            display flex
+            width 100%
+            box-sizing border-box
+          .email
+            flex-grow 2
+            width auto
+            font-size 1.4rem
+          .submit
+            flex-basis 40px
+            margin 9px
+            width 40px
+            height 40px
+            background-size 40px 40px
     `}</style>
   </>
 )

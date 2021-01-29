@@ -81,8 +81,8 @@ const Alliance = ({ slug }: { slug: string }) => {
         <Link href={AllianceData[slug].link}>
           <a ref={ref} target="_blank" rel="noopener noreferrer">
             <div className="image"><GradImg mouseEntered={entered}><img src={`/about/workstyle/${slug}@2x.png`} alt="" /></GradImg></div>
-            <div><Grad className="name">{AllianceData[slug].name}</Grad></div>
-            <div><Grad className="desc"><div dangerouslySetInnerHTML={{ __html: t(`workstyle_2_${slug}`)!.replace(/\n/g, '<br />') }}></div></Grad></div>
+            <div><Grad className="name" inline>{AllianceData[slug].name}</Grad></div>
+            <div><Grad className="desc" inline><div dangerouslySetInnerHTML={{ __html: t(`workstyle_2_${slug}`)!.replace(/\n/g, '<br />') }}></div></Grad></div>
           </a>
         </Link>
       </div>
@@ -144,13 +144,13 @@ const Section2 = () => (
 const ItemList = ({ title, items }: { title: string, items: string }) => (
   <>
     <div className={langStyle('about')}>
-      <div><Grad className="title">{title}</Grad></div>
+      <div><Grad className="title" inline>{title}</Grad></div>
       <div className="items">
         {items.split('\n\n').map((item, index) => {
           const [n, desc] = item.split('\n')
           return (<>
-            <div key={index}><Grad className="name">- {n}</Grad></div>
-            <div key={index + 100}><Grad className="desc">{desc}</Grad></div>
+            <div key={index}><Grad className="name" inline>- {n}</Grad></div>
+            <div key={index + 100}><Grad className="desc" inline>{desc}</Grad></div>
           </>)
         })}
       </div>

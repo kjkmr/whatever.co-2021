@@ -8,7 +8,7 @@ const Head = () => (
   <>
     <div className={langStyle('head')}>
       <div className="image"><GradImg lighten={true}><img src="/contact/pict04.svg" alt="" /></GradImg></div>
-      {t('contact_title')?.split('\n').map((line, index) => <div key={index}><Grad className="title" key={index}>{line}</Grad></div>)}
+      {t('contact_title')?.split('\n').map((line, index) => <div key={index}><Grad className="title" key={index} inline>{line}</Grad></div>)}
       <div className="mailto"><BlackButton width="300px" height="80px" link="mailto:hello@whatever.co">hello@whatever.co</BlackButton></div>
     </div>
     <style jsx>{`
@@ -46,10 +46,10 @@ const Head = () => (
 const Address = ({ data }: { data: any }) => (
   <>
     <div className="container">
-      <div><Grad className="region">{data.name}</Grad></div>
-      <div><Grad className="address"><GradLink href={data.link} target="_blank" rel="noopener noreferrer" inlineBlock={true}>{data.address}</GradLink></Grad></div>
-      {data.phone != '-' ? <div><Grad className="phone">{data.phone}</Grad></div> : null}
-      {data.representative != '-' ? <div><Grad className="repr">{data.representative}</Grad></div> : null}
+      <div><Grad className="region" inline>{data.name}</Grad></div>
+      <div><Grad className="address" inline><GradLink href={data.link} target="_blank" rel="noopener noreferrer" inlineBlock={true}>{data.address}</GradLink></Grad></div>
+      {data.phone != '-' ? <div><Grad className="phone" inline>{data.phone}</Grad></div> : null}
+      {data.representative != '-' ? <div><Grad className="repr" inline>{data.representative}</Grad></div> : null}
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'

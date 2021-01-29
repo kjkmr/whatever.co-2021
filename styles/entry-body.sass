@@ -1,0 +1,75 @@
+.entry-body
+  img
+    width: 100%
+    height: auto
+  .img
+    font-size: 0
+    position: relative
+    overflow: hidden
+    margin: 3.0rem 0
+  p, table
+    margin: 0
+    font-size: 1.5rem
+    line-height: 3.0rem
+    word-wrap: break-word
+  .p
+    margin: 3.0rem 0
+  .aspect-ratio
+    position: relative
+    width: 100%
+    height: 0
+    padding-bottom: 56.25%
+    iframe
+      position: absolute
+      width: 100%
+      height: 100%
+      left: 0
+      top: 0
+  .block-images
+    width: vwpx(1206)
+    margin-top: vwpx(143)
+    margin-left: calc(((100vw - 80px - 900px) / 2 - ((100vw - 80px) * (80 / (1366 - 80)))) * -1)
+    margin-bottom: vwpx(144)
+    grid-template-columns: 1fr 1fr
+    gap: vwpx(82) vwpx(78)
+    font-size: 0
+    img
+      &.block-image-small
+        width: vwpx(564)
+        height: vwpx(317)
+        object-fit: cover
+      &.block-image-medium
+        width: vwpx(844)
+        height: vwpx(475)
+        object-fit: cover
+      &.block-image-large
+        width: vwpx(1206)
+        height: vwpx(678)
+        object-fit: cover
+  .block-2-images >:first-child
+    margin-bottom: 82px
+  .block-3-images-a
+    display: grid
+    >:nth-child(1)
+      grid-column: span 2
+      object-fit: cover
+  .block-3-images-b
+    display: grid
+    >:nth-child(3)
+      grid-column: span 2
+      width: vwpx(844)
+      height: vwpx(474)
+      object-fit: cover
+  .block-4-images-a
+    display: grid
+  .block-4-images-a
+    >:first-child, >:last-child
+      grid-column: span 2
+  .block-4-images-b
+    display: grid
+    >:first-child
+      grid-column: span 2
+      margin-right: 0
+      margin-left: auto
+    >:last-child
+      grid-column: span 2

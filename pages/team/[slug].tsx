@@ -28,12 +28,12 @@ const MemberInfo = ({ member }: { member: Member }) => {
         <div className="image" style={{ height: `calc((100vw - 80px) * ${688 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={member.image} alt="" /></GradImg></div>
         <div className="info">
           <div className="inner">
-            <div><Grad className="region">{member.region.join(' / ')}</Grad></div>
-            <div><Grad className="title">{member.title}</Grad></div>
-            <div><Grad className="name">{member.name}</Grad></div>
-            <div><Grad className="description" inline={false}><div ref={ref} className="desc-inner" dangerouslySetInnerHTML={{ __html: member.content || '' }}></div></Grad></div>
+            <div><Grad className="region" inline>{member.region.join(' / ')}</Grad></div>
+            <div><Grad className="title" inline>{member.title}</Grad></div>
+            <div><Grad className="name" inline>{member.name}</Grad></div>
+            <div><Grad className="description"><div ref={ref} className="desc-inner" dangerouslySetInnerHTML={{ __html: member.content || '' }}></div></Grad></div>
             <div className="links">
-              {member.links.filter((l: any) => l.url).map((link: any) => <div key={link.url}><Grad className="link-item">- <GradLink href={link.url} target="_blank" rel="noopener noreferrer" inlineBlock={true}>{link.name}</GradLink></Grad></div>)}
+              {member.links.filter((l: any) => l.url).map((link: any) => <div key={link.url}><Grad className="link-item" inline>- <GradLink href={link.url} target="_blank" rel="noopener noreferrer" inlineBlock={true}>{link.name}</GradLink></Grad></div>)}
             </div>
           </div>
         </div>
@@ -97,7 +97,7 @@ const MemberInfo = ({ member }: { member: Member }) => {
 const RelatedWork = ({ works }: { works: Entry[] }) => (
   <>
     <div className="related-work">
-      <div><Grad className="related-work-title">Related Work</Grad></div>
+      <div><Grad className="related-work-title" inline>Related Work</Grad></div>
       <WorkList works={works} />
     </div>
     <style jsx>{`
@@ -122,8 +122,8 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
       <Link href={`/news/${entry.slug}`}>
         <a className="related-link-item" onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
           <GradImg mouseEntered={entered}><img src={entry.hero_image} alt="" /></GradImg>
-          <div><Grad className="item-date">{entry.date}</Grad></div>
-          <div><Grad className="item-title"><div dangerouslySetInnerHTML={{ __html: entry.title }} /></Grad></div>
+          <div><Grad className="item-date" inline>{entry.date}</Grad></div>
+          <div><Grad className="item-title" inline><div dangerouslySetInnerHTML={{ __html: entry.title }} /></Grad></div>
         </a>
       </Link>
       <style jsx>{`
@@ -155,7 +155,7 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
 const RelatedLinks = ({ news }: { news: Entry[] }) => (
   <>
     <div className="related-links">
-      <div><Grad className="title">Related Links</Grad></div>
+      <div><Grad className="title" inline>Related Links</Grad></div>
       <div className="list">
         {news.map(entry => (<RelatedLinkItem key={entry.slug} entry={entry} />))}
       </div>

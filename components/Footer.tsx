@@ -13,11 +13,12 @@ const toTop = () => {
 const Footer = () => (
   <>
     <div className="footer">
-      <div><Grad className="logo" whiteText={true}><img src="/footer/whatever.png" /></Grad></div>
+      <div><Grad className="logo" whiteText inline><img src="/footer/whatever.png" /></Grad></div>
       <ContactForm />
+      <hr className="line" />
       <div className="sns">
-        <div><Grad className="sns-buttons" whiteText={true}><SNSButtons /></Grad></div>
-        <div style={{ textAlign: 'right' }}><Grad className="copyright" whiteText={true}>© Whatever Inc.</Grad></div>
+        <div><Grad className="sns-buttons" whiteText inline><SNSButtons /></Grad></div>
+        <div className="copyright"><Grad className="copyright-inner" whiteText inline>© Whatever Inc.</Grad></div>
       </div>
       <div className="pagetop"><hr /><span onClick={toTop}>Page Top</span></div>
     </div>
@@ -33,17 +34,21 @@ const Footer = () => (
           display inline-block
           margin-bottom 97px
           mix-blend-mode lighten
+        .line
+          display none
         .sns
           position absolute
           bottom 99px
           right 80px
           :global(.sns-buttons)
             mix-blend-mode lighten
-        :global(.copyright)
+        .copyright
+          margin-top 30px
+          text-align right
+        :global(.copyright-inner)
           display inline-block
           font-size 1.2rem
           font-weight 300
-          margin-top 30px
           mix-blend-mode lighten
       .pagetop
         position absolute
@@ -62,6 +67,35 @@ const Footer = () => (
         span
           vertical-align 3px
           cursor pointer
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .footer
+          padding vwpx(74) vwpx(30) vwpx(50)
+          height auto
+          :global(.logo)
+            margin-bottom 73px
+            img
+              width vwpx(117)
+          hr.line
+            display block
+            border none
+            border-top 1px solid #707070
+            margin-top 75px
+          .sns
+            position static
+            margin-top 75px
+          .copyright
+            text-align left
+            margin-top 48px
+        .pagetop
+          top auto
+          left auto
+          right -40px
+          bottom -35px
+          letter-spacing 0
+          hr
+            width 35px
+            margin-right 10px
     `}</style>
   </>
 )

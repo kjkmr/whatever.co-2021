@@ -18,14 +18,14 @@ const Section1 = () => (
         <div className="i3"><GradImg><img src="/about/genres/01_3@2x.jpg" alt="" /></GradImg></div>
         <div className="i4"><GradImg><img src="/about/genres/01_4@2x.jpg" alt="" /></GradImg></div>
       </div>
-      <h2><Grad className="example-title">{t('genres_1_example_title')}</Grad></h2>
+      <h2><Grad className="example-title" inline>{t('genres_1_example_title')}</Grad></h2>
       <div className="example-items">
         {t('genres_1_example_items')!.split('\n\n').map((item, index) => {
           const [title, ...desc] = item.split('\n')
           const etc = desc.pop()
           return (
             <div key={index}>
-              <Grad>
+              <Grad inline>
                 <div className="item">
                   <div className="title">- {title}</div>
                   <ul>
@@ -170,8 +170,8 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
         <Link href={link}>
           <a ref={ref} target={target} rel="noopener noreferrer">
             <GradImg mouseEntered={entered}><img src={`/about/genres/${image}@2x.jpg`} alt="" /></GradImg>
-            <div><Grad className="work-link-name">{name}</Grad></div>
-            <div><Grad className="work-link-desc">{desc}</Grad></div>
+            <div><Grad className="work-link-name" inline>{name}</Grad></div>
+            <div><Grad className="work-link-desc" inline>{desc}</Grad></div>
           </a>
         </Link>
       </div>
@@ -210,8 +210,8 @@ const WorkList = ({ title, body, items }: { title: string, body: string, items: 
   <>
     <div className={langStyle('work-list')}>
       <div className="text">
-        <div><Grad className="work-list-title">{title}</Grad></div>
-        <div><Grad className="work-list-desc">{body}</Grad></div>
+        <div><Grad className="work-list-title" inline>{title}</Grad></div>
+        <div><Grad className="work-list-desc" inline>{body}</Grad></div>
         <div className="items">
           {items.split('\n\n').map(item => {
             const [name, link, desc] = item.split('\n')

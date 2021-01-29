@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { Entry, Tag, getNews, getWorksByTag } from 'lib/api'
 import { useLayoutEffect } from 'lib/useLayoutEffect'
 import { t, langStyle } from 'lib/i18n'
+import { isMobile } from 'lib/isMobile'
 import Layout from 'components/Layout'
 import BlackButton from 'components/BlackButton'
 import WorkTag from 'components/WorkTag'
@@ -12,9 +13,9 @@ import { Grad, GradImg } from 'components/Grad'
 const Player = ({ onClick }: { onClick?: any }) => (
   <>
     <div className="player">
-      <Grad className="player-bg" inline={false} startImmediately />
+      <Grad className="player-bg" startImmediately />
       <div className="padding">
-        <Grad className="aspect-ratio" inline={false}>
+        <Grad className="aspect-ratio">
           <iframe src="https://www.youtube.com/embed/rsBTSWTbH4I?autoplay=1;controls=0;rel=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </Grad>
       </div>
@@ -27,7 +28,7 @@ const Player = ({ onClick }: { onClick?: any }) => (
     </div>
     <style jsx>{`
       .player
-        position absolute
+        position fixed
         top 0
         left 0
         box-sizing border-box
@@ -79,8 +80,9 @@ const Player = ({ onClick }: { onClick?: any }) => (
 )
 
 const Showreel = () => {
-  const [scrollY, setScrollY] = useState(0)
-  const onScroll = () => setScrollY(window.pageYOffset)
+  const [videoHeight, setVideoHeight] = useState('')
+  const videoMarginBottom = isMobile() ? 35 : 40
+  const onScroll = () => setVideoHeight(`calc((100vh - ${videoMarginBottom}px) - ${window.pageYOffset}px)`)
   useLayoutEffect(() => {
     window.addEventListener('scroll', onScroll)
     onScroll()
@@ -99,14 +101,12 @@ const Showreel = () => {
   return (
     <>
       <div className="showreel">
-        <div className="video" style={{ height: `calc((100vh - 40px) - ${scrollY}px)` }}>
+        <div className="video" style={{ height: videoHeight }}>
           <GradImg>
-            <video ref={video} src="/index/reel-preview.mp4" autoPlay={true} loop muted></video>
+            <video ref={video} src="/index/reel-preview.mp4" autoPlay playsInline loop muted></video>
           </GradImg>
         </div>
-        <div className="button">
-          <BlackButton height="80px" onClick={onClickWatch} >Watch Reel</BlackButton>
-        </div>
+        <div className="watch-reel"><BlackButton className="button" onClick={onClickWatch}>Watch Reel</BlackButton></div>
       </div>
       {showPlayer ? <Player onClick={onClose} /> : null}
       <style jsx>{`
@@ -115,19 +115,39 @@ const Showreel = () => {
           width 100%
           height calc(100vh - 40px)
           font-size 0
-        .video
-          position fixed
-          top 0
-          left 80px
-          overflow hidden
-        video
-          width calc(100vw - 80px)
-          height calc(100vh - 40px)
-          object-fit cover
-        .button
-          position absolute
-          right 0
-          bottom -40px
+          .video
+            position fixed
+            top 0
+            left 80px
+            overflow hidden
+          video
+            width calc(100vw - 80px)
+            height calc(100vh - 40px)
+            object-fit cover
+          .watch-reel
+            position absolute
+            width 256px
+            height 80px
+            right 0
+            bottom -40px
+            :global(.button)
+              width 256px
+              height 80px
+        @media (--mobile)
+          .showreel
+            height calc(100vh - 35px)
+            .video
+              left 0
+            video
+              width 100vw
+              height calc(100vh - 35px)
+            .watch-reel
+              width 187px
+              height 70px
+              bottom -35px
+              :global(.button)
+                width 187px
+                height 70px
       `}</style>
     </>
   )
@@ -136,12 +156,18 @@ const Showreel = () => {
 const Tagline = () => (
   <>
     <div className={langStyle('tagline')}>
-      <div className="title">
-        <Grad><h1>Make whatever.</h1></Grad>
-        <Grad><h1 className="line2">Rules, whatever.</h1></Grad>
+      <div className="title-desktop">
+        <Grad className="line1">Make whatever.</Grad>
+        <Grad className="line2">Rules, whatever.</Grad>
+      </div>
+      <div className="title-mobile">
+        <Grad className="line1">Make</Grad>
+        <Grad className="line2">whatever.</Grad>
+        <Grad className="line1">Rules,</Grad>
+        <Grad className="line2">whatever.</Grad>
       </div>
       <div className="desc">
-        {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index}><h2>{line}</h2></Grad>)}
+        {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index} className="line">{line}</Grad>)}
       </div>
       <div className="link">
         <BlackButton link="/about" >Learn more</BlackButton>
@@ -151,28 +177,28 @@ const Tagline = () => (
       @import 'lib/vw.styl'
       .tagline
         position relative
-        margin-top vwpx(198)
+        margin-top vwpx(211)
         img
           display block
-      .title
+      .title-desktop
         font-size 0
         margin-left vwpx(69)
-        h1
-          display inline-block
+        :global(.line1, .line2)
           font-size vwpx(143)
-          font-weight bold
+          font-weight 700
           margin 0
           margin-bottom vwpx(13)
-          &.line2
-            margin-left vwpx(71)
+        :global(.line2)
+          margin-left vwpx(71)
+      .title-mobile
+        display none
       .desc
         position relative
-        margin vwpx(72) vwpx(80) 0
+        margin vwpx(85) vwpx(80) 0
         font-size 0
-        h2
-          display inline-block
+        :global(.line)
           font-size vwpx(26)
-          font-weight bold
+          font-weight 700
           line-height vwpx(60)
           margin 0
       .link
@@ -187,6 +213,29 @@ const Tagline = () => (
             font-size vwpx(26)
         .link
           margin-top vwpx(154)
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .tagline
+          margin-top vwpx(137)
+          .title-desktop
+            display none
+          .title-mobile
+            display block
+            margin-left vwpx(30)
+            :global(.line1, .line2)
+              font-size vwpx(65.5)
+              font-weight 700
+              margin-left vwpx(-5)
+              margin-bottom vwpx(4.5)
+            :global(.line2)
+              margin-left vwpx(28)
+          .desc
+            margin vwpx(37) vwpx(50) 0
+            :global(.line)
+              font-size vwpx(15)
+              line-height vwpx(32)
+          .link
+            margin-top vwpx(50)
     `}</style>
   </>
 )
@@ -200,12 +249,12 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image"><GradImg mouseEntered={entered}><img src={work.hero_image} /></GradImg></div>
             <div className="white">
-              <div><Grad className="date">{work.date}</Grad></div>
-              <div><Grad className="title">{work.title}</Grad></div>
+              <div><Grad className="date" inline>{work.date}</Grad></div>
+              <div><Grad className="title" inline>{work.title}</Grad></div>
             </div>
-            <div><Grad className="subtitle">{work.subtitle}</Grad></div>
-            <div><Grad className="overview">{work.overview}</Grad></div>
-            <div><Grad className="tags">
+            <div><Grad className="subtitle" inline>{work.subtitle}</Grad></div>
+            <div><Grad className="overview" inline>{work.overview}</Grad></div>
+            <div><Grad className="tags" inline>
               <div>{work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}</div>
             </Grad></div>
           </a>
@@ -220,11 +269,10 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
             display block
             border none
             padding 0
-          .image
-            img
-              width vwpx(594)
-              height vwpx(334)
-              object-fit cover
+          .image img
+            width vwpx(594)
+            height vwpx(334)
+            object-fit cover
           .white
             position relative
             display inline-block
@@ -240,23 +288,48 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
               margin-top 2.0rem
               font-size 2.8rem
               font-weight 700
-              line-height 1.2em
+              line-height 1.2
           :global(.subtitle)
             margin-top 1.8rem
             font-size var(--font-size-ja)
             font-weight 700
-            line-height 1.4em
+            line-height 1.4
           :global(.overview)
             margin-top 0.7rem
             margin-right vwpx(30)
             font-size var(--font-size-ja)
             font-weight 300
-            line-height 2em
+            line-height 2.0
           :global(.tags)
             margin-top 2.0rem
         .en
           :global(.overview)
             font-weight 400
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          .fetured-work-item
+            margin-top vwpx(36)
+            .image
+              margin 0 vwpx(-30) 0 vwpx(-50)
+              img
+                width 100vw
+                height calc(100vw / 16 * 9)
+            .white
+              background-color transparent
+              padding 0
+              margin 0
+              :global(.date)
+                font-size 1.0rem
+                margin-top 2.5rem
+              :global(.title)
+                font-size 2.4rem
+                margin-top 1.1rem
+            :global(.subtitle)
+              font-size 1.2rem
+              margin-top 0.7rem
+            :global(.overview)
+              font-size 1.2rem
+              margin-top 1.5rem
       `}</style>
     </>
   )
@@ -265,12 +338,12 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
 const FeaturedWorks = ({ works }: { works: Entry[] }) => (
   <>
     <div className="featured-works">
-      <h1><Grad className="featured-works-title">Featured Works</Grad></h1>
+      <Grad className="featured-works-title" inline>Featured Works</Grad>
       <div className="items">
         {works.map(work => <FeaturedWorkItem key={work.slug} work={work} />)}
       </div>
       <div className="link">
-        <BlackButton link="/work" >All Works</BlackButton>
+        <BlackButton link="/work">All Works</BlackButton>
       </div>
     </div>
     <style jsx>{`
@@ -278,20 +351,30 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
       .featured-works
         margin-top vwpx(92)
         font-size 0
-        h1
+        :global(.featured-works-title)
           margin-left vwpx(-3)
-          margin-bottom vwpx(73)
-          font-size 0
-          :global(.featured-works-title)
-            font-size vwpx_min(36)
+          font-size vwpx_min(36)
+          font-weight 700
         .items
           display grid
           grid-template-columns repeat(2, 1fr)
           grid-gap vwpx(100) vwpx(98)
+          margin-top vwpx(73)
         .link
           display flex
           justify-content flex-end
           margin-top 80px
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .featured-works
+          margin vwpx(116) vwpx(30) 0 vwpx(50)
+          :global(.featured-works-title)
+            font-size vwpx_min(38)
+          .items
+            grid-template-columns 1fr
+          .link
+            margin-top 60px
+            margin-right vwpx(-30)
     `}</style>
   </>
 )
@@ -304,8 +387,8 @@ const NewsItem = ({ data }: { data: Entry }) => {
         <Link href={`/news/${data.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <GradImg mouseEntered={entered}><img src={data.hero_image} width="256" height="144" /></GradImg>
-            <div><Grad className="date">{data.date}</Grad></div>
-            <div><Grad className="title">{data.title}</Grad></div>
+            <div><Grad className="date" inline>{data.date}</Grad></div>
+            <div><Grad className="title" inline>{data.title}</Grad></div>
           </a>
         </Link>
       </div>
@@ -330,8 +413,20 @@ const NewsItem = ({ data }: { data: Entry }) => {
             margin-top 1.1rem
             font-size var(--font-size-ja)
             font-weight bold
-            line-height 2.4rem
+            line-height 1.6
             mix-blend-mode multiply
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          .news-item
+            img
+              width vwpx(150)
+              height 'calc(%s / 16 * 9)' % (vwpx(150))
+            :global(.date)
+              font-size 1.0rem
+              margin-top 1.5rem
+            :global(.title)
+              font-size 1.2rem
+              margin-top 0.7rem
       `}</style>
     </>
   )
@@ -340,7 +435,7 @@ const NewsItem = ({ data }: { data: Entry }) => {
 const LatestNews = ({ news }: { news: Entry[] }) => (
   <>
     <div className="latest-news">
-      <h1><Grad className="latest-news-title">Latest News</Grad></h1>
+      <h1><Grad className="latest-news-title" inline>Latest News</Grad></h1>
       <div className="items">
         {news.map(item => <NewsItem key={item.slug} data={item} />)}
       </div>
@@ -371,6 +466,19 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
         justify-content flex-end
         margin-top 78px
         margin-right vwpx0(-80)
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .latest-news
+          margin-top vwpx(75)
+          padding vwpx(75) 0 vwpx(75) vwpx(50)
+          :global(.latest-news-title)
+            font-size vwpx(18)
+        .items
+          grid-template-columns repeat(2, 1fr)
+          grid-gap vwpx(35) vwpx(25)
+          margin-top vwpx(36)
+        .link
+          margin vwpx(75) 0 0 0
     `}</style>
   </>
 )

@@ -5,7 +5,8 @@
       {
         "styled-jsx": {
           "plugins": [
-            "styled-jsx-plugin-stylus"
+            "styled-jsx-plugin-stylus",
+            "styled-jsx-plugin-postcss"
           ]
         }
       }

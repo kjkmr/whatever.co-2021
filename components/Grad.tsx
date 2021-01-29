@@ -131,7 +131,6 @@ export type GradProps = {
 }
 
 export const Grad = ({ children, className, style, whiteText = false, inline = false, startImmediately = false }: GradProps) => {
-
   const ref = useRef<HTMLDivElement>(null)
   useLayoutEffect(() => setup(ref.current!, whiteText, inline, startImmediately), [])
   return (
@@ -302,10 +301,12 @@ export const GradImg = ({ children, className, lighten, mouseEntered }: GradImgP
   )
 }
 
-export const setupLink = (node: HTMLElement) => {
+export const setupLink = (node: HTMLElement, border: boolean) => {
   const [colorA, colorB] = getColors()
   const linearGrad = `linear-gradient(to right, ${colorA}, ${colorB})`
-  node.style.borderImage = `${linearGrad} 1`
+  if (border) {
+    node.style.borderImage = `${linearGrad} 1`
+  }
   const onMouseEnter = () => {
     node.style.backgroundImage = linearGrad
     node.classList.add('grad-link-hover')
@@ -317,6 +318,8 @@ export const setupLink = (node: HTMLElement) => {
   node.addEventListener('mouseenter', onMouseEnter)
   node.addEventListener('mouseleave', onMouseLeave)
   return () => {
+    node.style.borderImage = ''
+    node.style.backgroundImage = ''
     node.removeEventListener('mouseenter', onMouseEnter)
     node.removeEventListener('mouseleave', onMouseLeave)
   }
@@ -329,18 +332,20 @@ export type GradLinkProps = {
   target?: string
   rel?: string
   inlineBlock?: boolean
+  border?: boolean
   onClick?: any
 }
 
-export const GradLink = ({ children, className, href, target, rel, inlineBlock = false, onClick }: GradLinkProps) => {
+export const GradLink = ({ children, className, href, target, rel, inlineBlock = false, border = true, onClick }: GradLinkProps) => {
   const ref = useRef<HTMLAnchorElement>(null)
-  useLayoutEffect(() => setupLink(ref.current!), [])
+  useLayoutEffect(() => setupLink(ref.current!, border), [])
   return (
     <>
       <a ref={ref} className={classnames('grad-link', className, { 'inline-block': inlineBlock })} href={href} target={target} rel={rel} onClick={onClick}>{children}</a>
       <style jsx>{`
         .grad-link
           cursor pointer
+          border none
         .inline-block
           display inline-block
       `}</style>

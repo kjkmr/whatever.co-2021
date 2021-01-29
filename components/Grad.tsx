@@ -1,4 +1,4 @@
-import { ReactNode, CSSProperties, useRef } from 'react'
+import { ReactNode, CSSProperties, useRef, forwardRef } from 'react'
 import classnames from 'classnames'
 import { useLayoutEffect } from 'lib/useLayoutEffect'
 
@@ -336,7 +336,7 @@ export type GradLinkProps = {
   onClick?: any
 }
 
-export const GradLink = ({ children, className, href, target, rel, inlineBlock = false, border = true, onClick }: GradLinkProps) => {
+export const GradLink = forwardRef(({ children, className, href, target, rel, inlineBlock = false, border = true, onClick }: GradLinkProps, _ref) => {
   const ref = useRef<HTMLAnchorElement>(null)
   useLayoutEffect(() => setupLink(ref.current!, border), [])
   return (
@@ -351,4 +351,4 @@ export const GradLink = ({ children, className, href, target, rel, inlineBlock =
       `}</style>
     </>
   )
-}
+})

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import { useMediaQuery } from 'react-responsive'
 
-export const Desktop = ({ children }: { children: ReactNode }) => {
+export const Desktop = ({ children }: { children?: ReactNode }) => {
   const isDesktop = useMediaQuery({ minWidth: 1024 })
   return isDesktop ? <>{children}</> : null
 }
@@ -10,7 +10,7 @@ export const Desktop = ({ children }: { children: ReactNode }) => {
 //   return isTablet ? children : null
 // }
 
-export const Mobile = ({ children }: { children: ReactNode }) => {
+export const Mobile = ({ children }: { children?: ReactNode }) => {
   const isMobile = useMediaQuery({ maxWidth: 1023 })
   return isMobile ? <>{children}</> : null
 }

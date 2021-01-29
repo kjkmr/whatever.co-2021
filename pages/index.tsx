@@ -166,9 +166,8 @@ const Tagline = () => (
         {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index} className="line">{line}</Grad>)}
       </div>
       <div className="link">
-        {isMobile()
-          ? <BlackButton link="/about" width="187px" height="50px">Learn more</BlackButton>
-          : <BlackButton link="/about" >Learn more</BlackButton>}
+        <Desktop><BlackButton link="/about" >Learn more</BlackButton></Desktop>
+        <Mobile><BlackButton link="/about" width="187px" height="50px">Learn more</BlackButton></Mobile>
       </div>
     </div>
     <style jsx>{`
@@ -334,9 +333,8 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
         {works.map(work => <FeaturedWorkItem key={work.slug} work={work} />)}
       </div>
       <div className="link">
-        {isMobile()
-          ? <BlackButton link="/work" width="187px" height="50px">All Works</BlackButton>
-          : <BlackButton link="/work">All Works</BlackButton>}
+        <Desktop><BlackButton link="/work">All Works</BlackButton></Desktop>
+        <Mobile><BlackButton link="/work" width="187px" height="50px">All Works</BlackButton></Mobile>
       </div>
     </div>
     <style jsx>{`
@@ -406,8 +404,20 @@ const NewsItem = ({ data }: { data: Entry }) => {
             margin-top 1.1rem
             font-size var(--font-size-ja)
             font-weight bold
-            line-height 2.4rem
+            line-height 1.6
             mix-blend-mode multiply
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          .news-item
+            img
+              width vwpx(150)
+              height 'calc(%s / 16 * 9)' % (vwpx(150))
+            :global(.date)
+              font-size 1.0rem
+              margin-top 1.5rem
+            :global(.title)
+              font-size 1.2rem
+              margin-top 0.7rem
       `}</style>
     </>
   )
@@ -421,7 +431,8 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
         {news.map(item => <NewsItem key={item.slug} data={item} />)}
       </div>
       <div className="link">
-        <BlackButton link="/news" >All News</BlackButton>
+        <Desktop><BlackButton link="/news" >All News</BlackButton></Desktop>
+        <Mobile><BlackButton link="/news" width="187px" height="50px">All News</BlackButton></Mobile>
       </div>
     </div >
     <style jsx>{`
@@ -447,6 +458,19 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
         justify-content flex-end
         margin-top 78px
         margin-right vwpx0(-80)
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .latest-news
+          margin-top vwpx(75)
+          padding vwpx(75) 0 0 vwpx(50)
+          :global(.latest-news-title)
+            font-size vwpx(18)
+        .items
+          grid-template-columns repeat(2, 1fr)
+          grid-gap vwpx(35) vwpx(25)
+          margin-top vwpx(36)
+        .link
+          margin vwpx(75) 0 0 0
     `}</style>
   </>
 )

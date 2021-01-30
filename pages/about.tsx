@@ -41,8 +41,8 @@ const Detail = ({ title }: { title: string }) => {
             margin 0
             margin-top vwpx_min(21)
             margin-left 0.3rem
-            font-size 1.5rem
-            line-height 3.0rem
+            font-size var(--font-size-ja)
+            line-height 2.0
         .more
           display inline-block
           margin-top 4.9rem
@@ -51,6 +51,24 @@ const Detail = ({ title }: { title: string }) => {
             margin-bottom 0
           p
             font-size 1.7rem
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          .detail
+            :global(.whatever)
+              font-size vwpx(18)
+            :global(.title)
+              font-size vwpx(51)
+              margin vwpx(8) 0 0 vwpx(-2)
+            :global(.subtitle)
+              font-size vwpx(17)
+              margin-top vwpx(10)
+            :global(.desc)
+              margin vwpx(16) 0 0 0
+              line-height 2.1
+          .more
+            display flex
+            justify-content flex-end
+            margin 3.1rem vwpx(-30) 0 0
       `}</style>
     </>
   )
@@ -73,13 +91,24 @@ const Genres = () => (
         display flex
         justify-content space-between
         align-items center
-        margin-left vwpx(40)
-        margin-right vwpx(80)
+        margin 0 vwpx(80) 0 vwpx(40)
       .image img
         width vwpx(603)
         background-color white
       .detail
         margin-left vwpx(80)
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .genres
+          margin vwpx(60) 0 0 0
+        .inner
+          flex-direction column
+          margin 0 vwpx(50) 0
+        .image
+          img
+            width 100%
+        .detail
+          margin vwpx(30) vwpx(-20) 0 0
     `}</style>
   </>
 )
@@ -114,6 +143,18 @@ const Workstyle = () => (
         p
           margin-top vwpx(8)
           font-size 1.6rem
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .workstyle
+          margin 9.0rem 0 0 0
+        .inner
+          flex-direction column-reverse
+          margin 0 vwpx(50) 0
+        .image
+          img
+            width 100%
+        .detail
+          margin vwpx(28) vwpx(-20) 0 0
     `}</style>
   </>
 )
@@ -149,6 +190,19 @@ const Location = () => (
         p
           margin-top vwpx(4)
           font-size 1.6rem
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .location
+          margin 9.0rem 0 7.5rem 0
+        .inner
+          flex-direction column
+          margin 0 vwpx(50) 0
+        .image
+          margin 0 vwpx(15)
+          img
+            width 100%
+        .detail
+          margin vwpx(30) vwpx(-20) 0 0
     `}</style>
   </>
 )
@@ -157,7 +211,11 @@ const AboutPage = () => (
   <>
     <Layout title="About" side="About">
       <div className={langStyle('about')}>
-        <div><Grad className="head" inline>What’s Whatever<span className="q">?</span></Grad></div>
+        <div className="whats-desktop"><Grad className="whats" inline>What’s Whatever<span className="q">?</span></Grad></div>
+        <div className="whats-mobile">
+          <Grad className="whats">What’s</Grad>
+          <Grad className="whatever">Whatever<span className="q">?</span></Grad>
+        </div>
         <div className="text">
           {t('about_statement')?.split('\n\n').map((p, i) => (
             <div key={i}>
@@ -178,13 +236,16 @@ const AboutPage = () => (
         margin-top vwpx(94)
         margin-bottom vwpx(150)
         font-size 0
-        :global(.head)
+      .whats-desktop, .whats-mobile
+        font-size vwpx(129)
+        font-weight 700
+        :global(.whats)
           margin-bottom vwpx(66)
           margin-left vwpx(81)
-          font-size vwpx(129)
-          font-weight 700
           .q
             font-family 'Noto Sans JP'
+      .whats-mobile
+        display none
       .text
         margin-left vwpx(118)
         :global(.p)
@@ -192,11 +253,35 @@ const AboutPage = () => (
           margin-bottom vwpx(24)
           font-size vwpx(26)
           font-weight bold
-          line-height vwpx(36)
+          line-height calc(36 / 26)
       .en
         .text
           font-size vwpx(30)
           line-height vwpx(37)
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .about
+          margin vwpx(90) vwpx(30) 0 vwpx(50)
+        .whats-desktop
+          display none
+        .whats-mobile
+          display block
+          font-size vwpx(57)
+          :global(.whats)
+            margin 0
+            mix-blend-mode darken
+          :global(.whatever)
+            margin-top vwpx(-16)
+            mix-blend-mode darken
+            .q
+              font-family 'Noto Sans JP'
+        .text
+          margin 0
+          margin-top vwpx(28)
+          :global(.p)
+            margin 0
+            font-size vwpx(15)
+            line-height 2.0
     `}</style>
   </>
 )

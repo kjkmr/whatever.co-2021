@@ -29,7 +29,7 @@ const Section1 = () => (
                 <div className="item">
                   <div className="title">- {title}</div>
                   <ul>
-                    {desc.map((d, i) => (<li key={i}>{d}</li>))}
+                    {desc.map((d, i) => (<li key={i}>・{d}</li>))}
                   </ul>
                   <div>{etc}</div>
                 </div>
@@ -104,7 +104,8 @@ const Section1 = () => (
             padding 0
             display inline-block
             li
-              list-style '・' inside
+              list-style-position inside
+              list-style-type none
               margin-bottom 0.9rem
       .en
         h2
@@ -123,6 +124,51 @@ const Section1 = () => (
               margin-bottom 1.1rem
               li
                 line-height 1.25em
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .section1
+          margin 4.1rem 0 0 0
+        hr
+          width vwpx(125)
+          margin-bottom vwpx(40)
+        .images
+          height vwpx(702)
+          margin 2.6rem 0 0 0
+          .i1
+            top 0
+            left 0
+            width vwpx(325)
+          .i2
+            top vwpx(205)
+            right vwpx(30)
+            width vwpx(195)
+          .i3
+            top vwpx(362)
+            left vwpx(25)
+            width vwpx(184)
+          .i4
+            top vwpx(610)
+            right vwpx(50)
+            width vwpx(162.5)
+        h2
+          margin 0
+          margin-top 5.6rem
+          :global(.example-title)
+            font-size vwpx(14)
+        .example-items
+          margin-top 2.8rem
+          display flex
+          flex-direction column
+          .item
+            padding-top 1.2rem
+            padding-bottom 1.7rem
+            padding-left 1.8rem
+            margin-bottom 0.4rem
+            .title
+              margin-bottom 1.35rem
+            ul li
+              margin-left 0.1rem
+              margin-bottom 0.8rem
     `}</style>
   </>
 )
@@ -138,6 +184,9 @@ const Section2 = () => (
         margin-left vwpx(80)
         margin-right vwpx(80)
         margin-bottom vwpx(195)
+      @media (--mobile)
+        .section2
+          margin 7.2rem 0 0 0
     `}</style>
   </>
 )
@@ -190,17 +239,30 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
           :global(.work-link-name)
             font-size 1.8rem
             font-weight 700
-            line-height 1.8rem
+            line-height 1.0
             margin-top 2.5rem
           :global(.work-link-desc)
-            display inline-block
             margin-top 1.7rem
             font-size 1.2rem
-            line-height 2.4rem
+            line-height 2.0
         .en
           :global(.work-link-desc)
             font-size 1.4rem
             font-weight 400
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          .work-link
+            img
+              width vwpx(150)
+              height vwpx(150 / 16 * 9)
+            :global(.work-link-name)
+              font-size 1.4rem
+              margin-top 1.55rem
+            :global(.work-link-desc)
+              font-size 1.0rem
+              line-height 1.8
+              margin-top 0.6rem
+              margin-right vwpx(12.5)
       `}</style>
     </>
   )
@@ -234,7 +296,7 @@ const WorkList = ({ title, body, items }: { title: string, body: string, items: 
         :global(.work-list-desc)
           margin-bottom 5.2rem
           font-size var(--font-size-ja)
-          line-height 3.0rem
+          line-height 2.0
       .items
         display grid
         grid-template-columns repeat(3, 1fr)
@@ -245,6 +307,23 @@ const WorkList = ({ title, body, items }: { title: string, body: string, items: 
         :global(.work-list-desc)
           font-size var(--font-size-en)
           font-weight 400
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .work-list
+          margin 5.6rem 0 0 0
+          font-size 0
+          .text
+            margin-right vwpx(30)
+          :global(.work-list-title)
+            margin 0
+            font-size 1.4rem
+          :global(.work-list-desc)
+            margin 2.35rem 0 0 0
+            line-height 2.1
+        .items
+          grid-template-columns repeat(2, 1fr)
+          grid-gap vwpx(24.5) vwpx(25)
+          margin 3.0rem 0 0 0
     `}</style>
   </>
 )
@@ -288,6 +367,25 @@ const Section3 = () => (
           width vwpx(388)
           top vwpx(485)
           left vwpx(640)
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .section3
+          margin 5.7rem 0 0 0
+        .images
+          height vwpx(464)
+          margin 2.6rem 0 0 0
+          .i1
+            width vwpx(325)
+          .i2
+            width vwpx(173)
+            top vwpx(366)
+            left auto
+            right vwpx(0)
+            z-index 3
+          .i3
+            width vwpx(157.5)
+            top vwpx(170)
+            left vwpx(37)
     `}</style>
   </>
 )
@@ -295,7 +393,7 @@ const Section3 = () => (
 const GenrePage = () => (
   <>
     <Layout title="About" side="About" backto="/about" footer={<Footer left="Location" right="Workstyle" />}>
-      <div className="container">
+      <div className="genre">
         <Header title="Genres" subtitle={t('genres_title')!} desc={t('genres_description')!} image="/about/pict01.svg" />
         <Section1 />
         <Section2 />
@@ -303,9 +401,12 @@ const GenrePage = () => (
       </div>
     </Layout>
     <style jsx>{`
-      .container
-        min-height 5000px
+      .genre
         margin-bottom 110px
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .genre
+          margin vwpx(75) 0 70px vwpx(50)
     `}</style>
   </>
 )

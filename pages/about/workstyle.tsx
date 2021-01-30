@@ -25,6 +25,13 @@ const Section1 = () => (
         border-top 1px solid #B4B4B4
         width vwpx_min(252)
         margin-bottom vwpx(105)
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .section1
+          margin 4.1rem 0 0 0
+        hr
+          width vwpx(125)
+          margin-bottom vwpx(40)
     `}</style>
   </>
 )
@@ -109,11 +116,26 @@ const Alliance = ({ slug }: { slug: string }) => {
             margin-bottom 1.6rem
           :global(.desc)
             font-size 1.2rem
-            line-height 2.4rem
+            line-height 2.0
         .en
           :global(.desc)
             font-size 1.4rem
             font-weight 400
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          .alliance
+            margin-bottom 3.4rem
+            img
+              width 100%
+              height calc(100% / 16 * 9)
+            :global(.name)
+              font-size 1.4rem
+              margin 0
+              margin-top 1.35rem
+            :global(.desc)
+              font-size 1.0rem
+              line-height 1.85
+              margin-top 0.75rem
       `}</style>
     </>
   )
@@ -137,6 +159,14 @@ const Section2 = () => (
         grid-template-columns repeat(3, 1fr)
         grid-gap vwpx(54) vwpx(60)
         margin-top 3.9rem
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .section2
+          margin 5.8rem 0 0 0
+        .alliance
+          display flex
+          flex-direction column
+          margin 0.5rem vwpx(50) 0 0
     `}</style>
   </>
 )
@@ -170,16 +200,30 @@ const ItemList = ({ title, items }: { title: string, items: string }) => (
           :global(.name)
             font-size 1.8rem
             font-weight 500
-            line-height 3.0rem
+            line-height calc(30 / 18)
           :global(.desc)
             font-size var(--font-size-ja)
-            line-height 3.0rem
+            line-height 2.0
       .en
         .items
           grid-gap 3.6rem 0
           :global(.desc)
             font-size 1.7rem
             font-weight 400
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .about
+          margin 4.3rem 0 0 0
+          :global(.title)
+            font-size 1.8rem
+          .items
+            margin-top 3.0rem
+            grid-template-columns 45px auto
+            grid-gap 1.5rem 0
+            :global(.name)
+              font-size 1.2rem
+              font-weight 700
+              line-height 2.0
     `}</style>
   </>
 )
@@ -224,17 +268,48 @@ const Section3 = () => (
         display grid
         grid-template-columns repeat(2, 1fr)
         grid-gap 80px
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .section3
+          margin 5.0rem 0 0 0
+        .images
+          position relative
+          height vwpx(408)
+          margin 2.5rem 0 0 0
+          .i1
+            width vwpx(325)
+          .i2
+            width vwpx(232)
+            top vwpx(176)
+            right vwpx(30)
+          .i3
+            width vwpx(208.5)
+            top vwpx(290)
+        .columns
+          display flex
+          flex-direction column
+          margin 1.0rem vwpx(30) 0 0
     `}</style>
   </>
 )
 
 const Workstyle = () => (
-  <Layout title="About" side="About" backto="/about" footer={<Footer left="Genres" right="Location" />}>
-    <Header headerMargin={65} title="Workstyle" titleSize={112} titleMargin={10} subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="/about/pict02.svg" imageWidth={586} />
-    <Section1 />
-    <Section2 />
-    <Section3 />
-  </Layout>
+  <>
+    <Layout title="About" side="About" backto="/about" footer={<Footer left="Genres" right="Location" />}>
+      <div className="workstyle">
+        <Header headerMargin={65} title="Workstyle" titleSize={112} titleMargin={10} subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="/about/pict02.svg" imageWidth={586} />
+        <Section1 />
+        <Section2 />
+        <Section3 />
+      </div>
+    </Layout>
+    <style jsx>{`
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .workstyle
+          margin vwpx(75) 0 70px vwpx(50)
+    `}</style>
+  </>
 )
 
 export default Workstyle

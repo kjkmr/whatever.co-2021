@@ -20,35 +20,17 @@ export const Header = (props: HeaderProps) => {
   const { ty, iy } = props
   const router = useRouter()
   const locale = router.locale || router.defaultLocale!
-  const headerStyle = {
-    marginTop: `calc((100vw - 80px) * ${(props.headerMargin || 55) / (1366 - 80)})`,
-    marginBottom: `calc((100vw - 80px) * ${(props.headerMargin || 55) / (1366 - 80)})`,
-  }
-  const textStyle = {
-    marginTop: `calc((100vw - 80px) * ${(ty && ty[locale] ? ty[locale] : 0) / (1366 - 80)})`,
-  }
-  const titleStyle1 = {
-    marginTop: `calc((100vw - 80px) * ${(props.titleMargin || 8) / (1366 - 80)})`,
-  }
-  const titleStyle2 = {
-    fontSize: `calc((100vw - 80px) * ${(props.titleSize || 124) / (1366 - 80)})`,
-  }
-  const imageStyle = {
-    marginTop: `calc((100vw - 80px) * ${(iy && iy[locale] ? iy[locale] : 0) / (1366 - 80)})`,
-    width: `calc((100vw - 80px) * ${(props.imageWidth || 607) / (1366 - 80)})`,
-  }
   return (
     <>
-      <div className={langStyle('header')} style={headerStyle}>
+      <div className={langStyle('header')}>
         <div className="upper">
-          <div className="text" style={textStyle}>
+          <div className="text">
             <div><Grad className="t1" inline>Whatever</Grad></div>
-            <div style={titleStyle1}><Grad className="t2" style={titleStyle2} inline>{props.title}</Grad></div>
-            {/* <Grad><div className="t2" style={titleStyle}>{props.title}</div></Grad> */}
+            <div><Grad className="t2" inline>{props.title}</Grad></div>
             {props.subtitle != '-' ? <div><Grad className="t3" inline><span className="hr" />{props.subtitle}</Grad></div> : null}
           </div>
           <div className="image" >
-            <GradImg lighten={true}><img src={props.image} alt="" style={imageStyle} /></GradImg>
+            <GradImg lighten={true}><img src={props.image} alt="" /></GradImg>
           </div>
         </div>
         <div className="desc">
@@ -59,7 +41,8 @@ export const Header = (props: HeaderProps) => {
         @import 'lib/vw.styl'
         .header
           font-size 0
-          margin vwpx(55) vwpx(80) 0
+          --a calc((100vw - 80px) * ${(props.headerMargin || 55) / (1366 - 80)})
+          margin var(--a) vwpx(80) 0
         .upper
           display flex
           justify-content space-between
@@ -67,6 +50,7 @@ export const Header = (props: HeaderProps) => {
           margin-bottom vwpx(101)
         .text
           width vwpx(562)
+          margin-top calc((100vw - 80px) * ${(ty && ty[locale] ? ty[locale] : 0) / (1366 - 80)})
           margin-bottom 9px
           :global(.t1)
             font-size vwpx(62)
@@ -74,9 +58,10 @@ export const Header = (props: HeaderProps) => {
             margin 0
             margin-left vwpx(2)
           :global(.t2)
-            font-size vwpx(124)
+            font-size calc((100vw - 80px) * ${(props.titleSize || 124) / (1366 - 80)})
             font-weight bold
             margin 0
+            margin-top calc((100vw - 80px) * ${(props.titleMargin || 8) / (1366 - 80)})
             margin-left vwpx(-4)
             margin-bottom vwpx(56)
           :global(.t3)
@@ -93,13 +78,14 @@ export const Header = (props: HeaderProps) => {
           font-size 0
           margin-right vwpx(34)
           img
-            width vwpx(607)
+            width calc((100vw - 80px) * ${(props.imageWidth || 607) / (1366 - 80)})
+            margin-top calc((100vw - 80px) * ${(iy && iy[locale] ? iy[locale] : 0) / (1366 - 80)})
             background-color white
         .desc-line
           display inline-block
           font-size vwpx_min(18)
           font-weight 700
-          line-height vwpx_min(40)
+          line-height calc(40 / 18)
         .en
           .upper
             margin-bottom vwpx(103)
@@ -108,6 +94,37 @@ export const Header = (props: HeaderProps) => {
           .desc-line
             font-size vwpx_min(20)
             font-weight 400
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          .header
+            margin 0
+          .upper
+            flex-direction column-reverse
+            margin 0
+          .image
+            margin 0
+            margin-right vwpx(50)
+            img
+              width 100%
+          .text
+            width 100%
+            margin-top vwpx(60)
+            :global(.t1)
+              font-size vwpx(21.5)
+            :global(.t2)
+              font-size vwpx(62)
+              margin vwpx(10) 0 0 vwpx(-2)
+            :global(.t3)
+              font-size vwpx(17)
+              margin vwpx(7) 0 0 0
+              .hr
+                display none
+          .desc
+            margin 1.2rem vwpx(30) 0 0
+          .desc-line
+            font-size var(--font-size-ja)
+            font-weight 500
+            line-height 2.1
       `}</style>
     </>
   )
@@ -116,15 +133,15 @@ export const Header = (props: HeaderProps) => {
 export const Footer = ({ left, right }: { left: string, right: string }) => (
   <>
     <div className="footer">
-      <BlackButton width="100%" height="100%" className="footer-button" link={`/about/${left.toLowerCase()}`}>
+      <BlackButton width="100%" height="100%" className="footer-button left" link={`/about/${left.toLowerCase()}`}>
         <div className="line"></div>
-        <div style={{ marginLeft: 40 }}>
+        <div className="inner">
           <div className="whatever" >Whatever</div>
           <div className="title" >{left}</div>
         </div>
       </BlackButton>
       <BlackButton width="100%" height="100%" className="footer-button right" link={`/about/${right.toLowerCase()}`}>
-        <div style={{ marginRight: 40, textAlign: 'right' }}>
+        <div className="inner">
           <div className="whatever" >Whatever</div>
           <div className="title" >{right}</div>
         </div>
@@ -145,8 +162,13 @@ export const Footer = ({ left, right }: { left: string, right: string }) => (
           box-sizing border-box
           :global(a)
             justify-content start
+        :global(.left .inner)
+          margin-left 40px
         :global(.right a)
           justify-content flex-end
+        :global(.right .inner)
+          margin-right 40px
+          text-align right
         .line
           border-top 1px solid #fff
           width 40px
@@ -159,6 +181,22 @@ export const Footer = ({ left, right }: { left: string, right: string }) => (
           font-size 2.4rem
           font-weight 700
           margin-top 7px
+      @media (--mobile)
+        .footer
+          height 100px
+          .line
+            display none
+          :global(.whatever)
+            font-size 0.8rem
+            margin-top 2px
+          :global(.title)
+            font-size 1.2rem
+            font-weight 400
+            margin-top 8px
+          :global(.left .inner)
+            margin-left 30px
+          :global(.right .inner)
+            margin-right 30px
     `}</style>
   </>
 )
@@ -206,13 +244,13 @@ export const SectionHeader = ({ num, title, body }: SectionTitleProps) => (
         :global(.title)
           font-size vwpx_min(30)
           font-weight bold
-          line-height 1.81em
+          line-height 1.8
           margin-top vwpx(4)
         .body
           margin-top vwpx(48)
-          line-height 3.0rem
           :global(.body-line)
             font-size var(--font-size-ja)
+            line-height 2.0
             margin 3.0rem 0
       .en
         :global(.title)
@@ -223,6 +261,27 @@ export const SectionHeader = ({ num, title, body }: SectionTitleProps) => (
           :global(.body-line)
             font-size var(--font-size-en)
             font-weight 400
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .header
+          margin-right vwpx(30)
+          .row
+            display flex
+            flex-direction column
+          .num-column
+            width auto
+          :global(.num)
+            font-size vwpx(110)
+            transform translateX(vwpx(-4))
+          :global(.title)
+            font-size vwpx(17)
+            line-height 1.6
+            margin-top vwpx(16)
+          .body
+            margin-top vwpx(27.5)
+            :global(.body-line)
+              line-height 2.1
+              margin 2.5rem 0
     `}</style>
   </div>
 )

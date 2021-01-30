@@ -23,6 +23,8 @@ let templateName: string
 // templateName = 'Contact'
 // templateName = 'menu'
 // templateName = 'top_sp'
+// templateName = 'about_index_sp'
+// templateName = 'about_01_sp'
 
 type Props = {
   showHeader?: boolean
@@ -46,7 +48,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
   const templateStyle: { [prop: string]: string } = {}
   if (templateName) {
     templateStyle.backgroundImage = `url(/_/${templateName}_${useRouter().locale!}.png)`
-    // templateStyle.backgroundPosition = 'top -54px left'
+    // templateStyle.backgroundPosition = 'top -3px left'
   }
   return (
     <>

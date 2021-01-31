@@ -8,7 +8,7 @@ import BlackButton from 'components/BlackButton'
 import { Grad, GradImg } from 'components/Grad'
 
 
-const LogoGrid = ({ list, className = '' }: { list: string[], className?: string }) => (
+const LogoGridDesktop = ({ list, className = '' }: { list: string[], className?: string }) => (
   <>
     <div className={`logo-grid ${className}`}>
       {list.map((name) => (
@@ -24,7 +24,6 @@ const LogoGrid = ({ list, className = '' }: { list: string[], className?: string
         border 1px solid #cccccc
         box-sizing border-box
         width 100%
-        {/* opacity 0.5 */}
         .inner
           display flex
           justify-content center
@@ -39,9 +38,81 @@ const LogoGrid = ({ list, className = '' }: { list: string[], className?: string
             box-sizing border-box
             margin auto
             width 100%
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .logo-grid
+          display none
+          margin-right vwpx(50)
+          grid-template-columns repeat(2, 1fr)
+          width vwpx(275)
+          .inner
+            margin vwpx(25) 0
+            padding vwpx(14) 0
+            box-sizing border-box
+          :global(.image)
+            width 100%
     `}</style>
   </>
 )
+
+const LogoGridMobile = ({ list, className = '' }: { list: string[], className?: string }) => {
+  if (list.length % 2 == 1) {
+    list.push('')
+  }
+  return (
+    <>
+      <div className={`logo-grid ${className}`}>
+        {list.map((name) => (
+          <div key={name} className="inner">
+            <Grad className="image" inline>
+              <img src={`/about/location/${name.replace(/[^\w+]/g, '').toLowerCase()}.png`} alt={name} />
+            </Grad>
+            <div className="line"></div>
+          </div>
+        ))}
+      </div>
+      <style jsx>{`
+      @import 'lib/vw.styl'
+      .logo-grid
+        display none
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .logo-grid
+          display grid
+          grid-template-columns repeat(2, 1fr)
+          grid-gap 0
+          border 1px solid #cccccc
+          box-sizing border-box
+          width vwpx(275)
+          .inner
+            position relative
+            display flex
+            justify-content center
+            align-items center
+            width vwpx(137.5)
+            height vwpx(136.5)
+            border-bottom 1px solid #cccccc
+            &:nth-last-child(-n+2)
+              border none
+            .line
+              position absolute
+              top vwpx(25)
+              right 0
+              height vwpx(87.5)
+              border-left 1px solid #cccccc
+            &:nth-child(even) .line
+              display none
+          :global(.image)
+            box-sizing border-box
+            width 100%
+            padding 0 vwpx(5)
+            margin-right 2px
+            img
+              width 100%
+    `}</style>
+    </>
+  )
+}
 
 const Section1 = () => (
   <>
@@ -49,10 +120,12 @@ const Section1 = () => (
       <hr />
       <SectionHeader num="01" title={t('location_1_title')!} body={t('location_1_body')!} />
       <div><Grad className="subtitle" inline>{t('location_1_inhouse')}</Grad></div>
-      <LogoGrid className="logo1" list={['WHILL', 'MUJI', 'SONY', 'Cotodama', 'avex group']} />
+      <LogoGridDesktop className="logo1" list={['WHILL', 'MUJI', 'SONY', 'Cotodama', 'avex group']} />
+      <LogoGridMobile className="logo1" list={['WHILL', 'MUJI', 'SONY', 'Cotodama', 'avex group']} />
       <div><Grad className="subtitle" inline>{t('location_1_overseas')}</Grad></div>
-      <LogoGrid className="logo2" list={['Slack', 'Shopify', 'Airbnb', 'Google', 'HERMES']} />
-      <LogoGrid className="logo3" list={['intel', 'NEW STAND']} />
+      <LogoGridDesktop className="logo2" list={['Slack', 'Shopify', 'Airbnb', 'Google', 'HERMES']} />
+      <LogoGridDesktop className="logo3" list={['intel', 'NEW STAND']} />
+      <LogoGridMobile list={['Slack', 'Shopify', 'Airbnb', 'Google', 'HERMES', 'intel', 'NEW STAND']} />
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -79,6 +152,19 @@ const Section1 = () => (
       .en
         :global(.subtitle)
           font-size vwpx_min(24)
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .section1
+          margin 4.1rem 0 0 0
+          hr
+            width vwpx(125)
+            margin-bottom vwpx(40)
+          :global(.subtitle)
+            margin 2.15rem vwpx(50) 2.2rem 0
+            font-size 1.5rem
+            line-height 1.7
+          :global(.logo1)
+            margin-bottom 2.55rem
     `}</style>
   </>
 )
@@ -118,13 +204,27 @@ const Member = ({ image, title, name, slug }: { image: string, title: string, na
           :global(.title)
             font-size 1.4rem
             font-weight 300
-            line-height 1.4rem
+            line-height 1.0
             margin-top 1.9rem
           :global(.name)
             font-size 1.8rem
             font-weight 500
-            line-height 1.8rem
+            line-height 1.0
             margin-top 1.2rem
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          .member
+            img
+              width vwpx(150)
+            :global(.title)
+              font-size 1.2rem
+              font-weight 300
+              margin-top 1.25rem
+              line-height 1.4
+            :global(.name)
+              font-size 1.4rem
+              font-weight 500
+              margin-top 0.5rem
       `}</style>
     </>
   )
@@ -166,18 +266,36 @@ const Section2 = () => (
           margin-top vwpx(42)
         .members
           margin-top vwpx(61)
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .section2
+          margin 9.1rem 0 0 0
+        .members
+          grid-template-columns repeat(2, 1fr)
+          grid-gap vwpx(48) vwpx(25)
+          margin-top 2.55rem
+        .link
+          margin vwpx(42) 0 0 0
     `}</style>
   </>
 )
 
 const Location = () => (
-  <Layout title="About" side="About" backto="/about" footer={<Footer left="Workstyle" right="Genres" />}>
-    <div className="location">
-      <Header headerMargin={79} title="Location" subtitle={t('location_title')!} desc={t('location_description')!} image="/about/pict03.svg" imageWidth={554} />
-      <Section1 />
-      <Section2 />
-    </div>
-  </Layout>
+  <>
+    <Layout title="About" side="About" backto="/about" footer={<Footer left="Workstyle" right="Genres" />}>
+      <div className="location">
+        <Header headerMargin={79} title="Location" subtitle={t('location_title')!} desc={t('location_description')!} image="/about/pict03.svg" imageWidth={554} imageMargin={5} />
+        <Section1 />
+        <Section2 />
+      </div>
+    </Layout>
+    <style jsx>{`
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .location
+          margin vwpx(75) 0 76px vwpx(50)
+    `}</style>
+  </>
 )
 
 export default Location

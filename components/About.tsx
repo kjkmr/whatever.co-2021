@@ -12,6 +12,7 @@ type HeaderProps = {
   desc: string
   image: string
   imageWidth?: number
+  imageMargin?: number
   ty?: { [locale: string]: number }
   iy?: { [locale: string]: number }
 }
@@ -104,6 +105,7 @@ export const Header = (props: HeaderProps) => {
           .image
             margin 0
             margin-right vwpx(50)
+            padding calc(100vw * (${props.imageMargin || 0} / 375))
             img
               width 100%
           .text
@@ -196,7 +198,7 @@ export const Footer = ({ left, right }: { left: string, right: string }) => (
           :global(.left .inner)
             margin-left 30px
           :global(.right .inner)
-            margin-right 30px
+            margin-right 29px
     `}</style>
   </>
 )

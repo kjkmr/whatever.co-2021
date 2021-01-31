@@ -20,7 +20,7 @@ const Player = ({ onClick }: { onClick?: any }) => (
         </Grad>
       </div>
       <div className="close-button">
-        <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onClick} skipIn>
+        <BlackButton className="button" backgroundColor="transparent" onClick={onClick} skipIn>
           <div className="l1"></div>
           <div className="l2"></div>
         </BlackButton>
@@ -62,6 +62,11 @@ const Player = ({ onClick }: { onClick?: any }) => (
           position absolute
           top 0
           left 0
+          width 80px
+          height 80px
+          :global(.button)
+            width 80px
+            height 80px
           .l1,.l2
             position absolute
             width 20px

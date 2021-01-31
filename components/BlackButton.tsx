@@ -7,8 +7,6 @@ type BlackButtonProps = {
   children?: ReactNode
   className?: string
   link?: string
-  width?: string
-  height?: string
   backgroundColor?: string
   onClick?: any
   skipIn?: boolean

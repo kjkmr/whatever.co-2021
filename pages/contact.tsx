@@ -9,7 +9,7 @@ const Head = () => (
     <div className={langStyle('head')}>
       <div className="image"><GradImg lighten={true}><img src="/contact/pict04.svg" alt="" /></GradImg></div>
       {t('contact_title')?.split('\n').map((line, index) => <div key={index}><Grad className="title" key={index} inline>{line}</Grad></div>)}
-      <div className="mailto"><BlackButton width="300px" height="80px" link="mailto:hello@whatever.co">hello@whatever.co</BlackButton></div>
+      <div className="mailto"><BlackButton link="mailto:hello@whatever.co">hello@whatever.co</BlackButton></div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'

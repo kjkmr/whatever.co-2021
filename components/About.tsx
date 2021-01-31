@@ -135,14 +135,14 @@ export const Header = (props: HeaderProps) => {
 export const Footer = ({ left, right }: { left: string, right: string }) => (
   <>
     <div className="footer">
-      <BlackButton width="100%" height="100%" className="footer-button left" link={`/about/${left.toLowerCase()}`}>
+      <BlackButton className="footer-button left" link={`/about/${left.toLowerCase()}`}>
         <div className="line"></div>
         <div className="inner">
           <div className="whatever" >Whatever</div>
           <div className="title" >{left}</div>
         </div>
       </BlackButton>
-      <BlackButton width="100%" height="100%" className="footer-button right" link={`/about/${right.toLowerCase()}`}>
+      <BlackButton className="footer-button right" link={`/about/${right.toLowerCase()}`}>
         <div className="inner">
           <div className="whatever" >Whatever</div>
           <div className="title" >{right}</div>

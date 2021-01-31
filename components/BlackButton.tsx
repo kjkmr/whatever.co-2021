@@ -35,7 +35,8 @@ const BlackButton = ({ children, className, link, backgroundColor = 'black', onC
     )
   }
   const onMouseLeave = () => {
-    const bg = bgs.current.shift()!
+    const bg = bgs.current.shift()
+    if (!bg) return
     bg.animate(
       [
         { left: '100%', easing: 'cubic-bezier(0.80, 0.000, 0.200, 1.0)' },
@@ -52,9 +53,11 @@ const BlackButton = ({ children, className, link, backgroundColor = 'black', onC
   useEffect(() => {
     ref.current?.addEventListener('mouseenter', onMouseEnter)
     ref.current?.addEventListener('mouseleave', onMouseLeave)
+    ref.current?.addEventListener('click', onMouseLeave)
     return () => {
       ref.current?.removeEventListener('mouseenter', onMouseEnter)
       ref.current?.removeEventListener('mouseleave', onMouseLeave)
+      ref.current?.removeEventListener('click', onMouseLeave)
       bgs.current.forEach(bg => bg.parentNode?.removeChild(bg))
     }
   }, [])

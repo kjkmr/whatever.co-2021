@@ -246,6 +246,8 @@ const Tagline = () => (
   </>
 )
 
+const removeHtmlTags = (html: string) => html.replace(/<\/?[^>]+(>|$)/g, "")
+
 const FeaturedWorkItem = ({ work }: { work: Entry }) => {
   const [entered, setEntered] = useState(false)
   return (
@@ -259,7 +261,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
               <div><Grad className="title" inline>{work.title}</Grad></div>
             </div>
             <div><Grad className="subtitle" inline>{work.subtitle}</Grad></div>
-            <div><Grad className="overview" inline>{work.overview}</Grad></div>
+            <div><Grad className="overview" inline>{removeHtmlTags(work.overview || '')}</Grad></div>
             <div><Grad className="tags" inline>
               <div>{work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}</div>
             </Grad></div>

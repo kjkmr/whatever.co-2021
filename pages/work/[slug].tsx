@@ -144,7 +144,7 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
       @import 'lib/vw.styl'
       .excerpt
         margin-left vwpx(80)
-        margin-bottom vwpx(150)
+        margin-bottom vwpx(152)
         display grid
         grid-template-columns auto vwpx(562)
         grid-gap vwpx(80)
@@ -161,7 +161,7 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
           line-height 2.0
       .image img
         width vwpx(562)
-        height vwpx(318)
+        height vwpx(562 / 16 * 9)
         object-fit cover
       @media (--mobile)
         @import 'lib/vw-mobile.styl'

@@ -56,7 +56,6 @@ export const Header = (props: HeaderProps) => {
           :global(.t1)
             font-size vwpx(62)
             font-weight 700
-            letter-spacing -0.015em
             margin 0
             margin-left vwpx(2)
           :global(.t2)

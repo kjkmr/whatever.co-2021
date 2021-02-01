@@ -253,7 +253,7 @@ const AboutPage = () => (
           margin-bottom vwpx(24)
           font-size vwpx(26)
           font-weight bold
-          line-height calc(36 / 26)
+          line-height calc(37 / 26)
       .en
         .text
           font-size vwpx(30)

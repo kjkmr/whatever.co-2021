@@ -6,6 +6,7 @@ import { Member, Entry, getAllMembers, getMemberDetail, getWorksByTag, getNewsBy
 import Layout from 'components/Layout'
 import { Grad, GradImg, GradLink, setupLink } from 'components/Grad'
 import { WorkList } from 'components/WorkList'
+import { Desktop, Mobile } from 'components/Responsive'
 
 const PhotoDesktop = ({ src }: { src: string }) => {
   const [scrollY, setScrollY] = useState(0)
@@ -30,9 +31,6 @@ const PhotoDesktop = ({ src }: { src: string }) => {
           width vwpx(643)
           height vwpx(688)
           object-fit cover
-      @media (--mobile)
-        .image
-          display none
 `}</style>
   </>)
 }
@@ -50,20 +48,17 @@ const PhotoMobile = ({ src }: { src: string }) => {
       height: `calc(100vw * ${325 / 375} - ${scrollY}px)`
     }}><GradImg><img src={src} alt="" /></GradImg></div>
     <style jsx>{`
+      @import 'lib/vw-mobile.styl'
       .image
-        display none
-      @media (--mobile)
-        @import 'lib/vw-mobile.styl'
-        .image
-          display block
-          position fixed
-          top 50px
-          left 50px
-          overflow hidden
-          img
-            width vwpx(325)
-            height vwpx(325)
-            object-fit cover
+        display block
+        position fixed
+        top 50px
+        left 50px
+        overflow hidden
+        img
+          width vwpx(325)
+          height vwpx(325)
+          object-fit cover
 `}</style>
   </>)
 }
@@ -81,8 +76,8 @@ const MemberInfo = ({ member }: { member: Member }) => {
   return (
     <>
       <div className="member-info">
-        <PhotoDesktop src={member.image} />
-        <PhotoMobile src={member.image} />
+        <Desktop><PhotoDesktop src={member.image} /></Desktop>
+        <Mobile><PhotoMobile src={member.image} /></Mobile>
         <div className="info">
           <div className="inner">
             <div><Grad className="region" inline>{member.region.join(' / ')}</Grad></div>

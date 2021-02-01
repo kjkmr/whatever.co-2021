@@ -33,6 +33,9 @@ const Head = () => (
           mix-blend-mode multiply
       .mailto
         margin-top vwpx(47)
+        :global(.button)
+          width 300px
+          height 80px
       .en
         &.head :global(.title)
           font-size vwpx(36)
@@ -81,7 +84,7 @@ const Address = ({ data }: { data: any }) => (
         :global(.address)
           font-size var(--font-size-ja)
           line-height 1em
-          margin-bottom 1.1rem
+          margin-bottom 1.5rem
         :global(.phone)
           font-size var(--font-size-ja)
           line-height 1em

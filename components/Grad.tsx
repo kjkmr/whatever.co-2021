@@ -302,6 +302,7 @@ export const GradImg = ({ children, className, lighten, mouseEntered }: GradImgP
 }
 
 export const setupLink = (node: HTMLElement, border: boolean = true) => {
+  node.classList.add('grad-link')
   const [colorA, colorB] = getColors()
   const linearGrad = `linear-gradient(to right, ${colorA}, ${colorB})`
   if (border) {
@@ -343,9 +344,6 @@ export const GradLink = forwardRef(({ children, className, href, target, rel, in
     <>
       <a ref={ref} className={classnames('grad-link', className, { 'inline-block': inlineBlock })} href={href} target={target} rel={rel} onClick={onClick}>{children}</a>
       <style jsx>{`
-        .grad-link
-          cursor pointer
-          border none
         .inline-block
           display inline-block
       `}</style>

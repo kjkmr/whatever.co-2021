@@ -25,7 +25,7 @@ const MemberInfo = ({ member }: { member: Member }) => {
   return (
     <>
       <div className="member-info">
-        <div className="image" style={{ height: `calc((100vw - 80px) * ${688 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={member.image} alt="" /></GradImg></div>
+        <div className="image"><GradImg><img src={member.image} alt="" /></GradImg></div>
         <div className="info">
           <div className="inner">
             <div><Grad className="region" inline>{member.region.join(' / ')}</Grad></div>
@@ -40,6 +40,15 @@ const MemberInfo = ({ member }: { member: Member }) => {
       </div>
       <style jsx>{`
         @import 'lib/vw.styl'
+        .image img
+          height calc((100vw - 80px) * ${688 / (1366 - 80)} - ${scrollY}px)
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          .image img
+            height vwpx(325)
+      `}</style>
+      <style jsx>{`
+        @import 'lib/vw.styl'
         .member-info
           position relative
           margin 0
@@ -52,7 +61,6 @@ const MemberInfo = ({ member }: { member: Member }) => {
           overflow hidden
           img
             width vwpx(643)
-            height vwpx(688)
             object-fit cover
         .info
           position relative
@@ -81,13 +89,49 @@ const MemberInfo = ({ member }: { member: Member }) => {
             :global(p)
               margin 0
               font-size var(--font-size-ja)
-              line-height 3.0rem
+              line-height 2.0
             :global(p + p)
               margin-top 2.0rem
         .links
           :global(.link-item)
             font-size var(--font-size-ja)
             margin-bottom 1.1rem
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          .member-info
+            margin 0
+          .image
+            position absolute
+            top 0
+            left 0
+            opacity 0.5
+            img
+              width vwpx(325)
+              height vwpx(325)
+          .info
+            padding vwpx(295) 0 0 0
+          .inner
+            {/* background-color rgba(128,255,128,0.3) */}
+            padding 3.0rem 0 0 0
+            margin-right vwpx(30)
+            :global(.title)
+              font-size 1.2rem
+              font-weight 300
+              margin-top 1.3rem
+            :global(.name)
+              font-size 2.7rem
+              margin 0.4rem 0 0 0
+            :global(.description)
+              margin 0 0 0 0
+            .desc-inner
+              margin 2.0rem 0 3.1rem 0
+              :global(p)
+                line-height 2.1
+            .links
+              :global(.link-item)
+                font-size var(--font-size-ja)
+                font-weight 700
+                margin-bottom 0.9rem
       `}</style>
     </>
   )
@@ -110,6 +154,13 @@ const RelatedWork = ({ works }: { works: Entry[] }) => (
           font-weight 700
           margin 0
           margin-bottom vwpx(50)
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .related-work
+          margin 8.5rem 0 0 -0.1rem
+          :global(.related-work-title)
+            font-size 1.8rem
+            margin 0 0 3.6rem 0
     `}</style>
   </>
 )
@@ -144,8 +195,21 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
           :global(.item-title)
             font-size 1.5rem
             font-weight 500
-            line-height 2.4rem
+            line-height 1.6
             margin-top 1.2rem
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          .related-link-item
+            img
+              width vwpx(150)
+              height vwpx(84)
+            :global(.item-date)
+              font-size 1.0rem
+              margin-top 1.45rem
+            :global(.item-title)
+              font-size 1.2rem
+              line-height 1.7
+              margin 0.5rem vwpx(10) 0 0
       `}</style>
     </>
   )
@@ -155,7 +219,7 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
 const RelatedLinks = ({ news }: { news: Entry[] }) => (
   <>
     <div className="related-links">
-      <div><Grad className="title" inline>Related Links</Grad></div>
+      <div><Grad className="title" inline>Related News</Grad></div>
       <div className="list">
         {news.map(entry => (<RelatedLinkItem key={entry.slug} entry={entry} />))}
       </div>
@@ -177,6 +241,17 @@ const RelatedLinks = ({ news }: { news: Entry[] }) => (
         grid-template-columns repeat(4, 1fr)
         grid-gap vwpx(60)
         align-items start
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .related-links
+          margin 7.4rem 0 6.8rem -0.1rem
+          :global(.title)
+            font-size 1.8rem
+            margin 0 0 3.6rem 0
+        .list
+          margin 0
+          grid-template-columns repeat(2, 1fr)
+          grid-gap vwpx(35) vwpx(25)
     `}</style>
   </>
 )

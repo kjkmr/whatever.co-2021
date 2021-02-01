@@ -106,15 +106,36 @@ const SmallWork = ({ work }: { work: Entry }) => {
             :global(.title)
               font-size 2.0rem
               font-weight 700
-              line-height 2.8rem
+              line-height 1.4
               margin-top 0.8rem
             :global(.subtitle)
               font-size 1.5rem
               font-weight 300
-              line-height 2.1rem
+              line-height 1.4
               margin-top 0.5rem
             :global(.tags)
               margin-top 1.5rem
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          .small-work
+            padding 0
+            .image img
+              width vwpx(150)
+              height vwpx(84)
+            .text
+              margin 1.4rem 0 0 0
+              :global(.date)
+                font-size 1.0rem
+              :global(.title)
+                font-size 1.4rem
+                line-height 1.3
+                margin-top 0.5rem
+              :global(.subtitle)
+                font-size 1.0rem
+                line-height 1.6
+                margin-top 0.25rem
+              :global(.tags)
+                margin-top 1.0rem
       `}</style>
     </>
   )
@@ -148,6 +169,11 @@ export const WorkList = ({ filter, works }: WorkListProps) => (
         display grid
         grid-template-columns repeat(3, 1fr)
         column-gap vwpx(77)
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .works
+          grid-template-columns repeat(2, 1fr)
+          grid-gap vwpx(40) vwpx(25)
     `}</style>
   </>
 )

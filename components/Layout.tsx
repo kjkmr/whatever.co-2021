@@ -27,6 +27,7 @@ let templateName: string
 // templateName = 'about_01_sp'
 // templateName = 'about_02_sp'
 // templateName = 'about_03_sp'
+// templateName = 'works_index_sp'
 // templateName = 'team_index_sp'
 // templateName = 'team_detail_sp'
 

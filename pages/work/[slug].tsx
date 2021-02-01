@@ -7,8 +7,9 @@ import Layout from 'components/Layout'
 import EntryBody from 'components/EntryBody'
 import { Grad, GradImg, GradLink } from 'components/Grad'
 import WorkTag from 'components/WorkTag'
+import { Desktop, Mobile } from 'components/Responsive'
 
-const Header = ({ work }: { work: Entry }) => {
+const HeaderImageDesktop = ({ src }: { src: string }) => {
   const [scrollY, setScrollY] = useState(0)
   const onScroll = () => setScrollY(window.pageYOffset)
   useEffect(() => {
@@ -18,8 +19,58 @@ const Header = ({ work }: { work: Entry }) => {
   })
   return (
     <>
+      <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={src} alt="" /></GradImg></div>
+      <style jsx>{`
+        @import 'lib/vw.styl'
+        .image
+          position fixed
+          top 80px
+          left 80px
+          overflow hidden
+          img
+            width vwpx(1286)
+            height vwpx(1286 / 16 * 9)
+            object-fit cover
+      `}</style>
+    </>
+  )
+}
+
+const HeaderImageMobile = ({ src }: { src: string }) => {
+  const [scrollY, setScrollY] = useState(0)
+  const onScroll = () => setScrollY(window.pageYOffset)
+  useEffect(() => {
+    window.addEventListener('scroll', onScroll)
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
+  })
+  return (
+    <>
+      <div className="image" style={{ height: `calc(100vw - ${scrollY}px)` }}><GradImg><img src={src} alt="" /></GradImg></div>
+      <style jsx>{`
+        @import 'lib/vw-mobile.styl'
+        .image
+          position fixed
+          top 50px
+          left 0
+          overflow hidden
+          z-index -1
+          {/* opacity 0.5 */}
+          img
+            width vwpx(375)
+            height vwpx(375)
+            object-fit cover
+      `}</style>
+    </>
+  )
+}
+
+const Header = ({ work }: { work: Entry }) => {
+  return (
+    <>
       <div className="header">
-        <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={work.hero_image} alt="" /></GradImg></div>
+        <Desktop><HeaderImageDesktop src={work.hero_image!} /></Desktop>
+        <Mobile><HeaderImageMobile src={work.hero_image!} /></Mobile>
         <div className="info">
           <div className="inner">
             <div><Grad className="date" inline>{work.date}</Grad></div>
@@ -36,15 +87,6 @@ const Header = ({ work }: { work: Entry }) => {
           position relative
           font-size 0
           margin-bottom vwpx(60)
-        .image
-          position fixed
-          top 80px
-          left 80px
-          overflow hidden
-          img
-            width vwpx(1286)
-            height vwpx(723)
-            object-fit cover
         .info
           display inline-block
           position relative
@@ -61,11 +103,27 @@ const Header = ({ work }: { work: Entry }) => {
           :global(.title)
             font-size vwpx(60)
             font-weight bold
-            line-height 1.2em
+            line-height 1.2
             margin-top vwpx(29)
             margin-left vwpx(-6)
           :global(.tags)
             margin-top vwpx(31)
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          .header
+            margin 0
+          .info
+            margin vwpx(325) vwpx(30) 0 -50px
+          .inner
+            padding 5.0rem 3.0rem 0 50px
+            :global(.date)
+              font-size 1.0rem
+            :global(.title)
+              font-size 3.0rem
+              line-height 1.2
+              margin-top 1.4rem
+            :global(.tags)
+              margin-top 2.1rem
       `}</style>
     </>
   )
@@ -94,17 +152,35 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
       .text
         :global(.title)
           font-size vwpx(30)
-          font-weight bold
-          line-height vwpx(54)
+          font-weight 700
+          line-height 1.8
           margin-top vwpx(-8)
           margin-bottom vwpx(42)
         :global(.desc)
           font-size var(--font-size-ja)
-          line-height 3.0rem
+          line-height 2.0
       .image img
         width vwpx(562)
         height vwpx(318)
         object-fit cover
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .excerpt
+          margin 7.3rem vwpx(30) 0 0
+          display block
+        .text
+          :global(.title)
+            font-size 1.7rem
+            line-height 1.8
+          :global(.desc)
+            font-size 1.2rem
+            line-height 2.1
+            margin-top 0.55rem
+        .image
+          margin 7.2rem 0 0 -50px
+          img
+            width vwpx(375)
+            height vwpx(375 / 16 * 9)
     `}</style>
   </>
 )
@@ -202,6 +278,10 @@ const WorkDetail = ({ work }: { work: Entry }) => (
     <style jsx>{`
       .body
         margin-bottom 15.5rem
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .body
+          margin 7.0rem vwpx(30) 0 0
     `}</style>
   </>
 )

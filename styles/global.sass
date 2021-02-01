@@ -1,6 +1,9 @@
 @function vwpx($px)
   @return calc((100vw - 80px) * #{$px / (1366 - 80)})
 
+@function vwpxm($px)
+  @return calc(100vw * #{$px / 375})
+
 // Noto Sans JP
 // https://fonts.google.com/specimen/Noto+Sans+JP
 // Thin 100

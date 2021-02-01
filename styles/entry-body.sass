@@ -10,10 +10,15 @@
   p, table
     margin: 0
     font-size: 1.5rem
-    line-height: 3.0rem
+    line-height: 2.0
     word-wrap: break-word
+    @media (--mobile)
+      font-size: 1.2rem
+      line-height: 2.1
   .p
     margin: 3.0rem 0
+    @media (--mobile)
+      margin: 2.6rem 0
   .aspect-ratio
     position: relative
     width: 100%
@@ -33,19 +38,15 @@
     grid-template-columns: 1fr 1fr
     gap: vwpx(82) vwpx(78)
     font-size: 0
+    .img
+      margin: 0
     img
       &.block-image-small
-        width: vwpx(564)
-        height: vwpx(317)
-        object-fit: cover
+        width: vwpx(227.5)
       &.block-image-medium
-        width: vwpx(844)
-        height: vwpx(475)
-        object-fit: cover
+        width: vwpx(305)
       &.block-image-large
         width: vwpx(1206)
-        height: vwpx(678)
-        object-fit: cover
   .block-2-images >:first-child
     margin-bottom: 82px
   .block-3-images-a
@@ -73,3 +74,33 @@
       margin-left: auto
     >:last-child
       grid-column: span 2
+
+@media (--mobile)
+  .entry-body
+    .block-images
+      width: vwpxm(375)
+      margin: 6.6rem -30px 7.0rem -50px
+      grid-template-columns: 1fr
+      gap: vwpxm(30)
+      font-size: 0
+      .img + .img
+        margin-top: vwpxm(30)
+      img
+        &.block-image-small
+          width: vwpxm(227.5)
+        &.block-image-medium
+          width: vwpxm(305)
+        &.block-image-large
+          width: vwpxm(375)
+    .block-3-images-a
+      display: block
+      >:nth-child(2)
+        text-align: right
+    .block-3-images-b
+      display: block
+      >:first-child
+        text-align: right
+      >:nth-child(3)
+        grid-column: span 2
+        width: auto
+        height: auto

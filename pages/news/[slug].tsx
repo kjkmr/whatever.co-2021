@@ -34,13 +34,35 @@ const NewsDetail = ({ entry }: { entry: Entry }) => (
           font-size 1.6rem
           font-weight 300
           margin-top 88px
+          white-space pre
         :global(.title)
           font-size 3.0rem
-          font-weight bold
+          font-weight 700
           line-height 4.0rem
           margin-top 18px
       .body
         margin 65px auto 95px
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .news
+          margin 0
+        .image img
+          width vwpx(325)
+          height vwpx(325 / 16 * 9)
+        .white
+          background-color transparent
+          display block
+          margin 0 30px 0 0
+          padding 0
+          :global(.date)
+            font-size 1.0rem
+            margin-top 4.0rem
+          :global(.title)
+            font-size 1.7rem
+            line-height 1.6
+            margin-top 1.5rem
+        .body
+          margin 2.8rem 30px 4.0rem 0
     `}</style>
   </Layout >
 )

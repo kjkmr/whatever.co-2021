@@ -30,6 +30,7 @@ let templateName: string
 // templateName = 'works_index_sp'
 // templateName = 'works_detail_sp'
 // templateName = 'news_index_sp'
+// templateName = 'news_detail_sp'
 // templateName = 'team_index_sp'
 // templateName = 'team_detail_sp'
 
@@ -55,7 +56,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
   const templateStyle: { [prop: string]: string } = {}
   if (templateName) {
     templateStyle.backgroundImage = `url(/_/${templateName}_${useRouter().locale!}.png)`
-    // templateStyle.backgroundPosition = 'top -13.5px left'
+    // templateStyle.backgroundPosition = 'top -909px left'
   }
   return (
     <>

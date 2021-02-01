@@ -33,6 +33,7 @@ let templateName: string
 // templateName = 'news_detail_sp'
 // templateName = 'team_index_sp'
 // templateName = 'team_detail_sp'
+// templateName = 'contact_sp'
 
 type Props = {
   showHeader?: boolean

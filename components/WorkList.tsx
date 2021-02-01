@@ -213,7 +213,7 @@ const Single = ({ work }: { work: Entry }) => {
             border none
             padding 0
           .image
-            margin-left vwpx(-50)
+            margin-left -50px
             img
               width vwpx(375)
               height vwpx(211)

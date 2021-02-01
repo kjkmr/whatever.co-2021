@@ -7,15 +7,71 @@ import Layout from 'components/Layout'
 import { Grad, GradImg, GradLink, setupLink } from 'components/Grad'
 import { WorkList } from 'components/WorkList'
 
-
-const MemberInfo = ({ member }: { member: Member }) => {
+const PhotoDesktop = ({ src }: { src: string }) => {
   const [scrollY, setScrollY] = useState(0)
   const onScroll = () => setScrollY(window.pageYOffset)
-  const ref = useRef<HTMLDivElement>(null)
   useLayoutEffect(() => {
     window.addEventListener('scroll', onScroll)
     onScroll()
-    const cleanups = [() => window.removeEventListener('scroll', onScroll)]
+    return () => window.removeEventListener('scroll', onScroll)
+  })
+  return (<>
+    <div className="image" style={{
+      height: `calc((100vw - 80px) * ${688 / (1366 - 80)} - ${scrollY}px)`
+    }}><GradImg><img src={src} alt="" /></GradImg></div>
+    <style jsx>{`
+      @import 'lib/vw.styl'
+      .image
+        position fixed
+        top 80px
+        left 80px
+        overflow hidden
+        img
+          width vwpx(643)
+          height vwpx(688)
+          object-fit cover
+      @media (--mobile)
+        .image
+          display none
+`}</style>
+  </>)
+}
+
+const PhotoMobile = ({ src }: { src: string }) => {
+  const [scrollY, setScrollY] = useState(0)
+  const onScroll = () => setScrollY(window.pageYOffset)
+  useLayoutEffect(() => {
+    window.addEventListener('scroll', onScroll)
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
+  })
+  return (<>
+    <div className="image" style={{
+      height: `calc(100vw * ${325 / 375} - ${scrollY}px)`
+    }}><GradImg><img src={src} alt="" /></GradImg></div>
+    <style jsx>{`
+      .image
+        display none
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .image
+          display block
+          position fixed
+          top 50px
+          left 50px
+          overflow hidden
+          img
+            width vwpx(325)
+            height vwpx(325)
+            object-fit cover
+`}</style>
+  </>)
+}
+
+const MemberInfo = ({ member }: { member: Member }) => {
+  const ref = useRef<HTMLDivElement>(null)
+  useLayoutEffect(() => {
+    const cleanups: (() => void)[] = []
     ref.current?.querySelectorAll('a').forEach(a => {
       a.target = '_blank'
       cleanups.push(setupLink(a))
@@ -25,7 +81,8 @@ const MemberInfo = ({ member }: { member: Member }) => {
   return (
     <>
       <div className="member-info">
-        <div className="image"><GradImg><img src={member.image} alt="" /></GradImg></div>
+        <PhotoDesktop src={member.image} />
+        <PhotoMobile src={member.image} />
         <div className="info">
           <div className="inner">
             <div><Grad className="region" inline>{member.region.join(' / ')}</Grad></div>
@@ -40,28 +97,11 @@ const MemberInfo = ({ member }: { member: Member }) => {
       </div>
       <style jsx>{`
         @import 'lib/vw.styl'
-        .image img
-          height calc((100vw - 80px) * ${688 / (1366 - 80)} - ${scrollY}px)
-        @media (--mobile)
-          @import 'lib/vw-mobile.styl'
-          .image img
-            height vwpx(325)
-      `}</style>
-      <style jsx>{`
-        @import 'lib/vw.styl'
         .member-info
           position relative
           margin 0
           margin-bottom vwpx(30)
           font-size 0
-        .image
-          position fixed
-          top 80px
-          left 80px
-          overflow hidden
-          img
-            width vwpx(643)
-            object-fit cover
         .info
           position relative
           padding-top vwpx(156)
@@ -100,18 +140,9 @@ const MemberInfo = ({ member }: { member: Member }) => {
           @import 'lib/vw-mobile.styl'
           .member-info
             margin 0
-          .image
-            position absolute
-            top 0
-            left 0
-            opacity 0.5
-            img
-              width vwpx(325)
-              height vwpx(325)
           .info
             padding vwpx(295) 0 0 0
           .inner
-            {/* background-color rgba(128,255,128,0.3) */}
             padding 3.0rem 0 0 0
             margin-right vwpx(30)
             :global(.title)
@@ -244,7 +275,7 @@ const RelatedLinks = ({ news }: { news: Entry[] }) => (
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .related-links
-          margin 7.4rem 0 6.8rem -0.1rem
+          margin 7.4rem 0 0 -0.1rem
           :global(.title)
             font-size 1.8rem
             margin 0 0 3.6rem 0
@@ -258,11 +289,20 @@ const RelatedLinks = ({ news }: { news: Entry[] }) => (
 
 
 const MemberDetail = ({ member, works, news }: { member: Member, works: Entry[], news: Entry[] }) => (
-  <Layout title={member.name} side="Team" backto="/team">
-    <MemberInfo member={member} />
-    {works.length ? <RelatedWork works={works} /> : null}
-    {news.length ? <RelatedLinks news={news} /> : null}
-  </Layout >
+  <>
+    <Layout title={member.name} side="Team" backto="/team">
+      <div className="details">
+        <MemberInfo member={member} />
+        {works.length ? <RelatedWork works={works} /> : null}
+        {news.length ? <RelatedLinks news={news} /> : null}
+      </div>
+    </Layout >
+    <style jsx>{`
+      @media (--mobile)
+        .details
+          margin-bottom 6.8rem
+    `}</style>
+  </>
 )
 
 export default MemberDetail

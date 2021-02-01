@@ -171,16 +171,18 @@ const Menu = () => {
               border none
           .contact
             position relative
+            .line
+              display none
           :global(.langselect)
             font-size 1.4rem
             margin-top 5px
             letter-spacing 0.06rem
-            margin-bottom 115px
+            margin-bottom 117px
             mix-blend-mode lighten
           :global(.sns)
             position absolute
-            right 205px
-            bottom 156px
+            right 0
+            bottom 4px
             mix-blend-mode lighten
         @media (--mobile)
           @import 'lib/vw-mobile.styl'

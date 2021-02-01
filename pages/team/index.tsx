@@ -24,9 +24,11 @@ const SingleMember = ({ member: m }: { member: Member }) => {
         <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
           <div>
             <GradImg mouseEntered={entered}><img src={m.image} alt="" /></GradImg>
-            <div><Grad className="region" inline>{m.region.join(' / ')}</Grad></div>
-            <div><Grad className="title" inline>{m.title}</Grad></div>
-            <div><Grad className="name" inline>{m.name}</Grad></div>
+            <div className="text">
+              <div><Grad className="region" inline>{m.region.join(' / ')}</Grad></div>
+              <div><Grad className="title" inline>{m.title}</Grad></div>
+              <div><Grad className="name" inline>{m.name}</Grad></div>
+            </div>
           </div>
         </a>
       </Link>
@@ -52,8 +54,28 @@ const SingleMember = ({ member: m }: { member: Member }) => {
           :global(.name)
             font-size 1.8rem
             font-weight 500
-            line-height 2.0em
+            line-height 2.0
             margin-top 0.4rem
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          a
+            img
+              width vwpx(150)
+              height vwpx(150)
+            .text
+              margin-right vwpx(10)
+            :global(.region)
+              font-size 1.2rem
+              letter-spacing 0
+              line-height 1.5
+              margin-top 1.2rem
+            :global(.title)
+              font-size 1.2rem
+              line-height 1.3
+              margin-top 0.2rem
+            :global(.name)
+              font-size 1.4rem
+              margin-top 0rem
       `}</style>
     </>
   )
@@ -79,6 +101,13 @@ const TeamIndex = ({ members }: { members: Member[] }) => {
           align-items start
           margin-top 40px
           min-height 100vh
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          .team-index
+            margin 0 0 70px 0
+            grid-template-columns repeat(2, 1fr)
+            grid-gap vwpx(40) vwpx(25)
+            grid-auto-rows auto
       `}</style>
     </>
   )

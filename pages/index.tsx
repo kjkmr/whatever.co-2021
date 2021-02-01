@@ -20,7 +20,7 @@ const Player = ({ onClick }: { onClick?: any }) => (
         </Grad>
       </div>
       <div className="close-button">
-        <BlackButton width="80px" height="80px" backgroundColor="transparent" onClick={onClick} skipIn>
+        <BlackButton className="button" backgroundColor="transparent" onClick={onClick} skipIn>
           <div className="l1"></div>
           <div className="l2"></div>
         </BlackButton>
@@ -62,6 +62,11 @@ const Player = ({ onClick }: { onClick?: any }) => (
           position absolute
           top 0
           left 0
+          width 80px
+          height 80px
+          :global(.button)
+            width 80px
+            height 80px
           .l1,.l2
             position absolute
             width 20px
@@ -221,7 +226,8 @@ const Tagline = () => (
             display none
           .title-mobile
             display block
-            margin-left vwpx(30)
+            margin-left vwpx(-20)
+            letter-spacing -0.02em
             :global(.line1, .line2)
               font-size vwpx(65.5)
               font-weight 700
@@ -230,7 +236,7 @@ const Tagline = () => (
             :global(.line2)
               margin-left vwpx(28)
           .desc
-            margin vwpx(37) vwpx(50) 0
+            margin vwpx(37) vwpx(50) 0 0
             :global(.line)
               font-size vwpx(15)
               line-height vwpx(32)
@@ -367,7 +373,7 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .featured-works
-          margin vwpx(116) vwpx(30) 0 vwpx(50)
+          margin vwpx(116) vwpx(30) 0 0
           :global(.featured-works-title)
             font-size vwpx_min(38)
           .items

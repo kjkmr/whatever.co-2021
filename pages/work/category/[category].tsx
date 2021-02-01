@@ -2,7 +2,8 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import { Tag, Entry, getAllWorks, getWorksByTag, getWorkTags } from '../../../lib/api'
 import Layout from 'components/Layout'
 import { TagSelector } from 'components/TagSelector'
-import { WorkList } from 'components/WorkList'
+import { WorkList, WorkListSingleCulumn } from 'components/WorkList'
+import { Desktop, Mobile } from 'components/Responsive'
 
 type WorkIndexProps = {
   tags: Tag[],
@@ -13,7 +14,8 @@ type WorkIndexProps = {
 const WorkIndex = ({ tags, active, works }: WorkIndexProps) => (
   <Layout title="Work" side="Work">
     <TagSelector tags={tags.filter(tag => tag.slug != 'featured')} active={active} />
-    <WorkList works={works} filter={active} />
+    <Desktop><WorkList works={works} filter={active} /></Desktop>
+    <Mobile><WorkListSingleCulumn works={works} /> </Mobile>
   </Layout >
 )
 

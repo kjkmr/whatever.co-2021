@@ -9,7 +9,7 @@ const Head = () => (
     <div className={langStyle('head')}>
       <div className="image"><GradImg lighten={true}><img src="/contact/pict04.svg" alt="" /></GradImg></div>
       {t('contact_title')?.split('\n').map((line, index) => <div key={index}><Grad className="title" key={index} inline>{line}</Grad></div>)}
-      <div className="mailto"><BlackButton width="300px" height="80px" link="mailto:hello@whatever.co">hello@whatever.co</BlackButton></div>
+      <div className="mailto"><BlackButton className="button" link="mailto:hello@whatever.co">hello@whatever.co</BlackButton></div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -29,7 +29,7 @@ const Head = () => (
           position relative
           font-size vwpx(30)
           font-weight bold
-          line-height vwpx(52)
+          line-height calc(52 / 30)
           mix-blend-mode multiply
       .mailto
         margin-top vwpx(47)
@@ -39,6 +39,25 @@ const Head = () => (
           line-height vwpx(54)
         .mailto
           margin-top vwpx(41)
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .head
+          margin vwpx(45) 0 0 0
+          .image
+            position static
+            margin-bottom 3.4rem
+            img
+              width vwpx(334)
+          :global(.title)
+            font-size 1.7rem
+            line-height 1.9
+        .mailto
+          display flex
+          justify-content flex-end          
+          margin 3.9rem 0 0 0
+          :global(.button)
+            width 210px
+            height 70px
     `}</style>
   </>
 )
@@ -47,7 +66,7 @@ const Address = ({ data }: { data: any }) => (
   <>
     <div className="container">
       <div><Grad className="region" inline>{data.name}</Grad></div>
-      <div><Grad className="address" inline><GradLink href={data.link} target="_blank" rel="noopener noreferrer" inlineBlock={true}>{data.address}</GradLink></Grad></div>
+      <div><Grad className="address" inline><GradLink href={data.link} target="_blank" rel="noopener noreferrer">{data.address}</GradLink></Grad></div>
       {data.phone != '-' ? <div><Grad className="phone" inline>{data.phone}</Grad></div> : null}
       {data.representative != '-' ? <div><Grad className="repr" inline>{data.representative}</Grad></div> : null}
     </div>
@@ -70,6 +89,22 @@ const Address = ({ data }: { data: any }) => (
         :global(.repr)
           font-size var(--font-size-ja)
           line-height 1em
+      @media (--mobile)
+        .container
+          margin 0 0 7.2rem 0
+          :global(.region)
+            font-size 1.7rem
+            margin 0
+          :global(.address)
+            font-size 1.2rem
+            line-height 2.0
+            margin 2.05rem 0 0 0
+          :global(.phone)
+            font-size 1.2rem
+            margin 1.65rem 0 0 0
+          :global(.repr)
+            font-size 1.2rem
+            margin 2.25rem 0 0 0
     `}</style>
   </>
 )
@@ -126,10 +161,27 @@ const ContactPage = () => {
           .i4
             width vwpx(562)
             margin-top vwpx(80)
-        .row
-          display flex
-          justify-content space-between
-          align-items flex-start
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .address
+          margin 7.45rem 30px 0 0
+          display block
+        .images
+          margin 8.0rem 0 7.5rem -50px
+          .row
+            display block
+          .i1, .i2
+            width 100%
+          .i3, .i4
+            width vwpx(227)
+          .i2, .i3, .i4
+            margin-top vwpx(30)
+          .i3
+            display flex
+            justify-content flex-end
+            width 100%
+            img
+              width vwpx_min(227)
       `}</style>
     </Layout >
   )

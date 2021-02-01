@@ -106,15 +106,36 @@ const SmallWork = ({ work }: { work: Entry }) => {
             :global(.title)
               font-size 2.0rem
               font-weight 700
-              line-height 2.8rem
+              line-height 1.4
               margin-top 0.8rem
             :global(.subtitle)
               font-size 1.5rem
               font-weight 300
-              line-height 2.1rem
+              line-height 1.4
               margin-top 0.5rem
             :global(.tags)
               margin-top 1.5rem
+        @media (--mobile)
+          @import 'lib/vw-mobile.styl'
+          .small-work
+            padding 0
+            .image img
+              width vwpx(150)
+              height vwpx(84)
+            .text
+              margin 1.4rem 0 0 0
+              :global(.date)
+                font-size 1.0rem
+              :global(.title)
+                font-size 1.4rem
+                line-height 1.3
+                margin-top 0.5rem
+              :global(.subtitle)
+                font-size 1.0rem
+                line-height 1.6
+                margin-top 0.25rem
+              :global(.tags)
+                margin-top 1.0rem
       `}</style>
     </>
   )
@@ -148,6 +169,87 @@ export const WorkList = ({ filter, works }: WorkListProps) => (
         display grid
         grid-template-columns repeat(3, 1fr)
         column-gap vwpx(77)
+      @media (--mobile)
+        @import 'lib/vw-mobile.styl'
+        .works
+          grid-template-columns repeat(2, 1fr)
+          grid-gap vwpx(40) vwpx(25)
+    `}</style>
+  </>
+)
+
+
+const Single = ({ work }: { work: Entry }) => {
+  const [entered, setEntered] = useState(false)
+  return (
+    <>
+      <div className="single-work">
+        <Link href={`/work/${work.slug}`}>
+          <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
+            <div className="image">
+              <GradImg mouseEntered={entered}><img src={work.hero_image} /></GradImg>
+            </div>
+            <div className="text">
+              <div><Grad className="date" inline>{work.date}</Grad></div>
+              <div><Grad className="title" inline><span dangerouslySetInnerHTML={{ __html: work.title }}></span></Grad></div>
+              {work.subtitle ? (<div><Grad className="subtitle" inline>{work.subtitle}</Grad></div>) : null}
+              <div><Grad className="tags" inline>
+                {work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}
+              </Grad></div>
+            </div>
+          </a>
+        </Link>
+      </div>
+      <style jsx>{`
+        @import 'lib/vw-mobile.styl'
+        .single-work
+          position relative
+          margin-bottom 6.0rem
+          font-size 0
+          &:last-child
+            margin-bottom 8.0rem
+          a
+            display block
+            border none
+            padding 0
+          .image
+            margin-left -50px
+            img
+              width vwpx(375)
+              height vwpx(211)
+              object-fit cover
+          .text
+            position relative
+            margin 2.5rem vwpx(30) 0 0
+            font-size 0
+            :global(.date)
+              font-size 1.0rem
+            :global(.title)
+              font-size 2.4rem
+              font-weight 700
+              line-height 1.4
+              margin-top 0.85rem
+            :global(.subtitle)
+              font-size 1.2rem
+              font-weight 300
+              line-height 1.4
+              margin-top 0.4rem
+            :global(.tags)
+              margin-top 2.1rem
+      `}</style>
+    </>
+  )
+}
+
+export const WorkListSingleCulumn = ({ works }: { works: Entry[] }) => (
+  <>
+    <div className="works">
+      {works?.map(w => <Single key={Math.random()} work={w} />)}
+    </div>
+    <style jsx>{`
+      @import 'lib/vw-mobile.styl'
+      .works
+        margin 4.0rem 0 0 0
     `}</style>
   </>
 )

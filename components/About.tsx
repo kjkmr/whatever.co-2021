@@ -12,6 +12,7 @@ type HeaderProps = {
   desc: string
   image: string
   imageWidth?: number
+  imageMargin?: number
   ty?: { [locale: string]: number }
   iy?: { [locale: string]: number }
 }
@@ -54,19 +55,20 @@ export const Header = (props: HeaderProps) => {
           margin-bottom 9px
           :global(.t1)
             font-size vwpx(62)
-            font-weight bold
+            font-weight 700
+            letter-spacing -0.015em
             margin 0
             margin-left vwpx(2)
           :global(.t2)
             font-size calc((100vw - 80px) * ${(props.titleSize || 124) / (1366 - 80)})
-            font-weight bold
+            font-weight 700
             margin 0
             margin-top calc((100vw - 80px) * ${(props.titleMargin || 8) / (1366 - 80)})
             margin-left vwpx(-4)
             margin-bottom vwpx(56)
           :global(.t3)
             font-size vwpx(30)
-            font-weight bold
+            font-weight 700
             margin 0
             .hr
               display inline-block
@@ -104,6 +106,7 @@ export const Header = (props: HeaderProps) => {
           .image
             margin 0
             margin-right vwpx(50)
+            padding calc(100vw * (${props.imageMargin || 0} / 375))
             img
               width 100%
           .text
@@ -133,14 +136,14 @@ export const Header = (props: HeaderProps) => {
 export const Footer = ({ left, right }: { left: string, right: string }) => (
   <>
     <div className="footer">
-      <BlackButton width="100%" height="100%" className="footer-button left" link={`/about/${left.toLowerCase()}`}>
+      <BlackButton className="footer-button left" link={`/about/${left.toLowerCase()}`}>
         <div className="line"></div>
         <div className="inner">
           <div className="whatever" >Whatever</div>
           <div className="title" >{left}</div>
         </div>
       </BlackButton>
-      <BlackButton width="100%" height="100%" className="footer-button right" link={`/about/${right.toLowerCase()}`}>
+      <BlackButton className="footer-button right" link={`/about/${right.toLowerCase()}`}>
         <div className="inner">
           <div className="whatever" >Whatever</div>
           <div className="title" >{right}</div>
@@ -196,7 +199,7 @@ export const Footer = ({ left, right }: { left: string, right: string }) => (
           :global(.left .inner)
             margin-left 30px
           :global(.right .inner)
-            margin-right 30px
+            margin-right 29px
     `}</style>
   </>
 )

@@ -26,6 +26,14 @@ let templateName: string
 // templateName = 'about_index_sp'
 // templateName = 'about_01_sp'
 // templateName = 'about_02_sp'
+// templateName = 'about_03_sp'
+// templateName = 'works_index_sp'
+// templateName = 'works_detail_sp'
+// templateName = 'news_index_sp'
+// templateName = 'news_detail_sp'
+// templateName = 'team_index_sp'
+// templateName = 'team_detail_sp'
+// templateName = 'contact_sp'
 
 type Props = {
   showHeader?: boolean
@@ -49,7 +57,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
   const templateStyle: { [prop: string]: string } = {}
   if (templateName) {
     templateStyle.backgroundImage = `url(/_/${templateName}_${useRouter().locale!}.png)`
-    // templateStyle.backgroundPosition = 'top -16px left'
+    // templateStyle.backgroundPosition = 'top -909px left'
   }
   return (
     <>
@@ -94,8 +102,8 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           .container
             background-size 375px auto
           .main
-            width 100%
-            margin 0
+            width calc(100vw - 50px)
+            margin-left 50px
           .langselect
             display block
             position fixed

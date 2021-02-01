@@ -406,7 +406,7 @@ const GenrePage = () => (
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .genre
-          margin vwpx(75) 0 70px vwpx(50)
+          margin vwpx(75) 0 70px 0
     `}</style>
   </>
 )

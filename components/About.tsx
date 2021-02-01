@@ -55,19 +55,20 @@ export const Header = (props: HeaderProps) => {
           margin-bottom 9px
           :global(.t1)
             font-size vwpx(62)
-            font-weight bold
+            font-weight 700
+            letter-spacing -0.015em
             margin 0
             margin-left vwpx(2)
           :global(.t2)
             font-size calc((100vw - 80px) * ${(props.titleSize || 124) / (1366 - 80)})
-            font-weight bold
+            font-weight 700
             margin 0
             margin-top calc((100vw - 80px) * ${(props.titleMargin || 8) / (1366 - 80)})
             margin-left vwpx(-4)
             margin-bottom vwpx(56)
           :global(.t3)
             font-size vwpx(30)
-            font-weight bold
+            font-weight 700
             margin 0
             .hr
               display inline-block

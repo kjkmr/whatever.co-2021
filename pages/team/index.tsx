@@ -104,7 +104,7 @@ const TeamIndex = ({ members }: { members: Member[] }) => {
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
           .team-index
-            margin 0 0 70px vwpx(50)
+            margin 0 0 70px 0
             grid-template-columns repeat(2, 1fr)
             grid-gap vwpx(40) vwpx(25)
             grid-auto-rows auto

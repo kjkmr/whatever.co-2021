@@ -28,6 +28,7 @@ let templateName: string
 // templateName = 'about_02_sp'
 // templateName = 'about_03_sp'
 // templateName = 'team_index_sp'
+// templateName = 'team_detail_sp'
 
 type Props = {
   showHeader?: boolean
@@ -96,8 +97,8 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           .container
             background-size 375px auto
           .main
-            width 100%
-            margin 0
+            width calc(100vw - 50px)
+            margin-left 50px
           .langselect
             display block
             position fixed

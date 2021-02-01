@@ -226,7 +226,8 @@ const Tagline = () => (
             display none
           .title-mobile
             display block
-            margin-left vwpx(30)
+            margin-left vwpx(-20)
+            letter-spacing -0.02em
             :global(.line1, .line2)
               font-size vwpx(65.5)
               font-weight 700
@@ -235,7 +236,7 @@ const Tagline = () => (
             :global(.line2)
               margin-left vwpx(28)
           .desc
-            margin vwpx(37) vwpx(50) 0
+            margin vwpx(37) vwpx(50) 0 0
             :global(.line)
               font-size vwpx(15)
               line-height vwpx(32)
@@ -372,7 +373,7 @@ const FeaturedWorks = ({ works }: { works: Entry[] }) => (
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .featured-works
-          margin vwpx(116) vwpx(30) 0 vwpx(50)
+          margin vwpx(116) vwpx(30) 0 0
           :global(.featured-works-title)
             font-size vwpx_min(38)
           .items

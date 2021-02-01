@@ -103,7 +103,7 @@ const Genres = () => (
           margin vwpx(60) 0 0 0
         .inner
           flex-direction column
-          margin 0 vwpx(50) 0
+          margin 0 vwpx(50) 0 0
         .image
           img
             width 100%
@@ -149,7 +149,7 @@ const Workstyle = () => (
           margin 9.0rem 0 0 0
         .inner
           flex-direction column-reverse
-          margin 0 vwpx(50) 0
+          margin 0 vwpx(50) 0 0
         .image
           img
             width 100%
@@ -196,7 +196,7 @@ const Location = () => (
           margin 9.0rem 0 7.5rem 0
         .inner
           flex-direction column
-          margin 0 vwpx(50) 0
+          margin 0 vwpx(50) 0 0
         .image
           margin 0 vwpx(15)
           img
@@ -261,7 +261,7 @@ const AboutPage = () => (
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .about
-          margin vwpx(90) vwpx(30) 0 vwpx(50)
+          margin vwpx(90) vwpx(30) 0 0
         .whats-desktop
           display none
         .whats-mobile

@@ -293,7 +293,7 @@ const Location = () => (
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .location
-          margin vwpx(75) 0 76px vwpx(50)
+          margin vwpx(75) 0 76px 0
     `}</style>
   </>
 )

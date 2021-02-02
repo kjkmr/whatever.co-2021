@@ -86,9 +86,19 @@ const Player = ({ onClick }: { onClick?: any }) => (
 )
 
 const Showreel = () => {
+  const showreel = useRef<HTMLDivElement>(null)
+  const videoContainer = useRef<HTMLDivElement>(null)
   const [videoHeight, setVideoHeight] = useState('')
-  const videoMarginBottom = isMobile() ? 35 : 40
-  const onScroll = () => setVideoHeight(`calc((100vh - ${videoMarginBottom}px) - ${window.pageYOffset}px)`)
+  const onScroll = isMobile()
+    ? () => {
+      if (!showreel.current || !videoContainer.current) return
+      let height = showreel.current.getBoundingClientRect().height + 35
+      height = Math.max(0, height - window.pageYOffset)
+      videoContainer.current.style.setProperty('--video-height', `${height}px`)
+    }
+    : () => {
+      setVideoHeight(`calc((100vh - 40px) - ${window.pageYOffset}px)`)
+    }
   useLayoutEffect(() => {
     window.addEventListener('scroll', onScroll)
     onScroll()
@@ -106,8 +116,8 @@ const Showreel = () => {
   }
   return (
     <>
-      <div className="showreel">
-        <div className="video" style={{ height: videoHeight }}>
+      <div ref={showreel} className="showreel">
+        <div ref={videoContainer} className="video" style={{ height: videoHeight }}>
           <GradImg>
             <video ref={video} src="/index/reel-preview.mp4" autoPlay playsInline loop muted></video>
           </GradImg>
@@ -141,12 +151,20 @@ const Showreel = () => {
               height 80px
         @media (--mobile)
           .showreel
-            height calc(100vh - 35px)
+            height fill
+            padding-bottom 35px
+            box-sizing border-box
             .video
               left 0
+              height fill
+              height var(--video-height, 100vh)
+              padding-bottom 35px
+              box-sizing border-box
+              :global(>div)
+                height 100%
             video
               width 100vw
-              height calc(100vh - 35px)
+              height fill
             .watch-reel
               width 187px
               height 70px
@@ -180,7 +198,7 @@ const Tagline = () => (
         </div>
         <div className="desc">
           {t('top_whatever_sp')?.split('\n').map((line, index) => <Grad key={index} className="line">{line}</Grad>)}
-      </div>
+        </div>
       </Mobile>
       <div className="link">
         <BlackButton link="/about" >Learn more</BlackButton>

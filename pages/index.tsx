@@ -167,6 +167,9 @@ const Tagline = () => (
           <Grad className="line1">Make whatever.</Grad>
           <Grad className="line2">Rules, whatever.</Grad>
         </div>
+        <div className="desc">
+          {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index} className="line">{line}</Grad>)}
+        </div>
       </Desktop>
       <Mobile>
         <div className="title-mobile">
@@ -175,10 +178,10 @@ const Tagline = () => (
           <Grad className="line1">Rules,</Grad>
           <Grad className="line2">whatever.</Grad>
         </div>
-      </Mobile>
-      <div className="desc">
-        {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index} className="line">{line}</Grad>)}
+        <div className="desc">
+          {t('top_whatever_sp')?.split('\n').map((line, index) => <Grad key={index} className="line">{line}</Grad>)}
       </div>
+      </Mobile>
       <div className="link">
         <BlackButton link="/about" >Learn more</BlackButton>
       </div>

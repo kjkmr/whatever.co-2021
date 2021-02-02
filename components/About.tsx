@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { langStyle } from 'lib/i18n'
 import { Grad, GradImg } from 'components/Grad'
 import BlackButton from 'components/BlackButton'
+import { Desktop, Mobile } from 'components/Responsive'
 
 type HeaderProps = {
   headerMargin?: number
@@ -30,8 +31,9 @@ export const Header = (props: HeaderProps) => {
             <div><Grad className="t2" inline>{props.title}</Grad></div>
             {props.subtitle != '-' ? <div><Grad className="t3" inline><span className="hr" />{props.subtitle}</Grad></div> : null}
           </div>
-          <div className="image" >
-            <GradImg lighten={true}><img src={props.image} alt="" /></GradImg>
+          <div className="image">
+            <Desktop><GradImg lighten={true}><img src={`/about/${props.image}.svg`} alt="" /></GradImg></Desktop>
+            <Mobile><GradImg lighten={true}><img src={`/about/${props.image}_sp.svg`} alt="" /></GradImg></Mobile>
           </div>
         </div>
         <div className="desc">
@@ -56,7 +58,6 @@ export const Header = (props: HeaderProps) => {
           :global(.t1)
             font-size vwpx(62)
             font-weight 700
-            letter-spacing -0.015em
             margin 0
             margin-left vwpx(2)
           :global(.t2)
@@ -90,12 +91,13 @@ export const Header = (props: HeaderProps) => {
           line-height calc(40 / 18)
         .en
           .upper
-            margin-bottom vwpx(103)
+            margin-bottom vwpx(95)
           .text
             margin-bottom -30px
           .desc-line
             font-size vwpx_min(20)
             font-weight 400
+            line-height 2.0
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
           .header
@@ -258,12 +260,14 @@ export const SectionHeader = ({ num, title, body }: SectionTitleProps) => (
       .en
         :global(.title)
           font-size vwpx_min(36)
-          line-height 1.5em
-          margin-top vwpx(5)
+          line-height 1.5
+          margin-top vwpx(3)
         .body
+          margin-top vwpx(57)
           :global(.body-line)
             font-size var(--font-size-en)
-            font-weight 400
+            font-weight 200
+            line-height 1.8
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .header

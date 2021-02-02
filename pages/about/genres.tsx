@@ -5,7 +5,6 @@ import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Header, Footer, SectionHeader } from 'components/About'
 import { Grad, GradImg } from 'components/Grad'
-import React from 'react'
 
 const Section1 = () => (
   <>
@@ -77,7 +76,7 @@ const Section1 = () => (
           width vwpx(433)
       h2
         margin 0
-        margin-bottom vwpx(46)
+        margin-bottom vwpx_min(46)
         padding 0
         font-size 0
         :global(.example-title)
@@ -109,6 +108,7 @@ const Section1 = () => (
               margin-bottom 0.9rem
       .en
         h2
+          margin-top vwpx_min(100)
           :global(.example-title)
             font-size vwpx_min(24)
         .example-items
@@ -124,6 +124,8 @@ const Section1 = () => (
               margin-bottom 1.1rem
               li
                 line-height 1.25em
+                &:last-child
+                  margin 0
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .section1
@@ -161,9 +163,9 @@ const Section1 = () => (
           flex-direction column
           .item
             padding-top 1.2rem
-            padding-bottom 1.7rem
+            padding-bottom 0.2rem
             padding-left 1.8rem
-            margin-bottom 0.4rem
+            margin-bottom 1.9rem
             .title
               margin-bottom 1.35rem
             ul li
@@ -246,9 +248,12 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
             font-size 1.2rem
             line-height 2.0
         .en
+          :global(.work-link-name)
+            font-weight 500
           :global(.work-link-desc)
             font-size 1.4rem
-            font-weight 400
+            font-weight 200
+            line-height 1.75
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
           .work-link
@@ -306,7 +311,8 @@ const WorkList = ({ title, body, items }: { title: string, body: string, items: 
           font-size vwpx_min(24)
         :global(.work-list-desc)
           font-size var(--font-size-en)
-          font-weight 400
+          font-weight 200
+          line-height 1.8
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .work-list
@@ -345,9 +351,7 @@ const Section3 = () => (
       @import 'lib/vw.styl'
       .section3
         position relative
-        margin-left vwpx(80)
-        margin-right vwpx(80)
-        margin-bottom vwpx(190)
+        margin 0 vwpx(80) vwpx(170)
       .images
         position relative
         height vwpx(1113)
@@ -394,7 +398,7 @@ const GenrePage = () => (
   <>
     <Layout title="About" side="About" backto="/about" footer={<Footer left="Location" right="Workstyle" />}>
       <div className="genre">
-        <Header title="Genres" subtitle={t('genres_title')!} desc={t('genres_description')!} image="/about/pict01.svg" />
+        <Header title="Genres" subtitle={t('genres_title')!} desc={t('genres_description')!} image="pict01" />
         <Section1 />
         <Section2 />
         <Section3 />

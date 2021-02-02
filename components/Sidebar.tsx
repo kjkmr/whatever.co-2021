@@ -42,14 +42,14 @@ const Sidebar = ({ title, backto }: SidebarProps) => (
         transform rotate(90deg)
       .title
         font-size 2rem
-        font-weight bold
+        font-weight 700
         user-select none
         margin-left 40px
         margin-top 31px
       .back
         position relative
         font-size 1.0rem
-        letter-spacing 0.08rem
+        letter-spacing 0.1rem
         margin-left 30px
         margin-top 30px
         text-align center
@@ -61,13 +61,14 @@ const Sidebar = ({ title, backto }: SidebarProps) => (
           padding 5px 5px 0
           {/* background-color lightgreen */}
           transition all 0.15s cubic-bezier(0.80, 0.000, 0.200, 1.0)
-          &:hover
-            padding-top 15px
-            opacity 0.3
-            transition all 0.15s cubic-bezier(0.80, 0.000, 0.200, 1.0)
-            .text
-              margin-bottom 10px
+          @media (--desktop)
+            &:hover
+              padding-top 15px
+              opacity 0.3
               transition all 0.15s cubic-bezier(0.80, 0.000, 0.200, 1.0)
+              .text
+                margin-bottom 10px
+                transition all 0.15s cubic-bezier(0.80, 0.000, 0.200, 1.0)
           .text
             margin-bottom 20px
             transition all 0.15s cubic-bezier(0.80, 0.000, 0.200, 1.0)
@@ -80,7 +81,28 @@ const Sidebar = ({ title, backto }: SidebarProps) => (
         margin-top 36px
       @media (--mobile)
         .sidebar
-          display none
+          width 50px
+        .vertical
+          width calc(100vh - 50px)
+          height 50px
+          top 50px
+          left 50px
+        .back
+          position absolute
+          top 15px
+          right 235px
+          margin 0
+          a
+            .text
+              margin-bottom 10px
+        .title
+          font-size 1.4rem
+          font-weight 700
+          margin-left 25px
+          margin-top 18.5px
+        .langselect
+          margin-right 130px
+          margin-top 20px
     `}</style>
   </>
 )

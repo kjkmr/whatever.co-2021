@@ -3,11 +3,15 @@ import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import BlackButton from 'components/BlackButton'
 import { Grad, GradImg, GradLink } from 'components/Grad'
+import { Desktop, Mobile } from 'components/Responsive'
 
 const Head = () => (
   <>
     <div className={langStyle('head')}>
-      <div className="image"><GradImg lighten={true}><img src="/contact/pict04.svg" alt="" /></GradImg></div>
+      <div className="image">
+        <Desktop><GradImg lighten={true}><img src="/contact/pict04.svg" alt="" /></GradImg></Desktop>
+        <Mobile><GradImg lighten={true}><img src="/contact/pict04_sp.svg" alt="" /></GradImg></Mobile>
+      </div>
       {t('contact_title')?.split('\n').map((line, index) => <div key={index}><Grad className="title" key={index} inline>{line}</Grad></div>)}
       <div className="mailto"><BlackButton className="button" link="mailto:hello@whatever.co">hello@whatever.co</BlackButton></div>
     </div>
@@ -33,6 +37,9 @@ const Head = () => (
           mix-blend-mode multiply
       .mailto
         margin-top vwpx(47)
+        :global(.button)
+          width 300px
+          height 80px
       .en
         &.head :global(.title)
           font-size vwpx(36)
@@ -64,7 +71,7 @@ const Head = () => (
 
 const Address = ({ data }: { data: any }) => (
   <>
-    <div className="container">
+    <div className={langStyle('container')}>
       <div><Grad className="region" inline>{data.name}</Grad></div>
       <div><Grad className="address" inline><GradLink href={data.link} target="_blank" rel="noopener noreferrer">{data.address}</GradLink></Grad></div>
       {data.phone != '-' ? <div><Grad className="phone" inline>{data.phone}</Grad></div> : null}
@@ -81,13 +88,28 @@ const Address = ({ data }: { data: any }) => (
         :global(.address)
           font-size var(--font-size-ja)
           line-height 1em
-          margin-bottom 1.1rem
+          margin-bottom 1.5rem
         :global(.phone)
           font-size var(--font-size-ja)
           line-height 1em
           margin-bottom 1.5rem
         :global(.repr)
           font-size var(--font-size-ja)
+          line-height 1em
+      .container.en
+        :global(.address)
+          font-size var(--font-size-en)
+          font-weight 200
+          line-height 1em
+          margin-bottom 1.3rem
+        :global(.phone)
+          font-size var(--font-size-en)
+          font-weight 200
+          line-height 1em
+          margin-bottom 1.3rem
+        :global(.repr)
+          font-size var(--font-size-en)
+          font-weight 200
           line-height 1em
       @media (--mobile)
         .container

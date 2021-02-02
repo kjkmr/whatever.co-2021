@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { Entry, Tag } from 'lib/api'
 import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
+import { langStyle } from 'lib/i18n'
 
 
 const LargeWork = ({ work }: { work: Entry }) => {
@@ -65,7 +66,7 @@ const SmallWork = ({ work }: { work: Entry }) => {
   const [entered, setEntered] = useState(false)
   return (
     <>
-      <div className="small-work">
+      <div className={langStyle('small-work')}>
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image">
@@ -109,12 +110,17 @@ const SmallWork = ({ work }: { work: Entry }) => {
               line-height 1.4
               margin-top 0.8rem
             :global(.subtitle)
-              font-size 1.5rem
+              font-size var(--font-size-ja)
               font-weight 300
               line-height 1.4
               margin-top 0.5rem
             :global(.tags)
               margin-top 1.5rem
+        .en.small-work
+            .text
+              :global(.subtitle)
+                font-size var(--font-size-en)
+                font-weight 200
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
           .small-work

@@ -6,6 +6,7 @@ import Layout from 'components/Layout'
 import { Header, Footer, SectionHeader } from 'components/About'
 import BlackButton from 'components/BlackButton'
 import { Grad, GradImg } from 'components/Grad'
+import { Desktop, Mobile } from 'components/Responsive'
 
 
 const LogoGridDesktop = ({ list, className = '' }: { list: string[], className?: string }) => (
@@ -38,19 +39,6 @@ const LogoGridDesktop = ({ list, className = '' }: { list: string[], className?:
             box-sizing border-box
             margin auto
             width 100%
-      @media (--mobile)
-        @import 'lib/vw-mobile.styl'
-        .logo-grid
-          display none
-          margin-right vwpx(50)
-          grid-template-columns repeat(2, 1fr)
-          width vwpx(275)
-          .inner
-            margin vwpx(25) 0
-            padding vwpx(14) 0
-            box-sizing border-box
-          :global(.image)
-            width 100%
     `}</style>
   </>
 )
@@ -72,10 +60,6 @@ const LogoGridMobile = ({ list, className = '' }: { list: string[], className?: 
         ))}
       </div>
       <style jsx>{`
-      @import 'lib/vw.styl'
-      .logo-grid
-        display none
-      @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .logo-grid
           display grid
@@ -120,12 +104,20 @@ const Section1 = () => (
       <hr />
       <SectionHeader num="01" title={t('location_1_title')!} body={t('location_1_body')!} />
       <div><Grad className="subtitle" inline>{t('location_1_inhouse')}</Grad></div>
-      <LogoGridDesktop className="logo1" list={['WHILL', 'MUJI', 'SONY', 'Cotodama', 'avex group']} />
-      <LogoGridMobile className="logo1" list={['WHILL', 'MUJI', 'SONY', 'Cotodama', 'avex group']} />
+      <Desktop>
+        <LogoGridDesktop className="logo1" list={['WHILL', 'MUJI', 'SONY', 'Cotodama', 'avex group']} />
+      </Desktop>
+      <Mobile>
+        <LogoGridMobile className="logo1" list={['WHILL', 'MUJI', 'SONY', 'Cotodama', 'avex group']} />
+      </Mobile>
       <div><Grad className="subtitle" inline>{t('location_1_overseas')}</Grad></div>
-      <LogoGridDesktop className="logo2" list={['Slack', 'Shopify', 'Airbnb', 'Google', 'HERMES']} />
-      <LogoGridDesktop className="logo3" list={['intel', 'NEW STAND']} />
-      <LogoGridMobile list={['Slack', 'Shopify', 'Airbnb', 'Google', 'HERMES', 'intel', 'NEW STAND']} />
+      <Desktop>
+        <LogoGridDesktop className="logo2" list={['Slack', 'Shopify', 'Airbnb', 'Google', 'HERMES']} />
+        <LogoGridDesktop className="logo3" list={['intel', 'NEW STAND']} />
+      </Desktop>
+      <Mobile>
+        <LogoGridMobile list={['Slack', 'Shopify', 'Airbnb', 'Google', 'HERMES', 'intel', 'NEW STAND']} />
+      </Mobile>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
@@ -284,7 +276,7 @@ const Location = () => (
   <>
     <Layout title="About" side="About" backto="/about" footer={<Footer left="Workstyle" right="Genres" />}>
       <div className="location">
-        <Header headerMargin={79} title="Location" subtitle={t('location_title')!} desc={t('location_description')!} image="/about/pict03.svg" imageWidth={554} imageMargin={5} />
+        <Header headerMargin={79} title="Location" subtitle={t('location_title')!} desc={t('location_description')!} image="pict03" imageWidth={554} imageMargin={5} />
         <Section1 />
         <Section2 />
       </div>

@@ -9,6 +9,7 @@ import Layout from 'components/Layout'
 import BlackButton from 'components/BlackButton'
 import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
+import { Desktop, Mobile } from 'components/Responsive'
 
 const Player = ({ onClick }: { onClick?: any }) => (
   <>
@@ -85,9 +86,19 @@ const Player = ({ onClick }: { onClick?: any }) => (
 )
 
 const Showreel = () => {
+  const showreel = useRef<HTMLDivElement>(null)
+  const videoContainer = useRef<HTMLDivElement>(null)
   const [videoHeight, setVideoHeight] = useState('')
-  const videoMarginBottom = isMobile() ? 35 : 40
-  const onScroll = () => setVideoHeight(`calc((100vh - ${videoMarginBottom}px) - ${window.pageYOffset}px)`)
+  const onScroll = isMobile()
+    ? () => {
+      if (!showreel.current || !videoContainer.current) return
+      let height = showreel.current.getBoundingClientRect().height + 35
+      height = Math.max(0, height - window.pageYOffset)
+      videoContainer.current.style.setProperty('--video-height', `${height}px`)
+    }
+    : () => {
+      setVideoHeight(`calc((100vh - 40px) - ${window.pageYOffset}px)`)
+    }
   useLayoutEffect(() => {
     window.addEventListener('scroll', onScroll)
     onScroll()
@@ -105,8 +116,8 @@ const Showreel = () => {
   }
   return (
     <>
-      <div className="showreel">
-        <div className="video" style={{ height: videoHeight }}>
+      <div ref={showreel} className="showreel">
+        <div ref={videoContainer} className="video" style={{ height: videoHeight }}>
           <GradImg>
             <video ref={video} src="/index/reel-preview.mp4" autoPlay playsInline loop muted></video>
           </GradImg>
@@ -140,12 +151,20 @@ const Showreel = () => {
               height 80px
         @media (--mobile)
           .showreel
-            height calc(100vh - 35px)
+            height fill
+            padding-bottom 35px
+            box-sizing border-box
             .video
               left 0
+              height fill
+              height var(--video-height, 100vh)
+              padding-bottom 35px
+              box-sizing border-box
+              :global(>div)
+                height 100%
             video
               width 100vw
-              height calc(100vh - 35px)
+              height fill
             .watch-reel
               width 187px
               height 70px
@@ -161,19 +180,26 @@ const Showreel = () => {
 const Tagline = () => (
   <>
     <div className={langStyle('tagline')}>
-      <div className="title-desktop">
-        <Grad className="line1">Make whatever.</Grad>
-        <Grad className="line2">Rules, whatever.</Grad>
-      </div>
-      <div className="title-mobile">
-        <Grad className="line1">Make</Grad>
-        <Grad className="line2">whatever.</Grad>
-        <Grad className="line1">Rules,</Grad>
-        <Grad className="line2">whatever.</Grad>
-      </div>
-      <div className="desc">
-        {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index} className="line">{line}</Grad>)}
-      </div>
+      <Desktop>
+        <div className="title-desktop">
+          <Grad className="line1">Make whatever.</Grad>
+          <Grad className="line2">Rules, whatever.</Grad>
+        </div>
+        <div className="desc">
+          {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index} className="line">{line}</Grad>)}
+        </div>
+      </Desktop>
+      <Mobile>
+        <div className="title-mobile">
+          <Grad className="line1">Make</Grad>
+          <Grad className="line2">whatever.</Grad>
+          <Grad className="line1">Rules,</Grad>
+          <Grad className="line2">whatever.</Grad>
+        </div>
+        <div className="desc">
+          {t('top_whatever_sp')?.split('\n').map((line, index) => <Grad key={index} className="line">{line}</Grad>)}
+        </div>
+      </Mobile>
       <div className="link">
         <BlackButton link="/about" >Learn more</BlackButton>
       </div>
@@ -195,8 +221,6 @@ const Tagline = () => (
           margin-bottom vwpx(13)
         :global(.line2)
           margin-left vwpx(71)
-      .title-mobile
-        display none
       .desc
         position relative
         margin vwpx(85) vwpx(80) 0
@@ -212,18 +236,16 @@ const Tagline = () => (
         margin-top vwpx(81)
       .en
         .desc
-          margin-top vwpx(66)
+          margin-top vwpx(83)
           margin-left vwpx(80)
           h2
             font-size vwpx(26)
         .link
-          margin-top vwpx(154)
+          margin-top vwpx(81)
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .tagline
           margin-top vwpx(137)
-          .title-desktop
-            display none
           .title-mobile
             display block
             margin-left vwpx(-20)
@@ -246,6 +268,8 @@ const Tagline = () => (
   </>
 )
 
+const removeHtmlTags = (html: string) => html.replace(/<\/?[^>]+(>|$)/g, "")
+
 const FeaturedWorkItem = ({ work }: { work: Entry }) => {
   const [entered, setEntered] = useState(false)
   return (
@@ -259,7 +283,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
               <div><Grad className="title" inline>{work.title}</Grad></div>
             </div>
             <div><Grad className="subtitle" inline>{work.subtitle}</Grad></div>
-            <div><Grad className="overview" inline>{work.overview}</Grad></div>
+            <div><Grad className="overview" inline><div className="inner">{removeHtmlTags(work.overview || '')}</div></Grad></div>
             <div><Grad className="tags" inline>
               <div>{work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}</div>
             </Grad></div>
@@ -309,8 +333,20 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
           :global(.tags)
             margin-top 2.0rem
         .en
-          :global(.overview)
-            font-weight 400
+          :global(.subtitle)
+            margin-top 1.6rem
+            font-size var(--font-size-en)
+            font-weight 500
+          :global(.overview) .inner
+            display -webkit-box
+            -webkit-box-orient vertical
+            -webkit-line-clamp 2
+            overflow hidden
+            text-overflow ellipsis
+            font-size var(--font-size-en)
+            font-weight 200
+            line-height 1.8
+            margin 0
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
           .fetured-work-item
@@ -499,8 +535,8 @@ const IndexPage = ({ works, news }: { works: Entry[], news: Entry[] }) => (
 
 export default IndexPage
 
-export const getStaticProps: GetStaticProps = async () => {
-  const works = await getWorksByTag('featured', 4)
-  const news = await getNews(4)
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  const works = await getWorksByTag('featured', 4, locale)
+  const news = await getNews(4, locale)
   return { props: { works, news } }
 }

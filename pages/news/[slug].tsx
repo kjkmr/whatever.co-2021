@@ -62,7 +62,7 @@ const NewsDetail = ({ entry }: { entry: Entry }) => (
             line-height 1.6
             margin-top 1.5rem
         .body
-          margin 2.8rem 30px 4.0rem 0
+          margin 2.8rem 30px 10.0rem 0
     `}</style>
   </Layout >
 )

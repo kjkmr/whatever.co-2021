@@ -210,10 +210,10 @@ const CreditMember = ({ member }: { member: Person }) => {
           font-weight 300
           :global(.role)
             font-size 1.2rem
-            line-height 1.0
+            line-height 1.2
           :global(.name)
             font-size var(--font-size-ja)
-            line-height calc(23 / 15)
+            line-height 1.8
             margin-top 3px
         @media (--mobile)
           .member

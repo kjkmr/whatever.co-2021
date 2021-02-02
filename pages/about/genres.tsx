@@ -164,9 +164,9 @@ const Section1 = () => (
           flex-direction column
           .item
             padding-top 1.2rem
-            padding-bottom 1.7rem
+            padding-bottom 0.2rem
             padding-left 1.8rem
-            margin-bottom 0.4rem
+            margin-bottom 1.9rem
             .title
               margin-bottom 1.35rem
             ul li

@@ -7,6 +7,7 @@ import Layout from 'components/Layout'
 import { Grad, GradImg, GradLink, setupLink } from 'components/Grad'
 import { WorkList } from 'components/WorkList'
 import { Desktop, Mobile } from 'components/Responsive'
+import { langStyle } from 'lib/i18n'
 
 const PhotoDesktop = ({ src }: { src: string }) => {
   const [scrollY, setScrollY] = useState(0)
@@ -75,7 +76,7 @@ const MemberInfo = ({ member }: { member: Member }) => {
   })
   return (
     <>
-      <div className="member-info">
+      <div className={langStyle('member-info')}>
         <Desktop><PhotoDesktop src={member.image} /></Desktop>
         <Mobile><PhotoMobile src={member.image} /></Mobile>
         <div className="info">
@@ -131,6 +132,21 @@ const MemberInfo = ({ member }: { member: Member }) => {
           :global(.link-item)
             font-size var(--font-size-ja)
             margin-bottom 1.1rem
+        .en
+          .inner
+            :global(.name)
+              font-size vwpx_min(46)
+              margin-top vwpx_min(25)
+            :global(.description)
+              margin-top 3.2rem
+            .desc-inner
+              :global(p)
+                font-size var(--font-size-en)
+                font-weight 200
+                line-height 1.8
+          .links
+            :global(.link-item)
+              font-weight 500
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
           .member-info

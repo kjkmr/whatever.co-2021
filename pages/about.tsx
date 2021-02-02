@@ -4,6 +4,7 @@ import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 import BlackButton from 'components/BlackButton'
 import React from 'react'
+import { Desktop, Mobile } from 'components/Responsive'
 
 const Detail = ({ title }: { title: string }) => {
   const key = title.toLowerCase()
@@ -28,29 +29,24 @@ const Detail = ({ title }: { title: string }) => {
           :global(.title)
             font-size vwpx_min(102)
             font-weight 700
-            margin 0
-            margin-top vwpx_min(14)
-            margin-bottom vwpx_min(16)
-            margin-left vwpx_min(-3)
+            margin vwpx_min(14) 0 vwpx_min(16) vwpx_min(-3)
           :global(.subtitle)
             font-size vwpx_min(24)
             font-weight 700
-            margin 0
-            margin-top vwpx_min(7)
+            margin vwpx_min(7) 0 0 0
           :global(.desc)
-            margin 0
-            margin-top vwpx_min(21)
-            margin-left 0.3rem
+            margin vwpx_min(21) 0 0 0.3rem
             font-size var(--font-size-ja)
             line-height 2.0
         .more
           display inline-block
           margin-top 4.9rem
         .en
-          h1
-            margin-bottom 0
-          p
-            font-size 1.7rem
+          :global(.desc)
+            font-size var(--font-size-en)
+            font-weight 400
+            line-height 1.8
+            margin vwpx_min(5) 0 0 0
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
           .detail
@@ -211,18 +207,20 @@ const AboutPage = () => (
   <>
     <Layout title="About" side="About">
       <div className={langStyle('about')}>
-        <div className="whats-desktop"><Grad className="whats" inline>What’s Whatever<span className="q">?</span></Grad></div>
-        <div className="whats-mobile">
-          <Grad className="whats">What’s</Grad>
-          <Grad className="whatever">Whatever<span className="q">?</span></Grad>
-        </div>
+        <Desktop>
+          <div>
+            <Grad className="whats" inline>What’s Whatever<span className="q">?</span></Grad>
+          </div>
+        </Desktop>
+        <Mobile>
+          <div className="whats-mobile">
+            <Grad className="whats">What’s</Grad>
+            <Grad className="whatever">Whatever<span className="q">?</span></Grad>
+          </div>
+        </Mobile>
         <div className="text">
-          {t('about_statement')?.split('\n\n').map((p, i) => (
-            <div key={i}>
-              {p.split('\n').map((line, index) => (
-                <Grad key={index} className="p" inline>{line}</Grad>
-              ))}
-            </div>
+          {t('about_statement')?.split('\n').map((line, i) => (
+            <div key={i}><Grad className="p" inline>{line}</Grad></div>
           ))}
         </div>
       </div>
@@ -233,40 +231,36 @@ const AboutPage = () => (
     <style jsx>{`
       @import 'lib/vw.styl'
       .about
-        margin-top vwpx(94)
-        margin-bottom vwpx(150)
+        margin vwpx(94) 0 vwpx(170) 0
         font-size 0
-      .whats-desktop, .whats-mobile
+      :global(.whats)
         font-size vwpx(129)
         font-weight 700
-        :global(.whats)
-          margin-bottom vwpx(66)
-          margin-left vwpx(81)
-          .q
-            font-family 'Noto Sans JP'
-      .whats-mobile
-        display none
+        margin 0 0 0 vwpx(81)
+        .q
+          font-family 'Noto Sans JP'
       .text
-        margin-left vwpx(118)
+        margin vwpx(43) 0 0 vwpx(118)
         :global(.p)
           margin 0
-          margin-bottom vwpx(24)
+          padding 0
+          margin-top vwpx(23)
           font-size vwpx(26)
           font-weight bold
           line-height calc(37 / 26)
       .en
         .text
-          font-size vwpx(30)
-          line-height vwpx(37)
+          :global(.p)
+            font-size vwpx(30)
+            margin-top vwpx(20)
+            line-height calc(41 / 30)
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .about
           margin vwpx(90) vwpx(30) 0 0
-        .whats-desktop
-          display none
         .whats-mobile
-          display block
           font-size vwpx(57)
+          font-weight 700
           :global(.whats)
             margin 0
             mix-blend-mode darken

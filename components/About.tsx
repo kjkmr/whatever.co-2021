@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { langStyle } from 'lib/i18n'
 import { Grad, GradImg } from 'components/Grad'
 import BlackButton from 'components/BlackButton'
+import { Desktop, Mobile } from 'components/Responsive'
 
 type HeaderProps = {
   headerMargin?: number
@@ -30,8 +31,9 @@ export const Header = (props: HeaderProps) => {
             <div><Grad className="t2" inline>{props.title}</Grad></div>
             {props.subtitle != '-' ? <div><Grad className="t3" inline><span className="hr" />{props.subtitle}</Grad></div> : null}
           </div>
-          <div className="image" >
-            <GradImg lighten={true}><img src={props.image} alt="" /></GradImg>
+          <div className="image">
+            <Desktop><GradImg lighten={true}><img src={`/about/${props.image}.svg`} alt="" /></GradImg></Desktop>
+            <Mobile><GradImg lighten={true}><img src={`/about/${props.image}_sp.svg`} alt="" /></GradImg></Mobile>
           </div>
         </div>
         <div className="desc">

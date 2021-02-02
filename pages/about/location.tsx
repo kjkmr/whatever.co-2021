@@ -276,7 +276,7 @@ const Location = () => (
   <>
     <Layout title="About" side="About" backto="/about" footer={<Footer left="Workstyle" right="Genres" />}>
       <div className="location">
-        <Header headerMargin={79} title="Location" subtitle={t('location_title')!} desc={t('location_description')!} image="/about/pict03.svg" imageWidth={554} imageMargin={5} />
+        <Header headerMargin={79} title="Location" subtitle={t('location_title')!} desc={t('location_description')!} image="pict03" imageWidth={554} imageMargin={5} />
         <Section1 />
         <Section2 />
       </div>

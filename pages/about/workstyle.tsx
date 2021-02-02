@@ -306,7 +306,7 @@ const Workstyle = () => (
   <>
     <Layout title="About" side="About" backto="/about" footer={<Footer left="Genres" right="Location" />}>
       <div className="workstyle">
-        <Header headerMargin={65} title="Workstyle" titleSize={112} titleMargin={10} subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="/about/pict02.svg" imageWidth={586} />
+        <Header headerMargin={65} title="Workstyle" titleSize={112} titleMargin={10} subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="pict02" imageWidth={586} />
         <Section1 />
         <Section2 />
         <Section3 />

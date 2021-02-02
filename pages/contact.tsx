@@ -3,11 +3,15 @@ import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import BlackButton from 'components/BlackButton'
 import { Grad, GradImg, GradLink } from 'components/Grad'
+import { Desktop, Mobile } from 'components/Responsive'
 
 const Head = () => (
   <>
     <div className={langStyle('head')}>
-      <div className="image"><GradImg lighten={true}><img src="/contact/pict04.svg" alt="" /></GradImg></div>
+      <div className="image">
+        <Desktop><GradImg lighten={true}><img src="/contact/pict04.svg" alt="" /></GradImg></Desktop>
+        <Mobile><GradImg lighten={true}><img src="/contact/pict04_sp.svg" alt="" /></GradImg></Mobile>
+      </div>
       {t('contact_title')?.split('\n').map((line, index) => <div key={index}><Grad className="title" key={index} inline>{line}</Grad></div>)}
       <div className="mailto"><BlackButton className="button" link="mailto:hello@whatever.co">hello@whatever.co</BlackButton></div>
     </div>

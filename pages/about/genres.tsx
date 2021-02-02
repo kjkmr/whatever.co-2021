@@ -5,7 +5,6 @@ import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Header, Footer, SectionHeader } from 'components/About'
 import { Grad, GradImg } from 'components/Grad'
-import React from 'react'
 
 const Section1 = () => (
   <>
@@ -399,7 +398,7 @@ const GenrePage = () => (
   <>
     <Layout title="About" side="About" backto="/about" footer={<Footer left="Location" right="Workstyle" />}>
       <div className="genre">
-        <Header title="Genres" subtitle={t('genres_title')!} desc={t('genres_description')!} image="/about/pict01.svg" />
+        <Header title="Genres" subtitle={t('genres_title')!} desc={t('genres_description')!} image="pict01" />
         <Section1 />
         <Section2 />
         <Section3 />

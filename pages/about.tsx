@@ -74,7 +74,10 @@ const Genres = () => (
   <>
     <div className={langStyle('genres')}>
       <div className="inner">
-        <div className="image"><GradImg lighten={true}><img src="/about/pict01.svg" /></GradImg></div>
+        <div className="image">
+          <Desktop><GradImg lighten={true}><img src="/about/pict01.svg" /></GradImg></Desktop>
+          <Mobile><GradImg lighten={true}><img src="/about/pict01_sp.svg" /></GradImg></Mobile>
+        </div>
         <div className="detail"><Detail title="Genres" /></div>
       </div>
     </div>
@@ -114,7 +117,10 @@ const Workstyle = () => (
     <div className={langStyle('workstyle')}>
       <div className="inner">
         <div className="detail"><Detail title="Workstyle" /></div>
-        <div className="image"><GradImg lighten={true}><img src="/about/pict02.svg" /></GradImg></div>
+        <div className="image">
+          <Desktop><GradImg lighten={true}><img src="/about/pict02.svg" /></GradImg></Desktop>
+          <Mobile><GradImg lighten={true}><img src="/about/pict02_sp.svg" /></GradImg></Mobile>
+        </div>
       </div>
     </div>
     <style jsx>{`
@@ -159,7 +165,10 @@ const Location = () => (
   <>
     <div className={langStyle('location')}>
       <div className="inner">
-        <div className="image"><GradImg lighten={true}><img src="/about/pict03.svg" /></GradImg></div>
+        <div className="image">
+          <Desktop><GradImg lighten={true}><img src="/about/pict03.svg" /></GradImg></Desktop>
+          <Mobile><GradImg lighten={true}><img src="/about/pict03_sp.svg" /></GradImg></Mobile>
+        </div>
         <div className="detail"><Detail title="Location" /></div>
       </div>
     </div>
@@ -211,18 +220,23 @@ const AboutPage = () => (
           <div>
             <Grad className="whats" inline>What’s Whatever<span className="q">?</span></Grad>
           </div>
+          <div className="text">
+            {t('about_statement')?.split('\n').map((line, i) => (
+              <div key={i}><Grad className="p" inline>{line}</Grad></div>
+            ))}
+          </div>
         </Desktop>
         <Mobile>
           <div className="whats-mobile">
             <Grad className="whats">What’s</Grad>
             <Grad className="whatever">Whatever<span className="q">?</span></Grad>
           </div>
+          <div className="text">
+            {t('about_statement_sp')?.split('\n').map((line, i) => (
+              <div key={i}><Grad className="p" inline>{line}</Grad></div>
+            ))}
+          </div>
         </Mobile>
-        <div className="text">
-          {t('about_statement')?.split('\n').map((line, i) => (
-            <div key={i}><Grad className="p" inline>{line}</Grad></div>
-          ))}
-        </div>
       </div>
       <Genres />
       <Workstyle />
@@ -258,17 +272,18 @@ const AboutPage = () => (
         @import 'lib/vw-mobile.styl'
         .about
           margin vwpx(90) vwpx(30) 0 0
-        .whats-mobile
+        :global(.whats)
           font-size vwpx(57)
           font-weight 700
-          :global(.whats)
-            margin 0
-            mix-blend-mode darken
-          :global(.whatever)
-            margin-top vwpx(-16)
-            mix-blend-mode darken
-            .q
-              font-family 'Noto Sans JP'
+          margin 0
+          mix-blend-mode darken
+        :global(.whatever)
+          font-size vwpx(57)
+          font-weight 700
+          margin-top vwpx(-16)
+          mix-blend-mode darken
+          .q
+            font-family 'Noto Sans JP'
         .text
           margin 0
           margin-top vwpx(28)

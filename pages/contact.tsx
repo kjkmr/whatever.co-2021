@@ -67,7 +67,7 @@ const Head = () => (
 
 const Address = ({ data }: { data: any }) => (
   <>
-    <div className="container">
+    <div className={langStyle('container')}>
       <div><Grad className="region" inline>{data.name}</Grad></div>
       <div><Grad className="address" inline><GradLink href={data.link} target="_blank" rel="noopener noreferrer">{data.address}</GradLink></Grad></div>
       {data.phone != '-' ? <div><Grad className="phone" inline>{data.phone}</Grad></div> : null}
@@ -91,6 +91,21 @@ const Address = ({ data }: { data: any }) => (
           margin-bottom 1.5rem
         :global(.repr)
           font-size var(--font-size-ja)
+          line-height 1em
+      .container.en
+        :global(.address)
+          font-size var(--font-size-en)
+          font-weight 200
+          line-height 1em
+          margin-bottom 1.3rem
+        :global(.phone)
+          font-size var(--font-size-en)
+          font-weight 200
+          line-height 1em
+          margin-bottom 1.3rem
+        :global(.repr)
+          font-size var(--font-size-en)
+          font-weight 200
           line-height 1em
       @media (--mobile)
         .container

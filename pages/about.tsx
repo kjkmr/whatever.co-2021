@@ -44,7 +44,7 @@ const Detail = ({ title }: { title: string }) => {
         .en
           :global(.desc)
             font-size var(--font-size-en)
-            font-weight 400
+            font-weight 200
             line-height 1.8
             margin vwpx_min(5) 0 0 0
         @media (--mobile)

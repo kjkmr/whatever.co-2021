@@ -264,7 +264,7 @@ export const SectionHeader = ({ num, title, body }: SectionTitleProps) => (
           margin-top vwpx(57)
           :global(.body-line)
             font-size var(--font-size-en)
-            font-weight 400
+            font-weight 200
             line-height 1.8
       @media (--mobile)
         @import 'lib/vw-mobile.styl'

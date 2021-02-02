@@ -122,7 +122,7 @@ const Alliance = ({ slug }: { slug: string }) => {
             margin-bottom 1.5rem
           :global(.desc)
             font-size 1.4rem
-            font-weight 400
+            font-weight 200
             line-height 1.75
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
@@ -217,7 +217,7 @@ const ItemList = ({ title, items }: { title: string, items: string }) => (
             line-height 1.8
           :global(.desc)
             font-size 1.7rem
-            font-weight 400
+            font-weight 200
             line-height 1.8
       @media (--mobile)
         @import 'lib/vw-mobile.styl'

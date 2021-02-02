@@ -118,7 +118,7 @@ const Section1 = () => (
             padding-left 3.9rem
             padding-bottom 1.1rem
             font-size var(--font-size-en)
-            font-weight 400
+            font-weight 200
             .title
               margin-bottom 2.4rem
             ul
@@ -253,7 +253,7 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
             font-weight 500
           :global(.work-link-desc)
             font-size 1.4rem
-            font-weight 400
+            font-weight 200
             line-height 1.75
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
@@ -312,7 +312,7 @@ const WorkList = ({ title, body, items }: { title: string, body: string, items: 
           font-size vwpx_min(24)
         :global(.work-list-desc)
           font-size var(--font-size-en)
-          font-weight 400
+          font-weight 200
           line-height 1.8
       @media (--mobile)
         @import 'lib/vw-mobile.styl'

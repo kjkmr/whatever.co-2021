@@ -323,7 +323,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
             overflow hidden
             text-overflow ellipsis
             font-size var(--font-size-en)
-            font-weight 400
+            font-weight 200
             line-height 1.8
             margin 0
         @media (--mobile)

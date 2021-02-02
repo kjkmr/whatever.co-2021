@@ -118,9 +118,12 @@ const Alliance = ({ slug }: { slug: string }) => {
             font-size 1.2rem
             line-height 2.0
         .en
+          :global(.name)
+            margin-bottom 1.5rem
           :global(.desc)
             font-size 1.4rem
             font-weight 400
+            line-height 1.75
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
           .alliance
@@ -159,6 +162,9 @@ const Section2 = () => (
         grid-template-columns repeat(3, 1fr)
         grid-gap vwpx(54) vwpx(60)
         margin-top 3.9rem
+      .en
+        .alliance
+          margin-top 4.9rem
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .section2
@@ -206,10 +212,13 @@ const ItemList = ({ title, items }: { title: string, items: string }) => (
             line-height 2.0
       .en
         .items
-          grid-gap 3.6rem 0
+          grid-gap 3.5rem 0
+          :global(.name)
+            line-height 1.8
           :global(.desc)
             font-size 1.7rem
             font-weight 400
+            line-height 1.8
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .about

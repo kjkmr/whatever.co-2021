@@ -89,12 +89,13 @@ export const Header = (props: HeaderProps) => {
           line-height calc(40 / 18)
         .en
           .upper
-            margin-bottom vwpx(103)
+            margin-bottom vwpx(95)
           .text
             margin-bottom -30px
           .desc-line
             font-size vwpx_min(20)
             font-weight 400
+            line-height 2.0
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
           .header
@@ -257,12 +258,14 @@ export const SectionHeader = ({ num, title, body }: SectionTitleProps) => (
       .en
         :global(.title)
           font-size vwpx_min(36)
-          line-height 1.5em
-          margin-top vwpx(5)
+          line-height 1.5
+          margin-top vwpx(3)
         .body
+          margin-top vwpx(57)
           :global(.body-line)
             font-size var(--font-size-en)
             font-weight 400
+            line-height 1.8
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .header

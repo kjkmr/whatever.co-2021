@@ -5,7 +5,6 @@ import Menu from 'components/Menu'
 import Sidebar from 'components/Sidebar'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import LanguageSelector from './LanguageSelector'
 
 let templateName: string
 // templateName = 'Top_1366'
@@ -71,14 +70,13 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
         </Head>
         <div className="container" style={templateStyle}>
           <div className="contents">
-            <Menu />
-            <Sidebar title={side} backto={backto ? { name: side, href: backto } : undefined} />
             <div className="main">
               {showHeader ? <Header /> : <div />}
               {children}
             </div>
+            <Menu />
+            <Sidebar title={side} backto={backto ? { name: side, href: backto } : undefined} />
           </div>
-          <div className="langselect"><LanguageSelector /></div>
           {footer}
           <Footer />
         </div>
@@ -96,21 +94,12 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
         .main
           width calc(100vw - 80px)
           margin-left 80px
-        .langselect
-          display none
         @media (--mobile)
           .container
             background-size 375px auto
           .main
             width calc(100vw - 50px)
             margin-left 50px
-          .langselect
-            display block
-            position fixed
-            bottom 78px
-            left 30px
-            transform-origin top left
-            transform rotate(90deg)
       `}</style>
     </>
   )

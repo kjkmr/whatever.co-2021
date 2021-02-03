@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Member, getAllMembers } from 'lib/api'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
+import { langStyle } from 'lib/i18n'
 
 function shuffle<T>(array: T[]) {
   const out = Array.from(array);
@@ -21,7 +22,7 @@ const SingleMember = ({ member: m }: { member: Member }) => {
   return (
     <>
       <Link href={`/team/${m.slug}`}>
-        <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
+        <a className={langStyle()} onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
           <div>
             <GradImg mouseEntered={entered}><img src={m.image} alt="" /></GradImg>
             <div className="text">
@@ -67,15 +68,19 @@ const SingleMember = ({ member: m }: { member: Member }) => {
             :global(.region)
               font-size 1.2rem
               letter-spacing 0
-              line-height 1.5
+              line-height calc(36 / 24)
               margin-top 1.2rem
             :global(.title)
               font-size 1.2rem
-              line-height 1.3
-              margin-top 0.2rem
+              line-height calc(30 / 24)
+              margin-top 0.3rem
             :global(.name)
               font-size 1.4rem
-              margin-top 0rem
+              line-height calc(42 / 28)
+              margin-top 0.3rem
+          a.en
+            :global(.name)
+              margin-top 0.2rem
       `}</style>
     </>
   )

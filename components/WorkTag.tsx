@@ -20,6 +20,7 @@ const Inner = ({ name }: { name: string }) => (
           font-size 1.0rem
           padding 0.4rem 0.5rem 0.3rem
           margin-right 0.6rem
+          margin-bottom 0.4rem
     `}</style>
   </>
 )

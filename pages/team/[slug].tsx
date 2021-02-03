@@ -98,41 +98,41 @@ const MemberInfo = ({ member }: { member: Member }) => {
           margin 0
           margin-bottom vwpx(30)
           font-size 0
-        .info
-          position relative
-          padding-top vwpx(156)
-          padding-left vwpx(563)
-        .inner
-          background-color white
-          padding vwpx(80)
-          font-size 0
-          min-height vwpx(500)
-          :global(.region)
-            font-size 1.2rem
-          :global(.title)
-            font-size 1.8rem
-            font-weight 500
-            margin-top 2.7rem
-          :global(.name)
-            font-size vwpx_min(42)
-            font-weight bold
-            margin-top vwpx_min(12)
-            margin-bottom 0.4rem
-          :global(.description)
-            margin-top 3.0rem
-            margin-bottom 3.0rem
-          .desc-inner
-            :global(p)
-              margin 0
+          .info
+            position relative
+            padding-top vwpx(156)
+            padding-left vwpx(563)
+          .inner
+            background-color white
+            padding vwpx(80)
+            font-size 0
+            min-height vwpx(500)
+            :global(.region)
+              font-size 1.2rem
+            :global(.title)
+              font-size 1.8rem
+              font-weight 500
+              margin-top 2.7rem
+            :global(.name)
+              font-size vwpx_min(42)
+              font-weight bold
+              margin-top vwpx_min(12)
+              margin-bottom 0.4rem
+            :global(.description)
+              margin-top 3.0rem
+              margin-bottom 3.0rem
+            .desc-inner
+              :global(p)
+                margin 0
+                font-size var(--font-size-ja)
+                line-height 2.0
+              :global(p + p)
+                margin-top 2.0rem
+          .links
+            :global(.link-item)
               font-size var(--font-size-ja)
-              line-height 2.0
-            :global(p + p)
-              margin-top 2.0rem
-        .links
-          :global(.link-item)
-            font-size var(--font-size-ja)
-            margin-bottom 1.1rem
-        .en
+              margin-bottom 1.1rem
+        .en.member-info
           .inner
             :global(.name)
               font-size vwpx_min(46)
@@ -151,29 +151,49 @@ const MemberInfo = ({ member }: { member: Member }) => {
           @import 'lib/vw-mobile.styl'
           .member-info
             margin 0
-          .info
-            padding vwpx(295) 0 0 0
-          .inner
-            padding 3.0rem 0 0 0
-            margin-right vwpx(30)
-            :global(.title)
-              font-size 1.2rem
-              font-weight 300
-              margin-top 1.3rem
-            :global(.name)
-              font-size 2.7rem
-              margin 0.4rem 0 0 0
-            :global(.description)
-              margin 0 0 0 0
-            .desc-inner
-              margin 2.0rem 0 3.1rem 0
-              :global(p)
-                line-height 2.1
-            .links
-              :global(.link-item)
-                font-size var(--font-size-ja)
-                font-weight 700
-                margin-bottom 0.9rem
+            .info
+              padding vwpx(295) 0 0 0
+            .inner
+              padding 3.0rem 0 0 0
+              margin-right vwpx(30)
+              :global(.title)
+                font-size 1.2rem
+                font-weight 300
+                margin-top 1.3rem
+              :global(.name)
+                font-size 2.7rem
+                margin 0.4rem 0 0 0
+              :global(.description)
+                margin 2.0rem 0 3.1rem 0
+              .desc-inner
+                :global(p)
+                  line-height 2.1
+              .links
+                :global(.link-item)
+                  font-size var(--font-size-ja)
+                  font-weight 700
+                  margin-bottom 0.9rem
+          .en.member-info
+            .inner
+              :global(.name)
+                font-size 3.0rem
+                line-height calc(64 / 60)
+                margin-top 1.1rem
+              :global(.description)
+                margin-top 2.4rem
+                {/* margin-bottom 3.3rem */}
+              .desc-inner
+                margin 0
+                :global(p)
+                  font-size 1.4rem
+                  font-weight 300
+                  line-height calc(50 / 28)
+              .links
+                :global(.link-item)
+                  font-size 1.4rem
+                  font-weight 700
+                  margin 0
+                  margin-bottom 0.7rem
       `}</style>
     </>
   )
@@ -213,7 +233,7 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
   return (
     <>
       <Link href={`/news/${entry.slug}`}>
-        <a className="related-link-item" onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
+        <a className={langStyle('related-link-item')} onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
           <GradImg mouseEntered={entered}><img src={entry.hero_image} alt="" /></GradImg>
           <div><Grad className="item-date" inline>{entry.date}</Grad></div>
           <div><Grad className="item-title" inline><div dangerouslySetInnerHTML={{ __html: entry.title }} /></Grad></div>
@@ -252,6 +272,10 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
               font-size 1.2rem
               line-height 1.7
               margin 0.5rem vwpx(10) 0 0
+          .en.related-link-item
+            :global(.item-title)
+              font-size 1.4rem
+              line-height calc(42 / 28)
       `}</style>
     </>
   )

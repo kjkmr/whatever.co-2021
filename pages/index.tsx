@@ -93,10 +93,10 @@ const Showreel = () => {
     ? () => {
       if (!showreel.current || !videoContainer.current) return
       let height = showreel.current.getBoundingClientRect().height + 35
-      if (initHeight == height) {
+      if (initHeight == height && ++initCount >= 10) {
         clearInterval(interval)
       } else {
-        console.log(initHeight, height, interval)
+        console.log(Date.now(), initHeight, height, initCount)
         initHeight = height
         return
       }
@@ -108,6 +108,7 @@ const Showreel = () => {
     }
   let interval: NodeJS.Timeout
   let initHeight = 0
+  let initCount = 0
   if (isMobile()) {
     interval = setInterval(onScroll, 1)
   }

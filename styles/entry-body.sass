@@ -12,13 +12,8 @@
     font-size: 1.5rem
     line-height: 2.0
     word-wrap: break-word
-    @media (--mobile)
-      font-size: 1.2rem
-      line-height: 2.1
   .p
     margin: 3.0rem 0
-    @media (--mobile)
-      margin: 2.6rem 0
   .aspect-ratio
     position: relative
     width: 100%
@@ -77,6 +72,11 @@
 
 @media (--mobile)
   .entry-body
+    p
+      font-size: 1.2rem
+      line-height: 2.1
+    .p
+      margin: 2.6rem 0
     .block-images
       width: vwpxm(375)
       margin: 6.6rem -30px 7.0rem -50px
@@ -104,3 +104,7 @@
         grid-column: span 2
         width: auto
         height: auto
+  .entry-body.en
+    p
+      font-size: 1.4rem
+      line-height: calc(50 / 28)

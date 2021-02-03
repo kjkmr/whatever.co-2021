@@ -3,6 +3,7 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
 import classnames from 'classnames'
 import { Tag, Entry, Credit, Person, getAllWorks, getPostDetails } from 'lib/api'
+import { langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import EntryBody from 'components/EntryBody'
 import { Grad, GradImg, GradLink } from 'components/Grad'
@@ -68,7 +69,7 @@ const HeaderImageMobile = ({ src }: { src: string }) => {
 const Header = ({ work }: { work: Entry }) => {
   return (
     <>
-      <div className="header">
+      <div className={langStyle('header')}>
         <Desktop><HeaderImageDesktop src={work.hero_image!} /></Desktop>
         <Mobile><HeaderImageMobile src={work.hero_image!} /></Mobile>
         <div className="info">
@@ -87,43 +88,49 @@ const Header = ({ work }: { work: Entry }) => {
           position relative
           font-size 0
           margin-bottom vwpx(60)
-        .info
-          display inline-block
-          position relative
-          margin-top vwpx(610)
-          margin-right 80px
-        .inner
-          background-color white
-          padding-top vwpx(58)
-          padding-left vwpx(80)
-          padding-right vwpx(100)
-          padding-bottom vwpx(60)
-          :global(.date)
-            font-size vwpx(16)
-          :global(.title)
-            font-size vwpx(60)
-            font-weight bold
-            line-height 1.2
-            margin-top vwpx(29)
-            margin-left vwpx(-6)
-          :global(.tags)
-            margin-top vwpx(31)
+          .info
+            display inline-block
+            position relative
+            margin-top vwpx(610)
+            margin-right 80px
+          .inner
+            background-color white
+            padding-top vwpx(58)
+            padding-left vwpx(80)
+            padding-right vwpx(100)
+            padding-bottom vwpx(60)
+            :global(.date)
+              font-size vwpx(16)
+            :global(.title)
+              font-size vwpx(60)
+              font-weight bold
+              line-height 1.2
+              margin-top vwpx(29)
+              margin-left vwpx(-6)
+            :global(.tags)
+              margin-top vwpx(31)
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
           .header
             margin 0
-          .info
-            margin vwpx(325) vwpx(30) 0 -50px
-          .inner
-            padding 5.0rem 3.0rem 0 50px
-            :global(.date)
-              font-size 1.0rem
-            :global(.title)
-              font-size 3.0rem
-              line-height 1.2
-              margin-top 1.4rem
-            :global(.tags)
-              margin-top 2.1rem
+            .info
+              margin vwpx(325) vwpx(30) 0 -50px
+            .inner
+              padding 5.0rem 3.0rem 0 50px
+              :global(.date)
+                font-size 1.0rem
+              :global(.title)
+                font-size 3.0rem
+                line-height 1.2
+                margin-top 1.4rem
+              :global(.tags)
+                margin-top 2.1rem
+          .en.header
+            .inner
+              :global(.title)
+                margin-top 1.7rem
+              :global(.tags)
+                margin-top 1.6rem
       `}</style>
     </>
   )
@@ -131,7 +138,7 @@ const Header = ({ work }: { work: Entry }) => {
 
 const Excerpt = ({ title, description, image }: { title: string, description: string, image: string }) => (
   <>
-    <div className="excerpt">
+    <div className={langStyle('excerpt')}>
       <div className="text">
         <div><Grad className="title" inline><div dangerouslySetInnerHTML={{ __html: title }} /></Grad></div>
         <div><Grad className="desc" inline><div dangerouslySetInnerHTML={{ __html: description }}></div></Grad></div>
@@ -149,38 +156,48 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
         grid-template-columns auto vwpx(562)
         grid-gap vwpx(80)
         font-size 0
-      .text
-        :global(.title)
-          font-size vwpx(30)
-          font-weight 700
-          line-height 1.8
-          margin-top vwpx(-8)
-          margin-bottom vwpx(42)
-        :global(.desc)
-          font-size var(--font-size-ja)
-          line-height 2.0
-      .image img
-        width vwpx(562)
-        height vwpx(562 / 16 * 9)
-        object-fit cover
+        .text
+          :global(.title)
+            font-size vwpx(30)
+            font-weight 700
+            line-height 1.8
+            margin-top vwpx(-8)
+            margin-bottom vwpx(42)
+          :global(.desc)
+            font-size var(--font-size-ja)
+            line-height 2.0
+        .image img
+          width vwpx(562)
+          height vwpx(562 / 16 * 9)
+          object-fit cover
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .excerpt
           margin 7.3rem vwpx(30) 0 0
           display block
-        .text
-          :global(.title)
-            font-size 1.7rem
-            line-height 1.8
-          :global(.desc)
-            font-size 1.2rem
-            line-height 2.1
-            margin-top 0.55rem
-        .image
-          margin 7.2rem -30px 0 -50px
-          img
-            width vwpx(375)
-            height vwpx(375 / 16 * 9)
+          .text
+            :global(.title)
+              font-size 1.7rem
+              line-height 1.8
+            :global(.desc)
+              font-size 1.2rem
+              line-height 2.1
+              margin-top 0.55rem
+          .image
+            margin 7.2rem -30px 0 -50px
+            img
+              width vwpx(375)
+              height vwpx(375 / 16 * 9)
+        .en.excerpt
+          margin-top 7.7rem
+          .text
+            :global(.title)
+              font-size 2.0rem
+              line-height calc(54 / 40)
+            :global(.desc)
+              font-size 1.4rem
+              line-height calc(50 / 28)
+              margin-top 0.55rem
     `}</style>
   </>
 )
@@ -196,7 +213,7 @@ const CreditMember = ({ member }: { member: Person }) => {
   }
   return (
     <>
-      <div className="member">
+      <div className={langStyle('member')}>
         <div><Grad className="role" inline>{member.role}</Grad></div>
         <div><Grad className="name" inline>
           {name}
@@ -217,12 +234,22 @@ const CreditMember = ({ member }: { member: Person }) => {
             margin-top 3px
         @media (--mobile)
           .member
-            margin-bottom 2.9rem
+            margin-bottom 2.7rem
             :global(.role)
               font-size 1.1rem
+              line-height calc(28 / 22)
             :global(.name)
               font-size 1.2rem
-              margin-top 0.7rem
+              line-height calc(42 / 24)
+              margin-top 0.5rem
+          .en.member
+            :global(.role)
+              font-size 1.1rem
+              line-height calc(28 / 22)
+            :global(.name)
+              font-size 1.4rem
+              line-height calc(42 / 28)
+              margin-top 0.4rem
       `}</style>
     </>
   )
@@ -284,10 +311,10 @@ const Credits = ({ credit }: { credit: Credit[] }) => (
         @import 'lib/vw-mobile.styl'
         .credits
           width auto
-          margin 0 30px 6.0rem 20px
+          margin 7.4rem 30px 6.0rem 20px
           :global(.credits-title)
             font-size 1.8rem
-            margin-bottom 4.5rem
+            margin-bottom 4.4rem
     `}</style>
   </>
 )

@@ -189,7 +189,7 @@ const Single = ({ work }: { work: Entry }) => {
   const [entered, setEntered] = useState(false)
   return (
     <>
-      <div className="single-work">
+      <div className={langStyle('single-work')}>
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image">
@@ -242,6 +242,15 @@ const Single = ({ work }: { work: Entry }) => {
               margin-top 0.4rem
             :global(.tags)
               margin-top 2.1rem
+        .en.single-work
+          .text
+            :global(.subtitle)
+              font-size 1.4rem
+              font-weight 500
+              line-height calc(42 / 28)
+              margin-top 0.05rem
+            :global(.tags)
+              margin-top 1.8rem
       `}</style>
     </>
   )

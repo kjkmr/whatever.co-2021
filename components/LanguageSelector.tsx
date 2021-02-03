@@ -31,7 +31,7 @@ export type LanguageSelectorType = {
 
 const LanguageSelector = ({ activeColor = 'black', inactiveColor = '#cccccc', separator = ' / ', onSelected = null, className = '' }: LanguageSelectorType) => (
   <>
-    <div className={classnames('language-selector', className)}><LangLink lang="ja" label="JA" activeColor={activeColor} inactiveColor={inactiveColor} onSelected={onSelected} /><span className="sp" style={{ color: inactiveColor }} >{separator}</span><LangLink lang="en" label="EN" activeColor={activeColor} inactiveColor={inactiveColor} onSelected={onSelected} /><span className="sp" style={{ color: inactiveColor }}>{separator}</span><LangLink lang="zh-hans" label="ZH" activeColor={activeColor} inactiveColor={inactiveColor} onSelected={onSelected} /></div>
+    <div className={classnames('language-selector', className)}><LangLink lang="ja" label="JA" activeColor={activeColor} inactiveColor={inactiveColor} onSelected={onSelected} /><span className="sp" style={{ color: inactiveColor }} >{separator}</span><LangLink lang="en" label="EN" activeColor={activeColor} inactiveColor={inactiveColor} onSelected={onSelected} /><span className="sp" style={{ color: inactiveColor }}>{separator}</span><LangLink lang="zh-hant" label="ZH" activeColor={activeColor} inactiveColor={inactiveColor} onSelected={onSelected} /></div>
     <style jsx>{`
       .language-selector
         font-size 1.2rem

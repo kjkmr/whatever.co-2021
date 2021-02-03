@@ -2,7 +2,7 @@
   "langs": [
     "ja",
     "en",
-    "zh-hans"
+    "zh-hant"
   ],
   "strings": {
     "top_whatever": [
@@ -37,7 +37,7 @@
     ],
     "about_statement_sp": [
       "社会にこれまでなかった便利さや体験したこともないような楽しさを提供するために、Whatever は、なんでも考え、なんでも作ります。",
-      "\"Whatever will think of anything and create anything in order to provide society with convenience and enjoyment never before experienced.\"",
+      "Whatever will think of anything and create anything in order to provide society with convenience and enjoyment never before experienced.",
       "為提供當今社會全新的便利性及前所未有的樂趣體驗，Whatever 廣泛地思考並積極地實踐各種嘗試。"
     ],
     "about_genres_title": [
@@ -266,8 +266,8 @@
       "01\n總面積約900㎡的8樓建築，約有70名個人或團隊進駐。\n  \n02\n為促成進駐者彼此產生最佳的相乘作用，我們將透過作品履歷的審核及面試，仔細確認每位進駐者屬性，敬請多指教。\n  \n03\n面向外苑東路的1F空間 (122.6㎡)，也是進駐者可使用的展示空間。\n  \n04\n2F有附廚房設備的休息空間，提供進駐者交流及舉辦各種活動。\n  \n05 \nWhatever 與東北新社共同創辦的公司 WTFC，由兩團隊共同經營，致力於提供進駐者舒適的創作環境及各種福利的優化。"
     ],
     "workstyle_3_about": [
-      "1F\nギャラリー / イベントスペース / ショールーム\n\n2F\nオープン MTG / イベントスペース / カフェカウンター\n\n3F\nWTFC オフィス\n\n4F\n会議室×４室\n\n5F\nコワーキングスペース\n\n6F\nBASSDRUM オフィス & 共同 FAB スペース\n\nRF\n休憩スペース（2020 年内完成予定）",
-      "1F\nGallery / Event Space / Showroom\n\n2F\nOpen MTG / Event space / Cafe counter\n\n3F\nWTFC office\n\n4F\n4 meeting rooms\n\n5F\nCoworking space\n\n6F\nBASSDRUM Office & Shared FAB Space\n\n7F\nWhatever office\n\nRF\nRest area (to be completed by the end of 2020)",
+      "1F\nギャラリー / イベントスペース / ショールーム\n\n2F\nオープン MTG / イベントスペース / カフェカウンター\n\n3F\nWTFC オフィス\n\n4F\n会議室×４室\n\n5F\nコワーキングスペース\n\n6F\nBASSDRUM オフィス & 共同 FAB スペース\n\nRF\n休憩スペース",
+      "1F\nGallery / Event Space / Showroom\n\n2F\nOpen MTG / Event space / Cafe counter\n\n3F\nWTFC office\n\n4F\n4 meeting rooms\n\n5F\nCoworking space\n\n6F\nBASSDRUM Office & Shared FAB Space\n\n7F\nWhatever office\n\nRF\nRest area",
       "1F\n展示空間 / 活動空間 / 展示場\n  \n2F\n開放式會議室 / 活動空間 / 咖啡吧檯\n  \n3F\nWTFC 辦公室\n  \n4F\n4間會議室\n  \n 5F\n 共享辦公室 (Co-working Space)\n  \n 6F\n BASSDRUM 辦公室及 FAB 共用空間\n  \n RF\n 休憩空間 (預計於2020年內完工)"
     ],
     "location_title": [

@@ -110,7 +110,6 @@ export const setup = (base: HTMLElement, whiteText: boolean = false, inline: boo
     fade.parentNode?.removeChild(fade)
     slide.parentNode?.removeChild(slide)
     base.classList.remove('grad-effect-base')
-    // base.style.display = ''
   }
   new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
     const entry = entries[0]

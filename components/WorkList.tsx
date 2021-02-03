@@ -117,10 +117,10 @@ const SmallWork = ({ work }: { work: Entry }) => {
             :global(.tags)
               margin-top 1.5rem
         .en.small-work
-            .text
-              :global(.subtitle)
-                font-size var(--font-size-en)
-                font-weight 200
+          .text
+            :global(.subtitle)
+              font-size var(--font-size-en)
+              font-weight 200
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
           .small-work
@@ -129,7 +129,7 @@ const SmallWork = ({ work }: { work: Entry }) => {
               width vwpx(150)
               height vwpx(84)
             .text
-              margin 1.4rem 0 0 0
+              margin 1.4rem vwpx(10) 0 0
               :global(.date)
                 font-size 1.0rem
               :global(.title)
@@ -142,6 +142,12 @@ const SmallWork = ({ work }: { work: Entry }) => {
                 margin-top 0.25rem
               :global(.tags)
                 margin-top 1.0rem
+          .en.small-work
+            .text
+              :global(.subtitle)
+                font-size 1.2rem
+                font-weight 300
+                line-height calc(32 /24)
       `}</style>
     </>
   )
@@ -179,7 +185,7 @@ export const WorkList = ({ filter, works }: WorkListProps) => (
         @import 'lib/vw-mobile.styl'
         .works
           grid-template-columns repeat(2, 1fr)
-          grid-gap vwpx(40) vwpx(25)
+          grid-gap vwpx(35) vwpx(25)
     `}</style>
   </>
 )
@@ -189,7 +195,7 @@ const Single = ({ work }: { work: Entry }) => {
   const [entered, setEntered] = useState(false)
   return (
     <>
-      <div className="single-work">
+      <div className={langStyle('single-work')}>
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image">
@@ -242,6 +248,15 @@ const Single = ({ work }: { work: Entry }) => {
               margin-top 0.4rem
             :global(.tags)
               margin-top 2.1rem
+        .en.single-work
+          .text
+            :global(.subtitle)
+              font-size 1.4rem
+              font-weight 500
+              line-height calc(42 / 28)
+              margin-top 0.05rem
+            :global(.tags)
+              margin-top 1.8rem
       `}</style>
     </>
   )

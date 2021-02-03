@@ -171,6 +171,26 @@ const Section1 = () => (
             ul li
               margin-left 0.1rem
               margin-bottom 0.8rem
+        .en
+          h2
+            margin-top 6.05rem
+            :global(.example-title)
+              font-size 1.7rem
+          .example-items
+            margin-top 3.0rem
+            margin-left 1px
+            display flex
+            flex-direction column
+            .item
+              font-size 1.4rem
+              padding-top 1.5rem
+              padding-bottom 0
+              padding-left 1.8rem
+              margin-bottom 2.0rem
+              .title
+                margin-bottom 1.7rem
+              ul li:last-child
+                margin-bottom -0.2rem
     `}</style>
   </>
 )
@@ -262,12 +282,17 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
               height vwpx(150 / 16 * 9)
             :global(.work-link-name)
               font-size 1.4rem
+              line-height calc(36 / 28)
               margin-top 1.55rem
             :global(.work-link-desc)
               font-size 1.0rem
               line-height 1.8
               margin-top 0.6rem
               margin-right vwpx(12.5)
+          .en.work-link
+            :global(.work-link-desc)
+              font-size 1.2rem
+              line-height calc(36 / 24)
       `}</style>
     </>
   )
@@ -330,6 +355,14 @@ const WorkList = ({ title, body, items }: { title: string, body: string, items: 
           grid-template-columns repeat(2, 1fr)
           grid-gap vwpx(24.5) vwpx(25)
           margin 3.0rem 0 0 0
+        .en
+          &.work-list
+            :global(.work-list-title)
+              font-size 1.7rem
+            :global(.work-list-desc)
+              font-size 1.4rem
+              font-weight 300
+              line-height calc(50 / 28)
     `}</style>
   </>
 )

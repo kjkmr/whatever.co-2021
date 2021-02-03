@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { useLayoutEffect } from 'lib/useLayoutEffect'
+import { langStyle } from 'lib/i18n'
 import { setup, setupImage, setupLink } from 'components/Grad'
 
 const EntryBody = ({ content }: { content: string }) => {
@@ -47,7 +48,7 @@ const EntryBody = ({ content }: { content: string }) => {
   }, [])
   return (
     <>
-      <div ref={body} className="entry-body" dangerouslySetInnerHTML={{ __html: content || '' }} />
+      <div ref={body} className={langStyle('entry-body')} dangerouslySetInnerHTML={{ __html: content || '' }} />
       <style jsx>{`
         .entry-body
           max-width 900px

@@ -65,6 +65,14 @@ const Detail = ({ title }: { title: string }) => {
             display flex
             justify-content flex-end
             margin 3.1rem vwpx(-30) 0 0
+          .en.detail
+            :global(.desc)
+              font-size 1.4rem
+              font-weight 300
+              line-height calc(50 / 28)
+              margin-top 1.0rem
+            .more
+              margin-top 3.4rem
       `}</style>
     </>
   )
@@ -108,6 +116,8 @@ const Genres = () => (
             width 100%
         .detail
           margin vwpx(30) vwpx(-20) 0 0
+        .en.genres .detail
+          margin-top vwpx(27.5)
     `}</style>
   </>
 )
@@ -271,7 +281,7 @@ const AboutPage = () => (
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .about
-          margin vwpx(90) vwpx(30) 0 0
+          margin vwpx(90.5) vwpx(30) 0 0
         :global(.whats)
           font-size vwpx(57)
           font-weight 700
@@ -280,7 +290,7 @@ const AboutPage = () => (
         :global(.whatever)
           font-size vwpx(57)
           font-weight 700
-          margin-top vwpx(-16)
+          margin-top vwpx(-16.5)
           mix-blend-mode darken
           .q
             font-family 'Noto Sans JP'
@@ -291,6 +301,12 @@ const AboutPage = () => (
             margin 0
             font-size vwpx(15)
             line-height 2.0
+        .en.about
+          .text
+            margin-top vwpx(22)
+            :global(.p)
+              font-size vwpx(18)
+              line-height calc(64 / 36)
     `}</style>
   </>
 )

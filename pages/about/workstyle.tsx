@@ -139,6 +139,11 @@ const Alliance = ({ slug }: { slug: string }) => {
               font-size 1.0rem
               line-height 1.85
               margin-top 0.75rem
+          .en.alliance
+            :global(.desc)
+              font-size 1.2rem
+              font-weight 300
+              line-height calc(36 / 24)
       `}</style>
     </>
   )
@@ -157,22 +162,25 @@ const Section2 = () => (
       @import 'lib/vw.styl'
       .section2
         margin vwpx(196) vwpx(80) vwpx(226)
-      .alliance
-        display grid
-        grid-template-columns repeat(3, 1fr)
-        grid-gap vwpx(54) vwpx(60)
-        margin-top 3.9rem
-      .en
+        .alliance
+          display grid
+          grid-template-columns repeat(3, 1fr)
+          grid-gap vwpx(54) vwpx(60)
+          margin-top 3.9rem
+      .en.section2
         .alliance
           margin-top 4.9rem
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .section2
           margin 5.8rem 0 0 0
-        .alliance
-          display flex
-          flex-direction column
-          margin 0.5rem vwpx(50) 0 0
+          .alliance
+            display flex
+            flex-direction column
+            margin 0.5rem vwpx(50) 0 0
+        .en.section2
+          .alliance
+            margin 0.8rem vwpx(50) 0 0
     `}</style>
   </>
 )
@@ -233,6 +241,19 @@ const ItemList = ({ title, items }: { title: string, items: string }) => (
               font-size 1.2rem
               font-weight 700
               line-height 2.0
+        .en.about
+          :global(.title)
+            font-size 1.7rem
+          .items
+            margin-top 3.0rem
+            line-height calc(42 / 28)
+            grid-gap 1.3rem 0
+            :global(.name)
+              font-size 1.4rem
+              font-weight 500
+            :global(.desc)
+              font-size 1.4rem
+              font-weight 300
     `}</style>
   </>
 )

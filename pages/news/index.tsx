@@ -3,6 +3,7 @@ import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { Entry, getNews } from 'lib/api'
+import { langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 
@@ -12,7 +13,7 @@ const NewsItem = ({ entry }: { entry: Entry }) => {
   const [entered, setEntered] = useState(false)
   return (
     <>
-      <div className="news-item">
+      <div className={langStyle('news-item')}>
         <Link href={`/news/${entry.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <GradImg mouseEntered={entered}><img src={entry.hero_image} alt="" /></GradImg>
@@ -46,7 +47,8 @@ const NewsItem = ({ entry }: { entry: Entry }) => {
           .desc-inner
             display -webkit-box
             -webkit-box-orient vertical
-            -webkit-line-clamp 3
+            --num-lines 3
+            -webkit-line-clamp var(--num-lines)
             overflow hidden
             text-overflow ellipsis
             font-size var(--font-size-ja)
@@ -70,14 +72,30 @@ const NewsItem = ({ entry }: { entry: Entry }) => {
               margin-top 2.55rem
             :global(.title)
               font-size 1.7rem
-              line-height 1.55
-              margin 1.05rem 30px 0 0
+              line-height calc(54 / 34)
+              margin 1.0rem 30px 0 0
             :global(.desc)
               width auto
               margin 0.9rem 30px 0 0
+              overflow hidden
             .desc-inner
-              line-height 2.1
-              height 6.3em
+              --size 1.2rem
+              --height calc(50 / 24)
+              --num-lines 5
+              font-size var(--size)
+              line-height var(--height)
+              max-height calc(var(--size) * var(--height) * var(--num-lines))
+          .en.news-item
+            :global(.title)
+              font-size 2.0rem
+              line-height calc(54 / 40)
+              margin 1.0rem 30px 0 0
+            :global(.desc)
+              width auto
+              margin-top 0.7rem
+            .desc-inner
+              --size 1.4rem
+              --height calc(50 / 28)
       `}</style>
     </>
   )

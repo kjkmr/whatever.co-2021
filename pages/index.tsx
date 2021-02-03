@@ -93,10 +93,10 @@ const Showreel = () => {
     ? () => {
       if (!showreel.current || !videoContainer.current) return
       let height = showreel.current.getBoundingClientRect().height + 35
-      if (initHeight == height && ++initCount >= 10) {
+      if (height > window.innerHeight * 0.5 && initHeight == height) {
         clearInterval(interval)
       } else {
-        console.log(Date.now(), initHeight, height, initCount)
+        console.log(Date.now(), initHeight, height, initCount, window.innerHeight)
         initHeight = height
         return
       }

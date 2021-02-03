@@ -116,6 +116,7 @@ export const Header = (props: HeaderProps) => {
             margin-top vwpx(60)
             :global(.t1)
               font-size vwpx(21.5)
+              letter-spacing -0.015em
             :global(.t2)
               font-size vwpx(62)
               margin vwpx(10) 0 0 vwpx(-2)
@@ -130,6 +131,13 @@ export const Header = (props: HeaderProps) => {
             font-size var(--font-size-ja)
             font-weight 500
             line-height 2.1
+          .en
+            .desc
+              margin-top 4.15rem
+            .desc-line
+              font-size 1.4rem
+              font-weight 500
+              line-height calc(50 / 28)
       `}</style>
     </>
   )
@@ -289,6 +297,17 @@ export const SectionHeader = ({ num, title, body }: SectionTitleProps) => (
             :global(.body-line)
               line-height 2.1
               margin 2.5rem 0
+        .en.header
+          :global(.title)
+            font-size vwpx(20)
+            line-height calc(54 / 40)
+            margin-top vwpx(14)
+          .body
+            margin-top vwpx(28.5)
+            :global(.body-line)
+              font-size 1.4rem
+              font-weight 300
+              line-height calc(50 / 28)
     `}</style>
   </div>
 )

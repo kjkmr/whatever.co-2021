@@ -101,11 +101,11 @@ const Showreel = () => {
     }
   useLayoutEffect(() => {
     window.addEventListener('scroll', onScroll)
-    window.addEventListener('resize', onScroll)
     onScroll()
+    const interval = setInterval(onScroll, 1000)
     return () => {
       window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
+      clearInterval(interval)
     }
   })
   const video = useRef<HTMLVideoElement>(null)

@@ -93,15 +93,18 @@
         &.block-image-large
           width: vwpxm(375)
     .block-3-images-a
-      display: block
+      display: flex
+      flex-direction: column
+      align-items: flex-start
       >:nth-child(2)
-        text-align: right
+        align-self: flex-end
     .block-3-images-b
-      display: block
+      display: flex
+      flex-direction: column
+      align-items: flex-start
       >:first-child
-        text-align: right
+        align-self: flex-end
       >:nth-child(3)
-        grid-column: span 2
         width: auto
         height: auto
   .entry-body.en

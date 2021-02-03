@@ -90,8 +90,8 @@ const Footer = () => (
         .pagetop
           top auto
           left auto
-          right -40px
-          bottom -35px
+          right 30px
+          bottom 33px
           letter-spacing 0
           hr
             width 35px

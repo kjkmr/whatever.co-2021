@@ -238,8 +238,6 @@ const Tagline = () => (
         .desc
           margin-top vwpx(83)
           margin-left vwpx(80)
-          h2
-            font-size vwpx(26)
         .link
           margin-top vwpx(81)
       @media (--mobile)
@@ -264,6 +262,12 @@ const Tagline = () => (
               line-height vwpx(32)
           .link
             margin-top vwpx(50)
+        .en.tagline
+          .desc
+            :global(.line)
+              font-size vwpx(18)
+          .link
+            margin-top vwpx(58)
     `}</style>
   </>
 )
@@ -274,7 +278,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
   const [entered, setEntered] = useState(false)
   return (
     <>
-      <div className={langStyle('fetured-work-item')}>
+      <div className={langStyle('featured-work-item')}>
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image"><GradImg mouseEntered={entered}><img src={work.hero_image} /></GradImg></div>
@@ -292,7 +296,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
       </div>
       <style jsx>{`
         @import 'lib/vw.styl'
-        .fetured-work-item
+        .featured-work-item
           position relative
           font-size 0
           a
@@ -324,7 +328,12 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
             font-size var(--font-size-ja)
             font-weight 700
             line-height 1.4
-          :global(.overview)
+          :global(.overview) .inner
+            display -webkit-box
+            -webkit-box-orient vertical
+            -webkit-line-clamp 2
+            overflow hidden
+            text-overflow ellipsis
             margin-top 0.7rem
             margin-right vwpx(30)
             font-size var(--font-size-ja)
@@ -338,18 +347,13 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
             font-size var(--font-size-en)
             font-weight 500
           :global(.overview) .inner
-            display -webkit-box
-            -webkit-box-orient vertical
-            -webkit-line-clamp 2
-            overflow hidden
-            text-overflow ellipsis
             font-size var(--font-size-en)
             font-weight 200
             line-height 1.8
-            margin 0
+            margin-top 0.7rem
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
-          .fetured-work-item
+          .featured-work-item
             margin-top vwpx(36)
             .image
               margin 0 vwpx(-30) 0 vwpx(-50)
@@ -365,12 +369,31 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
                 margin-top 2.5rem
               :global(.title)
                 font-size 2.4rem
-                margin-top 1.1rem
+                margin-top 1.05rem
             :global(.subtitle)
               font-size 1.2rem
               margin-top 0.7rem
             :global(.overview)
+              overflow hidden
+            :global(.overview) .inner
+              -webkit-line-clamp 4
               font-size 1.2rem
+              line-height calc(50 / 24)
+              height calc(1.2rem * (50 / 24) * 4)
+              margin-top 1.5rem
+            :global(.tags)
+              margin-top 1.8rem
+          .en.featured-work-item
+            :global(.subtitle)
+              font-size 1.4rem
+              font-weight 500
+              margin-top 0.4rem
+            :global(.overview) .inner
+              font-size 1.4rem
+              font-weight 300
+              line-height 1.75
+              margin-top 1.45rem
+            :global(.tags)
               margin-top 1.5rem
       `}</style>
     </>
@@ -425,7 +448,7 @@ const NewsItem = ({ data }: { data: Entry }) => {
   const [entered, setEntered] = useState(false)
   return (
     <>
-      <div className="news-item">
+      <div className={langStyle('news-item')}>
         <Link href={`/news/${data.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <GradImg mouseEntered={entered}><img src={data.hero_image} width="256" height="144" /></GradImg>
@@ -469,6 +492,11 @@ const NewsItem = ({ data }: { data: Entry }) => {
             :global(.title)
               font-size 1.2rem
               margin-top 0.7rem
+          .en.news-item
+            :global(.title)
+              font-size 1.4rem
+              line-height calc(42 / 28)
+              margin-top 0.5rem
       `}</style>
     </>
   )
@@ -520,7 +548,7 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
           grid-gap vwpx(35) vwpx(25)
           margin-top vwpx(36)
         .link
-          margin vwpx(75) 0 0 0
+          margin vwpx(56) 0 0 0
     `}</style>
   </>
 )

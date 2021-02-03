@@ -119,6 +119,25 @@ const ContactForm = () => (
             width 40px
             height 40px
             background-size 40px 40px
+        .en
+          &.contact-form
+            :global(.text)
+              font-size 1.4rem
+              line-height calc(42 / 28)
+            :global(.contact)
+              margin-top 2.2rem
+              a
+                font-size 1.6rem
+                font-weight 700
+                letter-spacing 0
+                padding-right 3.5rem
+                padding-bottom 0.7rem
+          .newsletter
+            margin-top 7.5rem
+            :global(.subscribe)
+              font-size 1.4rem
+            :global(.form)
+              margin-top 2.7rem
     `}</style>
   </>
 )

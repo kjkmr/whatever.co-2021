@@ -101,8 +101,12 @@ const Showreel = () => {
     }
   useLayoutEffect(() => {
     window.addEventListener('scroll', onScroll)
+    window.addEventListener('resize', onScroll)
     onScroll()
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
   })
   const video = useRef<HTMLVideoElement>(null)
   const [showPlayer, setShowPlayer] = useState(false)

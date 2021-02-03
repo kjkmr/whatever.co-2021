@@ -302,6 +302,8 @@ export const SectionHeader = ({ num, title, body }: SectionTitleProps) => (
             font-size vwpx(20)
             line-height calc(54 / 40)
             margin-top vwpx(14)
+            &:nth-child(n + 2)
+              margin 0
           .body
             margin-top vwpx(28.5)
             :global(.body-line)

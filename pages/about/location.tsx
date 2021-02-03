@@ -157,6 +157,11 @@ const Section1 = () => (
             line-height 1.7
           :global(.logo1)
             margin-bottom 2.55rem
+        .en.section1
+          :global(.subtitle)
+            margin 2.5rem vwpx(30) 2.2rem 0
+            font-size 1.7rem
+            line-height calc(50 / 34)
     `}</style>
   </>
 )
@@ -211,8 +216,8 @@ const Member = ({ image, title, name, slug }: { image: string, title: string, na
             :global(.title)
               font-size 1.2rem
               font-weight 300
-              margin-top 1.25rem
-              line-height 1.4
+              margin 1.25rem vwpx(10) 0 0
+              line-height calc(30 / 24)
             :global(.name)
               font-size 1.4rem
               font-weight 500
@@ -267,7 +272,7 @@ const Section2 = () => (
           grid-gap vwpx(48) vwpx(25)
           margin-top 2.55rem
         .link
-          margin vwpx(42) 0 0 0
+          margin 6.0rem 0 0 0
     `}</style>
   </>
 )

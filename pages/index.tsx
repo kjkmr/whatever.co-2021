@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { Entry, Tag, getNews, getWorksByTag } from 'lib/api'
+import { useLayoutEffect } from 'lib/useLayoutEffect'
 import { t, langStyle } from 'lib/i18n'
 import { isMobile } from 'lib/isMobile'
 import Layout from 'components/Layout'
@@ -98,7 +99,7 @@ const Showreel = () => {
     : () => {
       setVideoHeight(`calc((100vh - 40px) - ${window.pageYOffset}px)`)
     }
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.addEventListener('scroll', onScroll)
     onScroll()
     return () => window.removeEventListener('scroll', onScroll)

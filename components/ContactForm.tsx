@@ -12,7 +12,7 @@ const ContactForm = () => (
         <div>
           <Grad className="form" whiteText>
             <form action="https://whatever.us20.list-manage.com/subscribe/post?u=0b31ccc167140375101923bbb&amp;id=c20b8d6b11" method="post">
-              <input className="email" type="text" name="EMAIL" placeholder="Email address"></input>
+              <input className="email" type="email" name="EMAIL" placeholder="Email address"></input>
               <input className="submit" type="submit" value="Subscribe" name="subscribe" />
             </form>
           </Grad>

@@ -5,24 +5,40 @@ import resources from './resource.json'
 
 var LANGS: string[] = resources.langs
 var STRINGS: { [key: string]: string[] } = resources.strings
+var LOADING: boolean = false
 
 export async function loadResources() {
-  if (global.window) {
+  if (global.window || LOADING) {
     // do nothing on browser
     return
   }
-  const response = await fetch('https://script.google.com/macros/s/AKfycbyBPS0U7V3I1fDhUITigGzioonYX4L58B_DjLpaH_0QYC1b3WW5NwXRvw/exec')
-  const data = await response.json()
-  LANGS = data.shift().slice(1)
-  STRINGS = {}
-  data.forEach((row: string[]) => {
-    const key = row.shift()
-    if (key) {
-      STRINGS![key] = row
+  const RESOURCE_PATH = 'lib/resource.json'
+  if (fs.existsSync(RESOURCE_PATH)) {
+    const stats = fs.statSync(RESOURCE_PATH)
+    const dt = Date.now() - stats.mtimeMs
+    if (dt < 60 * 1000) {
+      return
     }
-  })
-  fs.writeFileSync('lib/resource.json', JSON.stringify({ langs: LANGS, strings: STRINGS }, null, 2))
-  // console.log('Translate resource updated')
+  }
+  try {
+    LOADING = true
+    const response = await fetch('https://script.google.com/macros/s/AKfycbyBPS0U7V3I1fDhUITigGzioonYX4L58B_DjLpaH_0QYC1b3WW5NwXRvw/exec')
+    const data = await response.json()
+    LANGS = data.shift().slice(1)
+    STRINGS = {}
+    data.forEach((row: string[]) => {
+      const key = row.shift()
+      if (key) {
+        STRINGS![key] = row
+      }
+    })
+    fs.writeFileSync(RESOURCE_PATH, JSON.stringify({ langs: LANGS, strings: STRINGS }, null, 2))
+    console.log('Translate resource updated')
+  } catch (err) {
+    console.error(err)
+  } finally {
+    LOADING = false
+  }
   return
 }
 

@@ -35,13 +35,13 @@ const Head = () => (
           font-weight bold
           line-height calc(52 / 30)
           mix-blend-mode multiply
-      .mailto
-        margin-top vwpx(47)
-        :global(.button)
-          width 300px
-          height 80px
-      .en
-        &.head :global(.title)
+        .mailto
+          margin-top vwpx(47)
+          :global(.button)
+            width 300px
+            height 80px
+      .en.head
+        :global(.title)
           font-size vwpx(36)
           line-height vwpx(54)
         .mailto
@@ -58,13 +58,19 @@ const Head = () => (
           :global(.title)
             font-size 1.7rem
             line-height 1.9
-        .mailto
-          display flex
-          justify-content flex-end          
-          margin 3.9rem 0 0 0
-          :global(.button)
-            width 210px
-            height 70px
+          .mailto
+            display flex
+            justify-content flex-end          
+            margin 3.9rem 0 0 0
+            :global(.button)
+              width 210px
+              height 70px
+        .en.head
+          :global(.title)
+            font-size 2.0rem
+            line-height calc(64 / 40)
+          .mailto
+            margin 3.9rem 0 0 0
     `}</style>
   </>
 )
@@ -74,7 +80,10 @@ const Address = ({ data }: { data: any }) => (
     <div className={langStyle('container')}>
       <div><Grad className="region" inline>{data.name}</Grad></div>
       <div><Grad className="address" inline><GradLink href={data.link} target="_blank" rel="noopener noreferrer">{data.address}</GradLink></Grad></div>
-      {data.phone != '-' ? <div><Grad className="phone" inline>{data.phone}</Grad></div> : null}
+      {data.phone != '-' ? <div>
+        <Desktop><Grad className="phone" inline>{data.phone}</Grad></Desktop>
+        <Mobile><Grad className="phone" inline><GradLink href={`tel:${data.phone}`}>{data.phone}</GradLink></Grad></Mobile>
+      </div> : null}
       {data.representative != '-' ? <div><Grad className="repr" inline>{data.representative}</Grad></div> : null}
     </div>
     <style jsx>{`
@@ -96,7 +105,7 @@ const Address = ({ data }: { data: any }) => (
         :global(.repr)
           font-size var(--font-size-ja)
           line-height 1em
-      .container.en
+      .en.container
         :global(.address)
           font-size var(--font-size-en)
           font-weight 200
@@ -127,6 +136,26 @@ const Address = ({ data }: { data: any }) => (
           :global(.repr)
             font-size 1.2rem
             margin 2.25rem 0 0 0
+        .en.container
+          margin 0 0 5.0rem 0
+          :global(.region)
+            font-size 1.7rem
+            margin 0
+          :global(.address)
+            font-size 1.4rem
+            font-weight 300
+            line-height calc(50 / 28)
+            margin 2.05rem 0 0 0
+          :global(.phone)
+            font-size 1.4rem
+            font-weight 300
+            line-height calc(50 / 28)
+            margin 1.0rem 0 0 0
+          :global(.repr)
+            font-size 1.4rem
+            font-weight 300
+            line-height calc(50 / 28)
+            margin 1.0rem 0 0 0
     `}</style>
   </>
 )

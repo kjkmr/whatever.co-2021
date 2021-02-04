@@ -358,6 +358,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const news = await getNewsByTag(slug, 100, locale)
   return {
     props: { member, works, news },
-    revalidate: 60,
+    revalidate: 60 * 10,
   }
 }

@@ -40,6 +40,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const works = active == 'all' ? (await getAllWorks(100, locale)) : (await getWorksByTag(active, 100, locale))
   return {
     props: { tags, active, works },
-    revalidate: 60,
+    revalidate: 60 * 10,
   }
 }

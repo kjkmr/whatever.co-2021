@@ -87,6 +87,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const entry = await getPostDetails(params?.slug as string, locale)
   return {
     props: { entry },
-    revalidate: 60,
+    revalidate: 60 * 10,
   }
 }

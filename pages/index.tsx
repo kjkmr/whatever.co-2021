@@ -390,7 +390,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
               -webkit-line-clamp 4
               font-size 1.2rem
               line-height calc(50 / 24)
-              height calc(1.2rem * (50 / 24) * 4)
+              max-height calc(1.2rem * (50 / 24) * 4)
               margin-top 1.5rem
             :global(.tags)
               margin-top 1.8rem

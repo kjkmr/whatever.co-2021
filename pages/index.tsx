@@ -96,7 +96,7 @@ const Showreel = () => {
         clearInterval(timer)
         timer = null
       }
-      let height = showreel.current.getBoundingClientRect().height
+      let height = window.innerHeight
       console.log(Date.now(), height)
       height = Math.max(0, height + 35 - window.pageYOffset)
       videoContainer.current.style.setProperty('--video-height', `${height}px`)

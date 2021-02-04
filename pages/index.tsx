@@ -88,34 +88,32 @@ const Player = ({ onClick }: { onClick?: any }) => (
 const Showreel = () => {
   const showreel = useRef<HTMLDivElement>(null)
   const videoContainer = useRef<HTMLDivElement>(null)
-  const [videoHeight, setVideoHeight] = useState('')
+  const video = useRef<HTMLVideoElement>(null)
+  let windowHeight = 0
   const onScroll = isMobile()
     ? () => {
-      if (!showreel.current || !videoContainer.current) return
-      if (timer && Date.now() - start > 3000) {
-        clearInterval(timer)
-        timer = null
-      }
-      let height = window.innerHeight
-      console.log(Date.now(), height)
-      height = Math.max(0, height + 35 - window.pageYOffset)
+      if (!videoContainer.current) return
+      const height = Math.max(0, windowHeight - 35 - window.pageYOffset)
       videoContainer.current.style.setProperty('--video-height', `${height}px`)
     }
     : () => {
-      setVideoHeight(`calc((100vh - 40px) - ${window.pageYOffset}px)`)
+      if (!videoContainer.current) return
+      videoContainer.current.style.setProperty('--video-height', `calc((100vh - 40px) - ${window.pageYOffset}px)`)
     }
-  let timer: NodeJS.Timer | null = null
-  const start = Date.now()
   useLayoutEffect(() => {
+    windowHeight = window.innerHeight
+    const height = windowHeight - 35
+    if (showreel.current && video.current) {
+      showreel.current.style.height = `${height}px`
+      video.current.style.height = `${height}px`
+    }
     window.addEventListener('scroll', onScroll)
-    timer = setInterval(onScroll, 100)
     onScroll()
     return () => {
       window.removeEventListener('scroll', onScroll)
-      if (timer) clearInterval(timer)
     }
   })
-  const video = useRef<HTMLVideoElement>(null)
+
   const [showPlayer, setShowPlayer] = useState(false)
   const onClickWatch = () => {
     setShowPlayer(true)
@@ -125,10 +123,11 @@ const Showreel = () => {
     video.current?.play()
     setShowPlayer(false)
   }
+
   return (
     <>
       <div ref={showreel} className="showreel">
-        <div ref={videoContainer} className="video" style={{ height: videoHeight }}>
+        <div ref={videoContainer} className="video">
           <GradImg>
             <video ref={video} src="/index/reel-preview.mp4" autoPlay playsInline loop muted></video>
           </GradImg>
@@ -146,6 +145,7 @@ const Showreel = () => {
             position fixed
             top 0
             left 80px
+            height var(--video-height, calc(100vh - 40px))
             overflow hidden
           video
             width calc(100vw - 80px)
@@ -167,10 +167,7 @@ const Showreel = () => {
             box-sizing border-box
             .video
               left 0
-              height fill
               height var(--video-height, 100vh)
-              padding-bottom 35px
-              box-sizing border-box
               :global(>div)
                 height 100%
             video

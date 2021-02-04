@@ -358,15 +358,19 @@ const WorkDetail = ({ work }: { work: Entry }) => (
 export default WorkDetail
 
 export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-  const works = await getAllWorks()
-  const paths = (locales || []).map(locale => works.map((w: any) => ({ params: { slug: w.slug }, locale }))).flat()
+  // const works = await getAllWorks(5)
+  // const paths = (locales || []).map(locale => works.map((w: any) => ({ params: { slug: w.slug }, locale }))).flat()
+  // console.log(paths)
   return {
-    paths,
-    fallback: false
+    paths: [],
+    fallback: 'blocking',
   }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const work = await getPostDetails(params?.slug as string, locale)
-  return { props: { work } }
+  return {
+    props: { work },
+    revalidate: 60,
+  }
 }

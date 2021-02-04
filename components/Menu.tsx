@@ -104,22 +104,24 @@ const Menu = () => {
         <div className="menu">
           <div className="menu-full">
             <Grad className="menu-bg" inline={false} startImmediately />
-            <ul>
-              {menuItems.map((item) => (
-                <li key={item[1]}>
-                  <Grad whiteText inline>
-                    <Link href={item[1]}>
-                      <GradLink className="menu-link" border={false} onClick={onClick}>{item[0]}</GradLink>
-                    </Link>
-                  </Grad>
-                </li>
-              ))}
-            </ul>
-            <div className="contact">
-              <div><Grad className="langselect" whiteText inline><LanguageSelector className="inner" activeColor="white" inactiveColor="#666666" separator="  /  " onSelected={onClick} /></Grad></div>
-              <ContactForm />
-              <hr className="line" />
-              <div><Grad className="sns" whiteText inline><SNSButtons /></Grad></div>
+            <div className="columns">
+              <ul>
+                {menuItems.map((item) => (
+                  <li key={item[1]}>
+                    <Grad whiteText inline>
+                      <Link href={item[1]}>
+                        <GradLink className="menu-link" border={false} onClick={onClick}>{item[0]}</GradLink>
+                      </Link>
+                    </Grad>
+                  </li>
+                ))}
+              </ul>
+              <div className="contact">
+                <div><Grad className="langselect" whiteText inline><LanguageSelector className="inner" activeColor="white" inactiveColor="#666666" separator="  /  " onSelected={onClick} /></Grad></div>
+                <ContactForm />
+                <hr className="line" />
+                <div><Grad className="sns" whiteText inline><SNSButtons /></Grad></div>
+              </div>
             </div>
           </div>
         </div> : null}
@@ -133,27 +135,29 @@ const Menu = () => {
           height 100%
           overflow-y auto
           font-size 0
-        :global(.menu-bg)
-          position absolute
-          top 0
-          left 0
-          width 100%
-          height 100%
-          {/* background-image url(/_/menu_ja.png)
-          background-repeat no-repeat */}
-          background-color #333333
         .menu-full
           position relative
           display flex
-          justify-content space-between
-          width calc(100vw - 205px * 2)
-          height calc(100vh - 152px * 2)
-          padding 152px 205px
+          justify-content center
+          align-items center
+          width 100vw
+          height 100vh
+          :global(.menu-bg)
+            position absolute
+            top 0
+            left 0
+            width 100%
+            height 100%
+            {/* background-image url(/_/menu_ja.png)
+            background-repeat no-repeat */}
+            background-color #333333
+          .columns
+            display grid
+            grid-template-columns repeat(2, auto)
+            gap 0 vwpx(386)
           ul
             margin 0
-            margin-top 4px
             padding 0
-            align-self center
           li
             list-style-type none
             margin 0
@@ -161,6 +165,7 @@ const Menu = () => {
             padding 0
             mix-blend-mode lighten
             &:first-child
+              margin-top vwpx_min(4)
               margin-bottom vwpx_min(57)
             &:last-child
               margin-bottom 0
@@ -173,17 +178,17 @@ const Menu = () => {
             position relative
             .line
               display none
-          :global(.langselect)
-            font-size 1.4rem
-            margin-top 5px
-            letter-spacing 0.06rem
-            margin-bottom 117px
-            mix-blend-mode lighten
-          :global(.sns)
-            position absolute
-            right 0
-            bottom 4px
-            mix-blend-mode lighten
+            :global(.langselect)
+              font-size 1.4rem
+              letter-spacing 0.06rem
+              margin-top 5px
+              margin-bottom 117px
+              mix-blend-mode lighten
+            :global(.sns)
+              position absolute
+              right 0
+              bottom 6px
+              mix-blend-mode lighten
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
           .menu-full
@@ -193,6 +198,8 @@ const Menu = () => {
             min-height 100%
             box-sizing border-box
             padding vwpx(30) vwpx(30) vwpx(75)
+            .columns
+              display block
             ul
               align-self auto
               margin 0
@@ -217,15 +224,15 @@ const Menu = () => {
                 padding 0
                 border none
                 border-top 1px solid #707070
-            :global(.langselect)
-              margin-bottom 70px
-              :global(.inner)
-                font-size 1.4rem
-            :global(.sns)
-              position relative
-              right auto
-              bottom auto
-              margin-top 75px
+              :global(.langselect)
+                margin-bottom 70px
+                :global(.inner)
+                  font-size 1.4rem
+              :global(.sns)
+                position relative
+                right auto
+                bottom auto
+                margin-top 75px
       `}</style>
     </>
   )

@@ -50,7 +50,7 @@ const ContactForm = () => (
           margin-top 1.8rem
           mix-blend-mode lighten
         :global(form)
-          display inline-block
+          display flex
           margin 0
           padding 0
           border-radius 30px

@@ -21,16 +21,16 @@ const WorkIndex = ({ tags, active, works }: WorkIndexProps) => (
 
 export default WorkIndex
 
-export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-  const paths = await Promise.all((locales || ['en']).map(async (locale) => {
-    const tags = await getWorkTags(locale)
-    const paths = tags.map((t: Tag) => ({ params: { category: t.slug }, locale }))
-    paths.unshift({ params: { category: 'all' }, locale })
-    return paths
-  }))
+export const getStaticPaths: GetStaticPaths = async () => {
+  // const paths = await Promise.all((locales || ['en']).map(async (locale) => {
+  //   const tags = await getWorkTags(locale)
+  //   const paths = tags.map((t: Tag) => ({ params: { category: t.slug }, locale }))
+  //   paths.unshift({ params: { category: 'all' }, locale })
+  //   return paths
+  // }))
   return {
-    paths: paths.flat(),
-    fallback: false
+    paths: [],
+    fallback: 'blocking'
   }
 }
 
@@ -38,5 +38,8 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const active = params?.category as string
   const tags = await getWorkTags(locale!)
   const works = active == 'all' ? (await getAllWorks(100, locale)) : (await getWorksByTag(active, 100, locale))
-  return { props: { tags, active, works } }
+  return {
+    props: { tags, active, works },
+    revalidate: 60,
+  }
 }

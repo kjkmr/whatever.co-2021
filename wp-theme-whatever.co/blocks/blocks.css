@@ -1,0 +1,26 @@
+.block-images {
+    width: 1206px;
+    margin: 0;
+    margin-top: 143px;
+    margin-bottom: 144px;
+    grid-template-columns: 1fr 1fr;
+    gap: 82px 78px;
+}
+
+img.block-image-small {
+    width: 564px;
+    height: 317px;
+    object-fit: cover;
+}
+
+img.block-image-medium {
+    width: 844px;
+    height: 475px;
+    object-fit: cover;
+}
+
+img.block-image-large {
+    width: 1206px;
+    height: 678px;
+    object-fit: cover;
+}

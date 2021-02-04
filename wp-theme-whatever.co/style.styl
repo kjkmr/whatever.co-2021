@@ -1,0 +1,318 @@
+@import '../lib/vw.styl'
+
+// Noto Sans JP
+// https://fonts.google.com/specimen/Noto+Sans+JP
+// Thin 100
+// Light 300
+// Regular 400
+// Medium 500
+// Bold 700
+// Black 900
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500;700&display=block')
+
+// 200 apercu-extralight.ttf
+// 300 apercu-light.ttf
+// 400 apercu-regular.ttf
+// 500 apercu-medium.ttf
+// 700 apercu-bold.ttf
+// 900 apercu-black.ttf
+@font-face
+  font-family: Apercu
+  src: url("/common/fonts/apercu-extralight.eot")
+  src: url("/common/fonts/apercu-extralight.eot?#iefix") format('embedded-opentype'), url("/common/fonts/apercu-extralight.woff") format('woff'), url("/common/fonts/apercu-extralight.woff2") format('woff2'), url("/common/fonts/apercu-extralight.ttf") format('truetype')
+  font-weight: 200
+  font-style: normal
+  font-display: block
+
+@font-face
+  font-family: Apercu
+  src: url("/common/fonts/apercu-light.eot")
+  src: url("/common/fonts/apercu-light.eot?#iefix") format('embedded-opentype'), url("/common/fonts/apercu-light.woff") format('woff'), url("/common/fonts/apercu-light.woff2") format('woff2'), url("/common/fonts/apercu-light.ttf") format('truetype')
+  font-weight: 300
+  font-style: normal
+  font-display: block
+
+@font-face
+  font-family: Apercu
+  src: url("/common/fonts/apercu-regular.eot")
+  src: url("/common/fonts/apercu-regular.eot?#iefix") format('embedded-opentype'), url("/common/fonts/apercu-regular.woff") format('woff'), url("/common/fonts/apercu-regular.woff2") format('woff2'), url("/common/fonts/apercu-regular.ttf") format('truetype')
+  font-weight: 400
+  font-style: normal
+  font-display: block
+
+@font-face
+  font-family: Apercu
+  src: url("/common/fonts/apercu-medium.eot")
+  src: url("/common/fonts/apercu-medium.eot?#iefix") format('embedded-opentype'), url("/common/fonts/apercu-medium.woff") format('woff'), url("/common/fonts/apercu-medium.woff2") format('woff2'), url("/common/fonts/apercu-medium.ttf") format('truetype')
+  font-weight: 500
+  font-style: normal
+  font-display: block
+
+@font-face
+  font-family: Apercu
+  src: url("/common/fonts/apercu-bold.eot")
+  src: url("/common/fonts/apercu-bold.eot?#iefix") format('embedded-opentype'), url("/common/fonts/apercu-bold.woff") format('woff'), url("/common/fonts/apercu-bold.woff2") format('woff2'), url("/common/fonts/apercu-bold.ttf") format('truetype')
+  font-weight: 700
+  font-style: normal
+  font-display: block
+
+:root
+  --font-size-ja: 1.5rem
+  --font-size-en: 1.7rem
+  @media (--mobile)
+    --font-size-ja: 1.2rem
+
+
+html
+  margin: 0
+  padding: 0
+  font-size: 10px
+
+body
+  margin: 0
+  padding: 0
+  background-color: #fff
+  font-family: Apercu, 'Noto Sans JP', sans-serif
+  font-size: var(--font-size-ja)
+  font-weight: 300
+  color: #000
+
+p
+  margin: 2em 0
+  img
+    width: 100%
+    height: auto
+    margin: auto
+
+a
+  text-decoration: none
+  color: #000
+  padding-bottom: 3px
+  border-bottom: 1px solid #000
+
+button
+  cursor: pointer
+
+img
+  pointer-events: none
+  user-select: none
+
+*:focus
+  outline: none
+
+figure
+  margin: 1em 0
+  font-size: 0
+
+figcaption
+  font-size: 1.3em
+  font-style: italic
+  margin-top: 0.5em
+  margin-bottom: 1.5em
+  text-align: left
+
+.container
+  position relative
+  width 100%
+  background-repeat no-repeat
+  background-position left top
+  overflow hidden
+.contents
+  display flex
+  align-items flex-start
+
+.menu {
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  background-color: black;
+}
+
+.main
+  width calc(100vw - 80px)
+  margin-left 80px
+
+.header
+  position relative
+  font-size 0
+  margin-bottom vwpx(60)
+  .image
+    position absolute
+    top 80px
+    left 0
+    overflow hidden
+    img
+      width vwpx(1286)
+      height vwpx(1286 / 16 * 9)
+      object-fit cover
+  .info
+    display inline-block
+    position relative
+    margin-top vwpx(610)
+    margin-right 80px
+    .inner
+      background-color white
+      padding-top vwpx(58)
+      padding-left vwpx(80)
+      padding-right vwpx(100)
+      padding-bottom vwpx(60)
+      .date
+        font-size vwpx(16)
+      .title
+        font-size vwpx(60)
+        font-weight bold
+        line-height 1.2
+        margin-top vwpx(29)
+        margin-left vwpx(-6)
+      .tags
+        margin-top vwpx(31)
+        span
+          display inline-block
+          border 1px solid #B4B4B4
+          font-size 1.2rem
+          font-weight 300
+          letter-spacing 0.03em
+          padding 0.9rem 1.0rem 0.7rem
+          margin-right 1.0rem
+          &:last-child
+            margin-right 0
+
+.excerpt
+  margin-left vwpx(80)
+  margin-bottom vwpx(152)
+  display grid
+  grid-template-columns auto vwpx(562)
+  grid-gap vwpx(80)
+  font-size 0
+  .text
+    .title
+      font-size vwpx(30)
+      font-weight 700
+      line-height 1.8
+      margin-top vwpx(-8)
+      margin-bottom vwpx(42)
+    .desc
+      font-size var(--font-size-ja)
+      line-height 2.0
+  .image img
+    width vwpx(562)
+    height vwpx(562 / 16 * 9)
+    object-fit cover
+
+
+.entry-body
+  max-width 900px
+  padding 0
+  margin 0 auto 0
+  img
+    width: 100%
+    height: auto
+  .img
+    font-size: 0
+    position: relative
+    overflow: hidden
+    margin: 3.0rem 0
+  p, table
+    margin: 0
+    font-size: 1.5rem
+    line-height: 2.0
+    word-wrap: break-word
+  .p
+    margin: 3.0rem 0
+  .aspect-ratio
+    position: relative
+    width: 100%
+    height: 0
+    padding-bottom: 56.25%
+    iframe
+      position: absolute
+      width: 100%
+      height: 100%
+      left: 0
+      top: 0
+  .block-images
+    width: vwpx(1206)
+    margin-top: vwpx(143)
+    margin-left: calc(((100vw - 80px - 900px) / 2 - ((100vw - 80px) * (80 / (1366 - 80)))) * -1)
+    margin-bottom: vwpx(144)
+    grid-template-columns: 1fr 1fr
+    gap: vwpx(82) vwpx(78)
+    font-size: 0
+    .img
+      margin: 0
+    img
+      &.block-image-small
+        width: vwpx(564)
+      &.block-image-medium
+        width: vwpx(844)
+      &.block-image-large
+        width: vwpx(1206)
+  .block-2-images >:first-child
+    margin-bottom: 82px
+  .block-3-images-a
+    display: grid
+    >:nth-child(1)
+      grid-column: span 2
+      object-fit: cover
+  .block-3-images-b
+    display: grid
+    >:nth-child(3)
+      grid-column: span 2
+      width: vwpx(844)
+      height: vwpx(474)
+      object-fit: cover
+  .block-4-images-a
+    display: grid
+  .block-4-images-a
+    >:first-child, >:last-child
+      grid-column: span 2
+  .block-4-images-b
+    display: grid
+    >:first-child
+      grid-column: span 2
+      margin-right: 0
+      margin-left: auto
+    >:last-child
+      grid-column: span 2
+
+@media (--mobile)
+  .entry-body
+    p
+      font-size: 1.2rem
+      line-height: 2.1
+    .p
+      margin: 2.6rem 0
+    .block-images
+      width: vwpxm(375)
+      margin: 6.6rem -30px 7.0rem -50px
+      grid-template-columns: 1fr
+      gap: vwpxm(30)
+      font-size: 0
+      .img + .img
+        margin-top: vwpxm(30)
+      img
+        &.block-image-small
+          width: vwpxm(227.5)
+        &.block-image-medium
+          width: vwpxm(305)
+        &.block-image-large
+          width: vwpxm(375)
+    .block-3-images-a
+      display: flex
+      flex-direction: column
+      align-items: flex-start
+      >:nth-child(2)
+        align-self: flex-end
+    .block-3-images-b
+      display: flex
+      flex-direction: column
+      align-items: flex-start
+      >:first-child
+        align-self: flex-end
+      >:nth-child(3)
+        width: auto
+        height: auto
+  .entry-body.en
+    p
+      font-size: 1.4rem
+      line-height: calc(50 / 28)

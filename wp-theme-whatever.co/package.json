@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "stylus --watch style.styl"
+  },
+  "dependencies": {
+    "stylus": "^0.54.8"
+  }
+}

@@ -170,6 +170,17 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
           width vwpx(562)
           height vwpx(562 / 16 * 9)
           object-fit cover
+      .en.excerpt
+        .text
+          :global(.title)
+            font-size vwpx(36)
+            line-height calc(54 / 36)
+            margin-top vwpx(-7)
+          :global(.desc)
+            font-size var(--font-size-en)
+            font-weight 200
+            line-height calc(30 / 17)
+            margin-top vwpx(-10)
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .excerpt
@@ -232,6 +243,12 @@ const CreditMember = ({ member }: { member: Person }) => {
             font-size var(--font-size-ja)
             line-height 1.8
             margin-top 3px
+        .en.member
+          :global(.name)
+            font-size var(--font-size-en)
+            font-weight 200
+            line-height calc(20 / 17)
+            margin-top 0.5rem
         @media (--mobile)
           .member
             margin-bottom 2.7rem

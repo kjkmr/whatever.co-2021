@@ -40,6 +40,7 @@ const SingleMember = ({ member: m }: { member: Member }) => {
           border none
           padding 0
           font-size 0
+          background-color white
           img
             width vwpx(260)
             height vwpx(260)

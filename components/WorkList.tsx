@@ -93,10 +93,12 @@ const SmallWork = ({ work }: { work: Entry }) => {
             display block
             border none
             padding 0
-          .image img
-            width vwpx(377)
-            height vwpx(212)
-            object-fit cover
+          .image
+            background-color white
+            img
+              width vwpx(377)
+              height vwpx(212)
+              object-fit cover
           .text
             position relative
             margin-top 2.0rem

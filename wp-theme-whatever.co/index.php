@@ -4,7 +4,6 @@
     <meta charSet="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;700&display=swap" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js"
         integrity="sha512-oAY57i8MXmaOP7pAylNLnULAM4QLV3uGnvnXVY4zF229/zFzTvG2/5YIgH8iN8oZR2hnbkiDPd4JCJGaH4oG6g=="
         crossOrigin="anonymous"></script>
@@ -16,6 +15,7 @@
         <div class="contents">
             <div class="menu"></div>
             <div class="main">
+            <div class="logo"></div>
             <?php while (have_posts()): the_post();?>
             <div class="header">
                 <div class="image"><?php the_post_thumbnail()?></div>

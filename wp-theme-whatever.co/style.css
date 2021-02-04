@@ -118,6 +118,9 @@ figcaption {
   width: calc(100vw - 80px);
   margin-left: 80px;
 }
+.main .logo {
+  height: 80px;
+}
 .header {
   position: relative;
   font-size: 0;
@@ -125,7 +128,7 @@ figcaption {
 }
 .header .image {
   position: absolute;
-  top: 80px;
+  top: 0;
   left: 0;
   overflow: hidden;
 }
@@ -218,7 +221,7 @@ figcaption {
   line-height: 2;
   word-wrap: break-word;
 }
-.entry-body .p {
+.entry-body p {
   margin: 3rem 0;
 }
 .entry-body .aspect-ratio {

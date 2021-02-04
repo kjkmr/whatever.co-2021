@@ -132,7 +132,10 @@ const Showreel = () => {
             <video ref={video} src="/index/reel-preview.mp4" autoPlay playsInline loop muted></video>
           </GradImg>
         </div>
-        <div className="watch-reel"><BlackButton className="button" onClick={onClickWatch}>Watch Reel</BlackButton></div>
+        <div className="watch-reel">
+          <Desktop><BlackButton className="button" onClick={onClickWatch}>Watch Reel</BlackButton></Desktop>
+          <Mobile><BlackButton className="button" link="https://www.youtube.com/watch?v=rsBTSWTbH4I">Watch Reel</BlackButton></Mobile>
+        </div>
       </div>
       {showPlayer ? <Player onClick={onClose} /> : null}
       <style jsx>{`

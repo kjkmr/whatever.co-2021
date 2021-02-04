@@ -10,7 +10,7 @@ const ContactForm = () => (
       <div className="newsletter">
         <div><Grad className="subscribe" whiteText inline>{t('contactform_register')}</Grad></div>
         <div>
-          <Grad className="form" whiteText>
+          <Grad className="form" whiteText inline>
             <form action="https://whatever.us20.list-manage.com/subscribe/post?u=0b31ccc167140375101923bbb&amp;id=c20b8d6b11" method="post">
               <input className="email" type="email" name="EMAIL" placeholder="Email address"></input>
               <input className="submit" type="submit" value="Subscribe" name="subscribe" />
@@ -48,9 +48,11 @@ const ContactForm = () => (
           mix-blend-mode lighten
         :global(.form)
           margin-top 1.8rem
+          width 436px
           mix-blend-mode lighten
         :global(form)
-          display flex
+          display grid
+          grid-template-columns auto 48px
           margin 0
           padding 0
           border-radius 30px
@@ -60,9 +62,10 @@ const ContactForm = () => (
           color white
           font-size 1.6rem
           font-weight 300
+          width 100%
+          box-sizing border-box
           margin 0
           padding 14px 24px
-          width 340px
           border none
           background-color transparent
           vertical-align middle
@@ -72,6 +75,7 @@ const ContactForm = () => (
           padding 0
           width 44px
           height 44px
+          box-sizing border-box
           background-color transparent
           background-image url(/footer/mail@2x.png)
           background-size 44px 44px
@@ -105,9 +109,9 @@ const ContactForm = () => (
             font-size var(--font-size-ja)
           :global(.form)
             margin-top 2.8rem
+            width 100%
           :global(form)
             display flex
-            width 100%
             box-sizing border-box
           .email
             flex-grow 2

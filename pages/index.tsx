@@ -92,26 +92,17 @@ const Showreel = () => {
   const onScroll = isMobile()
     ? () => {
       if (!showreel.current || !videoContainer.current) return
-      let height = showreel.current.getBoundingClientRect().height + 35
-      if (Date.now() - start > 3000) {
-        clearInterval(interval)
-      } else {
-        console.log(Date.now() - start, height, window.innerHeight)
-        return
-      }
-      height = Math.max(0, height - window.pageYOffset)
+      let height = showreel.current.getBoundingClientRect().height
+      console.log(Date.now(), height)
+      height = Math.max(0, height + 35 - window.pageYOffset)
       videoContainer.current.style.setProperty('--video-height', `${height}px`)
     }
     : () => {
       setVideoHeight(`calc((100vh - 40px) - ${window.pageYOffset}px)`)
     }
-  let interval: NodeJS.Timeout
-  let start = Date.now()
-  if (isMobile()) {
-    interval = setInterval(onScroll, 10)
-  }
   useLayoutEffect(() => {
     window.addEventListener('scroll', onScroll)
+    const interval = setInterval(onScroll, 500)
     onScroll()
     return () => {
       window.removeEventListener('scroll', onScroll)

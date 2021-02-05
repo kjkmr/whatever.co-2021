@@ -13,7 +13,7 @@ const toTop = () => {
 const Footer = () => (
   <>
     <div className="footer">
-      <div><Grad className="logo" whiteText inline><img src="/footer/whatever.png" /></Grad></div>
+      <div><Grad className="logo" whiteText inline><img src="/footer/logo_white.svg" width="170" /></Grad></div>
       <ContactForm />
       <hr className="line" />
       <div className="sns">
@@ -30,6 +30,7 @@ const Footer = () => (
         color white
         background-color #333333
         font-size 0
+        opacity 0.5
         :global(.logo)
           display inline-block
           margin-bottom 97px

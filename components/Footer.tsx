@@ -30,7 +30,6 @@ const Footer = () => (
         color white
         background-color #333333
         font-size 0
-        opacity 0.5
         :global(.logo)
           display inline-block
           margin-bottom 97px

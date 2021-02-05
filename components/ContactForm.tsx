@@ -77,7 +77,7 @@ const ContactForm = () => (
           height 44px
           box-sizing border-box
           background-color transparent
-          background-image url(/footer/mail@2x.png)
+          background-image url(/footer/mail.svg)
           background-size 44px 44px
           border none
           vertical-align middle

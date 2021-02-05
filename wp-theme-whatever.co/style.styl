@@ -277,6 +277,30 @@ figcaption
     >:last-child
       grid-column: span 2
 
+.footer
+  height 400px
+  margin-top 100px
+  background-color #333333
+
+.en 
+  .excerpt
+    .text
+      .title
+        font-size vwpx(36)
+        line-height calc(54 / 36)
+        margin-top vwpx(-7)
+      .desc
+        font-size var(--font-size-en)
+        font-weight 200
+        line-height calc(30 / 17)
+        margin-top vwpx(-10)
+  .entry-body
+    p, table
+      font-size: var(--font-size-en)
+      font-weight: 200
+      line-height: calc(30 / 17)
+
+
 @media (--mobile)
   .entry-body
     p

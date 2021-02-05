@@ -295,6 +295,28 @@ figcaption {
 .entry-body .block-4-images-b >:last-child {
   grid-column: span 2;
 }
+.footer {
+  height: 400px;
+  margin-top: 100px;
+  background-color: #333;
+}
+.en .excerpt .text .title {
+  font-size: calc((100vw - 80px) * 0.027993779160187);
+  line-height: calc(54 / 36);
+  margin-top: calc((100vw - 80px) * -0.005443234836703);
+}
+.en .excerpt .text .desc {
+  font-size: var(--font-size-en);
+  font-weight: 200;
+  line-height: calc(30 / 17);
+  margin-top: calc((100vw - 80px) * -0.007776049766719);
+}
+.en .entry-body p,
+.en .entry-body table {
+  font-size: var(--font-size-en);
+  font-weight: 200;
+  line-height: calc(30 / 17);
+}
 @media (--mobile) {
   .entry-body p {
     font-size: 1.2rem;

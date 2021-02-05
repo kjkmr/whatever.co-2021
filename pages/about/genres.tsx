@@ -250,6 +250,7 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
         @import 'lib/vw.styl'
         .work-link
           font-size 0
+          background-color white
           a
             display block
             border none

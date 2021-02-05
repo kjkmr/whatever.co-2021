@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
 import { useLayoutEffect } from 'lib/useLayoutEffect'
-import { Member, Entry, getAllMembers, getMemberDetail, getWorksByTag, getNewsByTag } from 'lib/api'
+import { Member, Entry, getMemberDetail, getWorksByTag, getNewsByTag } from 'lib/api'
 import Layout from 'components/Layout'
 import { Grad, GradImg, GradLink, setupLink } from 'components/Grad'
 import { WorkList } from 'components/WorkList'
@@ -342,12 +342,12 @@ const MemberDetail = ({ member, works, news }: { member: Member, works: Entry[],
 
 export default MemberDetail
 
-export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-  const members = await getAllMembers()
-  const paths = (locales || ['ja']).map(locale => members.map((m) => ({ params: { slug: m.slug }, locale }))).flat()
+export const getStaticPaths: GetStaticPaths = async () => {
+  // const members = await getAllMembers()
+  // const paths = (locales || ['ja']).map(locale => members.map((m) => ({ params: { slug: m.slug }, locale }))).flat()
   return {
-    paths,
-    fallback: false
+    paths: [],
+    fallback: 'blocking'
   }
 }
 
@@ -356,5 +356,8 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const member = await getMemberDetail(slug, locale)
   const works = await getWorksByTag(slug, 100, locale)
   const news = await getNewsByTag(slug, 100, locale)
-  return { props: { member, works, news } }
+  return {
+    props: { member, works, news },
+    revalidate: 60 * 10,
+  }
 }

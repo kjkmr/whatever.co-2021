@@ -4,7 +4,7 @@ const Header = () => (
   <>
     <div className="header">
       <div className="fixed">
-        <Link href="/"><a><img src="/logo_rgb_black.png" /></a></Link>
+        <Link href="/"><a><img src="/logo_black.svg" width="90" /></a></Link>
       </div>
     </div>
     <style jsx>{`
@@ -26,9 +26,9 @@ const Header = () => (
         .header
           height 50px
         a
-          margin-top 18.5px
+          margin-top 18.2px
           img
-            width 75px
+            width 75.1px
     `}</style>
   </>
 )

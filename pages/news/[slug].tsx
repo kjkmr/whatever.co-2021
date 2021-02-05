@@ -1,5 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
-import { Entry, getNews, getPostDetails } from 'lib/api'
+import { Entry, getPostDetails } from 'lib/api'
 import Layout from 'components/Layout'
 import EntryBody from 'components/EntryBody'
 import { Grad, GradImg } from 'components/Grad'
@@ -69,21 +69,24 @@ const NewsDetail = ({ entry }: { entry: Entry }) => (
 
 export default NewsDetail
 
-export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
-  const entries = await Promise.all(locales!.map(async (locale) => {
-    const entries = await getNews(100, locale)
-    return { locale, entries }
-  }))
-  const paths = entries.map(({ entries, locale }) => {
-    return entries.map((entry) => ({ params: { slug: entry.slug }, locale }))
-  }).flat()
+export const getStaticPaths: GetStaticPaths = async () => {
+  // const entries = await Promise.all(locales!.map(async (locale) => {
+  //   const entries = await getNews(100, locale)
+  //   return { locale, entries }
+  // }))
+  // const paths = entries.map(({ entries, locale }) => {
+  //   return entries.map((entry) => ({ params: { slug: entry.slug }, locale }))
+  // }).flat()
   return {
-    paths,
-    fallback: false
+    paths: [],
+    fallback: 'blocking'
   }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const entry = await getPostDetails(params?.slug as string, locale)
-  return { props: { entry } }
+  return {
+    props: { entry },
+    revalidate: 60 * 10,
+  }
 }

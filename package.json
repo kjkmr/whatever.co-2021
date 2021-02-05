@@ -14,7 +14,7 @@
     "classnames": "^2.2.6",
     "install": "^0.13.0",
     "luxon": "^1.25.0",
-    "next": "latest",
+    "next": "^10.0.6",
     "npm": "^7.5.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

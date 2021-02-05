@@ -99,7 +99,7 @@ const Sidebar = ({ title, backto }: SidebarProps) => (
           font-size 1.4rem
           font-weight 700
           margin-left 25px
-          margin-top 18.5px
+          margin-top 17.7px
         .langselect
           margin-right 130px
           margin-top 20px

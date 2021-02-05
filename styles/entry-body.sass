@@ -110,20 +110,15 @@
     --margin-between-block: 6.6rem
     --margin-between-images: #{vwpxm(30)}
     .block-images
-      width: vwpxm(375)
       margin: 6.6rem -30px 7.0rem -50px
-      grid-template-columns: 1fr
-      gap: vwpxm(30)
       font-size: 0
       .img + .img
-        margin-top: vwpxm(30)
+        margin-top: var(--margin-between-images)
       img
         &.block-image-small
           width: vwpxm(227.5)
         &.block-image-medium
           width: vwpxm(305)
-        &.block-image-large
-          width: vwpxm(375)
     .block-3-images-a
       display: flex
       flex-direction: column

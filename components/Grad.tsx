@@ -204,6 +204,7 @@ const doAnimeImage = (base: Element, fade: Element, slide: Element, duration: nu
 }
 
 export const setupImage = (node: HTMLElement, lighten: boolean = false) => {
+  node.classList.add('grad-effect-base')
   const fade = document.createElement('div')
   fade.classList.add('grad-effect-image')
   if (lighten === true) {

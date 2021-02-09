@@ -8,17 +8,17 @@
     "top_whatever": [
       "わたしたちは、誰も見たことがないようなアイデアを考え、\nあらゆる方法でそれを実現していくクロスボータークリエイティブスタジオ。\n考えるだけではなく、作るだけでもなく、「考えて作る」からこそ生み出せる\nアイデアと実現力を武器に、世界中の人々に驚き愛されるような体験を作り続けています。",
       "Whatever is a worldwide creative organism that morphs and mutates across mediums and\nborders. We explore the thresholds of the unknown to conceive new cultural ideas and\nexperiences, by any means necessary. ",
-      "我們是一家致力於發想前所未有點子，\n並透過多元的方法，實現創意的跨域創新團隊。\n不限於思考，也不限於製作，我們相信「創意與實作」並重才能醞釀出最佳創造模式\n我們將結合創意與實作兩大強項，試著創造出受全世界喜愛且驚豔的體驗。"
+      "Whatever 是一支跨領域創意團隊，致力以各式各樣的方式將前所未有的創意化為現實。\n不止於發想，也不僅於製作，我們相信「思考與實作」並重，才能醞釀出優質的創意，持續創造讓全世界驚豔的體驗。\n\n"
     ],
     "top_whatever_sp": [
       "わたしたちは、誰も見たことがないようなアイデアを考え、あらゆる方法でそれを実現していくクロスボータークリエイティブスタジオ。\n考えるだけではなく、作るだけでもなく、「考えて作る」からこそ生み出せる\nアイデアと実現力を武器に、世界中の人々に驚き愛されるような体験を作り続けています。",
       "Whatever is a worldwide creative organism that morphs and mutates across mediums and\nborders. We explore the thresholds of the unknown to conceive new cultural ideas and\nexperiences, by any means necessary. ",
-      "我們是一家致力於發想前所未有點子，\n並透過多元的方法，實現創意的跨域創新團隊。\n不限於思考，也不限於製作，我們相信「創意與實作」並重才能醞釀出最佳創造模式\n我們將結合創意與實作兩大強項，試著創造出受全世界喜愛且驚豔的體驗。"
+      "Whatever 是一支跨領域創意團隊，致力以各式各樣的方式將前所未有的創意化為現實。\n不止於發想，也不僅於製作，我們相信「思考與實作」並重，才能醞釀出優質的創意，持續創造讓全世界驚豔的體驗。\n\n"
     ],
     "contactform_contacthere": [
       "新規プロジェクト、採用、メディア掲載など各種ご相談はこちらまで",
       "For new business, career and media inquires, contact us.",
-      "新專案、人才招募、媒體刊載等各項諮詢，歡迎來訊"
+      "專案合作、人才招募、媒體刊載等各項諮詢，歡迎來訊"
     ],
     "contactform_inquiry": [
       "お問い合わせ",
@@ -33,12 +33,12 @@
     "about_statement": [
       "社会にこれまでなかった便利さや体験したこともないような楽しさを提供するために、\nWhatever は、なんでも考え、なんでも作ります。",
       "Whatever will think of anything and create anything in order to provide society\nwith convenience and enjoyment never before experienced.",
-      "為提供當今社會全新的便利性及前所未有的樂趣體驗，\nWhatever 廣泛地思考並積極地實踐各種嘗試。"
+      "Whatever 積極思考與實踐各種嘗試，為社會帶來前所未有的便利性及樂趣。"
     ],
     "about_statement_sp": [
       "社会にこれまでなかった便利さや体験したこともないような楽しさを提供するために、Whatever は、なんでも考え、なんでも作ります。",
       "Whatever will think of anything and create anything in order to provide society with convenience and enjoyment never before experienced.",
-      "為提供當今社會全新的便利性及前所未有的樂趣體驗，Whatever 廣泛地思考並積極地實踐各種嘗試。"
+      "Whatever 積極思考與實踐各種嘗試，為社會帶來前所未有的便利性及樂趣。"
     ],
     "about_genres_title": [
       "どんなジャンルでも。",
@@ -48,7 +48,7 @@
     "about_genres_description": [
       "ブランディングから、TVCM、テレビ番組、プロダクト、新事業開発まで、ジャンルにこだわらず様々な領域でクリエイティブな発想を活かしたコンテンツやソリューションを生み続けています。",
       "From branding to TV commercials, TV programs, products, and new business development, Whatever continues to produce content and solutions that utilize creative thinking in a variety of fields regardless of genre.",
-      "我們提供的品牌管理、電視節目製作、產品設計、新事業開發服務等不同領域的服務，善於運用創意發想，創造多元的內容(contents)及解決方案(solution)。"
+      "我們提供品牌塑造、廣告及電視節目製作、產品設計、新事業開發等多領域的服務，運用創意思考來創造多元的內容 (Content) 及解決方案 (Solution)。"
     ],
     "about_workstyle_title": [
       "どんな働き方でも。",
@@ -58,7 +58,7 @@
     "about_workstyle_description": [
       "そうした多種多様なプロジェクトを実現するための働き方も、こだわらないことにこだわっています。",
       "Our process is iterative, a constant work in progress, designed to explore the unknown so we can specialize in everything we've never done before.",
-      "為了實現各式各樣的創新專案，我們的工作模式著重於不拘泥任何形式。"
+      "為了實現各式各樣的創新專案，我們不拘泥於任何特定的工作模式。"
     ],
     "about_location_title": [
       "世界中どんな地域でも。",
@@ -68,7 +68,7 @@
     "about_location_description": [
       "そんな環境の中、東京、ニューヨーク、台北、ベルリンの拠点を活かしながら、文化や言葉の壁を越え世界を舞台に日々様々な創作活動を行っています。",
       "Based in Tokyo, New York, Taipei, and Berlin, our multidisciplinary team is driven by a diversity of perspectives that allows us to achieve otherwise impossible advancements in advertising, entertainment and technology.",
-      "我們善於發揮分布東京、紐約、台北以及柏林各據點的多元性，以世界為舞台，並跨越文化與語言的藩籬，時時實現多元的創作。"
+      "我們在東京、紐約、台北以及柏林擁有據點，以世界為舞台，跨越文化與語言的藩籬，實現多元的創作。"
     ],
     "genres_title": [
       "どんなジャンルでも。",
@@ -78,17 +78,17 @@
     "genres_description": [
       "Whatever ではクライアントや社会の課題を解決するために、その名の通り、なんでもつくります。\nグローバルブランドのビジョン開発から、広告、テレビ番組、プロダクトに、お店まで。\n「考えて作れる」チームを活かし、メディアやジャンルといった枠組みを飛び越えて誰も見たことがないような体験の、企画から開発・実装まで行っています。",
       "By “thinking and making” under one roof, we strive to create beautiful and unexpected experiences that capture the imagination of our audiences and move business forward. We collaborate with partners of all shapes and sizes and compete against the voice in our heads telling us we can always do better.",
-      "Whatever 正如公司名稱，能不受限地創作，為客戶及社會提供解決方案。\n 我們服務的內容很多元，主要有開發國際品牌的新策略、廣告行銷、電視節目、產品設計、店鋪設計等。\n 我們很擅長活用團隊的「創意與實作」並重的精神，能跳脫媒體或單一領域的框架，執行企劃發想、開發，和作品製作，創造前所未有的新體驗。"
+      "Whatever 正如公司名稱，擅長以跨領域的創意為客戶及社會提供解決方案。\n我們服務的內容很多元，包含國際品牌的策略開發、廣告行銷、電視節目、產品研發、店鋪設計等。\n我們的團隊重視「思考與實作」並重的精神，能跳脫單一領域或媒體的框架，執行企劃發想和實際製作，打造前所未有的體驗。"
     ],
     "genres_1_title": [
       "様々な領域でのクリエイティブ開発の知見",
       "Imagination without borders.",
-      "從各領域所累積的創意開發經驗"
+      "在各領域累積的創意開發經驗"
     ],
     "genres_1_body": [
       "私たちは、領域に囚われず、様々なクリエイティブプロジェクトに従事し、結果を出してきました。ブランドビジョンの策定やブランドの課題発見といった戦略的なクリエイティブワークから、TVCMやデジタルキャンペーンといったコミュニケーション開発、テレビ番組やプロダクトデザインといったコンテンツ制作、さらにはお店の設計から空港の常設インスタレーションといったプロジェクトまで。\nこうした一見関係がないように見える様々な領域でのクリエイティブ開発も、実は必要とされるアイデアの発想やそれを実現するための技術力・プロデュース力は同じです。むしろ様々な領域を経験していることで、どんな課題にも対応できる開発力・進行力を培ってきました。また、解決しなくてはいけない課題に対して、ジャンルに束縛されないホリスティックな視点で見つめることができ、最適なアイデアをみつけベストなソリューションを実現することが可能となります。",
       "We have been engaged in a wide variety of creative projects that have produced results, regardless of the domain. We have been involved in a wide range of creative projects, from strategic creative work such as brand visioning and brand issue identification, to communication development such as TV commercials and digital campaigns, to content production such as TV programs and product design, and from shop design to permanent airport installations.\nThese seemingly unrelated fields of creative development are actually the same in terms of the ideas they require and the technical and production skills needed to realize them. In fact, through our experience in various fields, we have developed the development and production skills to deal with any issue. In addition, we are able to look at the issues that need to be solved from a holistic perspective that is not bound by genre, and we are able to find the best ideas and implement the best solutions.",
-      "我們致力於提供不限任何領域，從各類專案的製作的參與，累積了許多豐厚成果。其中包括發想品牌策略及了解品牌課題等策略相關的創意；電視廣告及數位活動設計相關等互動溝通的開發；電視節目及產品設計等媒體內容的製作；以及店鋪設計及機場常設互動裝置等相關專案。\n 從中我們深刻體會到，乍看無關聯的各項領域上的創意開發，其實不論是發想點子，或實踐所需的技術或企劃能力幾乎如出一轍。這些不同領域的經驗，也促使我們更有能力面對不同課題，發揮多元的開發及執行能力。此外，在面對必須解決的難題時，我們也有能力不受單一領域的思考束縛，能夠從更深入本質的視角出發，醞釀出最適合因應問題點子，進而提供最佳解決方案。"
+      "我們致力於各種領域和各種類型的專案製作，累積了許多豐厚成果。服務內容含品牌策略的相關創意；電視廣告及數位行銷的溝通定調；電視節目及產品設計等內容製作；甚至包括店鋪設計及機場常設互動裝置等專案。\n從中我們深刻體會到，乍看無關聯的各項領域上的創意開發，其實所需的發想，技術或企劃能力幾乎如出一轍。這些不同領域的經驗，也促使我們更有能力面對不同課題，發揮多元的開發及執行能力。此外，在面對必須解決的難題時，我們也有能力不受單一領域的思考束縛，能夠從更深入本質的視角出發，醞釀出最佳解決方案。"
     ],
     "genres_1_example_title": [
       "企画・制作例：",
@@ -98,17 +98,17 @@
     "genres_1_example_items": [
       "ブランディング\nブランドロゴ\nブランドガイドライン\nビジョンステートメント\nなど\n\nプロダクト\nプロダクトコンセプト\nプロダクトデザイン\nWEB サービス\nプロトタイピング\nなど\n\nマーケティング\nTVCM\nOOH\nウェブサイト\nアプリ\nイベント\nインスタレーション\nなど\n\nコンテンツ\nミュージックビデオ\nテレビ番組\nAR / VR コンテンツ\nなど\n\nスペース\n常設展示\nショップデザイン\nイベントデザイン\nなど",
       "Branding\nBrand logo\nBrand guidelines\nVision statement\netc.\n\nProduct\nProduct concepts\nProduct design\nWeb services\nPrototyping\netc.\n\nMarketing\nTV commercials\nOOH\nWebsites\nApps\nEvents\nInstallations\netc.\n\nContent\nMusic videos,\nTV shows\nAR/VR content\netc.\n\nSpace\nPermanent exhibitions\nShop design\nEvent design\netc.",
-      "品牌管理\n品牌商標\n品牌經營方針\n企業願景設計\n等\n\n產品\n產品概念\n產品設計\n官網經營\n原型設計\n等\n\n行銷\n電視廣告\n家外媒體(Out-of-Home)\n網頁設計\nAPP\n活動\n互動裝置\n等\n\n媒體內容(contents)\nMV\n電視節目\nAR / VR\n等\n\n空間\n常設展\n店鋪設計\n活動設計\n等"
+      "品牌塑造\n品牌 Logo\n品牌形象方針\n企業願景設計\n等\n\n產品\n產品概念\n產品設計\n網站經營\n原型設計\n等\n\n行銷\n電視廣告\n戶外媒體 (OOH)\n網頁設計\nAPP\n活動\n互動裝置\n等\n\n內容 (Content)\nMV\n電視節目\nAR / VR\n等\n\n空間\n常設展\n店鋪設計\n活動設計\n等"
     ],
     "genres_2_title": [
       "「考える」と「作る」の境界を越える",
       "Breaking down barriers between ideation and realization",
-      "超越「創意」與「實作」的境界"
+      "打破「思考」與「實作」的界線"
     ],
     "genres_2_body": [
       "Whatever では「考えて作る」を一緒にすることこそ新しいアイデアを実現するメソッドだと信じています。そのためには、クリエイティブ・エージェンシーやコンサルティング・ファームのように考えるだけでは辿り着けないし、プロダクション・カンパニーのように作るだけでも不十分。見たこともないアイデアを考え、それを実現できるかをすぐに検証する。そうした「考える」領域と「作る」領域を越えたキャッチボールの末に、初めて見たこともないアイデアが実現します。そのために必要な「考える」人材と「作る」人材の両方が、Whatever には集っています。",
       "At Whatever, we believe that “thinking and creating” together is the way to bring new ideas to life. To do this, you won’t get there by just thinking like a creative agency or consulting firm, and you won’t get there by just creating like a production company. Thinking about an idea that you have never seen before and immediately testing whether it can be realized. At the end of such a process that goes beyond the realm of “thinking” and “making”, an idea that has never been seen before can be realized. In order to do so, Whatever has the talent to think and create.",
-      "Whatever 相信結合「創意與實作」的運作，是實現全新點子的理想方式，主要希望能夠突破創意代理店或管顧公司所不及的思考方式，然而若僅限製作公司的運作也仍顯不足。這個結合創意與實作的理念，能夠為前所未見的創意發想，進行立即的檢視，驗證它實現的可能性。在「思考」領域及「實作」領域間互相傳接球的互動下，我們相信能更容易創造出跨時代的新點子。因此， Whatever 也同時匯集了實踐理念所必須的「思考型」人才及「實作型」人才。"
+      "Whatever 相信結合「思考與實作」是實現新創意的理想方式。僅仰賴創意代理店或管顧公司的企劃能力有所不及，僅靠製作公司的實作也仍顯不足，唯有透過結合思考與實作，才能將前所未見的創意進行立即的檢視，驗證它實現的可能性。在「思考」領域及「實作」領域間互相傳接球的互動下，我們相信能更容易創造出跨時代的新點子。因此，Whatever 匯集了實踐此理念所須的「思考型」人才及「實作型」人才。\n"
     ],
     "genres_2_project": [
       "Project\nManagement\n\nプロデューサー\nプロジェクトマネージャー",
@@ -118,42 +118,42 @@
     "genres_2_creative": [
       "Creative\nDevelopment\n\nクリエイティブディレクター\nサウンドアーティスト\nアートディレクター\n建築家\nデザイナー\nコピーライター\nイラストレーター\nコレオグラファー",
       "Creative\nDevelopment\n\nCreative Director\nSound Artist\nArt Director\nArchitects\nDesigner\nCopywriter\nIllustrator\nChoreographer",
-      "創意\n發想\n  \n創意總監\n音樂製作人\n藝術總監\n建築師\n設計師\n文案設計師\n繪圖師\n編舞師"
+      "創意\n發想\n  \n創意總監\n音樂製作人\n藝術總監\n建築師\n設計師\n文案 \n插畫師\n編舞師"
     ],
     "genres_2_tech": [
       "Tech\nDevelopment\n\nテックディレクター\nプログラマー\nエンジニア\nドローンレーサー",
       "Tech\nDevelopment\n\nTech Director\nProgrammer\nEngineer\nDrone racer",
-      "技術\n 研發\n  \n 技術總監\n 程式設計師\n 工程師\n 空拍機攝影師"
+      "技術\n研發\n  \n技術總監\n程式設計師\n工程師\n無人機競技選手"
     ],
     "genres_2_business": [
       "Business\nDevelopment\n\nビジネスプロデューサー\nビジネスコンサルタント\nインベストメントディレクター",
       "Business\nDevelopment\n\nBusiness Producer\nBusiness Consultant\nInvestment Director",
-      "商業\n管理\n  \n商業設計師（Business Producer）\n商業顧問（Business Consultant）\n投資總監（Investment Director）"
+      "商業\n發展\n  \n業務企劃（Business Producer）\n商業顧問（Business Consultant）\n投資總監（Investment Director）"
     ],
     "genres_3_title": [
       "共同開発、自社プロジェクト、クリエイティブ投資",
       "Co-development, in-house projects and creative investment",
-      "合作開發、自行開發、創意投資"
+      "合作開發、自主專案、創意投資"
     ],
     "genres_3_body": [
       "やったことがない限り、本当にそのプロセスを理解したとはいえない。クライアントのためにブランディングやプロダクト開発を行うのであれば、僕ら自身もそのプロセスを身を以て体験し、頭だけでなく体でも理解しているべきなのではないか。その想いの元、Whatever では自社プロダクト開発やクライアントとの共同事業開発を積極的に行っています。こうしたプロジェクトで培われた知見を活かし、様々なブランドのプロダクト開発やR&D支援、そしてスタートアップのブランディングや投資といった事業サポートも精力的に実行しています。",
       "Unless you’ve done it before, you can’t say that you really understand the process. If we are doing branding and product development for a client, we should've had experienced the process ourselves and understand it with our bodies as well as our minds. With this thought, we at Whatever are actively working on our own product development and joint business development with our clients. Whatever’s business support includes product development and R&D support for various brands, as well as branding and investment for startups.",
-      "我們相信，若沒實際動手試過，並不算是真正理解其，因此，當我們為顧客執行品牌經營或產品開發時，我們認為自己本身也應需擁有親身的經驗，不能仰賴頭腦，也需身體力行，進而深度了解其中內涵。為此 Whatever 也十分著力於開發自家產品，並與客戶合作，共創新事業體。從各類專案所醞釀的各種經驗，進而發揮在各品牌的產品開發及研發與應用支援上的協助；同時也活用於新創的品牌經營及投資相關的事業支援。"
+      "我們相信，若沒實際動手試過，並不算是真正理解其過程。因此，當我們為顧客執行品牌經營或產品開發時，我們認為自己本身也應需擁有親身的經驗，不能仰賴頭腦，也需身體力行，進而深入了解其中內涵。為此 Whatever 也十分著力於開發自家產品，並與客戶合作，共創新事業體。從各類專案所醞釀的各種經驗，進而發揮在各品牌的產品開發及研發與應用支援上；同時也活用於新創的品牌經營及投資相關的事業支援。"
     ],
     "genres_3_inhouse_title": [
       "自社プロダクト開発：",
       "In-house product development",
-      "開發自家產品"
+      "自主產品開發"
     ],
     "genres_3_inhouse_body": [
-      "ロジックだけで考えたら実現できると到底思えないような突飛なアイデアや、ビジネスになるかどうかわからないけど実現したら世の中がちょっと幸せになるようなアイデアを、なんちゃってのラピッドプロトタイピングやR&Dだけで終わらせることなく、自分たちの事業として実現し社会に問うという実証実験を繰り返しています。",
+      "ロジックだけで考えたら実現できると到底思えないような突飛なアイデアや、ビジネスになるかどうかわからないけど実現したら世の中がちょっと幸せになるようなアイデアを、なんちゃってのラピッドプロトタイピングやR&Dだけで終わらせることなく、自分たちの事業として実現し社会に問うという実証実験を繰り返しています。 ",
       "We don’t stop at just prototypes and R&D. We do not stop at outlandish ideas that may not seem feasible based on logic alone, or ideas that may or may not be viable for business but would make the world a little happier if they were realized.",
-      "我們不斷地嘗試各種邏輯思考無法實現的異想天開的創意，以及不確定是否有商業價值，但如果實現便能帶給世界多一點幸福的點子。我們不僅提供迅速的原型設計或研發與應用(R&D)，也積極推動原創於團隊本身的事業，持續提供社會新的體驗。"
+      "我們不斷進行原型設計與 R&D，嘗試實現各種毫無邏輯又異想天開的創意。這些點子不一定有商業價值，但如果能成真便能帶給世界多一點樂趣。 "
     ],
     "genres_3_inhouse_items": [
       "らくがきAR\nrakugakiar\n自分が描いたらくがきがARで動き出すアプリ\n\nPuppet Guts\npuppet-guts\nハンドパペットに入れるための内臓型ヌイグルミ\n\nWear you are\nwear-you-are\n好きな場所の衛星写真を使ってTシャツやスマホケースを作れるサービス\n\nDiscodog\ndiscodog\nスマホから文字やアニメーションを表示できる愛犬用LEDベスト\n\nWFH Jammies\nwfh-jammies\nビデオ会議に映る部分だけがシャツになってるリモートワーカー用パジャマ\n\nLyric Speaker\nlyric-speaker\n歌と同期して歌詞がアニメーションするスピーカー",
       "Rakugaki AR\nrakugakiar\nAn app that makes your scribbles come alive in AR\n\nPuppet Guts\npuppet-guts\nInternal Nugurumi for placement in hand puppets\n\nWear you are\nwear-you-are\nA service that allows you to make T-shirts and phone cases with satellite photos of your favorite places\n\nDiscodog\ndiscodog\nAn LED vest for your dog that can display text and animations from your phone\n\nWFH Jammies\nwfh-jammies\nRemote worker’s pajamas with only the part of the shirt that shows up in the video conference\n\nLyric Speaker\nlyric-speaker\nA speaker whose lyrics are animated in sync with the song",
-      "RakugakiAR\nrakugakiar\n透過AR讓自己的塗鴉動起來的APP\n\nPuppet Guts\npuppet-guts\n可裝入手偶的填裝型布偶\n\nWear you are\nwear-you-are\n可使用喜歡場所的衛星照片製作T恤或手機殼的服務\n\nDiscodog\ndiscodog\n可透過智慧型手機投影文字或動畫的寵物狗專用的LED背心\n\nWFH Jammies\nwfh-jammies\n遠距工作專用睡衣，在線上會議時只有鏡頭範圍是襯衫\n\nLyric Speaker\nlyric-speaker\n與歌曲同步顯示的動畫導讀"
+      "RakugakiAR\nrakugakiar\n透過 AR 讓自己的塗鴉動起來的 APP\n\nPuppet Guts\npuppet-guts\n可裝入手偶的內臟型布偶\n\nWear you are\nwear-you-are\n使用喜歡地區的衛星照片製作T恤或手機殼的服務\n\nDiscodog\ndiscodog\n可透過智慧型手機顯示文字或動畫的寵物專用 LED 背心\n\nWFH Jammies\nwfh-jammies\n遠距工作專用睡衣，在線上會議時只會被看到襯衫部分\n\nLyric Speaker\nlyric-speaker\n可與音樂同步顯示歌詞動畫的智慧音響"
     ],
     "genres_3_brands_title": [
       "ブランドとの共同開発：",
@@ -163,12 +163,12 @@
     "genres_3_brands_body": [
       "自社プロダクト開発で培った知見やスキルを活かして、様々なブランドとコラボレーションし、プロダクトやサービスの共同開発を行っています。",
       "We collaborate with various brands to jointly develop products and services by leveraging the knowledge and skills we have cultivated through our product development.",
-      "活用自行開發產品中所累積的經驗，與多家品牌聯名合作，共同開發產品及服務。"
+      "活用自主開發產品中所累積的經驗，與多家品牌合作，共同開發產品及服務。"
     ],
     "genres_3_brands_items": [
       "toio\ntoio\nSony Interactive Entertainment 社「toio」のプロダクトの UI/UX 開発及び、コンテンツ開発'\n\nNew Stand Tokyo\nnew-stand-tokyo\nNew Stand の日本への誘致と、ブランドの全体クリエイティブディレクション及び店舗設計や e コマースサイトデザインなどを担当'\n\nminute mint\nminute-mint\n“おいしい時間のはかり方” をコンセプトにした新しいミントタブレットを UHA 味覚糖・コクヨと共同開発'",
       "toio\ntoio\nDevelopment of UI/UX and content for Sony Interactive Entertainment’s “toio” product.\n\nNew Stand Tokyo\nnew-stand-tokyo\nCharged with bringing New Stand to Japan, as well as the overall creative direction of the brand, store design and e-commerce site design.\n\nMinute Mint\nminute-mint\nA new mint tablet was jointly developed with UHA Taste Sugar and Kokuyo based on the concept of “how to measure good time.”",
-      "toio\ntoio\n為索尼互動娛樂公司的「toio」產品提供UI/UX 及內容開發\n\nNew Stand Tokyo\nnew-stand-tokyo\n引進 New Stand，為品牌提供整體的創意策畫、店鋪設計、電商網站的設計等服務\n\nminute mint\nminute-mint\n與UHA味覺糖株式會社及國譽株式會社(KOKUYO)共同開發的一款可以體驗“測量美味時間”的全新概念薄荷涼糖"
+      "toio\ntoio\n為 Sony 互動娛樂公司的「toio」產品提供 UI/UX 設計及內容開發\n\nNew Stand Tokyo\nnew-stand-tokyo\n將 New Stand 引入日本，為品牌提供整體的創意策畫、店鋪設計、電商網站設計等服務\n\nminute mint\nminute-mint\n與 UHA 味覺糖株式會社及國譽株式會社 (KOKUYO) 共同開發可以「測量美味時間」的全新概念薄荷涼糖"
     ],
     "genres_3_investment_title": [
       "クリエイティブ投資：",
@@ -178,22 +178,22 @@
     "genres_3_investment_body": [
       "外部パートナーへの出資や労務出資を通して、自分たちが信じるようなプロダクトやサービスのビジネスとしての成長のサポートも行っています。",
       "We support the growth of products and services that we believe in through both capital and creative investments.",
-      "我們也透過投資許多外部夥伴及外派人才的方式，支援有潛力的產品及服務，期盼對其事業發展有所助益。"
+      "我們也透過投資許多外部夥伴及外派人才的方式，支援有潛力的產品及服務。"
     ],
     "genres_3_investment_items": [
-      "Cotodama（Lyric Speaker）\nhttps://lyric-speaker.com/\nSIX，WOW，THE GUILD との共同出資で設立したジョイントベンチャー。CTO として Saqoosha が参画し、Lyric Speaker のモーショングラフィックや演出などのソフトウェア開発を担当。\n\nYummy Sake\nhttps://yummysake.jp/\nAI × ブラインドテイスティングで好みの日本酒を判別するサービス。CTO として貴田が参画し、アルゴリズムの開発、出資、事業戦略を支援。",
-      "Cotodama（Lyric Speaker）\nhttps://lyric-speaker.com/\nSaqoosha formed a joint venture with SIX, WOW and THE GUILD, with Saqoosha taking part as CTO and in charge of software development for Lyric Speaker’s motion graphics and direction.\n\nYummy Sake\nhttps://yummysake.jp/\nA service that uses AI and blind tasting to identify the sake you like, with Takata joining as CTO to support algorithm development, investment and business strategy.",
-      "Cotodama（Lyric Speaker）\nhttps://lyric-speaker.com/\n與SIX，WOW，THE GUILD合資創辦聯營公司（Joint Venture）。Saqoosha 擔任 CTO 參與策劃，負責 Lyric Speaker 的動態圖形及演出等相關軟體的開發。\n\nYummy Sake\nhttps://yummysake.jp/\n透過AI x Blind Tasting辨識使用者日本酒偏好的服務。貴田擔任 CTO，參與策劃、演算法、出資以及事業策略的支援。"
+      "Cotodama（Lyric Speaker）\nhttps://lyric-speaker.com/\nSIX，WOW，THE GUILD との共同出資で設立したジョイントベンチャー。CTO として Saqoosha が参画し、Lyric Speaker のモーショングラフィックや演出などのソフトウェア開発を担当。\n\nYummy Sake\nhttps://yummysake.jp/\n機械学習 × ブラインドテイスティングで好みの日本酒を判別するサービス。TDとして貴田が参画し、アルゴリズムの開発、出資、事業戦略を支援。",
+      "Cotodama（Lyric Speaker）\nhttps://lyric-speaker.com/\nSaqoosha formed a joint venture with SIX, WOW and THE GUILD, with Saqoosha taking part as CTO and in charge of software development for Lyric Speaker’s motion graphics and direction.\n\nYummy Sake\nhttps://yummysake.jp/\nA service that uses AI and blind tasting to identify the sake you like, with Takata joining as TD to support algorithm development, investment and business strategy.",
+      "Cotodama（Lyric Speaker）\nhttps://lyric-speaker.com/\n與 SIX、WOW、THE GUILD 創辦的合資公司。Saqoosha 擔任 CTO ，負責 Lyric Speaker 的動態圖形及視覺效果等相關軟體的開發。\n\nYummy Sake\nhttps://yummysake.jp/\n透過 AI x Blind Tasting 辨識使用者的日本酒喜好的服務。貴田擔任 TD，協助策劃演算法、出資以及事業策略。"
     ],
     "workstyle_title": [
       "どんな働き方でも。",
       "-",
-      "多元的工作型態"
+      "多元的工作模式"
     ],
     "workstyle_description": [
       "Whatever に集ってくれた「人」こそが、我々の持つ一番のバリューです。\n通常の雇用形態やクライアント・リレーションに囚われず、より優秀な人々が集まり、共に新しい体験を生み出していけるようなコミュニティをつくっています。\n組織や商習慣といった境界を越えて、もっと自由に、もっと「作れる」環境を大切に活動しています。",
       "Our Co-Creator concept allows global talent who don't fit the typical mold of commercial production to have a new kind of representation. Whatever offers talent the clients, network, knowledge, and facilities in Tokyo, Taipei, Berlin and New York. Whether as the lead or creative voice, they can raise their hand to any project that comes into our company, and from that point on, are paid a project-based fee. The flexible work style allows us to pursue dream projects for non-exclusive talent and have global perspectives on every assignment.",
-      "匯集於 Whatever的「人才」，是團隊最重要的資產。\n 我們將團隊設計成一種不拘於一般雇用型態或顧客關係的形式，期望能集結更多優秀的人才，一同創造全新的體驗。\n 同時我們也十分重視，超越組織或一般商務習慣的邊界，提供能夠更自由，更加友善「實作」的工作模式。"
+      "匯集於 Whatever的「人才」，是我們最重要的資產。\n不拘於一般雇用型態或顧客關係的商務形式，我們期望能集結更多優秀的人才，成立熱愛創新的社群。\n同時我們也十分重視打造更自由、更方便「實作」的工作環境。\n\n"
     ],
     "workstyle_1_title": [
       "フレキシブルな雇用形態",
@@ -203,7 +203,7 @@
     "workstyle_1_body": [
       "各メンバーやチームが最大限にクリエイティビティを発揮できるように、通常の雇用形態だけではなく、Co-Creator 制度を取り入れています。業務に対するコミットメントがない上に、Whatever のネットワークや知見、設備を自由に使うことができ、弊社に入ってくるプロジェクトに自由に手を上げることができます。手をあげたタイミングからプロジェクトベースのフィーが発生するという仕組みになっています。フレキシブルな業務スタイルによって、それぞれのキャリアやライフステージに合わせた働き方ができます。",
       "To ensure that each member of the team can maximize their creativity, we have a Co-Creator system as well as the usual employment structure. In addition to no commitment to the work, everyone is free to use Whatever’s network, knowledge and facilities, and to raise their hand on any project that comes to us. We have a project-based fee structure that starts to accrue from the moment you raise your hand. Our flexible work style allows you to work in a way that suits your career and life stage.",
-      "為了能夠發揮每位成員及團隊最大的能量，我們引進 Co-Creator 制度，同時搭配一般的雇用型態運作。Whatever 不僅在業務上沒有固定交辦形式，團隊的網絡、相關知識、及設備皆可自由使用，並也能隨時舉手參加團隊各項專案。當成員舉手表示希望參與的時間點，便會自動產生專案相關的酬勞回饋。我們透過彈性的業務型態，實現適合每位成員的工作資歷及生活方式的工作模式。"
+      "為了能夠發揮每位成員及團隊最大的能量，除了一般的雇用制度之外，我們還引進了 Co-Creator 制度。此制度在業務上沒有固定的交辦形式，成員可自由使用 Whatever 的網絡、相關知識、及設備，也能隨時舉手參加團隊各項專案。當成員參與專案之後，便會收到相關的酬勞回饋。我們透過彈性的業務型態，打造適合每位成員資歷和生活方式的工作模式。"
     ],
     "workstyle_2_title": [
       "多種多様なアライアンス",
@@ -213,102 +213,102 @@
     "workstyle_2_body": [
       "会社という組織の垣根にこだわることなく、シナジーのある企業やチームと様々な形態のアライアンスを組むことでクリエイティブ効率をアップさせています。",
       "Instead of sticking to the organizational boundaries of a company, we form various alliances with synergistic companies and teams to increase our creative efficiency.",
-      "我們注重不拘泥公司組織既有框架，並與據相乘效果的企業及團隊組成多元型態的聯盟，提高創意發揮的效率。"
+      "我們不拘泥於公司組織的既有框架，積極與志同道合的企業及團隊組成多元型態的聯盟，提高創意的效率。"
     ],
     "workstyle_2_bassdrum": [
-      "世界初のテクニカルディレクターコレクティブ。出資、オフィススペースの提供をはじめ、事業戦略支援や Saqoosha が役員として、富永が社外取締役として参画しています。",
+      "世界初のテクニカルディレクターコレクティブ。出資、オフィススペースのシェア、事業戦略支援や Saqoosha が役員として、富永が社外取締役として参画しています。",
       "The world’s first technical director collective.\nWe provide office space, business strategy support and executive staffing.",
-      "世界首創的科技總監團隊。出資、提供辦公室空間、支援事業策略等，由Saqoosha 擔任董事，富永擔任獨立董事，參與相關策劃。"
+      "世界首創的技術總監團隊。我們為其出資、提供辦公室空間、支援事業策略等。由 Saqoosha 擔任董事，富永擔任獨立董事，參與相關策劃。"
     ],
     "workstyle_2_wtfc": [
       "新しいプロダクションのカタチを模索するため、東北新社と Whatever の共同出資でスタートしたクリエイティブエンジニアリングスタジオ。富永、川村が役員として参画しています。",
       "A creative engineering studio started as a joint venture between Tohokushinsha and Whatever to explore new forms of production.",
-      "為探索新產品的可能性，Whatever 與東北新社合資創立創意科技團隊。由富永及川村擔任董事，負責相關策劃。"
+      "為探索新型態製作公司的可能性，Whatever 與東北新社合資設立創意工程團隊。由富永及川村擔任董事，負責相關策劃。"
     ],
     "workstyle_2_cotodama": [
       "Lyric Speaker の開発、ソフトウェア、ライセンス提供を行うために、SIX，WOW，THE GUILD との共同出資で設立したジョイントベンチャー。弊社 CTO である Saqoosha が、CTO として参画しています。",
       "A joint venture established with SIX, WOW, and THE GUILD to provide development, software, and licensing for Lyric Speaker. Our CTO, Saqoosha, is participating in this venture as CTO.",
-      "為Lyric Speaker 的開發、軟體設計及提供專利，與 SIX，WOW，THE GUILD 合資創辦合資公司。本公司 CTO Saqoosha 同時擔任其 CTO 一職，並參與創辦策劃。"
+      "為了 Lyric Speaker 的開發、軟體設計及專利，與 SIX、WOW、THE GUILD 創辦合資公司。本公司 CTO Saqoosha 同時擔任其 CTO 一職。"
     ],
     "workstyle_2_yummysake": [
       "機械学習 × ブラインドテイスティングで好みの日本酒を判別するサービス。アルゴリズムの開発、出資、事業戦略支援を行っています。",
       "A service that uses machine learning x blind tasting to identify your favorite sake. We are developing the algorithm, investing in the company, and supporting the business strategy.",
-      "透過機器學習 x Blind Tasting辨識使用者日本酒偏好的服務。支援演算法的開發、出資，及事業策略。"
+      "透過「機器學習 x Blind Tasting」辨識使用者的日本酒喜好的服務。我們協助了演算法的開發、出資，及事業策略。"
     ],
     "workstyle_2_kasa": [
       "NY に拠点を置く、Whatever, Studio Kudos, Studio Conduit からなる、公共空間のデザインに特化したデザイン・コレクティブ。",
       "New York-based design collective consisting of Whatever, Studio Kudos and Studio Conduit, specializing in the design of public spaces.",
-      "本部設於紐約，由 Whatever, Studio Kudos, Studio Conduit 所組成的公共空間設計的設計團隊。"
+      "本部設於紐約，由 Whatever、Studio Kudos、Studio Conduit 所組成的公共空間的設計團隊。"
     ],
     "workstyle_2_cradle": [
       "Sputniko! が立ち上げた卵子凍結サービス。弊社川村が外部 CCO として参画し、ブランド全体のクリエイティブディレクションを実行している。",
       "Sputniko! launched an egg freezing service. Sputniko! is an egg freezing service launched by Sputniko, with Kawamura serving as the external CCO and executing the overall creative direction of the brand.",
-      "由 Sputniko! 創辦的凍卵服務。本公司川村擔任外部CCO，參與策劃，及品牌整體的創意監督。"
+      "由 Sputniko! 創辦的凍卵服務。本公司川村擔任外部CCO，參與策劃及品牌整體的創意指導。"
     ],
     "workstyle_2_newstand": [
-      "NY 発のリテールスタートアップ New Stand。そのアメリカ外初の店舗である New Stand Tokyo の経営とブランディングを担当しています。",
-      "Charged with management and branding of New Stand Tokyo, a retail start-up from New York, and its first store outside of the United States.",
-      "來自紐約的新創商店New Stand。我們為其美國以外的第一家海外店鋪New Stand Tokyo 提供經營及品牌經營。"
+      "NY 発のリテールスタートアップ New Stand。そのアメリカ外初の店舗である New Stand Tokyo の事業戦略とブランディングを担当しています。",
+      "Charged with business strategy and branding of New Stand Tokyo, a retail start-up from New York, and its first store outside of the United States.",
+      "來自紐約的新創商店 New Stand。我們負責其美國以外的第一家海外店鋪 New Stand Tokyo 的經營策略與與品牌塑造。"
     ],
     "workstyle_3_title": [
       "クリエイティブコミューンの運営",
       "Management of creative communes",
-      "創意同盟國的營運方式"
+      "創意社群的營運"
     ],
     "workstyle_3_body": [
       "こうした豊富なメンバーたちが集える場所として、WTFC とクリエイティブコミューン WHEREVER の共同運営を行っています。ここは Whatever、WTFC、Bassdrum の作業拠点であると同時に、5F にあるシェアオフィススペースや 1F の New Stand Tokyo を通して、様々なクリエイティブスタッフが出入りし、共創し合える場として機能しています。",
       "Whatever and WTFC are jointly managing the creative commune WHEREVER, where these rich members can gather. This is not only the work base for Whatever, WTFC, and Bassdrum, but also functions as a place where various creative staff can come and go and co-create through the shared office space on the 5th floor and New Stand Tokyo on the 1st floor.",
-      "這裡匯集了多位富含才華的創意成員，由 WTFC及創意團隊WHEREVER 共同經營，是Whatever、WTFC、Bassdrum 的據點，另外在5F設有共享辦公室，以及1F的New Stand Tokyo 經營空間，在這裡有許多創意者穿梭往來，能充分發揮共創合作的機能。"
+      "由 WTFC 及創意團隊 WHEREVER 共同經營的工作空間匯集了多位富含才華的創意成員。\n這裡是 Whatever、WTFC、Bassdrum 的據點，另外在5F設有共享辦公室以及1F設有 New Stand Tokyo，可讓創意者們在這裡穿梭往來，方便交流及合作。"
     ],
     "workstyle_3_features": [
       "01\n8 階建て、約 900㎡ のビル一棟に約 70 人の様々な個人クリエイターやチームが入居しています\n\n02\n入居者同士のシナジーを生み出せるメンバーを集めるため、ポートフォリオチェックと面接を通して、入居者を厳正に審査させていただいています。\n\n03\n外苑東通りに面した 1F のスペース (122.6㎡) が、入居者にもご利用いただけるギャラリーとなっています。\n\n04\n2F にはキッチンを完備したラウンジがあり、入居者の交流や、各種イベントのスペースとして活用しています。\n\n05\n東北新社と Whatever による合同事業会社 WTFC が、共同運営を行い、日々入居者の快適な環境とホスピタリティ向上に努めています。",
       "01\nAn eight-story building of about 900 square meters is home to about 70 individual creators and teams.\n\n02\nIn order to gather members who can create synergy among the residents, we strictly screen the residents through portfolio checks and interviews.\n\n03\nThe first floor space (122.6㎡) facing Gaien Higashi Dori is a gallery that can be used by residents.\n\n04\nOn the second floor, there is a lounge with a fully equipped kitchen, which is used as a space for residents to interact and hold various events.\n\n05\nWTFC, a joint venture between Tohoku Shinsha and Whatever, jointly manages the facility and strives to improve the comfort and hospitality of the residents on a daily basis.",
-      "01\n總面積約900㎡的8樓建築，約有70名個人或團隊進駐。\n  \n02\n為促成進駐者彼此產生最佳的相乘作用，我們將透過作品履歷的審核及面試，仔細確認每位進駐者屬性，敬請多指教。\n  \n03\n面向外苑東路的1F空間 (122.6㎡)，也是進駐者可使用的展示空間。\n  \n04\n2F有附廚房設備的休息空間，提供進駐者交流及舉辦各種活動。\n  \n05 \nWhatever 與東北新社共同創辦的公司 WTFC，由兩團隊共同經營，致力於提供進駐者舒適的創作環境及各種福利的優化。"
+      "01\n總面積約900㎡的8樓建築，約有70名個人或團隊進駐。\n  \n02\n為促成進駐者彼此產生最佳的相乘作用，我們透過作品集的審核及面試，仔細選定每位進駐者。\n  \n03\n面向外苑東路的1F空間 (122.6㎡) 是進駐者可使用的展示空間。\n  \n04\n2F有附廚房設備的交誼廳，提供進駐者交流及舉辦各種活動。\n  \n05 \nWhatever 與東北新社共同創辦的 WTFC 會共同致力於提供進駐者舒適的創作環境及各種福利。"
     ],
     "workstyle_3_about": [
       "1F\nギャラリー / イベントスペース / ショールーム\n\n2F\nオープン MTG / イベントスペース / カフェカウンター\n\n3F\nWTFC オフィス\n\n4F\n会議室×４室\n\n5F\nコワーキングスペース\n\n6F\nBASSDRUM オフィス & 共同 FAB スペース\n\nRF\n休憩スペース",
       "1F\nGallery / Event Space / Showroom\n\n2F\nOpen MTG / Event space / Cafe counter\n\n3F\nWTFC office\n\n4F\n4 meeting rooms\n\n5F\nCoworking space\n\n6F\nBASSDRUM Office & Shared FAB Space\n\n7F\nWhatever office\n\nRF\nRest area",
-      "1F\n展示空間 / 活動空間 / 展示場\n  \n2F\n開放式會議室 / 活動空間 / 咖啡吧檯\n  \n3F\nWTFC 辦公室\n  \n4F\n4間會議室\n  \n 5F\n 共享辦公室 (Co-working Space)\n  \n 6F\n BASSDRUM 辦公室及 FAB 共用空間\n  \n RF\n 休憩空間 (預計於2020年內完工)"
+      "1F\n展示空間 / 活動空間 / Showroom\n  \n2F\n開放式會議空間 / 活動空間 / 咖啡吧檯\n  \n3F\nWTFC 辦公室\n  \n4F\n4間會議室\n  \n 5F\n 共享辦公室 (Coworking Space)\n  \n 6F\n BASSDRUM 辦公室及 FAB 共享空間\n  \n RF\n 休憩空間  "
     ],
     "location_title": [
       "世界中どんな地域でも。",
       "-",
-      "遍布世界各地"
+      "分佈世界各地。"
     ],
     "location_description": [
       "Whatever では、世界を舞台に様々なブランドを支援してきた実績を活かし、国境・文化を越えたブランディングやコンテンツ開発をサポートすることができます。\n東京・ニューヨーク・台湾・ベルリンという4拠点と、グローバル経験が豊富な人材を活かして、世界で通用するブランド・コミュニケーションやプロダクトの企画制作が可能です。",
       "Whatever is able to support branding and content development across borders and cultures by leveraging our experience in supporting various brands on the global stage. With four offices (Tokyo, New York, Taiwan, and Berlin) and personnel with extensive global experience, we can plan and produce brand communications and products that can be used worldwide.",
-      "Whatever 以世界為舞台，活用服務於各家品牌的實戰經驗，支援客戶跨國及跨文化的品牌經營及內容開發。\n 主要有東京、紐約、台灣、柏林4大據點，充分發揮具豐富跨國經驗的人才創意，實現世界通用的品牌溝通及產品企劃與製作。"
+      "Whatever 以世界為舞台，活用服務各種品牌的實戰經驗，支援客戶跨國及跨文化的品牌經營和內容開發。\n我們擁有東京、紐約、台灣、柏林 4 個據點，聚集具豐富跨國經驗的人才，產出可在世界通用的品牌溝通及產品企劃。"
     ],
     "location_1_title": [
       "豊富な国内・海外プロジェクトの実績",
       "Extensive experience in domestic\nand overseas projects",
-      "豐富的國內外專案作品"
+      "豐富的國內外專案經驗"
     ],
     "location_1_body": [
       "Whatever では、世界を舞台に様々なブランドを支援してきた実績を活かし、クロスボーダーにブランディングや事業開発をサポートすることが可能です。日本から世界へと舞台を広げたい企業や、海外から日本市場へのエントリーを考えている企業を、東京・ニューヨーク・台湾・ベルリンという世界4拠点を活かしながらお手伝いしていきます。",
       "At Whatever, we can provide cross-border branding and business development support, leveraging our experience in working with a wide range of brands around the world. We can help companies that are looking to expand from Japan to the world or enter the Japanese market from abroad with our four global offices in Tokyo, New York, Taiwan and Berlin.",
-      "Whatever 以世界為舞台，活用服務各種品牌的實戰經驗，協助跨國品牌經營與事業開發服務。提供希望從日本跨足世界舞台的企業；以及自海外希望進軍日本市場的企業可能需要的服務。我們善於運用東京、紐約、台灣、柏林4大據點的不同特質提供多元的創意。"
+      "Whatever 以世界為舞台，活用服務各種品牌的實戰經驗，協助跨國品牌經營與事業開發。我們善於運用東京、紐約、台灣、柏林 4 大據點的不同特質，為從日本跨足世界的企業；以及自海外進軍日本市場的企業提供服務。"
     ],
     "location_1_inhouse": [
       "日本から海外へ進出する際のクリエイティブ支援実績：",
       "Creative support for Japanese companies entering a foreign market",
-      "協助自日本進軍國際市場的創意作品"
+      "協助品牌自日本進軍國際市場 "
     ],
     "location_1_overseas": [
       "海外から日本へ進出する際のクリエイティブ支援実績：",
       "Creative support for overseas companies entering the Japanese market",
-      "協助自海外進軍日本市場的創意作品"
+      "協助品牌自海外進軍日本市場 "
     ],
     "location_2_title": [
       "国際経験豊富なグローバル・タレント",
       "World-class creative team",
-      "具豐富國際經驗的跨國支援能力"
+      "具豐富國際經驗的團隊"
     ],
     "location_2_body": [
       "世界を舞台に企業のマーケティングやブランディング、ビジネス開発で成果を出してきた、クリエイターやプロデューサーたちが在籍しています。ブランド・コミュニケーションのみならず、プロダクト開発や事業開発といった領域でのクリエイティブ開発を成功させてきた知見を活かし、パートナー企業の事業状況や成長ステージに合わせて、適切な支援を行っていきます。",
       "We have creators and producers who have achieved success in corporate marketing, art, entertainment, branding and business development around the world. With the knowledge of successful creative development in the areas of brand communication, product development, and business development, we provide appropriate support for our partner companies in accordance with their business conditions and growth stage.",
-      "在以世界為舞台的企業行銷、品牌經營、商務開發上，我們擁有累積豐富成果與經驗的設計師及製作人。不論是品牌溝通、產品開發、事業開發等相關的創意開發上，都具豐富的成功經驗，我們善於運用這些經驗，並搭配合作企業的業務狀況及成長趨勢，提供最佳創意。"
+      "我們擁有在國際企業行銷和品牌經營上累積成果的創意及製作團隊。不論是品牌溝通、產品研發、還是商務開發，都具豐富的成功經驗。我們善於運用這些經驗，視合作企業的業務狀況及成長趨勢，提供最佳的創意支援。"
     ],
     "location_2_members": [
       "COO\n川村 真司\nmasa\n\n???\nAramique\naramique\n\nProducer / Creative Director\nMark Stein\nmark\n\nAssociate Creative Director\nShiny Lee\nshiny\n\n???\nJane Rosch\njane\n\nDesign Director\n室市 栄二\neiji\n\nCorporate Development Director\n井上 裕太\nyuta\n\nBusiness / Strategic Director\n金子 佳\nkei",
@@ -318,7 +318,7 @@
     "contact_title": [
       "新規プロジェクト、\n採用、メディア掲載など\n各種ご相談はこちらまで",
       "For new business, \ncareer and media inquiries, \ncontact us.",
-      "新專案合作、\n人才招募、媒體刊載等\n各項諮詢，歡迎來訊洽詢"
+      "新專案合作、\n人才招募、媒體刊載等\n歡迎來訊洽詢\n"
     ],
     "contact_tokyo_name": [
       "TOKYO",

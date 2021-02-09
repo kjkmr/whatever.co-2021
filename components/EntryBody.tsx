@@ -3,32 +3,36 @@ import { useLayoutEffect } from 'lib/useLayoutEffect'
 import { langStyle } from 'lib/i18n'
 import { setup, setupImage, setupLink } from 'components/Grad'
 
+const addYouTubeEmbedParams = (html: string): string => {
+  return html.replace(/(<iframe .+?src=")(https:\/\/www\.youtube\.com\/[^"]+?)"/g, '$1$2;rel=0"')
+}
+
 const EntryBody = ({ content }: { content: string }) => {
   const body = useRef<HTMLDivElement>(null)
   useLayoutEffect(() => {
     const cleanups: (() => void)[] = []
-    body.current?.querySelectorAll('p').forEach(p => {
-      const nodeName = p.firstChild?.nodeName.toLocaleLowerCase()
+    body.current?.querySelectorAll('p').forEach(el => {
+      const nodeName = el.firstChild?.nodeName.toLocaleLowerCase()
       switch (nodeName) {
         case 'img':
         case 'iframe': {
-          const node = p.firstChild!
+          const node = el.firstChild!
           const base = document.createElement('div')
           base.classList.add('img')
           if (nodeName == 'iframe') {
             base.classList.add('aspect-ratio')
           }
-          p.parentNode?.insertBefore(base, p)
+          el.parentNode?.insertBefore(base, el)
           base.appendChild(node)
-          p.parentNode?.removeChild(p)
+          el.parentNode?.removeChild(el)
           cleanups.push(setupImage(base))
           break
         }
         default: {
           const base = document.createElement('div')
           base.classList.add('p')
-          p.parentNode?.insertBefore(base, p)
-          base.appendChild(p)
+          el.parentNode?.insertBefore(base, el)
+          base.appendChild(el)
           cleanups.push(setup(base, false, false))
         }
       }
@@ -40,6 +44,9 @@ const EntryBody = ({ content }: { content: string }) => {
       base.appendChild(img)
       cleanups.push(setupImage(base))
     })
+    body.current?.querySelectorAll('figure.wp-block-embed').forEach(el => {
+      cleanups.push(setupImage(el as HTMLElement))
+    })
     body.current?.querySelectorAll('a').forEach(a => {
       a.target = '_blank'
       cleanups.push(setupLink(a))
@@ -48,7 +55,7 @@ const EntryBody = ({ content }: { content: string }) => {
   }, [])
   return (
     <>
-      <div ref={body} className={langStyle('entry-body')} dangerouslySetInnerHTML={{ __html: content || '' }} />
+      <div ref={body} className={langStyle('entry-body')} dangerouslySetInnerHTML={{ __html: addYouTubeEmbedParams(content || '') }} />
       <style jsx>{`
         .entry-body
           max-width 900px

@@ -197,6 +197,7 @@ export async function getAllWorks(maxCount: number = 100, locale: string = 'ja')
 
 export async function getWorksByTag(tagSlug: string, numEntries: number = 100, locale: string = 'ja'): Promise<Entry[]> {
   const tag = await wp.tags().slug(tagSlug)
+  if (tag.length == 0) return []
   const data = await (wp.posts().tags(tag[0].id).perPage(numEntries).embed().param({ categories: CATEGORY_ID_WORK, _fields: 'slug,title,date,tags,_links,_embedded,acf', lang: locale }))
   const tags: { [id: number]: Tag } = {};
   (await getWorkTags(locale)).forEach(t => tags[t.id] = t)
@@ -237,6 +238,7 @@ export async function getNews(maxEntries = 100, locale: string = 'ja'): Promise<
 
 export async function getNewsByTag(tagSlug: string, maxEntries: number = 100, locale: string = 'ja'): Promise<Entry[]> {
   const tag = await wp.tags().slug(tagSlug)
+  if (tag.length == 0) return []
   const data = await (wp.posts().tags(tag[0].id).perPage(maxEntries).embed().param({ categories: CATEGORY_ID_NEWS, _fields: 'slug,title,date,content,_links,_embedded', lang: locale }))
   const tags: { [id: number]: Tag } = {};
   (await getWorkTags(locale)).forEach(t => tags[t.id] = t)

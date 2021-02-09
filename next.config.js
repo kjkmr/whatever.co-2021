@@ -21,6 +21,6 @@ module.exports = {
     return config;
   },
   images: {
-    domains: ['dc0kn2rkrgaqw.cloudfront.net']
+    domains: ['cdn.whatever.co']
   }
 }

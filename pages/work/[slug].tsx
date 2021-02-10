@@ -278,7 +278,7 @@ const CreditGroup = ({ credit }: { credit: Credit }) => (
       {credit.name
         ? <div className={classnames('name', { spacer: credit.name == '-' })}><Grad className="credit-group-name" inline>{credit.name != '-' ? credit.name : null}</Grad></div>
         : null}
-      {credit.members.map(member => <CreditMember key={member.name} member={member} />)}
+      {credit.members.map((member, index) => <CreditMember key={index} member={member} />)}
     </div>
     <style jsx>{`
       .credit-group

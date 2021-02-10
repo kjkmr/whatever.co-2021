@@ -179,8 +179,8 @@ export async function getMemberDetail(slug: string, locale: string = 'ja'): Prom
 }
 
 
-export async function getAllWorks(maxCount: number = 100, locale: string = 'ja'): Promise<Entry[]> {
-  const data = await (wp.posts().perPage(maxCount).embed().param({ categories: CATEGORY_ID_WORK, _fields: 'slug,title,date,tags,_links,_embedded,acf', lang: locale }))
+export async function getAllWorks(locale: string = 'ja'): Promise<Entry[]> {
+  const data = await getAll(wp.posts().perPage(100).embed().param({ categories: CATEGORY_ID_WORK, _fields: 'slug,title,date,tags,_links,_embedded,acf', lang: locale }))
   const tags: { [id: number]: Tag } = {};
   (await getWorkTags(locale)).forEach(t => tags[t.id] = t)
   return data?.map((e: any): Entry => ({

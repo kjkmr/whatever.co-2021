@@ -76,7 +76,7 @@ const Header = ({ work }: { work: Entry }) => {
     <>
       <div className={langStyle('header')}>
         <Desktop><HeaderImageDesktop src={work.hero_image!} /></Desktop>
-        <Mobile><HeaderImageMobile src={work.hero_image!} /></Mobile>
+        <Mobile><HeaderImageMobile src={work.hero_image_mobile!} /></Mobile>
         <div className="info">
           <div className="inner">
             <div><Grad className="date" inline>{work.date}</Grad></div>

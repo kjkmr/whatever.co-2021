@@ -12,7 +12,7 @@ const re = new RegExp(`(https:\/\/whatever\.co|${process.env.WORDPRESS_URL})/wp-
 const replaceToCDN = (url: string | undefined): string => {
   const result = url?.replace(re, process.env.CDN_URL + '/wp-content/')
   // console.log(url, '->', result)
-  return result || ''
+  return result || '/common/noimage.png'
 }
 
 

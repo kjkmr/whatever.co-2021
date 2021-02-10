@@ -21,7 +21,7 @@ const HeaderImageDesktop = ({ src }: { src: string }) => {
   })
   return (
     <>
-      <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><Image src={src} alt="" width={1286} height={1286 / 16 * 9} priority={true} layout="responsive" objectFit="cover" /></GradImg></div>
+      <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><Image src={src} alt="" width={1286} height={1286 / 16 * 9} layout="responsive" objectFit="cover" /></GradImg></div>
       <style jsx>{`
         @import 'lib/vw.styl'
         .image
@@ -45,16 +45,20 @@ const HeaderImageMobile = ({ src }: { src: string }) => {
   })
   return (
     <>
-      <div className="image" style={{ height: `calc(100vw - ${scrollY}px)` }}><GradImg><Image src={src} alt="" width={375} height={375} quality={90} priority={true} layout="responsive" objectFit="cover" /></GradImg></div>
+      <div className="image" style={{ height: `calc(100vw - ${scrollY}px)` }}><GradImg><img src={src} alt="" /></GradImg></div>
       <style jsx>{`
         @import 'lib/vw-mobile.styl'
         .image
           position fixed
           top 50px
           left 0
-          width vwpx(375)
           overflow hidden
           z-index -1
+          {/* opacity 0.5 */}
+          img
+            width vwpx(375)
+            height vwpx(375)
+            object-fit cover
       `}</style>
     </>
   )

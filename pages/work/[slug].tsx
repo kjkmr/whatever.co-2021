@@ -319,7 +319,6 @@ const Credits = ({ credit }: { credit: Credit[] }) => (
         width 900px
         margin auto
         margin-top -16px
-        margin-bottom 135px
         font-size 0
         :global(.credits-title)
           font-size 2.4rem

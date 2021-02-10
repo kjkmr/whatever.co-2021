@@ -10,7 +10,7 @@ const toTop = () => {
   })
 }
 
-const Footer = () => (
+const Footer = ({ addMargin = false }: { addMargin: boolean }) => (
   <>
     <div className="footer">
       <div><Grad className="logo" whiteText inline><img src="/footer/logo_white.svg" width="170" /></Grad></div>
@@ -27,6 +27,7 @@ const Footer = () => (
         height 400px
         position relative
         padding 100px 80px
+        margin-top ${addMargin ? '150px' : '0'}
         color white
         background-color #333333
         font-size 0
@@ -71,6 +72,7 @@ const Footer = () => (
         @import 'lib/vw-mobile.styl'
         .footer
           padding vwpx(74) vwpx(30) vwpx(50)
+          margin 0
           height auto
           :global(.logo)
             margin-bottom 73px

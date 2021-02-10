@@ -195,7 +195,6 @@ const ContactPage = () => {
           font-size 0
           margin-top vwpx(64)
           margin-left vwpx(80)
-          margin-bottom vwpx(200)
           img
             width 100%
           .row

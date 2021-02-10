@@ -18,7 +18,7 @@ const NewsDetail = ({ entry }: { entry: Entry }) => (
     <style jsx>{`
       @import 'lib/vw.styl'
       .news
-        margin 0 80px 140px
+        margin 0 80px 0
         font-size 0
       .image img
         width vwpx2(1126, 240)
@@ -42,7 +42,7 @@ const NewsDetail = ({ entry }: { entry: Entry }) => (
           line-height 4.0rem
           margin-top 18px
       .body
-        margin 65px auto 95px
+        margin 65px auto 0
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .news

@@ -186,7 +186,7 @@ const Location = () => (
       @import 'lib/vw.styl'
       .location
         width 100%
-        margin-bottom vwpx(170)
+        margin-bottom vwpx(20)
       .inner
         display flex
         justify-content space-between

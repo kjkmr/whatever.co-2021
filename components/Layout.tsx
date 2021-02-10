@@ -78,7 +78,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
             <Sidebar title={side} backto={backto ? { name: side, href: backto } : undefined} />
           </div>
           {footer}
-          <Footer />
+          <Footer addMargin={!footer} />
         </div>
       </div >
       <style jsx>{`

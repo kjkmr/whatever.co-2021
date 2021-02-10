@@ -295,7 +295,6 @@ const RelatedLinks = ({ news }: { news: Entry[] }) => (
       @import 'lib/vw.styl'
       .related-links
         margin-right 80px
-        margin-bottom vwpx(175)
         font-size 0
         :global(.title)
           font-size vwpx_min(24)

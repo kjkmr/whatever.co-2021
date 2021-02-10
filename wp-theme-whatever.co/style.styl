@@ -232,14 +232,22 @@ figcaption
       height: 100%
       left: 0
       top: 0
+
+  --image-row-width: vwpx(1206)
+  --margin-left: calc(((100vw - 80px - 900px) / 2 - ((100vw - 80px) * (80 / (1366 - 80)))) * -1)
+  --margin-between-block: vwpx(144)
+  --margin-between-images: vwpx(82)
   .block-images
-    width: vwpx(1206)
-    margin-top: vwpx(143)
-    margin-left: calc(((100vw - 80px - 900px) / 2 - ((100vw - 80px) * (80 / (1366 - 80)))) * -1)
-    margin-bottom: vwpx(144)
+    width: var(--image-row-width)
+    margin-top: var(--margin-between-block)
+    margin-left: var(--margin-left)
     grid-template-columns: 1fr 1fr
-    gap: vwpx(82) vwpx(78)
+    gap: var(--margin-between-images) vwpx(78)
     font-size: 0
+    &+.p, &+p
+      margin-top: var(--margin-between-block)
+    &+.block-images
+      margin-top: var(--margin-between-images)
     .img
       margin: 0
     img
@@ -248,7 +256,7 @@ figcaption
       &.block-image-medium
         width: vwpx(844)
       &.block-image-large
-        width: vwpx(1206)
+        width: var(--image-row-width)
   .block-2-images >:first-child
     margin-bottom: 82px
   .block-3-images-a
@@ -266,8 +274,11 @@ figcaption
   .block-4-images-a
     display: grid
   .block-4-images-a
-    >:first-child, >:last-child
+    >:first-child
       grid-column: span 2
+    >:last-child
+      grid-column: span 2
+      justify-self: start
   .block-4-images-b
     display: grid
     >:first-child
@@ -277,9 +288,19 @@ figcaption
     >:last-child
       grid-column: span 2
 
+  figure.wp-block-embed
+    width: var(--image-row-width)
+    margin-top: var(--margin-between-block)
+    margin-left: var(--margin-left)
+    iframe
+      width: var(--image-row-width)
+      height: calc(var(--image-row-width) / 16 * 9)
+    &+.block-images
+      margin-top: var(--margin-between-images)
+
 .footer
   height 400px
-  margin-top 100px
+  margin-top 150px
   background-color #333333
 
 .en 

@@ -18,9 +18,7 @@ module.exports = {
         fs: 'empty'
       };
     }
+
     return config;
-  },
-  images: {
-    domains: ['dc0kn2rkrgaqw.cloudfront.net']
   }
 }

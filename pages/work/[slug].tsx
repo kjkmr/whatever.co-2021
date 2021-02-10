@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import classnames from 'classnames'
 import { Tag, Entry, Credit, Person, getPostDetails } from 'lib/api'
@@ -21,15 +20,18 @@ const HeaderImageDesktop = ({ src }: { src: string }) => {
   })
   return (
     <>
-      <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><Image src={src} alt="" width={1286} height={1286 / 16 * 9} layout="responsive" objectFit="cover" /></GradImg></div>
+      <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={src} alt="" /></GradImg></div>
       <style jsx>{`
         @import 'lib/vw.styl'
         .image
           position fixed
           top 80px
           left 80px
-          width calc(100vw - 80px)
           overflow hidden
+          img
+            width vwpx(1286)
+            height vwpx(1286 / 16 * 9)
+            object-fit cover
       `}</style>
     </>
   )

@@ -25,7 +25,7 @@ const SingleMember = ({ member: m }: { member: Member }) => {
       <Link href={`/team/${m.slug}`}>
         <a className={langStyle()} onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
           <div>
-            <GradImg mouseEntered={entered}><img src={getOptimized(m.image, 640)} alt="" /></GradImg>
+            <GradImg mouseEntered={entered}><img src={getOptimized(m.image, 640)} alt="" loading="lazy" /></GradImg>
             <div className="text">
               <div><Grad className="region" inline>{m.region.join(' / ')}</Grad></div>
               <div><Grad className="title" inline>{m.title}</Grad></div>

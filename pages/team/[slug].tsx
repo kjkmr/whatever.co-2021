@@ -235,7 +235,7 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
     <>
       <Link href={`/news/${entry.slug}`}>
         <a className={langStyle('related-link-item')} onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
-          <GradImg mouseEntered={entered}><img src={getOptimized(entry.hero_image!, 640)} alt="" /></GradImg>
+          <GradImg mouseEntered={entered}><img src={getOptimized(entry.hero_image!, 640)} alt="" loading="lazy" /></GradImg>
           <div><Grad className="item-date" inline>{entry.date}</Grad></div>
           <div><Grad className="item-title" inline><div dangerouslySetInnerHTML={{ __html: entry.title }} /></Grad></div>
         </a>

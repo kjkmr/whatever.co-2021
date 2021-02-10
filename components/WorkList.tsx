@@ -15,7 +15,7 @@ const LargeWork = ({ work }: { work: Entry }) => {
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image">
-              <GradImg mouseEntered={entered}><img src={getOptimized(work.hero_image!, 1920)} /></GradImg>
+              <GradImg mouseEntered={entered}><img src={getOptimized(work.hero_image!, 1920)} alt="" loading="lazy" /></GradImg>
             </div>
             <div className="text">
               <div><Grad className="date" inline>{work.date}</Grad></div>
@@ -71,7 +71,7 @@ const SmallWork = ({ work }: { work: Entry }) => {
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image">
-              <GradImg mouseEntered={entered}><img src={getOptimized(work.hero_image!, 828)} /></GradImg>
+              <GradImg mouseEntered={entered}><img src={getOptimized(work.hero_image!, 828)} alt="" loading="lazy" /></GradImg>
             </div>
             <div className="text">
               <div><Grad className="date" inline>{work.date}</Grad></div>
@@ -202,7 +202,7 @@ const Single = ({ work }: { work: Entry }) => {
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image">
-              <GradImg mouseEntered={entered}><img src={getOptimized(work.hero_image!, 1200)} /></GradImg>
+              <GradImg mouseEntered={entered}><img src={getOptimized(work.hero_image!, 1200)} alt="" loading="lazy" /></GradImg>
             </div>
             <div className="text">
               <div><Grad className="date" inline>{work.date}</Grad></div>

@@ -4,16 +4,12 @@ import Link from 'next/link'
 import classnames from 'classnames'
 import { Tag, Entry, Credit, Person, getPostDetails } from 'lib/api'
 import { langStyle } from 'lib/i18n'
+import { getOptimized } from 'lib/image'
 import Layout from 'components/Layout'
 import EntryBody from 'components/EntryBody'
 import { Grad, GradImg, GradLink } from 'components/Grad'
 import WorkTag from 'components/WorkTag'
 import { Desktop, Mobile } from 'components/Responsive'
-import querystring from 'querystring'
-
-const optImgSrc = (url: string, width = 1920, quarity = 90): string => {
-  return '/_next/image?' + querystring.stringify({ url, w: width, q: quarity })
-}
 
 const HeaderImageDesktop = ({ src }: { src: string }) => {
   const [scrollY, setScrollY] = useState(0)
@@ -25,7 +21,7 @@ const HeaderImageDesktop = ({ src }: { src: string }) => {
   })
   return (
     <>
-      <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={optImgSrc(src)} alt="" /></GradImg></div>
+      <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={getOptimized(src)} alt="" /></GradImg></div>
       <style jsx>{`
         @import 'lib/vw.styl'
         .image
@@ -52,7 +48,7 @@ const HeaderImageMobile = ({ src }: { src: string }) => {
   })
   return (
     <>
-      <div className="image" style={{ height: `calc(100vw - ${scrollY}px)` }}><GradImg><img src={optImgSrc(src, 1200)} alt="" /></GradImg></div>
+      <div className="image" style={{ height: `calc(100vw - ${scrollY}px)` }}><GradImg><img src={getOptimized(src, 1200)} alt="" /></GradImg></div>
       <style jsx>{`
         @import 'lib/vw-mobile.styl'
         .image
@@ -149,7 +145,7 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
         <div><Grad className="desc" inline><div dangerouslySetInnerHTML={{ __html: description }}></div></Grad></div>
       </div>
       <div className="image">
-        <GradImg><img src={image} alt="" /></GradImg>
+        <GradImg><img src={getOptimized(image, 1200)} alt="" /></GradImg>
       </div>
     </div>
     <style jsx>{`

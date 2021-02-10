@@ -4,13 +4,11 @@ import Baby from 'babyparse'
 const WPAPI = require('wpapi')
 const wp = new WPAPI({ endpoint: process.env.WORDPRESS_API_URL })
 
-// console.log(process.env.WORDPRESS_URL, process.env.CDN_URL)
-
 const CATEGORY_ID_WORK = 5
 const CATEGORY_ID_NEWS = 29
 const TAG_ID_FEATURED = 43
 
-const re = new RegExp(`${process.env.WORDPRESS_URL}/wp-content/`, 'g')
+const re = new RegExp(`(https:\/\/whatever\.co|${process.env.WORDPRESS_URL})/wp-content/`, 'g')
 const replaceToCDN = (url: string | undefined): string => {
   const result = url?.replace(re, process.env.CDN_URL + '/wp-content/')
   // console.log(url, '->', result)
@@ -150,7 +148,7 @@ const findFeaturedMedia = (e: any, size: string = 'full'): string => {
   if (!e._embedded['wp:featuredmedia']) return ''
   const media = e._embedded['wp:featuredmedia'][0]
   const defaultSource = media.source_url || ''
-  if (media.media_details.sizes[size]) {
+  if (media.media_details?.sizes?.hasOwnProperty(size)) {
     return media.media_details.sizes[size].source_url || defaultSource
   }
   return defaultSource

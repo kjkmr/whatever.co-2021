@@ -6,6 +6,7 @@ import { Entry, getNews } from 'lib/api'
 import { langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
+import { getOptimized } from 'lib/image'
 
 const removeHtmlTags = (html: string) => html.replace(/<\/?[^>]+(>|$)/g, "")
 
@@ -16,7 +17,7 @@ const NewsItem = ({ entry }: { entry: Entry }) => {
       <div className={langStyle('news-item')}>
         <Link href={`/news/${entry.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
-            <GradImg mouseEntered={entered}><img src={entry.hero_image} alt="" /></GradImg>
+            <GradImg mouseEntered={entered}><img src={getOptimized(entry.hero_image!, 1200)} alt="" /></GradImg>
             <div><Grad className="date" inline>{entry.date}</Grad></div>
             <div><Grad className="title" inline><div dangerouslySetInnerHTML={{ __html: entry.title }} /></Grad></div>
             <div><Grad className="desc"><div className="desc-inner">{removeHtmlTags(entry.content?.split('<!--more-->')[0] || '')}</div></Grad></div>

@@ -10,6 +10,7 @@ import BlackButton from 'components/BlackButton'
 import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
 import { Desktop, Mobile } from 'components/Responsive'
+import { getOptimized } from 'lib/image'
 
 const Player = ({ onClick }: { onClick?: any }) => (
   <>
@@ -292,7 +293,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
       <div className={langStyle('featured-work-item')}>
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
-            <div className="image"><GradImg mouseEntered={entered}><img src={work.hero_image} /></GradImg></div>
+            <div className="image"><GradImg mouseEntered={entered}><img src={getOptimized(work.hero_image!, 1200)} /></GradImg></div>
             <div className="white">
               <div><Grad className="date" inline>{work.date}</Grad></div>
               <div><Grad className="title" inline>{work.title}</Grad></div>
@@ -462,7 +463,7 @@ const NewsItem = ({ data }: { data: Entry }) => {
       <div className={langStyle('news-item')}>
         <Link href={`/news/${data.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
-            <GradImg mouseEntered={entered}><img src={data.hero_image} width="256" height="144" /></GradImg>
+            <GradImg mouseEntered={entered}><img src={getOptimized(data.hero_image!, 640)} width="256" height="144" /></GradImg>
             <div><Grad className="date" inline>{data.date}</Grad></div>
             <div><Grad className="title" inline>{data.title}</Grad></div>
           </a>

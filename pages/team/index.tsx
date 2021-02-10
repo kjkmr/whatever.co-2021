@@ -5,6 +5,7 @@ import { Member, getAllMembers } from 'lib/api'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 import { langStyle } from 'lib/i18n'
+import { getOptimized } from 'lib/image'
 
 function shuffle<T>(array: T[]) {
   const out = Array.from(array);
@@ -24,7 +25,7 @@ const SingleMember = ({ member: m }: { member: Member }) => {
       <Link href={`/team/${m.slug}`}>
         <a className={langStyle()} onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
           <div>
-            <GradImg mouseEntered={entered}><img src={m.image} alt="" /></GradImg>
+            <GradImg mouseEntered={entered}><img src={getOptimized(m.image, 640)} alt="" /></GradImg>
             <div className="text">
               <div><Grad className="region" inline>{m.region.join(' / ')}</Grad></div>
               <div><Grad className="title" inline>{m.title}</Grad></div>

@@ -8,6 +8,7 @@ import { Grad, GradImg, GradLink, setupLink } from 'components/Grad'
 import { WorkList } from 'components/WorkList'
 import { Desktop, Mobile } from 'components/Responsive'
 import { langStyle } from 'lib/i18n'
+import { getOptimized } from 'lib/image'
 
 const PhotoDesktop = ({ src }: { src: string }) => {
   const [scrollY, setScrollY] = useState(0)
@@ -77,8 +78,8 @@ const MemberInfo = ({ member }: { member: Member }) => {
   return (
     <>
       <div className={langStyle('member-info')}>
-        <Desktop><PhotoDesktop src={member.image} /></Desktop>
-        <Mobile><PhotoMobile src={member.image} /></Mobile>
+        <Desktop><PhotoDesktop src={getOptimized(member.image!, 1200)} /></Desktop>
+        <Mobile><PhotoMobile src={getOptimized(member.image!, 1200)} /></Mobile>
         <div className="info">
           <div className="inner">
             <div><Grad className="region" inline>{member.region.join(' / ')}</Grad></div>
@@ -234,7 +235,7 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
     <>
       <Link href={`/news/${entry.slug}`}>
         <a className={langStyle('related-link-item')} onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
-          <GradImg mouseEntered={entered}><img src={entry.hero_image} alt="" /></GradImg>
+          <GradImg mouseEntered={entered}><img src={getOptimized(entry.hero_image!, 640)} alt="" /></GradImg>
           <div><Grad className="item-date" inline>{entry.date}</Grad></div>
           <div><Grad className="item-title" inline><div dangerouslySetInnerHTML={{ __html: entry.title }} /></Grad></div>
         </a>

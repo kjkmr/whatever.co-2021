@@ -18,7 +18,9 @@ module.exports = {
         fs: 'empty'
       };
     }
-
     return config;
+  },
+  images: {
+    domains: ['cdn.whatever.co']
   }
 }

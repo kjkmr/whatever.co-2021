@@ -9,6 +9,11 @@ import EntryBody from 'components/EntryBody'
 import { Grad, GradImg, GradLink } from 'components/Grad'
 import WorkTag from 'components/WorkTag'
 import { Desktop, Mobile } from 'components/Responsive'
+import querystring from 'querystring'
+
+const optImgSrc = (url: string, width = 1920, quarity = 90): string => {
+  return '/_next/image?' + querystring.stringify({ url, w: width, q: quarity })
+}
 
 const HeaderImageDesktop = ({ src }: { src: string }) => {
   const [scrollY, setScrollY] = useState(0)
@@ -20,7 +25,7 @@ const HeaderImageDesktop = ({ src }: { src: string }) => {
   })
   return (
     <>
-      <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={src} alt="" /></GradImg></div>
+      <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={optImgSrc(src)} alt="" /></GradImg></div>
       <style jsx>{`
         @import 'lib/vw.styl'
         .image
@@ -47,7 +52,7 @@ const HeaderImageMobile = ({ src }: { src: string }) => {
   })
   return (
     <>
-      <div className="image" style={{ height: `calc(100vw - ${scrollY}px)` }}><GradImg><img src={src} alt="" /></GradImg></div>
+      <div className="image" style={{ height: `calc(100vw - ${scrollY}px)` }}><GradImg><img src={optImgSrc(src, 1200)} alt="" /></GradImg></div>
       <style jsx>{`
         @import 'lib/vw-mobile.styl'
         .image

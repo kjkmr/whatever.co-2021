@@ -54,6 +54,7 @@ const EntryBody = ({ content }: { content: string }) => {
     })
     body.current?.querySelectorAll('a').forEach(a => {
       a.target = '_blank'
+      a.rel = 'noopener noreferrer'
       cleanups.push(setupLink(a))
     })
     return () => { cleanups.forEach(c => c()) }

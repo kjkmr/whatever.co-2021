@@ -20,7 +20,7 @@ const NewsItem = ({ entry }: { entry: Entry }) => {
             <GradImg mouseEntered={entered}><img src={getOptimized(entry.hero_image!, 1200)} alt="" loading="lazy" /></GradImg>
             <div><Grad className="date" inline>{entry.date}</Grad></div>
             <div><Grad className="title" inline><div dangerouslySetInnerHTML={{ __html: entry.title }} /></Grad></div>
-            <div><Grad className="desc"><div className="desc-inner">{removeHtmlTags(entry.content?.split('<!--more-->')[0] || '')}</div></Grad></div>
+            <div><Grad className="desc"><div className="desc-inner" dangerouslySetInnerHTML={{ __html: removeHtmlTags(entry.content?.split('<!--more-->')[0] || '') }}></div></Grad></div>
           </a>
         </Link>
       </div>

@@ -296,7 +296,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
             <div className="image"><GradImg mouseEntered={entered}><img src={getOptimized(work.hero_image!, 1200)} alt="" loading="lazy" /></GradImg></div>
             <div className="white">
               <div><Grad className="date" inline>{work.date}</Grad></div>
-              <div><Grad className="title" inline>{work.title}</Grad></div>
+              <div><Grad className="title" inline><span dangerouslySetInnerHTML={{ __html: work.title }}></span></Grad></div>
             </div>
             <div><Grad className="subtitle" inline>{work.subtitle}</Grad></div>
             <div><Grad className="overview" inline><div className="inner">{removeHtmlTags(work.overview || '')}</div></Grad></div>
@@ -465,7 +465,7 @@ const NewsItem = ({ data }: { data: Entry }) => {
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <GradImg mouseEntered={entered}><img src={getOptimized(data.hero_image!, 640)} width="256" height="144" alt="" loading="lazy" /></GradImg>
             <div><Grad className="date" inline>{data.date}</Grad></div>
-            <div><Grad className="title" inline>{data.title}</Grad></div>
+            <div><Grad className="title" inline><span dangerouslySetInnerHTML={{ __html: data.title }}></span></Grad></div>
           </a>
         </Link>
       </div>

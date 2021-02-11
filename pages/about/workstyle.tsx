@@ -192,11 +192,11 @@ const ItemList = ({ title, items, fontSize, lineHeight, gap }: { title: string, 
       <div className="items">
         {items.split('\n\n').map((item, index) => {
           const [n, desc] = item.split('\n')
-          return (<>
-            <div key={index}><Grad className="name" inline>- {n}</Grad></div>
+          return [
+            <div key={index}><Grad className="name" inline>- {n}</Grad></div>,
             <div key={index + 100}><Grad className="desc" inline>{desc}</Grad></div>
-          </>)
-        })}
+          ]
+        }).flat()}
       </div>
     </div>
     <style jsx>{`

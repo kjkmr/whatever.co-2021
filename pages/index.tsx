@@ -91,7 +91,8 @@ const Showreel = () => {
   const videoContainer = useRef<HTMLDivElement>(null)
   const video = useRef<HTMLVideoElement>(null)
   let windowHeight = 0
-  const onScroll = isMobile()
+  const mobile = isMobile()
+  const onScroll = mobile
     ? () => {
       if (!videoContainer.current) return
       const height = Math.max(0, windowHeight - 35 - window.pageYOffset)
@@ -102,11 +103,13 @@ const Showreel = () => {
       videoContainer.current.style.setProperty('--video-height', `calc((100vh - 40px) - ${window.pageYOffset}px)`)
     }
   useLayoutEffect(() => {
-    windowHeight = window.innerHeight
-    const height = windowHeight - 35
-    if (showreel.current && video.current) {
-      showreel.current.style.height = `${height}px`
-      video.current.style.height = `${height}px`
+    if (mobile) {
+      windowHeight = window.innerHeight
+      const height = windowHeight - 35
+      if (showreel.current && video.current) {
+        showreel.current.style.height = `${height}px`
+        video.current.style.height = `${height}px`
+      }
     }
     window.addEventListener('scroll', onScroll)
     onScroll()

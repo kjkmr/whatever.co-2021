@@ -57,7 +57,7 @@ const EntryBody = ({ content }: { content: string }) => {
       cleanups.push(setupLink(a))
     })
     return () => { cleanups.forEach(c => c()) }
-  }, [])
+  })
   return (
     <>
       <div ref={body} className={langStyle('entry-body')} dangerouslySetInnerHTML={{ __html: addYouTubeEmbedParams(replaceImgOptimized(content || '')) }} />

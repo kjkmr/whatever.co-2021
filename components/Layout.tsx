@@ -35,6 +35,7 @@ let templateName: string
 // templateName = 'team_detail_sp'
 // templateName = 'team_detail_2_sp'
 // templateName = 'contact_sp'
+// templateName = 'page_not_found_sp'
 
 type Props = {
   showHeader?: boolean

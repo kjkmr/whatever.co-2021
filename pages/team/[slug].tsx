@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useLayoutEffect } from 'lib/useLayoutEffect'
 import { Member, Entry, getMemberDetail, getWorksByTag, getNewsByTag } from 'lib/api'
 import Layout from 'components/Layout'
-import { Grad, GradImg, GradLink, setupLink } from 'components/Grad'
+import { Grad, GradImg, GradLink, setupLink, GradLinkedTextBox } from 'components/Grad'
 import { WorkList } from 'components/WorkList'
 import { Desktop, Mobile } from 'components/Responsive'
 import { langStyle, t } from 'lib/i18n'
@@ -91,7 +91,7 @@ const MemberInfo = ({ member }: { member: Member }) => {
             </div>
             <div className="co-creator">
               <div className="title">{t('team_cocreator_title')}</div>
-              <div className="text" dangerouslySetInnerHTML={{ __html: t('team_cocreator_text')! }}></div>
+              <GradLinkedTextBox className="text" html={t('team_cocreator_text')} />
             </div>
           </div>
         </div>
@@ -138,7 +138,7 @@ const MemberInfo = ({ member }: { member: Member }) => {
                 font-size var(--font-size-ja)
                 font-weight 500
                 margin-top 5.5rem
-              .text
+              :global(.text)
                 font-size 1.2rem
                 font-weight 300
                 line-height 2.0

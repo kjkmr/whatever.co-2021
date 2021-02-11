@@ -350,3 +350,17 @@ export const GradLink = forwardRef(({ children, className, href, target, rel, in
     </>
   )
 })
+
+export const GradLinkedTextBox = ({ html, className = '' }: { html: string | undefined, className?: string }) => {
+  const ref = useRef<HTMLDivElement>(null)
+  useLayoutEffect(() => {
+    const cleanups: (() => void)[] = []
+    ref.current?.querySelectorAll('a').forEach(a => {
+      a.target = '_blank'
+      a.rel = 'noopener noreferrer'
+      cleanups.push(setupLink(a))
+    })
+    return () => { cleanups.forEach(c => c()) }
+  })
+  return <div ref={ref} dangerouslySetInnerHTML={{ __html: html || '' }} className={className}></div>
+}

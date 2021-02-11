@@ -168,7 +168,7 @@ const MemberInfo = ({ member }: { member: Member }) => {
                 margin 2.0rem 0 3.1rem 0
               .desc-inner
                 :global(p)
-                  line-height 2.1
+                  line-height 2.0
               .links
                 :global(.link-item)
                   font-size var(--font-size-ja)
@@ -270,8 +270,8 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
               font-size 1.0rem
               margin-top 1.45rem
             :global(.item-title)
-              font-size 1.2rem
-              line-height 1.7
+              font-size 1.3rem
+              line-height calc(42 / 26)
               margin 0.5rem vwpx(10) 0 0
           .en.related-link-item
             :global(.item-title)
@@ -336,6 +336,8 @@ const MemberDetail = ({ member, works, news }: { member: Member, works: Entry[],
       @media (--mobile)
         .details
           margin-bottom 6.8rem
+          opacity 0.5
+
     `}</style>
   </>
 )

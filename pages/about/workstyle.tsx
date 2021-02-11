@@ -136,9 +136,9 @@ const Alliance = ({ slug }: { slug: string }) => {
               margin 0
               margin-top 1.35rem
             :global(.desc)
-              font-size 1.0rem
-              line-height 1.85
-              margin-top 0.75rem
+              font-size 1.1rem
+              line-height calc(38 / 22)
+              margin-top 0.8rem
           .en.alliance
             :global(.desc)
               font-size 1.2rem
@@ -185,7 +185,7 @@ const Section2 = () => (
   </>
 )
 
-const ItemList = ({ title, items }: { title: string, items: string }) => (
+const ItemList = ({ title, items, fontSize, lineHeight, gap }: { title: string, items: string, fontSize: string, lineHeight: string, gap: string }) => (
   <>
     <div className={langStyle('about')}>
       <div><Grad className="title" inline>{title}</Grad></div>
@@ -236,11 +236,15 @@ const ItemList = ({ title, items }: { title: string, items: string }) => (
           .items
             margin-top 3.0rem
             grid-template-columns 45px auto
-            grid-gap 1.5rem 0
+            grid-gap ${gap} 0
             :global(.name)
-              font-size 1.2rem
+              font-size 1.3rem
               font-weight 700
               line-height 2.0
+            :global(.desc)
+              font-size ${fontSize}
+              font-weight 300
+              line-height ${lineHeight}
         .en.about
           :global(.title)
             font-size 1.7rem
@@ -268,8 +272,8 @@ const Section3 = () => (
         <div className="i3"><GradImg><img src="/about/workstyle/03_3@2x.jpg" alt="" /></GradImg></div>
       </div>
       <div className="columns">
-        <ItemList title="ABOUT：" items={t('workstyle_3_about')!} />
-        <ItemList title="FEATURES：" items={t('workstyle_3_features')!} />
+        <ItemList title="ABOUT：" items={t('workstyle_3_about')!} fontSize="1.2rem" lineHeight="2.0" gap="1.4rem" />
+        <ItemList title="FEATURES：" items={t('workstyle_3_features')!} fontSize="1.3rem" lineHeight="calc(50 / 26)" gap="1.6rem" />
       </div>
     </div>
     <style jsx>{`
@@ -318,7 +322,7 @@ const Section3 = () => (
         .columns
           display flex
           flex-direction column
-          margin 1.0rem vwpx(30) 0 0
+          margin 1.0rem vwpx(27) 0 0
     `}</style>
   </>
 )

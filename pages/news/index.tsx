@@ -80,8 +80,8 @@ const NewsItem = ({ entry }: { entry: Entry }) => {
               margin 0.9rem 30px 0 0
               overflow hidden
             .desc-inner
-              --size 1.2rem
-              --height calc(50 / 24)
+              --size 1.3rem
+              --height calc(52 / 26)
               --num-lines 5
               font-size var(--size)
               line-height var(--height)

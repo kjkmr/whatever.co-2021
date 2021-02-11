@@ -140,9 +140,9 @@ const SmallWork = ({ work }: { work: Entry }) => {
                 line-height 1.3
                 margin-top 0.5rem
               :global(.subtitle)
-                font-size 1.0rem
-                line-height 1.6
-                margin-top 0.25rem
+                font-size 1.1rem
+                line-height calc(38 / 22)
+                margin-top 0.3rem
               :global(.tags)
                 margin-top 1.0rem
           .en.small-work

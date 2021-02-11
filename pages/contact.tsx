@@ -127,14 +127,14 @@ const Address = ({ data }: { data: any }) => (
             font-size 1.7rem
             margin 0
           :global(.address)
-            font-size 1.2rem
+            font-size 1.3rem
             line-height 2.0
             margin 2.05rem 0 0 0
           :global(.phone)
-            font-size 1.2rem
-            margin 1.65rem 0 0 0
+            font-size 1.3rem
+            margin 1.45rem 0 0 0
           :global(.repr)
-            font-size 1.2rem
+            font-size 1.3rem
             margin 2.25rem 0 0 0
         .en.container
           margin 0 0 5.0rem 0

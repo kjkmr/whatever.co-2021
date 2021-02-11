@@ -161,7 +161,7 @@ const Section1 = () => (
           :global(.subtitle)
             margin 2.5rem vwpx(30) 2.2rem 0
             font-size 1.7rem
-            line-height calc(50 / 34)
+            line-height (50 / 34)
     `}</style>
   </>
 )
@@ -217,7 +217,7 @@ const Member = ({ image, title, name, slug }: { image: string, title: string, na
               font-size 1.2rem
               font-weight 300
               margin 1.25rem vwpx(10) 0 0
-              line-height calc(30 / 24)
+              line-height (30 / 24)
             :global(.name)
               font-size 1.4rem
               font-weight 500

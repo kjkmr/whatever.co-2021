@@ -137,13 +137,13 @@ const Alliance = ({ slug }: { slug: string }) => {
               margin-top 1.35rem
             :global(.desc)
               font-size 1.1rem
-              line-height calc(38 / 22)
+              line-height (38 / 22)
               margin-top 0.8rem
           .en.alliance
             :global(.desc)
               font-size 1.2rem
               font-weight 300
-              line-height calc(36 / 24)
+              line-height (36 / 24)
       `}</style>
     </>
   )
@@ -214,7 +214,7 @@ const ItemList = ({ title, items, fontSize, lineHeight, gap }: { title: string, 
           :global(.name)
             font-size 1.8rem
             font-weight 500
-            line-height calc(30 / 18)
+            line-height (30 / 18)
           :global(.desc)
             font-size var(--font-size-ja)
             line-height 2.0
@@ -250,7 +250,7 @@ const ItemList = ({ title, items, fontSize, lineHeight, gap }: { title: string, 
             font-size 1.7rem
           .items
             margin-top 3.0rem
-            line-height calc(42 / 28)
+            line-height (42 / 28)
             grid-gap 1.3rem 0
             :global(.name)
               font-size 1.4rem

@@ -70,15 +70,15 @@ const SingleMember = ({ member: m }: { member: Member }) => {
             :global(.region)
               font-size 1.2rem
               letter-spacing 0
-              line-height calc(36 / 24)
+              line-height (36 / 24)
               margin-top 1.2rem
             :global(.title)
               font-size 1.2rem
-              line-height calc(30 / 24)
+              line-height (30 / 24)
               margin-top 0.3rem
             :global(.name)
               font-size 1.4rem
-              line-height calc(42 / 28)
+              line-height (42 / 28)
               margin-top 0.3rem
           a.en
             :global(.name)

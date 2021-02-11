@@ -69,7 +69,7 @@ const Detail = ({ title }: { title: string }) => {
             :global(.desc)
               font-size 1.4rem
               font-weight 300
-              line-height calc(50 / 28)
+              line-height (50 / 28)
               margin-top 1.0rem
             .more
               margin-top 3.4rem
@@ -271,13 +271,13 @@ const AboutPage = () => (
           margin-top vwpx(23)
           font-size vwpx(26)
           font-weight bold
-          line-height calc(37 / 26)
+          line-height (37 / 26)
       .en
         .text
           :global(.p)
             font-size vwpx(30)
             margin-top vwpx(20)
-            line-height calc(41 / 30)
+            line-height (41 / 30)
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .about
@@ -306,7 +306,7 @@ const AboutPage = () => (
             margin-top vwpx(22)
             :global(.p)
               font-size vwpx(18)
-              line-height calc(64 / 36)
+              line-height (64 / 36)
     `}</style>
   </>
 )

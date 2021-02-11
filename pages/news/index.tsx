@@ -73,7 +73,7 @@ const NewsItem = ({ entry }: { entry: Entry }) => {
               margin-top 2.55rem
             :global(.title)
               font-size 1.7rem
-              line-height calc(54 / 34)
+              line-height (54 / 34)
               margin 1.0rem 30px 0 0
             :global(.desc)
               width auto
@@ -81,22 +81,22 @@ const NewsItem = ({ entry }: { entry: Entry }) => {
               overflow hidden
             .desc-inner
               --size 1.3rem
-              --height calc(52 / 26)
+              --height (52 / 26)
               --num-lines 5
               font-size var(--size)
               line-height var(--height)
-              max-height calc(var(--size) * var(--height) * var(--num-lines))
+              max-height (var(--size) * var(--height) * var(--num-lines))
           .en.news-item
             :global(.title)
               font-size 2.0rem
-              line-height calc(54 / 40)
+              line-height (54 / 40)
               margin 1.0rem 30px 0 0
             :global(.desc)
               width auto
               margin-top 0.7rem
             .desc-inner
               --size 1.4rem
-              --height calc(50 / 28)
+              --height (50 / 28)
       `}</style>
     </>
   )

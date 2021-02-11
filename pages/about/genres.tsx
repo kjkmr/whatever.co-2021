@@ -283,7 +283,7 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
               height vwpx(150 / 16 * 9)
             :global(.work-link-name)
               font-size 1.4rem
-              line-height calc(36 / 28)
+              line-height (36 / 28)
               margin-top 1.55rem
             :global(.work-link-desc)
               font-size 1.0rem
@@ -293,7 +293,7 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
           .en.work-link
             :global(.work-link-desc)
               font-size 1.2rem
-              line-height calc(36 / 24)
+              line-height (36 / 24)
       `}</style>
     </>
   )
@@ -363,7 +363,7 @@ const WorkList = ({ title, body, items }: { title: string, body: string, items: 
             :global(.work-list-desc)
               font-size 1.4rem
               font-weight 300
-              line-height calc(50 / 28)
+              line-height (50 / 28)
     `}</style>
   </>
 )

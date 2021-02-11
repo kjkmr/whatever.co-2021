@@ -141,7 +141,7 @@ const SmallWork = ({ work }: { work: Entry }) => {
                 margin-top 0.5rem
               :global(.subtitle)
                 font-size 1.1rem
-                line-height calc(38 / 22)
+                line-height (38 / 22)
                 margin-top 0.3rem
               :global(.tags)
                 margin-top 1.0rem
@@ -150,7 +150,7 @@ const SmallWork = ({ work }: { work: Entry }) => {
               :global(.subtitle)
                 font-size 1.2rem
                 font-weight 300
-                line-height calc(32 /24)
+                line-height (32 /24)
       `}</style>
     </>
   )
@@ -247,7 +247,7 @@ const Single = ({ work }: { work: Entry }) => {
             :global(.subtitle)
               font-size 1.3rem
               font-weight 500
-              line-height calc(42 / 26)
+              line-height (42 / 26)
               margin-top 0.75rem
             :global(.tags)
               margin-top 1.8rem
@@ -256,7 +256,7 @@ const Single = ({ work }: { work: Entry }) => {
             :global(.subtitle)
               font-size 1.4rem
               font-weight 500
-              line-height calc(42 / 28)
+              line-height (42 / 28)
               margin-top 0.05rem
             :global(.tags)
               margin-top 1.8rem

@@ -193,13 +193,13 @@ const MemberInfo = ({ member }: { member: Member }) => {
                   margin-top 2.5rem
                 .text
                   font-size 1.1rem
-                  line-height calc(38 / 22)
+                  line-height (38 / 22)
                   margin-top 0.8rem
           .en.member-info
             .inner
               :global(.name)
                 font-size 3.0rem
-                line-height calc(64 / 60)
+                line-height (64 / 60)
                 margin-top 1.1rem
               :global(.description)
                 margin-top 2.4rem
@@ -209,7 +209,7 @@ const MemberInfo = ({ member }: { member: Member }) => {
                 :global(p)
                   font-size 1.4rem
                   font-weight 300
-                  line-height calc(50 / 28)
+                  line-height (50 / 28)
               .links
                 :global(.link-item)
                   font-size 1.4rem
@@ -292,12 +292,12 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
               margin-top 1.45rem
             :global(.item-title)
               font-size 1.3rem
-              line-height calc(42 / 26)
+              line-height (42 / 26)
               margin 0.5rem vwpx(10) 0 0
           .en.related-link-item
             :global(.item-title)
               font-size 1.4rem
-              line-height calc(42 / 28)
+              line-height (42 / 28)
       `}</style>
     </>
   )

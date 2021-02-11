@@ -392,7 +392,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
             :global(.overview) .inner
               -webkit-line-clamp 4
               font-size 1.3rem
-              line-height calc(52 / 26)
+              line-height (52 / 26)
               max-height calc(1.2rem * (52 / 26) * 4)
               margin-top 1.55rem
             :global(.tags)
@@ -506,12 +506,12 @@ const NewsItem = ({ data }: { data: Entry }) => {
               margin-top 1.5rem
             :global(.title)
               font-size 1.3rem
-              line-height calc(42 / 26)
+              line-height (42 / 26)
               margin-top 0.6rem
           .en.news-item
             :global(.title)
               font-size 1.4rem
-              line-height calc(42 / 28)
+              line-height (42 / 28)
               margin-top 0.5rem
       `}</style>
     </>

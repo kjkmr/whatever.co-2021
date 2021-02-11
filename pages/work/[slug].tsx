@@ -175,12 +175,12 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
         .text
           :global(.title)
             font-size vwpx(36)
-            line-height calc(54 / 36)
+            line-height (54 / 36)
             margin-top vwpx(-7)
           :global(.desc)
             font-size var(--font-size-en)
             font-weight 200
-            line-height calc(30 / 17)
+            line-height (30 / 17)
             margin-top vwpx(-10)
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
@@ -194,7 +194,7 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
               line-height 1.8
             :global(.desc)
               font-size 1.3rem
-              line-height calc(52 / 26)
+              line-height (52 / 26)
               margin-top 0.55rem
           .image
             margin 7.2rem -30px 0 -50px
@@ -206,10 +206,10 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
           .text
             :global(.title)
               font-size 2.0rem
-              line-height calc(54 / 40)
+              line-height (54 / 40)
             :global(.desc)
               font-size 1.4rem
-              line-height calc(50 / 28)
+              line-height (50 / 28)
               margin-top 0.55rem
     `}</style>
   </>
@@ -249,25 +249,25 @@ const CreditMember = ({ member }: { member: Person }) => {
           :global(.name)
             font-size var(--font-size-en)
             font-weight 200
-            line-height calc(20 / 17)
+            line-height (20 / 17)
             margin-top 0.5rem
         @media (--mobile)
           .member
             margin-bottom 2.7rem
             :global(.role)
               font-size 1.1rem
-              line-height calc(28 / 22)
+              line-height (28 / 22)
             :global(.name)
               font-size 1.3rem
-              line-height calc(42 / 26)
+              line-height (42 / 26)
               margin-top 0.45rem
           .en.member
             :global(.role)
               font-size 1.1rem
-              line-height calc(28 / 22)
+              line-height (28 / 22)
             :global(.name)
               font-size 1.4rem
-              line-height calc(42 / 28)
+              line-height (42 / 28)
               margin-top 0.4rem
       `}</style>
     </>

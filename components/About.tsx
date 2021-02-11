@@ -130,7 +130,7 @@ export const Header = (props: HeaderProps) => {
           .desc-line
             font-size var(--font-size-ja)
             font-weight 500
-            line-height 2.1
+            line-height 2.0
           .en
             .desc
               margin-top 4.15rem
@@ -200,11 +200,13 @@ export const Footer = ({ left, right }: { left: string, right: string }) => (
           .line
             display none
           :global(.whatever)
-            font-size 0.8rem
+            font-size 0.9rem
             margin-top 2px
+            letter-spacing 0
           :global(.title)
-            font-size 1.2rem
+            font-size 1.3rem
             font-weight 400
+            letter-spacing 0
             margin-top 8px
           :global(.left .inner)
             margin-left 30px
@@ -295,8 +297,8 @@ export const SectionHeader = ({ num, title, body }: SectionTitleProps) => (
           .body
             margin-top vwpx(27.5)
             :global(.body-line)
-              line-height 2.1
-              margin 2.5rem 0
+              line-height 2.0
+              margin 2.6rem 0
         .en.header
           :global(.title)
             font-size vwpx(20)

@@ -338,7 +338,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
           :global(.subtitle)
             margin-top 1.8rem
             font-size var(--font-size-ja)
-            font-weight 700
+            font-weight 500
             line-height 1.4
           :global(.overview) .inner
             display -webkit-box
@@ -357,7 +357,6 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
           :global(.subtitle)
             margin-top 1.6rem
             font-size var(--font-size-en)
-            font-weight 500
           :global(.overview) .inner
             font-size var(--font-size-en)
             font-weight 200
@@ -383,16 +382,16 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
                 font-size 2.4rem
                 margin-top 1.05rem
             :global(.subtitle)
-              font-size 1.2rem
-              margin-top 0.7rem
+              font-size 1.3rem
+              margin-top 1.1rem
             :global(.overview)
               overflow hidden
             :global(.overview) .inner
               -webkit-line-clamp 4
-              font-size 1.2rem
-              line-height calc(50 / 24)
-              max-height calc(1.2rem * (50 / 24) * 4)
-              margin-top 1.5rem
+              font-size 1.3rem
+              line-height calc(52 / 26)
+              max-height calc(1.2rem * (52 / 26) * 4)
+              margin-top 1.55rem
             :global(.tags)
               margin-top 1.8rem
           .en.featured-work-item
@@ -502,8 +501,9 @@ const NewsItem = ({ data }: { data: Entry }) => {
               font-size 1.0rem
               margin-top 1.5rem
             :global(.title)
-              font-size 1.2rem
-              margin-top 0.7rem
+              font-size 1.3rem
+              line-height calc(42 / 26)
+              margin-top 0.6rem
           .en.news-item
             :global(.title)
               font-size 1.4rem

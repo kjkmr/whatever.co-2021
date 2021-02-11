@@ -245,12 +245,12 @@ const Single = ({ work }: { work: Entry }) => {
               line-height 1.4
               margin-top 0.85rem
             :global(.subtitle)
-              font-size 1.2rem
-              font-weight 300
-              line-height 1.4
-              margin-top 0.4rem
+              font-size 1.3rem
+              font-weight 500
+              line-height calc(42 / 26)
+              margin-top 0.75rem
             :global(.tags)
-              margin-top 2.1rem
+              margin-top 1.8rem
         .en.single-work
           .text
             :global(.subtitle)

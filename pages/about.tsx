@@ -60,7 +60,7 @@ const Detail = ({ title }: { title: string }) => {
               margin-top vwpx(10)
             :global(.desc)
               margin vwpx(16) 0 0 0
-              line-height 2.1
+              line-height 2.0
           .more
             display flex
             justify-content flex-end

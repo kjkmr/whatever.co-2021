@@ -185,15 +185,16 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .excerpt
-          margin 7.3rem vwpx(30) 0 0
+          opacity 0.5
+          margin 6.9rem vwpx(30) 0 0
           display block
           .text
             :global(.title)
               font-size 1.7rem
               line-height 1.8
             :global(.desc)
-              font-size 1.2rem
-              line-height 2.1
+              font-size 1.3rem
+              line-height calc(52 / 26)
               margin-top 0.55rem
           .image
             margin 7.2rem -30px 0 -50px
@@ -257,9 +258,9 @@ const CreditMember = ({ member }: { member: Person }) => {
               font-size 1.1rem
               line-height calc(28 / 22)
             :global(.name)
-              font-size 1.2rem
-              line-height calc(42 / 24)
-              margin-top 0.5rem
+              font-size 1.3rem
+              line-height calc(42 / 26)
+              margin-top 0.45rem
           .en.member
             :global(.role)
               font-size 1.1rem
@@ -302,8 +303,10 @@ const CreditGroup = ({ credit }: { credit: Credit }) => (
           grid-column-gap 20px
           .name
             grid-column span 2
+            margin-top 3.7rem
+            margin-bottom 2.85rem
             &.spacer
-              margin-top 0.2rem
+              margin-top 0.9rem
     `}</style>
   </>
 )

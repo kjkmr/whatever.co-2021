@@ -133,5 +133,8 @@ export default NewsIndex
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const entries = await getNews(100, locale)
-  return { props: { entries } }
+  return {
+    props: { entries },
+    revalidate: 60 * 10,
+  }
 }

@@ -578,5 +578,8 @@ export default IndexPage
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const works = await getWorksByTag('featured', 4, locale)
   const news = await getNews(4, locale)
-  return { props: { works, news } }
+  return {
+    props: { works, news },
+    revalidate: 60 * 10,
+  }
 }

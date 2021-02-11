@@ -124,5 +124,8 @@ export default TeamIndex
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const members = await getAllMembers(100, locale)
-  return { props: { members } }
+  return {
+    props: { members },
+    revalidate: 60 * 10,
+  }
 }

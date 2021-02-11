@@ -5,7 +5,7 @@ const WPAPI = require('wpapi')
 const wp = new WPAPI({ endpoint: process.env.WORDPRESS_API_URL })
 
 const CATEGORY_ID_WORK = 5
-const CATEGORY_ID_NEWS = 29
+const CATEGORY_ID_NEWS = 56
 const TAG_ID_FEATURED = 43
 
 const re = new RegExp(`(https:\/\/whatever\.co|${process.env.WORDPRESS_URL})/wp-content/`, 'g')

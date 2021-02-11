@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { langStyle } from 'lib/i18n'
-import { Grad, GradImg } from 'components/Grad'
+import { Grad, GradImg, GradLinkedTextBox } from 'components/Grad'
 import BlackButton from 'components/BlackButton'
 import { Desktop, Mobile } from 'components/Responsive'
 
@@ -235,7 +235,7 @@ export const SectionHeader = ({ num, title, body }: SectionTitleProps) => (
           ))}
         </div>
         <div className="body">
-          {body?.split('\n').map((line, index) => <Grad key={index} className="body-line"><div key={index}>{line}</div></Grad>)}
+          {body?.split('\n').map((line, index) => <Grad key={index} className="body-line"><GradLinkedTextBox key={index} html={line} /></Grad>)}
         </div>
       </div>
     </div>

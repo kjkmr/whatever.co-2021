@@ -85,7 +85,7 @@ const NewsItem = ({ entry }: { entry: Entry }) => {
               --num-lines 5
               font-size var(--size)
               line-height var(--height)
-              max-height (var(--size) * var(--height) * var(--num-lines))
+              max-height calc(var(--size) * var(--height) * var(--num-lines))
           .en.news-item
             :global(.title)
               font-size 2.0rem

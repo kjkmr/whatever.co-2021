@@ -489,7 +489,7 @@ const NewsItem = ({ data }: { data: Entry }) => {
           :global(.title)
             margin-top 1.1rem
             font-size var(--font-size-ja)
-            font-weight bold
+            font-weight 500
             line-height 1.6
             mix-blend-mode multiply
         @media (--mobile)

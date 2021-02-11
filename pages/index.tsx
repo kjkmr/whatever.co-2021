@@ -480,8 +480,9 @@ const NewsItem = ({ data }: { data: Entry }) => {
             padding 0
             border none
           img
-            width vwpx0(256)
-            height vwpx0(144)
+            w = (1366 - 80 * 2 - 60 * 3) / 4
+            width vwpx2(w, 160)
+            height vwpx2(w / 16 * 9, 160)
             object-fit cover
           :global(.date)
             font-size 1.2rem
@@ -532,7 +533,7 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
       @import 'lib/vw.styl'
       .latest-news
         margin-top vwpx(80)
-        padding vwpx0(80)
+        padding vwpx0(80) 80px
         font-size 0
         background-color #f4f4f4
         h1
@@ -544,13 +545,13 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
       .items
         display grid
         grid-template-columns repeat(4, 1fr)
-        grid-gap vwpx0(60)
-        margin-top vwpx0(52)
+        grid-gap vwpx2(60, 160)
+        margin-top vwpx2(52, 160)
       .link
         display flex
         justify-content flex-end
         margin-top 78px
-        margin-right vwpx0(-80)
+        margin-right -80px
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .latest-news

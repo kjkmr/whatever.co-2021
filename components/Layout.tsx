@@ -19,6 +19,7 @@ let templateName: string
 // templateName = 'News_detail'
 // templateName = 'Team_index'
 // templateName = 'Team_detail'
+// templateName = 'Team_detail_2'
 // templateName = 'Contact'
 // templateName = 'menu'
 // templateName = 'top_sp'
@@ -32,6 +33,7 @@ let templateName: string
 // templateName = 'news_detail_sp'
 // templateName = 'team_index_sp'
 // templateName = 'team_detail_sp'
+// templateName = 'team_detail_2_sp'
 // templateName = 'contact_sp'
 
 type Props = {
@@ -56,7 +58,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
   const templateStyle: { [prop: string]: string } = {}
   if (templateName) {
     templateStyle.backgroundImage = `url(/_/${templateName}_${useRouter().locale!}.png)`
-    // templateStyle.backgroundPosition = 'top -909px left'
+    // templateStyle.backgroundPosition = 'top 3px left'
   }
   return (
     <>

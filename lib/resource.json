@@ -399,6 +399,16 @@
       "-",
       "-",
       "-"
+    ],
+    "team_cocreator_title": [
+      "Co-creator とは",
+      "About “Co-creator”:",
+      ""
+    ],
+    "team_cocreator_text": [
+      "個人活動（フリーランス、アーティスト）と会社員とのハイブリットな働き方ができる制度。<br/>\n詳しくは<a href=\"https://careerhack.en-japan.com/report/detail/549\" target=\"_blank\">こちら</a>の記事を参照ください。",
+      "Co-creator is a new way of working which allows one to be an employee of the company while keeping his/her professional activities (as a freelancer or an artist) outside.<br/>Please follow <a href=\"https://careerhack.en-japan.com/report/detail/549\" target=\"_blank\">this link (Japanese)</a> for details.",
+      ""
     ]
   }
 }

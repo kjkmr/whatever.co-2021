@@ -7,7 +7,7 @@ import Layout from 'components/Layout'
 import { Grad, GradImg, GradLink, setupLink } from 'components/Grad'
 import { WorkList } from 'components/WorkList'
 import { Desktop, Mobile } from 'components/Responsive'
-import { langStyle } from 'lib/i18n'
+import { langStyle, t } from 'lib/i18n'
 import { getOptimized } from 'lib/image'
 
 const PhotoDesktop = ({ src }: { src: string }) => {
@@ -83,11 +83,15 @@ const MemberInfo = ({ member }: { member: Member }) => {
         <div className="info">
           <div className="inner">
             <div><Grad className="region" inline>{member.region.join(' / ')}</Grad></div>
-            <div><Grad className="title" inline>{member.title}</Grad></div>
+            <div><Grad className="title" inline>{member.title + (member.coCreator ? ' (Co-creator)' : '')}</Grad></div>
             <div><Grad className="name" inline>{member.name}</Grad></div>
             <div><Grad className="description"><div ref={ref} className="desc-inner" dangerouslySetInnerHTML={{ __html: member.content || '' }}></div></Grad></div>
             <div className="links">
               {member.links.filter((l: any) => l.url).map((link: any) => <div key={link.url}><Grad className="link-item" inline>- <GradLink href={link.url} target="_blank" rel="noopener noreferrer" inlineBlock={true}>{link.name}</GradLink></Grad></div>)}
+            </div>
+            <div className="co-creator">
+              <div className="title">{t('team_cocreator_title')}</div>
+              <div className="text" dangerouslySetInnerHTML={{ __html: t('team_cocreator_text')! }}></div>
             </div>
           </div>
         </div>
@@ -129,6 +133,16 @@ const MemberInfo = ({ member }: { member: Member }) => {
                 line-height 2.0
               :global(p + p)
                 margin-top 2.0rem
+            .co-creator
+              .title
+                font-size var(--font-size-ja)
+                font-weight 500
+                margin-top 5.5rem
+              .text
+                font-size 1.2rem
+                font-weight 300
+                line-height 2.0
+                margin-top 1.8rem
           .links
             :global(.link-item)
               font-size var(--font-size-ja)
@@ -174,6 +188,13 @@ const MemberInfo = ({ member }: { member: Member }) => {
                   font-size var(--font-size-ja)
                   font-weight 700
                   margin-bottom 0.9rem
+              .co-creator
+                .title
+                  margin-top 2.5rem
+                .text
+                  font-size 1.1rem
+                  line-height calc(38 / 22)
+                  margin-top 0.8rem
           .en.member-info
             .inner
               :global(.name)
@@ -336,8 +357,6 @@ const MemberDetail = ({ member, works, news }: { member: Member, works: Entry[],
       @media (--mobile)
         .details
           margin-bottom 6.8rem
-          opacity 0.5
-
     `}</style>
   </>
 )

@@ -60,7 +60,7 @@ const Detail = ({ title }: { title: string }) => {
               margin-top vwpx(10)
             :global(.desc)
               margin vwpx(16) 0 0 0
-              line-height 2.1
+              line-height 2.0
           .more
             display flex
             justify-content flex-end
@@ -69,7 +69,7 @@ const Detail = ({ title }: { title: string }) => {
             :global(.desc)
               font-size 1.4rem
               font-weight 300
-              line-height calc(50 / 28)
+              line-height (50 / 28)
               margin-top 1.0rem
             .more
               margin-top 3.4rem
@@ -186,7 +186,7 @@ const Location = () => (
       @import 'lib/vw.styl'
       .location
         width 100%
-        margin-bottom vwpx(170)
+        margin-bottom vwpx(20)
       .inner
         display flex
         justify-content space-between
@@ -271,13 +271,13 @@ const AboutPage = () => (
           margin-top vwpx(23)
           font-size vwpx(26)
           font-weight bold
-          line-height calc(37 / 26)
+          line-height (37 / 26)
       .en
         .text
           :global(.p)
             font-size vwpx(30)
             margin-top vwpx(20)
-            line-height calc(41 / 30)
+            line-height (41 / 30)
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .about
@@ -306,7 +306,7 @@ const AboutPage = () => (
             margin-top vwpx(22)
             :global(.p)
               font-size vwpx(18)
-              line-height calc(64 / 36)
+              line-height (64 / 36)
     `}</style>
   </>
 )

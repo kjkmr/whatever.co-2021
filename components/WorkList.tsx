@@ -4,6 +4,7 @@ import { Entry, Tag } from 'lib/api'
 import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
 import { langStyle } from 'lib/i18n'
+import { getOptimized } from 'lib/image'
 
 
 const LargeWork = ({ work }: { work: Entry }) => {
@@ -14,7 +15,7 @@ const LargeWork = ({ work }: { work: Entry }) => {
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image">
-              <GradImg mouseEntered={entered}><img src={work.hero_image} /></GradImg>
+              <GradImg mouseEntered={entered}><img src={getOptimized(work.hero_image!, 1920)} alt="" loading="lazy" /></GradImg>
             </div>
             <div className="text">
               <div><Grad className="date" inline>{work.date}</Grad></div>
@@ -70,7 +71,7 @@ const SmallWork = ({ work }: { work: Entry }) => {
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image">
-              <GradImg mouseEntered={entered}><img src={work.hero_image} /></GradImg>
+              <GradImg mouseEntered={entered}><img src={getOptimized(work.hero_image!, 828)} alt="" loading="lazy" /></GradImg>
             </div>
             <div className="text">
               <div><Grad className="date" inline>{work.date}</Grad></div>
@@ -139,9 +140,9 @@ const SmallWork = ({ work }: { work: Entry }) => {
                 line-height 1.3
                 margin-top 0.5rem
               :global(.subtitle)
-                font-size 1.0rem
-                line-height 1.6
-                margin-top 0.25rem
+                font-size 1.1rem
+                line-height (38 / 22)
+                margin-top 0.3rem
               :global(.tags)
                 margin-top 1.0rem
           .en.small-work
@@ -149,7 +150,7 @@ const SmallWork = ({ work }: { work: Entry }) => {
               :global(.subtitle)
                 font-size 1.2rem
                 font-weight 300
-                line-height calc(32 /24)
+                line-height (32 /24)
       `}</style>
     </>
   )
@@ -201,7 +202,7 @@ const Single = ({ work }: { work: Entry }) => {
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image">
-              <GradImg mouseEntered={entered}><img src={work.hero_image} /></GradImg>
+              <GradImg mouseEntered={entered}><img src={getOptimized(work.hero_image!, 1200)} alt="" loading="lazy" /></GradImg>
             </div>
             <div className="text">
               <div><Grad className="date" inline>{work.date}</Grad></div>
@@ -244,18 +245,18 @@ const Single = ({ work }: { work: Entry }) => {
               line-height 1.4
               margin-top 0.85rem
             :global(.subtitle)
-              font-size 1.2rem
-              font-weight 300
-              line-height 1.4
-              margin-top 0.4rem
+              font-size 1.3rem
+              font-weight 500
+              line-height (42 / 26)
+              margin-top 0.75rem
             :global(.tags)
-              margin-top 2.1rem
+              margin-top 1.8rem
         .en.single-work
           .text
             :global(.subtitle)
               font-size 1.4rem
               font-weight 500
-              line-height calc(42 / 28)
+              line-height (42 / 28)
               margin-top 0.05rem
             :global(.tags)
               margin-top 1.8rem

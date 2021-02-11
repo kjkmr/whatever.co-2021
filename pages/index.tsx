@@ -10,6 +10,7 @@ import BlackButton from 'components/BlackButton'
 import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
 import { Desktop, Mobile } from 'components/Responsive'
+import { getOptimized } from 'lib/image'
 
 const Player = ({ onClick }: { onClick?: any }) => (
   <>
@@ -90,7 +91,8 @@ const Showreel = () => {
   const videoContainer = useRef<HTMLDivElement>(null)
   const video = useRef<HTMLVideoElement>(null)
   let windowHeight = 0
-  const onScroll = isMobile()
+  const mobile = isMobile()
+  const onScroll = mobile
     ? () => {
       if (!videoContainer.current) return
       const height = Math.max(0, windowHeight - 35 - window.pageYOffset)
@@ -101,11 +103,13 @@ const Showreel = () => {
       videoContainer.current.style.setProperty('--video-height', `calc((100vh - 40px) - ${window.pageYOffset}px)`)
     }
   useLayoutEffect(() => {
-    windowHeight = window.innerHeight
-    const height = windowHeight - 35
-    if (showreel.current && video.current) {
-      showreel.current.style.height = `${height}px`
-      video.current.style.height = `${height}px`
+    if (mobile) {
+      windowHeight = window.innerHeight
+      const height = windowHeight - 35
+      if (showreel.current && video.current) {
+        showreel.current.style.height = `${height}px`
+        video.current.style.height = `${height}px`
+      }
     }
     window.addEventListener('scroll', onScroll)
     onScroll()
@@ -292,10 +296,10 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
       <div className={langStyle('featured-work-item')}>
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
-            <div className="image"><GradImg mouseEntered={entered}><img src={work.hero_image} /></GradImg></div>
+            <div className="image"><GradImg mouseEntered={entered}><img src={getOptimized(work.hero_image!, 1200)} alt="" loading="lazy" /></GradImg></div>
             <div className="white">
               <div><Grad className="date" inline>{work.date}</Grad></div>
-              <div><Grad className="title" inline>{work.title}</Grad></div>
+              <div><Grad className="title" inline><span dangerouslySetInnerHTML={{ __html: work.title }}></span></Grad></div>
             </div>
             <div><Grad className="subtitle" inline>{work.subtitle}</Grad></div>
             <div><Grad className="overview" inline><div className="inner">{removeHtmlTags(work.overview || '')}</div></Grad></div>
@@ -337,7 +341,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
           :global(.subtitle)
             margin-top 1.8rem
             font-size var(--font-size-ja)
-            font-weight 700
+            font-weight 500
             line-height 1.4
           :global(.overview) .inner
             display -webkit-box
@@ -356,7 +360,6 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
           :global(.subtitle)
             margin-top 1.6rem
             font-size var(--font-size-en)
-            font-weight 500
           :global(.overview) .inner
             font-size var(--font-size-en)
             font-weight 200
@@ -382,16 +385,16 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
                 font-size 2.4rem
                 margin-top 1.05rem
             :global(.subtitle)
-              font-size 1.2rem
-              margin-top 0.7rem
+              font-size 1.3rem
+              margin-top 1.1rem
             :global(.overview)
               overflow hidden
             :global(.overview) .inner
               -webkit-line-clamp 4
-              font-size 1.2rem
-              line-height calc(50 / 24)
-              max-height calc(1.2rem * (50 / 24) * 4)
-              margin-top 1.5rem
+              font-size 1.3rem
+              line-height (52 / 26)
+              max-height calc(1.2rem * (52 / 26) * 4)
+              margin-top 1.55rem
             :global(.tags)
               margin-top 1.8rem
           .en.featured-work-item
@@ -462,9 +465,9 @@ const NewsItem = ({ data }: { data: Entry }) => {
       <div className={langStyle('news-item')}>
         <Link href={`/news/${data.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
-            <GradImg mouseEntered={entered}><img src={data.hero_image} width="256" height="144" /></GradImg>
+            <GradImg mouseEntered={entered}><img src={getOptimized(data.hero_image!, 640)} width="256" height="144" alt="" loading="lazy" /></GradImg>
             <div><Grad className="date" inline>{data.date}</Grad></div>
-            <div><Grad className="title" inline>{data.title}</Grad></div>
+            <div><Grad className="title" inline><span dangerouslySetInnerHTML={{ __html: data.title }}></span></Grad></div>
           </a>
         </Link>
       </div>
@@ -477,8 +480,9 @@ const NewsItem = ({ data }: { data: Entry }) => {
             padding 0
             border none
           img
-            width vwpx0(256)
-            height vwpx0(144)
+            w = (1366 - 80 * 2 - 60 * 3) / 4
+            width vwpx2(w, 160)
+            height vwpx2(w / 16 * 9, 160)
             object-fit cover
           :global(.date)
             font-size 1.2rem
@@ -488,7 +492,7 @@ const NewsItem = ({ data }: { data: Entry }) => {
           :global(.title)
             margin-top 1.1rem
             font-size var(--font-size-ja)
-            font-weight bold
+            font-weight 500
             line-height 1.6
             mix-blend-mode multiply
         @media (--mobile)
@@ -501,12 +505,13 @@ const NewsItem = ({ data }: { data: Entry }) => {
               font-size 1.0rem
               margin-top 1.5rem
             :global(.title)
-              font-size 1.2rem
-              margin-top 0.7rem
+              font-size 1.3rem
+              line-height (42 / 26)
+              margin-top 0.6rem
           .en.news-item
             :global(.title)
               font-size 1.4rem
-              line-height calc(42 / 28)
+              line-height (42 / 28)
               margin-top 0.5rem
       `}</style>
     </>
@@ -528,7 +533,7 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
       @import 'lib/vw.styl'
       .latest-news
         margin-top vwpx(80)
-        padding vwpx0(80)
+        padding vwpx0(80) 80px
         font-size 0
         background-color #f4f4f4
         h1
@@ -540,13 +545,13 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
       .items
         display grid
         grid-template-columns repeat(4, 1fr)
-        grid-gap vwpx0(60)
-        margin-top vwpx0(52)
+        grid-gap vwpx2(60, 160)
+        margin-top vwpx2(52, 160)
       .link
         display flex
         justify-content flex-end
         margin-top 78px
-        margin-right vwpx0(-80)
+        margin-right -80px
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .latest-news
@@ -577,5 +582,8 @@ export default IndexPage
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const works = await getWorksByTag('featured', 4, locale)
   const news = await getNews(4, locale)
-  return { props: { works, news } }
+  return {
+    props: { works, news },
+    revalidate: 60 * 10,
+  }
 }

@@ -4,10 +4,11 @@ import Link from 'next/link'
 import { useLayoutEffect } from 'lib/useLayoutEffect'
 import { Member, Entry, getMemberDetail, getWorksByTag, getNewsByTag } from 'lib/api'
 import Layout from 'components/Layout'
-import { Grad, GradImg, GradLink, setupLink } from 'components/Grad'
+import { Grad, GradImg, GradLink, setupLink, GradLinkedTextBox } from 'components/Grad'
 import { WorkList } from 'components/WorkList'
 import { Desktop, Mobile } from 'components/Responsive'
-import { langStyle } from 'lib/i18n'
+import { langStyle, t } from 'lib/i18n'
+import { getOptimized } from 'lib/image'
 
 const PhotoDesktop = ({ src }: { src: string }) => {
   const [scrollY, setScrollY] = useState(0)
@@ -77,16 +78,20 @@ const MemberInfo = ({ member }: { member: Member }) => {
   return (
     <>
       <div className={langStyle('member-info')}>
-        <Desktop><PhotoDesktop src={member.image} /></Desktop>
-        <Mobile><PhotoMobile src={member.image} /></Mobile>
+        <Desktop><PhotoDesktop src={getOptimized(member.image!, 1200)} /></Desktop>
+        <Mobile><PhotoMobile src={getOptimized(member.image!, 1200)} /></Mobile>
         <div className="info">
           <div className="inner">
             <div><Grad className="region" inline>{member.region.join(' / ')}</Grad></div>
-            <div><Grad className="title" inline>{member.title}</Grad></div>
+            <div><Grad className="title" inline>{member.title + (member.coCreator ? ' (Co-creator)' : '')}</Grad></div>
             <div><Grad className="name" inline>{member.name}</Grad></div>
             <div><Grad className="description"><div ref={ref} className="desc-inner" dangerouslySetInnerHTML={{ __html: member.content || '' }}></div></Grad></div>
             <div className="links">
               {member.links.filter((l: any) => l.url).map((link: any) => <div key={link.url}><Grad className="link-item" inline>- <GradLink href={link.url} target="_blank" rel="noopener noreferrer" inlineBlock={true}>{link.name}</GradLink></Grad></div>)}
+            </div>
+            <div className="co-creator">
+              <div className="title">{t('team_cocreator_title')}</div>
+              <GradLinkedTextBox className="text" html={t('team_cocreator_text')} />
             </div>
           </div>
         </div>
@@ -128,6 +133,16 @@ const MemberInfo = ({ member }: { member: Member }) => {
                 line-height 2.0
               :global(p + p)
                 margin-top 2.0rem
+            .co-creator
+              .title
+                font-size var(--font-size-ja)
+                font-weight 500
+                margin-top 5.5rem
+              :global(.text)
+                font-size 1.2rem
+                font-weight 300
+                line-height 2.0
+                margin-top 1.8rem
           .links
             :global(.link-item)
               font-size var(--font-size-ja)
@@ -167,17 +182,24 @@ const MemberInfo = ({ member }: { member: Member }) => {
                 margin 2.0rem 0 3.1rem 0
               .desc-inner
                 :global(p)
-                  line-height 2.1
+                  line-height 2.0
               .links
                 :global(.link-item)
                   font-size var(--font-size-ja)
                   font-weight 700
                   margin-bottom 0.9rem
+              .co-creator
+                .title
+                  margin-top 2.5rem
+                .text
+                  font-size 1.1rem
+                  line-height (38 / 22)
+                  margin-top 0.8rem
           .en.member-info
             .inner
               :global(.name)
                 font-size 3.0rem
-                line-height calc(64 / 60)
+                line-height (64 / 60)
                 margin-top 1.1rem
               :global(.description)
                 margin-top 2.4rem
@@ -187,7 +209,7 @@ const MemberInfo = ({ member }: { member: Member }) => {
                 :global(p)
                   font-size 1.4rem
                   font-weight 300
-                  line-height calc(50 / 28)
+                  line-height (50 / 28)
               .links
                 :global(.link-item)
                   font-size 1.4rem
@@ -234,7 +256,7 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
     <>
       <Link href={`/news/${entry.slug}`}>
         <a className={langStyle('related-link-item')} onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
-          <GradImg mouseEntered={entered}><img src={entry.hero_image} alt="" /></GradImg>
+          <GradImg mouseEntered={entered}><img src={getOptimized(entry.hero_image!, 640)} alt="" loading="lazy" /></GradImg>
           <div><Grad className="item-date" inline>{entry.date}</Grad></div>
           <div><Grad className="item-title" inline><div dangerouslySetInnerHTML={{ __html: entry.title }} /></Grad></div>
         </a>
@@ -269,13 +291,13 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
               font-size 1.0rem
               margin-top 1.45rem
             :global(.item-title)
-              font-size 1.2rem
-              line-height 1.7
+              font-size 1.3rem
+              line-height (42 / 26)
               margin 0.5rem vwpx(10) 0 0
           .en.related-link-item
             :global(.item-title)
               font-size 1.4rem
-              line-height calc(42 / 28)
+              line-height (42 / 28)
       `}</style>
     </>
   )
@@ -294,7 +316,6 @@ const RelatedLinks = ({ news }: { news: Entry[] }) => (
       @import 'lib/vw.styl'
       .related-links
         margin-right 80px
-        margin-bottom vwpx(175)
         font-size 0
         :global(.title)
           font-size vwpx_min(24)

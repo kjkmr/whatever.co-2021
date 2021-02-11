@@ -2,6 +2,11 @@ import { useRef } from 'react'
 import { useLayoutEffect } from 'lib/useLayoutEffect'
 import { langStyle } from 'lib/i18n'
 import { setup, setupImage, setupLink } from 'components/Grad'
+import { getOptimized } from 'lib/image'
+
+const replaceImgOptimized = (html: string): string => {
+  return html.replace(/(<img .+?src=")([^"]+?)"/gm, (_, img, src) => img + getOptimized(src) + '"')
+}
 
 const addYouTubeEmbedParams = (html: string): string => {
   return html.replace(/(<iframe .+?src=")(https:\/\/www\.youtube\.com\/[^"]+?)"/g, '$1$2;rel=0"')
@@ -49,13 +54,14 @@ const EntryBody = ({ content }: { content: string }) => {
     })
     body.current?.querySelectorAll('a').forEach(a => {
       a.target = '_blank'
+      a.rel = 'noopener noreferrer'
       cleanups.push(setupLink(a))
     })
     return () => { cleanups.forEach(c => c()) }
-  }, [])
+  })
   return (
     <>
-      <div ref={body} className={langStyle('entry-body')} dangerouslySetInnerHTML={{ __html: addYouTubeEmbedParams(content || '') }} />
+      <div ref={body} className={langStyle('entry-body')} dangerouslySetInnerHTML={{ __html: addYouTubeEmbedParams(replaceImgOptimized(content || '')) }} />
       <style jsx>{`
         .entry-body
           max-width 900px

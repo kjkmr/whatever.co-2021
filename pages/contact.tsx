@@ -33,7 +33,7 @@ const Head = () => (
           position relative
           font-size vwpx(30)
           font-weight bold
-          line-height calc(52 / 30)
+          line-height (52 / 30)
           mix-blend-mode multiply
         .mailto
           margin-top vwpx(47)
@@ -68,7 +68,7 @@ const Head = () => (
         .en.head
           :global(.title)
             font-size 2.0rem
-            line-height calc(64 / 40)
+            line-height (64 / 40)
           .mailto
             margin 3.9rem 0 0 0
     `}</style>
@@ -127,14 +127,14 @@ const Address = ({ data }: { data: any }) => (
             font-size 1.7rem
             margin 0
           :global(.address)
-            font-size 1.2rem
+            font-size 1.3rem
             line-height 2.0
             margin 2.05rem 0 0 0
           :global(.phone)
-            font-size 1.2rem
-            margin 1.65rem 0 0 0
+            font-size 1.3rem
+            margin 1.45rem 0 0 0
           :global(.repr)
-            font-size 1.2rem
+            font-size 1.3rem
             margin 2.25rem 0 0 0
         .en.container
           margin 0 0 5.0rem 0
@@ -144,17 +144,17 @@ const Address = ({ data }: { data: any }) => (
           :global(.address)
             font-size 1.4rem
             font-weight 300
-            line-height calc(50 / 28)
+            line-height (50 / 28)
             margin 2.05rem 0 0 0
           :global(.phone)
             font-size 1.4rem
             font-weight 300
-            line-height calc(50 / 28)
+            line-height (50 / 28)
             margin 1.0rem 0 0 0
           :global(.repr)
             font-size 1.4rem
             font-weight 300
-            line-height calc(50 / 28)
+            line-height (50 / 28)
             margin 1.0rem 0 0 0
     `}</style>
   </>
@@ -195,7 +195,6 @@ const ContactPage = () => {
           font-size 0
           margin-top vwpx(64)
           margin-left vwpx(80)
-          margin-bottom vwpx(200)
           img
             width 100%
           .row

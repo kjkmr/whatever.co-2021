@@ -6,6 +6,7 @@ import { Entry, getNews } from 'lib/api'
 import { langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
+import { getOptimized } from 'lib/image'
 
 const removeHtmlTags = (html: string) => html.replace(/<\/?[^>]+(>|$)/g, "")
 
@@ -16,10 +17,10 @@ const NewsItem = ({ entry }: { entry: Entry }) => {
       <div className={langStyle('news-item')}>
         <Link href={`/news/${entry.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
-            <GradImg mouseEntered={entered}><img src={entry.hero_image} alt="" /></GradImg>
+            <GradImg mouseEntered={entered}><img src={getOptimized(entry.hero_image!, 1200)} alt="" loading="lazy" /></GradImg>
             <div><Grad className="date" inline>{entry.date}</Grad></div>
             <div><Grad className="title" inline><div dangerouslySetInnerHTML={{ __html: entry.title }} /></Grad></div>
-            <div><Grad className="desc"><div className="desc-inner">{removeHtmlTags(entry.content?.split('<!--more-->')[0] || '')}</div></Grad></div>
+            <div><Grad className="desc"><div className="desc-inner" dangerouslySetInnerHTML={{ __html: removeHtmlTags(entry.content?.split('<!--more-->')[0] || '') }}></div></Grad></div>
           </a>
         </Link>
       </div>
@@ -72,15 +73,15 @@ const NewsItem = ({ entry }: { entry: Entry }) => {
               margin-top 2.55rem
             :global(.title)
               font-size 1.7rem
-              line-height calc(54 / 34)
+              line-height (54 / 34)
               margin 1.0rem 30px 0 0
             :global(.desc)
               width auto
               margin 0.9rem 30px 0 0
               overflow hidden
             .desc-inner
-              --size 1.2rem
-              --height calc(50 / 24)
+              --size 1.3rem
+              --height (52 / 26)
               --num-lines 5
               font-size var(--size)
               line-height var(--height)
@@ -88,14 +89,14 @@ const NewsItem = ({ entry }: { entry: Entry }) => {
           .en.news-item
             :global(.title)
               font-size 2.0rem
-              line-height calc(54 / 40)
+              line-height (54 / 40)
               margin 1.0rem 30px 0 0
             :global(.desc)
               width auto
               margin-top 0.7rem
             .desc-inner
               --size 1.4rem
-              --height calc(50 / 28)
+              --height (50 / 28)
       `}</style>
     </>
   )
@@ -132,5 +133,8 @@ export default NewsIndex
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const entries = await getNews(100, locale)
-  return { props: { entries } }
+  return {
+    props: { entries },
+    revalidate: 60 * 10,
+  }
 }

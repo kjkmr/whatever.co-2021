@@ -156,7 +156,7 @@ const Section1 = () => (
           margin 0
           margin-top 5.6rem
           :global(.example-title)
-            font-size vwpx(14)
+            font-size 1.5rem
         .example-items
           margin-top 2.8rem
           display flex
@@ -165,12 +165,12 @@ const Section1 = () => (
             padding-top 1.2rem
             padding-bottom 0.2rem
             padding-left 1.8rem
-            margin-bottom 1.9rem
+            margin-bottom 1.8rem
             .title
               margin-bottom 1.35rem
             ul li
               margin-left 0.1rem
-              margin-bottom 0.8rem
+              margin-bottom 0.7rem
         .en
           h2
             margin-top 6.05rem
@@ -283,7 +283,7 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
               height vwpx(150 / 16 * 9)
             :global(.work-link-name)
               font-size 1.4rem
-              line-height calc(36 / 28)
+              line-height (36 / 28)
               margin-top 1.55rem
             :global(.work-link-desc)
               font-size 1.0rem
@@ -293,7 +293,7 @@ const WorkLink = ({ name, link, desc }: { name: string, link: string, desc: stri
           .en.work-link
             :global(.work-link-desc)
               font-size 1.2rem
-              line-height calc(36 / 24)
+              line-height (36 / 24)
       `}</style>
     </>
   )
@@ -348,10 +348,10 @@ const WorkList = ({ title, body, items }: { title: string, body: string, items: 
             margin-right vwpx(30)
           :global(.work-list-title)
             margin 0
-            font-size 1.4rem
+            font-size 1.5rem
           :global(.work-list-desc)
             margin 2.35rem 0 0 0
-            line-height 2.1
+            line-height 2.0
         .items
           grid-template-columns repeat(2, 1fr)
           grid-gap vwpx(24.5) vwpx(25)
@@ -363,7 +363,7 @@ const WorkList = ({ title, body, items }: { title: string, body: string, items: 
             :global(.work-list-desc)
               font-size 1.4rem
               font-weight 300
-              line-height calc(50 / 28)
+              line-height (50 / 28)
     `}</style>
   </>
 )

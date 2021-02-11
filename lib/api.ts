@@ -4,17 +4,15 @@ import Baby from 'babyparse'
 const WPAPI = require('wpapi')
 const wp = new WPAPI({ endpoint: process.env.WORDPRESS_API_URL })
 
-// console.log(process.env.WORDPRESS_URL, process.env.CDN_URL)
-
 const CATEGORY_ID_WORK = 5
-const CATEGORY_ID_NEWS = 29
+const CATEGORY_ID_NEWS = 56
 const TAG_ID_FEATURED = 43
 
-const re = new RegExp(`${process.env.WORDPRESS_URL}/wp-content/`, 'g')
+const re = new RegExp(`(https:\/\/whatever\.co|${process.env.WORDPRESS_URL})/wp-content/`, 'g')
 const replaceToCDN = (url: string | undefined): string => {
   const result = url?.replace(re, process.env.CDN_URL + '/wp-content/')
   // console.log(url, '->', result)
-  return result || ''
+  return result || '/common/noimage.png'
 }
 
 
@@ -78,6 +76,7 @@ export type Entry = {
   overview?: string
   side_image?: string
   hero_image?: string
+  hero_image_mobile?: string
   content?: string
   tags?: Tag[]
   credit?: Credit[] | null
@@ -145,9 +144,14 @@ const parseCredit = (data: string): Credit[] | undefined => {
 }
 
 
-const featuredMedia = (e: any): string => {
+const findFeaturedMedia = (e: any, size: string = 'full'): string => {
   if (!e._embedded['wp:featuredmedia']) return ''
-  return e._embedded['wp:featuredmedia'][0].source_url || ''
+  const media = e._embedded['wp:featuredmedia'][0]
+  const defaultSource = media.source_url || ''
+  if (media.media_details?.sizes?.hasOwnProperty(size)) {
+    return media.media_details.sizes[size].source_url || defaultSource
+  }
+  return defaultSource
 }
 
 export async function getAllMembers(maxCount: number = 100, locale: string = 'ja'): Promise<Member[]> {
@@ -156,7 +160,7 @@ export async function getAllMembers(maxCount: number = 100, locale: string = 'ja
     slug: e.slug,
     name: e.title.rendered,
     title: e.acf.title,
-    image: replaceToCDN(featuredMedia(e)),
+    image: replaceToCDN(findFeaturedMedia(e)),
     region: Array.isArray(e.acf.region) ? e.acf.region : [],
     links: parseLinks(e.acf.rel_links || ''),
     coCreator: e.acf['co-creator'],
@@ -171,7 +175,7 @@ export async function getMemberDetail(slug: string, locale: string = 'ja'): Prom
     name: data.title.rendered,
     title: data.acf.title,
     content: replaceToCDN(data.content.rendered),
-    image: replaceToCDN(featuredMedia(data)),
+    image: replaceToCDN(findFeaturedMedia(data)),
     region: data.acf.region,
     links: parseLinks(data.acf.rel_links),
     coCreator: data.acf['co-creator'],
@@ -179,8 +183,8 @@ export async function getMemberDetail(slug: string, locale: string = 'ja'): Prom
 }
 
 
-export async function getAllWorks(maxCount: number = 100, locale: string = 'ja'): Promise<Entry[]> {
-  const data = await (wp.posts().perPage(maxCount).embed().param({ categories: CATEGORY_ID_WORK, _fields: 'slug,title,date,tags,_links,_embedded,acf', lang: locale }))
+export async function getAllWorks(locale: string = 'ja'): Promise<Entry[]> {
+  const data = await getAll(wp.posts().perPage(100).embed().param({ categories: CATEGORY_ID_WORK, _fields: 'slug,title,date,tags,_links,_embedded,acf', lang: locale }))
   const tags: { [id: number]: Tag } = {};
   (await getWorkTags(locale)).forEach(t => tags[t.id] = t)
   return data?.map((e: any): Entry => ({
@@ -189,7 +193,7 @@ export async function getAllWorks(maxCount: number = 100, locale: string = 'ja')
     subtitle: e.acf?.subtitle || '',
     overview: e.acf?.overview || '',
     date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
-    hero_image: replaceToCDN(featuredMedia(e)),
+    hero_image: replaceToCDN(findFeaturedMedia(e)),
     tags: e.tags.map((t: number) => tags[t]).filter((t: Tag) => t)
   }))
 }
@@ -207,7 +211,7 @@ export async function getWorksByTag(tagSlug: string, numEntries: number = 100, l
     subtitle: e.acf?.subtitle || '',
     overview: e.acf?.overview || '',
     date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
-    hero_image: replaceToCDN(featuredMedia(e)),
+    hero_image: replaceToCDN(findFeaturedMedia(e)),
     tags: e.tags.map((t: number) => tags[t]).filter((t: Tag) => t)
   }))
 }
@@ -219,7 +223,7 @@ export async function getFeaturedWork(): Promise<Entry[]> {
     slug: e.slug,
     title: e.title.rendered,
     date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
-    hero_image: replaceToCDN(featuredMedia(e)),
+    hero_image: replaceToCDN(findFeaturedMedia(e)),
   }))
 }
 
@@ -231,7 +235,7 @@ export async function getNews(maxEntries = 100, locale: string = 'ja'): Promise<
     title: e.title.rendered,
     date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
     content: replaceToCDN(e.content.rendered),
-    hero_image: replaceToCDN(featuredMedia(e)),
+    hero_image: replaceToCDN(findFeaturedMedia(e)),
   }))
 }
 
@@ -247,7 +251,7 @@ export async function getNewsByTag(tagSlug: string, maxEntries: number = 100, lo
     title: e.title.rendered,
     date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
     content: replaceToCDN(e.content.rendered),
-    hero_image: replaceToCDN(featuredMedia(e)),
+    hero_image: replaceToCDN(findFeaturedMedia(e)),
   }))
 }
 
@@ -264,7 +268,8 @@ export async function getPostDetails(slug: string, locale: string = 'ja'): Promi
     side_image: replaceToCDN(data.acf?.side_image?.url) || '',
     content: replaceToCDN(data.content.rendered),
     date: DateTime.fromISO(data.date).toFormat(`LLL dd, yyyy`),
-    hero_image: replaceToCDN(featuredMedia(data)),
+    hero_image: replaceToCDN(findFeaturedMedia(data)),
+    hero_image_mobile: replaceToCDN(findFeaturedMedia(data, 'hero_image_mobile')),
     tags: data.tags.map((t: number) => tags[t]).filter((t: Tag) => t),
     credit: data.acf?.credit ? parseCredit(data.acf.credit) : null,
   }
@@ -277,6 +282,6 @@ export async function getPageDetails(slug: string): Promise<Entry> {
     slug,
     title: data[0].title.rendered,
     content: replaceToCDN(data[0].content.rendered),
-    hero_image: replaceToCDN(featuredMedia(data[0])),
+    hero_image: replaceToCDN(findFeaturedMedia(data[0])),
   }
 }

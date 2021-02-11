@@ -5,6 +5,7 @@ import { Member, getAllMembers } from 'lib/api'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 import { langStyle } from 'lib/i18n'
+import { getOptimized } from 'lib/image'
 
 function shuffle<T>(array: T[]) {
   const out = Array.from(array);
@@ -24,7 +25,7 @@ const SingleMember = ({ member: m }: { member: Member }) => {
       <Link href={`/team/${m.slug}`}>
         <a className={langStyle()} onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
           <div>
-            <GradImg mouseEntered={entered}><img src={m.image} alt="" /></GradImg>
+            <GradImg mouseEntered={entered}><img src={getOptimized(m.image, 640)} alt="" loading="lazy" /></GradImg>
             <div className="text">
               <div><Grad className="region" inline>{m.region.join(' / ')}</Grad></div>
               <div><Grad className="title" inline>{m.title}</Grad></div>
@@ -69,15 +70,15 @@ const SingleMember = ({ member: m }: { member: Member }) => {
             :global(.region)
               font-size 1.2rem
               letter-spacing 0
-              line-height calc(36 / 24)
+              line-height (36 / 24)
               margin-top 1.2rem
             :global(.title)
               font-size 1.2rem
-              line-height calc(30 / 24)
+              line-height (30 / 24)
               margin-top 0.3rem
             :global(.name)
               font-size 1.4rem
-              line-height calc(42 / 28)
+              line-height (42 / 28)
               margin-top 0.3rem
           a.en
             :global(.name)
@@ -123,5 +124,8 @@ export default TeamIndex
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const members = await getAllMembers(100, locale)
-  return { props: { members } }
+  return {
+    props: { members },
+    revalidate: 60 * 10,
+  }
 }

@@ -127,7 +127,7 @@ const ContactForm = () => (
           &.contact-form
             :global(.text)
               font-size 1.4rem
-              line-height calc(42 / 28)
+              line-height (42 / 28)
             :global(.contact)
               margin-top 2.2rem
               a

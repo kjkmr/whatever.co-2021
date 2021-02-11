@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { langStyle } from 'lib/i18n'
-import { Grad, GradImg } from 'components/Grad'
+import { Grad, GradImg, GradLinkedTextBox } from 'components/Grad'
 import BlackButton from 'components/BlackButton'
 import { Desktop, Mobile } from 'components/Responsive'
 
@@ -88,7 +88,7 @@ export const Header = (props: HeaderProps) => {
           display inline-block
           font-size vwpx_min(18)
           font-weight 700
-          line-height calc(40 / 18)
+          line-height (40 / 18)
         .en
           .upper
             margin-bottom vwpx(95)
@@ -130,14 +130,14 @@ export const Header = (props: HeaderProps) => {
           .desc-line
             font-size var(--font-size-ja)
             font-weight 500
-            line-height 2.1
+            line-height 2.0
           .en
             .desc
               margin-top 4.15rem
             .desc-line
               font-size 1.4rem
               font-weight 500
-              line-height calc(50 / 28)
+              line-height (50 / 28)
       `}</style>
     </>
   )
@@ -200,11 +200,13 @@ export const Footer = ({ left, right }: { left: string, right: string }) => (
           .line
             display none
           :global(.whatever)
-            font-size 0.8rem
+            font-size 0.9rem
             margin-top 2px
+            letter-spacing 0
           :global(.title)
-            font-size 1.2rem
+            font-size 1.3rem
             font-weight 400
+            letter-spacing 0
             margin-top 8px
           :global(.left .inner)
             margin-left 30px
@@ -233,7 +235,7 @@ export const SectionHeader = ({ num, title, body }: SectionTitleProps) => (
           ))}
         </div>
         <div className="body">
-          {body?.split('\n').map((line, index) => <Grad key={index} className="body-line"><div key={index}>{line}</div></Grad>)}
+          {body?.split('\n').map((line, index) => <Grad key={index} className="body-line"><GradLinkedTextBox key={index} html={line} /></Grad>)}
         </div>
       </div>
     </div>
@@ -295,12 +297,12 @@ export const SectionHeader = ({ num, title, body }: SectionTitleProps) => (
           .body
             margin-top vwpx(27.5)
             :global(.body-line)
-              line-height 2.1
-              margin 2.5rem 0
+              line-height 2.0
+              margin 2.6rem 0
         .en.header
           :global(.title)
             font-size vwpx(20)
-            line-height calc(54 / 40)
+            line-height (54 / 40)
             margin-top vwpx(14)
             &:nth-child(n + 2)
               margin 0
@@ -309,7 +311,7 @@ export const SectionHeader = ({ num, title, body }: SectionTitleProps) => (
             :global(.body-line)
               font-size 1.4rem
               font-weight 300
-              line-height calc(50 / 28)
+              line-height (50 / 28)
     `}</style>
   </div>
 )

@@ -110,26 +110,6 @@
       "At Whatever, we believe that “thinking and creating” together is the way to bring new ideas to life. To do this, you won’t get there by just thinking like a creative agency or consulting firm, and you won’t get there by just creating like a production company. Thinking about an idea that you have never seen before and immediately testing whether it can be realized. At the end of such a process that goes beyond the realm of “thinking” and “making”, an idea that has never been seen before can be realized. In order to do so, Whatever has the talent to think and create.",
       "Whatever 相信結合「思考與實作」是實現新創意的理想方式。僅仰賴創意代理店或管顧公司的企劃能力有所不及，僅靠製作公司的實作也仍顯不足，唯有透過結合思考與實作，才能將前所未見的創意進行立即的檢視，驗證它實現的可能性。在「思考」領域及「實作」領域間互相傳接球的互動下，我們相信能更容易創造出跨時代的新點子。因此，Whatever 匯集了實踐此理念所須的「思考型」人才及「實作型」人才。\n"
     ],
-    "genres_2_project": [
-      "Project\nManagement\n\nプロデューサー\nプロジェクトマネージャー",
-      "Project\nManagement\n\nProducer\nProject Manager",
-      "專案\n管理\n  \n製作人\n專案經理"
-    ],
-    "genres_2_creative": [
-      "Creative\nDevelopment\n\nクリエイティブディレクター\nサウンドアーティスト\nアートディレクター\n建築家\nデザイナー\nコピーライター\nイラストレーター\nコレオグラファー",
-      "Creative\nDevelopment\n\nCreative Director\nSound Artist\nArt Director\nArchitects\nDesigner\nCopywriter\nIllustrator\nChoreographer",
-      "創意\n發想\n  \n創意總監\n音樂製作人\n藝術總監\n建築師\n設計師\n文案 \n插畫師\n編舞師"
-    ],
-    "genres_2_tech": [
-      "Tech\nDevelopment\n\nテックディレクター\nプログラマー\nエンジニア\nドローンレーサー",
-      "Tech\nDevelopment\n\nTech Director\nProgrammer\nEngineer\nDrone racer",
-      "技術\n研發\n  \n技術總監\n程式設計師\n工程師\n無人機競技選手"
-    ],
-    "genres_2_business": [
-      "Business\nDevelopment\n\nビジネスプロデューサー\nビジネスコンサルタント\nインベストメントディレクター",
-      "Business\nDevelopment\n\nBusiness Producer\nBusiness Consultant\nInvestment Director",
-      "商業\n發展\n  \n業務企劃（Business Producer）\n商業顧問（Business Consultant）\n投資總監（Investment Director）"
-    ],
     "genres_3_title": [
       "共同開発、自社プロジェクト、クリエイティブ投資",
       "Co-development, in-house projects and creative investment",
@@ -256,19 +236,19 @@
       "創意社群的營運"
     ],
     "workstyle_3_body": [
-      "こうした豊富なメンバーたちが集える場所として、WTFC とクリエイティブコミューン WHEREVER の共同運営を行っています。ここは Whatever、WTFC、Bassdrum の作業拠点であると同時に、5F にあるシェアオフィススペースや 1F の New Stand Tokyo を通して、様々なクリエイティブスタッフが出入りし、共創し合える場として機能しています。",
-      "Whatever and WTFC are jointly managing the creative commune WHEREVER, where these rich members can gather. This is not only the work base for Whatever, WTFC, and Bassdrum, but also functions as a place where various creative staff can come and go and co-create through the shared office space on the 5th floor and New Stand Tokyo on the 1st floor.",
-      "由 WTFC 及創意團隊 WHEREVER 共同經營的工作空間匯集了多位富含才華的創意成員。\n這裡是 Whatever、WTFC、Bassdrum 的據點，另外在5F設有共享辦公室以及1F設有 New Stand Tokyo，可讓創意者們在這裡穿梭往來，方便交流及合作。"
+      "こうした豊富なメンバーたちが集える場所として、WTFC とクリエイティブコミューン <a href=\"https://wtfc.jp/wherever/\">WHEREVER</a> の共同運営を行っています。ここは Whatever、WTFC、Bassdrum の作業拠点であると同時に、5F にあるシェアオフィススペースや 1F の <a href=\"https://newstand.jp/\">New Stand Tokyo</a> を通して、様々なクリエイティブスタッフが出入りし、共創し合える場として機能しています。",
+      "Whatever and WTFC are jointly managing the creative commune <a href=\"https://wtfc.jp/wherever/\">WHEREVER</a>, where these rich members can gather. This is not only the work base for Whatever, WTFC, and Bassdrum, but also functions as a place where various creative staff can come and go and co-create through the shared office space on the 5th floor and <a href=\"https://newstand.jp/\">New Stand Tokyo</a> on the 1st floor.",
+      "由 WTFC 及創意團隊 <a href=\"https://wtfc.jp/wherever/\">WHEREVER</a> 共同經營的工作空間匯集了多位富含才華的創意成員。<br/>這裡是 Whatever、WTFC、Bassdrum 的據點，另外在5F設有共享辦公室以及1F設有 <a href=\"https://newstand.jp/\">New Stand Tokyo</a>，可讓創意者們在這裡穿梭往來，方便交流及合作。"
     ],
     "workstyle_3_features": [
       "01\n8 階建て、約 900㎡ のビル一棟に約 70 人の様々な個人クリエイターやチームが入居しています\n\n02\n入居者同士のシナジーを生み出せるメンバーを集めるため、ポートフォリオチェックと面接を通して、入居者を厳正に審査させていただいています。\n\n03\n外苑東通りに面した 1F のスペース (122.6㎡) が、入居者にもご利用いただけるギャラリーとなっています。\n\n04\n2F にはキッチンを完備したラウンジがあり、入居者の交流や、各種イベントのスペースとして活用しています。\n\n05\n東北新社と Whatever による合同事業会社 WTFC が、共同運営を行い、日々入居者の快適な環境とホスピタリティ向上に努めています。",
       "01\nAn eight-story building of about 900 square meters is home to about 70 individual creators and teams.\n\n02\nIn order to gather members who can create synergy among the residents, we strictly screen the residents through portfolio checks and interviews.\n\n03\nThe first floor space (122.6㎡) facing Gaien Higashi Dori is a gallery that can be used by residents.\n\n04\nOn the second floor, there is a lounge with a fully equipped kitchen, which is used as a space for residents to interact and hold various events.\n\n05\nWTFC, a joint venture between Tohoku Shinsha and Whatever, jointly manages the facility and strives to improve the comfort and hospitality of the residents on a daily basis.",
-      "01\n總面積約900㎡的8樓建築，約有70名個人或團隊進駐。\n  \n02\n為促成進駐者彼此產生最佳的相乘作用，我們透過作品集的審核及面試，仔細選定每位進駐者。\n  \n03\n面向外苑東路的1F空間 (122.6㎡) 是進駐者可使用的展示空間。\n  \n04\n2F有附廚房設備的交誼廳，提供進駐者交流及舉辦各種活動。\n  \n05 \nWhatever 與東北新社共同創辦的 WTFC 會共同致力於提供進駐者舒適的創作環境及各種福利。"
+      "01\n總面積約900㎡的8樓建築，約有70名個人或團隊進駐。\n\n02\n為促成進駐者彼此產生最佳的相乘作用，我們透過作品集的審核及面試，仔細選定每位進駐者。\n\n03\n面向外苑東路的1F空間 (122.6㎡) 是進駐者可使用的展示空間。\n\n04\n2F有附廚房設備的交誼廳，提供進駐者交流及舉辦各種活動。\n\n05 \nWhatever 與東北新社共同創辦的 WTFC 會共同致力於提供進駐者舒適的創作環境及各種福利。"
     ],
     "workstyle_3_about": [
-      "1F\nギャラリー / イベントスペース / ショールーム\n\n2F\nオープン MTG / イベントスペース / カフェカウンター\n\n3F\nWTFC オフィス\n\n4F\n会議室×４室\n\n5F\nコワーキングスペース\n\n6F\nBASSDRUM オフィス & 共同 FAB スペース\n\nRF\n休憩スペース",
+      "1F\nギャラリー / イベントスペース / ショールーム\n\n2F\nオープン MTG / イベントスペース / カフェカウンター\n\n3F\nWTFC オフィス\n\n4F\n会議室×４室\n\n5F\nコワーキングスペース\n\n6F\nBASSDRUM オフィス & 共同 FAB スペース\n\n7F\nWhatever オフィス\n\nRF\n休憩スペース",
       "1F\nGallery / Event Space / Showroom\n\n2F\nOpen MTG / Event space / Cafe counter\n\n3F\nWTFC office\n\n4F\n4 meeting rooms\n\n5F\nCoworking space\n\n6F\nBASSDRUM Office & Shared FAB Space\n\n7F\nWhatever office\n\nRF\nRest area",
-      "1F\n展示空間 / 活動空間 / Showroom\n  \n2F\n開放式會議空間 / 活動空間 / 咖啡吧檯\n  \n3F\nWTFC 辦公室\n  \n4F\n4間會議室\n  \n 5F\n 共享辦公室 (Coworking Space)\n  \n 6F\n BASSDRUM 辦公室及 FAB 共享空間\n  \n RF\n 休憩空間  "
+      "1F\n展示空間 / 活動空間 / Showroom\n\n2F\n開放式會議空間 / 活動空間 / 咖啡吧檯\n\n3F\nWTFC 辦公室\n\n4F\n4間會議室\n\n5F\n共享辦公室 (Coworking Space)\n\n6F\nBASSDRUM 辦公室及 FAB 共享空間\n\n7F\nWhatever 辦公室\n\nRF\n休憩空間  "
     ],
     "location_title": [
       "世界中どんな地域でも。",
@@ -419,6 +399,16 @@
       "-",
       "-",
       "-"
+    ],
+    "team_cocreator_title": [
+      "Co-creator とは",
+      "About “Co-creator”:",
+      ""
+    ],
+    "team_cocreator_text": [
+      "個人活動（フリーランス、アーティスト）と会社員とのハイブリットな働き方ができる制度。<br/>\n詳しくは<a href=\"https://careerhack.en-japan.com/report/detail/549\" target=\"_blank\">こちら</a>の記事を参照ください。",
+      "Co-creator is a new way of working which allows one to be an employee of the company while keeping his/her professional activities (as a freelancer or an artist) outside.<br/>Please follow <a href=\"https://careerhack.en-japan.com/report/detail/549\" target=\"_blank\">this link (Japanese)</a> for details.",
+      ""
     ]
   }
 }

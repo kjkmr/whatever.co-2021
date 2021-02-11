@@ -4,6 +4,7 @@ import Link from 'next/link'
 import classnames from 'classnames'
 import { Tag, Entry, Credit, Person, getPostDetails } from 'lib/api'
 import { langStyle } from 'lib/i18n'
+import { getOptimized } from 'lib/image'
 import Layout from 'components/Layout'
 import EntryBody from 'components/EntryBody'
 import { Grad, GradImg, GradLink } from 'components/Grad'
@@ -20,7 +21,7 @@ const HeaderImageDesktop = ({ src }: { src: string }) => {
   })
   return (
     <>
-      <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={src} alt="" /></GradImg></div>
+      <div className="image" style={{ height: `calc((100vw - 80px) * ${723 / (1366 - 80)} - ${scrollY}px)` }}><GradImg><img src={getOptimized(src)} alt="" /></GradImg></div>
       <style jsx>{`
         @import 'lib/vw.styl'
         .image
@@ -47,7 +48,7 @@ const HeaderImageMobile = ({ src }: { src: string }) => {
   })
   return (
     <>
-      <div className="image" style={{ height: `calc(100vw - ${scrollY}px)` }}><GradImg><img src={src} alt="" /></GradImg></div>
+      <div className="image" style={{ height: `calc(100vw - ${scrollY}px)` }}><GradImg><img src={getOptimized(src, 1200)} alt="" /></GradImg></div>
       <style jsx>{`
         @import 'lib/vw-mobile.styl'
         .image
@@ -71,7 +72,7 @@ const Header = ({ work }: { work: Entry }) => {
     <>
       <div className={langStyle('header')}>
         <Desktop><HeaderImageDesktop src={work.hero_image!} /></Desktop>
-        <Mobile><HeaderImageMobile src={work.hero_image!} /></Mobile>
+        <Mobile><HeaderImageMobile src={work.hero_image_mobile!} /></Mobile>
         <div className="info">
           <div className="inner">
             <div><Grad className="date" inline>{work.date}</Grad></div>
@@ -144,7 +145,7 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
         <div><Grad className="desc" inline><div dangerouslySetInnerHTML={{ __html: description }}></div></Grad></div>
       </div>
       <div className="image">
-        <GradImg><img src={image} alt="" /></GradImg>
+        <GradImg><img src={getOptimized(image, 1200)} alt="" /></GradImg>
       </div>
     </div>
     <style jsx>{`
@@ -174,25 +175,26 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
         .text
           :global(.title)
             font-size vwpx(36)
-            line-height calc(54 / 36)
+            line-height (54 / 36)
             margin-top vwpx(-7)
           :global(.desc)
             font-size var(--font-size-en)
             font-weight 200
-            line-height calc(30 / 17)
+            line-height (30 / 17)
             margin-top vwpx(-10)
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .excerpt
-          margin 7.3rem vwpx(30) 0 0
+          opacity 0.5
+          margin 6.9rem vwpx(30) 0 0
           display block
           .text
             :global(.title)
               font-size 1.7rem
               line-height 1.8
             :global(.desc)
-              font-size 1.2rem
-              line-height 2.1
+              font-size 1.3rem
+              line-height (52 / 26)
               margin-top 0.55rem
           .image
             margin 7.2rem -30px 0 -50px
@@ -204,10 +206,10 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
           .text
             :global(.title)
               font-size 2.0rem
-              line-height calc(54 / 40)
+              line-height (54 / 40)
             :global(.desc)
               font-size 1.4rem
-              line-height calc(50 / 28)
+              line-height (50 / 28)
               margin-top 0.55rem
     `}</style>
   </>
@@ -247,25 +249,25 @@ const CreditMember = ({ member }: { member: Person }) => {
           :global(.name)
             font-size var(--font-size-en)
             font-weight 200
-            line-height calc(20 / 17)
+            line-height (20 / 17)
             margin-top 0.5rem
         @media (--mobile)
           .member
             margin-bottom 2.7rem
             :global(.role)
               font-size 1.1rem
-              line-height calc(28 / 22)
+              line-height (28 / 22)
             :global(.name)
-              font-size 1.2rem
-              line-height calc(42 / 24)
-              margin-top 0.5rem
+              font-size 1.3rem
+              line-height (42 / 26)
+              margin-top 0.45rem
           .en.member
             :global(.role)
               font-size 1.1rem
-              line-height calc(28 / 22)
+              line-height (28 / 22)
             :global(.name)
               font-size 1.4rem
-              line-height calc(42 / 28)
+              line-height (42 / 28)
               margin-top 0.4rem
       `}</style>
     </>
@@ -278,7 +280,7 @@ const CreditGroup = ({ credit }: { credit: Credit }) => (
       {credit.name
         ? <div className={classnames('name', { spacer: credit.name == '-' })}><Grad className="credit-group-name" inline>{credit.name != '-' ? credit.name : null}</Grad></div>
         : null}
-      {credit.members.map(member => <CreditMember key={member.name} member={member} />)}
+      {credit.members.map((member, index) => <CreditMember key={index} member={member} />)}
     </div>
     <style jsx>{`
       .credit-group
@@ -301,8 +303,10 @@ const CreditGroup = ({ credit }: { credit: Credit }) => (
           grid-column-gap 20px
           .name
             grid-column span 2
+            margin-top 3.7rem
+            margin-bottom 2.85rem
             &.spacer
-              margin-top 0.2rem
+              margin-top 0.9rem
     `}</style>
   </>
 )
@@ -318,7 +322,6 @@ const Credits = ({ credit }: { credit: Credit[] }) => (
         width 900px
         margin auto
         margin-top -16px
-        margin-bottom 135px
         font-size 0
         :global(.credits-title)
           font-size 2.4rem

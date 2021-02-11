@@ -1,0 +1,66 @@
+@import 'fonts'
+
+vwpx(px)
+  '%spx' % (900 / 1206 * px)
+
+:root
+  --font-size-ja: 15px
+  --font-size-en: 17px
+  --margin-between-blocks: vwpx(144)
+  --margin-between-images: vwpx(82)
+  @media (--mobile)
+    --font-size-ja: 12px
+
+body 
+  font-family: Apercu, 'Noto Sans JP', sans-serif
+  font-size: var(--font-size-ja)
+  font-weight: 300
+
+  .editor-post-title .editor-post-title__input
+    font-family: Apercu, 'Noto Sans JP', sans-serif
+    font-weight: 700
+
+  .block-editor-block-list__layout, .wp-block
+    max-width 900px
+    margin 0 auto
+  .block-editor-block-list__layout:first-child
+    margin-top var(--margin-between-blocks)
+
+  .wp-block figure
+    margin 0
+
+  p.wp-block
+    margin: 30px 0
+    font-size: var(--font-size-ja)
+    line-height: 2.0
+    word-wrap: break-word
+    a
+      text-decoration: none
+      padding-bottom: 3px
+      border-bottom: 1px solid #0073aa
+
+  .wp-block[data-type^="genesis-custom-blocks/"], .wp-block-embed
+    margin-top var(--margin-between-blocks)
+    + .wp-block[data-type^="genesis-custom-blocks/"], + .wp-block-embed
+      margin-top var(--margin-between-images)
+  
+  .wp-block[data-type^="genesis-custom-blocks/"], .wp-block-embed
+    + p
+      margin-top var(--margin-between-blocks)
+
+  .block-images 
+    width: 900px
+    margin 0
+    grid-template-columns: 1fr 1fr
+    gap: var(--margin-between-images) vwpx(78)
+    font-size: 0
+
+    .block-image-small 
+      width: vwpx(564)
+    .block-image-medium 
+      width: vwpx(844)
+    .block-image-large 
+      width: vwpx(1206)
+
+  .block-2-images :first-child 
+    margin-bottom: calc(82px * 0.75)

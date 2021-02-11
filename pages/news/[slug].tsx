@@ -3,11 +3,12 @@ import { Entry, getPostDetails } from 'lib/api'
 import Layout from 'components/Layout'
 import EntryBody from 'components/EntryBody'
 import { Grad, GradImg } from 'components/Grad'
+import { getOptimized } from 'lib/image'
 
 const NewsDetail = ({ entry }: { entry: Entry }) => (
   <Layout title={entry.title} side="News" backto="/news">
     <div className="news">
-      <div className="image"><GradImg><img src={entry.hero_image} alt="" /></GradImg></div>
+      <div className="image"><GradImg><img src={getOptimized(entry.hero_image!)} alt="" /></GradImg></div>
       <div className="white">
         <div><Grad className="date" inline>{entry.date}</Grad></div>
         <div><Grad className="title" inline><div dangerouslySetInnerHTML={{ __html: entry.title }} /></Grad></div>
@@ -17,7 +18,7 @@ const NewsDetail = ({ entry }: { entry: Entry }) => (
     <style jsx>{`
       @import 'lib/vw.styl'
       .news
-        margin 0 80px 140px
+        margin 0 80px 0
         font-size 0
       .image img
         width vwpx2(1126, 240)
@@ -41,7 +42,7 @@ const NewsDetail = ({ entry }: { entry: Entry }) => (
           line-height 4.0rem
           margin-top 18px
       .body
-        margin 65px auto 95px
+        margin 65px auto 0
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .news

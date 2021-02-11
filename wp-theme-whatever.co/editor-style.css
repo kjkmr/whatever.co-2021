@@ -1,75 +1,115 @@
 @font-face {
-    font-family: Apercu;
-    src: url("/fonts/apercu-medium.eot");
-    src: url("/fonts/apercu-medium.eot?#iefix") format('embedded-opentype'), url("/fonts/apercu-medium.woff") format('woff'), url("/fonts/apercu-medium.woff2") format('woff2'), url("/fonts/apercu-medium.ttf") format('truetype');
-    font-weight: 400;
-    font-style: normal;
+  font-family: Apercu;
+  src: url("/fonts/apercu-extralight.eot");
+  src: url("/fonts/apercu-extralight.eot?#iefix") format('embedded-opentype'), url("/fonts/apercu-extralight.woff") format('woff'), url("/fonts/apercu-extralight.woff2") format('woff2'), url("/fonts/apercu-extralight.ttf") format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: block;
 }
-
 @font-face {
-    font-family: Apercu;
-    src: url("/fonts/apercu-light.eot");
-    src: url("/fonts/apercu-light.eot?#iefix") format('embedded-opentype'), url("/fonts/apercu-light.woff") format('woff'), url("/fonts/apercu-light.woff2") format('woff2'), url("/fonts/apercu-light.ttf") format('truetype');
-    font-weight: 200;
-    font-style: normal;
+  font-family: Apercu;
+  src: url("/fonts/apercu-light.eot");
+  src: url("/fonts/apercu-light.eot?#iefix") format('embedded-opentype'), url("/fonts/apercu-light.woff") format('woff'), url("/fonts/apercu-light.woff2") format('woff2'), url("/fonts/apercu-light.ttf") format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: block;
 }
-
 @font-face {
-    font-family: Apercu;
-    src: url("/fonts/apercu-bold.eot");
-    src: url("/fonts/apercu-bold.eot?#iefix") format('embedded-opentype'), url("/fonts/apercu-bold.woff") format('woff'), url("/fonts/apercu-bold.woff2") format('woff2'), url("/fonts/apercu-bold.ttf") format('truetype');
-    font-weight: 700;
-    font-style: normal;
+  font-family: Apercu;
+  src: url("/fonts/apercu-regular.eot");
+  src: url("/fonts/apercu-regular.eot?#iefix") format('embedded-opentype'), url("/fonts/apercu-regular.woff") format('woff'), url("/fonts/apercu-regular.woff2") format('woff2'), url("/fonts/apercu-regular.ttf") format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
 }
-
+@font-face {
+  font-family: Apercu;
+  src: url("/fonts/apercu-medium.eot");
+  src: url("/fonts/apercu-medium.eot?#iefix") format('embedded-opentype'), url("/fonts/apercu-medium.woff") format('woff'), url("/fonts/apercu-medium.woff2") format('woff2'), url("/fonts/apercu-medium.ttf") format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: Apercu;
+  src: url("/fonts/apercu-bold.eot");
+  src: url("/fonts/apercu-bold.eot?#iefix") format('embedded-opentype'), url("/fonts/apercu-bold.woff") format('woff'), url("/fonts/apercu-bold.woff2") format('woff2'), url("/fonts/apercu-bold.ttf") format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}
+:root {
+  --font-size-ja: 15px;
+  --font-size-en: 17px;
+  --margin-between-blocks: 107.46268656716418px;
+  --margin-between-images: 61.194029850746276px;
+}
+@media (--mobile) {
+  :root {
+    --font-size-ja: 12px;
+  }
+}
 body {
-    font-family: Apercu, 'Noto Sans JP', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 200;
+  font-family: Apercu, 'Noto Sans JP', sans-serif;
+  font-size: var(--font-size-ja);
+  font-weight: 300;
 }
-
-body p {
-    font-size: calc(15rem / 16);
-    line-height: calc(30rem / 16);
+body .editor-post-title .editor-post-title__input {
+  font-family: Apercu, 'Noto Sans JP', sans-serif;
+  font-weight: 700;
 }
-
-.wp-block {
-    max-width: 900px;
+body .block-editor-block-list__layout,
+body .wp-block {
+  max-width: 900px;
+  margin: 0 auto;
 }
-
-.editor-post-title .editor-post-title__input {
-    font-family: Apercu, 'Noto Sans JP', sans-serif;
-    font-weight: 700;
+body .block-editor-block-list__layout:first-child {
+  margin-top: var(--margin-between-blocks);
 }
-
-.block-images {
-    width: 900px;
-    max-width: 100%;
-    margin-top: calc(143px * 0.75);
-    margin-bottom: calc(144px * 0.75);
-    grid-template-columns: 1fr 1fr;
-    gap: calc(82px * 0.75) calc(78px * 0.75);
-    font-size: 0;
+body .wp-block figure {
+  margin: 0;
 }
-
-.block-image-small {
-    width: calc(564px * 0.75);
-    height: calc(317px * 0.75);
-    object-fit: cover;
+body p.wp-block {
+  margin: 30px 0;
+  font-size: var(--font-size-ja);
+  line-height: 2;
+  word-wrap: break-word;
 }
-
-.block-image-medium {
-    width: calc(844px * 0.75);
-    height: calc(475px * 0.75);
-    object-fit: cover;
+body p.wp-block a {
+  text-decoration: none;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #0073aa;
 }
-
-.block-image-large {
-    width: calc(1206px * 0.75);
-    height: calc(678px * 0.75);
-    object-fit: cover;
+body .wp-block[data-type^="genesis-custom-blocks/"],
+body .wp-block-embed {
+  margin-top: var(--margin-between-blocks);
 }
-
-.block-2-images :first-child {
-    margin-bottom: calc(82px * 0.75);
+body .wp-block[data-type^="genesis-custom-blocks/"] + .wp-block[data-type^="genesis-custom-blocks/"],
+body .wp-block-embed + .wp-block[data-type^="genesis-custom-blocks/"],
+body .wp-block[data-type^="genesis-custom-blocks/"] + .wp-block-embed,
+body .wp-block-embed + .wp-block-embed {
+  margin-top: var(--margin-between-images);
+}
+body .wp-block[data-type^="genesis-custom-blocks/"] + p,
+body .wp-block-embed + p {
+  margin-top: var(--margin-between-blocks);
+}
+body .block-images {
+  width: 900px;
+  margin: 0;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--margin-between-images) 58.2089552238806px;
+  font-size: 0;
+}
+body .block-images .block-image-small {
+  width: 420.8955223880597px;
+}
+body .block-images .block-image-medium {
+  width: 629.8507462686567px;
+}
+body .block-images .block-image-large {
+  width: 900px;
+}
+body .block-2-images :first-child {
+  margin-bottom: calc(82px * 0.75);
 }

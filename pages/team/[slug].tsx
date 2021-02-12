@@ -10,6 +10,7 @@ import { Desktop, Mobile } from 'components/Responsive'
 import { langStyle, t } from 'lib/i18n'
 import { getOptimized } from 'lib/image'
 import { isMobile } from 'lib/isMobile'
+import { NextPrevButtons } from 'components/NextPrevButtons'
 
 const PhotoDesktop = ({ src }: { src: string }) => {
   const [scrollY, setScrollY] = useState(0)
@@ -91,10 +92,10 @@ const MemberInfo = ({ member }: { member: Member }) => {
             <div className="links">
               {member.links.filter((l: any) => l.url).map((link: any) => <div key={link.url}><Grad className="link-item" inline>- <GradLink href={link.url} target="_blank" rel="noopener noreferrer" inlineBlock={true}>{link.name}</GradLink></Grad></div>)}
             </div>
-            <div className="co-creator">
+            {member.coCreator ? <div className="co-creator">
               <div className="title">{t('team_cocreator_title')}</div>
               <GradLinkedTextBox className="text" html={t('team_cocreator_text')} />
-            </div>
+            </div> : null}
           </div>
         </div>
       </div>
@@ -346,9 +347,26 @@ const RelatedLinks = ({ news }: { news: Entry[] }) => (
 )
 
 
+const Footer = ({ member }: { member: Entry }) => (
+  <>
+    <div className="footer">
+      <NextPrevButtons
+        leftTitle={member.next?.title}
+        leftLink={`/team/${member.next?.slug}`}
+        rightTitle={member.prev?.title}
+        rightLink={`/team/${member.prev?.slug}`} />
+    </div>
+    <style jsx>{`
+      .footer
+        margin-top 150px
+    `}</style>
+  </>
+)
+
+
 const MemberDetail = ({ member, works, news }: { member: Member, works: Entry[], news: Entry[] }) => (
   <>
-    <Layout title={member.name} side="Team" backto="/team">
+    <Layout key={member.slug} title={member.name} side="Team" backto="/team" footer={<Footer member={member} />}>
       <div className="details">
         <MemberInfo member={member} />
         {works.length ? <RelatedWork works={works} /> : null}

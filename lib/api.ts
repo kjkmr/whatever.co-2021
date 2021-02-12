@@ -94,6 +94,8 @@ export type Member = {
   region: string[]
   links: any
   coCreator: boolean
+  next?: { slug: string, title: string } | null
+  prev?: { slug: string, title: string } | null
 }
 
 
@@ -181,6 +183,8 @@ export async function getMemberDetail(slug: string, locale: string = 'ja'): Prom
     region: data.acf.region,
     links: parseLinks(data.acf.rel_links),
     coCreator: data.acf['co-creator'],
+    next: getRelPost(data.next),
+    prev: getRelPost(data.prev),
   }
 }
 

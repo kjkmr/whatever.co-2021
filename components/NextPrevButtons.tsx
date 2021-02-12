@@ -1,10 +1,10 @@
 import BlackButton from "./BlackButton"
 
 type Props = {
-  leftSub: string,
+  leftSub?: string,
   leftTitle?: string,
   leftLink?: string,
-  rightSub: string,
+  rightSub?: string,
   rightTitle?: string,
   rightLink?: string,
 }
@@ -15,13 +15,13 @@ export const NextPrevButtons = ({ leftSub, leftTitle, leftLink, rightSub, rightT
       {leftTitle ? <BlackButton className="next-prev-button left" link={leftLink}>
         <div className="line"></div>
         <div className="inner">
-          <div className="whatever" >{leftSub}</div>
+          {leftSub ? <div className="whatever" >{leftSub}</div> : null}
           <div className="title" >{leftTitle}</div>
         </div>
       </BlackButton> : <div className="next-prev-button left" />}
       {rightTitle ? <BlackButton className="next-prev-button right" link={rightLink}>
         <div className="inner">
-          <div className="whatever" >{rightSub}</div>
+          {rightSub ? <div className="whatever" >{rightSub}</div> : null}
           <div className="title" >{rightTitle}</div>
         </div>
         <div className="line"></div>
@@ -41,6 +41,7 @@ export const NextPrevButtons = ({ leftSub, leftTitle, leftLink, rightSub, rightT
           box-sizing border-box
           background-color black
           :global(a)
+            padding 0
             justify-content start
         :global(.left .inner)
           margin-left 40px
@@ -54,24 +55,26 @@ export const NextPrevButtons = ({ leftSub, leftTitle, leftLink, rightSub, rightT
         .line
           border-top 1px solid #fff
           width 40px
-        :global(.whatever)
+          visibility hidden
+        .whatever
           font-size 1.2rem
           font-weight 400
           margin-top 1px
-        :global(.title)
+        .title
           font-size 2.0rem
           font-weight 500
+        .whatever + .title
           margin-top 10px
       @media (--mobile)
         .next-prev
           height 100px
           .line
             display none
-          :global(.whatever)
+          .whatever
             font-size 0.9rem
             margin-top 2px
             letter-spacing 0
-          :global(.title)
+          .title
             font-size 1.3rem
             font-weight 400
             letter-spacing 0

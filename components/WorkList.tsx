@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { Entry, Tag } from 'lib/api'
 import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
 import { langStyle } from 'lib/i18n'
 import { getOptimized } from 'lib/image'
+import LazyLoad from 'react-lazyload'
 
 
 const LargeWork = ({ work }: { work: Entry }) => {
@@ -15,7 +16,7 @@ const LargeWork = ({ work }: { work: Entry }) => {
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image">
-              <GradImg mouseEntered={entered}><img src={getOptimized(work.hero_image!, 1920)} alt="" loading="lazy" /></GradImg>
+              <GradImg mouseEntered={entered}><LazyLoad><img src={getOptimized(work.hero_image!, 1920)} alt="" loading="lazy" /></LazyLoad></GradImg>
             </div>
             <div className="text">
               <div><Grad className="date" inline>{work.date}</Grad></div>
@@ -71,7 +72,7 @@ const SmallWork = ({ work }: { work: Entry }) => {
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image">
-              <GradImg mouseEntered={entered}><img src={getOptimized(work.hero_image!, 828)} alt="" loading="lazy" /></GradImg>
+              <GradImg mouseEntered={entered}><LazyLoad><img src={getOptimized(work.hero_image!, 828)} alt="" loading="lazy" /></LazyLoad></GradImg>
             </div>
             <div className="text">
               <div><Grad className="date" inline>{work.date}</Grad></div>
@@ -202,7 +203,7 @@ const Single = ({ work }: { work: Entry }) => {
         <Link href={`/work/${work.slug}`}>
           <a onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
             <div className="image">
-              <GradImg mouseEntered={entered}><img src={getOptimized(work.hero_image!, 1200)} alt="" loading="lazy" /></GradImg>
+              <GradImg mouseEntered={entered}><LazyLoad><img src={getOptimized(work.hero_image!, 1200)} alt="" loading="lazy" /></LazyLoad></GradImg>
             </div>
             <div className="text">
               <div><Grad className="date" inline>{work.date}</Grad></div>

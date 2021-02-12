@@ -267,6 +267,9 @@ figcaption {
 .entry-body .block-images img.block-image-large {
   width: var(--image-row-width);
 }
+.entry-body .block-2-images-ss {
+  display: grid;
+}
 .entry-body .block-2-images-l-m >:first-child {
   margin-bottom: var(--margin-between-images);
 }

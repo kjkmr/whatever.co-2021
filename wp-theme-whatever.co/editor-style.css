@@ -110,6 +110,9 @@ body .block-images .block-image-medium {
 body .block-images .block-image-large {
   width: 900px;
 }
+body .block-2-images-ss {
+  display: grid;
+}
 body .block-2-images-l-m >:first-child {
   margin-bottom: var(--margin-between-images);
 }

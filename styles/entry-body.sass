@@ -36,6 +36,8 @@
     margin-left: var(--margin-left)
     grid-template-columns: 1fr 1fr
     gap: var(--margin-between-images) vwpx(78)
+    align-items: flex-start
+    flex-direction: column
     font-size: 0
     &+.p
       margin-top: var(--margin-between-block)
@@ -50,8 +52,10 @@
         width: vwpx(844)
       &.block-image-large
         width: var(--image-row-width)
-  .block-2-images-l-m >:first-child
-    margin-bottom: var(--margin-between-images)
+  .block-2-images-ss
+    display: grid
+  .block-2-images-l-m
+    display: flex
   .block-3-images-l-ss
     display: grid
     >:nth-child(1)
@@ -120,14 +124,10 @@
           width: vwpxm(305)
     .block-3-images-l-ss
       display: flex
-      flex-direction: column
-      align-items: flex-start
       >:nth-child(2)
         align-self: flex-end
     .block-3-images-ss-m
       display: flex
-      flex-direction: column
-      align-items: flex-start
       >:first-child
         align-self: flex-end
       >:nth-child(3)
@@ -135,8 +135,6 @@
         height: auto
     .block-4-images-l-ss-m
       display: flex
-      flex-direction: column
-      align-items: flex-start
       >:nth-child(2)
         align-self: flex-end
   .entry-body.en

@@ -185,7 +185,6 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .excerpt
-          opacity 0.5
           margin 6.9rem vwpx(30) 0 0
           display block
           .text

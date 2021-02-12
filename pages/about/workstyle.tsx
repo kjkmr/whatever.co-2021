@@ -330,7 +330,7 @@ const Section3 = () => (
 
 const Workstyle = () => (
   <>
-    <Layout title="About" side="About" backto="/about" footer={<NextPrevButtons leftSub="Whatever" leftTitle="Genres" rightSub="Whatever" rightTitle="Location" />}>
+    <Layout title="About" side="About" backto="/about" footer={<NextPrevButtons leftSub="Whatever" leftTitle="Genres" leftLink="/about/genres" rightSub="Whatever" rightTitle="Location" rightLink="/about/location" />}>
       <div className="workstyle">
         <Header headerMargin={65} title="Workstyle" titleSize={112} titleMargin={10} subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="pict02" imageWidth={586} />
         <Section1 />

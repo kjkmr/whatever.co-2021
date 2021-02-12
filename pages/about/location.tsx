@@ -280,7 +280,7 @@ const Section2 = () => (
 
 const Location = () => (
   <>
-    <Layout title="About" side="About" backto="/about" footer={<NextPrevButtons leftSub="Whatever" leftTitle="Workstyle" rightSub="Whatever" rightTitle="Genres" />}>
+    <Layout title="About" side="About" backto="/about" footer={<NextPrevButtons leftSub="Whatever" leftTitle="Workstyle" leftLink="/about/workstyle" rightSub="Whatever" rightTitle="Genres" rightLink="/about/genres" />}>
       <div className="location">
         <Header headerMargin={79} title="Location" subtitle={t('location_title')!} desc={t('location_description')!} image="pict03" imageWidth={554} imageMargin={5} />
         <Section1 />

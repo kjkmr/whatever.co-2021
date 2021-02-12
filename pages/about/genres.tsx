@@ -431,7 +431,7 @@ const Section3 = () => (
 
 const GenrePage = () => (
   <>
-    <Layout title="About" side="About" backto="/about" footer={<NextPrevButtons leftSub="Whatever" leftTitle="Location" rightSub="Whatever" rightTitle="Workstyle" />}>
+    <Layout title="About" side="About" backto="/about" footer={<NextPrevButtons leftSub="Whatever" leftTitle="Location" leftLink="/about/location" rightSub="Whatever" rightTitle="Workstyle" rightLink="/about/workstyle" />}>
       <div className="genre">
         <Header title="Genres" subtitle={t('genres_title')!} desc={t('genres_description')!} image="pict01" />
         <Section1 />

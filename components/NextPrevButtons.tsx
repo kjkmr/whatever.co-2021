@@ -3,21 +3,23 @@ import BlackButton from "./BlackButton"
 type Props = {
   leftSub: string,
   leftTitle: string,
+  leftLink: string,
   rightSub: string,
   rightTitle: string,
+  rightLink: string,
 }
 
-export const NextPrevButtons = ({ leftSub, leftTitle, rightSub, rightTitle }: Props) => (
+export const NextPrevButtons = ({ leftSub, leftTitle, leftLink, rightSub, rightTitle, rightLink }: Props) => (
   <>
     <div className="next-prev">
-      <BlackButton className="next-prev-button left" link={`/about/${leftTitle.toLowerCase()}`}>
+      <BlackButton className="next-prev-button left" link={leftLink}>
         <div className="line"></div>
         <div className="inner">
           <div className="whatever" >{leftSub}</div>
           <div className="title" >{leftTitle}</div>
         </div>
       </BlackButton>
-      <BlackButton className="next-prev-button right" link={`/about/${rightTitle.toLowerCase()}`}>
+      <BlackButton className="next-prev-button right" link={rightLink}>
         <div className="inner">
           <div className="whatever" >{rightSub}</div>
           <div className="title" >{rightTitle}</div>

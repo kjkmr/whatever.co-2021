@@ -267,44 +267,44 @@ figcaption {
 .entry-body .block-images img.block-image-large {
   width: var(--image-row-width);
 }
-.entry-body .block-2-images >:first-child {
-  margin-bottom: 82px;
+.entry-body .block-2-images-l-m >:first-child {
+  margin-bottom: var(--margin-between-images);
 }
-.entry-body .block-3-images-a {
+.entry-body .block-3-images-l-ss {
   display: grid;
 }
-.entry-body .block-3-images-a >:nth-child(1) {
+.entry-body .block-3-images-l-ss >:nth-child(1) {
   grid-column: span 2;
   object-fit: cover;
 }
-.entry-body .block-3-images-b {
+.entry-body .block-3-images-ss-m {
   display: grid;
 }
-.entry-body .block-3-images-b >:nth-child(3) {
+.entry-body .block-3-images-ss-m >:nth-child(3) {
   grid-column: span 2;
   width: calc((100vw - 80px) * 0.656298600311042);
   height: calc((100vw - 80px) * 0.368584758942457);
   object-fit: cover;
 }
-.entry-body .block-4-images-a {
+.entry-body .block-4-images-l-ss-m {
   display: grid;
 }
-.entry-body .block-4-images-a >:first-child {
+.entry-body .block-4-images-l-ss-m >:first-child {
   grid-column: span 2;
 }
-.entry-body .block-4-images-a >:last-child {
+.entry-body .block-4-images-l-ss-m >:last-child {
   grid-column: span 2;
   justify-self: start;
 }
-.entry-body .block-4-images-b {
+.entry-body .block-4-images-m-ss-m {
   display: grid;
 }
-.entry-body .block-4-images-b >:first-child {
+.entry-body .block-4-images-m-ss-m >:first-child {
   grid-column: span 2;
   margin-right: 0;
   margin-left: auto;
 }
-.entry-body .block-4-images-b >:last-child {
+.entry-body .block-4-images-m-ss-m >:last-child {
   grid-column: span 2;
 }
 .entry-body figure.wp-block-embed {
@@ -368,23 +368,23 @@ figcaption {
   .entry-body .block-images img.block-image-large {
     width: vwpxm(375);
   }
-  .entry-body .block-3-images-a {
+  .entry-body .block-3-images-l-ss {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
-  .entry-body .block-3-images-a >:nth-child(2) {
+  .entry-body .block-3-images-l-ss >:nth-child(2) {
     align-self: flex-end;
   }
-  .entry-body .block-3-images-b {
+  .entry-body .block-3-images-ss-m {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
-  .entry-body .block-3-images-b >:first-child {
+  .entry-body .block-3-images-ss-m >:first-child {
     align-self: flex-end;
   }
-  .entry-body .block-3-images-b >:nth-child(3) {
+  .entry-body .block-3-images-ss-m >:nth-child(3) {
     width: auto;
     height: auto;
   }

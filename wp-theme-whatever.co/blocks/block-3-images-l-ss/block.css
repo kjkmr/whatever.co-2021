@@ -1,7 +1,0 @@
-.block-3-images-a {
-    display: grid;
-}
-
-.block-3-images-a :nth-child(1) {
-    grid-column: span 2;
-}

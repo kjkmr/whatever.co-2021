@@ -110,6 +110,43 @@ body .block-images .block-image-medium {
 body .block-images .block-image-large {
   width: 900px;
 }
-body .block-2-images :first-child {
-  margin-bottom: calc(82px * 0.75);
+body .block-2-images-l-m >:first-child {
+  margin-bottom: var(--margin-between-images);
+}
+body .block-3-images-l-ss {
+  display: grid;
+}
+body .block-3-images-l-ss >:nth-child(1) {
+  grid-column: span 2;
+  object-fit: cover;
+}
+body .block-3-images-ss-m {
+  display: grid;
+}
+body .block-3-images-ss-m >:nth-child(3) {
+  grid-column: span 2;
+  width: 629.8507462686567px;
+  height: 353.73134328358213px;
+  object-fit: cover;
+}
+body .block-4-images-l-ss-m {
+  display: grid;
+}
+body .block-4-images-l-ss-m >:first-child {
+  grid-column: span 2;
+}
+body .block-4-images-l-ss-m >:last-child {
+  grid-column: span 2;
+  justify-self: start;
+}
+body .block-4-images-m-ss-m {
+  display: grid;
+}
+body .block-4-images-m-ss-m >:first-child {
+  grid-column: span 2;
+  margin-right: 0;
+  margin-left: auto;
+}
+body .block-4-images-m-ss-m >:last-child {
+  grid-column: span 2;
 }

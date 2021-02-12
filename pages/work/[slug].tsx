@@ -10,6 +10,7 @@ import EntryBody from 'components/EntryBody'
 import { Grad, GradImg, GradLink, GradLinkedTextBox } from 'components/Grad'
 import WorkTag from 'components/WorkTag'
 import { Desktop, Mobile } from 'components/Responsive'
+import { NextPrevButtons } from 'components/NextPrevButtons'
 
 const HeaderImageDesktop = ({ src }: { src: string }) => {
   const [scrollY, setScrollY] = useState(0)
@@ -338,9 +339,27 @@ const Credits = ({ credit }: { credit: Credit[] }) => (
   </>
 )
 
+const Footer = ({ work }: { work: Entry }) => (
+  <>
+    <div className="footer">
+      <NextPrevButtons
+        leftSub="Previous Project"
+        leftTitle={work.next?.title}
+        leftLink={`/work/${work.next?.slug}`}
+        rightSub="Next Project"
+        rightTitle={work.prev?.title}
+        rightLink={`/work/${work.prev?.slug}`} />
+    </div>
+    <style jsx>{`
+      .footer
+        margin-top 150px
+    `}</style>
+  </>
+)
+
 const WorkDetail = ({ work }: { work: Entry }) => (
   <>
-    <Layout title={work.title} side="Work" backto="/work/category/all">
+    <Layout title={work.title} side="Work" backto="/work/category/all" footer={<Footer work={work} />}>
       <Header work={work} />
       {work.subtitle ? <Excerpt title={work.subtitle || '(Subtitle)'} description={work.overview || '(Overview)'} image={work.side_image || ''} /> : null}
       <div className="body"><EntryBody content={work.content!} /></div>
@@ -361,7 +380,7 @@ export default WorkDetail
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // const works = await getAllWorks(5)
-  // const paths = (locales || []).map(locale => works.map((w: any) => ({ params: { slug: w.slug }, locale }))).flat()
+  // const paths = (locales || []).map(locale => works.map((w: any) => ({params: { slug: w.slug }, locale }))).flat()
   // console.log(paths)
   return {
     paths: [],
@@ -371,6 +390,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const work = await getPostDetails(params?.slug as string, locale)
+  console.log(work)
   return {
     props: { work },
     revalidate: 60 * 10,

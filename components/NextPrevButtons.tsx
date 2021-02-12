@@ -2,30 +2,30 @@ import BlackButton from "./BlackButton"
 
 type Props = {
   leftSub: string,
-  leftTitle: string,
-  leftLink: string,
+  leftTitle?: string,
+  leftLink?: string,
   rightSub: string,
-  rightTitle: string,
-  rightLink: string,
+  rightTitle?: string,
+  rightLink?: string,
 }
 
 export const NextPrevButtons = ({ leftSub, leftTitle, leftLink, rightSub, rightTitle, rightLink }: Props) => (
   <>
     <div className="next-prev">
-      <BlackButton className="next-prev-button left" link={leftLink}>
+      {leftTitle ? <BlackButton className="next-prev-button left" link={leftLink}>
         <div className="line"></div>
         <div className="inner">
           <div className="whatever" >{leftSub}</div>
           <div className="title" >{leftTitle}</div>
         </div>
-      </BlackButton>
-      <BlackButton className="next-prev-button right" link={rightLink}>
+      </BlackButton> : <div className="next-prev-button left" />}
+      {rightTitle ? <BlackButton className="next-prev-button right" link={rightLink}>
         <div className="inner">
           <div className="whatever" >{rightSub}</div>
           <div className="title" >{rightTitle}</div>
         </div>
         <div className="line"></div>
-      </BlackButton>
+      </BlackButton> : <div className="next-prev-button right" />}
     </div>
     <style jsx>{`
       .next-prev
@@ -39,10 +39,13 @@ export const NextPrevButtons = ({ leftSub, leftTitle, leftLink, rightSub, rightT
           height 100%
           border-right 1px solid #333333
           box-sizing border-box
+          background-color black
           :global(a)
             justify-content start
         :global(.left .inner)
           margin-left 40px
+        :global(.right)
+          border none
         :global(.right a)
           justify-content flex-end
         :global(.right .inner)
@@ -54,12 +57,11 @@ export const NextPrevButtons = ({ leftSub, leftTitle, leftLink, rightSub, rightT
         :global(.whatever)
           font-size 1.2rem
           font-weight 400
-          letter-spacing 0.1em
-          margin-top 9px
+          margin-top 1px
         :global(.title)
-          font-size 2.4rem
-          font-weight 700
-          margin-top 7px
+          font-size 2.0rem
+          font-weight 500
+          margin-top 10px
       @media (--mobile)
         .next-prev
           height 100px

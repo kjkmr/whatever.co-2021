@@ -43,3 +43,45 @@ function extend_tiny_mce_before_init($mce_init)
   return $mce_init;
 }
 add_filter('tiny_mce_before_init', 'extend_tiny_mce_before_init');
+
+function register_prev_post()
+{
+  $prev = get_previous_post(true);
+  if ($prev) {
+    $data = array();
+    $data['id'] = $prev->ID;
+    $data['slug'] = $prev->post_name;
+    $data['title'] = $prev->post_title;
+    return $data;
+  }
+  return null;
+}
+
+function register_next_post()
+{
+  $next = get_next_post(true);
+  if ($next) {
+    $data = array();
+    $data['id'] = $next->ID;
+    $data['slug'] = $next->post_name;
+    $data['title'] = $next->post_title;
+    return $data;
+  }
+  return null;
+}
+
+function api_add_fields()
+{
+  register_rest_field(array('post', 'page'), 'prev', array(
+    'get_callback' => 'register_prev_post',
+    'update_callback' => '',
+    'schema' => null,
+  ));
+  register_rest_field(array('post', 'page'), 'next', array(
+    'get_callback' => 'register_next_post',
+    'update_callback' => '',
+    'schema' => null,
+  ));
+}
+
+add_action('rest_api_init', 'api_add_fields');

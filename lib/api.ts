@@ -80,6 +80,8 @@ export type Entry = {
   content?: string
   tags?: Tag[]
   credit?: Credit[] | null
+  next?: { slug: string, title: string } | null
+  prev?: { slug: string, title: string } | null
 }
 
 
@@ -256,8 +258,20 @@ export async function getNewsByTag(tagSlug: string, maxEntries: number = 100, lo
 }
 
 
+const getRelPost = (data: any) => {
+  if (data) {
+    return {
+      slug: data.slug,
+      title: data.title,
+    }
+  }
+  return null
+}
+
+
 export async function getPostDetails(slug: string, locale: string = 'ja'): Promise<Entry> {
-  const data = (await wp.posts().slug(slug).embed().param({ _fields: 'slug,title,content,date,tags,acf,_links,_embedded', lang: locale }))[0]
+  const data = (await wp.posts().slug(slug).embed().param({ _fields: 'slug,title,content,date,tags,acf,_links,_embedded,next,prev', lang: locale }))[0]
+  console.log(data)
   const tags: { [id: number]: Tag } = {};
   (await getWorkTags(locale)).forEach(t => tags[t.id] = t)
   return {
@@ -272,6 +286,8 @@ export async function getPostDetails(slug: string, locale: string = 'ja'): Promi
     hero_image_mobile: replaceToCDN(findFeaturedMedia(data, 'hero_image_mobile')),
     tags: data.tags.map((t: number) => tags[t]).filter((t: Tag) => t),
     credit: data.acf?.credit ? parseCredit(data.acf.credit) : null,
+    next: getRelPost(data.next),
+    prev: getRelPost(data.prev),
   }
 }
 

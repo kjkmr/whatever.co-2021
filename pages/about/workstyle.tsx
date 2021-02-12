@@ -6,6 +6,7 @@ import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Header, Footer, SectionHeader } from 'components/About'
 import { Grad, GradImg } from 'components/Grad'
+import { NextPrevButtons } from 'components/NextPrevButtons'
 
 const Section1 = () => (
   <>
@@ -329,7 +330,7 @@ const Section3 = () => (
 
 const Workstyle = () => (
   <>
-    <Layout title="About" side="About" backto="/about" footer={<Footer left="Genres" right="Location" />}>
+    <Layout title="About" side="About" backto="/about" footer={<NextPrevButtons leftSub="Whatever" leftTitle="Genres" rightSub="Whatever" rightTitle="Location" />}>
       <div className="workstyle">
         <Header headerMargin={65} title="Workstyle" titleSize={112} titleMargin={10} subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="pict02" imageWidth={586} />
         <Section1 />

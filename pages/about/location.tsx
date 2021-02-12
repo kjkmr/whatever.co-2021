@@ -7,6 +7,7 @@ import { Header, Footer, SectionHeader } from 'components/About'
 import BlackButton from 'components/BlackButton'
 import { Grad, GradImg } from 'components/Grad'
 import { Desktop, Mobile } from 'components/Responsive'
+import { NextPrevButtons } from 'components/NextPrevButtons'
 
 
 const LogoGridDesktop = ({ list, className = '' }: { list: string[], className?: string }) => (
@@ -279,7 +280,7 @@ const Section2 = () => (
 
 const Location = () => (
   <>
-    <Layout title="About" side="About" backto="/about" footer={<Footer left="Workstyle" right="Genres" />}>
+    <Layout title="About" side="About" backto="/about" footer={<NextPrevButtons leftSub="Whatever" leftTitle="Workstyle" rightSub="Whatever" rightTitle="Genres" />}>
       <div className="location">
         <Header headerMargin={79} title="Location" subtitle={t('location_title')!} desc={t('location_description')!} image="pict03" imageWidth={554} imageMargin={5} />
         <Section1 />

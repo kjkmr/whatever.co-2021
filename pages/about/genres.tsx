@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { t, langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
-import { Header, Footer, SectionHeader } from 'components/About'
+import { Header, SectionHeader } from 'components/About'
 import { Grad, GradImg } from 'components/Grad'
 import { NextPrevButtons } from 'components/NextPrevButtons'
 

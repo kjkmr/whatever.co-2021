@@ -230,7 +230,14 @@ export const setupImage = (node: HTMLElement, lighten: boolean = false) => {
   new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
     const entry = entries[0]
     if (!entry.isIntersecting) { return }
-    doAnimeImage(node, fade, slide).onfinish = cleanup
+    const img = node.querySelector('img')
+    if (!img || img.complete) {
+      doAnimeImage(node, fade, slide).onfinish = cleanup
+    } else {
+      img.onload = () => {
+        doAnimeImage(node, fade, slide).onfinish = cleanup
+      }
+    }
     object.unobserve(node)
   }).observe(node)
   return cleanup

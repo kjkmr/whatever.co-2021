@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import { langStyle } from 'lib/i18n'
 import { Grad, GradImg, GradLinkedTextBox } from 'components/Grad'
-import BlackButton from 'components/BlackButton'
 import { Desktop, Mobile } from 'components/Responsive'
 
 type HeaderProps = {

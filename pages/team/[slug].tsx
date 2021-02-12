@@ -11,6 +11,7 @@ import { langStyle, t } from 'lib/i18n'
 import { getOptimized } from 'lib/image'
 import { isMobile } from 'lib/isMobile'
 import { NextPrevButtons } from 'components/NextPrevButtons'
+import LazyLoad from 'react-lazyload'
 
 const PhotoDesktop = ({ src }: { src: string }) => {
   const [scrollY, setScrollY] = useState(0)
@@ -259,7 +260,7 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
     <>
       <Link href={`/news/${entry.slug}`}>
         <a className={langStyle('related-link-item')} onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
-          <GradImg mouseEntered={entered}><img src={getOptimized(entry.hero_image!, 640)} alt="" loading="lazy" /></GradImg>
+          <GradImg mouseEntered={entered}><LazyLoad><img src={getOptimized(entry.hero_image!, 640)} alt="" loading="lazy" /></LazyLoad></GradImg>
           <div><Grad className="item-date" inline>{entry.date}</Grad></div>
           <div><Grad className="item-title" inline><div dangerouslySetInnerHTML={{ __html: entry.title }} /></Grad></div>
         </a>

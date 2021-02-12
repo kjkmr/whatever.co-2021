@@ -6,6 +6,7 @@ import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 import { langStyle } from 'lib/i18n'
 import { getOptimized } from 'lib/image'
+import LazyLoad from 'react-lazyload'
 
 function shuffle<T>(array: T[]) {
   const out = Array.from(array);
@@ -25,7 +26,7 @@ const SingleMember = ({ member: m }: { member: Member }) => {
       <Link href={`/team/${m.slug}`}>
         <a className={langStyle()} onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
           <div>
-            <GradImg mouseEntered={entered}><img src={getOptimized(m.image, 640)} alt="" loading="lazy" /></GradImg>
+            <GradImg mouseEntered={entered}><LazyLoad><img src={getOptimized(m.image, 640)} alt="" loading="lazy" /></LazyLoad></GradImg>
             <div className="text">
               <div><Grad className="region" inline>{m.region.join(' / ')}</Grad></div>
               <div><Grad className="title" inline>{m.title}</Grad></div>

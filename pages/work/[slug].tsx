@@ -7,7 +7,7 @@ import { langStyle } from 'lib/i18n'
 import { getOptimized } from 'lib/image'
 import Layout from 'components/Layout'
 import EntryBody from 'components/EntryBody'
-import { Grad, GradImg, GradLink } from 'components/Grad'
+import { Grad, GradImg, GradLink, GradLinkedTextBox } from 'components/Grad'
 import WorkTag from 'components/WorkTag'
 import { Desktop, Mobile } from 'components/Responsive'
 
@@ -142,7 +142,7 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
     <div className={langStyle('excerpt')}>
       <div className="text">
         <div><Grad className="title" inline><div dangerouslySetInnerHTML={{ __html: title }} /></Grad></div>
-        <div><Grad className="desc" inline><div dangerouslySetInnerHTML={{ __html: description }}></div></Grad></div>
+        <div><Grad className="desc" inline><GradLinkedTextBox html={description} /></Grad></div>
       </div>
       <div className="image">
         <GradImg><img src={getOptimized(image, 1200)} alt="" /></GradImg>

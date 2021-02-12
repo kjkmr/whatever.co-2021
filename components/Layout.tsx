@@ -59,8 +59,10 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
   const templateStyle: { [prop: string]: string } = {}
   if (templateName) {
     templateStyle.backgroundImage = `url(/_/${templateName}_${useRouter().locale!}.png)`
-    // templateStyle.backgroundPosition = 'top 3px left'
+    // templateStyle.backgroundPosition = 'top -20px left'
   }
+  const router = useRouter()
+  const locale = router.locale || router.defaultLocale!
   return (
     <>
       <div>
@@ -71,7 +73,7 @@ const Layout = ({ children, footer, title = '', side = '', backto = '', showHead
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js" integrity="sha512-oAY57i8MXmaOP7pAylNLnULAM4QLV3uGnvnXVY4zF229/zFzTvG2/5YIgH8iN8oZR2hnbkiDPd4JCJGaH4oG6g==" crossOrigin="anonymous"></script>
         </Head>
-        <div className="container" style={templateStyle}>
+        <div className="container" key={locale} style={templateStyle}>
           <div className="contents">
             <div className="main">
               {showHeader ? <Header /> : <div />}

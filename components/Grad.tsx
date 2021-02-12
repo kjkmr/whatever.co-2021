@@ -1,6 +1,7 @@
 import { ReactNode, CSSProperties, useRef, forwardRef } from 'react'
 import classnames from 'classnames'
 import { useLayoutEffect } from 'lib/useLayoutEffect'
+import { isMobile } from 'lib/isMobile';
 
 const COLORS = ["#ff2300", "#ff9201", "#ffeb00", "#89e82b", "#00c745", "#29ebfe", "#0d44fb", "#a725fc", "#fd1eba"];
 export const getColors = (): [string, string] => {
@@ -301,7 +302,7 @@ export const GradImg = ({ children, className, lighten, mouseEntered }: GradImgP
   )
 }
 
-export const setupLink = (node: HTMLElement, border: boolean = true) => {
+export const setupLink = (node: HTMLElement, border: boolean = true, mobile: boolean = false) => {
   node.classList.add('grad-link')
   const [colorA, colorB] = getColors()
   const linearGrad = `linear-gradient(to right, ${colorA}, ${colorB})`
@@ -316,13 +317,17 @@ export const setupLink = (node: HTMLElement, border: boolean = true) => {
     node.style.backgroundImage = ''
     node.classList.remove('grad-link-hover')
   }
-  node.addEventListener('mouseenter', onMouseEnter)
-  node.addEventListener('mouseleave', onMouseLeave)
+  if (!mobile) {
+    node.addEventListener('mouseenter', onMouseEnter)
+    node.addEventListener('mouseleave', onMouseLeave)
+  }
   return () => {
     node.style.borderImage = ''
     node.style.backgroundImage = ''
-    node.removeEventListener('mouseenter', onMouseEnter)
-    node.removeEventListener('mouseleave', onMouseLeave)
+    if (!mobile) {
+      node.removeEventListener('mouseenter', onMouseEnter)
+      node.removeEventListener('mouseleave', onMouseLeave)
+    }
   }
 }
 
@@ -339,7 +344,8 @@ export type GradLinkProps = {
 
 export const GradLink = forwardRef(({ children, className, href, target, rel, inlineBlock = false, border = true, onClick }: GradLinkProps, _ref) => {
   const ref = useRef<HTMLAnchorElement>(null)
-  useLayoutEffect(() => setupLink(ref.current!, border), [])
+  const mobile = isMobile()
+  useLayoutEffect(() => setupLink(ref.current!, border, mobile), [])
   return (
     <>
       <a ref={ref} className={classnames('grad-link', className, { 'inline-block': inlineBlock })} href={href} target={target} rel={rel} onClick={onClick}>{children}</a>
@@ -353,12 +359,13 @@ export const GradLink = forwardRef(({ children, className, href, target, rel, in
 
 export const GradLinkedTextBox = ({ html, className = '' }: { html: string | undefined, className?: string }) => {
   const ref = useRef<HTMLDivElement>(null)
+  const mobile = isMobile()
   useLayoutEffect(() => {
     const cleanups: (() => void)[] = []
     ref.current?.querySelectorAll('a').forEach(a => {
       a.target = '_blank'
       a.rel = 'noopener noreferrer'
-      cleanups.push(setupLink(a))
+      cleanups.push(setupLink(a, true, mobile))
     })
     return () => { cleanups.forEach(c => c()) }
   })

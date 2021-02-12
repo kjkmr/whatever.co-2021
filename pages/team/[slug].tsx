@@ -9,6 +9,7 @@ import { WorkList } from 'components/WorkList'
 import { Desktop, Mobile } from 'components/Responsive'
 import { langStyle, t } from 'lib/i18n'
 import { getOptimized } from 'lib/image'
+import { isMobile } from 'lib/isMobile'
 
 const PhotoDesktop = ({ src }: { src: string }) => {
   const [scrollY, setScrollY] = useState(0)
@@ -67,11 +68,12 @@ const PhotoMobile = ({ src }: { src: string }) => {
 
 const MemberInfo = ({ member }: { member: Member }) => {
   const ref = useRef<HTMLDivElement>(null)
+  const mobile = isMobile()
   useLayoutEffect(() => {
     const cleanups: (() => void)[] = []
     ref.current?.querySelectorAll('a').forEach(a => {
       a.target = '_blank'
-      cleanups.push(setupLink(a))
+      cleanups.push(setupLink(a, true, mobile))
     })
     return () => { cleanups.forEach(c => c()) }
   })

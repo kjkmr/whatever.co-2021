@@ -275,7 +275,6 @@ const getRelPost = (data: any) => {
 
 export async function getPostDetails(slug: string, locale: string = 'ja'): Promise<Entry> {
   const data = (await wp.posts().slug(slug).embed().param({ _fields: 'slug,title,content,date,tags,acf,_links,_embedded,next,prev', lang: locale }))[0]
-  console.log(data)
   const tags: { [id: number]: Tag } = {};
   (await getWorkTags(locale)).forEach(t => tags[t.id] = t)
   return {

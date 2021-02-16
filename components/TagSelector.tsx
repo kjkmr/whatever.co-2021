@@ -8,14 +8,14 @@ import { Grad, getColors } from 'components/Grad'
 const TagItem = ({ name, slug, focused }: { name: string, slug: string, focused: boolean }) => {
   const ref = useRef<HTMLDivElement>(null)
   useLayoutEffect(() => {
-    if (!ref.current) return
+    if (!focused || !ref.current) return
     const [colorA, colorB] = getColors()
     ref.current.style.backgroundImage = `linear-gradient(to right, ${colorA}, ${colorB})`
   })
   return (
     <>
       <li className={classnames('tag-item', { focused })}>
-        <Grad>
+        <Grad interactive>
           <Link href={`/work/category/${slug}`} passHref>
             <a className="inner"><span className="text">{name}</span></a>
           </Link>
@@ -113,14 +113,14 @@ export const TagSelector = ({ tags, active }: { tags?: Tag[], active: string }) 
         max-width calc(1366px - 80px * 3)
         padding 0
         margin 47px auto 97px
+        ol
+          padding 0
+          margin 0
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .tag-selector
           max-width auto
           margin vwpx(22) vwpx(25) 0
-          ol
-            padding 0
-            margin 0
     `}</style>
   </>
 )

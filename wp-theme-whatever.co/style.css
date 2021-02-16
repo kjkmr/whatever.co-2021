@@ -61,6 +61,14 @@ body {
   font-weight: 300;
   color: #000;
 }
+body.index {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 p {
   margin: 2em 0;
 }

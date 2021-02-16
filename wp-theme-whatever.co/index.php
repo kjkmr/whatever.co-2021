@@ -8,38 +8,9 @@
   <?php wp_head(); ?>
 </head>
 
-<body>
-  <div class="container <?php echo ICL_LANGUAGE_CODE ?>">
-    <div class="contents">
-      <div class="menu"></div>
-      <div class="main">
-        <div class="logo"></div>
-        <?php while (have_posts()) : the_post(); ?>
-          <div class="header">
-            <div class="image"><?php the_post_thumbnail() ?></div>
-            <div class="info">
-              <div class="inner">
-                <div class="date"><?php the_date() ?></div>
-                <div class="title"><?php the_title() ?></div>
-                <div class="tags"><span>Tag 1</span><span>Tag 2</span><span>Tag 3</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="excerpt">
-            <div class="text">
-              <div class="title"><?php echo get_field('subtitle') ?: "(subtitle)"; ?></div>
-              <div class="desc"><?php echo Get_field('overview') ?: "(overview)"; ?></div>
-            </div>
-            <div class="image">
-              <img src="<?php echo get_field('side_image')['url'] ?: "http://placehold.jp/24/eeeeee/adadad/562x316.png?text=(image)"; ?>" alt="">
-            </div>
-          </div>
-          <div class="entry-body"><?php the_content(); ?></div>
-        <?php endwhile; ?>
-      </div>
-    </div>
-    <div class="footer"></div>
-    <?php wp_footer(); ?>
+<body class="index">
+  <a href="https://whatever.co/" style="display: block; padding: 0; border: none;"><img src="<?php bloginfo('template_directory'); ?>/images/logo_black.svg" style="width: max(150px, 15vw);"></a>
+  <?php wp_footer(); ?>
 </body>
 
 </html>

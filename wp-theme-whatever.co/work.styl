@@ -1,0 +1,80 @@
+.work
+  .header
+    position relative
+    font-size 0
+    margin-bottom vwpx(60)
+    .image
+      position absolute
+      top 0
+      left 0
+      overflow hidden
+      img
+        width vwpx(1286)
+        height vwpx(1286 / 16 * 9)
+        object-fit cover
+    .info
+      display inline-block
+      position relative
+      margin-top vwpx(610)
+      margin-right 80px
+      .inner
+        background-color white
+        padding-top vwpx(58)
+        padding-left vwpx(80)
+        padding-right vwpx(100)
+        padding-bottom vwpx(60)
+        .date
+          font-size vwpx(16)
+        .title
+          font-size vwpx(60)
+          font-weight bold
+          line-height 1.2
+          margin-top vwpx(29)
+          margin-left vwpx(-6)
+        .tags
+          margin-top vwpx(31)
+          span
+            display inline-block
+            border 1px solid #B4B4B4
+            font-size 1.2rem
+            font-weight 300
+            letter-spacing 0.03em
+            padding 0.9rem 1.0rem 0.7rem
+            margin-right 1.0rem
+            &:last-child
+              margin-right 0
+
+  .excerpt
+    margin-left vwpx(80)
+    margin-bottom vwpx(152)
+    display grid
+    grid-template-columns auto vwpx(562)
+    grid-gap vwpx(80)
+    font-size 0
+    .text
+      .title
+        font-size vwpx(30)
+        font-weight 700
+        line-height 1.8
+        margin-top vwpx(-8)
+        margin-bottom vwpx(42)
+      .desc
+        font-size var(--font-size-ja)
+        line-height 2.0
+    .image img
+      width vwpx(562)
+      height vwpx(562 / 16 * 9)
+      object-fit cover
+
+.en.work
+  .excerpt
+    .text
+      .title
+        font-size vwpx(36)
+        line-height calc(54 / 36)
+        margin-top vwpx(-7)
+      .desc
+        font-size var(--font-size-en)
+        font-weight 200
+        line-height calc(30 / 17)
+        margin-top vwpx(-10)

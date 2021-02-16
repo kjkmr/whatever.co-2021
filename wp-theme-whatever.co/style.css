@@ -128,49 +128,54 @@ figcaption {
 .main .logo {
   height: 80px;
 }
-.header {
+.footer {
+  height: 400px;
+  margin-top: 150px;
+  background-color: #333;
+}
+.work .header {
   position: relative;
   font-size: 0;
   margin-bottom: calc((100vw - 80px) * 0.046656298600311);
 }
-.header .image {
+.work .header .image {
   position: absolute;
   top: 0;
   left: 0;
   overflow: hidden;
 }
-.header .image img {
+.work .header .image img {
   width: calc((100vw - 80px) * 1);
   height: calc((100vw - 80px) * 0.5625);
   object-fit: cover;
 }
-.header .info {
+.work .header .info {
   display: inline-block;
   position: relative;
   margin-top: calc((100vw - 80px) * 0.474339035769829);
   margin-right: 80px;
 }
-.header .info .inner {
+.work .header .info .inner {
   background-color: #fff;
   padding-top: calc((100vw - 80px) * 0.045101088646967);
   padding-left: calc((100vw - 80px) * 0.062208398133748);
   padding-right: calc((100vw - 80px) * 0.077760497667185);
   padding-bottom: calc((100vw - 80px) * 0.046656298600311);
 }
-.header .info .inner .date {
+.work .header .info .inner .date {
   font-size: calc((100vw - 80px) * 0.01244167962675);
 }
-.header .info .inner .title {
+.work .header .info .inner .title {
   font-size: calc((100vw - 80px) * 0.046656298600311);
   font-weight: bold;
   line-height: 1.2;
   margin-top: calc((100vw - 80px) * 0.022550544323484);
   margin-left: calc((100vw - 80px) * -0.004665629860031);
 }
-.header .info .inner .tags {
+.work .header .info .inner .tags {
   margin-top: calc((100vw - 80px) * 0.024105754276827);
 }
-.header .info .inner .tags span {
+.work .header .info .inner .tags span {
   display: inline-block;
   border: 1px solid #b4b4b4;
   font-size: 1.2rem;
@@ -179,10 +184,10 @@ figcaption {
   padding: 0.9rem 1rem 0.7rem;
   margin-right: 1rem;
 }
-.header .info .inner .tags span:last-child {
+.work .header .info .inner .tags span:last-child {
   margin-right: 0;
 }
-.excerpt {
+.work .excerpt {
   margin-left: calc((100vw - 80px) * 0.062208398133748);
   margin-bottom: calc((100vw - 80px) * 0.118195956454121);
   display: grid;
@@ -190,21 +195,64 @@ figcaption {
   grid-gap: calc((100vw - 80px) * 0.062208398133748);
   font-size: 0;
 }
-.excerpt .text .title {
+.work .excerpt .text .title {
   font-size: calc((100vw - 80px) * 0.023328149300156);
   font-weight: 700;
   line-height: 1.8;
   margin-top: calc((100vw - 80px) * -0.006220839813375);
   margin-bottom: calc((100vw - 80px) * 0.032659409020218);
 }
-.excerpt .text .desc {
+.work .excerpt .text .desc {
   font-size: var(--font-size-ja);
   line-height: 2;
 }
-.excerpt .image img {
+.work .excerpt .image img {
   width: calc((100vw - 80px) * 0.43701399688958);
   height: calc((100vw - 80px) * 0.245820373250389);
   object-fit: cover;
+}
+.en.work .excerpt .text .title {
+  font-size: calc((100vw - 80px) * 0.027993779160187);
+  line-height: calc(54 / 36);
+  margin-top: calc((100vw - 80px) * -0.005443234836703);
+}
+.en.work .excerpt .text .desc {
+  font-size: var(--font-size-en);
+  font-weight: 200;
+  line-height: calc(30 / 17);
+  margin-top: calc((100vw - 80px) * -0.007776049766719);
+}
+.news {
+  margin: 0 80px 0;
+  font-size: 0;
+}
+.news .image img {
+  width: calc((100vw - 240px) * 1);
+  height: calc((100vw - 240px) * 0.562166962699822);
+  object-fit: cover;
+}
+.news .white {
+  position: relative;
+  display: inline-block;
+  margin-top: -70px;
+  margin-right: 80px;
+  padding-right: 100px;
+  background-color: #fff;
+}
+.news .white .date {
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin-top: 88px;
+  white-space: pre;
+}
+.news .white .title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 4rem;
+  margin-top: 18px;
+}
+.news .entry-body {
+  margin: 65px auto 0;
 }
 .entry-body {
   max-width: 900px;
@@ -329,22 +377,6 @@ figcaption {
 }
 .entry-body figure.wp-block-embed+.block-images {
   margin-top: var(--margin-between-images);
-}
-.footer {
-  height: 400px;
-  margin-top: 150px;
-  background-color: #333;
-}
-.en .excerpt .text .title {
-  font-size: calc((100vw - 80px) * 0.027993779160187);
-  line-height: calc(54 / 36);
-  margin-top: calc((100vw - 80px) * -0.005443234836703);
-}
-.en .excerpt .text .desc {
-  font-size: var(--font-size-en);
-  font-weight: 200;
-  line-height: calc(30 / 17);
-  margin-top: calc((100vw - 80px) * -0.007776049766719);
 }
 .en .entry-body p,
 .en .entry-body table {

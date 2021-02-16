@@ -6,11 +6,11 @@ const ContactForm = () => (
   <>
     <div className={langStyle('contact-form')}>
       <div><Grad className="text" whiteText inline>{t('contactform_contacthere')}</Grad></div>
-      <div><Grad className="contact" whiteText inline><Link href="/contact"><a>{t('contactform_inquiry')}</a></Link></Grad></div>
+      <div><Grad className="contact" whiteText inline interactive><Link href="/contact"><a>{t('contactform_inquiry')}</a></Link></Grad></div>
       <div className="newsletter">
         <div><Grad className="subscribe" whiteText inline>{t('contactform_register')}</Grad></div>
         <div>
-          <Grad className="form" whiteText inline>
+          <Grad className="form" whiteText inline interactive>
             <form action="https://whatever.us20.list-manage.com/subscribe/post?u=0b31ccc167140375101923bbb&amp;id=c20b8d6b11" method="post">
               <input className="email" type="email" name="EMAIL" placeholder="Email address"></input>
               <input className="submit" type="submit" value="Subscribe" name="subscribe" />
@@ -82,9 +82,6 @@ const ContactForm = () => (
           border none
           vertical-align middle
           cursor pointer
-          &:hover
-            opacity 0.5
-            transition all 0.1s ease-out
       .en
         :global(.text)
           font-size 1.5rem

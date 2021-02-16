@@ -78,6 +78,7 @@ export const NextPrevButtons = ({ leftSub, leftTitle, leftLink, rightSub, rightT
             font-size 1.3rem
             font-weight 400
             letter-spacing 0
+          .whatever + .title
             margin-top 8px
           :global(.left .inner)
             margin-left 30px

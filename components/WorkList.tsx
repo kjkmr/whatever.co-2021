@@ -34,7 +34,6 @@ const LargeWork = ({ work }: { work: Entry }) => {
         .large-work
           grid-column span 2
           grid-row span 2
-          padding-bottom vwpx(77)
           font-size 0
           a
             display block
@@ -89,7 +88,6 @@ const SmallWork = ({ work }: { work: Entry }) => {
         @import 'lib/vw.styl'
         .small-work
           position relative
-          padding-bottom vwpx(78)
           font-size 0
           a
             display block
@@ -184,7 +182,7 @@ export const WorkList = ({ filter, works }: WorkListProps) => (
       .works
         display grid
         grid-template-columns repeat(3, 1fr)
-        column-gap vwpx(77)
+        gap vwpx(77)
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .works

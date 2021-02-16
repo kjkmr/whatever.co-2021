@@ -105,7 +105,6 @@ const MemberInfo = ({ member }: { member: Member }) => {
         .member-info
           position relative
           margin 0
-          margin-bottom vwpx(30)
           font-size 0
           .info
             position relative
@@ -114,8 +113,9 @@ const MemberInfo = ({ member }: { member: Member }) => {
           .inner
             background-color white
             padding vwpx(80)
+            padding-bottom 0
             font-size 0
-            min-height vwpx(500)
+            min-height vwpx(460)
             :global(.region)
               font-size 1.2rem
             :global(.title)
@@ -235,7 +235,7 @@ const RelatedWork = ({ works }: { works: Entry[] }) => (
     <style jsx>{`
       @import 'lib/vw.styl'
       .related-work
-        margin-bottom vwpx(73)
+        margin-top 110px
         font-size 0
         :global(.related-work-title)
           font-size vwpx_min(24)
@@ -254,12 +254,12 @@ const RelatedWork = ({ works }: { works: Entry[] }) => (
 )
 
 
-const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
+const RelatedNewsItem = ({ entry }: { entry: Entry }) => {
   const [entered, setEntered] = useState(false)
   return (
     <>
       <Link href={`/news/${entry.slug}`}>
-        <a className={langStyle('related-link-item')} onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
+        <a className={langStyle('related-news-item')} onMouseEnter={() => setEntered(true)} onMouseLeave={() => setEntered(false)}>
           <GradImg mouseEntered={entered}><LazyLoad><img src={getOptimized(entry.hero_image!, 640)} alt="" loading="lazy" /></LazyLoad></GradImg>
           <div><Grad className="item-date" inline>{entry.date}</Grad></div>
           <div><Grad className="item-title" inline><div dangerouslySetInnerHTML={{ __html: entry.title }} /></Grad></div>
@@ -267,7 +267,7 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
       </Link>
       <style jsx>{`
         @import 'lib/vw.styl'
-        .related-link-item
+        .related-news-item
           display block
           border none
           padding 0
@@ -287,7 +287,7 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
             margin-top 1.2rem
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
-          .related-link-item
+          .related-news-item
             img
               width vwpx(150)
               height vwpx(84)
@@ -298,7 +298,7 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
               font-size 1.3rem
               line-height (42 / 26)
               margin 0.5rem vwpx(10) 0 0
-          .en.related-link-item
+          .en.related-news-item
             :global(.item-title)
               font-size 1.4rem
               line-height (42 / 28)
@@ -308,18 +308,18 @@ const RelatedLinkItem = ({ entry }: { entry: Entry }) => {
 }
 
 
-const RelatedLinks = ({ news }: { news: Entry[] }) => (
+const RelatedNews = ({ news }: { news: Entry[] }) => (
   <>
-    <div className="related-links">
+    <div className="related-news">
       <div><Grad className="title" inline>Related News</Grad></div>
       <div className="list">
-        {news.map(entry => (<RelatedLinkItem key={entry.slug} entry={entry} />))}
+        {news.map(entry => (<RelatedNewsItem key={entry.slug} entry={entry} />))}
       </div>
     </div>
     <style jsx>{`
       @import 'lib/vw.styl'
-      .related-links
-        margin-right 80px
+      .related-news
+        margin vwpx(150) 80px 0 0
         font-size 0
         :global(.title)
           font-size vwpx_min(24)
@@ -334,7 +334,7 @@ const RelatedLinks = ({ news }: { news: Entry[] }) => (
         align-items start
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
-        .related-links
+        .related-news
           margin 7.4rem 0 0 -0.1rem
           :global(.title)
             font-size 1.8rem
@@ -366,20 +366,11 @@ const Footer = ({ member }: { member: Entry }) => (
 
 
 const MemberDetail = ({ member, works, news }: { member: Member, works: Entry[], news: Entry[] }) => (
-  <>
-    <Layout key={member.slug} title={member.name} side="Team" backto="/team" footer={<Footer member={member} />}>
-      <div className="details">
-        <MemberInfo member={member} />
-        {works.length ? <RelatedWork works={works} /> : null}
-        {news.length ? <RelatedLinks news={news} /> : null}
-      </div>
-    </Layout >
-    <style jsx>{`
-      @media (--mobile)
-        .details
-          margin-bottom 6.8rem
-    `}</style>
-  </>
+  <Layout key={member.slug} title={member.name} side="Team" backto="/team" footer={<Footer member={member} />}>
+    <MemberInfo member={member} />
+    {works.length ? <RelatedWork works={works} /> : null}
+    {news.length ? <RelatedNews news={news} /> : null}
+  </Layout >
 )
 
 export default MemberDetail

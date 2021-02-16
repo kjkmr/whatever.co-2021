@@ -170,12 +170,12 @@ export const WorkList = ({ filter, works }: WorkListProps) => (
         const tags = w.tags?.map(t => t.slug)
         if (filter == "all") {
           if (tags?.includes('featured')) {
-            return <LargeWork key={Math.random()} work={w} />
+            return <LargeWork key={w.slug} work={w} />
           } else {
-            return <SmallWork key={Math.random()} work={w} />
+            return <SmallWork key={w.slug} work={w} />
           }
         } else {
-          return <SmallWork key={Math.random()} work={w} />
+          return <SmallWork key={w.slug} work={w} />
         }
       })}
     </div>

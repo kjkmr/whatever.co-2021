@@ -197,22 +197,22 @@ const Tagline = () => (
     <div className={langStyle('tagline')}>
       <Desktop>
         <div className="title-desktop">
-          <Grad className="line1">Make whatever.</Grad>
-          <Grad className="line2">Rules, whatever.</Grad>
+          <Grad className="line1" inline>Make whatever.</Grad>
+          <Grad className="line2" inline>Rules, whatever.</Grad>
         </div>
         <div className="desc">
-          {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index} className="line">{line}</Grad>)}
+          {t('top_whatever')?.split('\n').map((line, index) => <Grad key={index} className="line" inline>{line}</Grad>)}
         </div>
       </Desktop>
       <Mobile>
         <div className="title-mobile">
-          <Grad className="line1">Make</Grad>
-          <Grad className="line2">whatever.</Grad>
-          <Grad className="line1">Rules,</Grad>
-          <Grad className="line2">whatever.</Grad>
+          <Grad className="line1" inline>Make</Grad>
+          <Grad className="line2" inline>whatever.</Grad>
+          <Grad className="line1" inline>Rules,</Grad>
+          <Grad className="line2" inline>whatever.</Grad>
         </div>
         <div className="desc">
-          {t('top_whatever_sp')?.split('\n').map((line, index) => <Grad key={index} className="line">{line}</Grad>)}
+          {t('top_whatever_sp')?.split('\n').map((line, index) => <Grad key={index} className="line" inline>{line}</Grad>)}
         </div>
       </Mobile>
       <div className="link">

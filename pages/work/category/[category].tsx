@@ -12,7 +12,7 @@ type WorkIndexProps = {
 }
 
 const WorkIndex = ({ tags, active, works }: WorkIndexProps) => (
-  <Layout title="Work" side="Work">
+  <Layout key={active} title="Work" side="Work">
     <TagSelector tags={tags.filter(tag => tag.slug != 'featured')} active={active} />
     <Desktop><WorkList works={works} filter={active} /></Desktop>
     <Mobile><WorkListSingleCulumn works={works} /> </Mobile>

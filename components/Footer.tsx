@@ -17,7 +17,7 @@ const Footer = ({ addMargin = false }: { addMargin: boolean }) => (
       <ContactForm />
       <hr className="line" />
       <div className="sns">
-        <div><Grad className="sns-buttons" whiteText inline><SNSButtons /></Grad></div>
+        <div className="sns-buttons"><SNSButtons /></div>
         <div className="copyright"><Grad className="copyright-inner" whiteText inline>© Whatever Inc.</Grad></div>
       </div>
       <div className="pagetop"><hr /><span onClick={toTop}>Page Top</span></div>
@@ -59,6 +59,9 @@ const Footer = ({ addMargin = false }: { addMargin: boolean }) => (
         letter-spacing 0.07em
         transform rotate(90deg)
         transform-origin top right
+        &:hover
+          opacity 0.5
+          transition all 0.1s ease-out
         hr
           display inline-block
           width 40px

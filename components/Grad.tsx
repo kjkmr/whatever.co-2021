@@ -13,7 +13,7 @@ export const getColors = (): [string, string] => {
   return [COLORS[i], COLORS[j]]
 }
 
-const _setup = (base: Element, colorA: string, colorB: string): [Element, Element] => {
+const _setup = (base: Element, colorA: string, colorB: string): [HTMLElement, HTMLElement] => {
   base.classList.add('grad-effect-base')
   const fade = document.createElement('div')
   fade.classList.add('grad-effect-fade')
@@ -97,7 +97,7 @@ const doAnime = (base: Element, fade: Element, slide: Element, duration: number 
   )
 }
 
-export const setup = (base: HTMLElement, whiteText: boolean = false, inline: boolean = true, startImmediately: boolean = false): () => void => {
+export const setup = (base: HTMLElement, whiteText: boolean = false, inline: boolean = true, startImmediately: boolean = false, interactive: boolean = false): () => void => {
   const [colorA, colorB] = getColors()
   const [fade, slide] = _setup(base, colorA, colorB)
   if (whiteText) {
@@ -107,15 +107,65 @@ export const setup = (base: HTMLElement, whiteText: boolean = false, inline: boo
   if (inline) {
     base.style.display = 'inline-block'
   }
+  const els: HTMLDivElement[] = []
+  const onMouseEnter = () => {
+    const fade = document.createElement('div')
+    fade.classList.add('grad-effect-fade')
+    if (whiteText) {
+      fade.classList.add('grad-effect-multiply')
+    }
+    fade.style.backgroundImage = `url(/noise.png), linear-gradient(to right, ${colorA}, ${colorB})`
+    fade.style.visibility = 'visible'
+    base.appendChild(fade)
+    els.push(fade)
+    fade.animate(
+      [
+        { left: '-100%', easing: 'cubic-bezier(0.80, 0.000, 0.200, 1.0)' },
+        { left: '0%' },
+      ],
+      {
+        duration: 125,
+        iterations: 1,
+        fill: "both"
+      }
+    )
+  }
+  const onMouseLeave = () => {
+    const el = els.shift()
+    if (!el) return
+    el.animate(
+      [
+        { left: '100%', easing: 'cubic-bezier(0.80, 0.000, 0.200, 1.0)' },
+      ],
+      {
+        duration: 125,
+        iterations: 1,
+        fill: "both"
+      }
+    ).onfinish = () => {
+      el.parentNode?.removeChild(el)
+    }
+  }
   const cleanup = () => {
     fade.parentNode?.removeChild(fade)
     slide.parentNode?.removeChild(slide)
     base.classList.remove('grad-effect-base')
+    base.removeEventListener('mouseenter', onMouseEnter)
+    base.removeEventListener('mouseleave', onMouseLeave)
   }
   new IntersectionObserver((entries: IntersectionObserverEntry[], object: IntersectionObserver) => {
     const entry = entries[0]
     if (!entry.isIntersecting) { return }
-    doAnime(base, fade, slide, 250, startImmediately).onfinish = cleanup
+    doAnime(base, fade, slide, 250, startImmediately).onfinish = () => {
+      fade.parentNode?.removeChild(fade)
+      slide.parentNode?.removeChild(slide)
+      if (interactive) {
+        base.addEventListener('mouseenter', onMouseEnter)
+        base.addEventListener('mouseleave', onMouseLeave)
+      } else {
+        base.classList.remove('grad-effect-base')
+      }
+    }
     object.unobserve(base)
   }).observe(base)
   return cleanup
@@ -128,11 +178,13 @@ export type GradProps = {
   whiteText?: boolean
   inline?: boolean
   startImmediately?: boolean
+  interactive?: boolean
 }
 
-export const Grad = ({ children, className, style, whiteText = false, inline = false, startImmediately = false }: GradProps) => {
+export const Grad = ({ children, className, style, whiteText = false, inline = false, startImmediately = false, interactive = false }: GradProps) => {
   const ref = useRef<HTMLDivElement>(null)
-  useLayoutEffect(() => setup(ref.current!, whiteText, inline, startImmediately), [])
+  const mobile = isMobile()
+  useLayoutEffect(() => setup(ref.current!, whiteText, inline, startImmediately, interactive && !mobile), [])
   return (
     <div ref={ref} className={className} style={style}>
       {children}

@@ -133,7 +133,13 @@ const Showreel = () => {
       <div ref={showreel} className="showreel">
         <div ref={videoContainer} className="video">
           <GradImg>
-            <video ref={video} src="/index/reel-preview.mp4" autoPlay playsInline loop muted></video>
+            <div className="inner">
+              <Desktop><video ref={video} src="/index/reel2019.mp4" autoPlay playsInline loop muted></video></Desktop>
+              <Mobile><video ref={video} src="/index/reel2019-sp.mp4" autoPlay playsInline loop muted></video></Mobile>
+              <div className="logo">
+                <video src="/index/reel-logo.mp4" autoPlay playsInline loop muted></video>
+              </div>
+            </div>
           </GradImg>
         </div>
         <div className="watch-reel">
@@ -154,10 +160,24 @@ const Showreel = () => {
             left 80px
             height var(--video-height, calc(100vh - 40px))
             overflow hidden
-          video
-            width calc(100vw - 80px)
-            height calc(100vh - 40px)
-            object-fit cover
+            .inner
+              position relative
+              width calc(100vw - 80px)
+              height calc(100vh - 40px)
+              >video, >.logo
+                position absolute
+                top 0
+                left 0
+                width 100%
+                height 100%
+                object-fit cover
+              >.logo
+                mix-blend-mode screen
+                display flex
+                justify-content center
+                align-items center
+                > video
+                  max-width (1024 / 1920 * 100)%
           .watch-reel
             position absolute
             width 256px
@@ -177,9 +197,14 @@ const Showreel = () => {
               height var(--video-height, 100vh)
               :global(>div)
                 height 100%
-            video
-              width 100vw
-              height fill
+              .inner
+                width 100vw
+                height fill
+                video
+                  width 100vw
+                  height fill
+                >.logo >video
+                  max-width 100%
             .watch-reel
               width 187px
               height 70px

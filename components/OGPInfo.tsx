@@ -5,8 +5,8 @@ import { useRouter } from 'next/router'
 export type OGPProps = {
   title: string
   type?: string
-  image: string
-  desc: string
+  image?: string
+  desc?: string
 }
 
 const htmlToText = (html: string) => {
@@ -22,6 +22,7 @@ export const OGPInfo = ({ title, type = "article", image, desc }: OGPProps) => {
   const router = useRouter()
   let locale = router.locale || router.defaultLocale!
   locale = LOCALES[locale] || locale
+  image = image || '/index/OGimage.png'
   const fullpath = image.match(/^https?:\/\//) ? image : 'https://whatever.co' + image
   return (
     <Head>
@@ -30,7 +31,7 @@ export const OGPInfo = ({ title, type = "article", image, desc }: OGPProps) => {
       <meta property="og:url" content={`https://whatever.co${router.asPath}`} />
       <meta property="og:image" content={fullpath} />
       <meta property="og:site_name" content="Whatever Inc." />
-      <meta property="og:description" content={htmlToText(desc)} />
+      <meta property="og:description" content={htmlToText(desc || '')} />
       <meta property="og:locale" content={locale} />
       <meta property="fb:app_id" content="3742059709197110" />
       <meta name="twitter:card" content="summary_large_image" />

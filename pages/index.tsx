@@ -597,7 +597,7 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
 
 const IndexPage = ({ works, news }: { works: Entry[], news: Entry[] }) => (
   <Layout showHeader={false} footer={<LatestNews news={news} />}>
-    <OGPInfo title="Whatever Inc." type="website" image="/index/OGimage.png" desc={t('top_whatever')!} />
+    <OGPInfo title="Whatever Inc." type="website" desc={t('top_whatever')!} />
     <Showreel />
     <Tagline />
     <FeaturedWorks works={works} />

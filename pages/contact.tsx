@@ -4,6 +4,7 @@ import Layout from 'components/Layout'
 import BlackButton from 'components/BlackButton'
 import { Grad, GradImg, GradLink } from 'components/Grad'
 import { Desktop, Mobile } from 'components/Responsive'
+import { OGPInfo } from 'components/OGPInfo'
 
 const Head = () => (
   <>
@@ -170,6 +171,7 @@ const ContactPage = () => {
   })
   return (
     <Layout title="Contact" side="Contact">
+      <OGPInfo title="Contact ― Whatever Inc." />
       <Head />
       <div className="address">
         {addresses.map((data: any) => <Address key={data.name} data={data} />)}

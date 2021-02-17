@@ -8,6 +8,7 @@ import { langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
 import { getOptimized } from 'lib/image'
+import { OGPInfo } from 'components/OGPInfo'
 
 const removeHtmlTags = (html: string) => html.replace(/<\/?[^>]+(>|$)/g, "")
 
@@ -107,6 +108,7 @@ const NewsIndex = ({ entries }: { entries: Entry[] }) => {
   const locale = useRouter().locale || ''
   return (
     <>
+      <OGPInfo title="News ― Whatever Inc." />
       <Layout title="News" side="News">
         <div className="news-index">
           {entries.map(entry => <NewsItem key={entry.slug + locale} entry={entry} />)}

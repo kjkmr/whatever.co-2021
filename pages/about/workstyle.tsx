@@ -7,6 +7,7 @@ import Layout from 'components/Layout'
 import { Header, SectionHeader } from 'components/About'
 import { Grad, GradImg } from 'components/Grad'
 import { NextPrevButtons } from 'components/NextPrevButtons'
+import { OGPInfo } from 'components/OGPInfo'
 
 const Section1 = () => (
   <>
@@ -330,6 +331,7 @@ const Section3 = () => (
 
 const Workstyle = () => (
   <>
+    <OGPInfo title="Workstyle ― Whatever Inc." />
     <Layout title="About" side="About" backto="/about" footer={<NextPrevButtons leftSub="Whatever" leftTitle="Genres" leftLink="/about/genres" rightSub="Whatever" rightTitle="Location" rightLink="/about/location" />}>
       <div className="workstyle">
         <Header headerMargin={65} title="Workstyle" titleSize={112} titleMargin={10} subtitle={t('workstyle_title')!} desc={t('workstyle_description')!} image="pict02" imageWidth={586} />

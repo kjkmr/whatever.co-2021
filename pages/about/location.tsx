@@ -10,6 +10,7 @@ import BlackButton from 'components/BlackButton'
 import { Grad, GradImg } from 'components/Grad'
 import { Desktop, Mobile } from 'components/Responsive'
 import { NextPrevButtons } from 'components/NextPrevButtons'
+import { OGPInfo } from 'components/OGPInfo'
 
 
 const LogoGridDesktop = ({ list, className = '' }: { list: string[], className?: string }) => (
@@ -279,6 +280,7 @@ const Section2 = ({ members }: { members: Member[] }) => (
 
 const Location = ({ members }: { members: Member[] }) => (
   <>
+    <OGPInfo title="Location ― Whatever Inc." />
     <Layout title="About" side="About" backto="/about" footer={<NextPrevButtons leftSub="Whatever" leftTitle="Workstyle" leftLink="/about/workstyle" rightSub="Whatever" rightTitle="Genres" rightLink="/about/genres" />}>
       <div className="location">
         <Header headerMargin={79} title="Location" subtitle={t('location_title')!} desc={t('location_description')!} image="pict03" imageWidth={554} imageMargin={5} />

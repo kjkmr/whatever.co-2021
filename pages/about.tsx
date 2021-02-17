@@ -5,6 +5,7 @@ import { Grad, GradImg } from 'components/Grad'
 import BlackButton from 'components/BlackButton'
 import React from 'react'
 import { Desktop, Mobile } from 'components/Responsive'
+import { OGPInfo } from 'components/OGPInfo'
 
 const Detail = ({ title }: { title: string }) => {
   const key = title.toLowerCase()
@@ -224,6 +225,7 @@ const Location = () => (
 
 const AboutPage = () => (
   <>
+    <OGPInfo title="About ― Whatever Inc." />
     <Layout title="About" side="About">
       <div className={langStyle('about')}>
         <Desktop>

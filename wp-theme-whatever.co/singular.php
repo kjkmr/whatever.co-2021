@@ -1,3 +1,9 @@
+<?php
+if (!is_user_logged_in()) {
+  wp_redirect('https://whatever.co');
+  exit;
+}
+?>
 <html>
 
 <head>
@@ -27,7 +33,8 @@
       </div>
     </div>
     <div class="footer"></div>
-    <?php wp_footer(); ?>
+  </div>
+  <?php wp_footer(); ?>
 </body>
 
 </html>

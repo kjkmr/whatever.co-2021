@@ -7,6 +7,7 @@ import { Grad, GradImg } from 'components/Grad'
 import { langStyle } from 'lib/i18n'
 import { getOptimized } from 'lib/image'
 import LazyLoad from 'react-lazyload'
+import { OGPInfo } from 'components/OGPInfo'
 
 function shuffle<T>(array: T[]) {
   const out = Array.from(array);
@@ -94,6 +95,7 @@ const TeamIndex = ({ members }: { members: Member[] }) => {
   useEffect(() => { setShuffled(shuffle(members)) }, [])
   return (
     <>
+      <OGPInfo title="Team ― Whatever Inc." />
       <Layout title="Team" side="Team">
         <div className="team-index">
           {shuffled.map(m => <SingleMember key={m.slug} member={m} />)}

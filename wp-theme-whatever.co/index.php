@@ -3,6 +3,9 @@
 <head>
   <meta charSet="utf-8" />
   <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+  <?php if (is_user_logged_in()) : ?>
+    <meta http-equiv="refresh" content="0; URL=<?php echo admin_url(); ?>">
+  <?php endif; ?>
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.2/web-animations.min.js" integrity="sha512-oAY57i8MXmaOP7pAylNLnULAM4QLV3uGnvnXVY4zF229/zFzTvG2/5YIgH8iN8oZR2hnbkiDPd4JCJGaH4oG6g==" crossOrigin="anonymous"></script>
   <?php wp_head(); ?>

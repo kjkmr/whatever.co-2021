@@ -42,10 +42,15 @@ export async function loadResources() {
   return
 }
 
-export function t(key: string, returnKeyIfNotFound: boolean = true): string | undefined {
+
+const getCurrentLocale = () => {
+  const router = useRouter()
+  return router.locale || router.defaultLocale!
+}
+
+export function t(key: string, returnKeyIfNotFound: boolean = true, locale: string = ''): string | undefined {
   if (STRINGS.hasOwnProperty(key)) {
-    const router = useRouter()
-    const lang = router.locale || router.defaultLocale!
+    const lang = locale ? locale : getCurrentLocale()
     const i = LANGS?.findIndex(c => c === lang)
     if (i !== undefined && STRINGS[key][i]) {
       return STRINGS[key][i]

@@ -172,9 +172,9 @@ export async function getAllMembers(maxCount: number = 100, locale: string = 'ja
 }
 
 
-export async function getMemberDetail(slug: string, locale: string = 'ja'): Promise<Member> {
+export async function getMemberDetail(slug: string, locale: string = 'ja'): Promise<Member | null> {
   const data = (await wp.pages().slug(slug).embed().param({ lang: locale }))[0]
-  return {
+  return data ? {
     slug,
     name: data.title.rendered,
     title: data.acf.title,
@@ -185,7 +185,7 @@ export async function getMemberDetail(slug: string, locale: string = 'ja'): Prom
     coCreator: data.acf['co-creator'],
     next: getRelPost(data.next),
     prev: getRelPost(data.prev),
-  }
+  } : null
 }
 
 

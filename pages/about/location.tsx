@@ -2,6 +2,8 @@ import { useRef, useState, useEffect } from 'react'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { t, langStyle } from 'lib/i18n'
+import { getMemberDetail, Member } from 'lib/api'
+import { getOptimized } from 'lib/image'
 import Layout from 'components/Layout'
 import { Header, SectionHeader } from 'components/About'
 import BlackButton from 'components/BlackButton'
@@ -167,7 +169,7 @@ const Section1 = () => (
   </>
 )
 
-const Member = ({ image, title, name, slug }: { image: string, title: string, name: string, slug: string }) => {
+const MemberLink = ({ member }: { member: Member }) => {
   const ref = useRef<HTMLAnchorElement>(null)
   const [entered, setEntered] = useState(false)
   useEffect(() => {
@@ -183,11 +185,11 @@ const Member = ({ image, title, name, slug }: { image: string, title: string, na
   }, [])
   return (
     <>
-      <Link href={`/team/${slug}`}>
+      <Link href={`/team/${member.slug}`}>
         <a ref={ref} className={langStyle('member')}>
-          <div><GradImg mouseEntered={entered}><img src={`/about/location/${image}@2x.jpg`} alt="" /></GradImg></div>
-          <div><Grad className="title" inline>{title}</Grad></div>
-          <div><Grad className="name" inline>{name}</Grad></div>
+          <div><GradImg mouseEntered={entered}><img src={getOptimized(member.image, 640)} alt="" /></GradImg></div>
+          <div><Grad className="title" inline>{member.title}</Grad></div>
+          <div><Grad className="name" inline>{member.name}</Grad></div>
         </a>
       </Link>
       <style jsx>{`
@@ -228,15 +230,12 @@ const Member = ({ image, title, name, slug }: { image: string, title: string, na
   )
 }
 
-const Section2 = () => (
+const Section2 = ({ members }: { members: Member[] }) => (
   <>
     <div className={langStyle('section2')}>
       <SectionHeader num="02" title={t('location_2_title')!} body={t('location_2_body')!} />
       <div className="members">
-        {t('location_2_members')?.split('\n\n').map(member => {
-          const [title, name, link] = member.split('\n')
-          return <Member key={link} image={link} title={title} name={name} slug={link} />
-        })}
+        {members.map(member => member ? <MemberLink key={member.slug} member={member} /> : null)}
       </div>
       <div className="link"><BlackButton link="/team" >All Members</BlackButton></div>
     </div>
@@ -278,13 +277,13 @@ const Section2 = () => (
   </>
 )
 
-const Location = () => (
+const Location = ({ members }: { members: Member[] }) => (
   <>
     <Layout title="About" side="About" backto="/about" footer={<NextPrevButtons leftSub="Whatever" leftTitle="Workstyle" leftLink="/about/workstyle" rightSub="Whatever" rightTitle="Genres" rightLink="/about/genres" />}>
       <div className="location">
         <Header headerMargin={79} title="Location" subtitle={t('location_title')!} desc={t('location_description')!} image="pict03" imageWidth={554} imageMargin={5} />
         <Section1 />
-        <Section2 />
+        <Section2 members={members} />
       </div>
     </Layout>
     <style jsx>{`
@@ -298,6 +297,11 @@ const Location = () => (
 
 export default Location
 
-export const getStaticProps: GetStaticProps = async () => {
-  return { props: {} }
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
+  const slugs = t('location_2_members', false, locale)!.split(',')
+  const members = await Promise.all(slugs.map(slug => getMemberDetail(slug, locale)))
+  return {
+    props: { members },
+    revalidate: 60 * 15,
+  }
 }

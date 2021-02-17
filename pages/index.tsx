@@ -11,6 +11,7 @@ import WorkTag from 'components/WorkTag'
 import { Grad, GradImg } from 'components/Grad'
 import { Desktop, Mobile } from 'components/Responsive'
 import { getOptimized } from 'lib/image'
+import { OGPInfo } from 'components/OGPInfo'
 
 const Player = ({ onClick }: { onClick?: any }) => (
   <>
@@ -596,6 +597,7 @@ const LatestNews = ({ news }: { news: Entry[] }) => (
 
 const IndexPage = ({ works, news }: { works: Entry[], news: Entry[] }) => (
   <Layout showHeader={false} footer={<LatestNews news={news} />}>
+    <OGPInfo title="Whatever Inc." type="website" image="/index/OGimage.png" desc={t('top_whatever')!} />
     <Showreel />
     <Tagline />
     <FeaturedWorks works={works} />

@@ -12,6 +12,7 @@ import { getOptimized } from 'lib/image'
 import { isMobile } from 'lib/isMobile'
 import { NextPrevButtons } from 'components/NextPrevButtons'
 import LazyLoad from 'react-lazyload'
+import { OGPInfo } from 'components/OGPInfo'
 
 const PhotoDesktop = ({ src }: { src: string }) => {
   const [scrollY, setScrollY] = useState(0)
@@ -366,11 +367,14 @@ const Footer = ({ member }: { member: Entry }) => (
 
 
 const MemberDetail = ({ member, works, news }: { member: Member, works: Entry[], news: Entry[] }) => (
-  <Layout key={member.slug} title={member.name} side="Team" backto="/team" footer={<Footer member={member} />}>
-    <MemberInfo member={member} />
-    {works.length ? <RelatedWork works={works} /> : null}
-    {news.length ? <RelatedNews news={news} /> : null}
-  </Layout >
+  <>
+    <OGPInfo title={`${member.name} ― ${member.title}`} image={member.image} desc={member.content!} />
+    <Layout key={member.slug} title={member.name} side="Team" backto="/team" footer={<Footer member={member} />}>
+      <MemberInfo member={member} />
+      {works.length ? <RelatedWork works={works} /> : null}
+      {news.length ? <RelatedNews news={news} /> : null}
+    </Layout >
+  </>
 )
 
 export default MemberDetail

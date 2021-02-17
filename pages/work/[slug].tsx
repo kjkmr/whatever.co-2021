@@ -358,9 +358,9 @@ const Footer = ({ work }: { work: Entry }) => (
   </>
 )
 
-const WorkDetail = ({ work, locale }: { work: Entry, locale: string }) => (
+const WorkDetail = ({ work }: { work: Entry }) => (
   <>
-    <OGPInfo title={work.title} url={''} image={work.hero_image!} desc={[work.subtitle, work.overview, work.content].join(' ')} locale={locale} />
+    <OGPInfo title={work.title} image={work.hero_image!} desc={[work.subtitle, work.overview, work.content].join(' ')} />
     <Layout key={work.slug} title={work.title} side="Work" backto="/work/category/all" footer={<Footer work={work} />}>
       <Header work={work} />
       {work.subtitle ? <Excerpt title={work.subtitle || '(Subtitle)'} description={work.overview || '(Overview)'} image={work.side_image || ''} /> : null}
@@ -393,7 +393,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const work = await getPostDetails(params?.slug as string, locale)
   return {
-    props: { work, locale },
+    props: { work },
     revalidate: 60 * 10,
   }
 }

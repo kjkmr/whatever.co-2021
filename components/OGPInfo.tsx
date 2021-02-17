@@ -16,14 +16,18 @@ const htmlToText = (html: string) => {
   return entityDecoded
 }
 
+const LOCALES: { [locale: string]: string } = { 'ja': 'ja_JP', 'en': 'en_US', 'zh-hant': 'zh_TW' }
+
 export const OGPInfo = ({ title, type = "article", image, desc }: OGPProps) => {
   const router = useRouter()
-  const locale = router.locale || router.defaultLocale!
+  let locale = router.locale || router.defaultLocale!
+  locale = LOCALES[locale] || locale
   const fullpath = image.match(/^https?:\/\//) ? image : 'https://whatever.co' + image
   return (
     <Head>
       <meta property="og:title" content={title} />
       <meta property="og:type" content={type} />
+      <meta property="og:url" content={router.asPath} />
       <meta property="og:image" content={fullpath} />
       <meta property="og:site_name" content="Whatever Inc." />
       <meta property="og:description" content={htmlToText(desc)} />

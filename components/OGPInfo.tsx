@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { decode } from 'html-entities'
 import { useRouter } from 'next/router'
-import { getOptimized } from 'lib/image'
 
 export type OGPProps = {
   title: string
@@ -20,11 +19,12 @@ const htmlToText = (html: string) => {
 export const OGPInfo = ({ title, type = "article", image, desc }: OGPProps) => {
   const router = useRouter()
   const locale = router.locale || router.defaultLocale!
+  const fullpath = image.match(/^https?:\/\//) ? image : 'https://whatever.co' + image
   return (
     <Head>
       <meta property="og:title" content={title} />
       <meta property="og:type" content={type} />
-      <meta property="og:image" content={getOptimized(image, 2048, 100)} />
+      <meta property="og:image" content={fullpath} />
       <meta property="og:site_name" content="Whatever Inc." />
       <meta property="og:description" content={htmlToText(desc)} />
       <meta property="og:locale" content={locale} />

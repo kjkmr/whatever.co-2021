@@ -26,7 +26,7 @@ export const OGPInfo = ({ title, type = "article", image, desc }: OGPProps) => {
   const fullpath = image.match(/^https?:\/\//) ? image : 'https://whatever.co' + image
   return (
     <Head>
-      <meta property="og:title" content={title} />
+      <meta property="og:title" content={htmlToText(title)} />
       <meta property="og:type" content={type} />
       <meta property="og:url" content={`https://whatever.co${router.asPath}`} />
       <meta property="og:image" content={fullpath} />

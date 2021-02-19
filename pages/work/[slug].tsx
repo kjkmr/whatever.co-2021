@@ -139,12 +139,12 @@ const Header = ({ work }: { work: Entry }) => {
   )
 }
 
-const Excerpt = ({ title, description, image }: { title: string, description: string, image: string }) => (
+const Excerpt = ({ title, description, image }: { title?: string, description: string, image: string }) => (
   <>
     <div className={langStyle('excerpt')}>
       <div className="text">
-        <div><Grad className="title" inline><div dangerouslySetInnerHTML={{ __html: title }} /></Grad></div>
-        <div><Grad className="desc" inline><GradLinkedTextBox html={description} /></Grad></div>
+        {title ? <div><Grad className="title" inline><div dangerouslySetInnerHTML={{ __html: title }} /></Grad></div> : null}
+        <div><Grad className="desc" inline><GradLinkedTextBox html={description.replace(/<p>(\s|&nbsp;)+?<\/p>/gm, '')} /></Grad></div>
       </div>
       <div className="image">
         <GradImg><img src={getOptimized(image, 1200)} alt="" /></GradImg>
@@ -154,7 +154,7 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
       @import 'lib/vw.styl'
       .excerpt
         margin-left vwpx(80)
-        margin-bottom vwpx(152)
+        margin-bottom vwpx(146)
         display grid
         grid-template-columns auto vwpx(562)
         grid-gap vwpx(80)
@@ -167,6 +167,7 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
             margin-top vwpx(-8)
             margin-bottom vwpx(42)
           :global(.desc)
+            margin-top -2em
             font-size var(--font-size-ja)
             line-height 2.0
         .image img
@@ -179,11 +180,11 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
             font-size vwpx(36)
             line-height (54 / 36)
             margin-top vwpx(-7)
+            margin-bottom vwpx(32)
           :global(.desc)
             font-size var(--font-size-en)
             font-weight 200
             line-height (30 / 17)
-            margin-top vwpx(-10)
       @media (--mobile)
         @import 'lib/vw-mobile.styl'
         .excerpt
@@ -193,12 +194,12 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
             :global(.title)
               font-size 1.7rem
               line-height 1.8
+              margin-bottom 1.5rem
             :global(.desc)
               font-size 1.3rem
               line-height (52 / 26)
-              margin-top 0.55rem
           .image
-            margin 7.2rem -30px 0 -50px
+            margin 4.6rem -30px 0 -50px
             img
               width vwpx(375)
               height vwpx(375 / 16 * 9)
@@ -208,10 +209,10 @@ const Excerpt = ({ title, description, image }: { title: string, description: st
             :global(.title)
               font-size 2.0rem
               line-height (54 / 40)
+              margin-bottom 1.7rem
             :global(.desc)
               font-size 1.4rem
               line-height (50 / 28)
-              margin-top 0.55rem
     `}</style>
   </>
 )
@@ -363,7 +364,7 @@ const WorkDetail = ({ work }: { work: Entry }) => (
     <OGPInfo title={work.title} image={work.hero_image!} desc={[work.subtitle, work.overview, work.content].join(' ')} />
     <Layout key={work.slug} title={work.title} side="Work" backto="/work/category/all" footer={<Footer work={work} />}>
       <Header work={work} />
-      {work.subtitle ? <Excerpt title={work.subtitle || '(Subtitle)'} description={work.overview || '(Overview)'} image={work.side_image || ''} /> : null}
+      {work.overview && work.side_image ? <Excerpt title={work.subtitle} description={work.overview} image={work.side_image} /> : null}
       <div className="body"><EntryBody content={work.content!} /></div>
       <Credits credit={work.credit || []} />
     </Layout >

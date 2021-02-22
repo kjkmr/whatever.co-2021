@@ -90,6 +90,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const entry = await getPostDetails(params?.slug as string, locale)
+  if (!entry) {
+    return { notFound: true }
+  }
   return {
     props: { entry },
     revalidate: 60 * 10,

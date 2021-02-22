@@ -37,6 +37,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const active = params?.category as string
   const tags = await getWorkTags(locale!)
+  if (active != 'all' && !tags.find(t => t.slug == active)) {
+    return { notFound: true }
+  }
   const works = active == 'all' ? (await getAllWorks(locale)) : (await getWorksByTag(active, 100, locale))
   return {
     props: { tags, active, works },

@@ -391,6 +391,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const slug: string = params?.slug as string
   const member = await getMemberDetail(slug, locale)
+  if (!member) {
+    return { notFound: true }
+  }
   const works = await getWorksByTag(slug, 100, locale)
   const news = await getNewsByTag(slug, 100, locale)
   return {

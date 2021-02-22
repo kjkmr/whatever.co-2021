@@ -5,7 +5,7 @@ import { Grad } from 'components/Grad'
 
 const NotFoundPage = () => (
   <>
-    <Layout title="Contact">
+    <Layout title="Page not found">
       <div className="not-found">
         <div><Grad><div className="title">Page not found</div></Grad></div>
         <div className="button"><BlackButton link="/">Back to Top</BlackButton></div>

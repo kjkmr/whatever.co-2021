@@ -328,7 +328,7 @@ const FeaturedWorkItem = ({ work }: { work: Entry }) => {
               <div><Grad className="title" inline><span dangerouslySetInnerHTML={{ __html: work.title }}></span></Grad></div>
             </div>
             <div><Grad className="subtitle" inline>{work.subtitle}</Grad></div>
-            <div><Grad className="overview" inline><div className="inner">{removeHtmlTags(work.overview || '')}</div></Grad></div>
+            <div><Grad className="overview" inline><div className="inner" dangerouslySetInnerHTML={{ __html: removeHtmlTags(work.overview || '') }}></div></Grad></div>
             <div><Grad className="tags" inline>
               <div>{work.tags?.filter(tag => tag.slug != 'featured').map((tag: Tag) => <WorkTag key={tag.slug} tag={tag} />)}</div>
             </Grad></div>

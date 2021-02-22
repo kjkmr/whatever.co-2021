@@ -3,11 +3,13 @@ import Link from 'next/link'
 import classnames from 'classnames'
 
 const LangLink = ({ lang, label, activeColor, inactiveColor, onSelected }: { lang: string, label: string, activeColor: string, inactiveColor: string, onSelected: any }) => {
-  const { locale, pathname, query } = useRouter()
+  const { locale, pathname } = useRouter()
   return (
     <>
       { locale != lang
-        ? <Link href={{ pathname, query }} locale={lang}><a onClick={onSelected}>{label}</a></Link>
+        ? (pathname == "/"
+          ? <a href={`/${lang}/`}>{label}</a>
+          : <Link href={{ pathname }} locale={lang}><a onClick={onSelected}>{label}</a></Link>)
         : <span style={{ color: activeColor }}>{label}</span>}
       <style jsx>{`
         a

@@ -251,7 +251,7 @@ const CreditMember = ({ member }: { member: Person }) => {
           :global(.name)
             font-size var(--font-size-en)
             font-weight 200
-            line-height (20 / 17)
+            line-height (30 / 17)
             margin-top 0.5rem
         @media (--mobile)
           .member

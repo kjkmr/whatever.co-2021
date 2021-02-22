@@ -4,6 +4,8 @@ import { langStyle } from 'lib/i18n'
 import { setup, setupImage, setupLink } from 'components/Grad'
 import { getOptimized } from 'lib/image'
 import { isMobile } from 'lib/isMobile'
+import { replaceInsiteLink } from 'lib/redirect'
+import { useRouter } from 'next/router'
 
 const replaceImgOptimized = (html: string): string => {
   return html.replace(/(<img .+?src=")([^"]+?)"/gm, (_, img, src) => img + getOptimized(src) + '"')
@@ -16,6 +18,7 @@ const addYouTubeEmbedParams = (html: string): string => {
 const EntryBody = ({ content }: { content: string }) => {
   const body = useRef<HTMLDivElement>(null)
   const mobile = isMobile()
+  const router = useRouter()
   useLayoutEffect(() => {
     const cleanups: (() => void)[] = []
     body.current?.querySelectorAll('p').forEach(el => {
@@ -55,8 +58,7 @@ const EntryBody = ({ content }: { content: string }) => {
       cleanups.push(setupImage(el as HTMLElement))
     })
     body.current?.querySelectorAll('a').forEach(a => {
-      a.target = '_blank'
-      a.rel = 'noopener noreferrer'
+      replaceInsiteLink(a, router)
       cleanups.push(setupLink(a, true, mobile))
     })
     return () => { cleanups.forEach(c => c()) }

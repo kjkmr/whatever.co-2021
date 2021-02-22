@@ -2,6 +2,8 @@ import { ReactNode, CSSProperties, useRef, forwardRef } from 'react'
 import classnames from 'classnames'
 import { useLayoutEffect } from 'lib/useLayoutEffect'
 import { isMobile } from 'lib/isMobile';
+import { replaceInsiteLink } from 'lib/redirect';
+import { useRouter } from 'next/router';
 
 const COLORS = ["#ff2300", "#ff9201", "#ffeb00", "#89e82b", "#00c745", "#29ebfe", "#0d44fb", "#a725fc", "#fd1eba"];
 export const getColors = (): [string, string] => {
@@ -419,11 +421,11 @@ export const GradLink = forwardRef(({ children, className, href, target, rel, in
 export const GradLinkedTextBox = ({ html, className = '' }: { html: string | undefined, className?: string }) => {
   const ref = useRef<HTMLDivElement>(null)
   const mobile = isMobile()
+  const router = useRouter()
   useLayoutEffect(() => {
     const cleanups: (() => void)[] = []
     ref.current?.querySelectorAll('a').forEach(a => {
-      a.target = '_blank'
-      a.rel = 'noopener noreferrer'
+      replaceInsiteLink(a, router)
       cleanups.push(setupLink(a, true, mobile))
     })
     return () => { cleanups.forEach(c => c()) }

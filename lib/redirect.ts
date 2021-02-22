@@ -14,7 +14,8 @@ export function findRedirectDest(key: string): string | null {
 
 export function replaceInsiteLink(a: HTMLAnchorElement, router: NextRouter): boolean {
   const locale = router.locale || router.defaultLocale!
-  const match = a.href.match(/https:\/\/whatever\.co(\/(en|ja|zh|zh-hant))?(?<path>\/.+?)$/)
+  const re = new RegExp(`^(https://whatever\.co|${window.location.origin})?(/(en|ja|zh|zh-hant))?(?<path>/.+?)$`)
+  const match = a.href.match(re)
   if (match) {
     const paths = match.groups!.path.split('/')
     let dest: string | null = null

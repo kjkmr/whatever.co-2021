@@ -13,6 +13,8 @@ import { isMobile } from 'lib/isMobile'
 import { NextPrevButtons } from 'components/NextPrevButtons'
 import LazyLoad from 'react-lazyload'
 import { OGPInfo } from 'components/OGPInfo'
+import { replaceInsiteLink } from 'lib/redirect'
+import { useRouter } from 'next/router'
 
 const PhotoDesktop = ({ src }: { src: string }) => {
   const [scrollY, setScrollY] = useState(0)
@@ -72,10 +74,11 @@ const PhotoMobile = ({ src }: { src: string }) => {
 const MemberInfo = ({ member }: { member: Member }) => {
   const ref = useRef<HTMLDivElement>(null)
   const mobile = isMobile()
+  const router = useRouter()
   useLayoutEffect(() => {
     const cleanups: (() => void)[] = []
     ref.current?.querySelectorAll('a').forEach(a => {
-      a.target = '_blank'
+      replaceInsiteLink(a, router)
       cleanups.push(setupLink(a, true, mobile))
     })
     return () => { cleanups.forEach(c => c()) }

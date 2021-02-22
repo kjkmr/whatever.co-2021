@@ -28,7 +28,7 @@ export const OGPInfo = ({ title, type = "article", image, desc }: OGPProps) => {
     <Head>
       <meta property="og:title" content={htmlToText(title)} />
       <meta property="og:type" content={type} />
-      <meta property="og:url" content={`https://whatever.co${router.asPath}`} />
+      <meta property="og:url" content={`https://whatever.co${router.asPath}/`} />
       <meta property="og:image" content={fullpath} />
       <meta property="og:site_name" content="Whatever Inc." />
       <meta property="og:description" content={htmlToText(desc || '')} />

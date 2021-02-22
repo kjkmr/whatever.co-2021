@@ -109,7 +109,7 @@ const Menu = () => {
                 {menuItems.map((item) => (
                   <li key={item[1]}>
                     <Grad whiteText inline>
-                      <Link href={item[1]}>
+                      <Link href={item[1]} passHref>
                         <GradLink className="menu-link" border={false} onClick={onClick}>{item[0]}</GradLink>
                       </Link>
                     </Grad>

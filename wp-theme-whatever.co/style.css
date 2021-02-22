@@ -342,7 +342,6 @@ figcaption {
 .entry-body .block-3-images-ss-m >:nth-child(3) {
   grid-column: span 2;
   width: calc((100vw - 80px) * 0.656298600311042);
-  height: calc((100vw - 80px) * 0.368584758942457);
   object-fit: cover;
 }
 .entry-body .block-4-images-l-ss-m {
@@ -429,7 +428,6 @@ figcaption {
   }
   .entry-body .block-3-images-ss-m >:nth-child(3) {
     width: auto;
-    height: auto;
   }
   .entry-body.en p {
     font-size: 1.4rem;

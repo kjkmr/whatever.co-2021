@@ -36,7 +36,9 @@ const Player = ({ onClick }: { onClick?: any }) => (
         left 0
         box-sizing border-box
         width 100vw
+        max-width 100%
         height 100vh
+        max-height 100%
         z-index 20000
         :global(.player-bg)
           position absolute
@@ -53,7 +55,9 @@ const Player = ({ onClick }: { onClick?: any }) => (
           padding 80px
           box-sizing border-box
           width 100vw
+          max-width 100%
           height 100vh
+          max-height 100%
         :global(.aspect-ratio)
           width 'min(100%, calc((100vh - 160px) / 9 * 16))' % null
           height 'min(100%, calc((100vw - 160px) / 16 * 9))' % null

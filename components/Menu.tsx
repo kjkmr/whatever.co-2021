@@ -141,7 +141,9 @@ const Menu = () => {
           justify-content center
           align-items center
           width 100vw
+          max-width 100%
           height 100vh
+          max-height 100%
           :global(.menu-bg)
             position absolute
             top 0

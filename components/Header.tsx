@@ -15,7 +15,7 @@ const Header = () => (
         align-items flex-start
       .fixed
         position fixed
-        z-index 10000
+        z-index 99
       a
         display block
         border none

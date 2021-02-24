@@ -45,7 +45,7 @@ const NewsDetail = ({ entry }: { entry: Entry }) => (
             line-height 4.0rem
             margin-top 18px
         .body
-          margin 65px auto 0
+          margin 10rem auto 0
         @media (--mobile)
           @import 'lib/vw-mobile.styl'
           .news

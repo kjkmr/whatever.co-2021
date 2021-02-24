@@ -99,6 +99,13 @@
     font-weight: 200
     line-height: calc(30 / 17)
 
+.news .entry-body
+  --image-row-width: #{vwpx2(1126, 240)}
+  --margin-left: calc(((100vw - 80px - 900px) / 2 - 80px) * -1)
+  --margin-between-block: 10rem
+  --margin-between-images: 8.2rem
+
+
 @media (--mobile)
   .entry-body
     p
@@ -114,6 +121,8 @@
     .block-images
       margin: var(--margin-between-block) -30px 0 -50px
       font-size: 0
+      &+.block-images
+        margin-top: var(--margin-between-images)
       .img + .img
         margin-top: var(--margin-between-images)
       img
@@ -143,3 +152,12 @@
     p
       font-size: 1.4rem
       line-height: calc(50 / 28)
+
+  .news .entry-body
+    --image-row-width: calc(100vw - 50px - 30px)
+    --margin-left: 0
+    --margin-between-block: 5.0rem
+    --margin-between-images: 3.0rem
+    .block-images
+      margin-left: 0
+      margin-right: 0

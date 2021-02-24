@@ -1,6 +1,9 @@
 @function vwpx($px)
   @return calc((100vw - 80px) * #{$px / (1366 - 80)})
 
+@function vwpx2($px, $margin)
+  @return calc((100vw - #{$margin}px) * #{$px / (1366 - $margin)})
+
 @function vwpxm($px)
   @return calc(100vw * #{$px / 375})
 

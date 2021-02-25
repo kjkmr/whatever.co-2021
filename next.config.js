@@ -11,6 +11,11 @@ module.exports = {
         destination: '/work/category/all/',
         permanent: false,
       },
+      {
+        source: '/zh/',
+        destination: '/zh-hant/',
+        permanent: true,
+      },
     ]
   },
   webpack: (config, { isServer }) => {

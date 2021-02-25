@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   }
   return {
     redirect: {
-      permanent: false,
+      permanent: true,
       destination: destination
     }
   }

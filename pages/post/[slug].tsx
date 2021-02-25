@@ -1,18 +1,20 @@
 import { GetServerSideProps } from 'next'
-import parser from 'accept-language-parser'
 import { findRedirectDest } from 'lib/redirect'
 
 const Post = () => <></>
 export default Post
 
-export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { req, params, locale } = context
   const destPath = findRedirectDest(params?.slug as string)
   if (destPath) {
-    const selected = parser.pick(['en', 'ja', 'zh'], req.headers['accept-language'] || '', { loose: true })
-    const newLocale = selected == 'zh' ? 'zh-hant' : selected
+    // @ts-ignore
+    const newLocale = req['__nextStrippedLocale']
+      ? (locale == 'zh' ? 'zh-hant' : locale)
+      : 'ja'
     return {
       redirect: {
-        permanent: false,
+        permanent: true,
         destination: `/${newLocale}${destPath}`
       }
     }

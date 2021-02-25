@@ -1,15 +1,10 @@
 import { NextRouter } from "next/router"
 
-type RedirectInfo = {
-  source: string
-  destination: string
-}
-const data: RedirectInfo[] = require('redirects.json').filter((p: RedirectInfo) => p.source.startsWith('/post/'))
+const data: { slug: string, category: 'work' | 'news' | 'member' }[] = require('post-category.json')
 
 export function findRedirectDest(key: string): string | null {
-  const prevPath = `/post/${key}/`
-  const redirectInfo = data.find(p => p.source == prevPath)
-  return redirectInfo ? redirectInfo.destination : null
+  const post = data.find(row => row.slug === key)
+  return post ? `/${post.category}/${post.slug}` : null
 }
 
 export function replaceInsiteLink(a: HTMLAnchorElement, router: NextRouter): boolean {

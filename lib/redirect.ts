@@ -1,9 +1,19 @@
 import { NextRouter } from "next/router"
 
-const data: { slug: string, category: 'work' | 'news' | 'member' }[] = require('post-category.json')
+type RedirectInfo = {
+  source: string
+  destination: string
+}
+const renamedPosts: RedirectInfo[] = require('redirects.json').filter((p: RedirectInfo) => p.source.startsWith('/post/'))
+const postCategory: { slug: string, category: 'work' | 'news' | 'member' }[] = require('post-category.json')
 
 export function findRedirectDest(key: string): string | null {
-  const post = data.find(row => row.slug === key)
+  const prevPath = `/post/${key}/`
+  const redirectInfo = renamedPosts.find(p => p.source == prevPath)
+  if (redirectInfo) {
+    return redirectInfo.destination
+  }
+  const post = postCategory.find(row => row.slug === key)
   return post ? `/${post.category}/${post.slug}` : null
 }
 

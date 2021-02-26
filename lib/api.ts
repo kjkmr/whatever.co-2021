@@ -176,8 +176,12 @@ export async function getAllMembers(maxCount: number = 100, locale: string = 'ja
 }
 
 
-export async function getMemberDetail(slug: string, locale: string = 'ja'): Promise<Member | null> {
-  const data = (await wp.pages().slug(slug).embed().param({ lang: locale }))[0]
+export async function getMemberDetail(slug: string, locale: string = 'ja', preview: boolean = false): Promise<Member | null> {
+  let request = wp.pages().slug(slug).embed().param({ lang: locale })
+  if (preview) {
+    request = request.status(['publish', 'future', 'draft', 'pending', 'private']).auth()
+  }
+  const data = (await request)[0]
   return data ? {
     slug,
     name: data.title.rendered,
@@ -316,8 +320,9 @@ export async function getPageDetails(slug: string): Promise<Entry> {
 }
 
 
-export async function getPreviewData(slug: string, locale: string): Promise<Entry | null> {
-  const data = (await wp.posts().status(['publish', 'future', 'draft', 'pending', 'private']).slug(slug).embed().param({ _fields: 'slug,title', lang: locale }))[0]
+export async function getPreviewData(slug: string, locale: string, isPost: boolean = true): Promise<Entry | null> {
+  const request = isPost ? wp.posts() : wp.pages()
+  const data = (await request.auth().status(['publish', 'future', 'draft', 'pending', 'private']).slug(slug).embed().param({ _fields: 'slug,title', lang: locale }))[0]
   return data ? {
     slug: data.slug,
     title: data.title.rendered,

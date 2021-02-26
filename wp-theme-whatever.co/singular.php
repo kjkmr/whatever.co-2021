@@ -3,6 +3,16 @@ if (!is_user_logged_in()) {
   wp_redirect('https://whatever.co');
   exit;
 }
+if (have_posts()) {
+  the_post();
+  $slug = get_post_field('post_name');
+  $category = get_the_category()[0]->slug;
+  $locale = ICL_LANGUAGE_CODE;
+  $url = sprintf('https://whatever.co/api/preview/?slug=%s&category=%s&locale=%s&secret=%s', $slug, $category, $locale, PREVIEW_SECRET);
+  // echo $url;
+  wp_redirect($url);
+  exit;
+}
 ?>
 <html>
 

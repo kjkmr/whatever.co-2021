@@ -2,7 +2,11 @@ import { DateTime } from 'luxon'
 import Baby from 'babyparse'
 
 const WPAPI = require('wpapi')
-const wp = new WPAPI({ endpoint: process.env.WORDPRESS_API_URL })
+const wp = new WPAPI({
+  endpoint: process.env.WORDPRESS_API_URL,
+  username: process.env.WP_PREVIEW_USER,
+  password: process.env.WP_PREVIEW_PASSWORD,
+})
 
 const CATEGORY_ID_WORK = 5
 const CATEGORY_ID_NEWS = 56
@@ -172,8 +176,12 @@ export async function getAllMembers(maxCount: number = 100, locale: string = 'ja
 }
 
 
-export async function getMemberDetail(slug: string, locale: string = 'ja'): Promise<Member | null> {
-  const data = (await wp.pages().slug(slug).embed().param({ lang: locale }))[0]
+export async function getMemberDetail(slug: string, locale: string = 'ja', preview: boolean = false): Promise<Member | null> {
+  let request = wp.pages().slug(slug).embed().param({ lang: locale })
+  if (preview) {
+    request = request.status(['publish', 'future', 'draft', 'pending', 'private']).auth()
+  }
+  const data = (await request)[0]
   return data ? {
     slug,
     name: data.title.rendered,
@@ -273,8 +281,13 @@ const getRelPost = (data: any) => {
 }
 
 
-export async function getPostDetails(slug: string, locale: string = 'ja'): Promise<Entry | null> {
-  const data = (await wp.posts().slug(slug).embed().param({ _fields: 'slug,title,content,date,tags,acf,_links,_embedded,next,prev', lang: locale }))[0]
+export async function getPostDetails(slug: string, locale: string = 'ja', preview: boolean = false): Promise<Entry | null> {
+  const param = { _fields: 'slug,title,content,date,tags,acf,_links,_embedded,next,prev', lang: locale }
+  let request = wp.posts().slug(slug).embed().param(param)
+  if (preview) {
+    request = request.status(['publish', 'future', 'draft', 'pending', 'private']).auth()
+  }
+  const data = (await request)[0]
   if (!data) return null
   const tags: { [id: number]: Tag } = {};
   (await getWorkTags(locale)).forEach(t => tags[t.id] = t)
@@ -304,4 +317,14 @@ export async function getPageDetails(slug: string): Promise<Entry> {
     content: replaceToCDN(data[0].content.rendered),
     hero_image: replaceToCDN(findFeaturedMedia(data[0])),
   }
+}
+
+
+export async function getPreviewData(slug: string, locale: string, isPost: boolean = true): Promise<Entry | null> {
+  const request = isPost ? wp.posts() : wp.pages()
+  const data = (await request.auth().status(['publish', 'future', 'draft', 'pending', 'private']).slug(slug).embed().param({ _fields: 'slug,title', lang: locale }))[0]
+  return data ? {
+    slug: data.slug,
+    title: data.title.rendered,
+  } : null
 }

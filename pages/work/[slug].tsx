@@ -391,8 +391,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const work = await getPostDetails(params?.slug as string, locale)
+export const getStaticProps: GetStaticProps = async ({ params, locale, preview }) => {
+  const work = await getPostDetails(params?.slug as string, locale, preview)
   if (!work) {
     return { notFound: true }
   }

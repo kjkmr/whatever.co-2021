@@ -88,8 +88,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const entry = await getPostDetails(params?.slug as string, locale)
+export const getStaticProps: GetStaticProps = async ({ params, locale, preview }) => {
+  const entry = await getPostDetails(params?.slug as string, locale, preview)
   if (!entry) {
     return { notFound: true }
   }

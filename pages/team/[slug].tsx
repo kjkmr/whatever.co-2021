@@ -391,9 +391,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+export const getStaticProps: GetStaticProps = async ({ params, locale, preview }) => {
   const slug: string = params?.slug as string
-  const member = await getMemberDetail(slug, locale)
+  const member = await getMemberDetail(slug, locale, preview)
   if (!member) {
     return { notFound: true }
   }

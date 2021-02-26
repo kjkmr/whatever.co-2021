@@ -1,7 +1,7 @@
 import { GetServerSideProps } from 'next'
 import { findRedirectDest } from 'lib/redirect'
 
-const Post = () => <></>
+const Post = () => null
 export default Post
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {

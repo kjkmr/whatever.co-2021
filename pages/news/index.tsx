@@ -3,7 +3,7 @@ import LazyLoad from 'react-lazyload'
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { Entry, getNews } from 'lib/api'
+import { Entry, getAllNews } from 'lib/api'
 import { langStyle } from 'lib/i18n'
 import Layout from 'components/Layout'
 import { Grad, GradImg } from 'components/Grad'
@@ -135,7 +135,7 @@ const NewsIndex = ({ entries }: { entries: Entry[] }) => {
 export default NewsIndex
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const entries = await getNews(100, locale)
+  const entries = await getAllNews(locale)
   return {
     props: { entries },
     revalidate: 60 * 10,

@@ -23,8 +23,10 @@
     "react-responsive": "^8.2.0",
     "react-scroll": "^1.8.1",
     "sass": "^1.32.8",
+    "sitemap": "^6.4.0",
     "stylus": "^0.54.8",
-    "wpapi": "^1.2.1"
+    "wpapi": "^1.2.1",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "@types/babyparse": "0.0.30",

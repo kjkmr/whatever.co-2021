@@ -108,7 +108,7 @@ preview API を呼ぶときは WordPress 側から secret 渡さないとダメ�
 
 ### next/image
 
-Next.js v10 から [next/image の Image コンポーネント](https://nextjs.org/docs/basic-features/image-optimization)を使えば閲覧環境に応じていいかんじに画像を最適化してくれるってーことで導入してみたのだけど、Safari でだけなぜか複数の画像を読み込んでしまっていて使えないので、Image コンポーネントじゃなくてその内部で使われている画像最適化用の API だけを呼び出して使った。Image コンポーネントのほうが画像サイズ選択部分の処理をもっとちゃんとやってるのでほんとはそっちのがいいんだけどいたしかたなし。
+Next.js v10 から [next/image の Image コンポーネント](https://nextjs.org/docs/basic-features/image-optimization)を使えば閲覧環境に応じていいかんじに画像を最適化してくれるってーことで導入してみたのだけど、Safari でだけなぜか複数の画像を読み込んでしまっていて使えないので、Image コンポーネントじゃなくてその内部で使われている[画像最適化用の API だけを呼び出して使った](https://github.com/Whatever-Inc/whatever.co-2021/blob/1478c2c75e290aeab1d0b00d242b56c831cc7aee/lib/image.ts)。Image コンポーネントのほうが画像サイズ選択部分の処理をもっとちゃんとやってるのでほんとはそっちのがいいんだけどいたしかたなし。
 
 そしていま確認したら[最新版ではそのバグは解決している](https://github.com/vercel/next.js/pull/22902)もよう。
 
@@ -128,10 +128,10 @@ Basic 認証つけようとすると $150/month かかるのは謎。
 
 ### フォント
 
-デザイナーの指定は欧文は [Apercu](https://www.colophon-foundry.org/typefaces/apercu/)、和文は [Noto Sans](https://fonts.google.com/specimen/Noto+Sans+JP?preview.text_type=custom&preview.text=Whatever%E3%81%AF%E3%80%81%E3%81%AA%E3%82%93%E3%81%A7%E3%82%82%E8%80%83%E3%81%88%E3%80%81%E3%81%AA%E3%82%93%E3%81%A7%E3%82%82%E4%BD%9C%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82)。
+[デザイナー ジャガーさん](https://whatever.co/ja/team/jaguar/)の指定は欧文は [Apercu](https://www.colophon-foundry.org/typefaces/apercu/)、和文は [Noto Sans](https://fonts.google.com/specimen/Noto+Sans+JP?preview.text_type=custom&preview.text=Whatever%E3%81%AF%E3%80%81%E3%81%AA%E3%82%93%E3%81%A7%E3%82%82%E8%80%83%E3%81%88%E3%80%81%E3%81%AA%E3%82%93%E3%81%A7%E3%82%82%E4%BD%9C%E3%82%8A%E3%81%BE%E3%81%99%E3%80%82)。
 
 Apercu は Webfont も提供されてるので普通に @font-face で組み込むだけ。\
-Noto Sans は全部で 3 ウェイト使っていて、最初はそんなに使ったらフォントのダウンロード量すごそうでやだなーどうしよっかなーと思ってたんだけど（実際 dotby.jp はフォントだけで 5MB ぐらい読んでた）、Chrome の DevTools で見てみるとなんか大量に細かいファイルを読んでいるけどそんなに重くない。文字多めのページでも全部で 1MBぐらい。なんでかなー？と CSS で [@import で読み込んでるファイルの中身](https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500;700&display=block)をみてみると、細かくフォントファイルを分けて [`unicode-range`](https://developer.mozilla.org/ja/docs/Web/CSS/@font-face/unicode-range) を使って必要な文字が含まれてるファイルだけをダウンロードしてるみたい。進化してた。賢い。
+Noto Sans は全部で 3 ウェイト使われていて、最初はそんなに使ったらフォントのダウンロード量すごそうでやだなーどうしよっかなーと思ってたんだけど（実際 dotby.jp はフォントだけで 5MB ぐらい読んでた）、Chrome の DevTools で見てみるとなんか大量に細かいファイルを読んでいるけどそんなに重くない。文字多めのページでも全部で 1MBぐらい。なんでかなー？と CSS で [@import で読み込んでるファイルの中身](https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500;700&display=block)をみてみると、細かくフォントファイルを分けて [`unicode-range`](https://developer.mozilla.org/ja/docs/Web/CSS/@font-face/unicode-range) を使って必要な文字が含まれてるファイルだけをダウンロードしてるみたい。進化してた。賢い。
 
 <https://qiita.com/ksk1015/items/38128a108ba8476cc7d6>
 
@@ -156,7 +156,7 @@ Noto Sans は全部で 3 ウェイト使っていて、最初はそんなに使�
 
 ただし、これは `lighten` でグラデカラーが足されるので白背景でしか使えません。暗い背景でこれやるとグラデ枠ががっつり見えます。
 
-サイト内にはグレー背景で白テキストの箇所があってそこはどうしてるかというと、まず黒背景白テキストの白い部分だけにグラデをのっけます。これは `mib-blend-mode: multiply` でいけます。黒 (=0) \* グラデ = 0、白 (=1) \* グラデ  = グラデ、ですね。で、これをグレー背景にのっけるときにさらに `mix-blend-mode: lighten` します。するとグレーより明るいグラデ部分だけが残ります。完成。`mix-blend-mode` の二重がけ。
+サイト内にはグレー背景で白テキストの箇所があってそこはどうしてるかというと、まず黒背景白テキストの白い部分だけにグラデをのっけます。これは `mix-blend-mode: multiply` でいけます。黒 (=0) \* グラデ = 0、白 (=1) \* グラデ  = グラデ、ですね。で、これをグレー背景にのっけるときにさらに `mix-blend-mode: lighten` します。するとグレーより明るいグラデ部分だけが残ります。完成。`mix-blend-mode` の二重がけ。
 
 ひとつハマりポイント。`mix-blend-mode` が下の要素が `position: fixed` だとブレンドが反映されません。悩んだコレ。
 
@@ -168,9 +168,9 @@ Noto Sans は全部で 3 ウェイト使っていて、最初はそんなに使�
 
 ### レスポンシブ
 
-基本的にはデスクトップでもモバイルでも HTML 構造はそのまま CSS だけでレイアウト変える感じにしときたいけどそうはいかない部分も少なからずあって、それが SSG と相性が悪い。一つの URL に対して一つの HTML がサーバー側で生成されるのでデバイスごとに変えられない。
+基本的にはデスクトップでもモバイルでも HTML 構造はそのまま CSS だけでレイアウト変える感じにしときたいけどそうはいかない部分も少なからずあって、それが SSG と相性が悪い。サーバー側では1つの URL に対して1つの HTML が生成されるのでデバイスごとに変えられない。
 
-ぜんぜんこのへんのベストプラクティスがわからんのだが、とりあえず SSG ではデバイス別に DOM 構造が違うコンポーネントをレンダリングしない、っていうのを実装。[`useEffectLayout` フックでブラウザ上で動いてるときだけマウントする。](https://github.com/Whatever-Inc/whatever.co-2021/blob/d6b1fd0495dc0f0f9399cca9fff2cc142c0cf343/components/Responsive.tsx)
+ぜんぜんこのへんのベストプラクティスがわからんのだが、とりあえず SSG ではデバイス別に DOM 構造が違うコンポーネントをレンダリングしない、っていうのを実装。[`useEffectLayout` フックでブラウザ上で動いてるときだけマウントする。](https://github.com/Whatever-Inc/whatever.co-2021/blob/d6b1fd0495dc0f0f9399cca9fff2cc142c0cf343/components/Responsive.tsx)（各デバイス用コンポーネント全部のっけてブラウザ側で消すってのもアリか？）
 
 そして Media Qurey まわりもよくわからんのだけど、styled-jsx で各コンポーネントごとに `@media` で場合分けしてるとその query 部分をどうしても外に出したくなって、CSS Variables でいけるかなーと思ったら CSS Vars は query には適用できなくって、最終的に [postcss](https://postcss.org/) なら設定が外に出せることがわかって [styled-jsx-plugin-postcss](https://github.com/giuseppeg/styled-jsx-plugin-postcss) を導入。（いま気づいたけどブレイクポイントが適当に 800px とかになってるのはいいのだろうか……否……）
 
@@ -185,7 +185,7 @@ favicon のアニメーションは [dotby.jp の頃のやつ](https://qiita.com
 
 OG タグをちゃんと設定しとかないと Facebook とか Twitter に投稿したときに画像とかがちゃんと出てくれないので [OG タグを設定するコンポーネント](https://github.com/Whatever-Inc/whatever.co-2021/blob/d6b1fd0495dc0f0f9399cca9fff2cc142c0cf343/components/OGPInfo.tsx)を作って全ページに仕込んだ。
 
-ただし og:image はちゃんとドメインを含んだ完全な URL として書かないとサービスによってはちゃんと読んでくれないんだけど、Vercel にデプロイしたときのドメインはブランチ名含んだやつとか commit hash が入ったやつとか複数あって SSG の都合上本番ドメイン決め打たないといけなくって、本番管渠でしかちゃんと動いてるのが確認できないのがちょっと難点。
+ただし `og:image` はちゃんとドメインを含んだ完全な URL として書かないとサービスによってはちゃんと読んでくれないんだけど、Vercel にデプロイしたときのドメインはブランチ名含んだやつとか commit hash が入ったやつとか複数あって SSG の都合上本番ドメインで決め打たないといけなくって、本番環境でしかちゃんと動いてるのが確認できないのがちょっと難点。
 
 ### sitemap.xml
 
@@ -205,4 +205,10 @@ OG タグをちゃんと設定しとかないと Facebook とか Twitter に投�
 
 ## まとめ
 
-ソースコード。
+次作るときは WordPress やめるかなー？データ移行大変だけどもうちょっと CMS 側を柔軟にいじくれるほうが WordPress のプラグインたちに振り回されなくてよいかもしれない。
+
+Next.js は簡単にめちゃ速いサイトつくれるのでよいけど、Vercel 以外のホスティングでも使いやすくなるともっと流行りそうな気がする。ISR まわりをいい感じに調整するのはいろいろ経験がひつようそう。まあこれぐらいのコーポレートサイトなら適当にやってもなんとかなる。
+
+TypeScript まわりで何も書くことなかった😅　まあこれぐらいのコーポレートサイトなら型とか適当にやってもなんとかなる。VSCode の suggestion まわりが賢くなるのはよい。
+
+WordPress のフロント側つくるだけだから簡単っしょ〜って思ってたらハマりどころにいろいろハマって苦労したけどいいサイトができたのでよかったですね。いつまで持つかな〜😂

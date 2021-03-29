@@ -1,6 +1,6 @@
 # whatever.co-2021
 
-Source code for Whatever Inc's corporate website [whatever.co](htts://whatever.co/).
+Source code for Whatever Inc's corporate website [whatever.co](https://whatever.co/).
 
 ## Development environment
 

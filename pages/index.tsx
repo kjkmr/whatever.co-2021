@@ -19,7 +19,7 @@ const Player = ({ onClick }: { onClick?: any }) => (
       <Grad className="player-bg" startImmediately />
       <div className="padding">
         <Grad className="aspect-ratio">
-          <iframe src="https://www.youtube.com/embed/rsBTSWTbH4I?autoplay=1;controls=0;rel=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <iframe src="https://www.youtube.com/embed/ftur2U8AijE?autoplay=1;controls=0;rel=0" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
         </Grad>
       </div>
       <div className="close-button">
@@ -139,17 +139,17 @@ const Showreel = () => {
         <div ref={videoContainer} className="video">
           <GradImg>
             <div className="inner">
-              <Desktop><video ref={video} src="/index/reel2019.mp4" autoPlay playsInline loop muted></video></Desktop>
-              <Mobile><video ref={video} src="/index/reel2019-sp.mp4" autoPlay playsInline loop muted></video></Mobile>
+              <Desktop><video ref={video} src="/index/reel2021.mp4" autoPlay playsInline loop muted></video></Desktop>
+              <Mobile><video ref={video} src="/index/reel2021-sp.mp4" autoPlay playsInline loop muted></video></Mobile>
               <div className="logo">
-                <video src="/index/reel-logo.mp4" autoPlay playsInline loop muted></video>
+                <video src="/index/reel2021-logo.mp4" autoPlay playsInline loop muted></video>
               </div>
             </div>
           </GradImg>
         </div>
         <div className="watch-reel">
           <Desktop><BlackButton className="button" onClick={onClickWatch}>Watch Reel</BlackButton></Desktop>
-          <Mobile><BlackButton className="button" link="https://www.youtube.com/watch?v=rsBTSWTbH4I">Watch Reel</BlackButton></Mobile>
+          <Mobile><BlackButton className="button" link="https://www.youtube.com/watch?v=ftur2U8AijE">Watch Reel</BlackButton></Mobile>
         </div>
       </div>
       {showPlayer ? <Player onClick={onClose} /> : null}

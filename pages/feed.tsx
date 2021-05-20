@@ -14,12 +14,14 @@ async function generateFeedXml(locale: string = 'ja') {
   })
 
   const entries = await getAllPosts(5, locale)
+  const urlPrefix = 'https://whatever.co/' + (locale != 'en' ? `${locale}/` : '')
   entries?.forEach((entry) => {
+    const image = entry.hero_image ? `<p><img src="${entry.hero_image}"</p>` : ''
     feed.item({
       title: entry.title,
-      description: entry.content || '',
+      description: image + entry.content,
       date: new Date(entry.date || ''),
-      url: `https://whatever.co/`,
+      url: `${urlPrefix}news/${entry.slug}/`,
     })
   })
 

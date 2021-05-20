@@ -164,12 +164,13 @@ const findFeaturedMedia = (e: any, size: string = 'full'): string => {
 
 
 export async function getAllPosts(maxCount: number = 100, locale: string = 'ja'): Promise<Entry[]> {
-  const data = await wp.posts().perPage(maxCount).param({ __fields: 'slug,title', lang: locale })
+  const data = await wp.posts().perPage(maxCount).embed().param({ __fields: 'slug,title,_embedded', lang: locale })
   return data?.map((e: any): Entry => ({
     slug: e.slug,
     title: e.title.rendered,
     date: e.date,
     content: replaceToCDN(e.content.rendered),
+    hero_image: replaceToCDN(findFeaturedMedia(e)),
   }))
 }
 

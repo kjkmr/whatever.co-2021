@@ -162,6 +162,18 @@ const findFeaturedMedia = (e: any, size: string = 'full'): string => {
   return defaultSource
 }
 
+
+export async function getAllPosts(maxCount: number = 100, locale: string = 'ja'): Promise<Entry[]> {
+  const data = await wp.posts().perPage(maxCount).param({ __fields: 'slug,title', lang: locale })
+  return data?.map((e: any): Entry => ({
+    slug: e.slug,
+    title: e.title.rendered,
+    date: e.date,
+    content: replaceToCDN(e.content.rendered),
+  }))
+}
+
+
 export async function getAllMembers(maxCount: number = 100, locale: string = 'ja'): Promise<Member[]> {
   const data = await wp.pages().order('asc').perPage(maxCount).embed().param({ __fields: 'slug,title,tags,_embedded', lang: locale })
   return data?.map((e: any): Member => ({

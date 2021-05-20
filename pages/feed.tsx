@@ -13,7 +13,7 @@ async function generateFeedXml(locale: string = 'ja') {
     language: locale,
   })
 
-  const entries = await getAllPosts(5, locale)
+  const entries = await getAllPosts(10, locale)
   const urlPrefix = 'https://whatever.co/' + (locale != 'en' ? `${locale}/` : '')
   entries?.forEach((entry) => {
     const image = entry.hero_image ? `<p><img src="${entry.hero_image}"</p>` : ''

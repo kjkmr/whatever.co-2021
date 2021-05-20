@@ -267,6 +267,18 @@ export async function getNews(maxEntries = 100, locale: string = 'ja'): Promise<
 }
 
 
+export async function getAllNews(locale: string = 'ja'): Promise<Entry[]> {
+  const data = await getAll(wp.posts().perPage(100).embed().param({ categories: CATEGORY_ID_NEWS, _fields: 'slug,title,date,content,_links,_embedded', lang: locale }))
+  return data?.map((e: any): Entry => ({
+    slug: e.slug,
+    title: e.title.rendered,
+    date: DateTime.fromISO(e.date).toFormat(`LLL dd, yyyy`),
+    content: replaceToCDN(e.content.rendered),
+    hero_image: replaceToCDN(findFeaturedMedia(e)),
+  }))
+}
+
+
 export async function getNewsByTag(tagSlug: string, maxEntries: number = 100, locale: string = 'ja'): Promise<Entry[]> {
   const tag = await wp.tags().slug(tagSlug)
   if (tag.length == 0) return []

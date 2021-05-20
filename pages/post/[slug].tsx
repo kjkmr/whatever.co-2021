@@ -1,21 +1,29 @@
 import { GetServerSideProps } from 'next'
 import { findRedirectDest } from 'lib/redirect'
 
-const Post = () => <></>
+const Post = () => null
 export default Post
+
+const getLocalePath = (locale: string): string => {
+  switch (locale) {
+    case 'en': return ''
+    case 'zh': return '/zh-hant'
+  }
+  return `/${locale}`
+}
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { req, params, locale } = context
   const destPath = findRedirectDest(params?.slug as string)
   if (destPath) {
     // @ts-ignore
-    const newLocale = req['__nextStrippedLocale']
-      ? (locale == 'zh' ? 'zh-hant' : locale)
-      : 'ja'
+    const newLocalePath = req['__nextStrippedLocale']
+      ? getLocalePath(locale!)
+      : '/ja'
     return {
       redirect: {
         permanent: true,
-        destination: `/${newLocale}${destPath}`
+        destination: `${newLocalePath}${destPath}`
       }
     }
   }

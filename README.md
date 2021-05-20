@@ -1,6 +1,6 @@
 # whatever.co-2021
 
-Source code for Whatever Inc's corporate website [whatever.co](htts://whatever.co/).
+Source code for Whatever Inc's corporate website [whatever.co](https://whatever.co/).
 
 ## Development environment
 
@@ -9,5 +9,5 @@ Source code for Whatever Inc's corporate website [whatever.co](htts://whatever.c
 
 ## License
 
-This software is released under the MIT License, see LICENSE.
+This software is released under the MIT License, see [LICENSE](https://github.com/Whatever-Inc/whatever.co-2021/blob/main/LICENSE).\
 All rights to images, illustrations and fonts are reserved by Whatever Inc.
